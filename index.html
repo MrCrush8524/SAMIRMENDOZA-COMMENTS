@@ -140,12 +140,60 @@
   }
   #minimap { display: block; image-rendering: pixelated; }
 
+  #teleportBtn, #runBtn {
+    position: fixed; z-index: 12; font-family: inherit;
+    border: 1px solid var(--hairline); background: var(--panel); color: var(--ink-bright);
+    border-radius: 999px; padding: 9px 16px; font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; cursor: pointer; backdrop-filter: blur(2px);
+  }
+  #teleportBtn { right: 16px; bottom: 16px; }
+  body.touch #teleportBtn { bottom: 26px; }
+  #runBtn {
+    left: 150px; bottom: 42px; border-radius: 50%; width: 60px; height: 60px;
+    padding: 0; display: none; align-items: center; justify-content: center;
+  }
+  body.touch #runBtn { display: flex; }
+  #runBtn.active { background: var(--ink-bright); color: var(--void); border-color: var(--ink-bright); }
+
+  #teleportPanel {
+    position: fixed; inset: 0; z-index: 25; display: none;
+    align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(43,31,42,0.88), rgba(58,36,50,0.86));
+  }
+  #teleportPanel.show { display: flex; }
+  #teleportPanel .box {
+    width: min(420px, 90vw); max-height: 78vh; overflow-y: auto;
+    background: var(--panel); border: 1px solid var(--hairline); border-radius: 8px;
+    padding: 18px; backdrop-filter: blur(3px);
+  }
+  #teleportPanel h2 {
+    font-family: 'Cormorant Garamond', 'Georgia', serif; font-style: italic; font-weight: 500;
+    font-size: 1.5rem; margin: 0 0 .3rem; color: var(--ink-bright); text-align: center;
+  }
+  #teleportPanel .hint {
+    font-size: .64rem; color: var(--ink-dim); text-align: center; margin: 0 0 1rem; letter-spacing: .04em;
+  }
+  #teleportList { display: flex; flex-direction: column; gap: 6px; }
+  #teleportList button {
+    font-family: inherit; text-align: left; padding: .6em .9em; font-size: .74rem;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--hairline); border-radius: 5px;
+    color: var(--ink); cursor: pointer; letter-spacing: .02em;
+  }
+  #teleportList button:hover, #teleportList button:focus-visible { background: rgba(255,255,255,0.14); color: var(--ink-bright); }
+  #teleportClose {
+    display: block; width: 100%; margin-top: 12px; font-family: inherit;
+    background: transparent; border: 1px solid var(--hairline); border-radius: 5px;
+    color: var(--ink-dim); padding: .5em; font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #overlay { transition: none; }
   }
 
   @media (max-width: 480px) {
     #minimapWrap { transform: scale(.72); transform-origin: top right; }
+    #teleportBtn { right: 12px; }
   }
 </style>
 </head>
@@ -159,8 +207,19 @@
 <div id="crosshair"></div>
 
 <div id="joystick"><div id="joystickThumb"></div></div>
+<button id="runBtn" title="Toggle run">🏃</button>
 
 <div id="zoneTag"></div>
+
+<button id="teleportBtn" title="Teleport">✦ Teleport</button>
+<div id="teleportPanel">
+  <div class="box">
+    <h2>Go anywhere</h2>
+    <p class="hint">Pick a room — no walking required.</p>
+    <div id="teleportList"></div>
+    <button id="teleportClose">Close</button>
+  </div>
+</div>
 
 <div id="minimapWrap">
   <span>Floor plan</span>
@@ -168,7 +227,7 @@
 </div>
 
 <div id="hud">
-  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>esc</b> release</span>
+  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>T</b> teleport &nbsp;·&nbsp; <b>esc</b> release</span>
   <span class="touch-only"><b>joystick</b> move &nbsp;·&nbsp; <b>drag</b> to look</span>
 </div>
 
@@ -179,8 +238,8 @@
     <p class="desc">The same floor plan, faded to something gentler: dusty pink halls, hazy pastel light, a building that feels half-dreamed. The pillar-forest of the Yellow Rooms, the Swamp, a Metro Station, a Church, two Hot Halls and a Cold one — wander until you lose track of which room you started in.</p>
     <p class="zonelist"><b>Nearby on spawn:</b> Prison → Yellow Rooms → The Office. Elsewhere: White Rooms, Hot/Cold Halls, Metro Station, The Mall, Swamp, Green Rooms, The Church, the Pools, and more.</p>
     <div class="cta"><span class="desktop-only">Click to step inside</span><span class="touch-only">Tap to step inside</span></div>
-    <p class="keys desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move &nbsp; <kbd>mouse</kbd> look &nbsp; <kbd>shift</kbd> run</p>
-    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look</p>
+    <p class="keys desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move &nbsp; <kbd>mouse</kbd> look &nbsp; <kbd>shift</kbd> run &nbsp; <kbd>T</kbd> teleport</p>
+    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look &nbsp;·&nbsp; ✦ Teleport to jump rooms</p>
   </div>
 </div>
 
@@ -553,8 +612,9 @@
   if (isTouch) {
     overlay.addEventListener('click', () => overlay.classList.add('hidden'), { once: true });
   } else {
-    dom.addEventListener('click', () => dom.requestPointerLock());
+    dom.addEventListener('click', () => { if (!teleportOpen) dom.requestPointerLock(); });
     document.addEventListener('pointerlockchange', () => {
+      if (teleportOpen) return;
       overlay.classList.toggle('hidden', document.pointerLockElement === dom);
     });
     document.addEventListener('mousemove', e => {
@@ -569,6 +629,7 @@
       if (e.code === 'KeyA') move.l = true;
       if (e.code === 'KeyD') move.r = true;
       if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
+      if (e.code === 'KeyT') openTeleport();
     });
     addEventListener('keyup', e => {
       if (e.code === 'KeyW') move.f = false;
@@ -639,6 +700,68 @@
     lookLayer.addEventListener('touchcancel', () => { lookTouchId = null; });
   }
 
+  // ---------------------------------------------------------------------
+  // Run toggle (touch has no shift key) and teleport — jump straight to
+  // any named room instead of walking the whole floor plan.
+  // ---------------------------------------------------------------------
+  let touchRun = false;
+  let teleportOpen = false;
+  const runBtn = document.getElementById('runBtn');
+  runBtn.addEventListener('click', () => {
+    touchRun = !touchRun;
+    runBtn.classList.toggle('active', touchRun);
+  });
+
+  function findZoneLanding(z) {
+    const cx = (z.c0 + z.c1 - 1) / 2, cr = (z.r0 + z.r1 - 1) / 2;
+    let best = null, bestD = Infinity;
+    for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+      if (isWall(c, r) || extraBlocked.has(r + ',' + c)) continue;
+      const d = (c - cx) * (c - cx) + (r - cr) * (r - cr);
+      if (d < bestD) { bestD = d; best = { c, r }; }
+    }
+    return best;
+  }
+
+  const teleportBtn = document.getElementById('teleportBtn');
+  const teleportPanel = document.getElementById('teleportPanel');
+  const teleportList = document.getElementById('teleportList');
+  const teleportClose = document.getElementById('teleportClose');
+  let wasLocked = false;
+
+  const seenLabels = new Set();
+  for (const z of ZONES) {
+    if (z.blocked || seenLabels.has(z.label)) continue;
+    seenLabels.add(z.label);
+    const btn = document.createElement('button');
+    btn.textContent = z.label;
+    btn.addEventListener('click', () => {
+      const landing = findZoneLanding(z);
+      if (landing) {
+        camera.position.x = worldX(landing.c);
+        camera.position.z = worldZ(landing.r);
+      }
+      closeTeleport();
+    });
+    teleportList.appendChild(btn);
+  }
+
+  function openTeleport() {
+    if (teleportOpen) return;
+    teleportOpen = true;
+    wasLocked = !isTouch && document.pointerLockElement === dom;
+    if (wasLocked) document.exitPointerLock();
+    teleportPanel.classList.add('show');
+  }
+  function closeTeleport() {
+    teleportOpen = false;
+    teleportPanel.classList.remove('show');
+    if (wasLocked) dom.requestPointerLock();
+  }
+  teleportBtn.addEventListener('click', openTeleport);
+  teleportClose.addEventListener('click', closeTeleport);
+  teleportPanel.addEventListener('click', e => { if (e.target === teleportPanel) closeTeleport(); });
+
   function cellBlocked(x, z) {
     const c = Math.round(x / CELL + COLS / 2 - 0.5);
     const r = Math.round(z / CELL + ROWS / 2 - 0.5);
@@ -701,7 +824,8 @@
     camera.rotation.y = yaw;
     camera.rotation.x = pitch;
 
-    const speed = (move.run ? 4.8 : 2.7) * dt;
+    const running = move.run || touchRun;
+    const speed = (running ? 4.8 : 2.7) * dt;
     const fx = Math.sin(yaw), fz = Math.cos(yaw);
     let forward = (move.f ? 1 : 0) - (move.b ? 1 : 0) + joyForward;
     let strafe = (move.r ? 1 : 0) - (move.l ? 1 : 0) + joyStrafe;
@@ -715,7 +839,7 @@
       const nx = x + dx, nz = z + dz;
       if (!cellBlocked(nx, z)) camera.position.x = nx;
       if (!cellBlocked(camera.position.x, nz)) camera.position.z = nz;
-      bobT += dt * (move.run ? 14 : 9);
+      bobT += dt * (running ? 14 : 9);
       camera.position.y = 1.65 + Math.sin(bobT) * 0.035;
     } else {
       camera.position.y += (1.65 - camera.position.y) * 0.15;
