@@ -719,52 +719,6 @@
   for (const spot of POSTER_SPOTS) addPoster(spot, spot.key);
 
   // ---------------------------------------------------------------------
-  // TV screens — vintage commercials looping on CRT-style props, spread
-  // across six more wings. PC-desktop only: the video files are bundled
-  // with the Electron build and are too heavy for the web/mobile builds,
-  // so this whole block is skipped unless window.ELECTRON_BUILD is set
-  // (by electron/app/index.html, not by the plain web copy).
-  // ---------------------------------------------------------------------
-  if (window.ELECTRON_BUILD) {
-    const TV_SPOTS = [
-      { c: 4,  r: 8,  dir: 'N', key: 'bellamy_drink_mix' },
-      { c: 60, r: 17, dir: 'W', key: 'childrens_drink_ad' },
-      { c: 60, r: 20, dir: 'W', key: 'vintage_man_commercial' },
-      { c: 39, r: 30, dir: 'N', key: 'photoreal_dream' },
-      { c: 60, r: 25, dir: 'W', key: 'late_night_broadcast' },
-      { c: 2,  r: 26, dir: 'N', key: 'channel_static' },
-    ];
-    function addTV(spot) {
-      const video = document.createElement('video');
-      video.src = 'videos/' + spot.key + '.mp4';
-      video.loop = true; video.muted = true; video.playsInline = true; video.autoplay = true;
-      // Off-screen but still in the DOM — a detached <video> element is
-      // unreliable as a decode source in some engines.
-      video.style.cssText = 'position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none;';
-      document.body.appendChild(video);
-      video.play().catch(() => {});
-      const tex = new THREE.VideoTexture(video);
-      const w = 1.5, h = 0.95;
-      const screen = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex }));
-      screen.position.z = 0.01;
-      const bezel = new THREE.Mesh(new THREE.BoxGeometry(w + 0.22, h + 0.22, 0.16), new THREE.MeshBasicMaterial({ color: 0x2a2028 }));
-      bezel.position.z = -0.09;
-      const group = new THREE.Group();
-      group.add(bezel, screen);
-      const eps = 0.03;
-      let rotY = 0, ox = 0, oz = 0;
-      if (spot.dir === 'N') { rotY = Math.PI; oz = -CELL / 2 - eps; }
-      else if (spot.dir === 'S') { rotY = 0; oz = CELL / 2 + eps; }
-      else if (spot.dir === 'E') { rotY = Math.PI / 2; ox = CELL / 2 + eps; }
-      else if (spot.dir === 'W') { rotY = -Math.PI / 2; ox = -CELL / 2 - eps; }
-      group.position.set(worldX(spot.c) + ox, 1.55, worldZ(spot.r) + oz);
-      group.rotation.y = rotY;
-      scene.add(group);
-    }
-    for (const spot of TV_SPOTS) addTV(spot);
-  }
-
-  // ---------------------------------------------------------------------
   // Movement + look — mouse/keyboard on desktop, joystick + touch-drag
   // on phones (pointer lock isn't a thing on touchscreens).
   // ---------------------------------------------------------------------
