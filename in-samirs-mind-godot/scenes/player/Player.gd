@@ -7,9 +7,27 @@ const SPRINT_SPEED := 5.0
 const MOUSE_SENS := 0.0022
 const GRAVITY := 9.8
 
+## Collision capsule radius (see Player.tscn) — kept slender since the
+## dreamer is a small cat/dog, not human-shouldered. Any passage meant
+## to be walkable must clear at least 2x this in width; a passage
+## narrower than that is a deliberate blocker, not a bug.
+const COLLIDER_RADIUS := 0.22
+
+## Downward camera pitch (radians) where the paw overlay starts/finishes
+## fading in, per CLAUDE_PAW_ASSET_IMPLEMENTATION_GUIDE.md's suggested
+## 25-35° start / 45-65° full range.
+const PAW_FADE_START := deg_to_rad(25.0)
+const PAW_FADE_FULL := deg_to_rad(55.0)
+const PAW_MAX_OPACITY := 0.94
+
+@export var paw_texture_bobby: Texture2D
+@export var paw_texture_luna: Texture2D
+@export var paw_texture_mateo: Texture2D
+
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
+@onready var paw_overlay: TextureRect = %PawOverlay
 
 var pitch: float = 0.0
 var touch_look_active: bool = false
@@ -23,6 +41,11 @@ func _ready() -> void:
 		pass # touch look handled via _unhandled_input below regardless of platform
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	match GameState.dreamer:
+		"Bobby": paw_overlay.texture = paw_texture_bobby
+		"Luna": paw_overlay.texture = paw_texture_luna
+		"Mateo": paw_overlay.texture = paw_texture_mateo
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -56,6 +79,13 @@ func _physics_process(delta: float) -> void:
 	velocity.z = direction.z * speed
 
 	move_and_slide()
+	_update_paw_overlay()
+
+func _update_paw_overlay() -> void:
+	# pitch is negative when looking down (see _unhandled_input above).
+	var downward: float = maxf(0.0, -pitch)
+	var t: float = clampf(inverse_lerp(PAW_FADE_START, PAW_FADE_FULL, downward), 0.0, 1.0)
+	paw_overlay.modulate.a = t * PAW_MAX_OPACITY
 
 func _try_interact() -> void:
 	if interact_ray.is_colliding():
