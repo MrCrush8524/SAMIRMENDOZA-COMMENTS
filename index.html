@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --void: #2b1f2a;
@@ -69,39 +69,63 @@
 
   #overlay {
     position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(180deg, rgba(43,31,42,0.93), rgba(58,36,50,0.88));
-    text-align: center; cursor: pointer; z-index: 20;
-    transition: opacity .4s ease; overflow-y: auto;
+    background: linear-gradient(180deg, rgba(43,31,42,0.62), rgba(58,36,50,0.78));
+    backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+    text-align: center; z-index: 20;
+    transition: opacity .4s ease; overflow-y: auto; padding-block: 32px;
   }
   #overlay.hidden { opacity: 0; pointer-events: none; }
-  #overlay .stack { padding: 24px 24px; max-width: 520px; }
+  #overlay .skylight {
+    position: absolute; top: -220px; left: 50%; width: 620px; height: 440px;
+    transform: translateX(-50%); border-radius: 50%; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 75%, rgba(200,225,240,0.55), rgba(240,205,225,0.28) 45%, transparent 72%);
+    filter: blur(6px);
+  }
+  #overlay .stack { position: relative; padding: 24px 24px; max-width: 420px; }
   #overlay .eyebrow {
-    font-size: .68rem; letter-spacing: .28em; color: var(--ink-dim);
-    text-transform: uppercase; margin: 0 0 .9rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; letter-spacing: .32em; color: var(--ink-dim);
+    text-transform: uppercase; margin: 0 0 .6rem;
   }
   #overlay h1 {
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-style: italic; font-weight: 500;
-    font-size: clamp(2.2rem, 7vw, 3.4rem); letter-spacing: .01em;
-    margin: 0 0 .8rem; color: var(--ink-bright);
-    text-shadow: 0 0 24px rgba(255, 190, 220, 0.4);
+    font-family: 'Baloo 2', 'Cormorant Garamond', Georgia, serif; font-weight: 800;
+    font-size: clamp(2.4rem, 9vw, 3.6rem); letter-spacing: 0; line-height: .95;
+    margin: 0 0 .5rem; color: var(--ink-bright);
+    text-shadow: 0 0 28px rgba(255, 190, 220, 0.45), 0 2px 0 rgba(43,31,42,0.35);
     text-wrap: balance;
   }
-  #overlay .desc { font-size: .8rem; color: var(--ink-dim); line-height: 1.6; margin: 0 0 1rem; }
-  #overlay .zonelist {
-    font-size: .68rem; color: var(--ink-dim); line-height: 1.9; margin: 0 0 1.5rem;
-    letter-spacing: .03em;
+  #overlay .tagline {
+    font-family: 'JetBrains Mono', monospace; font-size: .74rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ink-dim); margin: 0 0 1.8rem;
   }
-  #overlay .zonelist b { color: var(--ink-bright); font-weight: 600; }
-  #overlay .cta {
-    display: inline-block; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--void); background: var(--ink-bright); padding: .7em 1.6em;
-    border-radius: 2px; margin-bottom: 1.4rem;
+  #overlay .menu-stack { display: flex; flex-direction: column; gap: 12px; margin: 0 0 1.4rem; }
+  #overlay .pill {
+    display: block; width: 100%; font-family: 'JetBrains Mono', monospace;
+    font-weight: 600; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+    color: #3a2530; background: var(--pill-color, #f2d17a); border: none;
+    border-radius: 999px; padding: 1em 1.2em; cursor: pointer;
+    box-shadow: 0 4px 0 rgba(43,31,42,0.18), 0 8px 16px rgba(43,31,42,0.22);
+    transition: transform .15s ease, box-shadow .15s ease;
+    text-decoration: none;
   }
-  #overlay .keys { font-size: .74rem; color: var(--ink-dim); letter-spacing: .02em; }
+  #overlay .pill:hover, #overlay .pill:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(43,31,42,0.18), 0 12px 20px rgba(43,31,42,0.26);
+  }
+  #overlay .pill:active { transform: translateY(1px); box-shadow: 0 2px 0 rgba(43,31,42,0.18); }
+  #overlay .pill.enter { --pill-color: #f2d17a; }
+  #overlay .pill.jump { --pill-color: #e896ae; }
+  #overlay .pill.settings { --pill-color: #a8d9b0; }
+  #overlay .pill.extras { --pill-color: #9fc9e6; }
+  #overlay .keys { font-size: .72rem; color: var(--ink-dim); letter-spacing: .02em; }
   #overlay .keys kbd {
     font-family: inherit; color: var(--ink-bright); border: 1px solid var(--hairline);
     border-radius: 3px; padding: .1em .4em; margin: 0 .1em;
+  }
+  #overlayGear {
+    position: absolute; top: 18px; right: 18px; z-index: 21; width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid var(--hairline); background: rgba(58,40,52,0.55);
+    color: var(--ink-bright); font-size: 1.1rem; cursor: pointer; backdrop-filter: blur(3px);
   }
 
   #crosshair {
@@ -252,14 +276,20 @@
 </div>
 
 <div id="overlay">
+  <div class="skylight"></div>
+  <button id="overlayGear" title="Menu">⚙</button>
   <div class="stack">
-    <p class="eyebrow">Level 0, remembered soft — from the community wiki blueprint</p>
-    <h1>The Backrooms</h1>
-    <p class="desc">The same floor plan, faded to something gentler: dusty pink halls, hazy pastel light, a building that feels half-dreamed. The pillar-forest of the Yellow Rooms, the Swamp, a Metro Station, a Church, two Hot Halls and a Cold one — wander until you lose track of which room you started in.</p>
-    <p class="zonelist"><b>Nearby on spawn:</b> Prison → Yellow Rooms → The Office. Elsewhere: White Rooms, Hot/Cold Halls, Metro Station, The Mall, Swamp, Green Rooms, The Church, the Pools, and more.</p>
-    <div class="cta"><span class="desktop-only">Click to step inside</span><span class="touch-only">Tap to step inside</span></div>
+    <p class="eyebrow">Level 0</p>
+    <h1>The<br>Backrooms</h1>
+    <p class="tagline">Walk through dusty dreams</p>
+    <div class="menu-stack">
+      <button id="pillEnter" class="pill enter">Step inside</button>
+      <button id="pillJump" class="pill jump">Teleport</button>
+      <button id="pillSettings" class="pill settings">Menu</button>
+      <a id="pillExtras" class="pill extras" href="https://claude.ai/code/artifact/b2c2b437-3d23-4a3f-b4f0-03c6e765d9a3" target="_blank" rel="noopener">Extras · Site survey</a>
+    </div>
     <p class="keys desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move &nbsp; <kbd>mouse</kbd> look &nbsp; <kbd>shift</kbd> run &nbsp; <kbd>T</kbd> teleport</p>
-    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look &nbsp;·&nbsp; ✦ Teleport to jump rooms</p>
+    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look</p>
   </div>
 </div>
 
@@ -686,10 +716,10 @@
   document.body.classList.toggle('touch', isTouch);
 
   if (isTouch) {
-    overlay.addEventListener('click', () => overlay.classList.add('hidden'));
+    document.getElementById('pillEnter').addEventListener('click', () => overlay.classList.add('hidden'));
   } else {
     const requestLock = () => { if (openModals.size === 0) dom.requestPointerLock(); };
-    overlay.addEventListener('click', requestLock);
+    document.getElementById('pillEnter').addEventListener('click', requestLock);
     dom.addEventListener('click', requestLock);
     document.addEventListener('pointerlockchange', () => {
       if (openModals.size > 0) return;
@@ -718,6 +748,19 @@
       if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = false;
     });
   }
+
+  document.getElementById('pillJump').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openTeleport();
+  });
+  document.getElementById('pillSettings').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openMenu();
+  });
+  document.getElementById('overlayGear').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openMenu();
+  });
 
   if (isTouch) {
     const stick = document.getElementById('joystick');
