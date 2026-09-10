@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Backrooms — Map Walkthrough</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #000; font-family: 'Courier New', monospace; }
+  #app { position: fixed; inset: 0; }
+  canvas { display: block; }
+
+  #overlay {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(10,9,4,0.88); color: #d8cf9a; text-align: center; cursor: pointer;
+    z-index: 20; transition: opacity .3s ease;
+  }
+  #overlay.hidden { opacity: 0; pointer-events: none; }
+  #overlay h1 { font-size: 1.4rem; letter-spacing: .08em; margin: 0 0 .6rem; color: #e8dc8f; }
+  #overlay p { margin: .25rem 0; font-size: .85rem; opacity: .85; }
+  #overlay .key { color: #fff59d; }
+
+  #crosshair {
+    position: fixed; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px;
+    border-radius: 50%; background: rgba(255,255,240,.65); z-index: 10; pointer-events: none;
+  }
+
+  #hud {
+    position: fixed; left: 14px; bottom: 14px; z-index: 10; color: #cabf82; font-size: .72rem;
+    background: rgba(10,9,4,.45); padding: 6px 10px; border: 1px solid rgba(200,190,120,.25);
+    letter-spacing: .04em; pointer-events: none;
+  }
+
+  #minimapWrap {
+    position: fixed; right: 14px; top: 14px; z-index: 10; border: 1px solid rgba(200,190,120,.35);
+    background: rgba(10,9,4,.55); padding: 6px;
+  }
+  #minimapWrap span { display:block; color:#a99a5a; font-size:.62rem; text-align:center; margin-bottom:4px; letter-spacing:.1em; }
+  #minimap { display: block; image-rendering: pixelated; }
+
+  #flash {
+    position: fixed; inset: 0; background: #fffdf0; opacity: 0; pointer-events: none; z-index: 15;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="crosshair"></div>
+<div id="flash"></div>
+
+<div id="minimapWrap">
+  <span>FLOOR PLAN</span>
+  <canvas id="minimap" width="186" height="126"></canvas>
+</div>
+
+<div id="hud">WASD move · mouse look · shift run · esc release cursor</div>
+
+<div id="overlay">
+  <div>
+    <h1>THE BACKROOMS</h1>
+    <p>a 3D walkthrough of the sketched floor plan</p>
+    <p style="margin-top:1rem;">click anywhere to step inside</p>
+    <p><span class="key">W A S D</span> to move &nbsp;·&nbsp; <span class="key">mouse</span> to look &nbsp;·&nbsp; <span class="key">shift</span> to run</p>
+  </div>
+</div>
+
+<script src="lib/three.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------------
+  // Floor plan — recreated from the hand-drawn sketch: an irregular knot
+  // of narrow corridors and uneven rooms. Built with a maze carve so every
+  // hallway actually connects, then loosened with extra openings and a
+  // few widened pockets so it doesn't read as a uniform labyrinth.
+  // '#' = wall column, '.' = walkable floor.
+  // ---------------------------------------------------------------------
+  const MAP = ["###############################","#.#.........#...........#.....#","#.###.###.###.###.#####.#.###.#","#...#...#.#...#...#...#.#.#...#","###.#.#.###.###.###.#.#.#...###","#...#.......#...#...#.#...#.#.#","#.###...#####.###.###.#...#.#.#","#...#.....#.......#.#.....#...#","###.###.#.#.#...###.#####.#####","#.#.....#...#...#.........#...#","#.###########.#.#######.#.#.#.#","#.#...................#.#.#.#.#","#.#.#######.#.#####.#.#.#.#.#.#","#.........#.....#.....#.#.#...#","#.#####...#.###.#.#####.###...#","#.....#...#.#...#.#...........#","#.#####.#.#.###.#.....#######.#","#.#...#.#.#.....#.#.....#...#.#","#.#.#.#.#.###.###.#.#.#.#.#.#.#","#...#.......#.........#...#...#","###############################"];
+
+  const ROWS = MAP.length, COLS = MAP[0].length;
+  const CELL = 4;          // meters per grid cell
+  const WALL_H = 3.1;      // wall / ceiling height
+  const isWall = (c, r) => r < 0 || c < 0 || r >= ROWS || c >= COLS || MAP[r][c] === '#';
+  const worldX = c => (c - COLS / 2) * CELL;
+  const worldZ = r => (r - ROWS / 2) * CELL;
+
+  function findOpen() {
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (!isWall(c, r)) return { c, r };
+  }
+  const start = findOpen();
+
+  // ---------------------------------------------------------------------
+  // Textures — hand-rolled with canvas so this stays a single file.
+  // ---------------------------------------------------------------------
+  function canvasTex(size, draw) {
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    draw(cv.getContext('2d'), size);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    return tex;
+  }
+
+  const wallTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#c9b458';
+    ctx.fillRect(0, 0, s, s);
+    // grubby vertical wallpaper stripes
+    for (let x = 0; x < s; x += 16) {
+      ctx.fillStyle = `rgba(90,70,20,${0.05 + Math.random() * 0.08})`;
+      ctx.fillRect(x, 0, 8, s);
+    }
+    // water stains / grime blotches
+    for (let i = 0; i < 40; i++) {
+      const x = Math.random() * s, y = Math.random() * s, r = 4 + Math.random() * 18;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, `rgba(60,45,10,${0.12 + Math.random() * 0.15})`);
+      g.addColorStop(1, 'rgba(60,45,10,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+  wallTex.repeat.set(1, 1);
+
+  const floorTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#8a7a3c';
+    ctx.fillRect(0, 0, s, s);
+    // damp mottled carpet
+    for (let i = 0; i < 900; i++) {
+      const x = Math.random() * s, y = Math.random() * s;
+      ctx.fillStyle = `rgba(${40 + Math.random()*40},${30+Math.random()*30},${5+Math.random()*10},${0.05+Math.random()*0.1})`;
+      ctx.fillRect(x, y, 2, 2);
+    }
+  });
+  floorTex.repeat.set(4, 4);
+
+  const ceilTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#d8cf9a';
+    ctx.fillRect(0, 0, s, s);
+    ctx.strokeStyle = 'rgba(120,110,60,0.35)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, s - 2, s - 2);
+  });
+  ceilTex.repeat.set(4, 4);
+
+  // ---------------------------------------------------------------------
+  // Scene
+  // ---------------------------------------------------------------------
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x4a4322);
+  scene.fog = new THREE.FogExp2(0x4a4322, 0.028);
+
+  const camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.05, 200);
+  camera.position.set(worldX(start.c), 1.65, worldZ(start.r));
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(innerWidth, innerHeight);
+  document.getElementById('app').appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xfff2b0, 0.35));
+
+  // Floor / ceiling — one big plane each, walls per-cell.
+  const floorMat = new THREE.MeshStandardMaterial({ map: floorTex, roughness: 0.95 });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(COLS * CELL, ROWS * CELL), floorMat);
+  floor.rotation.x = -Math.PI / 2;
+  scene.add(floor);
+
+  const ceilMat = new THREE.MeshStandardMaterial({ map: ceilTex, roughness: 0.9 });
+  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(COLS * CELL, ROWS * CELL), ceilMat);
+  ceiling.rotation.x = Math.PI / 2;
+  ceiling.position.y = WALL_H;
+  scene.add(ceiling);
+
+  // Walls via InstancedMesh (cheap even for a large maze).
+  const wallGeo = new THREE.BoxGeometry(CELL, WALL_H, CELL);
+  const wallMat = new THREE.MeshStandardMaterial({ map: wallTex, roughness: 0.85 });
+  let wallCount = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (isWall(c, r)) wallCount++;
+  const wallMesh = new THREE.InstancedMesh(wallGeo, wallMat, wallCount);
+  const dummy = new THREE.Object3D();
+  let wi = 0;
+  const wallCells = []; // for collision
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    if (!isWall(c, r)) continue;
+    dummy.position.set(worldX(c), WALL_H / 2, worldZ(r));
+    dummy.updateMatrix();
+    wallMesh.setMatrixAt(wi++, dummy.matrix);
+    wallCells.push({ c, r });
+  }
+  scene.add(wallMesh);
+
+  // Fluorescent ceiling light panels, spaced through the corridors, each
+  // with its own dim point light so hallways don't go pitch black between
+  // fixtures — a few flicker.
+  const flickerLights = [];
+  const fixtureMat = new THREE.MeshBasicMaterial({ color: 0xfffbe0 });
+  for (let r = 1; r < ROWS; r += 3) {
+    for (let c = 1; c < COLS; c += 4) {
+      if (isWall(c, r)) continue;
+      const panel = new THREE.Mesh(new THREE.PlaneGeometry(CELL * 0.6, CELL * 0.32), fixtureMat);
+      panel.rotation.x = Math.PI / 2;
+      panel.position.set(worldX(c), WALL_H - 0.02, worldZ(r));
+      scene.add(panel);
+
+      const light = new THREE.PointLight(0xfff2c0, 0.9, CELL * 5, 2);
+      light.position.set(worldX(c), WALL_H - 0.3, worldZ(r));
+      scene.add(light);
+      if (Math.random() < 0.35) flickerLights.push(light);
+    }
+  }
+
+  // ---------------------------------------------------------------------
+  // Movement + mouse-look (self-contained pointer lock controller)
+  // ---------------------------------------------------------------------
+  const move = { f: false, b: false, l: false, r: false, run: false };
+  let yaw = 0, pitch = 0;
+  const overlay = document.getElementById('overlay');
+  const dom = renderer.domElement;
+
+  dom.addEventListener('click', () => dom.requestPointerLock());
+  document.addEventListener('pointerlockchange', () => {
+    overlay.classList.toggle('hidden', document.pointerLockElement === dom);
+  });
+  document.addEventListener('mousemove', e => {
+    if (document.pointerLockElement !== dom) return;
+    yaw -= e.movementX * 0.0022;
+    pitch -= e.movementY * 0.0022;
+    pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
+  });
+  addEventListener('keydown', e => {
+    if (e.code === 'KeyW') move.f = true;
+    if (e.code === 'KeyS') move.b = true;
+    if (e.code === 'KeyA') move.l = true;
+    if (e.code === 'KeyD') move.r = true;
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
+  });
+  addEventListener('keyup', e => {
+    if (e.code === 'KeyW') move.f = false;
+    if (e.code === 'KeyS') move.b = false;
+    if (e.code === 'KeyA') move.l = false;
+    if (e.code === 'KeyD') move.r = false;
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = false;
+  });
+
+  function cellBlocked(x, z) {
+    const c = Math.round(x / CELL + COLS / 2 - 0.5);
+    const r = Math.round(z / CELL + ROWS / 2 - 0.5);
+    return isWall(c, r);
+  }
+  const clock = new THREE.Clock();
+  let bobT = 0;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.05);
+
+    camera.rotation.order = 'YXZ';
+    camera.rotation.y = yaw;
+    camera.rotation.x = pitch;
+
+    const speed = (move.run ? 4.6 : 2.6) * dt;
+    let dx = 0, dz = 0;
+    const fx = Math.sin(yaw), fz = Math.cos(yaw);
+    if (move.f) { dx -= fx * speed; dz -= fz * speed; }
+    if (move.b) { dx += fx * speed; dz += fz * speed; }
+    if (move.l) { dx -= fz * speed; dz += fx * speed; }
+    if (move.r) { dx += fz * speed; dz -= fx * speed; }
+
+    if (dx || dz) {
+      const x = camera.position.x, z = camera.position.z;
+      const nx = x + dx, nz = z + dz;
+      if (!cellBlocked(nx, z)) camera.position.x = nx;
+      if (!cellBlocked(camera.position.x, nz)) camera.position.z = nz;
+      bobT += dt * (move.run ? 14 : 9);
+      camera.position.y = 1.65 + Math.sin(bobT) * 0.035;
+    } else {
+      camera.position.y += (1.65 - camera.position.y) * 0.15;
+    }
+
+    for (const l of flickerLights) l.intensity = 0.55 + Math.random() * 0.6;
+
+    renderer.render(scene, camera);
+    drawMinimap();
+  }
+
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
+  // ---------------------------------------------------------------------
+  // Minimap — top-down read of the same grid, with a live player marker.
+  // ---------------------------------------------------------------------
+  const mm = document.getElementById('minimap');
+  const mctx = mm.getContext('2d');
+  const px = mm.width / COLS, py = mm.height / ROWS;
+  function drawMinimap() {
+    mctx.fillStyle = '#0d0b04';
+    mctx.fillRect(0, 0, mm.width, mm.height);
+    mctx.fillStyle = '#c9b458';
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      if (!isWall(c, r)) mctx.fillRect(c * px, r * py, px + 0.6, py + 0.6);
+    }
+    const pc = camera.position.x / CELL + COLS / 2;
+    const pr = camera.position.z / CELL + ROWS / 2;
+    mctx.save();
+    mctx.translate(pc * px, pr * py);
+    mctx.rotate(-yaw);
+    mctx.fillStyle = '#ff5252';
+    mctx.beginPath();
+    mctx.moveTo(0, -4); mctx.lineTo(3, 3); mctx.lineTo(-3, 3);
+    mctx.closePath(); mctx.fill();
+    mctx.restore();
+  }
+
+  animate();
+})();
+</script>
+</body>
+</html>
