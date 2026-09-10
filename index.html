@@ -140,7 +140,7 @@
   }
   #minimap { display: block; image-rendering: pixelated; }
 
-  #teleportBtn, #runBtn {
+  #teleportBtn, #runBtn, #menuBtn {
     position: fixed; z-index: 12; font-family: inherit;
     border: 1px solid var(--hairline); background: var(--panel); color: var(--ink-bright);
     border-radius: 999px; padding: 9px 16px; font-size: .68rem; letter-spacing: .1em;
@@ -148,6 +148,8 @@
   }
   #teleportBtn { right: 16px; bottom: 16px; }
   body.touch #teleportBtn { bottom: 26px; }
+  #menuBtn { left: 16px; top: 16px; }
+  body.touch #menuBtn { top: 54px; padding: 7px 12px; font-size: .62rem; }
   #runBtn {
     left: 150px; bottom: 42px; border-radius: 50%; width: 60px; height: 60px;
     padding: 0; display: none; align-items: center; justify-content: center;
@@ -155,37 +157,39 @@
   body.touch #runBtn { display: flex; }
   #runBtn.active { background: var(--ink-bright); color: var(--void); border-color: var(--ink-bright); }
 
-  #teleportPanel {
+  .modal {
     position: fixed; inset: 0; z-index: 25; display: none;
     align-items: center; justify-content: center;
     background: linear-gradient(180deg, rgba(43,31,42,0.88), rgba(58,36,50,0.86));
   }
-  #teleportPanel.show { display: flex; }
-  #teleportPanel .box {
+  .modal.show { display: flex; }
+  .modal .box {
     width: min(420px, 90vw); max-height: 78vh; overflow-y: auto;
     background: var(--panel); border: 1px solid var(--hairline); border-radius: 8px;
     padding: 18px; backdrop-filter: blur(3px);
   }
-  #teleportPanel h2 {
+  .modal h2 {
     font-family: 'Cormorant Garamond', 'Georgia', serif; font-style: italic; font-weight: 500;
     font-size: 1.5rem; margin: 0 0 .3rem; color: var(--ink-bright); text-align: center;
   }
-  #teleportPanel .hint {
+  .modal .hint {
     font-size: .64rem; color: var(--ink-dim); text-align: center; margin: 0 0 1rem; letter-spacing: .04em;
   }
-  #teleportList { display: flex; flex-direction: column; gap: 6px; }
-  #teleportList button {
+  .modal .list { display: flex; flex-direction: column; gap: 6px; }
+  .modal .list button {
     font-family: inherit; text-align: left; padding: .6em .9em; font-size: .74rem;
     background: rgba(255,255,255,0.06); border: 1px solid var(--hairline); border-radius: 5px;
     color: var(--ink); cursor: pointer; letter-spacing: .02em;
   }
-  #teleportList button:hover, #teleportList button:focus-visible { background: rgba(255,255,255,0.14); color: var(--ink-bright); }
-  #teleportClose {
+  .modal .list button:hover, .modal .list button:focus-visible { background: rgba(255,255,255,0.14); color: var(--ink-bright); }
+  .modal .close-btn {
     display: block; width: 100%; margin-top: 12px; font-family: inherit;
     background: transparent; border: 1px solid var(--hairline); border-radius: 5px;
     color: var(--ink-dim); padding: .5em; font-size: .68rem; letter-spacing: .1em;
     text-transform: uppercase; cursor: pointer;
   }
+  .modal .help-text { font-size: .8rem; color: var(--ink); line-height: 1.7; margin: 0 0 .6rem; }
+  .modal .help-text b { color: var(--ink-bright); }
 
   @media (prefers-reduced-motion: reduce) {
     #overlay { transition: none; }
@@ -194,6 +198,7 @@
   @media (max-width: 480px) {
     #minimapWrap { transform: scale(.72); transform-origin: top right; }
     #teleportBtn { right: 12px; }
+    #menuBtn { left: 12px; }
   }
 </style>
 </head>
@@ -212,12 +217,27 @@
 <div id="zoneTag"></div>
 
 <button id="teleportBtn" title="Teleport">✦ Teleport</button>
-<div id="teleportPanel">
+<button id="menuBtn" title="Menu">☰ Menu</button>
+
+<div id="teleportPanel" class="modal">
   <div class="box">
     <h2>Go anywhere</h2>
     <p class="hint">Pick a room — no walking required.</p>
-    <div id="teleportList"></div>
-    <button id="teleportClose">Close</button>
+    <div id="teleportList" class="list"></div>
+    <button id="teleportClose" class="close-btn">Close</button>
+  </div>
+</div>
+
+<div id="menuPanel" class="modal">
+  <div class="box">
+    <h2>Menu</h2>
+    <p class="hint">Level 0, remembered soft.</p>
+    <div class="list">
+      <button id="menuTeleportBtn">✦ Teleport to a room</button>
+      <button id="menuRestartBtn">↺ Restart at spawn</button>
+      <button id="menuHelpBtn">❓ How to play</button>
+    </div>
+    <button id="menuClose" class="close-btn">Close</button>
   </div>
 </div>
 
@@ -227,7 +247,7 @@
 </div>
 
 <div id="hud">
-  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>T</b> teleport &nbsp;·&nbsp; <b>esc</b> release</span>
+  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>T</b> teleport &nbsp;·&nbsp; <b>M</b> menu &nbsp;·&nbsp; <b>esc</b> release</span>
   <span class="touch-only"><b>joystick</b> move &nbsp;·&nbsp; <b>drag</b> to look</span>
 </div>
 
@@ -596,6 +616,62 @@
     }
   }
 
+  const POSTERS = {
+    lost_and_found: { w:720, h:405, src:"posters/lost_and_found.jpg" },
+    softer_days: { w:720, h:405, src:"posters/softer_days.jpg" },
+    cloudside_shampoo: { w:640, h:480, src:"posters/cloudside_shampoo.jpg" },
+    wash_your_hands: { w:420, h:420, src:"posters/wash_your_hands.jpg" },
+    take_a_break: { w:420, h:420, src:"posters/take_a_break.jpg" },
+    express_yourself: { w:420, h:420, src:"posters/express_yourself.jpg" },
+    keep_it_clean: { w:420, h:420, src:"posters/keep_it_clean.jpg" },
+    fuel_better_dreams: { w:420, h:420, src:"posters/fuel_better_dreams.jpg" },
+    its_okay_to_feel: { w:420, h:420, src:"posters/its_okay_to_feel.jpg" },
+    flush_your_problems: { w:340, h:680, src:"posters/flush_your_problems.jpg" },
+    be_nice_to_strangers: { w:340, h:680, src:"posters/be_nice_to_strangers.jpg" },
+    stay_hydrated: { w:340, h:680, src:"posters/stay_hydrated.jpg" },
+  };
+
+  // ---------------------------------------------------------------------
+  // Posters — wall-mounted ad art spread across a dozen wings, each
+  // mounted flush on a wall face that borders an open room/corridor.
+  // ---------------------------------------------------------------------
+  function addPoster(spot, key) {
+    const meta = POSTERS[key];
+    if (!meta) return;
+    const ar = meta.w / meta.h;
+    const MAX_W = 2.2, MAX_H = 2.0;
+    let width = MAX_H * ar, height = MAX_H;
+    if (width > MAX_W) { width = MAX_W; height = MAX_W / ar; }
+    const tex = new THREE.TextureLoader().load(meta.src);
+    const mat = new THREE.MeshBasicMaterial({ map: tex });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), mat);
+    const eps = 0.03;
+    let rotY = 0, ox = 0, oz = 0;
+    if (spot.dir === 'N') { rotY = Math.PI; oz = -CELL / 2 - eps; }
+    else if (spot.dir === 'S') { rotY = 0; oz = CELL / 2 + eps; }
+    else if (spot.dir === 'E') { rotY = Math.PI / 2; ox = CELL / 2 + eps; }
+    else if (spot.dir === 'W') { rotY = -Math.PI / 2; ox = -CELL / 2 - eps; }
+    mesh.position.set(worldX(spot.c) + ox, 1.5, worldZ(spot.r) + oz);
+    mesh.rotation.y = rotY;
+    scene.add(mesh);
+  }
+
+  const POSTER_SPOTS = [
+    { c: 5,  r: 8,  dir: 'N', key: 'flush_your_problems' },
+    { c: 24, r: 7,  dir: 'S', key: 'take_a_break' },
+    { c: 0,  r: 7,  dir: 'S', key: 'lost_and_found' },
+    { c: 60, r: 0,  dir: 'W', key: 'stay_hydrated' },
+    { c: 42, r: 6,  dir: 'S', key: 'cloudside_shampoo' },
+    { c: 60, r: 16, dir: 'W', key: 'keep_it_clean' },
+    { c: 60, r: 19, dir: 'W', key: 'softer_days' },
+    { c: 38, r: 30, dir: 'N', key: 'fuel_better_dreams' },
+    { c: 60, r: 24, dir: 'W', key: 'be_nice_to_strangers' },
+    { c: 34, r: 30, dir: 'N', key: 'its_okay_to_feel' },
+    { c: 0,  r: 26, dir: 'N', key: 'express_yourself' },
+    { c: 20, r: 0,  dir: 'S', key: 'wash_your_hands' },
+  ];
+  for (const spot of POSTER_SPOTS) addPoster(spot, spot.key);
+
   // ---------------------------------------------------------------------
   // Movement + look — mouse/keyboard on desktop, joystick + touch-drag
   // on phones (pointer lock isn't a thing on touchscreens).
@@ -610,11 +686,13 @@
   document.body.classList.toggle('touch', isTouch);
 
   if (isTouch) {
-    overlay.addEventListener('click', () => overlay.classList.add('hidden'), { once: true });
+    overlay.addEventListener('click', () => overlay.classList.add('hidden'));
   } else {
-    dom.addEventListener('click', () => { if (!teleportOpen) dom.requestPointerLock(); });
+    const requestLock = () => { if (openModals.size === 0) dom.requestPointerLock(); };
+    overlay.addEventListener('click', requestLock);
+    dom.addEventListener('click', requestLock);
     document.addEventListener('pointerlockchange', () => {
-      if (teleportOpen) return;
+      if (openModals.size > 0) return;
       overlay.classList.toggle('hidden', document.pointerLockElement === dom);
     });
     document.addEventListener('mousemove', e => {
@@ -630,6 +708,7 @@
       if (e.code === 'KeyD') move.r = true;
       if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
       if (e.code === 'KeyT') openTeleport();
+      if (e.code === 'KeyM') openMenu();
     });
     addEventListener('keyup', e => {
       if (e.code === 'KeyW') move.f = false;
@@ -705,7 +784,6 @@
   // any named room instead of walking the whole floor plan.
   // ---------------------------------------------------------------------
   let touchRun = false;
-  let teleportOpen = false;
   const runBtn = document.getElementById('runBtn');
   runBtn.addEventListener('click', () => {
     touchRun = !touchRun;
@@ -723,11 +801,33 @@
     return best;
   }
 
-  const teleportBtn = document.getElementById('teleportBtn');
+  // ---------------------------------------------------------------------
+  // Modal panels (teleport, menu) — on desktop these release pointer
+  // lock so the cursor is usable, then re-lock once every panel is
+  // closed again. Several can be opened in sequence (menu -> teleport)
+  // without fighting over the lock.
+  // ---------------------------------------------------------------------
+  const openModals = new Set();
+  let wasLocked = false;
+  function openModal(el) {
+    if (openModals.size === 0) wasLocked = !isTouch && document.pointerLockElement === dom;
+    if (wasLocked) document.exitPointerLock();
+    openModals.add(el);
+    el.classList.add('show');
+  }
+  function closeModal(el) {
+    openModals.delete(el);
+    el.classList.remove('show');
+    if (openModals.size === 0 && wasLocked) dom.requestPointerLock();
+  }
+
   const teleportPanel = document.getElementById('teleportPanel');
   const teleportList = document.getElementById('teleportList');
-  const teleportClose = document.getElementById('teleportClose');
-  let wasLocked = false;
+  const openTeleport = () => openModal(teleportPanel);
+  const closeTeleport = () => closeModal(teleportPanel);
+  document.getElementById('teleportBtn').addEventListener('click', openTeleport);
+  document.getElementById('teleportClose').addEventListener('click', closeTeleport);
+  teleportPanel.addEventListener('click', e => { if (e.target === teleportPanel) closeTeleport(); });
 
   const seenLabels = new Set();
   for (const z of ZONES) {
@@ -746,21 +846,23 @@
     teleportList.appendChild(btn);
   }
 
-  function openTeleport() {
-    if (teleportOpen) return;
-    teleportOpen = true;
-    wasLocked = !isTouch && document.pointerLockElement === dom;
-    if (wasLocked) document.exitPointerLock();
-    teleportPanel.classList.add('show');
-  }
-  function closeTeleport() {
-    teleportOpen = false;
-    teleportPanel.classList.remove('show');
-    if (wasLocked) dom.requestPointerLock();
-  }
-  teleportBtn.addEventListener('click', openTeleport);
-  teleportClose.addEventListener('click', closeTeleport);
-  teleportPanel.addEventListener('click', e => { if (e.target === teleportPanel) closeTeleport(); });
+  const menuPanel = document.getElementById('menuPanel');
+  const openMenu = () => openModal(menuPanel);
+  const closeMenu = () => closeModal(menuPanel);
+  document.getElementById('menuBtn').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  menuPanel.addEventListener('click', e => { if (e.target === menuPanel) closeMenu(); });
+  document.getElementById('menuTeleportBtn').addEventListener('click', () => { closeMenu(); openTeleport(); });
+  document.getElementById('menuRestartBtn').addEventListener('click', () => {
+    camera.position.set(worldX(start.c), 1.65, worldZ(start.r));
+    yaw = 0; pitch = 0;
+    closeMenu();
+  });
+  document.getElementById('menuHelpBtn').addEventListener('click', () => {
+    closeMenu();
+    overlay.classList.remove('hidden');
+    if (!isTouch && document.pointerLockElement === dom) document.exitPointerLock();
+  });
 
   function cellBlocked(x, z) {
     const c = Math.round(x / CELL + COLS / 2 - 0.5);
