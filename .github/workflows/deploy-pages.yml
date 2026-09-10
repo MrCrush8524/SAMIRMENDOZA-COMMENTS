@@ -4,9 +4,7 @@ on:
   push:
     branches: [claude/backrooms-map-threejs-rbc3q3]
     paths:
-      - "index.html"
-      - "lib/**"
-      - "posters/**"
+      - "in-samirs-mind/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch: {}
 
@@ -28,18 +26,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Assemble site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build In Samir's Mind
+        working-directory: in-samirs-mind
         run: |
-          mkdir -p _site
-          cp index.html _site/
-          cp -r lib _site/
-          cp -r posters _site/
+          npm install
+          npm run build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: in-samirs-mind/dist
 
       - id: deployment
         uses: actions/deploy-pages@v4
