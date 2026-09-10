@@ -24,4 +24,3 @@ func _process(delta: float) -> void:
 	if _doubt_timer <= 0:
 		doubt.visible = not doubt.visible
 		_doubt_timer = (1.5 + randf() * 1.5) if doubt.visible else (8.0 + randf() * 10.0)
-
