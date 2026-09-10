@@ -1,0 +1,280 @@
+[gd_scene load_steps=26 format=3 uid="uid://chapter01_scene"]
+
+[ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/TVScreen.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/MoonDoor.gd" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/retro_laundromat_texture_atlas.webp" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/pastel_laundromat_wall_texture_sheet.webp" id="6"]
+[ext_resource type="Texture2D" path="res://assets/posters/Cloudside_Shampoo_Brighter_Days.webp" id="7"]
+[ext_resource type="Texture2D" path="res://assets/posters/Please_Do_Not_Take_A_Nap.webp" id="8"]
+[ext_resource type="AudioStream" path="res://assets/video_audio/Cloudside_Shampoo_commercial.ogg" id="9"]
+[ext_resource type="AudioStream" path="res://assets/video_audio/Please_Do_Not_Take_A_Nap_PSA_FINAL.ogg" id="10"]
+[ext_resource type="AudioStream" path="res://assets/audio/dream_tracks/01_lint_roller_reverie.ogg" id="11"]
+[ext_resource type="Texture2D" path="res://assets/video_stills/Cloudside_Shampoo_commercial.webp" id="12"]
+[ext_resource type="Texture2D" path="res://assets/video_stills/Please_Do_Not_Take_A_Nap_PSA_FINAL.webp" id="13"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(20, 16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_texture = ExtResource("5")
+uv1_scale = Vector3(4, 4, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_floor"]
+size = Vector3(20, 0.1, 16)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ceiling"]
+size = Vector2(20, 16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling"]
+albedo_color = Color(0.925, 0.878, 0.961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_ns"]
+size = Vector3(20, 4.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_ew"]
+size = Vector3(0.2, 4.2, 16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_texture = ExtResource("6")
+uv1_scale = Vector3(3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_wall_ns"]
+size = Vector3(20, 4.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="Shape_wall_ew"]
+size = Vector3(0.2, 4.2, 16)
+
+[sub_resource type="SphereMesh" id="Sphere_pickup"]
+radius = 0.18
+height = 0.36
+
+[sub_resource type="SphereShape3D" id="Shape_pickup"]
+radius = 0.65
+
+[sub_resource type="StandardMaterial3D" id="Mat_pickup_journal"]
+albedo_color = Color(1, 0.949, 0.788, 1)
+emission_enabled = true
+emission = Color(1, 0.949, 0.788, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_pickup_cat"]
+albedo_color = Color(0.961, 0.961, 1, 1)
+emission_enabled = true
+emission = Color(0.961, 0.961, 1, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_pickup_item"]
+albedo_color = Color(1, 0.843, 0.902, 1)
+emission_enabled = true
+emission = Color(1, 0.843, 0.902, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_pickup_track"]
+albedo_color = Color(0.788, 0.722, 1, 1)
+emission_enabled = true
+emission = Color(0.788, 0.722, 1, 1)
+emission_energy_multiplier = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_tv"]
+size = Vector3(0.9, 0.7, 0.6)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_screen"]
+size = Vector2(0.68, 0.5)
+
+[sub_resource type="SphereShape3D" id="Shape_tv_manual"]
+radius = 1.6
+
+[sub_resource type="SphereShape3D" id="Shape_tv_proximity"]
+radius = 2.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_moondoor"]
+size = Vector3(1.3, 2.3, 0.12)
+
+[sub_resource type="SphereShape3D" id="Shape_moondoor"]
+radius = 1.6
+
+[node name="Chapter01" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_floor")
+surface_material_override/0 = SubResource("Mat_floor")
+
+[node name="FloorBody" type="StaticBody3D" parent="Floor"]
+[node name="FloorShape" type="CollisionShape3D" parent="Floor/FloorBody"]
+shape = SubResource("Shape_floor")
+position = Vector3(0, -0.05, 0)
+
+[node name="Ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 0, 4.2, 0)
+mesh = SubResource("PlaneMesh_ceiling")
+surface_material_override/0 = SubResource("Mat_ceiling")
+
+[node name="WallNorth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -8)
+mesh = SubResource("BoxMesh_wall_ns")
+surface_material_override/0 = SubResource("Mat_wall")
+[node name="Body" type="StaticBody3D" parent="WallNorth"]
+[node name="Shape" type="CollisionShape3D" parent="WallNorth/Body"]
+shape = SubResource("Shape_wall_ns")
+
+[node name="WallSouth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 8)
+mesh = SubResource("BoxMesh_wall_ns")
+surface_material_override/0 = SubResource("Mat_wall")
+[node name="Body" type="StaticBody3D" parent="WallSouth"]
+[node name="Shape" type="CollisionShape3D" parent="WallSouth/Body"]
+shape = SubResource("Shape_wall_ns")
+
+[node name="WallWest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.1, 0)
+mesh = SubResource("BoxMesh_wall_ew")
+surface_material_override/0 = SubResource("Mat_wall")
+[node name="Body" type="StaticBody3D" parent="WallWest"]
+[node name="Shape" type="CollisionShape3D" parent="WallWest/Body"]
+shape = SubResource("Shape_wall_ew")
+
+[node name="WallEast" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.1, 0)
+mesh = SubResource("BoxMesh_wall_ew")
+surface_material_override/0 = SubResource("Mat_wall")
+[node name="Body" type="StaticBody3D" parent="WallEast"]
+[node name="Shape" type="CollisionShape3D" parent="WallEast/Body"]
+shape = SubResource("Shape_wall_ew")
+
+[node name="Poster1" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.8, -7.88)
+texture = ExtResource("7")
+pixel_size = 0.0022
+
+[node name="Poster2" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -3, 1.7, 7.88)
+texture = ExtResource("8")
+pixel_size = 0.0022
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="Journal1" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.1, 2)
+script = ExtResource("2")
+kind = 0
+journal_text = "This place feels so familiar, even though you've never been here."
+item_id = "0"
+[node name="Mesh" type="MeshInstance3D" parent="Journal1"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Shape" type="CollisionShape3D" parent="Journal1"]
+shape = SubResource("Shape_pickup")
+
+[node name="Journal2" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.1, -3)
+script = ExtResource("2")
+kind = 0
+journal_text = "It feels just like home. The street does. The windows do. Even the silence does."
+item_id = "1"
+[node name="Mesh" type="MeshInstance3D" parent="Journal2"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Shape" type="CollisionShape3D" parent="Journal2"]
+shape = SubResource("Shape_pickup")
+
+[node name="Journal3" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 6.5)
+script = ExtResource("2")
+kind = 0
+journal_text = "But is this house yours?"
+item_id = "2"
+[node name="Mesh" type="MeshInstance3D" parent="Journal3"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Shape" type="CollisionShape3D" parent="Journal3"]
+shape = SubResource("Shape_pickup")
+
+[node name="MemoryCat1" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.4, 6)
+script = ExtResource("2")
+kind = 1
+item_id = "atrium_cat_1"
+[node name="Mesh" type="MeshInstance3D" parent="MemoryCat1"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_cat")
+[node name="Shape" type="CollisionShape3D" parent="MemoryCat1"]
+shape = SubResource("Shape_pickup")
+
+[node name="LintRoller" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -5)
+script = ExtResource("2")
+kind = 2
+item_id = "lint_roller"
+[node name="Mesh" type="MeshInstance3D" parent="LintRoller"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_item")
+[node name="Shape" type="CollisionShape3D" parent="LintRoller"]
+shape = SubResource("Shape_pickup")
+
+[node name="DreamTrack1" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, -6)
+script = ExtResource("2")
+kind = 3
+item_id = "01_lint_roller_reverie"
+dream_track_name = "Lint Roller Reverie"
+dream_track_stream = ExtResource("11")
+[node name="Mesh" type="MeshInstance3D" parent="DreamTrack1"]
+mesh = SubResource("Sphere_pickup")
+surface_material_override/0 = SubResource("Mat_pickup_track")
+[node name="Shape" type="CollisionShape3D" parent="DreamTrack1"]
+shape = SubResource("Shape_pickup")
+
+[node name="TVManual" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.1, 5)
+script = ExtResource("3")
+manual = true
+video_id = "Cloudside_Shampoo_commercial"
+broadcast_audio = ExtResource("9")
+still_frame = ExtResource("12")
+[node name="Body" type="MeshInstance3D" parent="TVManual"]
+mesh = SubResource("BoxMesh_tv")
+[node name="Screen" type="MeshInstance3D" parent="TVManual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31)
+mesh = SubResource("PlaneMesh_screen")
+[node name="BroadcastAudio" type="AudioStreamPlayer3D" parent="TVManual"]
+unit_size = 4.0
+[node name="Shape" type="CollisionShape3D" parent="TVManual"]
+shape = SubResource("Shape_tv_manual")
+
+[node name="TVProximity" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.1, -6)
+script = ExtResource("3")
+manual = false
+video_id = "Please_Do_Not_Take_A_Nap_PSA_FINAL"
+broadcast_audio = ExtResource("10")
+still_frame = ExtResource("13")
+[node name="Body" type="MeshInstance3D" parent="TVProximity"]
+mesh = SubResource("BoxMesh_tv")
+[node name="Screen" type="MeshInstance3D" parent="TVProximity"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31)
+mesh = SubResource("PlaneMesh_screen")
+[node name="BroadcastAudio" type="AudioStreamPlayer3D" parent="TVProximity"]
+unit_size = 4.0
+[node name="Shape" type="CollisionShape3D" parent="TVProximity"]
+shape = SubResource("Shape_tv_proximity")
+
+[node name="MoonDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, -7.9)
+script = ExtResource("4")
+[node name="Mesh" type="MeshInstance3D" parent="MoonDoor"]
+mesh = SubResource("BoxMesh_moondoor")
+[node name="Shape" type="CollisionShape3D" parent="MoonDoor"]
+shape = SubResource("Shape_moondoor")
+[node name="Glow" type="OmniLight3D" parent="MoonDoor"]
+light_color = Color(0.72, 0.63, 0.9, 1)
+light_energy = 0.05
+omni_range = 3.0
+
+[node name="Doubt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1.6, 8, 0.5, 6.5)
+mesh = SubResource("Sphere_pickup")
+visible = false

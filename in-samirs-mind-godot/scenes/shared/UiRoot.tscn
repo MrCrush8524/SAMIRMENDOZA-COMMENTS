@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=3 uid="uid://ui_root_scene"]
+
+[ext_resource type="Script" path="res://scenes/shared/UiRoot.gd" id="1"]
+
+[node name="UiRoot" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Prompt" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = -130.0
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = ""
+
+[node name="JournalPopup" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -140.0
+offset_right = 230.0
+offset_bottom = 140.0
+
+[node name="Margin" type="MarginContainer" parent="JournalPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="JournalPopup/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="JournalText" type="Label" parent="JournalPopup/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = ""
+
+[node name="CloseButton" type="Button" parent="JournalPopup/Margin/VBox"]
+layout_mode = 2
+text = "Close"
+
+[node name="TrackPopup" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -230.0
+offset_right = 180.0
+offset_bottom = -90.0
+
+[node name="Margin" type="MarginContainer" parent="TrackPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="TrackPopup/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TrackName" type="Label" parent="TrackPopup/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+text = ""
+
+[node name="Row" type="HBoxContainer" parent="TrackPopup/Margin/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="SaveButton" type="Button" parent="TrackPopup/Margin/VBox/Row"]
+layout_mode = 2
+text = "Save for Later"
+
+[node name="PlayButton" type="Button" parent="TrackPopup/Margin/VBox/Row"]
+layout_mode = 2
+text = "Play Now"
+
+[node name="SaveToast" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 44.0
+horizontal_alignment = 1
+text = "Dream saved."
