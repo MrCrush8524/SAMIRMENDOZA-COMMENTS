@@ -2,64 +2,184 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Backrooms — Map Walkthrough</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Backrooms</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; height: 100%; overflow: hidden; background: #000; font-family: 'Courier New', monospace; }
-  #app { position: fixed; inset: 0; }
+  :root {
+    --void: #171407;
+    --wallpaper: #b7a24b;
+    --wallpaper-dim: #8a7a3c;
+    --ink: #d8cf9a;
+    --ink-dim: #a99a5a;
+    --ink-bright: #f2e7a0;
+    --hairline: rgba(200, 190, 120, 0.28);
+    --panel: rgba(15, 13, 5, 0.62);
+    --alarm: #ff5252;
+  }
+
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    background: var(--void);
+    font-family: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+    color: var(--ink);
+  }
+  * { box-sizing: border-box; }
+
+  #app { position: fixed; inset: 0; touch-action: none; }
   canvas { display: block; }
+
+  #lookLayer {
+    position: fixed; inset: 0; z-index: 8; touch-action: none;
+    display: none;
+  }
+  body.touch #lookLayer { display: block; }
+
+  #joystick {
+    position: fixed; left: 26px; bottom: 26px; z-index: 12;
+    width: 108px; height: 108px; border-radius: 50%;
+    border: 1px solid var(--hairline); background: var(--panel);
+    display: none; touch-action: none;
+  }
+  body.touch #joystick { display: block; }
+  #joystickThumb {
+    position: absolute; left: 50%; top: 50%; width: 46px; height: 46px;
+    margin: -23px 0 0 -23px; border-radius: 50%;
+    background: rgba(216, 207, 154, 0.35); border: 1px solid var(--hairline);
+  }
+
+  body.touch #hud .desktop-only { display: none; }
+  body.touch #overlay .desktop-only { display: none; }
+  body:not(.touch) #overlay .touch-only,
+  body:not(.touch) #hud .touch-only { display: none; }
+
+  #vignette {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(10,8,3,0.6) 100%);
+  }
+  #scanlines {
+    position: fixed; inset: 0; z-index: 6; pointer-events: none; opacity: 0.5;
+    background: repeating-linear-gradient(
+      to bottom, rgba(0,0,0,0.09) 0px, rgba(0,0,0,0.09) 1px, transparent 2px, transparent 3px
+    );
+    mix-blend-mode: multiply;
+  }
 
   #overlay {
     position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: rgba(10,9,4,0.88); color: #d8cf9a; text-align: center; cursor: pointer;
-    z-index: 20; transition: opacity .3s ease;
+    background: linear-gradient(180deg, rgba(10,8,3,0.94), rgba(10,8,3,0.88));
+    text-align: center; cursor: pointer; z-index: 20;
+    transition: opacity .4s ease; overflow-y: auto;
   }
   #overlay.hidden { opacity: 0; pointer-events: none; }
-  #overlay h1 { font-size: 1.4rem; letter-spacing: .08em; margin: 0 0 .6rem; color: #e8dc8f; }
-  #overlay p { margin: .25rem 0; font-size: .85rem; opacity: .85; }
-  #overlay .key { color: #fff59d; }
+  #overlay .stack { padding: 24px 24px; max-width: 520px; }
+  #overlay .eyebrow {
+    font-size: .68rem; letter-spacing: .28em; color: var(--ink-dim);
+    text-transform: uppercase; margin: 0 0 .9rem;
+  }
+  #overlay h1 {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: clamp(1.8rem, 6vw, 2.7rem); letter-spacing: .04em;
+    margin: 0 0 .8rem; color: var(--ink-bright);
+    text-shadow: 0 0 18px rgba(242, 231, 160, 0.25);
+    text-wrap: balance;
+  }
+  #overlay .desc { font-size: .8rem; color: var(--ink-dim); line-height: 1.6; margin: 0 0 1rem; }
+  #overlay .zonelist {
+    font-size: .68rem; color: var(--ink-dim); line-height: 1.9; margin: 0 0 1.5rem;
+    letter-spacing: .03em;
+  }
+  #overlay .zonelist b { color: var(--ink-bright); font-weight: 600; }
+  #overlay .cta {
+    display: inline-block; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--void); background: var(--ink-bright); padding: .7em 1.6em;
+    border-radius: 2px; margin-bottom: 1.4rem;
+  }
+  #overlay .keys { font-size: .74rem; color: var(--ink-dim); letter-spacing: .02em; }
+  #overlay .keys kbd {
+    font-family: inherit; color: var(--ink-bright); border: 1px solid var(--hairline);
+    border-radius: 3px; padding: .1em .4em; margin: 0 .1em;
+  }
 
   #crosshair {
-    position: fixed; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px;
-    border-radius: 50%; background: rgba(255,255,240,.65); z-index: 10; pointer-events: none;
+    position: fixed; top: 50%; left: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px;
+    border-radius: 50%; background: rgba(255,255,240,.7); z-index: 10; pointer-events: none;
+    box-shadow: 0 0 6px rgba(255,255,240,.4);
   }
 
   #hud {
-    position: fixed; left: 14px; bottom: 14px; z-index: 10; color: #cabf82; font-size: .72rem;
-    background: rgba(10,9,4,.45); padding: 6px 10px; border: 1px solid rgba(200,190,120,.25);
-    letter-spacing: .04em; pointer-events: none;
+    position: fixed; left: 16px; bottom: 16px; z-index: 10;
+    background: var(--panel); border: 1px solid var(--hairline);
+    padding: 7px 12px; font-size: .68rem; letter-spacing: .05em; color: var(--ink-dim);
+    pointer-events: none; backdrop-filter: blur(2px);
   }
+  #hud b { color: var(--ink-bright); font-weight: 600; }
+  body.touch #hud { bottom: auto; top: 14px; font-size: .6rem; padding: 6px 10px; }
+
+  #zoneTag {
+    position: fixed; left: 50%; top: 16px; transform: translateX(-50%); z-index: 10;
+    background: var(--panel); border: 1px solid var(--hairline);
+    padding: 6px 16px; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-bright); pointer-events: none; backdrop-filter: blur(2px);
+    opacity: 0; transition: opacity .5s ease;
+  }
+  #zoneTag.show { opacity: 1; }
+  body.touch #zoneTag { top: auto; bottom: 130px; }
 
   #minimapWrap {
-    position: fixed; right: 14px; top: 14px; z-index: 10; border: 1px solid rgba(200,190,120,.35);
-    background: rgba(10,9,4,.55); padding: 6px;
+    position: fixed; right: 16px; top: 16px; z-index: 10;
+    border: 1px solid var(--hairline); background: var(--panel); padding: 7px;
+    backdrop-filter: blur(2px);
   }
-  #minimapWrap span { display:block; color:#a99a5a; font-size:.62rem; text-align:center; margin-bottom:4px; letter-spacing:.1em; }
+  #minimapWrap span {
+    display: block; color: var(--ink-dim); font-size: .6rem; text-align: center;
+    margin-bottom: 5px; letter-spacing: .22em; text-transform: uppercase;
+  }
   #minimap { display: block; image-rendering: pixelated; }
 
-  #flash {
-    position: fixed; inset: 0; background: #fffdf0; opacity: 0; pointer-events: none; z-index: 15;
+  @media (prefers-reduced-motion: reduce) {
+    #overlay { transition: none; }
+  }
+
+  @media (max-width: 480px) {
+    #minimapWrap { transform: scale(.72); transform-origin: top right; }
   }
 </style>
 </head>
 <body>
+
+
 <div id="app"></div>
+<div id="lookLayer"></div>
+<div id="vignette"></div>
+<div id="scanlines"></div>
 <div id="crosshair"></div>
-<div id="flash"></div>
+
+<div id="joystick"><div id="joystickThumb"></div></div>
+
+<div id="zoneTag"></div>
 
 <div id="minimapWrap">
-  <span>FLOOR PLAN</span>
-  <canvas id="minimap" width="186" height="126"></canvas>
+  <span>Floor plan</span>
+  <canvas id="minimap" width="192" height="140"></canvas>
 </div>
 
-<div id="hud">WASD move · mouse look · shift run · esc release cursor</div>
+<div id="hud">
+  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>esc</b> release</span>
+  <span class="touch-only"><b>joystick</b> move &nbsp;·&nbsp; <b>drag</b> to look</span>
+</div>
 
 <div id="overlay">
-  <div>
-    <h1>THE BACKROOMS</h1>
-    <p>a 3D walkthrough of the sketched floor plan</p>
-    <p style="margin-top:1rem;">click anywhere to step inside</p>
-    <p><span class="key">W A S D</span> to move &nbsp;·&nbsp; <span class="key">mouse</span> to look &nbsp;·&nbsp; <span class="key">shift</span> to run</p>
+  <div class="stack">
+    <p class="eyebrow">Level 0 — recreated from the community wiki blueprint</p>
+    <h1>The Backrooms</h1>
+    <p class="desc">Every wing from the map, stitched into one building: the pillar-forest of the Yellow Rooms, the flooded Swamp, a Metro Station, a Church, two Hot Halls and a Cold one. Wander until you're lost — that's the point.</p>
+    <p class="zonelist"><b>Nearby on spawn:</b> Prison → Yellow Rooms → The Office. Elsewhere: White Rooms, Hot/Cold Halls, Metro Station, The Mall, Swamp, Green Rooms, The Church, the Pools, and more.</p>
+    <div class="cta"><span class="desktop-only">Click to step inside</span><span class="touch-only">Tap to step inside</span></div>
+    <p class="keys desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move &nbsp; <kbd>mouse</kbd> look &nbsp; <kbd>shift</kbd> run</p>
+    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look</p>
   </div>
 </div>
 
@@ -69,20 +189,86 @@
   "use strict";
 
   // ---------------------------------------------------------------------
-  // Floor plan — recreated from the hand-drawn sketch: an irregular knot
-  // of narrow corridors and uneven rooms. Built with a maze carve so every
-  // hallway actually connects, then loosened with extra openings and a
-  // few widened pockets so it doesn't read as a uniform labyrinth.
+  // Floor plan — a background labyrinth (recursive-backtracker + loop
+  // openings, guaranteed connected) with named zones from the Backrooms
+  // wiki blueprint carved in at their relative positions/sizes. Each zone
+  // gets a theme id used below for floor color, lighting and props.
   // '#' = wall column, '.' = walkable floor.
   // ---------------------------------------------------------------------
-  const MAP = ["###############################","#.#.........#...........#.....#","#.###.###.###.###.#####.#.###.#","#...#...#.#...#...#...#.#.#...#","###.#.#.###.###.###.#.#.#...###","#...#.......#...#...#.#...#.#.#","#.###...#####.###.###.#...#.#.#","#...#.....#.......#.#.....#...#","###.###.#.#.#...###.#####.#####","#.#.....#...#...#.........#...#","#.###########.#.#######.#.#.#.#","#.#...................#.#.#.#.#","#.#.#######.#.#####.#.#.#.#.#.#","#.........#.....#.....#.#.#...#","#.#####...#.###.#.#####.###...#","#.....#...#.#...#.#...........#","#.#####.#.#.###.#.....#######.#","#.#...#.#.#.....#.#.....#...#.#","#.#.#.#.#.###.###.#.#.#.#.#.#.#","#...#.......#.........#...#...#","###############################"];
+  const MAP = ["##.................###############.......#######............#","#.......................#...................................#","#..................##.#.#.###.####.......####.##............#","#.....................#.#...#.#.............#.#.............#","##..................#.#.#.#...##.#.......##.#.##............#","#.....................#.#...#.............#.#...............#","#..................##.#.#.#######.........#.#.#.............#","#.......................#.......................#...#...#.#.#","....###.#......................###..............#.#.#####.#.#","........#.......................................#.#...#.....#","...##.####......................##..............#.#.###.###.#","........#.......................................#.#...#.#...#","....###.#.......................#.................###...###.#","......#.#.......................#...............#.#.#.#...#.#","...##.#..#.....................###..............#.#.###.#.#","......#.....................................................#","...#####........................#...........................#","#...#.....#.......#...#.#.....#.#...........................#","..........#.#.#...#####.##..#.#.#...........................#","..........#.#...#.........#.....#.#.........................#","..........#.###.#####.###.#.#####.#####.....................#","..........#.........#...#...#...#.#.........................#","..........#####.#.#.#.#.#.#####.#.#.###.....................#","..............#.#.#.#...#...#...#.#...#.....................#","..........###.###.#.#.###...................................#","..................#.#.#.....................................#","#.#####.#.#.#######.#.#.#...................................#","#.#...#...#.#.......#.#.....#...............................#","#.#...#####.#.#####.#.#.#####.#................#............#","#.#.#.......#.....#.#.#.#...#...............................#","#.#.########......#.#.###.#.###.#.###.#####.#.#.............#","#...................#...#.....#...#...#...#.#.#.............#","#...........#.#.#.....#.#.###.#.#.#.###.#.#.#.#####.#####.###","#.........................#.....#.......#.....#.............#","#############################################################"];
+
+  const ZONES = [
+    { id:'prison',          label:'Prison',                         c0:2,  r0:0,  c1:19, r1:8,  theme:'prison' },
+    { id:'office',          label:'The Office',                     c0:0,  r0:8,  c1:3,  r1:17, theme:'office' },
+    { id:'hothalls1',       label:'Hot Halls',                      c0:34, r0:0,  c1:41, r1:7,  theme:'hot' },
+    { id:'hothalls2',       label:'Hot Halls',                      c0:48, r0:0,  c1:60, r1:7,  theme:'hot' },
+    { id:'whiterooms',      label:'White Rooms',                    c0:34, r0:7,  c1:48, r1:19, theme:'white' },
+    { id:'yellowrooms',     label:'Yellow Rooms',                   c0:10, r0:8,  c1:31, r1:17, theme:'yellow' },
+    { id:'metro',           label:'Metro Station',                  c0:38, r0:15, c1:60, r1:19, theme:'metro' },
+    { id:'mall',            label:'The Mall',                       c0:48, r0:19, c1:60, r1:24, theme:'mall' },
+    { id:'statue',          label:'Statue Room',                    c0:46, r0:21, c1:49, r1:24, theme:'statue' },
+    { id:'almostflooded',   label:'Almost Completely Flooded Area', c0:38, r0:19, c1:47, r1:20, theme:'flooded' },
+    { id:'swamp',           label:'Swamp',                          c0:40, r0:20, c1:47, r1:24, theme:'swamp' },
+    { id:'house',           label:'House',                          c0:41, r0:21, c1:43, r1:23, theme:'house' },
+    { id:'containerpark',   label:'Container Park',                 c0:34, r0:24, c1:40, r1:25, theme:'container' },
+    { id:'greenrooms',      label:'Green Rooms',                    c0:38, r0:24, c1:47, r1:30, theme:'green' },
+    { id:'coldhalls',       label:'Cold Halls',                     c0:48, r0:24, c1:60, r1:32, theme:'cold' },
+    { id:'church',          label:'The Church',                     c0:31, r0:24, c1:38, r1:30, theme:'church' },
+    { id:'auditorium',      label:'Auditorium',                     c0:25, r0:24, c1:31, r1:27, theme:'auditorium' },
+    { id:'highroom',        label:'High Room',                      c0:26, r0:17, c1:28, r1:19, theme:'highroom' },
+    { id:'doorlessgarden',  label:'Doorless Garden',                c0:15, r0:17, c1:17, r1:19, theme:'garden' },
+    { id:'bridge',          label:'Bridge',                         c0:8,  r0:12, c1:9,  r1:17, theme:'bridge' },
+    { id:'abyss1',          label:'Abyss',                          c0:8,  r0:8,  c1:9,  r1:14, theme:'abyss', blocked:true },
+    { id:'abyss2',          label:'Abyss',                          c0:5,  r0:16, c1:8,  r1:17, theme:'abyss', blocked:true },
+    { id:'inaccessible',    label:'Inaccessible',                   c0:0,  r0:19, c1:6,  r1:21, theme:'inaccessible', blocked:true },
+    { id:'poolcomplex',     label:'Pools',                          c0:0,  r0:18, c1:10, r1:26, theme:'pool' },
+    { id:'bigpool',         label:'Big Pool',                       c0:7,  r0:21, c1:10, r1:24, theme:'bigpool' },
+    { id:'upstairs',        label:'Up Stairs',                      c0:3,  r0:28, c1:5,  r1:29, theme:'stairs' },
+    { id:'flooded',         label:'Flooded',                        c0:5,  r0:29, c1:9,  r1:30, theme:'flooded2' },
+    { id:'downstair',       label:'Down Stair',                     c0:12, r0:30, c1:17, r1:32, theme:'stairs' },
+    { id:'floodedpassable', label:'Flooded But Passable',           c0:2,  r0:31, c1:11, r1:34, theme:'flooded2' },
+    { id:'fountainroom',    label:'Fountain Room',                  c0:18, r0:32, c1:22, r1:34, theme:'fountain' },
+  ];
+
+  const THEME_COLORS = {
+    '':          0x8a7a3c, prison: 0x9a958a, office: 0x7d97b0, hot: 0xb5651d,
+    white:       0xd8dde2, yellow: 0xb8860b, metro: 0x4a4a4a, mall: 0x8a6a3c,
+    statue:      0x7a6a4a, flooded: 0x3f7a90, swamp: 0x4a6a3a, house: 0x8a6a3c,
+    container:   0xa05a10, green: 0x3a8a6a, cold: 0x3a5a8a, church: 0x5a8a99,
+    auditorium:  0x6a4a2a, highroom: 0x555555, garden: 0x3a6a3a, bridge: 0x555555,
+    pool:        0x2f7fae, bigpool: 0x1f6a9e, stairs: 0x888888, flooded2: 0x3f7a90,
+    fountain:    0x2f8fc0,
+  };
+  const ACCENT_COLORS = {
+    hot: 0xff8a3d, cold: 0x6ab4ff, church: 0xbfe6ee, swamp: 0x7fbf6a,
+    green: 0x6adfa8, metro: 0xcfe0ff, white: 0xffffff, pool: 0x6fd0ff,
+    bigpool: 0x6fd0ff, flooded: 0x6fd0ff, flooded2: 0x6fd0ff, fountain: 0x6fd0ff,
+    yellow: 0xffcf6b, mall: 0xffd9a0, prison: 0xd8d8d8,
+  };
+  const WATER_THEMES = new Set(['pool', 'bigpool', 'flooded', 'flooded2', 'swamp', 'fountain', 'almostflooded']);
 
   const ROWS = MAP.length, COLS = MAP[0].length;
-  const CELL = 4;          // meters per grid cell
+  const CELL = 3;          // meters per grid cell
   const WALL_H = 3.1;      // wall / ceiling height
   const isWall = (c, r) => r < 0 || c < 0 || r >= ROWS || c >= COLS || MAP[r][c] === '#';
   const worldX = c => (c - COLS / 2) * CELL;
   const worldZ = r => (r - ROWS / 2) * CELL;
+
+  const themeGrid = Array.from({ length: ROWS }, () => Array(COLS).fill(''));
+  for (const z of ZONES) {
+    if (z.blocked) continue;
+    for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+      if (r < 0 || c < 0 || r >= ROWS || c >= COLS) continue;
+      if (!isWall(c, r)) themeGrid[r][c] = z.theme;
+    }
+  }
+  function zoneNameAt(c, r) {
+    for (let i = ZONES.length - 1; i >= 0; i--) {
+      const z = ZONES[i];
+      if (c >= z.c0 && c < z.c1 && r >= z.r0 && r < z.r1) return z.label;
+    }
+    return '';
+  }
 
   function findOpen() {
     for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (!isWall(c, r)) return { c, r };
@@ -90,7 +276,7 @@
   const start = findOpen();
 
   // ---------------------------------------------------------------------
-  // Textures — hand-rolled with canvas so this stays a single file.
+  // Textures
   // ---------------------------------------------------------------------
   function canvasTex(size, draw) {
     const cv = document.createElement('canvas');
@@ -104,12 +290,10 @@
   const wallTex = canvasTex(256, (ctx, s) => {
     ctx.fillStyle = '#c9b458';
     ctx.fillRect(0, 0, s, s);
-    // grubby vertical wallpaper stripes
     for (let x = 0; x < s; x += 16) {
       ctx.fillStyle = `rgba(90,70,20,${0.05 + Math.random() * 0.08})`;
       ctx.fillRect(x, 0, 8, s);
     }
-    // water stains / grime blotches
     for (let i = 0; i < 40; i++) {
       const x = Math.random() * s, y = Math.random() * s, r = 4 + Math.random() * 18;
       const g = ctx.createRadialGradient(x, y, 0, x, y, r);
@@ -119,19 +303,16 @@
       ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
     }
   });
-  wallTex.repeat.set(1, 1);
 
-  const floorTex = canvasTex(256, (ctx, s) => {
-    ctx.fillStyle = '#8a7a3c';
+  const grimeTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, s, s);
-    // damp mottled carpet
     for (let i = 0; i < 900; i++) {
       const x = Math.random() * s, y = Math.random() * s;
-      ctx.fillStyle = `rgba(${40 + Math.random()*40},${30+Math.random()*30},${5+Math.random()*10},${0.05+Math.random()*0.1})`;
+      ctx.fillStyle = `rgba(0,0,0,${0.03 + Math.random() * 0.09})`;
       ctx.fillRect(x, y, 2, 2);
     }
   });
-  floorTex.repeat.set(4, 4);
 
   const ceilTex = canvasTex(256, (ctx, s) => {
     ctx.fillStyle = '#d8cf9a';
@@ -142,14 +323,31 @@
   });
   ceilTex.repeat.set(4, 4);
 
+  function labelSprite(text, color) {
+    const cv = document.createElement('canvas');
+    const W = 512, H = 96;
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+    ctx.font = '600 40px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.9)'; ctx.shadowBlur = 10;
+    ctx.fillStyle = color;
+    ctx.fillText(text, W / 2, H / 2);
+    const tex = new THREE.CanvasTexture(cv);
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+    const sprite = new THREE.Sprite(mat);
+    sprite.scale.set(6, 6 * H / W, 1);
+    return sprite;
+  }
+
   // ---------------------------------------------------------------------
   // Scene
   // ---------------------------------------------------------------------
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x4a4322);
-  scene.fog = new THREE.FogExp2(0x4a4322, 0.028);
+  scene.background = new THREE.Color(0x37311a);
+  scene.fog = new THREE.FogExp2(0x37311a, 0.02);
 
-  const camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.05, 200);
+  const camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.05, 220);
   camera.position.set(worldX(start.c), 1.65, worldZ(start.r));
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -157,13 +355,31 @@
   renderer.setSize(innerWidth, innerHeight);
   document.getElementById('app').appendChild(renderer.domElement);
 
-  scene.add(new THREE.AmbientLight(0xfff2b0, 0.35));
+  scene.add(new THREE.AmbientLight(0xfff2c8, 0.5));
+  const hemi = new THREE.HemisphereLight(0xfff6d0, 0x2a2510, 0.4);
+  scene.add(hemi);
 
-  // Floor / ceiling — one big plane each, walls per-cell.
-  const floorMat = new THREE.MeshStandardMaterial({ map: floorTex, roughness: 0.95 });
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(COLS * CELL, ROWS * CELL), floorMat);
-  floor.rotation.x = -Math.PI / 2;
-  scene.add(floor);
+  // Floor — one InstancedMesh per theme, so each zone reads as its own
+  // material without giving up instancing performance.
+  const floorGeo = new THREE.BoxGeometry(CELL, 0.05, CELL);
+  const floorGroups = {};
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    if (isWall(c, r)) continue;
+    const key = themeGrid[r][c] || '';
+    (floorGroups[key] = floorGroups[key] || []).push([c, r]);
+  }
+  const dummy = new THREE.Object3D();
+  for (const key in floorGroups) {
+    const cells = floorGroups[key];
+    const mat = new THREE.MeshStandardMaterial({ color: THEME_COLORS[key] ?? 0x8a7a3c, map: grimeTex, roughness: 0.95 });
+    const mesh = new THREE.InstancedMesh(floorGeo, mat, cells.length);
+    cells.forEach(([c, r], i) => {
+      dummy.position.set(worldX(c), -0.02, worldZ(r));
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    });
+    scene.add(mesh);
+  }
 
   const ceilMat = new THREE.MeshStandardMaterial({ map: ceilTex, roughness: 0.9 });
   const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(COLS * CELL, ROWS * CELL), ceilMat);
@@ -171,136 +387,277 @@
   ceiling.position.y = WALL_H;
   scene.add(ceiling);
 
-  // Walls via InstancedMesh (cheap even for a large maze).
   const wallGeo = new THREE.BoxGeometry(CELL, WALL_H, CELL);
   const wallMat = new THREE.MeshStandardMaterial({ map: wallTex, roughness: 0.85 });
   let wallCount = 0;
   for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (isWall(c, r)) wallCount++;
   const wallMesh = new THREE.InstancedMesh(wallGeo, wallMat, wallCount);
-  const dummy = new THREE.Object3D();
   let wi = 0;
-  const wallCells = []; // for collision
   for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
     if (!isWall(c, r)) continue;
     dummy.position.set(worldX(c), WALL_H / 2, worldZ(r));
     dummy.updateMatrix();
     wallMesh.setMatrixAt(wi++, dummy.matrix);
-    wallCells.push({ c, r });
   }
   scene.add(wallMesh);
 
-  // Fluorescent ceiling light panels, spaced through the corridors, each
-  // with its own dim point light so hallways don't go pitch black between
-  // fixtures — a few flicker.
+  // ---------------------------------------------------------------------
+  // Fluorescent fixtures — plentiful but "fake": emissive panels (no real
+  // light cost) with real PointLights only every few fixtures, kept under
+  // a budget so this still runs on a phone.
+  // ---------------------------------------------------------------------
   const flickerLights = [];
   const fixtureMat = new THREE.MeshBasicMaterial({ color: 0xfffbe0 });
+  let fixtureN = 0;
   for (let r = 1; r < ROWS; r += 3) {
     for (let c = 1; c < COLS; c += 4) {
       if (isWall(c, r)) continue;
-      const panel = new THREE.Mesh(new THREE.PlaneGeometry(CELL * 0.6, CELL * 0.32), fixtureMat);
+      const panel = new THREE.Mesh(new THREE.PlaneGeometry(CELL * 0.55, CELL * 0.3), fixtureMat);
       panel.rotation.x = Math.PI / 2;
       panel.position.set(worldX(c), WALL_H - 0.02, worldZ(r));
       scene.add(panel);
+      fixtureN++;
+      if (fixtureN % 3 === 0) {
+        const light = new THREE.PointLight(0xfff2c0, 0.75, CELL * 6, 2);
+        light.position.set(worldX(c), WALL_H - 0.3, worldZ(r));
+        scene.add(light);
+        if (Math.random() < 0.3) flickerLights.push(light);
+      }
+    }
+  }
 
-      const light = new THREE.PointLight(0xfff2c0, 0.9, CELL * 5, 2);
-      light.position.set(worldX(c), WALL_H - 0.3, worldZ(r));
+  // Zone accent lights + labels + props.
+  const extraBlocked = new Set();
+  function addObstacle(c, r, sizeFrac, height, color, block) {
+    const geo = new THREE.BoxGeometry(CELL * sizeFrac, height, CELL * sizeFrac);
+    const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.75 });
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set(worldX(c), height / 2, worldZ(r));
+    scene.add(m);
+    if (block !== false) extraBlocked.add(r + ',' + c);
+  }
+  function addWaterPlane(z, color, opacity) {
+    const w = (z.c1 - z.c0) * CELL, d = (z.r1 - z.r0) * CELL;
+    const cx = (worldX(z.c0) + worldX(z.c1 - 1)) / 2, cz = (worldZ(z.r0) + worldZ(z.r1 - 1)) / 2;
+    const geo = new THREE.PlaneGeometry(w, d);
+    const mat = new THREE.MeshStandardMaterial({ color, transparent: true, opacity, roughness: 0.15, metalness: 0.15 });
+    const m = new THREE.Mesh(geo, mat);
+    m.rotation.x = -Math.PI / 2;
+    m.position.set(cx, 0.05, cz);
+    scene.add(m);
+  }
+
+  for (const z of ZONES) {
+    if (z.blocked) continue;
+    const cx = (z.c0 + z.c1 - 1) / 2, cr = (z.r0 + z.r1 - 1) / 2;
+    const centerOpen = !isWall(Math.round(cx), Math.round(cr));
+
+    // Accent light near zone center.
+    if (ACCENT_COLORS[z.theme] !== undefined && centerOpen) {
+      const light = new THREE.PointLight(ACCENT_COLORS[z.theme], 0.7, CELL * 10, 2);
+      light.position.set(worldX(cx), WALL_H - 0.5, worldZ(cr));
       scene.add(light);
-      if (Math.random() < 0.35) flickerLights.push(light);
+    }
+
+    // Label.
+    const label = labelSprite(z.label, '#' + (ACCENT_COLORS[z.theme] ?? 0xf2e7a0).toString(16).padStart(6, '0'));
+    label.position.set(worldX(cx), 2.4, worldZ(cr));
+    scene.add(label);
+
+    // Theme props.
+    switch (z.theme) {
+      case 'prison':
+        for (let c = z.c0; c < z.c1; c++) {
+          if ((c - z.c0) % 3 !== 2) continue;
+          const doorRow = z.r0 + Math.floor((c - z.c0) / 3) % Math.max(1, z.r1 - z.r0);
+          for (let r = z.r0; r < z.r1; r++) {
+            if (r === doorRow || isWall(c, r)) continue;
+            addObstacle(c, r, 0.22, WALL_H, 0x777066, true);
+          }
+        }
+        break;
+      case 'yellow':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r) || (r + c) % 2 !== 0) continue;
+          addObstacle(c, r, 0.55, WALL_H, 0x8a6a1a, true);
+        }
+        break;
+      case 'mall':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r) || (c - z.c0) % 3 !== 1 || (r - z.r0) % 3 !== 1) continue;
+          addObstacle(c, r, 0.6, 1.7, 0x5a3a1a, true);
+        }
+        break;
+      case 'metro':
+        for (let c = z.c0; c < z.c1; c += 4) {
+          if (isWall(c, z.r0)) continue;
+          addObstacle(c, z.r0, 0.3, WALL_H, 0x2a2a2a, true);
+        }
+        break;
+      case 'church':
+        for (let r = z.r0 + 1; r < z.r1 - 1; r += 2) {
+          if (!isWall(z.c0, r)) addObstacle(z.c0, r, 0.4, WALL_H, 0x3a6a77, true);
+          if (!isWall(z.c1 - 1, r)) addObstacle(z.c1 - 1, r, 0.4, WALL_H, 0x3a6a77, true);
+        }
+        break;
+      case 'container':
+        for (let c = z.c0; c < z.c1; c += 2) {
+          if (isWall(c, z.r0)) continue;
+          addObstacle(c, z.r0, 0.75, 1.4, 0xb5651d, true);
+        }
+        break;
+      case 'auditorium':
+        for (let r = z.r0 + 1; r < z.r1; r++) for (let c = z.c0 + 1; c < z.c1 - 1; c += 2) {
+          if (isWall(c, r)) continue;
+          addObstacle(c, r, 0.7, 0.55, 0x4a3220, true);
+        }
+        break;
+      case 'statue':
+        if (centerOpen) addObstacle(Math.round(cx), Math.round(cr), 0.5, WALL_H * 0.9, 0x77766a, true);
+        break;
+      case 'house':
+        if (!isWall(z.c0, z.r0)) addObstacle(z.c0, z.r0, 1.3, 2.0, 0x6a4a2a, true);
+        break;
+      case 'garden':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r)) continue;
+          addObstacle(c, r, 0.45, 0.5, 0x2f6a2f, true);
+        }
+        break;
+    }
+
+    if (WATER_THEMES.has(z.theme)) {
+      const opacity = z.theme === 'swamp' ? 0.6 : 0.45;
+      const color = z.theme === 'swamp' ? 0x3a5a2a : (ACCENT_COLORS[z.theme] ?? 0x2a6a9a);
+      addWaterPlane(z, color, opacity);
     }
   }
 
   // ---------------------------------------------------------------------
-  // Movement + mouse-look (self-contained pointer lock controller)
+  // Movement + look — mouse/keyboard on desktop, joystick + touch-drag
+  // on phones (pointer lock isn't a thing on touchscreens).
   // ---------------------------------------------------------------------
   const move = { f: false, b: false, l: false, r: false, run: false };
   let yaw = 0, pitch = 0;
+  let joyForward = 0, joyStrafe = 0;
   const overlay = document.getElementById('overlay');
   const dom = renderer.domElement;
 
-  dom.addEventListener('click', () => dom.requestPointerLock());
-  document.addEventListener('pointerlockchange', () => {
-    overlay.classList.toggle('hidden', document.pointerLockElement === dom);
-  });
-  document.addEventListener('mousemove', e => {
-    if (document.pointerLockElement !== dom) return;
-    yaw -= e.movementX * 0.0022;
-    pitch -= e.movementY * 0.0022;
-    pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
-  });
-  addEventListener('keydown', e => {
-    if (e.code === 'KeyW') move.f = true;
-    if (e.code === 'KeyS') move.b = true;
-    if (e.code === 'KeyA') move.l = true;
-    if (e.code === 'KeyD') move.r = true;
-    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
-  });
-  addEventListener('keyup', e => {
-    if (e.code === 'KeyW') move.f = false;
-    if (e.code === 'KeyS') move.b = false;
-    if (e.code === 'KeyA') move.l = false;
-    if (e.code === 'KeyD') move.r = false;
-    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = false;
-  });
+  const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+  document.body.classList.toggle('touch', isTouch);
+
+  if (isTouch) {
+    overlay.addEventListener('click', () => overlay.classList.add('hidden'), { once: true });
+  } else {
+    dom.addEventListener('click', () => dom.requestPointerLock());
+    document.addEventListener('pointerlockchange', () => {
+      overlay.classList.toggle('hidden', document.pointerLockElement === dom);
+    });
+    document.addEventListener('mousemove', e => {
+      if (document.pointerLockElement !== dom) return;
+      yaw -= e.movementX * 0.0022;
+      pitch -= e.movementY * 0.0022;
+      pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
+    });
+    addEventListener('keydown', e => {
+      if (e.code === 'KeyW') move.f = true;
+      if (e.code === 'KeyS') move.b = true;
+      if (e.code === 'KeyA') move.l = true;
+      if (e.code === 'KeyD') move.r = true;
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
+    });
+    addEventListener('keyup', e => {
+      if (e.code === 'KeyW') move.f = false;
+      if (e.code === 'KeyS') move.b = false;
+      if (e.code === 'KeyA') move.l = false;
+      if (e.code === 'KeyD') move.r = false;
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = false;
+    });
+  }
+
+  if (isTouch) {
+    const stick = document.getElementById('joystick');
+    const thumb = document.getElementById('joystickThumb');
+    const STICK_R = 40;
+    let stickTouchId = null, stickCenter = { x: 0, y: 0 };
+
+    stick.addEventListener('touchstart', e => {
+      e.preventDefault();
+      const t = e.changedTouches[0];
+      const rect = stick.getBoundingClientRect();
+      stickCenter = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      stickTouchId = t.identifier;
+    }, { passive: false });
+
+    function updateStick(t) {
+      let dx = t.clientX - stickCenter.x, dy = t.clientY - stickCenter.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const clamped = Math.min(len, STICK_R);
+      dx = dx / len * clamped; dy = dy / len * clamped;
+      thumb.style.transform = `translate(${dx}px, ${dy}px)`;
+      joyStrafe = dx / STICK_R;
+      joyForward = -dy / STICK_R;
+    }
+    function resetStick() {
+      stickTouchId = null; joyForward = 0; joyStrafe = 0;
+      thumb.style.transform = 'translate(0,0)';
+    }
+    addEventListener('touchmove', e => {
+      for (const t of e.changedTouches) if (t.identifier === stickTouchId) { e.preventDefault(); updateStick(t); }
+    }, { passive: false });
+    addEventListener('touchend', e => {
+      for (const t of e.changedTouches) if (t.identifier === stickTouchId) resetStick();
+    });
+    addEventListener('touchcancel', () => resetStick());
+
+    const lookLayer = document.getElementById('lookLayer');
+    let lookTouchId = null, lastLook = { x: 0, y: 0 };
+    lookLayer.addEventListener('touchstart', e => {
+      if (overlay && !overlay.classList.contains('hidden')) return;
+      const t = e.changedTouches[0];
+      if (lookTouchId !== null) return;
+      lookTouchId = t.identifier;
+      lastLook = { x: t.clientX, y: t.clientY };
+    }, { passive: false });
+    lookLayer.addEventListener('touchmove', e => {
+      for (const t of e.changedTouches) {
+        if (t.identifier !== lookTouchId) continue;
+        e.preventDefault();
+        yaw -= (t.clientX - lastLook.x) * 0.0055;
+        pitch -= (t.clientY - lastLook.y) * 0.0055;
+        pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
+        lastLook = { x: t.clientX, y: t.clientY };
+      }
+    }, { passive: false });
+    lookLayer.addEventListener('touchend', e => {
+      for (const t of e.changedTouches) if (t.identifier === lookTouchId) lookTouchId = null;
+    });
+    lookLayer.addEventListener('touchcancel', () => { lookTouchId = null; });
+  }
 
   function cellBlocked(x, z) {
     const c = Math.round(x / CELL + COLS / 2 - 0.5);
     const r = Math.round(z / CELL + ROWS / 2 - 0.5);
-    return isWall(c, r);
+    return isWall(c, r) || extraBlocked.has(r + ',' + c);
   }
+
   const clock = new THREE.Clock();
   let bobT = 0;
 
-  function animate() {
-    requestAnimationFrame(animate);
-    const dt = Math.min(clock.getDelta(), 0.05);
-
-    camera.rotation.order = 'YXZ';
-    camera.rotation.y = yaw;
-    camera.rotation.x = pitch;
-
-    const speed = (move.run ? 4.6 : 2.6) * dt;
-    let dx = 0, dz = 0;
-    const fx = Math.sin(yaw), fz = Math.cos(yaw);
-    if (move.f) { dx -= fx * speed; dz -= fz * speed; }
-    if (move.b) { dx += fx * speed; dz += fz * speed; }
-    if (move.l) { dx -= fz * speed; dz += fx * speed; }
-    if (move.r) { dx += fz * speed; dz -= fx * speed; }
-
-    if (dx || dz) {
-      const x = camera.position.x, z = camera.position.z;
-      const nx = x + dx, nz = z + dz;
-      if (!cellBlocked(nx, z)) camera.position.x = nx;
-      if (!cellBlocked(camera.position.x, nz)) camera.position.z = nz;
-      bobT += dt * (move.run ? 14 : 9);
-      camera.position.y = 1.65 + Math.sin(bobT) * 0.035;
-    } else {
-      camera.position.y += (1.65 - camera.position.y) * 0.15;
-    }
-
-    for (const l of flickerLights) l.intensity = 0.55 + Math.random() * 0.6;
-
-    renderer.render(scene, camera);
-    drawMinimap();
-  }
-
-  addEventListener('resize', () => {
-    camera.aspect = innerWidth / innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight);
-  });
-
-  // ---------------------------------------------------------------------
-  // Minimap — top-down read of the same grid, with a live player marker.
-  // ---------------------------------------------------------------------
   const mm = document.getElementById('minimap');
   const mctx = mm.getContext('2d');
   const px = mm.width / COLS, py = mm.height / ROWS;
+  function minimapColor(key) {
+    const hex = (THEME_COLORS[key] ?? 0x8a7a3c).toString(16).padStart(6, '0');
+    return '#' + hex;
+  }
   function drawMinimap() {
     mctx.fillStyle = '#0d0b04';
     mctx.fillRect(0, 0, mm.width, mm.height);
-    mctx.fillStyle = '#c9b458';
     for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
-      if (!isWall(c, r)) mctx.fillRect(c * px, r * py, px + 0.6, py + 0.6);
+      if (isWall(c, r)) continue;
+      mctx.fillStyle = minimapColor(themeGrid[r][c]);
+      mctx.fillRect(c * px, r * py, px + 0.6, py + 0.6);
     }
     const pc = camera.position.x / CELL + COLS / 2;
     const pr = camera.position.z / CELL + ROWS / 2;
@@ -314,8 +671,67 @@
     mctx.restore();
   }
 
+  const zoneTag = document.getElementById('zoneTag');
+  let lastZoneName = null, zoneTagTimer = null;
+  function updateZoneTag() {
+    const c = Math.round(camera.position.x / CELL + COLS / 2 - 0.5);
+    const r = Math.round(camera.position.z / CELL + ROWS / 2 - 0.5);
+    const name = zoneNameAt(c, r);
+    if (name && name !== lastZoneName) {
+      lastZoneName = name;
+      zoneTag.textContent = name;
+      zoneTag.classList.add('show');
+      clearTimeout(zoneTagTimer);
+      zoneTagTimer = setTimeout(() => zoneTag.classList.remove('show'), 2600);
+    } else if (!name) {
+      lastZoneName = null;
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.05);
+
+    camera.rotation.order = 'YXZ';
+    camera.rotation.y = yaw;
+    camera.rotation.x = pitch;
+
+    const speed = (move.run ? 4.8 : 2.7) * dt;
+    const fx = Math.sin(yaw), fz = Math.cos(yaw);
+    let forward = (move.f ? 1 : 0) - (move.b ? 1 : 0) + joyForward;
+    let strafe = (move.r ? 1 : 0) - (move.l ? 1 : 0) + joyStrafe;
+    forward = Math.max(-1, Math.min(1, forward));
+    strafe = Math.max(-1, Math.min(1, strafe));
+    const dx = speed * (-fx * forward + fz * strafe);
+    const dz = speed * (-fz * forward - fx * strafe);
+
+    if (dx || dz) {
+      const x = camera.position.x, z = camera.position.z;
+      const nx = x + dx, nz = z + dz;
+      if (!cellBlocked(nx, z)) camera.position.x = nx;
+      if (!cellBlocked(camera.position.x, nz)) camera.position.z = nz;
+      bobT += dt * (move.run ? 14 : 9);
+      camera.position.y = 1.65 + Math.sin(bobT) * 0.035;
+    } else {
+      camera.position.y += (1.65 - camera.position.y) * 0.15;
+    }
+
+    for (const l of flickerLights) l.intensity = 0.5 + Math.random() * 0.55;
+
+    renderer.render(scene, camera);
+    drawMinimap();
+    updateZoneTag();
+  }
+
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
   animate();
 })();
 </script>
+
 </body>
 </html>
