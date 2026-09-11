@@ -624,7 +624,7 @@ omni_range = 2.5
 [node name="Level4Door" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.15, 0)
 script = ExtResource("47")
-chapter_id = "level4"
+chapter_id = "chapter04"
 spawn_marker = "start"
 door_label = "the pink hallway door"
 [node name="Mesh" type="MeshInstance3D" parent="Level4Door"]
