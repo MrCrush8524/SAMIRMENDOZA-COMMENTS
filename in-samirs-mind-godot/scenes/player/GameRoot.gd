@@ -14,6 +14,21 @@ var _nightmare_return_chapter: String = ""
 var _nightmare_return_position: Vector3 = Vector3.ZERO
 var _nightmare_return_yaw: float = 0.0
 
+## Nightmare_Passage_Minigame_Specs.md's per-room minigame pools. Empty
+## for a room means it has no minigame yet — the passage still works as
+## plain exploration (Escape/collapse both still function), it just
+## never starts a ladder round. Add more scene paths here as they're
+## built; one is picked at random each round.
+const MINIGAME_POOLS := {
+	"decay": ["res://scenes/nightmare/minigames/DecayDontTouchWater.tscn"],
+	"wander": [],
+	"arcade": [],
+}
+
+var _current_nightmare_id: String = ""
+var _current_minigame: NightmareMinigame = null
+var _ladder_cancelled: bool = false
+
 func _ready() -> void:
 	if not GameState.has_active_run:
 		# Defensive fallback: never spawn with no run — bounce to title.
@@ -61,6 +76,7 @@ func enter_nightmare(nightmare_id: String) -> void:
 	_nightmare_return_chapter = GameState.chapter
 	_nightmare_return_position = player.global_position
 	_nightmare_return_yaw = player.rotation.y
+	_current_nightmare_id = nightmare_id
 	GameState.in_nightmare = true
 	SceneLoader.scene_ready.connect(_on_nightmare_ready, CONNECT_ONE_SHOT)
 	SceneLoader.load_nightmare(nightmare_id, self)
@@ -74,8 +90,82 @@ func _on_nightmare_ready(scene: Node) -> void:
 		spawn_yaw = marker.rotation.y
 	player.set_spawn(spawn_pos, spawn_yaw)
 
+	GameState.nightmare_depth = 1
+	_ladder_cancelled = false
+	_run_minigame_ladder(scene)
+
+## Nightmare_Passage_Minigame_Specs.md's core progression loop: enter at
+## depth 1, play a round, win = one level deeper (+ a cash-out choice),
+## lose = one level back, lose at depth 1 = back to the chapter. Runs
+## until the player cashes out, loses at depth 1, or the passage is
+## interrupted from outside (Escape/collapse — see _cancel_ladder).
+func _run_minigame_ladder(scene: Node) -> void:
+	var pool: Array = MINIGAME_POOLS.get(_current_nightmare_id, [])
+	if pool.is_empty():
+		return # no minigame built for this room yet — plain exploration still works
+
+	while true:
+		await UiRoot.show_nightmare_countdown()
+		if _ladder_cancelled:
+			return
+
+		var mg_scene: PackedScene = load(pool[randi() % pool.size()])
+		_current_minigame = mg_scene.instantiate()
+		scene.add_child(_current_minigame)
+		_current_minigame.configure(GameState.nightmare_depth)
+		var won: bool = await _current_minigame.resolved
+		if is_instance_valid(_current_minigame):
+			_current_minigame.queue_free()
+		_current_minigame = null
+		if _ladder_cancelled:
+			return
+
+		await UiRoot.show_nightmare_result(won)
+		if _ladder_cancelled:
+			return
+
+		if won:
+			_grant_depth_reward(_current_nightmare_id, GameState.nightmare_depth)
+			GameState.nightmare_depth += 1
+			var go_deeper: bool = await UiRoot.show_cashout_choice()
+			if _ladder_cancelled:
+				return
+			if not go_deeper:
+				exit_nightmare()
+				return
+		else:
+			GameState.nightmare_depth -= 1
+			if GameState.nightmare_depth < 1:
+				exit_nightmare()
+				return
+
+## Placeholder reward presentation — deliberately not touching
+## GameState.journals/dream_tracks, since those arrays double as unlock
+## conditions elsewhere (e.g. MoonDoor's journal count) and a nightmare
+## reward inflating them would unlock things it has no business
+## unlocking. Real distinct reward pickups are future work; for now this
+## just records the milestone once and tells the player something
+## happened.
+func _grant_depth_reward(room_id: String, cleared_depth: int) -> void:
+	if cleared_depth < 2:
+		return
+	var reward_id := "%s_depth%d" % [room_id, cleared_depth]
+	if GameState.nightmare_rewards.has(reward_id):
+		return
+	GameState.nightmare_rewards.append(reward_id)
+	match cleared_depth:
+		2:
+			UiRoot.show_journal("A small lore fragment surfaces from the dream — you'll remember this.")
+		3:
+			UiRoot.show_journal("A journal page, torn loose from somewhere deeper.")
+		4:
+			UiRoot.show_journal("Something that sounds like a Dream Track hums at the edge of hearing.")
+		_:
+			UiRoot.show_journal("A rare, deep-dream discovery — you're not sure how you'll explain this one.")
+
 ## Escape key inside a Nightmare Passage — a deliberate, safe exit.
 func exit_nightmare() -> void:
+	_cancel_ladder()
 	_return_from_nightmare()
 
 ## Composure hit zero inside Decay. Same destination as a normal exit —
@@ -84,8 +174,25 @@ func exit_nightmare() -> void:
 ## buffer against the next Decay door.
 func collapse_from_nightmare() -> void:
 	GameState.composure = 1.0
+	_cancel_ladder()
 	_return_from_nightmare()
 	UiRoot.show_journal("The dream refuses to hold. You wake back somewhere familiar.")
+
+## Interrupts _run_minigame_ladder from outside its own loop (a
+## deliberate exit or a collapse, as opposed to the loop's own win/lose
+## exits above). Forces any in-flight minigame or UI await to resolve
+## immediately rather than leaving a coroutine suspended forever waiting
+## on a signal that will never come once the passage scene is gone.
+func _cancel_ladder() -> void:
+	_ladder_cancelled = true
+	GameState.nightmare_depth = 0
+	UiRoot.force_close_nightmare_ui()
+	if _current_minigame and is_instance_valid(_current_minigame):
+		var mg := _current_minigame
+		_current_minigame = null
+		mg.cancel()
+		mg.resolved.emit(false)
+		mg.queue_free()
 
 func _return_from_nightmare() -> void:
 	if not GameState.in_nightmare:

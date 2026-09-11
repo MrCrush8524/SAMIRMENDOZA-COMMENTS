@@ -13,6 +13,9 @@ extends CanvasLayer
 @onready var track_save_btn: Button = $TrackPopup/Margin/VBox/Row/SaveButton
 @onready var track_play_btn: Button = $TrackPopup/Margin/VBox/Row/PlayButton
 @onready var save_toast: Label = $SaveToast
+@onready var nightmare_ui: ColorRect = $NightmareUI
+@onready var nightmare_big_label: Label = $NightmareUI/BigLabel
+@onready var nightmare_cashout_row: HBoxContainer = $NightmareUI/CashoutRow
 
 var _pending_pickup: Node = null
 
@@ -65,3 +68,82 @@ func flash_save_toast() -> void:
 	var t := create_tween()
 	t.tween_interval(1.2)
 	t.tween_callback(func(): save_toast.visible = false)
+
+## Nightmare Passage minigame ladder UI — a soft color wash + centered
+## label, faded in/out rather than snapped, to stay in the same gentle
+## dreamcore language as the rest of the menu system (LoreOverlay's
+## crossfades, the overlays' fades) instead of a stark countdown HUD.
+
+const NIGHTMARE_FADE := 0.28
+
+func _nightmare_fade_in() -> void:
+	nightmare_ui.visible = true
+	var t := create_tween()
+	t.tween_property(nightmare_ui, "color:a", 0.55, NIGHTMARE_FADE)
+	t.parallel().tween_property(nightmare_big_label, "modulate:a", 1.0, NIGHTMARE_FADE)
+	await t.finished
+
+func _nightmare_fade_out() -> void:
+	var t := create_tween()
+	t.tween_property(nightmare_ui, "color:a", 0.0, NIGHTMARE_FADE)
+	t.parallel().tween_property(nightmare_big_label, "modulate:a", 0.0, NIGHTMARE_FADE)
+	await t.finished
+	nightmare_ui.visible = false
+	nightmare_big_label.text = ""
+
+func show_nightmare_countdown() -> void:
+	await _nightmare_fade_in()
+	for step in ["READY?", "3", "2", "1", "GO"]:
+		nightmare_big_label.text = step
+		await get_tree().create_timer(0.55).timeout
+	await _nightmare_fade_out()
+
+func show_nightmare_result(won: bool) -> void:
+	await _nightmare_fade_in()
+	nightmare_big_label.text = "CLEAR" if won else "FAILED"
+	await get_tree().create_timer(0.6).timeout
+	nightmare_big_label.text = "DEEPER" if won else "BACK ONE LEVEL"
+	await get_tree().create_timer(0.7).timeout
+	await _nightmare_fade_out()
+
+## Returns true for "Go Deeper", false for "Wake Up".
+func show_cashout_choice() -> bool:
+	await _nightmare_fade_in()
+	nightmare_big_label.text = "Keep going deeper?"
+	nightmare_cashout_row.visible = true
+	nightmare_cashout_row.modulate.a = 0.0
+	var fade_row := create_tween()
+	fade_row.tween_property(nightmare_cashout_row, "modulate:a", 1.0, NIGHTMARE_FADE)
+
+	var go_deeper: bool = await _await_cashout_press()
+
+	nightmare_cashout_row.visible = false
+	await _nightmare_fade_out()
+	return go_deeper
+
+func _await_cashout_press() -> bool:
+	var go_deeper_btn: Button = %GoDeeperButton
+	var wake_up_btn: Button = %WakeUpButton
+	var result := {"value": false}
+	var on_go := func(): result["value"] = true; _cashout_chosen.emit()
+	var on_wake := func(): result["value"] = false; _cashout_chosen.emit()
+	go_deeper_btn.pressed.connect(on_go)
+	wake_up_btn.pressed.connect(on_wake)
+	await _cashout_chosen
+	go_deeper_btn.pressed.disconnect(on_go)
+	wake_up_btn.pressed.disconnect(on_wake)
+	return result["value"]
+
+signal _cashout_chosen
+
+## Called by GameRoot when a Nightmare Passage ladder is interrupted
+## (Escape, or a composure collapse) so no minigame UI await is left
+## dangling forever waiting for a button press that will never come.
+func force_close_nightmare_ui() -> void:
+	if nightmare_cashout_row.visible:
+		_cashout_chosen.emit()
+	nightmare_ui.visible = false
+	nightmare_ui.color.a = 0.0
+	nightmare_big_label.modulate.a = 0.0
+	nightmare_big_label.text = ""
+	nightmare_cashout_row.visible = false

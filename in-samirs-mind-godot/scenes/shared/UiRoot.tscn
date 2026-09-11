@@ -124,6 +124,56 @@ text = "Save for Later"
 layout_mode = 2
 text = "Play Now"
 
+[node name="NightmareUI" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.09, 0.06, 0.1, 0)
+mouse_filter = 2
+
+[node name="BigLabel" type="Label" parent="NightmareUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -50.0
+offset_right = 260.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.94, 0.89, 0.85, 1)
+modulate = Color(1, 1, 1, 0)
+text = ""
+
+[node name="CashoutRow" type="HBoxContainer" parent="NightmareUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = 40.0
+offset_right = 190.0
+offset_bottom = 80.0
+alignment = 1
+theme_override_constants/separation = 24
+modulate = Color(1, 1, 1, 0)
+
+[node name="WakeUpButton" type="Button" parent="NightmareUI/CashoutRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wake Up"
+
+[node name="GoDeeperButton" type="Button" parent="NightmareUI/CashoutRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Go Deeper"
+
 [node name="SaveToast" type="Label" parent="."]
 visible = false
 anchors_preset = 8

@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://decay_dont_touch_water"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/DecayDontTouchWater.gd" id="1"]
+[ext_resource type="Shader" path="res://scenes/nightmare/minigames/puddle_liquid.gdshader" id="2"]
+
+[sub_resource type="ShaderMaterial" id="PuddleMat"]
+shader = ExtResource("2")
+
+[sub_resource type="QuadMesh" id="PuddleMesh"]
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="PuddleShape"]
+size = Vector3(1.3, 0.2, 1.3)
+
+[node name="DecayDontTouchWater" type="Node3D"]
+script = ExtResource("1")
+
+[node name="StartRef" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="SafeZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
+[node name="Shape" type="CollisionShape3D" parent="SafeZone"]
+shape = SubResource("PuddleShape")
+[node name="Glow" type="OmniLight3D" parent="SafeZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+light_color = Color(0.75, 0.95, 0.85, 1)
+light_energy = 0.6
+omni_range = 3.0
+
+[node name="Puddles" type="Node3D" parent="."]
+
+[node name="Puddle1" type="Area3D" parent="Puddles"]
+[node name="Mesh" type="MeshInstance3D" parent="Puddles/Puddle1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PuddleMesh")
+surface_material_override/0 = SubResource("PuddleMat")
+[node name="Shape" type="CollisionShape3D" parent="Puddles/Puddle1"]
+shape = SubResource("PuddleShape")
+
+[node name="Puddle2" type="Area3D" parent="Puddles"]
+[node name="Mesh" type="MeshInstance3D" parent="Puddles/Puddle2"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PuddleMesh")
+surface_material_override/0 = SubResource("PuddleMat")
+[node name="Shape" type="CollisionShape3D" parent="Puddles/Puddle2"]
+shape = SubResource("PuddleShape")
+
+[node name="Puddle3" type="Area3D" parent="Puddles"]
+[node name="Mesh" type="MeshInstance3D" parent="Puddles/Puddle3"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PuddleMesh")
+surface_material_override/0 = SubResource("PuddleMat")
+[node name="Shape" type="CollisionShape3D" parent="Puddles/Puddle3"]
+shape = SubResource("PuddleShape")
+
+[node name="Puddle4" type="Area3D" parent="Puddles"]
+[node name="Mesh" type="MeshInstance3D" parent="Puddles/Puddle4"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PuddleMesh")
+surface_material_override/0 = SubResource("PuddleMat")
+[node name="Shape" type="CollisionShape3D" parent="Puddles/Puddle4"]
+shape = SubResource("PuddleShape")
+
+[node name="Puddle5" type="Area3D" parent="Puddles"]
+[node name="Mesh" type="MeshInstance3D" parent="Puddles/Puddle5"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PuddleMesh")
+surface_material_override/0 = SubResource("PuddleMat")
+[node name="Shape" type="CollisionShape3D" parent="Puddles/Puddle5"]
+shape = SubResource("PuddleShape")

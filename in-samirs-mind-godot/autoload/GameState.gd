@@ -29,6 +29,17 @@ var nightmare_assignments: Dictionary = {}
 ## the real chapter. Not persisted — a save can't happen mid-nightmare.
 var in_nightmare: bool = false
 
+## Transient: the player's current depth in the active Nightmare
+## Passage's minigame ladder (Nightmare_Passage_Minigame_Specs.md's
+## `nightmare_depth`). 0 outside a nightmare; set to 1 on entry. This is
+## deliberately separate from GameState.chapter — losing a minigame only
+## ever moves this number, never the player's real story progress.
+var nightmare_depth: int = 0
+
+## Reward ids granted by clearing minigame ladder depths, persisted so a
+## deep-clear reward isn't re-grantable by re-running the same ladder.
+var nightmare_rewards: Array[String] = []
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -56,6 +67,8 @@ func new_run(chosen_dreamer: String) -> void:
 	composure = 1.0
 	nightmare_assignments.clear()
 	in_nightmare = false
+	nightmare_depth = 0
+	nightmare_rewards.clear()
 
 func to_dict() -> Dictionary:
 	var data := {
