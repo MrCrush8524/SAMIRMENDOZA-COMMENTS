@@ -20,6 +20,12 @@ const PAW_FADE_START := deg_to_rad(25.0)
 const PAW_FADE_FULL := deg_to_rad(55.0)
 const PAW_MAX_OPACITY := 0.94
 
+## Scroll wheel is a discrete per-tick event, not a held axis, so each
+## tick refreshes a short "still walking" window instead of stepping the
+## player once per notch — scrolling steadily then reads as continuous
+## forward/backward walking, same speed rules (Shift = sprint) as WASD.
+const SCROLL_WALK_HOLD_TIME := 0.25
+
 @export var paw_texture_bobby: Texture2D
 @export var paw_texture_luna: Texture2D
 @export var paw_texture_mateo: Texture2D
@@ -33,6 +39,9 @@ var pitch: float = 0.0
 var touch_look_active: bool = false
 var touch_look_id: int = -1
 var touch_look_start := Vector2.ZERO
+
+var _scroll_forward_timer: float = 0.0
+var _scroll_backward_timer: float = 0.0
 
 signal interact_pressed(target: Node)
 
@@ -61,6 +70,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		_scroll_forward_timer = SCROLL_WALK_HOLD_TIME
+		_scroll_backward_timer = 0.0
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		_scroll_backward_timer = SCROLL_WALK_HOLD_TIME
+		_scroll_forward_timer = 0.0
 	elif event is InputEventScreenDrag:
 		rotate_y(-event.relative.x * MOUSE_SENS)
 		pitch = clamp(pitch - event.relative.y * MOUSE_SENS, -1.3, 1.3)
@@ -75,9 +90,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 
+	_scroll_forward_timer = maxf(0.0, _scroll_forward_timer - delta)
+	_scroll_backward_timer = maxf(0.0, _scroll_backward_timer - delta)
+
+	var forward_input := Input.get_action_strength("move_forward")
+	var back_input := Input.get_action_strength("move_back")
+	if _scroll_forward_timer > 0.0:
+		forward_input = 1.0
+	if _scroll_backward_timer > 0.0:
+		back_input = 1.0
+
 	var input_dir := Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+		back_input - forward_input
 	)
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
