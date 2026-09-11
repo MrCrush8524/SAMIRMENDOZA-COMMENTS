@@ -1,9 +1,10 @@
-[gd_scene load_steps=70 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=71 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/TVScreen.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/shared/MoonDoor.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/shared/NightmareDoor.gd" id="44"]
 [ext_resource type="Texture2D" path="res://assets/textures/vintage_pink_and_cream_checkerboard_linoleum.png" id="5"]
 [ext_resource type="Texture2D" path="res://assets/textures/vintage_mint_subway_tile_wall.png" id="6"]
 [ext_resource type="Texture2D" path="res://assets/posters/Cloudside_Shampoo_Brighter_Days.webp" id="7"]
@@ -556,3 +557,32 @@ modulate = Color(1, 1, 1, 0.55)
 pixel_size = 0.0026
 billboard = 1
 visible = false
+
+[node name="DreamCharm" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.0, -3)
+script = ExtResource("2")
+kind = 2
+item_id = "dream_charm"
+[node name="Icon" type="Sprite3D" parent="DreamCharm"]
+texture = ExtResource("21")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="DreamCharm"]
+light_color = Color(0.75, 0.68, 0.95, 1)
+light_energy = 0.4
+omni_range = 1.6
+[node name="Shape" type="CollisionShape3D" parent="DreamCharm"]
+shape = SubResource("Shape_pickup")
+
+[node name="NightmareDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.15, 6.5)
+script = ExtResource("44")
+door_id = "chapter01_hall_closet"
+[node name="Mesh" type="MeshInstance3D" parent="NightmareDoor"]
+mesh = SubResource("BoxMesh_moondoor")
+[node name="Shape" type="CollisionShape3D" parent="NightmareDoor"]
+shape = SubResource("Shape_moondoor")
+[node name="Glow" type="OmniLight3D" parent="NightmareDoor"]
+light_color = Color(0.5, 0.1, 0.15, 1)
+light_energy = 0.15
+omni_range = 2.0

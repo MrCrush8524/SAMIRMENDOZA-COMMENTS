@@ -14,6 +14,21 @@ var dream_tracks: Array[String] = []
 var tv_seen: Array[String] = []
 var has_active_run: bool = false
 
+## 0..1. Drained only inside a Decay Nightmare Passage; collapse at 0
+## bounces the player back out (see GameRoot.collapse_from_nightmare),
+## never a death screen. Resets to full on collapse and on new_run.
+var composure: float = 1.0
+
+## door_id -> "decay" | "wander" | "arcade". Assigned once per door the
+## first time it's seen (NightmareDoor._ready), then persisted so a
+## given save keeps the same assignments instead of re-rolling them
+## every time the chapter reloads.
+var nightmare_assignments: Dictionary = {}
+
+## Transient: true while a Nightmare Passage scene is loaded in place of
+## the real chapter. Not persisted — a save can't happen mid-nightmare.
+var in_nightmare: bool = false
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -38,6 +53,9 @@ func new_run(chosen_dreamer: String) -> void:
 	tv_seen.clear()
 	has_active_run = true
 	has_last_position = false
+	composure = 1.0
+	nightmare_assignments.clear()
+	in_nightmare = false
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -50,6 +68,8 @@ func to_dict() -> Dictionary:
 		"inventory": inventory,
 		"dream_tracks": dream_tracks,
 		"tv_seen": tv_seen,
+		"composure": composure,
+		"nightmare_assignments": nightmare_assignments,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -70,6 +90,9 @@ func from_dict(data: Dictionary) -> bool:
 	dream_tracks.assign(data.get("dream_tracks", []))
 	tv_seen.assign(data.get("tv_seen", []))
 	has_active_run = true
+	composure = clampf(float(data.get("composure", 1.0)), 0.0, 1.0)
+	nightmare_assignments = data.get("nightmare_assignments", {}).duplicate()
+	in_nightmare = false
 
 	has_last_position = false
 	var pos_data = data.get("last_position", null)
