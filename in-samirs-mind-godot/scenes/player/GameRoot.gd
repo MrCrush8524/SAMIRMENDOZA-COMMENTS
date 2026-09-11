@@ -86,6 +86,31 @@ func _on_chapter_ready(chapter: Node) -> void:
 
 	player.set_spawn(spawn_pos, spawn_yaw)
 
+## Generic transition into any built chapter/level (the Mall, Clouds Zoo,
+## the Terminal, the Nightmare Museum, etc. as they come online) — sets
+## the real GameState.chapter (unlike Nightmare/Backrooms, this IS where
+## the player now "is" and gets saved), spawns at the named marker
+## (default "start"), and drops any stale exact-position override so the
+## new chapter's own spawn point is actually used.
+func enter_chapter(chapter_id: String, spawn_marker: String = "start") -> void:
+	GameState.chapter = chapter_id
+	GameState.spawn_id = spawn_marker
+	GameState.has_last_position = false
+	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_chapter(chapter_id, self)
+
+## Reloads the CURRENT chapter at a random marker from the given list —
+## e.g. the Dreamcore Mall's "spawn somewhere random after failing a
+## minigame" rule. A no-op if candidates is empty (no minigame built yet
+## to call this from).
+func respawn_in_chapter_random(candidates: Array[String]) -> void:
+	if candidates.is_empty():
+		return
+	GameState.spawn_id = candidates[randi() % candidates.size()]
+	GameState.has_last_position = false
+	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_chapter(GameState.chapter, self)
+
 ## Called by a NightmareDoor when the player steps through it. Remembers
 ## the exact chapter + transform so exit_nightmare/collapse can put the
 ## player back exactly where they left, per the "ordinary doors can

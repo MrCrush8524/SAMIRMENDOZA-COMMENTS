@@ -1,0 +1,224 @@
+[gd_scene load_steps=24 format=3 uid="uid://dreamcore_mall"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(50, 0.2, 44)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(50, 0.2, 44)
+
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.92, 0.85, 0.78, 1)
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(50, 5, 0.3)
+
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(50, 5, 0.3)
+
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(44, 5, 0.3)
+
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(44, 5, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.96, 0.9, 0.94, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="RotundaMat"]
+albedo_color = Color(0.98, 0.9, 0.68, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="FoodCourtMat"]
+albedo_color = Color(0.98, 0.93, 0.72, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="CinemaMat"]
+albedo_color = Color(0.18, 0.12, 0.28, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="ArcadeMat"]
+albedo_color = Color(0.42, 0.14, 0.5, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="ToyBoxMat"]
+albedo_color = Color(0.98, 0.72, 0.82, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="LullMat"]
+albedo_color = Color(0.82, 0.78, 0.92, 1)
+roughness = 0.4
+
+[sub_resource type="PlaneMesh" id="ZonePlane16"]
+size = Vector2(16, 16)
+[sub_resource type="PlaneMesh" id="ZonePlaneFoodCourt"]
+size = Vector2(20, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneCinema"]
+size = Vector2(16, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneSide"]
+size = Vector2(14, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneLull"]
+size = Vector2(8, 8)
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_big"]
+size = Vector3(16, 3, 16)
+[sub_resource type="BoxShape3D" id="Shape_flavor_medium"]
+size = Vector3(14, 3, 12)
+[sub_resource type="BoxShape3D" id="Shape_flavor_small"]
+size = Vector3(8, 3, 8)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.95, 0.9, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.95, 0.88, 0.9, 1)
+ambient_light_energy = 1.1
+
+[node name="DreamcoreMall" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -26)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 18)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 25, 2.5, -4)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -25, 2.5, -4)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneRotunda" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlane16")
+surface_material_override/0 = SubResource("RotundaMat")
+[node name="Fountain" type="MeshInstance3D" parent="ZoneRotunda"]
+transform = Transform3D(1.5, 0, 0, 0, 1.2, 0, 0, 0, 1.5, 0, 0.6, 0)
+[node name="Light" type="OmniLight3D" parent="ZoneRotunda"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.96, 0.85, 1)
+light_energy = 0.9
+omni_range = 14.0
+
+[node name="ZoneFoodCourt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -14)
+mesh = SubResource("ZonePlaneFoodCourt")
+surface_material_override/0 = SubResource("FoodCourtMat")
+
+[node name="ZoneCinema" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -24)
+mesh = SubResource("ZonePlaneCinema")
+surface_material_override/0 = SubResource("CinemaMat")
+
+[node name="ZoneArcade" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.11, -6)
+mesh = SubResource("ZonePlaneSide")
+surface_material_override/0 = SubResource("ArcadeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneArcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.3, 0.9, 1)
+light_energy = 0.7
+omni_range = 10.0
+
+[node name="ZoneToyBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.11, -6)
+mesh = SubResource("ZonePlaneSide")
+surface_material_override/0 = SubResource("ToyBoxMat")
+
+[node name="TheLull" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+[node name="Floor" type="MeshInstance3D" parent="TheLull"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlaneLull")
+surface_material_override/0 = SubResource("LullMat")
+[node name="Light" type="OmniLight3D" parent="TheLull"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.82, 0.95, 1)
+light_energy = 0.35
+omni_range = 7.0
+
+[node name="Flavor_Rotunda" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1")
+flavor_text = "Grand Rotunda — to upper levels (tba)."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Rotunda"]
+shape = SubResource("Shape_flavor_big")
+
+[node name="Flavor_FoodCourt" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
+script = ExtResource("1")
+flavor_text = "Food Court \"Good Times\" — Pizza, Burgers, Boba, Noodles & More!"
+[node name="Shape" type="CollisionShape3D" parent="Flavor_FoodCourt"]
+shape = SubResource("Shape_flavor_medium")
+
+[node name="Flavor_Cinema" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -24)
+script = ExtResource("1")
+flavor_text = "Cinema Wing — 6 screens."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Cinema"]
+shape = SubResource("Shape_flavor_medium")
+
+[node name="Flavor_Arcade" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, -6)
+script = ExtResource("1")
+flavor_text = "Arcade."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Arcade"]
+shape = SubResource("Shape_flavor_medium")
+
+[node name="Flavor_ToyBox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -6)
+script = ExtResource("1")
+flavor_text = "Toy Box World — Toys, Games, Collectibles, Sweets. A Brighter You."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ToyBox"]
+shape = SubResource("Shape_flavor_medium")
+
+[node name="Flavor_Lull" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13)
+script = ExtResource("1")
+flavor_text = "The Lull — a quieter place. It's still here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Lull"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)
+
+[node name="SpawnFoodCourt" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -14)
+
+[node name="SpawnArcade" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1.0, -6)
+
+[node name="SpawnToyBox" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.0, -6)
+
+[node name="SpawnCinema" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -22)

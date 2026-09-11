@@ -6,6 +6,7 @@ signal scene_ready(scene: Node)
 
 const CHAPTER_SCENES := {
 	"chapter01": "res://scenes/chapter01/Chapter01.tscn",
+	"mall": "res://scenes/mall/DreamcoreMall.tscn",
 }
 
 ## Nightmare Passages are loaded the same way as a chapter (swapped in
