@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=24 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -38,11 +38,25 @@ roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="FoodCourtMat"]
 albedo_color = Color(0.62, 0.55, 0.85, 1)
 roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="VelvetLoungeMat"]
+albedo_color = Color(0.48, 0.38, 0.62, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="TinyCinemaMat"]
+albedo_color = Color(0.15, 0.1, 0.2, 1)
+roughness = 0.6
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_carousel"]
 size = Vector3(14, 3, 14)
 [sub_resource type="BoxShape3D" id="Shape_flavor_wide"]
 size = Vector3(18, 3, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneVelvet"]
+size = Vector2(10, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneTinyCinema"]
+size = Vector2(8, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_velvet"]
+size = Vector3(10, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_tinycinema"]
+size = Vector3(8, 3, 6)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -127,6 +141,35 @@ light_color = Color(0.8, 0.78, 0.98, 1)
 light_energy = 0.5
 omni_range = 10.0
 
+[node name="ZoneVelvetLounge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.11, 10)
+mesh = SubResource("ZonePlaneVelvet")
+surface_material_override/0 = SubResource("VelvetLoungeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneVelvetLounge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.7, 0.6, 0.9, 1)
+light_energy = 0.4
+omni_range = 9.0
+
+[node name="ZoneTinyCinema" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.11, 14)
+mesh = SubResource("ZonePlaneTinyCinema")
+surface_material_override/0 = SubResource("TinyCinemaMat")
+
+[node name="Flavor_VelvetLounge" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, 10)
+script = ExtResource("1")
+flavor_text = "Velvet Lounge. So soft, so quiet, so unreal..."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_VelvetLounge"]
+shape = SubResource("Shape_flavor_velvet")
+
+[node name="Flavor_TinyCinema" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 14)
+script = ExtResource("1")
+flavor_text = "Tiny Cinema. \"Same movie every time?\""
+[node name="Shape" type="CollisionShape3D" parent="Flavor_TinyCinema"]
+shape = SubResource("Shape_flavor_tinycinema")
+
 [node name="Flavor_CarouselHall" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1")
@@ -157,3 +200,9 @@ shape = SubResource("Shape_flavor_wide")
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)
+
+[node name="SpawnVelvetLounge" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.0, 10)
+
+[node name="SpawnTinyCinema" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.0, 14)

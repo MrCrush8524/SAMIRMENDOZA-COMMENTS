@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://nightmare_museum"]
+[gd_scene load_steps=23 format=3 uid="uid://nightmare_museum"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -38,11 +38,21 @@ roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="MirrorMat"]
 albedo_color = Color(0.2, 0.22, 0.32, 1)
 roughness = 0.2
+[sub_resource type="StandardMaterial3D" id="CloudFossilsMat"]
+albedo_color = Color(0.55, 0.55, 0.6, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="ForgottenToysMat"]
+albedo_color = Color(0.5, 0.28, 0.3, 1)
+roughness = 0.7
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_rotunda"]
 size = Vector3(14, 3, 14)
 [sub_resource type="BoxShape3D" id="Shape_flavor_gallery"]
 size = Vector3(16, 3, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneSmallGallery"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_smallgallery"]
+size = Vector3(10, 3, 8)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -133,6 +143,35 @@ light_color = Color(0.55, 0.6, 0.85, 1)
 light_energy = 0.4
 omni_range = 9.0
 
+[node name="ZoneCloudFossils" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.11, -17)
+mesh = SubResource("ZonePlaneSmallGallery")
+surface_material_override/0 = SubResource("CloudFossilsMat")
+
+[node name="ZoneForgottenToys" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.11, -17)
+mesh = SubResource("ZonePlaneSmallGallery")
+surface_material_override/0 = SubResource("ForgottenToysMat")
+[node name="Light" type="OmniLight3D" parent="ZoneForgottenToys"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.55, 0.55, 1)
+light_energy = 0.35
+omni_range = 8.0
+
+[node name="Flavor_CloudFossils" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, -17)
+script = ExtResource("1")
+flavor_text = "Cloud Fossils."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CloudFossils"]
+shape = SubResource("Shape_flavor_smallgallery")
+
+[node name="Flavor_ForgottenToys" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -17)
+script = ExtResource("1")
+flavor_text = "Forgotten Toys Cabinet. Some objects still play on their own at night... or do they?"
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ForgottenToys"]
+shape = SubResource("Shape_flavor_smallgallery")
+
 [node name="Flavor_EntranceHall" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
 script = ExtResource("1")
@@ -163,3 +202,9 @@ shape = SubResource("Shape_flavor_gallery")
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 17)
+
+[node name="SpawnCloudFossils" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.0, -17)
+
+[node name="SpawnForgottenToys" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.0, -17)

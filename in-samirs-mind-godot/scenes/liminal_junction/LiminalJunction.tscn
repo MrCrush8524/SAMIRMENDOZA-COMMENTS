@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://liminal_junction"]
+[gd_scene load_steps=24 format=3 uid="uid://liminal_junction"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -37,11 +37,21 @@ roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="PlatformMat"]
 albedo_color = Color(0.85, 0.78, 0.78, 1)
 roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="VoidMat"]
+albedo_color = Color(0.04, 0.03, 0.08, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="MirrorPassageMat"]
+albedo_color = Color(0.85, 0.55, 0.75, 1)
+roughness = 0.15
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_hall"]
 size = Vector3(16, 3, 14)
 [sub_resource type="BoxShape3D" id="Shape_flavor_platforms"]
 size = Vector3(10, 3, 42)
+[sub_resource type="PlaneMesh" id="ZonePlaneOddity"]
+size = Vector2(12, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_oddity"]
+size = Vector3(12, 3, 10)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -121,6 +131,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0.11, 0)
 mesh = SubResource("ZonePlanePlatforms")
 surface_material_override/0 = SubResource("PlatformMat")
 
+[node name="ZoneVoidPlatform" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.11, 18)
+mesh = SubResource("ZonePlaneOddity")
+surface_material_override/0 = SubResource("VoidMat")
+[node name="Light" type="OmniLight3D" parent="ZoneVoidPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.3, 0.15, 0.5, 1)
+light_energy = 0.3
+omni_range = 8.0
+
+[node name="ZoneMirrorPassage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.11, 18)
+mesh = SubResource("ZonePlaneOddity")
+surface_material_override/0 = SubResource("MirrorPassageMat")
+[node name="Light" type="OmniLight3D" parent="ZoneMirrorPassage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.75, 0.9, 1)
+light_energy = 0.5
+omni_range = 8.0
+
+[node name="Flavor_VoidPlatform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 18)
+script = ExtResource("1")
+flavor_text = "The Void Platform."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_VoidPlatform"]
+shape = SubResource("Shape_flavor_oddity")
+
+[node name="Flavor_MirrorPassage" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 18)
+script = ExtResource("1")
+flavor_text = "Mirror Passage. \"Wish you were here?\""
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MirrorPassage"]
+shape = SubResource("Shape_flavor_oddity")
+
 [node name="Flavor_GrandHall" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 script = ExtResource("1")
@@ -168,3 +212,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, -4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, 4)
 [node name="Platform_8" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, 12)
+
+[node name="SpawnVoidPlatform" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.0, 18)
+
+[node name="SpawnMirrorPassage" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.0, 18)

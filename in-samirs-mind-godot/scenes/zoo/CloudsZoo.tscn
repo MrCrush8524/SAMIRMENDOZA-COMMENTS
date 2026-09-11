@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clouds_zoo"]
+[gd_scene load_steps=23 format=3 uid="uid://clouds_zoo"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -35,11 +35,21 @@ roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="GardensMat"]
 albedo_color = Color(0.72, 0.9, 0.68, 1)
 roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="AviaryMat"]
+albedo_color = Color(0.65, 0.8, 0.95, 1)
+roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="SkyWhalesMat"]
+albedo_color = Color(0.4, 0.65, 0.88, 1)
+roughness = 0.15
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_big"]
 size = Vector3(20, 4, 14)
 [sub_resource type="BoxShape3D" id="Shape_flavor_huge"]
 size = Vector3(24, 4, 18)
+[sub_resource type="PlaneMesh" id="ZonePlaneMed"]
+size = Vector2(16, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_med"]
+size = Vector3(16, 4, 14)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -116,6 +126,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -14)
 mesh = SubResource("ZonePlaneBig")
 surface_material_override/0 = SubResource("GardensMat")
 
+[node name="ZoneCelestialAviary" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.11, -14)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("AviaryMat")
+[node name="Light" type="OmniLight3D" parent="ZoneCelestialAviary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.85, 0.92, 1, 1)
+light_energy = 0.6
+omni_range = 12.0
+
+[node name="ZoneSkyWhales" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.11, -14)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("SkyWhalesMat")
+[node name="Light" type="OmniLight3D" parent="ZoneSkyWhales"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.7, 0.85, 1, 1)
+light_energy = 0.5
+omni_range = 12.0
+
+[node name="Flavor_CelestialAviary" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -14)
+script = ExtResource("1")
+flavor_text = "Celestial Aviary — Moon Birds, Aurora Aviary, Feather Falls."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CelestialAviary"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_SkyWhales" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -14)
+script = ExtResource("1")
+flavor_text = "Sky Whales — Aqua Skies. Cloud Rays, Jellyfish Gardens."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SkyWhales"]
+shape = SubResource("Shape_flavor_med")
+
 [node name="Flavor_Parking" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 18)
 script = ExtResource("1")
@@ -139,3 +183,9 @@ shape = SubResource("Shape_flavor_huge")
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 18)
+
+[node name="SpawnCelestialAviary" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, -14)
+
+[node name="SpawnSkyWhales" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, -14)
