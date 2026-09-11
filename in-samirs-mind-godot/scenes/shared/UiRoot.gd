@@ -108,18 +108,29 @@ func show_nightmare_result(won: bool) -> void:
 
 ## Returns true for "Go Deeper", false for "Wake Up".
 func show_cashout_choice() -> bool:
+	return await show_yes_no_choice("Keep going deeper?", "Go Deeper", "Wake Up")
+
+## Generic reuse of the same fade/prompt/two-button UI for any binary
+## choice (the Nightmare cash-out, the Doubt Catch token-immunity
+## offer, whatever needs it next) — true picks yes_label, false picks
+## no_label.
+func show_yes_no_choice(prompt: String, yes_label: String, no_label: String) -> bool:
 	await _nightmare_fade_in()
-	nightmare_big_label.text = "Keep going deeper?"
+	nightmare_big_label.text = prompt
+	var go_deeper_btn: Button = %GoDeeperButton
+	var wake_up_btn: Button = %WakeUpButton
+	go_deeper_btn.text = yes_label
+	wake_up_btn.text = no_label
 	nightmare_cashout_row.visible = true
 	nightmare_cashout_row.modulate.a = 0.0
 	var fade_row := create_tween()
 	fade_row.tween_property(nightmare_cashout_row, "modulate:a", 1.0, NIGHTMARE_FADE)
 
-	var go_deeper: bool = await _await_cashout_press()
+	var result: bool = await _await_cashout_press()
 
 	nightmare_cashout_row.visible = false
 	await _nightmare_fade_out()
-	return go_deeper
+	return result
 
 func _await_cashout_press() -> bool:
 	var go_deeper_btn: Button = %GoDeeperButton

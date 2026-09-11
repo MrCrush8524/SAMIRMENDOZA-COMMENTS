@@ -220,17 +220,29 @@ func _grant_depth_reward(room_id: String, cleared_depth: int) -> void:
 ## catch-specific minigames exist — DoubtCatcher.gd is safe to attach
 ## anywhere in the meantime; touching it just does nothing while the
 ## pool is empty, rather than erroring.
-const DOUBT_CATCH_POOL: Array[String] = []
+const DOUBT_CATCH_POOL: Array[String] = ["res://scenes/nightmare/minigames/WanderWhatChanged.tscn"]
 
 var _doubt_catch_minigame: NightmareMinigame = null
 
-## Called by DoubtCatcher when Doubt touches the player. Same
-## countdown/result UI as the Nightmare ladder (UiRoot), but this is an
-## open-world catch, not a Nightmare Passage — win grants a Dream Token,
-## lose just respawns the player nearby (their exact spot, gently
-## nudged), never sends them to a Nightmare Passage or back to the
-## chapter's main spawn.
+## Called by DoubtCatcher when Doubt touches the player. If the player
+## is holding any Dream Tokens, they get one immediate offer to spend
+## one for automatic immunity THIS encounter — decline (or have none)
+## and it proceeds to the minigame as normal. The offer never carries
+## over: it's spent right away or the chance is gone, never bankable
+## for a specific later Doubt. Same countdown/result UI as the
+## Nightmare ladder (UiRoot), but this is an open-world catch, not a
+## Nightmare Passage — win grants a Dream Token, lose just respawns the
+## player nearby (their exact spot, gently nudged), never sends them to
+## a Nightmare Passage or back to the chapter's main spawn.
 func start_doubt_catch() -> void:
+	if GameState.dream_tokens > 0:
+		var use_token: bool = await UiRoot.show_yes_no_choice(
+			"Doubt has you. Spend a Dream Token for immunity?", "Spend Token", "Risk It")
+		if use_token:
+			GameState.dream_tokens -= 1
+			UiRoot.show_journal("The token flares once and Doubt passes through you like smoke.")
+			return
+
 	if DOUBT_CATCH_POOL.is_empty():
 		return
 	var return_position := player.global_position

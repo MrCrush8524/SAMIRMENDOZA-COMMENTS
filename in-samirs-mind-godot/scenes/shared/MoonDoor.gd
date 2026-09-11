@@ -23,4 +23,4 @@ func _trigger_transition() -> void:
 	SaveManager.save_game()
 	var game_root: Node = get_tree().get_first_node_in_group("game_root")
 	if game_root:
-		game_root.enter_chapter("mall")
+		game_root.enter_chapter("chapter02")

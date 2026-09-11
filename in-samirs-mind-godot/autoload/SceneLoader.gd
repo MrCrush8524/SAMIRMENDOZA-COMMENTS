@@ -6,6 +6,7 @@ signal scene_ready(scene: Node)
 
 const CHAPTER_SCENES := {
 	"chapter01": "res://scenes/chapter01/Chapter01.tscn",
+	"chapter02": "res://scenes/chapter02/Chapter02.tscn",
 	"mall": "res://scenes/mall/DreamcoreMall.tscn",
 	"level4": "res://scenes/level4/DreamcoreLevel4.tscn",
 	"zoo": "res://scenes/zoo/CloudsZoo.tscn",

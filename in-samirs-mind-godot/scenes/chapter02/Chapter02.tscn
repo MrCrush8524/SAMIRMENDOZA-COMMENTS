@@ -1,0 +1,256 @@
+[gd_scene load_steps=24 format=3 uid="uid://chapter02_scene"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/DoubtCatcher.gd" id="3"]
+[ext_resource type="Texture2D" path="res://assets/doubt/doubt_spirit.png" id="4"]
+[ext_resource type="Shader" path="res://scenes/nightmare/minigames/puddle_liquid.gdshader" id="5"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(74, 0.2, 62)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(74, 0.2, 62)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.94, 0.9, 0.85, 1)
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(74, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(74, 5, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(62, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(62, 5, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.97, 0.94, 0.9, 1)
+roughness = 0.75
+
+[sub_resource type="PlaneMesh" id="ZonePlaneAtrium"]
+size = Vector2(18, 18)
+[sub_resource type="PlaneMesh" id="ZonePlaneFoyer"]
+size = Vector2(20, 16)
+[sub_resource type="PlaneMesh" id="ZonePlanePool"]
+size = Vector2(22, 18)
+[sub_resource type="PlaneMesh" id="ZonePlaneArcade"]
+size = Vector2(20, 16)
+[sub_resource type="PlaneMesh" id="ZonePlaneBalcony"]
+size = Vector2(22, 16)
+[sub_resource type="StandardMaterial3D" id="AtriumMat"]
+albedo_color = Color(0.94, 0.82, 0.7, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="FoyerMat"]
+albedo_color = Color(0.82, 0.92, 0.82, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="PoolTileMat"]
+albedo_color = Color(0.65, 0.85, 0.9, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="ArcadeMat"]
+albedo_color = Color(0.7, 0.85, 0.95, 1)
+roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="BalconyMat"]
+albedo_color = Color(0.96, 0.82, 0.78, 1)
+roughness = 0.7
+
+[sub_resource type="CylinderMesh" id="StairMesh"]
+top_radius = 3.0
+bottom_radius = 3.5
+height = 3.0
+
+[sub_resource type="ShaderMaterial" id="PoolWaterMat"]
+shader = ExtResource("5")
+shader_parameter/base_color = Color(0.7, 0.9, 0.95, 0.7)
+shader_parameter/rim_color = Color(0.9, 0.98, 1, 0.9)
+shader_parameter/ripple_speed = 0.4
+shader_parameter/ripple_scale = 4.0
+[sub_resource type="PlaneMesh" id="PoolWaterMesh"]
+size = Vector2(10, 8)
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_atrium"]
+size = Vector3(18, 4, 18)
+[sub_resource type="BoxShape3D" id="Shape_flavor_foyer"]
+size = Vector3(20, 4, 16)
+[sub_resource type="BoxShape3D" id="Shape_flavor_pool"]
+size = Vector3(22, 4, 18)
+[sub_resource type="BoxShape3D" id="Shape_flavor_arcade"]
+size = Vector3(20, 4, 16)
+[sub_resource type="BoxShape3D" id="Shape_flavor_balcony"]
+size = Vector3(22, 4, 16)
+
+[sub_resource type="SphereShape3D" id="Shape_doubt_catch"]
+radius = 1.0
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.97, 0.93, 0.88, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.96, 0.9, 0.85, 1)
+ambient_light_energy = 1.15
+
+[node name="Chapter02" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -31)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 31)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 37, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -37, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneAtrium" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlaneAtrium")
+surface_material_override/0 = SubResource("AtriumMat")
+[node name="SpiralStair" type="MeshInstance3D" parent="ZoneAtrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("StairMesh")
+[node name="Light" type="OmniLight3D" parent="ZoneAtrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+light_color = Color(1, 0.92, 0.82, 1)
+light_energy = 0.85
+omni_range = 16.0
+
+[node name="ZoneFoyer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0.11, -18)
+mesh = SubResource("ZonePlaneFoyer")
+surface_material_override/0 = SubResource("FoyerMat")
+[node name="Light" type="OmniLight3D" parent="ZoneFoyer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.98, 0.85, 1)
+light_energy = 0.75
+omni_range = 14.0
+
+[node name="ZonePool" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.11, -18)
+mesh = SubResource("ZonePlanePool")
+surface_material_override/0 = SubResource("PoolTileMat")
+[node name="ShallowPool" type="MeshInstance3D" parent="ZonePool"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("PoolWaterMesh")
+surface_material_override/0 = SubResource("PoolWaterMat")
+[node name="Light" type="OmniLight3D" parent="ZonePool"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+light_color = Color(0.85, 0.98, 1, 1)
+light_energy = 0.7
+omni_range = 15.0
+
+[node name="ZoneArcade" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0.11, 18)
+mesh = SubResource("ZonePlaneArcade")
+surface_material_override/0 = SubResource("ArcadeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneArcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.7, 0.9, 1)
+light_energy = 0.55
+omni_range = 11.0
+
+[node name="ZoneBalcony" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.11, 18)
+mesh = SubResource("ZonePlaneBalcony")
+surface_material_override/0 = SubResource("BalconyMat")
+[node name="Light1" type="OmniLight3D" parent="ZoneBalcony"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 0)
+light_color = Color(1, 0.78, 0.5, 1)
+light_energy = 0.5
+omni_range = 8.0
+[node name="Light2" type="OmniLight3D" parent="ZoneBalcony"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 0)
+light_color = Color(1, 0.78, 0.5, 1)
+light_energy = 0.5
+omni_range = 8.0
+
+[node name="Flavor_Atrium" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1")
+flavor_text = "Main Atrium & Spiral Stairwell. The Pastel Dreamscape."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Atrium"]
+shape = SubResource("Shape_flavor_atrium")
+
+[node name="Flavor_Foyer" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, -18)
+script = ExtResource("1")
+flavor_text = "The Sun-Drenched Foyer & Reception. Soft elevator jazz plays. Always golden hour."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Foyer"]
+shape = SubResource("Shape_flavor_foyer")
+
+[node name="Flavor_Pool" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -18)
+script = ExtResource("1")
+flavor_text = "The Indoor Sunken Pool & Cloud Atrium. Water is warm & smooth. Reflects motionless clouds."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Pool"]
+shape = SubResource("Shape_flavor_pool")
+
+[node name="Flavor_Arcade" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, 18)
+script = ExtResource("1")
+flavor_text = "The Pastel Arcade & Memory Lounge. Chimes, not beeps. Peaceful gradient screens."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Arcade"]
+shape = SubResource("Shape_flavor_arcade")
+
+[node name="Flavor_Balcony" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, 18)
+script = ExtResource("1")
+flavor_text = "The Endless Skyline Balcony. Gentle summer breeze. Endless sunset horizon."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Balcony"]
+shape = SubResource("Shape_flavor_balcony")
+
+[node name="Doubt" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 6)
+script = ExtResource("2")
+texture = ExtResource("4")
+modulate = Color(1, 1, 1, 0.55)
+pixel_size = 0.0026
+billboard = 1
+[node name="Catcher" type="Area3D" parent="Doubt"]
+script = ExtResource("3")
+[node name="Shape" type="CollisionShape3D" parent="Doubt/Catcher"]
+shape = SubResource("Shape_doubt_catch")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 8)
+
+[node name="SpawnFoyer" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1.0, -18)
+
+[node name="SpawnPool" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.0, -18)
+
+[node name="SpawnArcade" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1.0, 18)
+
+[node name="SpawnBalcony" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.0, 18)
