@@ -1,6 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://nightmare_wander"]
+[gd_scene load_steps=17 format=3 uid="uid://nightmare_wander"]
 
 [ext_resource type="Script" path="res://scenes/nightmare/NightmarePassage.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_wall_albedo_2048.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_wall_normal_2048.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_wall_roughness_2048.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_floor_albedo_2048.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_floor_normal_2048.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_floor_roughness_2048.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_chair.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_empty_frame.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_duplicate_lamps.png" id="10"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(18, 0.2, 18)
@@ -9,8 +18,11 @@ size = Vector3(18, 0.2, 18)
 size = Vector3(18, 0.2, 18)
 
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
-albedo_color = Color(0.55, 0.62, 0.7, 1)
-roughness = 0.9
+albedo_texture = ExtResource("5")
+normal_enabled = true
+normal_texture = ExtResource("6")
+roughness_texture = ExtResource("7")
+uv1_scale = Vector3(5, 5, 1)
 
 [sub_resource type="BoxMesh" id="WallMesh"]
 size = Vector3(18, 4, 0.3)
@@ -18,12 +30,19 @@ size = Vector3(18, 4, 0.3)
 [sub_resource type="BoxShape3D" id="WallShape"]
 size = Vector3(18, 4, 0.3)
 
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")
+roughness_texture = ExtResource("4")
+uv1_scale = Vector3(5, 1.2, 1)
+
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
 background_color = Color(0.65, 0.72, 0.82, 1)
 fog_enabled = true
 fog_light_color = Color(0.7, 0.76, 0.85, 1)
-fog_density = 0.015
+fog_density = 0.02
 ambient_light_source = 2
 ambient_light_color = Color(0.6, 0.65, 0.72, 1)
 ambient_light_energy = 1.0
@@ -46,6 +65,7 @@ shape = SubResource("FloorShape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="WallNorth"]
 shape = SubResource("WallShape")
 
@@ -53,6 +73,7 @@ shape = SubResource("WallShape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9)
 [node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
 mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="WallSouth"]
 shape = SubResource("WallShape")
 
@@ -60,6 +81,7 @@ shape = SubResource("WallShape")
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9, 2, 0)
 [node name="Mesh" type="MeshInstance3D" parent="WallEast"]
 mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="WallEast"]
 shape = SubResource("WallShape")
 
@@ -67,6 +89,7 @@ shape = SubResource("WallShape")
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -9, 2, 0)
 [node name="Mesh" type="MeshInstance3D" parent="WallWest"]
 mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="WallWest"]
 shape = SubResource("WallShape")
 
@@ -75,6 +98,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 light_color = Color(0.8, 0.85, 0.95, 1)
 light_energy = 0.7
 omni_range = 14.0
+
+[node name="PropChair" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -6.5)
+texture = ExtResource("8")
+pixel_size = 0.0016
+billboard = 0
+
+[node name="PropEmptyFrame" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.7, -8.85)
+texture = ExtResource("9")
+pixel_size = 0.0014
+billboard = 0
+
+[node name="PropDuplicateLamps" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.9, -3)
+texture = ExtResource("10")
+pixel_size = 0.0016
+billboard = 0
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 6)

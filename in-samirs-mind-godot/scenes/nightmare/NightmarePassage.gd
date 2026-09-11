@@ -9,7 +9,20 @@ extends Node3D
 
 @export var composure_drain_per_sec: float = 0.0
 
+## Paths (relative to this node) to MeshInstance3Ds whose surface 0
+## material is the decay_wall_pulse shader (or any other ShaderMaterial
+## with a "composure" uniform) — kept in sync every frame so the
+## wall-breathing tell tracks how close the player is to collapse, per
+## START_HERE_CLAUDE.md's DECAY instructions.
+@export var composure_shader_targets: Array[NodePath] = []
+
 func _process(delta: float) -> void:
+	for path in composure_shader_targets:
+		var mesh_instance := get_node(path) as MeshInstance3D
+		var mat := mesh_instance.get_surface_override_material(0)
+		if mat is ShaderMaterial:
+			mat.set_shader_parameter("composure", GameState.composure)
+
 	if composure_drain_per_sec <= 0.0:
 		return
 	if GameState.inventory.has("dream_charm"):

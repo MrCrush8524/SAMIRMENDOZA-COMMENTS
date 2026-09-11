@@ -1,10 +1,11 @@
-[gd_scene load_steps=71 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=72 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/TVScreen.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/shared/MoonDoor.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/shared/NightmareDoor.gd" id="44"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/door/nightmare_door_front_1157x2048.png" id="45"]
 [ext_resource type="Texture2D" path="res://assets/textures/vintage_pink_and_cream_checkerboard_linoleum.png" id="5"]
 [ext_resource type="Texture2D" path="res://assets/textures/vintage_mint_subway_tile_wall.png" id="6"]
 [ext_resource type="Texture2D" path="res://assets/posters/Cloudside_Shampoo_Brighter_Days.webp" id="7"]
@@ -93,6 +94,12 @@ radius = 2.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_moondoor"]
 size = Vector3(1.3, 2.3, 0.12)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nightmaredoor"]
+size = Vector2(1.3, 2.3)
+
+[sub_resource type="StandardMaterial3D" id="Mat_nightmaredoor"]
+albedo_texture = ExtResource("45")
 
 [sub_resource type="SphereShape3D" id="Shape_moondoor"]
 radius = 1.6
@@ -579,7 +586,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.15, 6.5)
 script = ExtResource("44")
 door_id = "chapter01_hall_closet"
 [node name="Mesh" type="MeshInstance3D" parent="NightmareDoor"]
-mesh = SubResource("BoxMesh_moondoor")
+mesh = SubResource("QuadMesh_nightmaredoor")
+surface_material_override/0 = SubResource("Mat_nightmaredoor")
 [node name="Shape" type="CollisionShape3D" parent="NightmareDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="NightmareDoor"]
