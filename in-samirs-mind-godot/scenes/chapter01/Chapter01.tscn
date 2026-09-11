@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=70 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
@@ -26,6 +26,17 @@
 [ext_resource type="Texture2D" path="res://assets/video_stills/methalkezon.webp" id="29"]
 [ext_resource type="Texture2D" path="res://assets/video_stills/beyond_outlets.webp" id="30"]
 [ext_resource type="Texture2D" path="res://assets/posters/humeat_hiring_end_card.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/textures/dusk_moon_backdrop.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/textures/curtain_fabric.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/textures/baseboard_strip.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/textures/blank_corkboard.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/textures/vending_machine_face.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/laundry_token.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/bent_key.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/polaroid.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/receipt.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/tiny_bell.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/pool_garden/icons/empty_cassette.png" id="42"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
 size = Vector2(20, 16)
@@ -83,6 +94,59 @@ size = Vector3(1.3, 2.3, 0.12)
 
 [sub_resource type="SphereShape3D" id="Shape_moondoor"]
 radius = 1.6
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_window"]
+size = Vector2(3.4, 2.2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_window"]
+shading_mode = 0
+albedo_texture = ExtResource("32")
+emission_enabled = true
+emission_texture = ExtResource("32")
+emission_energy_multiplier = 1.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_curtain"]
+size = Vector2(0.6, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="Mat_curtain"]
+albedo_texture = ExtResource("33")
+roughness = 0.85
+cull_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_baseboard_ns"]
+size = Vector3(19.6, 0.12, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_baseboard_ew"]
+size = Vector3(0.06, 0.12, 15.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_baseboard"]
+albedo_texture = ExtResource("34")
+roughness = 0.65
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_corkboard"]
+size = Vector2(1.6, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_corkboard"]
+albedo_texture = ExtResource("35")
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_vending_body"]
+size = Vector3(0.6, 1.4, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_vending_body"]
+albedo_color = Color(0.93, 0.9, 0.85, 1)
+roughness = 0.6
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vending_face"]
+size = Vector2(0.58, 1.38)
+
+[sub_resource type="StandardMaterial3D" id="Mat_vending_face"]
+albedo_texture = ExtResource("36")
+roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="Shape_vending"]
+size = Vector3(0.6, 1.4, 0.5)
 
 [node name="Chapter01" type="Node3D"]
 script = ExtResource("1")
@@ -334,6 +398,155 @@ billboard = 1
 light_color = Color(0.85, 0.82, 1, 1)
 light_energy = 0.4
 omni_range = 2.0
+
+[node name="Window" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.0, -7.87)
+mesh = SubResource("PlaneMesh_window")
+surface_material_override/0 = SubResource("Mat_window")
+
+[node name="CurtainLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 1.9, -7.85)
+mesh = SubResource("PlaneMesh_curtain")
+surface_material_override/0 = SubResource("Mat_curtain")
+
+[node name="CurtainRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 1.9, -7.85)
+mesh = SubResource("PlaneMesh_curtain")
+surface_material_override/0 = SubResource("Mat_curtain")
+
+[node name="BaseboardNorth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -7.95)
+mesh = SubResource("BoxMesh_baseboard_ns")
+surface_material_override/0 = SubResource("Mat_baseboard")
+
+[node name="BaseboardSouth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 7.95)
+mesh = SubResource("BoxMesh_baseboard_ns")
+surface_material_override/0 = SubResource("Mat_baseboard")
+
+[node name="BaseboardWest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.95, 0.06, 0)
+mesh = SubResource("BoxMesh_baseboard_ew")
+surface_material_override/0 = SubResource("Mat_baseboard")
+
+[node name="BaseboardEast" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.95, 0.06, 0)
+mesh = SubResource("BoxMesh_baseboard_ew")
+surface_material_override/0 = SubResource("Mat_baseboard")
+
+[node name="Corkboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3, 1.7, 7.9)
+mesh = SubResource("PlaneMesh_corkboard")
+surface_material_override/0 = SubResource("Mat_corkboard")
+
+[node name="VendingMachine" type="Node3D" parent="."]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 9.4, 0.7, 2)
+[node name="Body" type="MeshInstance3D" parent="VendingMachine"]
+mesh = SubResource("BoxMesh_vending_body")
+surface_material_override/0 = SubResource("Mat_vending_body")
+[node name="Face" type="MeshInstance3D" parent="VendingMachine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.251)
+mesh = SubResource("PlaneMesh_vending_face")
+surface_material_override/0 = SubResource("Mat_vending_face")
+[node name="VendingBody" type="StaticBody3D" parent="VendingMachine"]
+[node name="VendingShape" type="CollisionShape3D" parent="VendingMachine/VendingBody"]
+shape = SubResource("Shape_vending")
+
+[node name="LaundryToken" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 6)
+script = ExtResource("2")
+kind = 2
+item_id = "laundry_token"
+[node name="Icon" type="Sprite3D" parent="LaundryToken"]
+texture = ExtResource("37")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="LaundryToken"]
+light_color = Color(0.95, 0.85, 0.6, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="LaundryToken"]
+shape = SubResource("Shape_pickup")
+
+[node name="BentKey" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.5, -1)
+script = ExtResource("2")
+kind = 2
+item_id = "bent_key"
+[node name="Icon" type="Sprite3D" parent="BentKey"]
+texture = ExtResource("38")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="BentKey"]
+light_color = Color(0.8, 0.8, 0.85, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="BentKey"]
+shape = SubResource("Shape_pickup")
+
+[node name="Polaroid" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.0, -2)
+script = ExtResource("2")
+kind = 2
+item_id = "polaroid"
+[node name="Icon" type="Sprite3D" parent="Polaroid"]
+texture = ExtResource("39")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Polaroid"]
+light_color = Color(1, 0.95, 0.85, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="Polaroid"]
+shape = SubResource("Shape_pickup")
+
+[node name="Receipt" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.5, -2)
+script = ExtResource("2")
+kind = 2
+item_id = "receipt"
+[node name="Icon" type="Sprite3D" parent="Receipt"]
+texture = ExtResource("40")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Receipt"]
+light_color = Color(0.95, 0.95, 0.9, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="Receipt"]
+shape = SubResource("Shape_pickup")
+
+[node name="TinyBell" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.0, 4)
+script = ExtResource("2")
+kind = 2
+item_id = "tiny_bell"
+[node name="Icon" type="Sprite3D" parent="TinyBell"]
+texture = ExtResource("41")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="TinyBell"]
+light_color = Color(0.95, 0.85, 0.65, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="TinyBell"]
+shape = SubResource("Shape_pickup")
+
+[node name="EmptyCassette" type="Area3D" parent="." groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.0, 4)
+script = ExtResource("2")
+kind = 2
+item_id = "empty_cassette"
+[node name="Icon" type="Sprite3D" parent="EmptyCassette"]
+texture = ExtResource("42")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="EmptyCassette"]
+light_color = Color(0.7, 0.65, 0.75, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="EmptyCassette"]
+shape = SubResource("Shape_pickup")
 
 [node name="Doubt" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1.6, 8, 0.5, 6.5)
