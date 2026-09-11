@@ -1,0 +1,329 @@
+[gd_scene load_steps=42 format=3 uid="uid://chapter04_scene"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(40, 0.2, 36)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(40, 0.2, 36)
+[sub_resource type="BoxMesh" id="ParapetMeshEW"]
+size = Vector3(40, 1.1, 0.3)
+[sub_resource type="BoxShape3D" id="ParapetShapeEW"]
+size = Vector3(40, 1.1, 0.3)
+[sub_resource type="BoxMesh" id="ParapetMeshNS"]
+size = Vector3(36, 1.1, 0.3)
+[sub_resource type="BoxShape3D" id="ParapetShapeNS"]
+size = Vector3(36, 1.1, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="LowerFloorMat"]
+albedo_color = Color(0.5, 0.46, 0.48, 1)
+roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="MidFloorMat"]
+albedo_color = Color(0.58, 0.55, 0.62, 1)
+roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="HighFloorMat"]
+albedo_color = Color(0.68, 0.66, 0.78, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="ParapetMat"]
+albedo_color = Color(0.4, 0.38, 0.4, 1)
+roughness = 0.9
+
+[sub_resource type="PlaneMesh" id="ZonePlaneMed"]
+size = Vector2(12, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneSmall"]
+size = Vector2(8, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_med"]
+size = Vector3(12, 4, 12)
+[sub_resource type="BoxShape3D" id="Shape_flavor_small"]
+size = Vector3(8, 4, 8)
+
+[sub_resource type="StandardMaterial3D" id="ChimneyRowMat"]
+albedo_color = Color(0.55, 0.5, 0.52, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="GutterWalkMat"]
+albedo_color = Color(0.52, 0.55, 0.5, 1)
+roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="RopeBridgeMat"]
+albedo_color = Color(0.62, 0.5, 0.4, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="WaterTowerMat"]
+albedo_color = Color(0.5, 0.55, 0.6, 1)
+roughness = 0.75
+[sub_resource type="StandardMaterial3D" id="SkylightMat"]
+albedo_color = Color(0.7, 0.75, 0.85, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="ClockTowerMat"]
+albedo_color = Color(0.75, 0.7, 0.5, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="AntennaMat"]
+albedo_color = Color(0.6, 0.62, 0.72, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="OpenDreamMat"]
+albedo_color = Color(0.9, 0.85, 0.95, 1)
+roughness = 0.2
+
+[sub_resource type="BoxMesh" id="LiftPadMesh"]
+size = Vector3(1.6, 0.15, 1.6)
+[sub_resource type="BoxShape3D" id="LiftPadShape"]
+size = Vector3(1.6, 0.15, 1.6)
+[sub_resource type="StandardMaterial3D" id="LiftPadMat"]
+albedo_color = Color(0.95, 0.85, 0.6, 1)
+emission_enabled = true
+emission = Color(0.95, 0.85, 0.6, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.55, 0.6, 0.78, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.72, 0.85, 1)
+ambient_light_energy = 1.2
+
+[node name="Chapter04" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="LowerRoofs" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="LowerRoofs"]
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("LowerFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="ParapetNorth" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -18)
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetNorth"]
+mesh = SubResource("ParapetMeshEW")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetNorth"]
+shape = SubResource("ParapetShapeEW")
+
+[node name="ParapetSouth" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 18)
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetSouth"]
+mesh = SubResource("ParapetMeshEW")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetSouth"]
+shape = SubResource("ParapetShapeEW")
+
+[node name="ParapetEast" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 0.55, 0)
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetEast"]
+mesh = SubResource("ParapetMeshNS")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetEast"]
+shape = SubResource("ParapetShapeNS")
+
+[node name="ParapetWest" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -20, 0.55, 0)
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetWest"]
+mesh = SubResource("ParapetMeshNS")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetWest"]
+shape = SubResource("ParapetShapeNS")
+
+[node name="ZoneChimneyRow" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.11, -8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("ChimneyRowMat")
+
+[node name="ZoneGutterWalk" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.11, 8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("GutterWalkMat")
+
+[node name="Flavor_ChimneyRow" type="Area3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -8)
+script = ExtResource("1")
+flavor_text = "Chimney Row. Smoke that never finishes rising."
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_ChimneyRow"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_GutterWalk" type="Area3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 8)
+script = ExtResource("1")
+flavor_text = "Gutter Walk. Rain that fell somewhere else."
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_GutterWalk"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="RoofHatchLanding" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
+
+[node name="LandingFromLower" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.5, -8)
+
+[node name="LandingFromMid" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.5, 6)
+
+[node name="LiftUpToMid" type="Area3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 12)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromLower")
+lift_label = "the fire escape ladder up"
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/LiftUpToMid"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/LiftUpToMid"]
+shape = SubResource("LiftPadShape")
+
+[node name="MidRoofs" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("MidFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="ParapetNorth" type="StaticBody3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, -18)
+[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/ParapetNorth"]
+mesh = SubResource("ParapetMeshEW")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/ParapetNorth"]
+shape = SubResource("ParapetShapeEW")
+
+[node name="ParapetSouth" type="StaticBody3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 18)
+[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/ParapetSouth"]
+mesh = SubResource("ParapetMeshEW")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/ParapetSouth"]
+shape = SubResource("ParapetShapeEW")
+
+[node name="ZoneRopeBridge" type="MeshInstance3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 6.11, 0)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("RopeBridgeMat")
+
+[node name="ZoneWaterTower" type="MeshInstance3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6.11, -10)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("WaterTowerMat")
+
+[node name="ZoneSkylight" type="MeshInstance3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.11, 8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("SkylightMat")
+
+[node name="Flavor_RopeBridge" type="Area3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 0)
+script = ExtResource("1")
+flavor_text = "Rope Bridge. It sways whether or not you're on it."
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_RopeBridge"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_WaterTower" type="Area3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 7, -10)
+script = ExtResource("1")
+flavor_text = "Water Tower Roof. Something drips on a schedule."
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_WaterTower"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Skylight" type="Area3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 7, 8)
+script = ExtResource("1")
+flavor_text = "Skylight Roof. You can see a room that isn't underneath it."
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_Skylight"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="LiftDownToLower" type="Area3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.5, -14)
+script = ExtResource("2")
+target_marker = NodePath("../../start")
+lift_label = "the ladder back down"
+[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/LiftDownToLower"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/LiftDownToLower"]
+shape = SubResource("LiftPadShape")
+
+[node name="LiftUpToHigh" type="Area3D" parent="MidRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.5, 10)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromMid")
+lift_label = "the water tower ladder up"
+[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/LiftUpToHigh"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="MidRoofs/LiftUpToHigh"]
+shape = SubResource("LiftPadShape")
+
+[node name="HighRoofs" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("HighFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="ParapetNorth" type="StaticBody3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.55, -18)
+[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/ParapetNorth"]
+mesh = SubResource("ParapetMeshEW")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/ParapetNorth"]
+shape = SubResource("ParapetShapeEW")
+
+[node name="ZoneClockTower" type="MeshInstance3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 12.11, -6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("ClockTowerMat")
+
+[node name="ZoneAntenna" type="MeshInstance3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 12.11, -6)
+mesh = SubResource("ZonePlaneSmall")
+surface_material_override/0 = SubResource("AntennaMat")
+
+[node name="ZoneOpenDream" type="MeshInstance3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.11, 10)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("OpenDreamMat")
+
+[node name="Light" type="OmniLight3D" parent="HighRoofs/ZoneOpenDream"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.95, 0.9, 1, 1)
+light_energy = 0.9
+omni_range = 14.0
+
+[node name="Flavor_ClockTower" type="Area3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 13, -6)
+script = ExtResource("1")
+flavor_text = "Clock Tower. Every hand points to a different hour."
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_ClockTower"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Antenna" type="Area3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, -6)
+script = ExtResource("1")
+flavor_text = "Antenna Spire. Picks up nothing, broadcasts anyway."
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_Antenna"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="Flavor_OpenDream" type="Area3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 10)
+script = ExtResource("1")
+flavor_text = "The Open Dream. Above the street, above everything else you've seen so far."
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_OpenDream"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="LiftDownToMid" type="Area3D" parent="HighRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 12.5, -12)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromLower")
+lift_label = "the ladder back down"
+[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/LiftDownToMid"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="HighRoofs/LiftDownToMid"]
+shape = SubResource("LiftPadShape")

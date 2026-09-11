@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/LevelDoor.gd" id="3"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -22,6 +23,11 @@ roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="SecondFloorMat"]
 albedo_color = Color(0.82, 0.76, 0.82, 1)
 roughness = 0.7
+[sub_resource type="BoxMesh" id="BoxMesh_roofhatch"]
+size = Vector3(1.4, 0.15, 1.4)
+[sub_resource type="BoxShape3D" id="Shape_roofhatch"]
+size = Vector3(1.4, 0.15, 1.4)
+
 [sub_resource type="StandardMaterial3D" id="AtticFloorMat"]
 albedo_color = Color(0.55, 0.48, 0.45, 1)
 roughness = 0.9
@@ -424,6 +430,21 @@ script = ExtResource("1")
 flavor_text = "View to Courtyard Below. The roof remembers a different sky."
 [node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_View"]
 shape = SubResource("Shape_flavor_med")
+
+[node name="RoofHatch" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8.6, 8)
+script = ExtResource("3")
+chapter_id = "chapter04"
+spawn_marker = "RoofHatchLanding"
+door_label = "the hatch into the sky the attic keeps promising"
+[node name="Mesh" type="MeshInstance3D" parent="Attic/RoofHatch"]
+mesh = SubResource("BoxMesh_roofhatch")
+[node name="Shape" type="CollisionShape3D" parent="Attic/RoofHatch"]
+shape = SubResource("Shape_roofhatch")
+[node name="Light" type="OmniLight3D" parent="Attic/RoofHatch"]
+light_color = Color(0.85, 0.88, 1, 1)
+light_energy = 0.5
+omni_range = 3.0
 
 [node name="LandingFromSecond" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)

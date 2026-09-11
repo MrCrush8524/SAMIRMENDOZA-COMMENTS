@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=26 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtCatcher.gd" id="3"]
 [ext_resource type="Texture2D" path="res://assets/doubt/doubt_spirit.png" id="4"]
+[ext_resource type="Script" path="res://scenes/shared/DiscoveryZone.gd" id="5"]
+[ext_resource type="Script" path="res://scenes/shared/NeighborhoodHouseDoor.gd" id="6"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(70, 0.2, 60)
@@ -64,6 +66,11 @@ size = Vector3(16, 4, 10)
 
 [sub_resource type="SphereShape3D" id="Shape_doubt_catch"]
 radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_housedoor"]
+size = Vector3(1.3, 2.3, 0.12)
+[sub_resource type="SphereShape3D" id="Shape_housedoor"]
+radius = 1.6
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -160,31 +167,47 @@ shape = SubResource("Shape_flavor_hub")
 
 [node name="Flavor_ParkBig" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 10)
-script = ExtResource("1")
+script = ExtResource("5")
 flavor_text = "The Park of Forgotten Balls."
+discovery_id = "park_big"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_ParkBig"]
 shape = SubResource("Shape_flavor_parkbig")
 
 [node name="Flavor_ParkSmall" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -18)
-script = ExtResource("1")
+script = ExtResource("5")
 flavor_text = "The Park of Forgotten Balls. Again? Twilight Station. Memory Lane Stop."
+discovery_id = "park_small"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_ParkSmall"]
 shape = SubResource("Shape_flavor_parksmall")
 
 [node name="Flavor_Gazebo" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 10)
-script = ExtResource("1")
+script = ExtResource("5")
 flavor_text = "The Gazebo Plaza."
+discovery_id = "gazebo"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Gazebo"]
 shape = SubResource("Shape_flavor_gazebo")
 
 [node name="Flavor_Field" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
-script = ExtResource("1")
+script = ExtResource("5")
 flavor_text = "Nostalgia Field. Void of missing context."
+discovery_id = "field"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Field"]
 shape = SubResource("Shape_flavor_field")
+
+[node name="NeighborhoodHouseDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.15, -27.9)
+script = ExtResource("6")
+[node name="Mesh" type="MeshInstance3D" parent="NeighborhoodHouseDoor"]
+mesh = SubResource("BoxMesh_housedoor")
+[node name="Shape" type="CollisionShape3D" parent="NeighborhoodHouseDoor"]
+shape = SubResource("Shape_housedoor")
+[node name="Glow" type="OmniLight3D" parent="NeighborhoodHouseDoor"]
+light_color = Color(0.95, 0.75, 0.55, 1)
+light_energy = 0.05
+omni_range = 3.0
 
 [node name="Doubt" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.3, 4)

@@ -9,11 +9,15 @@ const CHAPTER_SCENES := {
 	"chapter02": "res://scenes/infinite_neighborhood/InfiniteNeighborhood.tscn",
 	"chapter03": "res://scenes/chapter03/Chapter03.tscn",
 	"mall": "res://scenes/mall/DreamcoreMall.tscn",
-	"chapter04": "res://scenes/level4/DreamcoreLevel4.tscn",
+	"chapter04": "res://scenes/chapter04/Chapter04.tscn",
 	## The original "Pastel Dreamscape" Chapter II build — recycled as
 	## Chapter V once The Infinite Neighborhood took over as the real
 	## Chapter II. Same file, just re-identified; nothing in it changed.
 	"chapter05": "res://scenes/chapter02/Chapter02.tscn",
+	## The original "Pink Hallway"/Dreamcore Level 4 build — recycled as
+	## Chapter VI once Above the Street took over as the real Chapter IV.
+	## Same file, just re-identified; nothing in it changed.
+	"chapter06": "res://scenes/level4/DreamcoreLevel4.tscn",
 	"zoo": "res://scenes/zoo/CloudsZoo.tscn",
 	"terminal": "res://scenes/terminal/DreamcoreTerminal.tscn",
 	"museum": "res://scenes/museum/NightmareMuseum.tscn",
