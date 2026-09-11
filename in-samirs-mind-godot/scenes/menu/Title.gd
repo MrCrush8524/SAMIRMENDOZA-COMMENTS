@@ -23,6 +23,9 @@ const REGIONS := {
 @onready var title_label: Label = %TitleLabel
 @onready var tagline_label: Label = %TaglineLabel
 @onready var lore_overlay: Control = %LoreOverlay
+@onready var settings_overlay: Control = %SettingsOverlay
+@onready var extras_overlay: Control = %ExtrasOverlay
+@onready var soundtrack_overlay: Control = %SoundtrackOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
@@ -31,9 +34,9 @@ func _ready() -> void:
 	btn_new_dream.pressed.connect(_on_new_dream)
 	btn_continue.pressed.connect(_on_continue)
 	btn_lore.pressed.connect(_on_lore)
-	%BtnSettings.pressed.connect(func(): pass) # no Settings screen implemented yet
-	%BtnExtras.pressed.connect(func(): pass) # no Extras screen implemented yet
-	%BtnSoundtrack.pressed.connect(func(): pass) # no Dream Soundtrack screen implemented yet
+	%BtnSettings.pressed.connect(settings_overlay.open)
+	%BtnExtras.pressed.connect(extras_overlay.open)
+	%BtnSoundtrack.pressed.connect(soundtrack_overlay.open)
 	lang_option.item_selected.connect(_on_lang_selected)
 	resized.connect(_layout_hotspots)
 	_layout_hotspots()

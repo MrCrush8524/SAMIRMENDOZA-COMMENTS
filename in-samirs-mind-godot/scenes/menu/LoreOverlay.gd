@@ -109,6 +109,14 @@ func _advance(direction: int) -> void:
 	back.texture = next_texture # load before fading — never a blank frame
 	back.modulate.a = 0.0
 
+	if SettingsManager.reduced_motion:
+		front.modulate.a = 0.0
+		back.modulate.a = 1.0
+		_front_is_a = not _front_is_a
+		_index = next_index
+		_hold_timer = HOLD_SECONDS
+		return
+
 	_fade_tween = create_tween()
 	_fade_tween.set_parallel(true)
 	_fade_tween.tween_property(front, "modulate:a", 0.0, CROSSFADE_SECONDS)

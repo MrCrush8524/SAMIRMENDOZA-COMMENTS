@@ -4,7 +4,7 @@ extends Node3D
 ## checklist: 1 journal, 1 Memory Cat, 1 find, 1 Dream Track, 1 manual TV,
 ## 1 proximity TV, 1 Doubt glimpse, 1 door transition.
 
-@onready var doubt: MeshInstance3D = $Doubt
+@onready var doubt: Sprite3D = $Doubt
 
 const SPIRIT_TEXTURES := {
 	"Bobby": preload("res://assets/spirits/bobby_spirit_wrapper.png"),

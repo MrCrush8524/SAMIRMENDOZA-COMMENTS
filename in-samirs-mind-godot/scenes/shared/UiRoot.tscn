@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ui_root_scene"]
+[gd_scene load_steps=5 format=3 uid="uid://ui_root_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/UiRoot.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui_backgrounds/journal_page_bg.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui_backgrounds/dream_track_card_bg.png" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_transparent"]
 
 [node name="UiRoot" type="CanvasLayer"]
 script = ExtResource("1")
@@ -26,20 +30,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -230.0
-offset_top = -140.0
-offset_right = 230.0
-offset_bottom = 140.0
+offset_left = -160.0
+offset_top = -210.0
+offset_right = 160.0
+offset_bottom = 210.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_transparent")
+
+[node name="Background" type="TextureRect" parent="JournalPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Margin" type="MarginContainer" parent="JournalPopup"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 40
 
 [node name="VBox" type="VBoxContainer" parent="JournalPopup/Margin"]
 layout_mode = 2
@@ -48,6 +62,7 @@ theme_override_constants/separation = 14
 [node name="JournalText" type="Label" parent="JournalPopup/Margin/VBox"]
 layout_mode = 2
 autowrap_mode = 3
+theme_override_colors/font_color = Color(0.25, 0.18, 0.12, 1)
 text = ""
 
 [node name="CloseButton" type="Button" parent="JournalPopup/Margin/VBox"]
@@ -61,20 +76,30 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -230.0
-offset_right = 180.0
-offset_bottom = -90.0
+offset_left = -190.0
+offset_top = -255.0
+offset_right = 190.0
+offset_bottom = -150.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_transparent")
+
+[node name="Background" type="TextureRect" parent="TrackPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Margin" type="MarginContainer" parent="TrackPopup"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBox" type="VBoxContainer" parent="TrackPopup/Margin"]
 layout_mode = 2
@@ -83,6 +108,7 @@ theme_override_constants/separation = 10
 [node name="TrackName" type="Label" parent="TrackPopup/Margin/VBox"]
 layout_mode = 2
 horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.3, 0.22, 0.28, 1)
 text = ""
 
 [node name="Row" type="HBoxContainer" parent="TrackPopup/Margin/VBox"]

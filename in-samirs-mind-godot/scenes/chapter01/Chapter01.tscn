@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" path="res://assets/pool_garden/icons/receipt.png" id="40"]
 [ext_resource type="Texture2D" path="res://assets/pool_garden/icons/tiny_bell.png" id="41"]
 [ext_resource type="Texture2D" path="res://assets/pool_garden/icons/empty_cassette.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/doubt/doubt_spirit.png" id="43"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
 size = Vector2(20, 16)
@@ -548,7 +549,10 @@ omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="EmptyCassette"]
 shape = SubResource("Shape_pickup")
 
-[node name="Doubt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1.6, 8, 0.5, 6.5)
-mesh = SubResource("Sphere_pickup")
+[node name="Doubt" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.3, 6.5)
+texture = ExtResource("43")
+modulate = Color(1, 1, 1, 0.55)
+pixel_size = 0.0026
+billboard = 1
 visible = false

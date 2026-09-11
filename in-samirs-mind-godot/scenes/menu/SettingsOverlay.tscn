@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://settings_overlay_scene"]
+
+[ext_resource type="Script" path="res://scenes/menu/SettingsOverlay.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/settings_hero.png" id="2"]
+
+[node name="SettingsOverlay" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+script = ExtResource("1")
+
+[node name="HeroImage" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+
+[node name="LangOption" type="OptionButton" parent="."]
+unique_name_in_owner = true
+flat = true
+item_count = 3
+
+[node name="ReducedMotionCheck" type="CheckButton" parent="."]
+unique_name_in_owner = true
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+flat = true
+text = ""

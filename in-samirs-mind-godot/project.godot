@@ -20,6 +20,7 @@ SceneLoader="*res://autoload/SceneLoader.gd"
 AudioManager="*res://autoload/AudioManager.gd"
 QualityManager="*res://autoload/QualityManager.gd"
 LocalizationManager="*res://autoload/LocalizationManager.gd"
+SettingsManager="*res://autoload/SettingsManager.gd"
 UiRoot="*res://scenes/shared/UiRoot.tscn"
 
 [display]
