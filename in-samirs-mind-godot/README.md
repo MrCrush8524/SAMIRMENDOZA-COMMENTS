@@ -29,8 +29,11 @@ Godot 4 project, GDScript, not C#.
   Roller), one Dream Track pickup — SAVE FOR LATER / PLAY NOW correctly
   fades the main soundtrack out, pauses at its exact position, plays the
   track, and resumes from that position
-- One manual TV and one proximity-auto TV (see **Video is not solved
-  yet** below for what "TV" means right now)
+- One manual TV (single clip) and one proximity-auto TV that cycles a
+  3-clip playlist (Humeat hiring, Methalkezon, Beyond Outlets) once
+  per trigger, ducking the main soundtrack for the whole break and
+  resuming it only after the last clip — not fading in between clips
+  (see **Video is not solved yet** below for what "TV" means right now)
 - A Doubt glimpse (translucent black cat, timer-driven, never a chase)
 - A Moon Door that only lights up once required discoveries are made
 - Versioned `user://savegame_v1.json` save/load, including the
