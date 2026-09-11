@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://clouds_zoo"]
+[gd_scene load_steps=25 format=3 uid="uid://clouds_zoo"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
-size = Vector3(60, 0.2, 50)
+size = Vector3(60, 0.2, 70)
 [sub_resource type="BoxShape3D" id="FloorShape"]
-size = Vector3(60, 0.2, 50)
+size = Vector3(60, 0.2, 70)
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
 albedo_color = Color(0.85, 0.9, 0.82, 1)
 roughness = 0.9
@@ -15,9 +15,9 @@ size = Vector3(60, 6, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeEW"]
 size = Vector3(60, 6, 0.3)
 [sub_resource type="BoxMesh" id="WallMeshNS"]
-size = Vector3(50, 6, 0.3)
+size = Vector3(70, 6, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeNS"]
-size = Vector3(50, 6, 0.3)
+size = Vector3(70, 6, 0.3)
 [sub_resource type="StandardMaterial3D" id="WallMat"]
 albedo_color = Color(0.72, 0.85, 0.95, 1)
 roughness = 1.0
@@ -41,6 +41,12 @@ roughness = 0.4
 [sub_resource type="StandardMaterial3D" id="SkyWhalesMat"]
 albedo_color = Color(0.4, 0.65, 0.88, 1)
 roughness = 0.15
+[sub_resource type="StandardMaterial3D" id="GentleGiantsMat"]
+albedo_color = Color(0.92, 0.78, 0.6, 1)
+roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="TwilightForestMat"]
+albedo_color = Color(0.35, 0.25, 0.5, 1)
+roughness = 0.8
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_big"]
 size = Vector3(20, 4, 14)
@@ -67,7 +73,7 @@ ambient_light_energy = 1.2
 environment = SubResource("Env")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("FloorMesh")
 surface_material_override/0 = SubResource("FloorMat")
@@ -75,7 +81,7 @@ surface_material_override/0 = SubResource("FloorMat")
 shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -45)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -91,7 +97,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallEast" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 30, 3, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 30, 3, -10)
 [node name="Mesh" type="MeshInstance3D" parent="WallEast"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
@@ -99,7 +105,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeNS")
 
 [node name="WallWest" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30, 3, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30, 3, -10)
 [node name="Mesh" type="MeshInstance3D" parent="WallWest"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
@@ -146,6 +152,40 @@ light_color = Color(0.7, 0.85, 1, 1)
 light_energy = 0.5
 omni_range = 12.0
 
+[node name="ZoneGentleGiants" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.11, -30)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("GentleGiantsMat")
+[node name="Light" type="OmniLight3D" parent="ZoneGentleGiants"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.9, 0.75, 1)
+light_energy = 0.6
+omni_range = 12.0
+
+[node name="ZoneTwilightForest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.11, -30)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("TwilightForestMat")
+[node name="Light" type="OmniLight3D" parent="ZoneTwilightForest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.6, 0.5, 0.85, 1)
+light_energy = 0.45
+omni_range = 11.0
+
+[node name="Flavor_GentleGiants" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -30)
+script = ExtResource("1")
+flavor_text = "Gentle Giants — Cloud Elephants, Sky Giraffes, Floating Rhinos."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_GentleGiants"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_TwilightForest" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -30)
+script = ExtResource("1")
+flavor_text = "Twilight Forest — Nocturnal Realms. Luminous Creatures, Dream Bats."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_TwilightForest"]
+shape = SubResource("Shape_flavor_med")
+
 [node name="Flavor_CelestialAviary" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -14)
 script = ExtResource("1")
@@ -189,3 +229,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, -14)
 
 [node name="SpawnSkyWhales" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, -14)
+
+[node name="SpawnGentleGiants" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, -30)
+
+[node name="SpawnTwilightForest" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, -30)

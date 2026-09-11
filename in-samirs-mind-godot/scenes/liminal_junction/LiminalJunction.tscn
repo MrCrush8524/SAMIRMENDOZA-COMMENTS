@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://liminal_junction"]
+[gd_scene load_steps=30 format=3 uid="uid://liminal_junction"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -43,6 +43,12 @@ roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="MirrorPassageMat"]
 albedo_color = Color(0.85, 0.55, 0.75, 1)
 roughness = 0.15
+[sub_resource type="StandardMaterial3D" id="CarouselLoungeMat"]
+albedo_color = Color(0.95, 0.75, 0.85, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="GardenPlatformMat"]
+albedo_color = Color(0.6, 0.82, 0.6, 1)
+roughness = 0.75
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_hall"]
 size = Vector3(16, 3, 14)
@@ -52,6 +58,14 @@ size = Vector3(10, 3, 42)
 size = Vector2(12, 10)
 [sub_resource type="BoxShape3D" id="Shape_flavor_oddity"]
 size = Vector3(12, 3, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneCarouselLounge"]
+size = Vector2(14, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneGardenPlatform"]
+size = Vector2(8, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_carousellounge"]
+size = Vector3(14, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_gardenplatform"]
+size = Vector3(8, 3, 6)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -151,6 +165,35 @@ light_color = Color(0.95, 0.75, 0.9, 1)
 light_energy = 0.5
 omni_range = 8.0
 
+[node name="ZoneCarouselLounge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -20)
+mesh = SubResource("ZonePlaneCarouselLounge")
+surface_material_override/0 = SubResource("CarouselLoungeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneCarouselLounge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.85, 0.92, 1)
+light_energy = 0.6
+omni_range = 10.0
+
+[node name="ZoneGardenPlatform" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 20)
+mesh = SubResource("ZonePlaneGardenPlatform")
+surface_material_override/0 = SubResource("GardenPlatformMat")
+
+[node name="Flavor_CarouselLounge" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
+script = ExtResource("1")
+flavor_text = "The Carousel Lounge."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CarouselLounge"]
+shape = SubResource("Shape_flavor_carousellounge")
+
+[node name="Flavor_GardenPlatform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+script = ExtResource("1")
+flavor_text = "The Garden Platform."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_GardenPlatform"]
+shape = SubResource("Shape_flavor_gardenplatform")
+
 [node name="Flavor_VoidPlatform" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 18)
 script = ExtResource("1")
@@ -218,3 +261,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.0, 18)
 
 [node name="SpawnMirrorPassage" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.0, 18)
+
+[node name="SpawnCarouselLounge" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -20)
+
+[node name="SpawnGardenPlatform" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)

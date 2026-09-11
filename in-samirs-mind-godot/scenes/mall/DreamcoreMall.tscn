@@ -1,22 +1,22 @@
-[gd_scene load_steps=35 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=42 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
-size = Vector3(80, 0.2, 44)
+size = Vector3(110, 0.2, 44)
 
 [sub_resource type="BoxShape3D" id="FloorShape"]
-size = Vector3(80, 0.2, 44)
+size = Vector3(110, 0.2, 44)
 
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
 albedo_color = Color(0.92, 0.85, 0.78, 1)
 roughness = 0.6
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
-size = Vector3(80, 5, 0.3)
+size = Vector3(110, 5, 0.3)
 
 [sub_resource type="BoxShape3D" id="WallShapeEW"]
-size = Vector3(80, 5, 0.3)
+size = Vector3(110, 5, 0.3)
 
 [sub_resource type="BoxMesh" id="WallMeshNS"]
 size = Vector3(44, 5, 0.3)
@@ -58,6 +58,12 @@ roughness = 0.15
 [sub_resource type="StandardMaterial3D" id="GreenhouseMat"]
 albedo_color = Color(0.55, 0.78, 0.55, 1)
 roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="WestAnchorMat"]
+albedo_color = Color(0.9, 0.9, 0.92, 1)
+roughness = 0.55
+[sub_resource type="StandardMaterial3D" id="SouthBoutiquesMat"]
+albedo_color = Color(0.95, 0.82, 0.88, 1)
+roughness = 0.5
 
 [sub_resource type="PlaneMesh" id="ZonePlane16"]
 size = Vector2(16, 16)
@@ -77,6 +83,10 @@ size = Vector2(16, 10)
 size = Vector2(14, 12)
 [sub_resource type="PlaneMesh" id="ZonePlaneGreenhouse"]
 size = Vector2(12, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneWestAnchor"]
+size = Vector2(20, 14)
+[sub_resource type="PlaneMesh" id="ZonePlaneSouthBoutiques"]
+size = Vector2(14, 10)
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_big"]
 size = Vector3(16, 3, 16)
@@ -90,6 +100,10 @@ size = Vector3(20, 3, 14)
 size = Vector3(16, 3, 10)
 [sub_resource type="BoxShape3D" id="Shape_flavor_greenhouse"]
 size = Vector3(12, 3, 12)
+[sub_resource type="BoxShape3D" id="Shape_flavor_westanchor"]
+size = Vector3(20, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_southboutiques"]
+size = Vector3(14, 3, 10)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -104,7 +118,7 @@ ambient_light_energy = 1.1
 environment = SubResource("Env")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("FloorMesh")
 surface_material_override/0 = SubResource("FloorMat")
@@ -112,7 +126,7 @@ surface_material_override/0 = SubResource("FloorMat")
 shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, -26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -26)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -120,7 +134,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallSouth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 18)
 [node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -136,7 +150,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeNS")
 
 [node name="WallWest" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -25, 2.5, -4)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -55, 2.5, -4)
 [node name="Mesh" type="MeshInstance3D" parent="WallWest"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
@@ -191,6 +205,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 light_color = Color(0.85, 0.82, 0.95, 1)
 light_energy = 0.35
 omni_range = 7.0
+
+[node name="ZoneWestAnchor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0.11, -6)
+mesh = SubResource("ZonePlaneWestAnchor")
+surface_material_override/0 = SubResource("WestAnchorMat")
+[node name="Light" type="OmniLight3D" parent="ZoneWestAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.95, 0.95, 1, 1)
+light_energy = 0.7
+omni_range = 14.0
+
+[node name="ZoneSouthBoutiques" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0.11, 10)
+mesh = SubResource("ZonePlaneSouthBoutiques")
+surface_material_override/0 = SubResource("SouthBoutiquesMat")
+
+[node name="Flavor_WestAnchor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -6)
+script = ExtResource("1")
+flavor_text = "West Anchor \"Everything Else\" — Clothing, Electronics, Sports, Books & More (Maybe). A bigger tomorrow (I'll miss)."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_WestAnchor"]
+shape = SubResource("Shape_flavor_westanchor")
+
+[node name="Flavor_SouthBoutiques" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, 10)
+script = ExtResource("1")
+flavor_text = "South Boutiques — small shops, bigger feelings."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SouthBoutiques"]
+shape = SubResource("Shape_flavor_southboutiques")
 
 [node name="Flavor_Rotunda" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -328,3 +371,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1.0, 10)
 
 [node name="SpawnGreenhouse" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1.0, 10)
+
+[node name="SpawnWestAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1.0, -6)
+
+[node name="SpawnSouthBoutiques" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.0, 10)

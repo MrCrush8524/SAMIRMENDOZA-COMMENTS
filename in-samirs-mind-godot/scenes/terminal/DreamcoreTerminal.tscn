@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=30 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -44,6 +44,12 @@ roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="TinyCinemaMat"]
 albedo_color = Color(0.15, 0.1, 0.2, 1)
 roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="SleeperLoungeMat"]
+albedo_color = Color(0.7, 0.75, 0.9, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="DiningCarMat"]
+albedo_color = Color(0.85, 0.7, 0.55, 1)
+roughness = 0.55
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_carousel"]
 size = Vector3(14, 3, 14)
@@ -56,6 +62,14 @@ size = Vector2(8, 6)
 [sub_resource type="BoxShape3D" id="Shape_flavor_velvet"]
 size = Vector3(10, 3, 8)
 [sub_resource type="BoxShape3D" id="Shape_flavor_tinycinema"]
+size = Vector3(8, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneSleeperLounge"]
+size = Vector2(10, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneDiningCar"]
+size = Vector2(8, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_sleeperlounge"]
+size = Vector3(10, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_diningcar"]
 size = Vector3(8, 3, 6)
 
 [sub_resource type="Environment" id="Env"]
@@ -156,6 +170,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.11, 14)
 mesh = SubResource("ZonePlaneTinyCinema")
 surface_material_override/0 = SubResource("TinyCinemaMat")
 
+[node name="ZoneSleeperLounge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.11, 10)
+mesh = SubResource("ZonePlaneSleeperLounge")
+surface_material_override/0 = SubResource("SleeperLoungeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneSleeperLounge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.8, 0.85, 0.98, 1)
+light_energy = 0.4
+omni_range = 9.0
+
+[node name="ZoneDiningCar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.11, 14)
+mesh = SubResource("ZonePlaneDiningCar")
+surface_material_override/0 = SubResource("DiningCarMat")
+
+[node name="Flavor_SleeperLounge" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 10)
+script = ExtResource("1")
+flavor_text = "Sleeper Lounge."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SleeperLounge"]
+shape = SubResource("Shape_flavor_sleeperlounge")
+
+[node name="Flavor_DiningCar" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 14)
+script = ExtResource("1")
+flavor_text = "Dining Car Hall."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_DiningCar"]
+shape = SubResource("Shape_flavor_diningcar")
+
 [node name="Flavor_VelvetLounge" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, 10)
 script = ExtResource("1")
@@ -206,3 +249,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.0, 10)
 
 [node name="SpawnTinyCinema" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.0, 14)
+
+[node name="SpawnSleeperLounge" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.0, 10)
+
+[node name="SpawnDiningCar" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.0, 14)
