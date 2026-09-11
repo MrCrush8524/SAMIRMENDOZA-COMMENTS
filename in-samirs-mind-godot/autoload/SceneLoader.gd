@@ -19,6 +19,15 @@ const NIGHTMARE_SCENES := {
 	"arcade": "res://scenes/nightmare/NightmareArcade.tscn",
 }
 
+## The Lost Passage ("Backrooms") — same swap-in-under-root mechanism as
+## a Nightmare Passage, but its own id namespace since it's a distinct
+## system (see GameState.gd's in_backrooms block). "level1" is the first
+## incrementally-built chunk of the full map; more will be added as
+## levelN keys without touching this loading mechanism.
+const BACKROOMS_SCENES := {
+	"level1": "res://scenes/backrooms/BackroomsLevel1.tscn",
+}
+
 var current_chapter: Node = null
 
 func load_chapter(chapter_id: String, root: Node) -> void:
@@ -26,6 +35,9 @@ func load_chapter(chapter_id: String, root: Node) -> void:
 
 func load_nightmare(nightmare_id: String, root: Node) -> void:
 	_load(NIGHTMARE_SCENES, nightmare_id, root, "nightmare")
+
+func load_backrooms(level_id: String, root: Node) -> void:
+	_load(BACKROOMS_SCENES, level_id, root, "backrooms")
 
 func _load(scenes: Dictionary, id: String, root: Node, kind: String) -> void:
 	if current_chapter and is_instance_valid(current_chapter):

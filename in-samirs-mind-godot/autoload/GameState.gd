@@ -40,6 +40,30 @@ var nightmare_depth: int = 0
 ## deep-clear reward isn't re-grantable by re-running the same ladder.
 var nightmare_rewards: Array[String] = []
 
+## The Lost Passage ("Backrooms") — a random no-clip event, deliberately
+## NOT a Nightmare Passage: liminal/eerie rather than dreamcore, entered
+## by chance while walking a normal chapter rather than through a door,
+## and tracked with its own state below instead of reusing in_nightmare/
+## nightmare_depth. All transient — a save can't happen while lost.
+var in_backrooms: bool = false
+
+## Spatial depth reached this trip (1 = entry area). Falling into a pit
+## resets this to 1 no matter how deep the player had gotten — it does
+## NOT return them to the real chapter, just punishes exploration
+## progress within the Backrooms itself.
+var backrooms_level: int = 1
+
+## Exactly one of the 10 artifact ids and one of the door ids is the
+## "real" way out each trip — rolled fresh on entry, shown to the player
+## as a clue, everything else is a decoy. See BACKROOMS_ARTIFACT_IDS /
+## BACKROOMS_DOOR_IDS in BackroomsManager.gd for the actual id lists.
+var backrooms_artifact_target: String = ""
+var backrooms_door_target: String = ""
+
+func new_backrooms_trip() -> void:
+	in_backrooms = true
+	backrooms_level = 1
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -69,6 +93,10 @@ func new_run(chosen_dreamer: String) -> void:
 	in_nightmare = false
 	nightmare_depth = 0
 	nightmare_rewards.clear()
+	in_backrooms = false
+	backrooms_level = 1
+	backrooms_artifact_target = ""
+	backrooms_door_target = ""
 
 func to_dict() -> Dictionary:
 	var data := {

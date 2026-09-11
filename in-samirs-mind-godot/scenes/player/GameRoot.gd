@@ -29,6 +29,27 @@ var _current_nightmare_id: String = ""
 var _current_minigame: NightmareMinigame = null
 var _ladder_cancelled: bool = false
 
+## Flavor names for the Lost Passage's artifacts/doors, keyed by the ids
+## actually placed in the currently-built level chunks. Deliberately not
+## the full eventual 10 artifacts / however many doors — only entries
+## with a real physical instance somewhere belong here, or the random
+## target could point at something that doesn't exist yet to find.
+const BACKROOMS_ARTIFACT_NAMES := {
+	"brass_key": "a tarnished brass key",
+	"pocket_watch": "a stopped pocket watch",
+	"childs_shoe": "a single child's shoe",
+	"glass_marble": "a glass marble",
+}
+const BACKROOMS_DOOR_NAMES := {
+	"door_red": "the door with red paint flaking off it",
+	"door_numbers": "the door scratched with numbers",
+	"door_ajar": "the door standing slightly ajar",
+}
+
+var _backrooms_return_chapter: String = ""
+var _backrooms_return_position: Vector3 = Vector3.ZERO
+var _backrooms_return_yaw: float = 0.0
+
 func _ready() -> void:
 	if not GameState.has_active_run:
 		# Defensive fallback: never spawn with no run — bounce to title.
@@ -193,6 +214,84 @@ func _cancel_ladder() -> void:
 		mg.cancel()
 		mg.resolved.emit(false)
 		mg.queue_free()
+
+## The Lost Passage — triggered by BackroomsTrigger's relocated invisible
+## spot, not a door the player chooses to open. Deliberately separate
+## from enter_nightmare/GameState.in_nightmare: this is a distinct,
+## non-dreamcore system with its own exit rules (see BackroomsPit,
+## BackroomsArtifact, BackroomsDoor).
+func enter_backrooms() -> void:
+	if GameState.in_nightmare or GameState.in_backrooms:
+		return
+	_backrooms_return_chapter = GameState.chapter
+	_backrooms_return_position = player.global_position
+	_backrooms_return_yaw = player.rotation.y
+	GameState.new_backrooms_trip()
+	GameState.backrooms_artifact_target = BACKROOMS_ARTIFACT_NAMES.keys()[randi() % BACKROOMS_ARTIFACT_NAMES.size()]
+	GameState.backrooms_door_target = BACKROOMS_DOOR_NAMES.keys()[randi() % BACKROOMS_DOOR_NAMES.size()]
+	SceneLoader.scene_ready.connect(_on_backrooms_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_backrooms("level1", self)
+
+func _on_backrooms_ready(scene: Node) -> void:
+	var spawn_pos := Vector3.ZERO
+	var spawn_yaw := 0.0
+	if scene.has_node("start"):
+		var marker: Node3D = scene.get_node("start")
+		spawn_pos = marker.global_position
+		spawn_yaw = marker.rotation.y
+	player.set_spawn(spawn_pos, spawn_yaw)
+
+	# The clue screen: what to look for, and the two ways out.
+	UiRoot.show_journal(
+		"You've slipped somewhere that isn't supposed to exist.\n\nLook for %s to go back exactly where you were, or find %s to get out nearby.\n\nMind the floor. Some of it isn't there." % [
+			BACKROOMS_ARTIFACT_NAMES[GameState.backrooms_artifact_target],
+			BACKROOMS_DOOR_NAMES[GameState.backrooms_door_target],
+		])
+
+## A pit swallowed the player. Punishes exploration progress within the
+## Backrooms — never sends them back to the real chapter — per "if you
+## fall in the pits you go back to the first level no matter how many
+## levels you have advanced."
+func backrooms_pit_fall() -> void:
+	if not GameState.in_backrooms:
+		return
+	GameState.backrooms_level = 1
+	var scene := SceneLoader.current_chapter
+	if scene and scene.has_node("start"):
+		var marker: Node3D = scene.get_node("start")
+		player.set_spawn(marker.global_position, marker.rotation.y)
+	UiRoot.set_prompt("")
+	UiRoot.show_journal("The floor gives way. You're back where you started.")
+
+## Found the real artifact — exact return, per "go back to the exact
+## point without finding the door, but you have to find a specific item".
+func exit_backrooms_via_artifact() -> void:
+	if not GameState.in_backrooms:
+		return
+	GameState.in_backrooms = false
+	GameState.chapter = _backrooms_return_chapter
+	GameState.has_last_position = true
+	GameState.last_position = _backrooms_return_position
+	GameState.last_yaw = _backrooms_return_yaw
+	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_chapter(GameState.chapter, self)
+	UiRoot.show_journal("You hold onto it as everything folds back into place.")
+
+## Found the real door — general-area return, per "it will take you back
+## to where you last saved but not the exact spot, just the general area
+## you were in."
+func exit_backrooms_via_door() -> void:
+	if not GameState.in_backrooms:
+		return
+	GameState.in_backrooms = false
+	GameState.chapter = _backrooms_return_chapter
+	var nudge := Vector3(randf_range(-2.5, 2.5), 0.0, randf_range(-2.5, 2.5))
+	GameState.has_last_position = true
+	GameState.last_position = _backrooms_return_position + nudge
+	GameState.last_yaw = _backrooms_return_yaw
+	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_chapter(GameState.chapter, self)
+	UiRoot.show_journal("The door opens onto somewhere familiar. Close enough.")
 
 func _return_from_nightmare() -> void:
 	if not GameState.in_nightmare:
