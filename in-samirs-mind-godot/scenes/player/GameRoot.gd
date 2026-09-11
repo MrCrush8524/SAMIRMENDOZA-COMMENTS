@@ -32,4 +32,12 @@ func _on_chapter_ready(chapter: Node) -> void:
 		var marker: Node3D = chapter.get_node("start")
 		spawn_pos = marker.global_position
 		spawn_yaw = marker.rotation.y
+
+	# Continue restores the player's exact last-safe spot; New Dream never
+	# has one (GameState.new_run clears has_last_position), so it always
+	# uses the chapter's named spawn marker above.
+	if GameState.has_last_position:
+		spawn_pos = GameState.last_position
+		spawn_yaw = GameState.last_yaw
+
 	player.set_spawn(spawn_pos, spawn_yaw)

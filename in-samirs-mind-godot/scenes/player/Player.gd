@@ -47,6 +47,12 @@ func _ready() -> void:
 		"Luna": paw_overlay.texture = paw_texture_luna
 		"Mateo": paw_overlay.texture = paw_texture_mateo
 
+	GameState.current_player = self
+
+func _exit_tree() -> void:
+	if GameState.current_player == self:
+		GameState.current_player = null
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * MOUSE_SENS)

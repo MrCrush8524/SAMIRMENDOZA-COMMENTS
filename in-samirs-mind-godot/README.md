@@ -12,9 +12,19 @@ Godot 4 project, GDScript, not C#.
 - Boot → Title (EN/ES/pt-BR selector, Continue gated on a valid save) →
   Character Select (Bobby/Luna/Mateo, real card art) → Begin Dream
 - `CharacterBody3D` player: physics-rate WASD + mouse-look movement,
-  gravity, sprint, an interact raycast
-- Chapter I proxy room (real wallpaper/texture/poster art on box/plane
-  geometry) with a spawn `Marker3D`
+  gravity, sprint, an interact raycast, a slender 0.22m collision
+  radius (a small cat/dog, not human-shouldered — see `Player.gd`'s
+  `COLLIDER_RADIUS` doc comment for the passage-width contract this
+  sets for level geometry)
+- A screen-space POV paw overlay, correct art per selected dreamer,
+  fading in as the camera pitches downward (25°–55°) rather than
+  popping
+- Chapter I proxy room (real wallpaper/texture/poster/signage art on
+  box/plane geometry) with a spawn `Marker3D`
+- Real backgroundless icon art on every pickup (journal, spirit orb,
+  lint roller, moon pendant) with idle float/spin and proximity glow;
+  two ambient "spirit sighting" encounters showing the two dreamers
+  NOT currently played, chosen at random each run
 - One journal fragment, one Memory Cat, one ordinary find (Lint
   Roller), one Dream Track pickup — SAVE FOR LATER / PLAY NOW correctly
   fades the main soundtrack out, pauses at its exact position, plays the
@@ -23,8 +33,14 @@ Godot 4 project, GDScript, not C#.
   yet** below for what "TV" means right now)
 - A Doubt glimpse (translucent black cat, timer-driven, never a chase)
 - A Moon Door that only lights up once required discoveries are made
-- Versioned `user://savegame_v1.json` save/load; a corrupt or
-  version-mismatched save is treated as no save, never blindly restored
+- Versioned `user://savegame_v1.json` save/load, including the
+  player's **exact** last-safe position and yaw (captured by
+  `SaveManager` at save time via `GameState.current_player`) — Continue
+  restores you where you actually were, not just the chapter's default
+  entrance. A corrupt/version-mismatched save, or one with a
+  position that would drop the player through the floor or above the
+  ceiling, is treated as no position (falls back to the chapter's named
+  spawn marker) rather than trusted blindly.
 
 **Statically verified only** (not yet run on a real device): touch
 look/joystick input paths exist in `Player.gd` but have not been

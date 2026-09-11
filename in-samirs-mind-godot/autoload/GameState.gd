@@ -14,6 +14,19 @@ var dream_tracks: Array[String] = []
 var tv_seen: Array[String] = []
 var has_active_run: bool = false
 
+## The player's exact last-safe transform, captured by SaveManager at save
+## time (see `current_player`). Null until a save has actually happened
+## with a player present, so a fresh/legacy save falls back to spawn_id's
+## Marker3D instead of an all-zero position.
+var last_position: Vector3 = Vector3.ZERO
+var last_yaw: float = 0.0
+var has_last_position: bool = false
+
+## Transient, not persisted: the live Player node registers itself here
+## on _ready() so SaveManager can read its transform without every save
+## call site needing a reference to it.
+var current_player: Node3D = null
+
 func new_run(chosen_dreamer: String) -> void:
 	dreamer = chosen_dreamer
 	chapter = "chapter01"
@@ -24,9 +37,10 @@ func new_run(chosen_dreamer: String) -> void:
 	dream_tracks.clear()
 	tv_seen.clear()
 	has_active_run = true
+	has_last_position = false
 
 func to_dict() -> Dictionary:
-	return {
+	var data := {
 		"version": SAVE_VERSION,
 		"dreamer": dreamer,
 		"chapter": chapter,
@@ -37,6 +51,10 @@ func to_dict() -> Dictionary:
 		"dream_tracks": dream_tracks,
 		"tv_seen": tv_seen,
 	}
+	if has_last_position:
+		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
+		data["last_yaw"] = last_yaw
+	return data
 
 func from_dict(data: Dictionary) -> bool:
 	if int(data.get("version", -1)) != SAVE_VERSION:
@@ -52,4 +70,16 @@ func from_dict(data: Dictionary) -> bool:
 	dream_tracks.assign(data.get("dream_tracks", []))
 	tv_seen.assign(data.get("tv_seen", []))
 	has_active_run = true
+
+	has_last_position = false
+	var pos_data = data.get("last_position", null)
+	if typeof(pos_data) == TYPE_DICTIONARY and pos_data.has("x") and pos_data.has("y") and pos_data.has("z"):
+		var p := Vector3(pos_data["x"], pos_data["y"], pos_data["z"])
+		# Never trust a position that would drop the player below/through
+		# the floor or above the ceiling — a corrupted or hand-edited save
+		# falls back to the chapter's named spawn instead.
+		if is_finite(p.x) and is_finite(p.y) and is_finite(p.z) and p.y > -1.0 and p.y < 4.0:
+			last_position = p
+			last_yaw = float(data.get("last_yaw", 0.0))
+			has_last_position = true
 	return true

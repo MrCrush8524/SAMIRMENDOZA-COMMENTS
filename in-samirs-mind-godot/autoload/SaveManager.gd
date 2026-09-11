@@ -14,6 +14,11 @@ func has_valid_save() -> bool:
 	return int(data.get("version", -1)) == GameState.SAVE_VERSION and data.has("dreamer")
 
 func save_game() -> void:
+	if GameState.current_player and is_instance_valid(GameState.current_player):
+		GameState.last_position = GameState.current_player.global_position
+		GameState.last_yaw = GameState.current_player.rotation.y
+		GameState.has_last_position = true
+
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f == null:
 		push_error("SaveManager: could not open save file for writing")
