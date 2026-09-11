@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=40 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
@@ -16,6 +16,11 @@
 [ext_resource type="Texture2D" path="res://assets/video_stills/Please_Do_Not_Take_A_Nap_PSA_FINAL.webp" id="13"]
 [ext_resource type="Texture2D" path="res://assets/posters/memory_atrium_vintage_directional_sign.png" id="15"]
 [ext_resource type="Texture2D" path="res://assets/posters/retro_laundry_hall_tv_lounge_sign.png" id="16"]
+[ext_resource type="Script" path="res://scenes/shared/FloatingSpirit.gd" id="17"]
+[ext_resource type="Texture2D" path="res://assets/pickups/journal_grimoire_wrapper.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/pickups/spirit_orb_pickup.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/pickups/lint_roller_pickup.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/pickups/moon_pendant_pickup.png" id="21"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
 size = Vector2(20, 16)
@@ -55,30 +60,6 @@ height = 0.36
 
 [sub_resource type="SphereShape3D" id="Shape_pickup"]
 radius = 0.65
-
-[sub_resource type="StandardMaterial3D" id="Mat_pickup_journal"]
-albedo_color = Color(1, 0.949, 0.788, 1)
-emission_enabled = true
-emission = Color(1, 0.949, 0.788, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="StandardMaterial3D" id="Mat_pickup_cat"]
-albedo_color = Color(0.961, 0.961, 1, 1)
-emission_enabled = true
-emission = Color(0.961, 0.961, 1, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="StandardMaterial3D" id="Mat_pickup_item"]
-albedo_color = Color(1, 0.843, 0.902, 1)
-emission_enabled = true
-emission = Color(1, 0.843, 0.902, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="StandardMaterial3D" id="Mat_pickup_track"]
-albedo_color = Color(0.788, 0.722, 1, 1)
-emission_enabled = true
-emission = Color(0.788, 0.722, 1, 1)
-emission_energy_multiplier = 0.7
 
 [sub_resource type="BoxMesh" id="BoxMesh_tv"]
 size = Vector3(0.9, 0.7, 0.6)
@@ -181,9 +162,14 @@ script = ExtResource("2")
 kind = 0
 journal_text = "This place feels so familiar, even though you've never been here."
 item_id = "0"
-[node name="Mesh" type="MeshInstance3D" parent="Journal1"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Icon" type="Sprite3D" parent="Journal1"]
+texture = ExtResource("18")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Journal1"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="Journal1"]
 shape = SubResource("Shape_pickup")
 
@@ -193,9 +179,14 @@ script = ExtResource("2")
 kind = 0
 journal_text = "It feels just like home. The street does. The windows do. Even the silence does."
 item_id = "1"
-[node name="Mesh" type="MeshInstance3D" parent="Journal2"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Icon" type="Sprite3D" parent="Journal2"]
+texture = ExtResource("18")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Journal2"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="Journal2"]
 shape = SubResource("Shape_pickup")
 
@@ -205,9 +196,14 @@ script = ExtResource("2")
 kind = 0
 journal_text = "But is this house yours?"
 item_id = "2"
-[node name="Mesh" type="MeshInstance3D" parent="Journal3"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_journal")
+[node name="Icon" type="Sprite3D" parent="Journal3"]
+texture = ExtResource("18")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Journal3"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="Journal3"]
 shape = SubResource("Shape_pickup")
 
@@ -216,9 +212,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.4, 6)
 script = ExtResource("2")
 kind = 1
 item_id = "atrium_cat_1"
-[node name="Mesh" type="MeshInstance3D" parent="MemoryCat1"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_cat")
+[node name="Icon" type="Sprite3D" parent="MemoryCat1"]
+texture = ExtResource("19")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="MemoryCat1"]
+light_color = Color(0.961, 0.961, 1, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="MemoryCat1"]
 shape = SubResource("Shape_pickup")
 
@@ -227,9 +228,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -5)
 script = ExtResource("2")
 kind = 2
 item_id = "lint_roller"
-[node name="Mesh" type="MeshInstance3D" parent="LintRoller"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_item")
+[node name="Icon" type="Sprite3D" parent="LintRoller"]
+texture = ExtResource("20")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="LintRoller"]
+light_color = Color(1, 0.843, 0.902, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="LintRoller"]
 shape = SubResource("Shape_pickup")
 
@@ -240,9 +246,14 @@ kind = 3
 item_id = "01_lint_roller_reverie"
 dream_track_name = "Lint Roller Reverie"
 dream_track_stream = ExtResource("11")
-[node name="Mesh" type="MeshInstance3D" parent="DreamTrack1"]
-mesh = SubResource("Sphere_pickup")
-surface_material_override/0 = SubResource("Mat_pickup_track")
+[node name="Icon" type="Sprite3D" parent="DreamTrack1"]
+texture = ExtResource("21")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="DreamTrack1"]
+light_color = Color(0.788, 0.722, 1, 1)
+light_energy = 0.35
+omni_range = 1.4
 [node name="Shape" type="CollisionShape3D" parent="DreamTrack1"]
 shape = SubResource("Shape_pickup")
 
@@ -291,6 +302,28 @@ shape = SubResource("Shape_moondoor")
 light_color = Color(0.72, 0.63, 0.9, 1)
 light_energy = 0.05
 omni_range = 3.0
+
+[node name="SpiritSighting1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, 5.3)
+script = ExtResource("17")
+[node name="Icon" type="Sprite3D" parent="SpiritSighting1"]
+pixel_size = 0.0028
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="SpiritSighting1"]
+light_color = Color(0.85, 0.82, 1, 1)
+light_energy = 0.4
+omni_range = 2.0
+
+[node name="SpiritSighting2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.7, -6.5)
+script = ExtResource("17")
+[node name="Icon" type="Sprite3D" parent="SpiritSighting2"]
+pixel_size = 0.0028
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="SpiritSighting2"]
+light_color = Color(0.85, 0.82, 1, 1)
+light_energy = 0.4
+omni_range = 2.0
 
 [node name="Doubt" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1.6, 8, 0.5, 6.5)
