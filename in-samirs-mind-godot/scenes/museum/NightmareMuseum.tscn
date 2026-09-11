@@ -1,0 +1,165 @@
+[gd_scene load_steps=18 format=3 uid="uid://nightmare_museum"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(46, 0.2, 42)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(46, 0.2, 42)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.28, 0.2, 0.16, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(46, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(46, 5, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(42, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(42, 5, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.32, 0.24, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="PlaneMesh" id="ZonePlaneRotunda"]
+size = Vector2(14, 14)
+[sub_resource type="PlaneMesh" id="ZonePlaneGallery"]
+size = Vector2(16, 12)
+[sub_resource type="StandardMaterial3D" id="RotundaMat"]
+albedo_color = Color(0.35, 0.08, 0.14, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="EntranceMat"]
+albedo_color = Color(0.4, 0.32, 0.2, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="PaintingsMat"]
+albedo_color = Color(0.85, 0.72, 0.5, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="MirrorMat"]
+albedo_color = Color(0.2, 0.22, 0.32, 1)
+roughness = 0.2
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_rotunda"]
+size = Vector3(14, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_gallery"]
+size = Vector3(16, 3, 12)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.04, 0.03, 0.03, 1)
+fog_enabled = true
+fog_light_color = Color(0.2, 0.14, 0.14, 1)
+fog_density = 0.025
+ambient_light_source = 2
+ambient_light_color = Color(0.28, 0.2, 0.2, 1)
+ambient_light_energy = 0.5
+
+[node name="NightmareMuseum" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -21)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 21)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 23, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -23, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneEntranceHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 14)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("EntranceMat")
+[node name="Light" type="OmniLight3D" parent="ZoneEntranceHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.82, 0.6, 1)
+light_energy = 0.55
+omni_range = 11.0
+
+[node name="ZoneVelvetRotunda" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlaneRotunda")
+surface_material_override/0 = SubResource("RotundaMat")
+[node name="Light" type="OmniLight3D" parent="ZoneVelvetRotunda"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(0.9, 0.4, 0.45, 1)
+light_energy = 0.5
+omni_range = 12.0
+
+[node name="ZoneSleepingPaintings" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.11, -6)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("PaintingsMat")
+
+[node name="ZoneQuietMirrorRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.11, -8)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("MirrorMat")
+[node name="Light" type="OmniLight3D" parent="ZoneQuietMirrorRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.55, 0.6, 0.85, 1)
+light_energy = 0.4
+omni_range = 9.0
+
+[node name="Flavor_EntranceHall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+script = ExtResource("1")
+flavor_text = "\"Step a little further into your own memory.\""
+[node name="Shape" type="CollisionShape3D" parent="Flavor_EntranceHall"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="Flavor_VelvetRotunda" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1")
+flavor_text = "Velvet Rotunda. All dreams admit you here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_VelvetRotunda"]
+shape = SubResource("Shape_flavor_rotunda")
+
+[node name="Flavor_SleepingPaintings" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, -6)
+script = ExtResource("1")
+flavor_text = "Hall of Sleeping Paintings. Beauty still haunts here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SleepingPaintings"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="Flavor_MirrorRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -8)
+script = ExtResource("1")
+flavor_text = "Quiet Mirror Room."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MirrorRoom"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 17)

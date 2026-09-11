@@ -92,9 +92,16 @@ func _on_chapter_ready(chapter: Node) -> void:
 ## the player now "is" and gets saved), spawns at the named marker
 ## (default "start"), and drops any stale exact-position override so the
 ## new chapter's own spawn point is actually used.
-func enter_chapter(chapter_id: String, spawn_marker: String = "start") -> void:
+## random_spawn_candidates, when non-empty, overrides spawn_marker with a
+## random pick from the list every time — for a level like the Liminal
+## Junction that always starts the player on one of several platforms/
+## tracks rather than one fixed spot.
+func enter_chapter(chapter_id: String, spawn_marker: String = "start", random_spawn_candidates: Array[String] = []) -> void:
 	GameState.chapter = chapter_id
-	GameState.spawn_id = spawn_marker
+	if not random_spawn_candidates.is_empty():
+		GameState.spawn_id = random_spawn_candidates[randi() % random_spawn_candidates.size()]
+	else:
+		GameState.spawn_id = spawn_marker
 	GameState.has_last_position = false
 	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
 	SceneLoader.load_chapter(chapter_id, self)

@@ -1,0 +1,141 @@
+[gd_scene load_steps=17 format=3 uid="uid://clouds_zoo"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(60, 0.2, 50)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(60, 0.2, 50)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.85, 0.9, 0.82, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(60, 6, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(60, 6, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(50, 6, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(50, 6, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.72, 0.85, 0.95, 1)
+roughness = 1.0
+
+[sub_resource type="PlaneMesh" id="ZonePlaneParking"]
+size = Vector2(20, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneBig"]
+size = Vector2(24, 18)
+[sub_resource type="StandardMaterial3D" id="ParkingMat"]
+albedo_color = Color(0.55, 0.55, 0.58, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="EntranceMat"]
+albedo_color = Color(0.96, 0.85, 0.92, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="GardensMat"]
+albedo_color = Color(0.72, 0.9, 0.68, 1)
+roughness = 0.8
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_big"]
+size = Vector3(20, 4, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_huge"]
+size = Vector3(24, 4, 18)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.75, 0.85, 0.98, 1)
+fog_enabled = true
+fog_light_color = Color(0.8, 0.88, 0.98, 1)
+fog_density = 0.008
+ambient_light_source = 2
+ambient_light_color = Color(0.9, 0.94, 1, 1)
+ambient_light_energy = 1.2
+
+[node name="CloudsZoo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -25)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 30, 3, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30, 3, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneParking" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 18)
+mesh = SubResource("ZonePlaneParking")
+surface_material_override/0 = SubResource("ParkingMat")
+
+[node name="ZoneEntrance" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 4)
+mesh = SubResource("ZonePlaneBig")
+surface_material_override/0 = SubResource("EntranceMat")
+[node name="Light" type="OmniLight3D" parent="ZoneEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+light_color = Color(1, 0.95, 0.98, 1)
+light_energy = 0.8
+omni_range = 16.0
+
+[node name="ZoneSkyGardens" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -14)
+mesh = SubResource("ZonePlaneBig")
+surface_material_override/0 = SubResource("GardensMat")
+
+[node name="Flavor_Parking" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 18)
+script = ExtResource("1")
+flavor_text = "Cloud Parking. Cloud Rail to city."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Parking"]
+shape = SubResource("Shape_flavor_big")
+
+[node name="Flavor_Entrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+script = ExtResource("1")
+flavor_text = "Clouds Zoo — Entrance & Orientation. Higher places, kinder days."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Entrance"]
+shape = SubResource("Shape_flavor_huge")
+
+[node name="Flavor_SkyGardens" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
+script = ExtResource("1")
+flavor_text = "Sky Gardens — Floating Flora, Butterfly Domes, Cloud Walk."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SkyGardens"]
+shape = SubResource("Shape_flavor_huge")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 18)

@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://dreamcore_terminal"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(48, 0.2, 44)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(48, 0.2, 44)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.9, 0.88, 0.95, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(48, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(48, 5, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(44, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(44, 5, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.95, 0.9, 0.98, 1)
+roughness = 0.8
+
+[sub_resource type="PlaneMesh" id="ZonePlaneCarousel"]
+size = Vector2(14, 14)
+[sub_resource type="PlaneMesh" id="ZonePlaneWide"]
+size = Vector2(18, 12)
+[sub_resource type="StandardMaterial3D" id="CarouselMat"]
+albedo_color = Color(0.95, 0.9, 0.65, 1)
+roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="CheckInMat"]
+albedo_color = Color(0.98, 0.78, 0.85, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="ConcourseMat"]
+albedo_color = Color(0.78, 0.85, 0.98, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="FoodCourtMat"]
+albedo_color = Color(0.62, 0.55, 0.85, 1)
+roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_carousel"]
+size = Vector3(14, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_wide"]
+size = Vector3(18, 3, 12)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.95, 0.92, 0.98, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.94, 0.9, 0.98, 1)
+ambient_light_energy = 1.0
+
+[node name="DreamcoreTerminal" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -22)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 22)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 24, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -24, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneCarouselHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlaneCarousel")
+surface_material_override/0 = SubResource("CarouselMat")
+[node name="Carousel" type="MeshInstance3D" parent="ZoneCarouselHall"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+[node name="Light" type="OmniLight3D" parent="ZoneCarouselHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.95, 0.8, 1)
+light_energy = 0.9
+omni_range = 14.0
+
+[node name="ZonePinkCheckIn" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.11, -4)
+mesh = SubResource("ZonePlaneWide")
+surface_material_override/0 = SubResource("CheckInMat")
+
+[node name="ZoneConcourse" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -16)
+mesh = SubResource("ZonePlaneWide")
+surface_material_override/0 = SubResource("ConcourseMat")
+
+[node name="ZoneFoodCourt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.11, -4)
+mesh = SubResource("ZonePlaneWide")
+surface_material_override/0 = SubResource("FoodCourtMat")
+[node name="Light" type="OmniLight3D" parent="ZoneFoodCourt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.8, 0.78, 0.98, 1)
+light_energy = 0.5
+omni_range = 10.0
+
+[node name="Flavor_CarouselHall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1")
+flavor_text = "Carousel Hall. Round and round and round..."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CarouselHall"]
+shape = SubResource("Shape_flavor_carousel")
+
+[node name="Flavor_PinkCheckIn" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, -4)
+script = ExtResource("1")
+flavor_text = "Pink Check-In. Looks the same as in my dream."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PinkCheckIn"]
+shape = SubResource("Shape_flavor_wide")
+
+[node name="Flavor_Concourse" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
+script = ExtResource("1")
+flavor_text = "Sleep Gate Concourse. Doors too small."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Concourse"]
+shape = SubResource("Shape_flavor_wide")
+
+[node name="Flavor_FoodCourt" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -4)
+script = ExtResource("1")
+flavor_text = "Moon Food Court. Good food, softer days."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_FoodCourt"]
+shape = SubResource("Shape_flavor_wide")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)

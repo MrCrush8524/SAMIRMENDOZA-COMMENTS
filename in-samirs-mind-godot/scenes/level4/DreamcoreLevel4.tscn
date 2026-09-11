@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=3 uid="uid://dreamcore_level4"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(44, 0.2, 40)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(44, 0.2, 40)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.96, 0.85, 0.9, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(44, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(44, 5, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(40, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(40, 5, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.98, 0.92, 0.95, 1)
+roughness = 0.85
+
+[sub_resource type="PlaneMesh" id="ZonePlaneMed"]
+size = Vector2(12, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneSmall"]
+size = Vector2(8, 8)
+[sub_resource type="StandardMaterial3D" id="PoolMat"]
+albedo_color = Color(0.6, 0.9, 0.95, 1)
+roughness = 0.1
+[sub_resource type="StandardMaterial3D" id="PartyMat"]
+albedo_color = Color(0.95, 0.8, 0.95, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="ClassroomMat"]
+albedo_color = Color(0.85, 0.92, 0.98, 1)
+roughness = 0.6
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_med"]
+size = Vector3(12, 3, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_small"]
+size = Vector3(8, 3, 8)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.97, 0.9, 0.94, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.96, 0.88, 0.92, 1)
+ambient_light_energy = 1.0
+
+[node name="DreamcoreLevel4" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 20)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZonePoolRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.11, -8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("PoolMat")
+[node name="Light" type="OmniLight3D" parent="ZonePoolRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.75, 0.95, 1, 1)
+light_energy = 0.6
+omni_range = 10.0
+
+[node name="ZonePartyRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.11, -8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("PartyMat")
+[node name="Light" type="OmniLight3D" parent="ZonePartyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.75, 0.95, 1)
+light_energy = 0.6
+omni_range = 10.0
+
+[node name="ZoneClassroom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.11, 8)
+mesh = SubResource("ZonePlaneSmall")
+surface_material_override/0 = SubResource("ClassroomMat")
+
+[node name="Flavor_PinkHallway" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 12)
+script = ExtResource("1")
+flavor_text = "Pink Hallway. Familiar walls... different skies."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PinkHallway"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="Flavor_PoolRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, -8)
+script = ExtResource("1")
+flavor_text = "The Pool Room. Down but softer?"
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PoolRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_PartyRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -8)
+script = ExtResource("1")
+flavor_text = "Party here? Old parties still here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PartyRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Classroom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
+script = ExtResource("1")
+flavor_text = "Classroom? Memories?"
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Classroom"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.0, 15)

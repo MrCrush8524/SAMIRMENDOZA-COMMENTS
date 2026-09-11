@@ -7,6 +7,11 @@ signal scene_ready(scene: Node)
 const CHAPTER_SCENES := {
 	"chapter01": "res://scenes/chapter01/Chapter01.tscn",
 	"mall": "res://scenes/mall/DreamcoreMall.tscn",
+	"level4": "res://scenes/level4/DreamcoreLevel4.tscn",
+	"zoo": "res://scenes/zoo/CloudsZoo.tscn",
+	"terminal": "res://scenes/terminal/DreamcoreTerminal.tscn",
+	"museum": "res://scenes/museum/NightmareMuseum.tscn",
+	"liminal_junction": "res://scenes/liminal_junction/LiminalJunction.tscn",
 }
 
 ## Nightmare Passages are loaded the same way as a chapter (swapped in
