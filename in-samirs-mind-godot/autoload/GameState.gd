@@ -72,6 +72,14 @@ func new_backrooms_trip() -> void:
 ## Nightmare Passage door) with its own currency.
 var dream_tokens: int = 0
 
+## Chapter II's (The Infinite Neighborhood) "required discoveries" gate:
+## visiting each of the neighborhood's named zones records an id here.
+## Once enough are found, a previously-inactive house wakes up and
+## becomes the real entrance into Chapter III — same asleep-then-lit
+## pattern as the Moon Door, but the "door" is an ordinary house that
+## was locked the whole time, not a new teleport.
+var neighborhood_discoveries: Array[String] = []
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -106,6 +114,7 @@ func new_run(chosen_dreamer: String) -> void:
 	backrooms_artifact_target = ""
 	backrooms_door_target = ""
 	dream_tokens = 0
+	neighborhood_discoveries.clear()
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -122,6 +131,7 @@ func to_dict() -> Dictionary:
 		"nightmare_assignments": nightmare_assignments,
 		"nightmare_rewards": nightmare_rewards,
 		"dream_tokens": dream_tokens,
+		"neighborhood_discoveries": neighborhood_discoveries,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -146,6 +156,7 @@ func from_dict(data: Dictionary) -> bool:
 	nightmare_assignments = data.get("nightmare_assignments", {}).duplicate()
 	nightmare_rewards.assign(data.get("nightmare_rewards", []))
 	dream_tokens = int(data.get("dream_tokens", 0))
+	neighborhood_discoveries.assign(data.get("neighborhood_discoveries", []))
 	in_nightmare = false
 	nightmare_depth = 0
 

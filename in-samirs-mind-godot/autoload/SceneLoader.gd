@@ -7,6 +7,7 @@ signal scene_ready(scene: Node)
 const CHAPTER_SCENES := {
 	"chapter01": "res://scenes/chapter01/Chapter01.tscn",
 	"chapter02": "res://scenes/infinite_neighborhood/InfiniteNeighborhood.tscn",
+	"chapter03": "res://scenes/chapter03/Chapter03.tscn",
 	"mall": "res://scenes/mall/DreamcoreMall.tscn",
 	"chapter04": "res://scenes/level4/DreamcoreLevel4.tscn",
 	## The original "Pastel Dreamscape" Chapter II build — recycled as

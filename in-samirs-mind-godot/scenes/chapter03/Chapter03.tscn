@@ -1,0 +1,440 @@
+[gd_scene load_steps=34 format=3 uid="uid://chapter03_scene"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(44, 0.2, 40)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(44, 0.2, 40)
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(44, 4, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(44, 4, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(40, 4, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(40, 4, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="GroundFloorMat"]
+albedo_color = Color(0.85, 0.78, 0.7, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="SecondFloorMat"]
+albedo_color = Color(0.82, 0.76, 0.82, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="AtticFloorMat"]
+albedo_color = Color(0.55, 0.48, 0.45, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.93, 0.9, 0.87, 1)
+roughness = 0.85
+
+[sub_resource type="PlaneMesh" id="ZonePlaneSmall"]
+size = Vector2(10, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneMed"]
+size = Vector2(12, 10)
+[sub_resource type="StandardMaterial3D" id="FoyerMat"]
+albedo_color = Color(0.9, 0.78, 0.82, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="LivingRoomMat"]
+albedo_color = Color(0.92, 0.8, 0.84, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="KitchenMat"]
+albedo_color = Color(0.75, 0.85, 0.78, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="CourtyardMat"]
+albedo_color = Color(0.7, 0.85, 0.95, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="SunroomMat"]
+albedo_color = Color(0.8, 0.88, 0.9, 1)
+roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="MirrorHallMat"]
+albedo_color = Color(0.75, 0.8, 0.85, 1)
+roughness = 0.2
+[sub_resource type="StandardMaterial3D" id="ChildsRoomMat"]
+albedo_color = Color(0.95, 0.8, 0.85, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="MemoryRoomMat"]
+albedo_color = Color(0.85, 0.78, 0.65, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="SittingRoomMat"]
+albedo_color = Color(0.92, 0.85, 0.68, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="AtticMat"]
+albedo_color = Color(0.6, 0.55, 0.5, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="DuplicateCorridorMat"]
+albedo_color = Color(0.7, 0.6, 0.7, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="ViewMat"]
+albedo_color = Color(0.65, 0.72, 0.78, 1)
+roughness = 0.3
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_small"]
+size = Vector3(10, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_med"]
+size = Vector3(12, 3, 10)
+
+[sub_resource type="BoxMesh" id="LiftPadMesh"]
+size = Vector3(2, 0.15, 2)
+[sub_resource type="BoxShape3D" id="LiftPadShape"]
+size = Vector3(2, 1.5, 2)
+[sub_resource type="StandardMaterial3D" id="LiftPadMat"]
+albedo_color = Color(0.6, 0.5, 0.35, 1)
+roughness = 0.6
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.9, 0.87, 0.85, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.9, 0.86, 0.84, 1)
+ambient_light_energy = 1.0
+
+[node name="Chapter03" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="GroundFloor" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="GroundFloor"]
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("GroundFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -20)
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 20)
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 2, 0)
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 2, 0)
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneFoyer" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 10)
+mesh = SubResource("ZonePlaneSmall")
+surface_material_override/0 = SubResource("FoyerMat")
+[node name="Light" type="OmniLight3D" parent="GroundFloor/ZoneFoyer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.92, 0.88, 1)
+light_energy = 0.6
+omni_range = 9.0
+
+[node name="ZoneLivingRoom" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.11, 10)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("LivingRoomMat")
+
+[node name="ZoneKitchen" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.11, -6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("KitchenMat")
+
+[node name="ZoneCourtyard" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.11, -6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("CourtyardMat")
+[node name="Light" type="OmniLight3D" parent="GroundFloor/ZoneCourtyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(0.95, 0.98, 1, 1)
+light_energy = 0.7
+omni_range = 10.0
+
+[node name="ZoneSunroom" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.11, -12)
+mesh = SubResource("ZonePlaneSmall")
+surface_material_override/0 = SubResource("SunroomMat")
+
+[node name="Flavor_Foyer" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10)
+script = ExtResource("1")
+flavor_text = "Entry Foyer. \"Places remember you too.\""
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Foyer"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="Flavor_LivingRoom" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 10)
+script = ExtResource("1")
+flavor_text = "Living Room."
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_LivingRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Kitchen" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -6)
+script = ExtResource("1")
+flavor_text = "Kitchen & Dining Nook. The Looping Corridor is nearby — does it end?"
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Kitchen"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Courtyard" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
+script = ExtResource("1")
+flavor_text = "Inner Courtyard. Open to sky."
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Courtyard"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_Sunroom" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -12)
+script = ExtResource("1")
+flavor_text = "Sunroom."
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Sunroom"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="LiftUpToSecond" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -14)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromGround")
+lift_label = "the stairs up to L2"
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/LiftUpToSecond"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/LiftUpToSecond"]
+shape = SubResource("LiftPadShape")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 16)
+
+[node name="SecondFloor" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("SecondFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -20)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 20)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 6, 0)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 6, 0)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneMirrorHall" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4.11, 4)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("MirrorHallMat")
+
+[node name="ZoneChildsRoom" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4.11, -14)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("ChildsRoomMat")
+
+[node name="ZoneMemoryRoom" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.11, -14)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("MemoryRoomMat")
+[node name="Light" type="OmniLight3D" parent="SecondFloor/ZoneMemoryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(0.95, 0.88, 0.75, 1)
+light_energy = 0.5
+omni_range = 9.0
+
+[node name="ZoneSittingRoom" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4.11, 6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("SittingRoomMat")
+
+[node name="Flavor_MirrorHall" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 5, 4)
+script = ExtResource("1")
+flavor_text = "Mirror Hall."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MirrorHall"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_ChildsRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, -14)
+script = ExtResource("1")
+flavor_text = "Child's Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_ChildsRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_MemoryRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -14)
+script = ExtResource("1")
+flavor_text = "Memory Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MemoryRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_SittingRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5, 6)
+script = ExtResource("1")
+flavor_text = "Sitting Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_SittingRoom"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_UpperLanding" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -14)
+script = ExtResource("1")
+flavor_text = "Upper Landing. You've been here before."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_UpperLanding"]
+shape = SubResource("Shape_flavor_small")
+
+[node name="LandingFromGround" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, -14)
+
+[node name="LiftDownToGround" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, -14)
+script = ExtResource("2")
+target_marker = NodePath("../../start")
+lift_label = "the stairs down to the ground floor"
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/LiftDownToGround"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/LiftDownToGround"]
+shape = SubResource("LiftPadShape")
+
+[node name="LiftUpToAttic" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.5, -10)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromSecond")
+lift_label = "the stairs up to the attic"
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/LiftUpToAttic"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/LiftUpToAttic"]
+shape = SubResource("LiftPadShape")
+
+[node name="Attic" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("AtticFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -20)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 10, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 10, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneAttic" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, -8)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("AtticMat")
+
+[node name="ZoneDuplicateCorridor" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, 6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("DuplicateCorridorMat")
+
+[node name="ZoneView" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8.11, 6)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("ViewMat")
+
+[node name="Flavor_Attic" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, -8)
+script = ExtResource("1")
+flavor_text = "Attic (unfinished)."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_Attic"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_DuplicateCorridor" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, 6)
+script = ExtResource("1")
+flavor_text = "Duplicate Corridor (slightly different)."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_DuplicateCorridor"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="Flavor_View" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 9, 6)
+script = ExtResource("1")
+flavor_text = "View to Courtyard Below. The roof remembers a different sky."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_View"]
+shape = SubResource("Shape_flavor_med")
+
+[node name="LandingFromSecond" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)
+
+[node name="LiftDownToSecond" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8.5, -10)
+script = ExtResource("2")
+target_marker = NodePath("../../LandingFromGround")
+lift_label = "the stairs down to the second floor"
+[node name="Mesh" type="MeshInstance3D" parent="Attic/LiftDownToSecond"]
+mesh = SubResource("LiftPadMesh")
+surface_material_override/0 = SubResource("LiftPadMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/LiftDownToSecond"]
+shape = SubResource("LiftPadShape")
