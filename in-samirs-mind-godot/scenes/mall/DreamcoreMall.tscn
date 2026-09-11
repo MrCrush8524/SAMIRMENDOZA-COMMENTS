@@ -1,22 +1,22 @@
-[gd_scene load_steps=24 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=35 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
-size = Vector3(50, 0.2, 44)
+size = Vector3(80, 0.2, 44)
 
 [sub_resource type="BoxShape3D" id="FloorShape"]
-size = Vector3(50, 0.2, 44)
+size = Vector3(80, 0.2, 44)
 
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
 albedo_color = Color(0.92, 0.85, 0.78, 1)
 roughness = 0.6
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
-size = Vector3(50, 5, 0.3)
+size = Vector3(80, 5, 0.3)
 
 [sub_resource type="BoxShape3D" id="WallShapeEW"]
-size = Vector3(50, 5, 0.3)
+size = Vector3(80, 5, 0.3)
 
 [sub_resource type="BoxMesh" id="WallMeshNS"]
 size = Vector3(44, 5, 0.3)
@@ -46,6 +46,18 @@ roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="LullMat"]
 albedo_color = Color(0.82, 0.78, 0.92, 1)
 roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="DaydreamsMat"]
+albedo_color = Color(0.92, 0.88, 0.82, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="PlaygroundMat"]
+albedo_color = Color(0.98, 0.85, 0.6, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="PoolCourtMat"]
+albedo_color = Color(0.55, 0.85, 0.92, 1)
+roughness = 0.15
+[sub_resource type="StandardMaterial3D" id="GreenhouseMat"]
+albedo_color = Color(0.55, 0.78, 0.55, 1)
+roughness = 0.8
 
 [sub_resource type="PlaneMesh" id="ZonePlane16"]
 size = Vector2(16, 16)
@@ -57,6 +69,14 @@ size = Vector2(16, 8)
 size = Vector2(14, 12)
 [sub_resource type="PlaneMesh" id="ZonePlaneLull"]
 size = Vector2(8, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneDaydreams"]
+size = Vector2(20, 14)
+[sub_resource type="PlaneMesh" id="ZonePlanePlayground"]
+size = Vector2(16, 10)
+[sub_resource type="PlaneMesh" id="ZonePlanePoolCourt"]
+size = Vector2(14, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneGreenhouse"]
+size = Vector2(12, 12)
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_big"]
 size = Vector3(16, 3, 16)
@@ -64,6 +84,12 @@ size = Vector3(16, 3, 16)
 size = Vector3(14, 3, 12)
 [sub_resource type="BoxShape3D" id="Shape_flavor_small"]
 size = Vector3(8, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_daydreams"]
+size = Vector3(20, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_playground"]
+size = Vector3(16, 3, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_greenhouse"]
+size = Vector3(12, 3, 12)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -78,7 +104,7 @@ ambient_light_energy = 1.1
 environment = SubResource("Env")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -4)
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("FloorMesh")
 surface_material_override/0 = SubResource("FloorMat")
@@ -86,7 +112,7 @@ surface_material_override/0 = SubResource("FloorMat")
 shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, -26)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -94,7 +120,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallSouth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 18)
 [node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -102,7 +128,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallEast" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 25, 2.5, -4)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 55, 2.5, -4)
 [node name="Mesh" type="MeshInstance3D" parent="WallEast"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
@@ -201,6 +227,74 @@ flavor_text = "Toy Box World — Toys, Games, Collectibles, Sweets. A Brighter Y
 [node name="Shape" type="CollisionShape3D" parent="Flavor_ToyBox"]
 shape = SubResource("Shape_flavor_medium")
 
+[node name="ZoneDaydreams" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0.11, -6)
+mesh = SubResource("ZonePlaneDaydreams")
+surface_material_override/0 = SubResource("DaydreamsMat")
+[node name="Light" type="OmniLight3D" parent="ZoneDaydreams"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.97, 0.9, 1)
+light_energy = 0.7
+omni_range = 14.0
+
+[node name="ZoneDreamPlayground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0.11, -20)
+mesh = SubResource("ZonePlanePlayground")
+surface_material_override/0 = SubResource("PlaygroundMat")
+[node name="Light" type="OmniLight3D" parent="ZoneDreamPlayground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.85, 0.7, 1)
+light_energy = 0.6
+omni_range = 10.0
+
+[node name="ZonePoolCourt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.11, 10)
+mesh = SubResource("ZonePlanePoolCourt")
+surface_material_override/0 = SubResource("PoolCourtMat")
+[node name="Light" type="OmniLight3D" parent="ZonePoolCourt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.75, 0.95, 1, 1)
+light_energy = 0.55
+omni_range = 10.0
+
+[node name="ZoneGreenhouse" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0.11, 10)
+mesh = SubResource("ZonePlaneGreenhouse")
+surface_material_override/0 = SubResource("GreenhouseMat")
+[node name="Light" type="OmniLight3D" parent="ZoneGreenhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 1, 0.85, 1)
+light_energy = 0.5
+omni_range = 9.0
+
+[node name="Flavor_Daydreams" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -6)
+script = ExtResource("1")
+flavor_text = "East Anchor \"Daydreams\" — Lifestyle & Home. Furniture, decor, stationery, plants & more."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Daydreams"]
+shape = SubResource("Shape_flavor_daydreams")
+
+[node name="Flavor_DreamPlayground" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -20)
+script = ExtResource("1")
+flavor_text = "Dream Playground — Play, Climb, Explore, Be a Kid Again."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_DreamPlayground"]
+shape = SubResource("Shape_flavor_playground")
+
+[node name="Flavor_PoolCourt" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1, 10)
+script = ExtResource("1")
+flavor_text = "The Pool Court (shoes optional) — Swim, Float, Daydream..."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PoolCourt"]
+shape = SubResource("Shape_flavor_medium")
+
+[node name="Flavor_Greenhouse" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, 10)
+script = ExtResource("1")
+flavor_text = "The Greenhouse / Sky Court. Real plants? A different sky? Maybe both."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Greenhouse"]
+shape = SubResource("Shape_flavor_greenhouse")
+
 [node name="Flavor_Lull" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13)
 script = ExtResource("1")
@@ -222,3 +316,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.0, -6)
 
 [node name="SpawnCinema" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -22)
+
+[node name="SpawnDaydreams" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.0, -6)
+
+[node name="SpawnDreamPlayground" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.0, -20)
+
+[node name="SpawnPoolCourt" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1.0, 10)
+
+[node name="SpawnGreenhouse" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1.0, 10)
