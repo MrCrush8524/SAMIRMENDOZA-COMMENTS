@@ -21,7 +21,7 @@ var _nightmare_return_yaw: float = 0.0
 ## built; one is picked at random each round.
 const MINIGAME_POOLS := {
 	"decay": ["res://scenes/nightmare/minigames/DecayDontTouchWater.tscn"],
-	"wander": [],
+	"wander": ["res://scenes/nightmare/minigames/WanderWhatChanged.tscn"],
 	"arcade": [],
 }
 
@@ -215,6 +215,44 @@ func _grant_depth_reward(room_id: String, cleared_depth: int) -> void:
 			UiRoot.show_journal("Something that sounds like a Dream Track hums at the edge of hearing.")
 		_:
 			UiRoot.show_journal("A rare, deep-dream discovery — you're not sure how you'll explain this one.")
+
+## Doubt Catch pool (Chapter II+, per design note). Empty until real
+## catch-specific minigames exist — DoubtCatcher.gd is safe to attach
+## anywhere in the meantime; touching it just does nothing while the
+## pool is empty, rather than erroring.
+const DOUBT_CATCH_POOL: Array[String] = []
+
+var _doubt_catch_minigame: NightmareMinigame = null
+
+## Called by DoubtCatcher when Doubt touches the player. Same
+## countdown/result UI as the Nightmare ladder (UiRoot), but this is an
+## open-world catch, not a Nightmare Passage — win grants a Dream Token,
+## lose just respawns the player nearby (their exact spot, gently
+## nudged), never sends them to a Nightmare Passage or back to the
+## chapter's main spawn.
+func start_doubt_catch() -> void:
+	if DOUBT_CATCH_POOL.is_empty():
+		return
+	var return_position := player.global_position
+	var return_yaw := player.rotation.y
+
+	await UiRoot.show_nightmare_countdown()
+	var mg_scene: PackedScene = load(DOUBT_CATCH_POOL[randi() % DOUBT_CATCH_POOL.size()])
+	_doubt_catch_minigame = mg_scene.instantiate()
+	SceneLoader.current_chapter.add_child(_doubt_catch_minigame)
+	_doubt_catch_minigame.configure(1)
+	var won: bool = await _doubt_catch_minigame.resolved
+	if is_instance_valid(_doubt_catch_minigame):
+		_doubt_catch_minigame.queue_free()
+	_doubt_catch_minigame = null
+
+	await UiRoot.show_nightmare_result(won)
+	if won:
+		GameState.dream_tokens += 1
+		UiRoot.show_journal("You held your ground. A Dream Token — for later.")
+	else:
+		var nudge := Vector3(randf_range(-2.0, 2.0), 0.0, randf_range(-2.0, 2.0))
+		player.set_spawn(return_position + nudge, return_yaw)
 
 ## Escape key inside a Nightmare Passage — a deliberate, safe exit.
 func exit_nightmare() -> void:

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://wander_what_changed"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/WanderWhatChanged.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/WanderChangedProp.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_chair.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_empty_frame.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/wander/wander_prop_duplicate_lamps.png" id="5"]
+
+[sub_resource type="SphereShape3D" id="Shape_prop"]
+radius = 0.9
+
+[node name="WanderWhatChanged" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Prop0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, -2)
+script = ExtResource("2")
+prop_index = 0
+[node name="Icon" type="Sprite3D" parent="Prop0"]
+texture = ExtResource("3")
+pixel_size = 0.0016
+billboard = 1
+[node name="Shape" type="CollisionShape3D" parent="Prop0"]
+shape = SubResource("Shape_prop")
+
+[node name="Prop1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -4)
+script = ExtResource("2")
+prop_index = 1
+[node name="Icon" type="Sprite3D" parent="Prop1"]
+texture = ExtResource("4")
+pixel_size = 0.0016
+billboard = 1
+[node name="Shape" type="CollisionShape3D" parent="Prop1"]
+shape = SubResource("Shape_prop")
+
+[node name="Prop2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.9, -2)
+script = ExtResource("2")
+prop_index = 2
+[node name="Icon" type="Sprite3D" parent="Prop2"]
+texture = ExtResource("5")
+pixel_size = 0.0016
+billboard = 1
+[node name="Shape" type="CollisionShape3D" parent="Prop2"]
+shape = SubResource("Shape_prop")

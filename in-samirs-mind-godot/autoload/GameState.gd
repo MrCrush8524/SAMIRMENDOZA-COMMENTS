@@ -64,6 +64,14 @@ func new_backrooms_trip() -> void:
 	in_backrooms = true
 	backrooms_level = 1
 
+## Doubt Catch (from Chapter II onward, per design note): if Doubt
+## touches the player, it drops them into a quick minigame — win and
+## you get a Dream Token (unlocks something later, TBD); lose and you
+## respawn nearby, no token. Deliberately separate from
+## nightmare_rewards — a different trigger (open-world catch, not a
+## Nightmare Passage door) with its own currency.
+var dream_tokens: int = 0
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -97,6 +105,7 @@ func new_run(chosen_dreamer: String) -> void:
 	backrooms_level = 1
 	backrooms_artifact_target = ""
 	backrooms_door_target = ""
+	dream_tokens = 0
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -112,6 +121,7 @@ func to_dict() -> Dictionary:
 		"composure": composure,
 		"nightmare_assignments": nightmare_assignments,
 		"nightmare_rewards": nightmare_rewards,
+		"dream_tokens": dream_tokens,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -135,6 +145,7 @@ func from_dict(data: Dictionary) -> bool:
 	composure = clampf(float(data.get("composure", 1.0)), 0.0, 1.0)
 	nightmare_assignments = data.get("nightmare_assignments", {}).duplicate()
 	nightmare_rewards.assign(data.get("nightmare_rewards", []))
+	dream_tokens = int(data.get("dream_tokens", 0))
 	in_nightmare = false
 	nightmare_depth = 0
 
