@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://title_scene"]
+[gd_scene load_steps=3 format=3 uid="uid://title_scene"]
 
 [ext_resource type="Script" path="res://scenes/menu/Title.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/menu/LoreOverlay.tscn" id="2"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -82,3 +83,12 @@ text = "Extras"
 [node name="BtnSoundtrack" type="Button" parent="CenterBox"]
 layout_mode = 2
 text = "Dream Soundtrack"
+
+[node name="BtnLore" type="Button" parent="CenterBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lore & Controls"
+
+[node name="LoreOverlay" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 1

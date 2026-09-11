@@ -2,9 +2,11 @@ extends Control
 
 @onready var btn_new_dream: Button = %BtnNewDream
 @onready var btn_continue: Button = %BtnContinue
+@onready var btn_lore: Button = %BtnLore
 @onready var lang_option: OptionButton = %LangOption
 @onready var title_label: Label = %TitleLabel
 @onready var tagline_label: Label = %TaglineLabel
+@onready var lore_overlay: Control = %LoreOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
@@ -12,9 +14,15 @@ func _ready() -> void:
 	btn_continue.disabled = not SaveManager.has_valid_save()
 	btn_new_dream.pressed.connect(_on_new_dream)
 	btn_continue.pressed.connect(_on_continue)
+	btn_lore.pressed.connect(_on_lore)
 	lang_option.item_selected.connect(_on_lang_selected)
 	_apply_language()
 	AudioManager.play_menu(MENU_MUSIC)
+
+func _on_lore() -> void:
+	# LoreOverlay never touches AudioManager — opening/closing it is not a
+	# scene change, so the menu music already playing is untouched.
+	lore_overlay.open()
 
 func _on_new_dream() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/CharacterSelect.tscn")
