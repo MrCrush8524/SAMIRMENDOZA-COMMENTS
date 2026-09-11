@@ -6,9 +6,13 @@ signal scene_ready(scene: Node)
 
 const CHAPTER_SCENES := {
 	"chapter01": "res://scenes/chapter01/Chapter01.tscn",
-	"chapter02": "res://scenes/chapter02/Chapter02.tscn",
+	"chapter02": "res://scenes/infinite_neighborhood/InfiniteNeighborhood.tscn",
 	"mall": "res://scenes/mall/DreamcoreMall.tscn",
 	"chapter04": "res://scenes/level4/DreamcoreLevel4.tscn",
+	## The original "Pastel Dreamscape" Chapter II build — recycled as
+	## Chapter V once The Infinite Neighborhood took over as the real
+	## Chapter II. Same file, just re-identified; nothing in it changed.
+	"chapter05": "res://scenes/chapter02/Chapter02.tscn",
 	"zoo": "res://scenes/zoo/CloudsZoo.tscn",
 	"terminal": "res://scenes/terminal/DreamcoreTerminal.tscn",
 	"museum": "res://scenes/museum/NightmareMuseum.tscn",
