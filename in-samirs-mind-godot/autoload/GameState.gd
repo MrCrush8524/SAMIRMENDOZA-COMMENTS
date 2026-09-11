@@ -111,6 +111,7 @@ func to_dict() -> Dictionary:
 		"tv_seen": tv_seen,
 		"composure": composure,
 		"nightmare_assignments": nightmare_assignments,
+		"nightmare_rewards": nightmare_rewards,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -133,7 +134,18 @@ func from_dict(data: Dictionary) -> bool:
 	has_active_run = true
 	composure = clampf(float(data.get("composure", 1.0)), 0.0, 1.0)
 	nightmare_assignments = data.get("nightmare_assignments", {}).duplicate()
+	nightmare_rewards.assign(data.get("nightmare_rewards", []))
 	in_nightmare = false
+	nightmare_depth = 0
+
+	# Backrooms state is all transient by design (a save can't happen
+	# while lost in there), but reset it explicitly on load anyway —
+	# same defensive reasoning as in_nightmare above, in case a save is
+	# ever loaded without a full process restart in between.
+	in_backrooms = false
+	backrooms_level = 1
+	backrooms_artifact_target = ""
+	backrooms_door_target = ""
 
 	has_last_position = false
 	var pos_data = data.get("last_position", null)
