@@ -926,10 +926,15 @@ commissioning only once Parts A and B are done:
   Corridor.~~ ✅ Delivered & integrated (Batch 01). (The Quiet Mirror
   Room's mirror *props* were already covered under Part B — this was
   just its floor/wall texture.)
-- **Liminal Junction**: Carousel Lounge, Garden Platform, Lost Luggage,
-  Observation Deck. Still open — no Batch 02 yet.
-- **Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
-  Pharmacy, Blank Gate, Lower Level. Still open — no Batch 02 yet.
+- ~~**Liminal Junction**: Carousel Lounge, Garden Platform, Lost Luggage,
+  Observation Deck.~~ ✅ Delivered & integrated (Batch 02).
+- ~~**Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
+  Pharmacy, Blank Gate, Lower Level.~~ ✅ Delivered & integrated (Batch 02).
+  One deliberate reinterpretation: `pastel_retro_futuristic_transit_wall.png`
+  arrived named as a wall texture but was applied as the Blank Gate
+  floor material — the only one of the ten Batch 02 files without an
+  obvious floor-pattern name, and exactly enough files existed (10) for
+  the ten open zones once it was read that way.
 
 ## Terminal's "Pool Waiting" room — built, placement unconfirmed
 
@@ -959,16 +964,17 @@ for this one, just a decision.
 
 10. ~~**Side-level leftovers, Batch 01**~~ — Part C (Mall, Clouds Zoo,
     Nightmare Museum). **Done.**
+11. ~~**Side-level leftovers, Batch 02**~~ — Part C (Liminal Junction,
+    Dreamcore Terminal). **Done.**
 
-Everything in Parts A and B is now delivered and integrated — every
-main-story chapter (I–V), the Lost Passage, and the entire profile/
-pause/mirror system, all headlessly verified. What's left:
-
-1. **Side-level leftovers, Batch 02** — Part C (Liminal Junction:
-   Carousel Lounge, Garden Platform, Lost Luggage, Observation Deck;
-   Dreamcore Terminal: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
-   Pharmacy, Blank Gate, Lower Level). Pure polish, do whenever
-   convenient. The one remaining item in this whole document.
+Everything in this document is now delivered and integrated. Every
+main-story chapter (I–V), the Lost Passage, the entire profile/pause/
+mirror system, and all ten side-level flat-color leftovers across every
+side level (Mall, Clouds Zoo, Nightmare Museum, Liminal Junction,
+Dreamcore Terminal) are real-textured and headlessly verified. Nothing
+open in this brief anymore — the only loose end on record anywhere is
+the Terminal Pool Waiting room's placement, which needs a decision, not
+new art (see below).
 
 Same delivery process as always: zip it, include a short
 `START_HERE_CLAUDE.md`, ship however many pieces are ready rather than

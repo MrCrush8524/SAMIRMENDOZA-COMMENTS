@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://liminal_junction"]
+[gd_scene load_steps=96 format=3 uid="uid://liminal_junction"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -55,6 +55,10 @@
 [ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_forgotten_places.png" id="53"]
 [ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_somewhere_else.png" id="54"]
 [ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_void_platform.png" id="55"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/vintage_aviation_deco_carpet_pattern.png" id="56"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/dreamy_pastel_tactile_platform_pattern.png" id="57"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/seamless_terrazzo_terminal_flooring.png" id="58"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/pastel_celestial_marble_tile_pattern.png" id="59"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(70, 0.2, 50)
@@ -105,13 +109,16 @@ albedo_texture = ExtResource("12")
 uv1_scale = Vector3(1.25, 1, 1)
 roughness = 0.15
 [sub_resource type="StandardMaterial3D" id="CarouselLoungeMat"]
-albedo_color = Color(0.95, 0.75, 0.85, 1)
+albedo_texture = ExtResource("56")
+uv1_scale = Vector3(1.6, 0.9, 1)
 roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="GardenPlatformMat"]
-albedo_color = Color(0.6, 0.82, 0.6, 1)
+albedo_texture = ExtResource("57")
+uv1_scale = Vector3(0.9, 0.7, 1)
 roughness = 0.75
 [sub_resource type="StandardMaterial3D" id="LostLuggageMat"]
-albedo_color = Color(0.55, 0.45, 0.35, 1)
+albedo_texture = ExtResource("58")
+uv1_scale = Vector3(1.1, 0.9, 1)
 roughness = 0.8
 [sub_resource type="StandardMaterial3D" id="InfiniteWaitingMat"]
 albedo_texture = ExtResource("11")

@@ -54,15 +54,12 @@ target), and the five extra Wander props (books/phone/plant/table/teddy)
 replacing Count and Answer's plain glowing cubes. All 9 affected
 minigames re-verified headlessly.
 
-## Remaining flat-color materials in the six side levels
+## Remaining flat-color materials in the six side levels — ✅ RESOLVED
 
-Batch 01 (Mall, Clouds Zoo, Nightmare Museum) delivered and integrated —
-see `docs/MASTER_ASSET_BRIEF.md` Part C. Still open, no Batch 02 yet:
-
-- **Liminal Junction**: Carousel Lounge, Garden Platform, Lost Luggage,
-  Observation Deck.
-- **Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
-  Pharmacy, Blank Gate, Lower Level.
+Batch 01 (Mall, Clouds Zoo, Nightmare Museum) and Batch 02 (Liminal
+Junction, Dreamcore Terminal) both delivered and integrated — see
+`docs/MASTER_ASSET_BRIEF.md` Part C. Every side level is now fully
+real-textured, no flat-color zones left anywhere in the build.
 
 ## Terminal's "Pool Waiting" room — built, placement unconfirmed
 
@@ -77,9 +74,8 @@ best guess, not confirmed against a real layout.
 
 ## Bottom line for build.02
 
-1. Main story chapters (II-V) + Backrooms art is the priority — nothing
-   else matters as much for how the game actually reads while playing the
-   critical path.
-2. Minigame reskin and Terminal's Pool Waiting room are both done.
-3. The flat-color leftovers above are a nice-to-have polish pass whenever
-   convenient.
+Every item originally tracked in this document is now delivered and
+integrated: main story chapters (II-V) + Backrooms art, the minigame
+reskin, Terminal's Pool Waiting room, and every side-level flat-color
+leftover across all six side levels. The only open item anywhere is a
+placement decision (not an asset) — see Pool Waiting above.

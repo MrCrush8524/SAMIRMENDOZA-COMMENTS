@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=85 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -37,6 +37,12 @@
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_sign_gate_A16.png" id="35"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_tex_sleep_gate_carpet.png" id="36"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_tex_velvet_lounge.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/retro_futuristic_astral_carpet_network.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_terrazzo_mosaic_texture.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_vintage_checkerboard_tiles.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_retro_futurist_tile_grid.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_retro_futuristic_transit_wall.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_marble_crossway_plaza_pattern.png" id="43"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(48, 0.2, 44)
@@ -83,22 +89,28 @@ albedo_texture = ExtResource("37")
 uv1_scale = Vector3(1.5, 1, 1)
 roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="TinyCinemaMat"]
-albedo_color = Color(0.15, 0.1, 0.2, 1)
+albedo_texture = ExtResource("38")
+uv1_scale = Vector3(0.9, 0.7, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="SleeperLoungeMat"]
-albedo_color = Color(0.7, 0.75, 0.9, 1)
+albedo_texture = ExtResource("39")
+uv1_scale = Vector3(1.1, 0.9, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="DiningCarMat"]
-albedo_color = Color(0.85, 0.7, 0.55, 1)
+albedo_texture = ExtResource("40")
+uv1_scale = Vector3(0.9, 0.7, 1)
 roughness = 0.55
 [sub_resource type="StandardMaterial3D" id="ToyPharmacyMat"]
-albedo_color = Color(0.6, 0.85, 0.78, 1)
+albedo_texture = ExtResource("41")
+uv1_scale = Vector3(1.1, 0.9, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="BlankGateMat"]
-albedo_color = Color(0.85, 0.85, 0.85, 1)
+albedo_texture = ExtResource("42")
+uv1_scale = Vector3(1.1, 0.9, 1)
 roughness = 0.95
 [sub_resource type="StandardMaterial3D" id="LowerLevelMat"]
-albedo_color = Color(0.3, 0.28, 0.35, 1)
+albedo_texture = ExtResource("43")
+uv1_scale = Vector3(2.2, 0.5, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="PoolWaitingMat"]
 albedo_texture = ExtResource("11")
