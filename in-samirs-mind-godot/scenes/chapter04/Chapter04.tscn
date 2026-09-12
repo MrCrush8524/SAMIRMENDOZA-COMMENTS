@@ -1,7 +1,30 @@
-[gd_scene load_steps=42 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=52 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_gutter_walk.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_high_roof.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_liftpad.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_mid_roof.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_open_dream.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_parapet.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_rope_bridge_planks.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_skylight_glass.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_water_tower_roof.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_antenna_spire.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_chimney_set.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_clock_face_wrong_hours.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_clock_tower.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_downspout.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_drip_decal.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_open_dream_chair.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_open_dream_platform.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_puddle_decal.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_rope_bridge.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_skylight_frame.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_smoke_wisp.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_water_tower.png" id="25"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(40, 0.2, 36)
@@ -17,16 +40,20 @@ size = Vector3(36, 1.1, 0.3)
 size = Vector3(36, 1.1, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="LowerFloorMat"]
-albedo_color = Color(0.5, 0.46, 0.48, 1)
+albedo_texture = ExtResource("6")
+uv1_scale = Vector3(4, 3.6, 1)
 roughness = 0.85
 [sub_resource type="StandardMaterial3D" id="MidFloorMat"]
-albedo_color = Color(0.58, 0.55, 0.62, 1)
+albedo_texture = ExtResource("7")
+uv1_scale = Vector3(4, 3.6, 1)
 roughness = 0.8
 [sub_resource type="StandardMaterial3D" id="HighFloorMat"]
-albedo_color = Color(0.68, 0.66, 0.78, 1)
+albedo_texture = ExtResource("4")
+uv1_scale = Vector3(4, 3.6, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="ParapetMat"]
-albedo_color = Color(0.4, 0.38, 0.4, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(4, 1, 1)
 roughness = 0.9
 
 [sub_resource type="PlaneMesh" id="ZonePlaneMed"]
@@ -42,16 +69,20 @@ size = Vector3(8, 4, 8)
 albedo_color = Color(0.55, 0.5, 0.52, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="GutterWalkMat"]
-albedo_color = Color(0.52, 0.55, 0.5, 1)
+albedo_texture = ExtResource("3")
+uv1_scale = Vector3(1.2, 1.2, 1)
 roughness = 0.85
 [sub_resource type="StandardMaterial3D" id="RopeBridgeMat"]
-albedo_color = Color(0.62, 0.5, 0.4, 1)
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.2, 1.2, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="WaterTowerMat"]
-albedo_color = Color(0.5, 0.55, 0.6, 1)
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.2, 1.2, 1)
 roughness = 0.75
 [sub_resource type="StandardMaterial3D" id="SkylightMat"]
-albedo_color = Color(0.7, 0.75, 0.85, 1)
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1.2, 1.2, 1)
 roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="ClockTowerMat"]
 albedo_color = Color(0.75, 0.7, 0.5, 1)
@@ -60,7 +91,8 @@ roughness = 0.5
 albedo_color = Color(0.6, 0.62, 0.72, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="OpenDreamMat"]
-albedo_color = Color(0.9, 0.85, 0.95, 1)
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(1.2, 1.2, 1)
 roughness = 0.2
 
 [sub_resource type="BoxMesh" id="LiftPadMesh"]
@@ -68,7 +100,7 @@ size = Vector3(1.6, 0.15, 1.6)
 [sub_resource type="BoxShape3D" id="LiftPadShape"]
 size = Vector3(1.6, 0.15, 1.6)
 [sub_resource type="StandardMaterial3D" id="LiftPadMat"]
-albedo_color = Color(0.95, 0.85, 0.6, 1)
+albedo_texture = ExtResource("5")
 emission_enabled = true
 emission = Color(0.95, 0.85, 0.6, 1)
 emission_energy_multiplier = 0.6
@@ -142,6 +174,16 @@ script = ExtResource("1")
 flavor_text = "Chimney Row. Smoke that never finishes rising."
 [node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_ChimneyRow"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_ChimneySet" type="Sprite3D" parent="LowerRoofs/Flavor_ChimneyRow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+texture = ExtResource("14")
+pixel_size = 0.003348
+[node name="Prop_SmokeWisp" type="Sprite3D" parent="LowerRoofs/Flavor_ChimneyRow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+texture = ExtResource("24")
+pixel_size = 0.001664
+billboard = 1
+modulate = Color(1, 1, 1, 0.6)
 
 [node name="Flavor_GutterWalk" type="Area3D" parent="LowerRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 8)
@@ -149,6 +191,14 @@ script = ExtResource("1")
 flavor_text = "Gutter Walk. Rain that fell somewhere else."
 [node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_GutterWalk"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_Downspout" type="Sprite3D" parent="LowerRoofs/Flavor_GutterWalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -4)
+texture = ExtResource("17")
+pixel_size = 0.00361
+[node name="Prop_PuddleDecal" type="Sprite3D" parent="LowerRoofs/Flavor_GutterWalk"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -4, -0.98, -3)
+texture = ExtResource("21")
+pixel_size = 0.00214
 
 [node name="RoofHatchLanding" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
@@ -220,6 +270,10 @@ script = ExtResource("1")
 flavor_text = "Rope Bridge. It sways whether or not you're on it."
 [node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_RopeBridge"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_RopeBridge" type="Sprite3D" parent="MidRoofs/Flavor_RopeBridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.505, 0)
+texture = ExtResource("22")
+pixel_size = 0.005
 
 [node name="Flavor_WaterTower" type="Area3D" parent="MidRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 7, -10)
@@ -227,6 +281,14 @@ script = ExtResource("1")
 flavor_text = "Water Tower Roof. Something drips on a schedule."
 [node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_WaterTower"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_WaterTower" type="Sprite3D" parent="MidRoofs/Flavor_WaterTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.0, 0)
+texture = ExtResource("25")
+pixel_size = 0.004854
+[node name="Prop_DripDecal" type="Sprite3D" parent="MidRoofs/Flavor_WaterTower"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -6.98, 2)
+texture = ExtResource("18")
+pixel_size = 0.001672
 
 [node name="Flavor_Skylight" type="Area3D" parent="MidRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 7, 8)
@@ -234,6 +296,10 @@ script = ExtResource("1")
 flavor_text = "Skylight Roof. You can see a room that isn't underneath it."
 [node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_Skylight"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_SkylightFrame" type="Sprite3D" parent="MidRoofs/Flavor_Skylight"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -6.98, 0)
+texture = ExtResource("23")
+pixel_size = 0.004756
 
 [node name="LiftDownToLower" type="Area3D" parent="MidRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.5, -14)
@@ -302,6 +368,14 @@ script = ExtResource("1")
 flavor_text = "Clock Tower. Every hand points to a different hour."
 [node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_ClockTower"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_ClockTower" type="Sprite3D" parent="HighRoofs/Flavor_ClockTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 0)
+texture = ExtResource("16")
+pixel_size = 0.005808
+[node name="Prop_ClockFace" type="Sprite3D" parent="HighRoofs/Flavor_ClockTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.16)
+texture = ExtResource("15")
+pixel_size = 0.002091
 
 [node name="Flavor_Antenna" type="Area3D" parent="HighRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, -6)
@@ -309,6 +383,10 @@ script = ExtResource("1")
 flavor_text = "Antenna Spire. Picks up nothing, broadcasts anyway."
 [node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_Antenna"]
 shape = SubResource("Shape_flavor_small")
+[node name="Prop_AntennaSpire" type="Sprite3D" parent="HighRoofs/Flavor_Antenna"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.75, 0)
+texture = ExtResource("13")
+pixel_size = 0.004881
 
 [node name="Flavor_OpenDream" type="Area3D" parent="HighRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 10)
@@ -316,6 +394,14 @@ script = ExtResource("1")
 flavor_text = "The Open Dream. Above the street, above everything else you've seen so far."
 [node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_OpenDream"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_OpenDreamPlatform" type="Sprite3D" parent="HighRoofs/Flavor_OpenDream"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.315, 0)
+texture = ExtResource("20")
+pixel_size = 0.004405
+[node name="Prop_OpenDreamChair" type="Sprite3D" parent="HighRoofs/Flavor_OpenDream"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.5, 2)
+texture = ExtResource("19")
+pixel_size = 0.001634
 
 [node name="LiftDownToMid" type="Area3D" parent="HighRoofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 12.5, -12)
