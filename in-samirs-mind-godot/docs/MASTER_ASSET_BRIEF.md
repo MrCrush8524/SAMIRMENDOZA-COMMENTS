@@ -918,16 +918,18 @@ to flat placeholder color because no matching texture was ever delivered
 for them — pure polish, lowest priority in this whole document, worth
 commissioning only once Parts A and B are done:
 
-- **Mall**: Cinema floor, Greenhouse floor, Dream Playground floor.
-- **Clouds Zoo**: Parking lot, Gentle Giants floor, Twilight Forest floor,
-  Coral Cloud Reef floor.
-- **Nightmare Museum**: Quiet Mirror Room, Star Nursery, Impossible
-  Corridor. (Note: the Quiet Mirror Room's *floor/wall* texture is this
-  ask; its two new mirror props are covered under Part B.)
+- ~~**Mall**: Cinema floor, Greenhouse floor, Dream Playground floor.~~
+  ✅ Delivered & integrated (Batch 01).
+- ~~**Clouds Zoo**: Parking lot, Gentle Giants floor, Twilight Forest
+  floor, Coral Cloud Reef floor.~~ ✅ Delivered & integrated (Batch 01).
+- ~~**Nightmare Museum**: Quiet Mirror Room, Star Nursery, Impossible
+  Corridor.~~ ✅ Delivered & integrated (Batch 01). (The Quiet Mirror
+  Room's mirror *props* were already covered under Part B — this was
+  just its floor/wall texture.)
 - **Liminal Junction**: Carousel Lounge, Garden Platform, Lost Luggage,
-  Observation Deck.
+  Observation Deck. Still open — no Batch 02 yet.
 - **Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
-  Pharmacy, Blank Gate, Lower Level.
+  Pharmacy, Blank Gate, Lower Level. Still open — no Batch 02 yet.
 
 ## Terminal's "Pool Waiting" room — built, placement unconfirmed
 
@@ -955,12 +957,18 @@ for this one, just a decision.
 8. ~~**Character-specific reflection cutouts**~~ — Part B, §3. **Done.**
 9. ~~**Pause-specific character cards**~~ — Part B, §2b. **Done.**
 
+10. ~~**Side-level leftovers, Batch 01**~~ — Part C (Mall, Clouds Zoo,
+    Nightmare Museum). **Done.**
+
 Everything in Parts A and B is now delivered and integrated — every
 main-story chapter (I–V), the Lost Passage, and the entire profile/
 pause/mirror system, all headlessly verified. What's left:
 
-1. **Side-level flat-color leftovers** — Part C. Pure polish, do
-   whenever convenient. The one remaining item in this whole document.
+1. **Side-level leftovers, Batch 02** — Part C (Liminal Junction:
+   Carousel Lounge, Garden Platform, Lost Luggage, Observation Deck;
+   Dreamcore Terminal: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
+   Pharmacy, Blank Gate, Lower Level). Pure polish, do whenever
+   convenient. The one remaining item in this whole document.
 
 Same delivery process as always: zip it, include a short
 `START_HERE_CLAUDE.md`, ship however many pieces are ready rather than

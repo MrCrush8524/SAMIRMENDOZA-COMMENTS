@@ -56,15 +56,9 @@ minigames re-verified headlessly.
 
 ## Remaining flat-color materials in the six side levels
 
-Every side level is now real-textured where a matching asset existed. These
-zones still fall back to flat color because no matching texture was in the
-delivery — worth commissioning if you want full coverage:
+Batch 01 (Mall, Clouds Zoo, Nightmare Museum) delivered and integrated —
+see `docs/MASTER_ASSET_BRIEF.md` Part C. Still open, no Batch 02 yet:
 
-- **Mall**: Cinema floor, Greenhouse floor, Dream Playground floor.
-- **Clouds Zoo**: Parking lot, Gentle Giants floor, Twilight Forest floor,
-  Coral Cloud Reef floor.
-- **Nightmare Museum**: Quiet Mirror Room, Star Nursery, Impossible
-  Corridor.
 - **Liminal Junction**: Carousel Lounge, Garden Platform, Lost Luggage,
   Observation Deck.
 - **Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
