@@ -42,6 +42,7 @@ const NIGHTMARE_SCENES := {
 ## levelN keys without touching this loading mechanism.
 const BACKROOMS_SCENES := {
 	"level1": "res://scenes/backrooms/BackroomsLevel1.tscn",
+	"level2": "res://scenes/backrooms/BackroomsLevel2.tscn",
 }
 
 var current_chapter: Node = null

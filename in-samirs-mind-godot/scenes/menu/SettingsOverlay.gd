@@ -25,7 +25,10 @@ func _ready() -> void:
 	visible = false
 	back_button.pressed.connect(close)
 
-	volume_slider.min_value = -40.0
+	# -80 dB reads as true silence to both the ear and AudioServer (its
+	# own volume_to_db floor) — -40 was audible-but-quiet, which meant
+	# there was no way to actually mute the game from this slider.
+	volume_slider.min_value = -80.0
 	volume_slider.max_value = 6.0
 	volume_slider.value = SettingsManager.master_volume_db
 	volume_slider.value_changed.connect(SettingsManager.set_master_volume_db)

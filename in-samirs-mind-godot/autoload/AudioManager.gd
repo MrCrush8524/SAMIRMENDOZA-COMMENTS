@@ -12,7 +12,14 @@ const FADE_TIME := 0.65
 
 var _main_resume_position: float = 0.0
 var _main_was_playing: bool = false
-var _fade_tween: Tween
+
+## One tween per player, not a single shared one — fading menu_player
+## out and main_player in happen back-to-back on every "start game"
+## transition, and a shared tween meant the second _fade() call killed
+## the first mid-flight, before its on_done (menu_player.stop) ever
+## ran. That left the menu track frozen mid-fade instead of stopped,
+## playing on top of the new main track forever after.
+var _fade_tweens: Dictionary = {}
 
 func _make_player(bus: String) -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
@@ -68,10 +75,11 @@ func play_one_shot(stream: AudioStream, volume_db: float = -4.0) -> void:
 	one_shot_player.play()
 
 func _fade(player: AudioStreamPlayer, from_db: float, to_db: float, time: float, on_done: Callable = Callable()) -> void:
-	if _fade_tween:
-		_fade_tween.kill()
+	if _fade_tweens.has(player):
+		_fade_tweens[player].kill()
 	player.volume_db = from_db
-	_fade_tween = create_tween()
-	_fade_tween.tween_property(player, "volume_db", to_db, time)
+	var t := create_tween()
+	_fade_tweens[player] = t
+	t.tween_property(player, "volume_db", to_db, time)
 	if on_done.is_valid():
-		_fade_tween.tween_callback(on_done)
+		t.tween_callback(on_done)

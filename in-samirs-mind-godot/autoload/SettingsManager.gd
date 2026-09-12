@@ -13,8 +13,13 @@ func _ready() -> void:
 
 func apply_volume() -> void:
 	var idx := AudioServer.get_bus_index("Master")
-	if idx != -1:
-		AudioServer.set_bus_volume_db(idx, master_volume_db)
+	if idx == -1:
+		return
+	AudioServer.set_bus_volume_db(idx, master_volume_db)
+	# Dragging the slider all the way down should guarantee real silence,
+	# not just a very quiet mix — set_bus_mute is the only way to be
+	# certain of that regardless of how quiet "quiet" ends up sounding.
+	AudioServer.set_bus_mute(idx, master_volume_db <= -79.0)
 
 func set_master_volume_db(db: float) -> void:
 	master_volume_db = db

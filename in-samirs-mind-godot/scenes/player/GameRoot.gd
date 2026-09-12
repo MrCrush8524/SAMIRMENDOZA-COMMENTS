@@ -352,27 +352,64 @@ func _on_backrooms_ready(scene: Node) -> void:
 ## A pit swallowed the player. Punishes exploration progress within the
 ## Backrooms — never sends them back to the real chapter — per "if you
 ## fall in the pits you go back to the first level no matter how many
-## levels you have advanced."
+## levels you have advanced." Always does a real level1 (re)load rather
+## than assuming the current scene has its own "start" node — that
+## assumption only happened to hold while level1 was the only level
+## that existed; falling from level2 needs an actual scene change.
 func backrooms_pit_fall() -> void:
 	if not GameState.in_backrooms:
 		return
 	GameState.backrooms_level = 1
-	var scene := SceneLoader.current_chapter
-	if scene and scene.has_node("start"):
-		var marker: Node3D = scene.get_node("start")
-		player.set_spawn(marker.global_position, marker.rotation.y)
 	UiRoot.set_prompt("")
 	UiRoot.show_journal("The floor gives way. You're back where you started.")
+	SceneLoader.scene_ready.connect(_reposition_at_start, CONNECT_ONE_SHOT)
+	SceneLoader.load_backrooms("level1", self)
+
+## The Lost Passage's one modeled deeper level so far. Stepping onto
+## BackroomsStairsDown in level1 calls this; more levelN scenes can be
+## added later without touching this method beyond the id string.
+func backrooms_go_deeper() -> void:
+	if not GameState.in_backrooms:
+		return
+	GameState.backrooms_level = 2
+	SceneLoader.scene_ready.connect(_reposition_at_start, CONNECT_ONE_SHOT)
+	SceneLoader.load_backrooms("level2", self)
+
+## BackroomsStairsUp in level2 calls this — the way back to level1
+## without needing to find an artifact/door (those exit the Backrooms
+## entirely; this just climbs back up a level).
+func backrooms_go_up() -> void:
+	if not GameState.in_backrooms:
+		return
+	GameState.backrooms_level = 1
+	SceneLoader.scene_ready.connect(_reposition_at_start, CONNECT_ONE_SHOT)
+	SceneLoader.load_backrooms("level1", self)
+
+func _reposition_at_start(scene: Node) -> void:
+	if scene.has_node("start"):
+		var marker: Node3D = scene.get_node("start")
+		player.set_spawn(marker.global_position, marker.rotation.y)
 
 ## Found the real artifact — exact return, per "go back to the exact
 ## point without finding the door, but you have to find a specific item".
+## The tiny nudge (much smaller than the door's) keeps "exact" honest to
+## the eye while guaranteeing the player doesn't land back inside
+## BackroomsTrigger's own hitbox — that's precisely where they were
+## standing when it first fired, so a truly exact return would walk
+## them straight back into the Lost Passage the instant they arrived.
 func exit_backrooms_via_artifact() -> void:
 	if not GameState.in_backrooms:
 		return
 	GameState.in_backrooms = false
 	GameState.chapter = _backrooms_return_chapter
+	# A random per-axis nudge could roll near (0,0) in the worst case and
+	# still land inside the trigger's box — pick a direction and a fixed
+	# minimum distance instead, guaranteed to clear it (half-extent
+	# 0.5m, corner-to-corner ~0.71m) with margin.
+	var angle := randf_range(0.0, TAU)
+	var nudge := Vector3(cos(angle), 0.0, sin(angle)) * 0.9
 	GameState.has_last_position = true
-	GameState.last_position = _backrooms_return_position
+	GameState.last_position = _backrooms_return_position + nudge
 	GameState.last_yaw = _backrooms_return_yaw
 	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
 	SceneLoader.load_chapter(GameState.chapter, self)
