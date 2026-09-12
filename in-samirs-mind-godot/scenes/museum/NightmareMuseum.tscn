@@ -1,6 +1,12 @@
-[gd_scene load_steps=35 format=3 uid="uid://nightmare_museum"]
+[gd_scene load_steps=42 format=3 uid="uid://nightmare_museum"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/RandomStinger.gd" id="3"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_ambience.ogg" id="4"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_01.wav" id="5"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_02.wav" id="6"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_03.wav" id="7"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(64, 0.2, 42)
@@ -308,3 +314,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, 14)
 
 [node name="SpawnMoonStair" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, 14)
+
+[node name="AmbientMuseum" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, 0)
+unit_size = 40.0
+max_distance = 60.0
+script = ExtResource("2")
+streams = [ExtResource("4")]
+
+[node name="Stinger_Central" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3")
+streams = [ExtResource("5"), ExtResource("6"), ExtResource("7")]
+[node name="Shape" type="CollisionShape3D" parent="Stinger_Central"]
+shape = SubResource("Shape_flavor_rotunda")
+[node name="Player" type="AudioStreamPlayer3D" parent="Stinger_Central"]
+unit_size = 15.0
+max_distance = 24.0

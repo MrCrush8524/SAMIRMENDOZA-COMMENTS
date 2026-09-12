@@ -1,6 +1,13 @@
-[gd_scene load_steps=39 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=46 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/ZoneAmbience.gd" id="3"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/terminal_ambience.ogg" id="4"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/terminal_carousel_music.ogg" id="5"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/terminal_carousel_music_alt_01.ogg" id="6"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/terminal_carousel_music_alt_02.ogg" id="7"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/terminal_pool_waiting.ogg" id="8"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(48, 0.2, 44)
@@ -336,3 +343,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.0, -16)
 
 [node name="SpawnLowerLevel" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
+
+[node name="AmbientTerminal" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+unit_size = 40.0
+max_distance = 55.0
+script = ExtResource("2")
+streams = [ExtResource("4")]
+
+[node name="Ambience_CarouselHall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3")
+streams = [ExtResource("5"), ExtResource("6"), ExtResource("7")]
+[node name="Shape" type="CollisionShape3D" parent="Ambience_CarouselHall"]
+shape = SubResource("Shape_flavor_carousel")
+[node name="Player" type="AudioStreamPlayer3D" parent="Ambience_CarouselHall"]
+unit_size = 15.0
+max_distance = 24.0
+
+[node name="Ambience_Concourse" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
+script = ExtResource("3")
+streams = [ExtResource("8")]
+[node name="Shape" type="CollisionShape3D" parent="Ambience_Concourse"]
+shape = SubResource("Shape_flavor_wide")
+[node name="Player" type="AudioStreamPlayer3D" parent="Ambience_Concourse"]
+unit_size = 15.0
+max_distance = 24.0
