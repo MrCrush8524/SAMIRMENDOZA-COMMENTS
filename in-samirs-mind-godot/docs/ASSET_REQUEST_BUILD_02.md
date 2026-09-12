@@ -7,7 +7,11 @@ Dreamcore Terminal, Nightmare Museum, Liminal Junction) into the live build.
 Everything in that delivery is now integrated and verified working. This is
 what's still missing or worth commissioning next.
 
-## Highest priority: the main story chapters have zero art
+## Highest priority: the main story chapters have zero art — ✅ RESOLVED
+
+Chapters II–V and the Lost Passage are all now delivered and integrated
+— see `docs/MASTER_ASSET_BRIEF.md` for current status. Section kept
+below as historical record of what was asked for and why.
 
 Chapter I has real textures (from earlier packets). **Chapters II (The
 Infinite Neighborhood), III (House That Knows You), IV (Above the Street),

@@ -1,5 +1,13 @@
 # In Samir's Mind — Designer Brief: Profile Screen, Pause Menu, Mirrors
 
+**Status update — see `docs/MASTER_ASSET_BRIEF.md` for current state.**
+The backgrounds (§1/§2) and the mirror frame + glass overlay (§3, minus
+character art) are delivered and integrated. Still open: the
+character-specific reflection cutouts (§3) and the pause-specific
+character cards (§2b) — both explicitly not fabricated by the designer
+without canon source art. The rest of this document is kept as the
+exact spec for those two remaining pieces.
+
 Three new systems just went into the engine (save profiles, mid-run
 character swapping, reflective mirrors). All three work — code is done,
 committed, headlessly tested — but all three are wearing placeholder art

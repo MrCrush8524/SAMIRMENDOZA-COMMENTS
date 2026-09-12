@@ -164,7 +164,7 @@ what I need from you is:
 
 ---
 
-## CHAPTER III — House That Knows You
+## CHAPTER III — House That Knows You ✅ DELIVERED & INTEGRATED — see `docs/MASTER_ASSET_BRIEF.md`
 
 A three-story house, each floor a separate flat plate stacked directly
 above the one below (Ground at y=0, Second Floor at y=4m, Attic at y=8m),
@@ -333,7 +333,7 @@ they're low priority since they already read fine as glowing markers.
 
 ---
 
-## CHAPTER IV — Above the Street
+## CHAPTER IV — Above the Street ✅ DELIVERED & INTEGRATED — see `docs/MASTER_ASSET_BRIEF.md`
 
 Three rooftop tiers stacked directly above each other (Lower Roofs at
 y=0, Mid Roofs at y=6m, High Roofs at y=12m), same 40m × 36m footprint on
@@ -449,7 +449,7 @@ reason as Chapter III's pads.
 
 ---
 
-## CHAPTER V — Pastel Dreamscape (recycled Chapter II content)
+## CHAPTER V — Pastel Dreamscape (recycled Chapter II content) ✅ DELIVERED & INTEGRATED — see `docs/MASTER_ASSET_BRIEF.md`
 
 A single large multi-room building — atrium, foyer, sunken pool, arcade/
 lounge, and a rooftop-adjacent balcony — all on one 74m × 62m floor plate,
@@ -538,7 +538,7 @@ shared across the whole building.
 
 ---
 
-## THE LOST PASSAGE (Backrooms)
+## THE LOST PASSAGE (Backrooms) ✅ DELIVERED & INTEGRATED — see `docs/MASTER_ASSET_BRIEF.md`
 
 A single small room (16m × 16m, walls 4m tall) representing "Level 1" of
 what will eventually be a larger, incrementally-built Backrooms map. This

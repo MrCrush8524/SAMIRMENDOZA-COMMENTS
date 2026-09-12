@@ -196,7 +196,15 @@ what I need from you is:
 
 ---
 
-## CHAPTER III — House That Knows You
+## CHAPTER III — House That Knows You ✅ DELIVERED & INTEGRATED
+
+All 16 textures and 23 props delivered and wired into
+`scenes/chapter03/Chapter03.tscn`, headlessly verified. The one
+deliberate reinterpretation: `chapter03_tex_child_wallpaper.png` was
+named/framed as a wall treatment, not a floor, so it's applied as a
+freestanding wallpaper-accent panel against the north wall behind the
+Child's Room rather than as that room's floor material. Kept below as
+reference, not an open ask.
 
 A three-story house, each floor a separate flat plate stacked directly
 above the one below (Ground at y=0, Second Floor at y=4m, Attic at y=8m),
@@ -365,7 +373,11 @@ they're low priority since they already read fine as glowing markers.
 
 ---
 
-## CHAPTER IV — Above the Street
+## CHAPTER IV — Above the Street ✅ DELIVERED & INTEGRATED
+
+All 10 textures and 13 props delivered and wired into
+`scenes/chapter04/Chapter04.tscn`, headlessly verified. Kept below as
+reference, not an open ask.
 
 Three rooftop tiers stacked directly above each other (Lower Roofs at
 y=0, Mid Roofs at y=6m, High Roofs at y=12m), same 40m × 36m footprint on
@@ -481,7 +493,16 @@ reason as Chapter III's pads.
 
 ---
 
-## CHAPTER V — Pastel Dreamscape (recycled Chapter II content)
+## CHAPTER V — Pastel Dreamscape (recycled Chapter II content) ✅ DELIVERED & INTEGRATED
+
+All 9 textures and 15 props delivered and wired into
+`scenes/chapter02/Chapter02.tscn` (the file backing story id
+"chapter05" — see `SceneLoader.CHAPTER_SCENES`), headlessly verified.
+`chapter05_tex_cloud_mural.png` and `chapter05_tex_endless_sunset_panel.png`
+went in as freestanding mural-panel props against the nearest wall in
+the Pool and Balcony zones respectively, per the brief's "practical
+substitute" suggestion (no ceiling mesh exists to paint a sky onto).
+Kept below as reference, not an open ask.
 
 A single large multi-room building — atrium, foyer, sunken pool, arcade/
 lounge, and a rooftop-adjacent balcony — all on one 74m × 62m floor plate,
@@ -570,7 +591,13 @@ shared across the whole building.
 
 ---
 
-## THE LOST PASSAGE (Backrooms)
+## THE LOST PASSAGE (Backrooms) ✅ DELIVERED & INTEGRATED
+
+All 3 textures and 8 props delivered and wired into
+`scenes/backrooms/BackroomsLevel1.tscn`, headlessly verified. The pit
+and stairs-down props are laid flat as floor decals (rotated to face
+up) rather than standing sprites, matching how they read in the world.
+Kept below as reference, not an open ask.
 
 A single small room (16m × 16m, walls 4m tall) representing "Level 1" of
 what will eventually be a larger, incrementally-built Backrooms map. This
@@ -667,6 +694,16 @@ they use `ui_`, `dreamer_`, and `mirror_` prefixes rather than the
 `chapterXX_tex_/prop_/sign_` convention used in Part A — same "one asset
 = one file, no contact sheets" rule applies.
 
+## 1 & 2. Backgrounds ✅ DELIVERED & INTEGRATED
+
+`ui_profile_bg.png` and `ui_pause_bg.png` both delivered at spec (exact
+1920×1080, center column kept quiet) and wired into
+`NamePromptOverlay.tscn` and `UiRoot.tscn`'s PauseMenu respectively.
+The pause-specific character cards (§2b) were **not** delivered —
+"intentionally not fabricated without canon source art," per the
+delivery notes — so the pause menu still falls back to the oversized
+Character Select cards described below. That's still open.
+
 ## 1. Create Your Profile screen
 
 **What it is**: the very first thing a new player sees after pressing
@@ -760,7 +797,17 @@ this context:
   palette, Luna's palette, Mateo's palette) so a player recognizes "the
   same character, redrawn smaller," not a new design.
 
-## 3. Mirrors — the important one
+## 3. Mirrors — the important one — frame & glass ✅ DELIVERED & INTEGRATED, character cutouts still open
+
+`mirror_frame_ornate.png` and `mirror_glass_overlay.png` both delivered
+at exact spec (1120×1760 with the 800×1257 cutout landing dead-center;
+512×768 overlay) and wired into `MirrorSurface.tscn`. The
+**character-specific reflection cutouts** (`dreamer_reflection_bobby/
+luna/mateo.png`) were **not** delivered for the same reason as the
+pause cards above — no canon source art to fabricate from — so the
+mirror's "player's own body" billboard still uses the interim-rescaled
+Character Select card art described below. That's still the one open
+critical item in this whole document.
 
 **What it is**: real-time reflective mirror surfaces (planar, camera-
 reflection based, already rendering live) placed at a handful of curated
@@ -897,32 +944,27 @@ for this one, just a decision.
 
 # Overall priority order across all three parts
 
-1. ~~**Chapter II** (Infinite Neighborhood)~~ — Part A. **Done**,
-   delivered and integrated.
-2. **Backrooms artifacts + doors** — Part A. Small, self-contained, and
-   the room is currently the least legible space in the whole game
-   without them (seven totally invisible trigger volumes in an empty
-   box). Now first in line.
-3. **Mirror reflection cutouts + frame** — Part B. Small, self-contained,
-   and currently the single most visibly "broken-looking" thing in the
-   game if a player finds a Mirror Hall or Quiet Mirror Room mirror —
-   worth leapfrogging ahead of the remaining main chapters for exactly
-   that reason.
-4. **Chapter III** (House That Knows You) — Part A. The biggest single
-   ask (14 named rooms across three floors) but also the most impactful
-   once done, and the very next thing after Chapter II for anyone
-   actually playing through.
-5. **Chapter IV** (Above the Street) — Part A. Pairs naturally with III
-   since they're now physically connected via the Roof Hatch.
-6. **Profile screen + pause menu backgrounds, pause cards** — Part B.
-   Self-contained, fast, meaningfully improves first impressions (the
-   profile screen is literally the first new-player screen) without
-   being on the critical path of "does the game look finished while
-   playing."
-7. **Chapter V** (Pastel Dreamscape) — Part A. Lowest priority of the
-   five main chapters since it's a recycled/secondary chapter rather
-   than critical path, but still needed for full coverage.
-8. **Side-level flat-color leftovers** — Part C. Pure polish, do
+1. ~~**Chapter II** (Infinite Neighborhood)~~ — Part A. **Done.**
+2. ~~**Backrooms artifacts + doors**~~ — Part A. **Done.**
+3. ~~**Chapter III** (House That Knows You)~~ — Part A. **Done.**
+4. ~~**Chapter IV** (Above the Street)~~ — Part A. **Done.**
+5. ~~**Chapter V** (Pastel Dreamscape)~~ — Part A. **Done.**
+6. ~~**Profile screen + pause menu backgrounds**~~ — Part B. **Done.**
+7. ~~**Mirror frame + glass overlay**~~ — Part B. **Done.**
+
+Everything above is delivered and integrated — every main-story chapter
+(I–V) plus the Lost Passage now has real art, headlessly verified.
+What's left, in order:
+
+1. **Character-specific reflection cutouts** (Part B, §3) — the one
+   remaining critical item. The mirror renders correctly but the
+   "player's body" billboard is still standing in for real art with a
+   rescaled Character Select card. Needs `dreamer_reflection_bobby/
+   luna/mateo.png` per the exact spec in that section.
+2. **Pause-specific character cards** (Part B, §2b) — same "no canon
+   source art" gap, lower stakes since the pause menu still works, just
+   with an ill-fitting card shape.
+3. **Side-level flat-color leftovers** — Part C. Pure polish, do
    whenever convenient.
 
 Same delivery process as always: zip it, include a short
