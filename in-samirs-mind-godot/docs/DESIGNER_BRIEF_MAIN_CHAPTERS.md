@@ -53,7 +53,11 @@ with zero guesswork on my end.
 
 ---
 
-## CHAPTER II — The Infinite Neighborhood
+## CHAPTER II — The Infinite Neighborhood ✅ DELIVERED & INTEGRATED
+
+Delivered and wired into the live scene, headlessly verified — kept
+below as reference, not an open ask. See `docs/MASTER_ASSET_BRIEF.md`
+for the full status note and the consolidated priority list.
 
 A dusty-pastel liminal suburb, entirely outdoors, no ceiling. One big
 walkable plate, five named zones arranged in a cross around a central hub,

@@ -77,7 +77,19 @@ fastest to finish, Part C is pure polish.
 
 ---
 
-## CHAPTER II — The Infinite Neighborhood
+## CHAPTER II — The Infinite Neighborhood ✅ DELIVERED & INTEGRATED
+
+All textures, props, and signage below have been delivered and wired
+into the live scene (`scenes/infinite_neighborhood/InfiniteNeighborhood.tscn`):
+ground/wall/park/gazebo/field textures, both house-facade textures, the
+house door prop, all three window shutters, the hub planter, stop sign,
+bus stop bench, park bench, swing set, all six ball props, the gazebo
+centerpiece, string lights, folding chairs, the nostalgia TV, and the
+Twilight Station sign. The "unbuilt but needed" house is now built — a
+real facade (two variants, so the wall doesn't read as one repeated
+building) with the door, both shutters, and a second undressed facade
+patch for background variety. Headlessly verified with no load errors.
+Kept below as reference for the exact numbers used, not as an open ask.
 
 A dusty-pastel liminal suburb, entirely outdoors, no ceiling. One big
 walkable plate, five named zones arranged in a cross around a central hub,
@@ -885,13 +897,12 @@ for this one, just a decision.
 
 # Overall priority order across all three parts
 
-1. **Chapter II** (Infinite Neighborhood) — Part A. It's the very next
-   thing after the already-finished Chapter I, so it's first in line for
-   anyone actually playing through.
+1. ~~**Chapter II** (Infinite Neighborhood)~~ — Part A. **Done**,
+   delivered and integrated.
 2. **Backrooms artifacts + doors** — Part A. Small, self-contained, and
    the room is currently the least legible space in the whole game
    without them (seven totally invisible trigger volumes in an empty
-   box).
+   box). Now first in line.
 3. **Mirror reflection cutouts + frame** — Part B. Small, self-contained,
    and currently the single most visibly "broken-looking" thing in the
    game if a player finds a Mirror Hall or Quiet Mirror Room mirror —
@@ -899,7 +910,8 @@ for this one, just a decision.
    that reason.
 4. **Chapter III** (House That Knows You) — Part A. The biggest single
    ask (14 named rooms across three floors) but also the most impactful
-   once done.
+   once done, and the very next thing after Chapter II for anyone
+   actually playing through.
 5. **Chapter IV** (Above the Street) — Part A. Pairs naturally with III
    since they're now physically connected via the Roof Hatch.
 6. **Profile screen + pause menu backgrounds, pause cards** — Part B.
