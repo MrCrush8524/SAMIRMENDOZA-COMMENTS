@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=65 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -104,6 +104,48 @@ albedo_texture = ExtResource("5")
 emission_enabled = true
 emission = Color(0.95, 0.85, 0.6, 1)
 emission_energy_multiplier = 0.6
+
+[sub_resource type="BoxMesh" id="ParaSeg_1200x30"]
+size = Vector3(12, 1.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_1200x30Shape"]
+size = Vector3(12, 1.1, 0.3)
+
+[sub_resource type="BoxMesh" id="ParaSeg_400x30"]
+size = Vector3(4, 1.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_400x30Shape"]
+size = Vector3(4, 1.1, 0.3)
+
+[sub_resource type="BoxMesh" id="ParaSeg_30x1200"]
+size = Vector3(0.3, 1.1, 12)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_30x1200Shape"]
+size = Vector3(0.3, 1.1, 12)
+
+[sub_resource type="BoxMesh" id="ParaSeg_30x400"]
+size = Vector3(0.3, 1.1, 4)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_30x400Shape"]
+size = Vector3(0.3, 1.1, 4)
+
+[sub_resource type="BoxMesh" id="ParaSeg_800x30"]
+size = Vector3(8, 1.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_800x30Shape"]
+size = Vector3(8, 1.1, 0.3)
+
+[sub_resource type="BoxMesh" id="ParaSeg_30x800"]
+size = Vector3(0.3, 1.1, 8)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_30x800Shape"]
+size = Vector3(0.3, 1.1, 8)
+
+[sub_resource type="BoxMesh" id="ParaSeg_30x200"]
+size = Vector3(0.3, 1.1, 2)
+
+[sub_resource type="BoxShape3D" id="ParaSeg_30x200Shape"]
+size = Vector3(0.3, 1.1, 2)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -413,3 +455,324 @@ mesh = SubResource("LiftPadMesh")
 surface_material_override/0 = SubResource("LiftPadMat")
 [node name="Shape" type="CollisionShape3D" parent="HighRoofs/LiftDownToMid"]
 shape = SubResource("LiftPadShape")
+
+[node name="L_ChimneyRow_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0, 0.55, -14)
+[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="L_ChimneyRow_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 0.55, -2)
+[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_S_0"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_S_0"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="L_ChimneyRow_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 0.55, -2)
+[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_S_1"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_S_1"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="L_ChimneyRow_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.55, -8.0)
+[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_E_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_E_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="L_ChimneyRow_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.55, -8.0)
+[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_W_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_W_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="L_GutterWalk_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 2)
+[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="L_GutterWalk_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 14)
+[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_S_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_S_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="L_GutterWalk_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.55, 8.0)
+[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_E_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_E_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="L_GutterWalk_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.55, 4.0)
+[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_W_0"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_W_0"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="L_GutterWalk_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.55, 12.0)
+[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_W_1"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_W_1"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="M_RopeBridge_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 6.55, -6)
+[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="M_RopeBridge_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 6.55, 6)
+[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_S_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_S_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="M_RopeBridge_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6.55, -4.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_E_0"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_E_0"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="M_RopeBridge_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6.55, 4.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_E_1"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_E_1"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="M_RopeBridge_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6.55, 0.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_W_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_W_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="M_WaterTower_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 6.55, -16)
+[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="M_WaterTower_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 6.55, -4)
+[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_S_0"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_S_0"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="M_WaterTower_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0, 6.55, -4)
+[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_S_1"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_S_1"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="M_WaterTower_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 6.55, -10.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_E_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_E_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="M_WaterTower_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.55, -10.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_W_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_W_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="M_Skylight_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 6.55, 2)
+[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_Skylight_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="M_Skylight_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 6.55, 14)
+[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_S_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_Skylight_S_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="M_Skylight_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 6.55, 8.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_E_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_Skylight_E_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="M_Skylight_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 4.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_W_0"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_Skylight_W_0"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="M_Skylight_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 12.0)
+[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_W_1"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="M_Skylight_W_1"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="H_ClockTower_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 12.55, -12)
+[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_N_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_N_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="H_ClockTower_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 12.55, 0)
+[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_S_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_S_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="H_ClockTower_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12.55, -10.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_E_0"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_E_0"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="H_ClockTower_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12.55, -2.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_E_1"]
+mesh = SubResource("ParaSeg_30x400")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_E_1"]
+shape = SubResource("ParaSeg_30x400Shape")
+
+[node name="H_ClockTower_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 12.55, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_W_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_W_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="H_Antenna_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 12.55, -10)
+[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_N_0"]
+mesh = SubResource("ParaSeg_800x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_Antenna_N_0"]
+shape = SubResource("ParaSeg_800x30Shape")
+
+[node name="H_Antenna_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 12.55, -2)
+[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_S_0"]
+mesh = SubResource("ParaSeg_800x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_Antenna_S_0"]
+shape = SubResource("ParaSeg_800x30Shape")
+
+[node name="H_Antenna_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 12.55, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_E_0"]
+mesh = SubResource("ParaSeg_30x800")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_Antenna_E_0"]
+shape = SubResource("ParaSeg_30x800Shape")
+
+[node name="H_Antenna_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, -9.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_W_0"]
+mesh = SubResource("ParaSeg_30x200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_Antenna_W_0"]
+shape = SubResource("ParaSeg_30x200Shape")
+
+[node name="H_Antenna_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, -3.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_W_1"]
+mesh = SubResource("ParaSeg_30x200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_Antenna_W_1"]
+shape = SubResource("ParaSeg_30x200Shape")
+
+[node name="H_OpenDream_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0, 12.55, 4)
+[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_N_0"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_N_0"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="H_OpenDream_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 12.55, 4)
+[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_N_1"]
+mesh = SubResource("ParaSeg_400x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_N_1"]
+shape = SubResource("ParaSeg_400x30Shape")
+
+[node name="H_OpenDream_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 12.55, 16)
+[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_S_0"]
+mesh = SubResource("ParaSeg_1200x30")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_S_0"]
+shape = SubResource("ParaSeg_1200x30Shape")
+
+[node name="H_OpenDream_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_E_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_E_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
+[node name="H_OpenDream_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 12.55, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_W_0"]
+mesh = SubResource("ParaSeg_30x1200")
+surface_material_override/0 = SubResource("ParapetMat")
+[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_W_0"]
+shape = SubResource("ParaSeg_30x1200Shape")
+
