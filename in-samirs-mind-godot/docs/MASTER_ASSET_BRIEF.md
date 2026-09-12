@@ -694,15 +694,16 @@ they use `ui_`, `dreamer_`, and `mirror_` prefixes rather than the
 `chapterXX_tex_/prop_/sign_` convention used in Part A — same "one asset
 = one file, no contact sheets" rule applies.
 
-## 1 & 2. Backgrounds ✅ DELIVERED & INTEGRATED
+## 1 & 2. Backgrounds + pause cards ✅ FULLY DELIVERED & INTEGRATED
 
-`ui_profile_bg.png` and `ui_pause_bg.png` both delivered at spec (exact
+`ui_profile_bg.png` and `ui_pause_bg.png` delivered at spec (exact
 1920×1080, center column kept quiet) and wired into
 `NamePromptOverlay.tscn` and `UiRoot.tscn`'s PauseMenu respectively.
-The pause-specific character cards (§2b) were **not** delivered —
-"intentionally not fabricated without canon source art," per the
-delivery notes — so the pause menu still falls back to the oversized
-Character Select cards described below. That's still open.
+The pause-specific character cards (§2b, `ui_pausecard_bobby/luna/
+mateo.png`, 660×960, frameless) landed in a follow-up delivery and
+are now wired into the pause menu's three `TextureButton` cards,
+replacing the oversized Character Select cards described below.
+Nothing left open in this section.
 
 ## 1. Create Your Profile screen
 
@@ -797,17 +798,17 @@ this context:
   palette, Luna's palette, Mateo's palette) so a player recognizes "the
   same character, redrawn smaller," not a new design.
 
-## 3. Mirrors — the important one — frame & glass ✅ DELIVERED & INTEGRATED, character cutouts still open
+## 3. Mirrors — the important one ✅ FULLY DELIVERED & INTEGRATED
 
-`mirror_frame_ornate.png` and `mirror_glass_overlay.png` both delivered
-at exact spec (1120×1760 with the 800×1257 cutout landing dead-center;
+`mirror_frame_ornate.png` and `mirror_glass_overlay.png` delivered at
+exact spec (1120×1760 with the 800×1257 cutout landing dead-center;
 512×768 overlay) and wired into `MirrorSurface.tscn`. The
-**character-specific reflection cutouts** (`dreamer_reflection_bobby/
-luna/mateo.png`) were **not** delivered for the same reason as the
-pause cards above — no canon source art to fabricate from — so the
-mirror's "player's own body" billboard still uses the interim-rescaled
-Character Select card art described below. That's still the one open
-critical item in this whole document.
+character-specific reflection cutouts (`dreamer_reflection_bobby/luna/
+mateo.png`, 620×980, feet flush to the bottom edge exactly as specced)
+landed in a follow-up delivery and are now wired into `Player.tscn`'s
+`MirrorBody` — the "player's own body" billboard is real dedicated art
+now, not a rescaled Character Select card. Nothing left open in this
+section.
 
 **What it is**: real-time reflective mirror surfaces (planar, camera-
 reflection based, already rendering live) placed at a handful of curated
@@ -951,21 +952,15 @@ for this one, just a decision.
 5. ~~**Chapter V** (Pastel Dreamscape)~~ — Part A. **Done.**
 6. ~~**Profile screen + pause menu backgrounds**~~ — Part B. **Done.**
 7. ~~**Mirror frame + glass overlay**~~ — Part B. **Done.**
+8. ~~**Character-specific reflection cutouts**~~ — Part B, §3. **Done.**
+9. ~~**Pause-specific character cards**~~ — Part B, §2b. **Done.**
 
-Everything above is delivered and integrated — every main-story chapter
-(I–V) plus the Lost Passage now has real art, headlessly verified.
-What's left, in order:
+Everything in Parts A and B is now delivered and integrated — every
+main-story chapter (I–V), the Lost Passage, and the entire profile/
+pause/mirror system, all headlessly verified. What's left:
 
-1. **Character-specific reflection cutouts** (Part B, §3) — the one
-   remaining critical item. The mirror renders correctly but the
-   "player's body" billboard is still standing in for real art with a
-   rescaled Character Select card. Needs `dreamer_reflection_bobby/
-   luna/mateo.png` per the exact spec in that section.
-2. **Pause-specific character cards** (Part B, §2b) — same "no canon
-   source art" gap, lower stakes since the pause menu still works, just
-   with an ill-fitting card shape.
-3. **Side-level flat-color leftovers** — Part C. Pure polish, do
-   whenever convenient.
+1. **Side-level flat-color leftovers** — Part C. Pure polish, do
+   whenever convenient. The one remaining item in this whole document.
 
 Same delivery process as always: zip it, include a short
 `START_HERE_CLAUDE.md`, ship however many pieces are ready rather than

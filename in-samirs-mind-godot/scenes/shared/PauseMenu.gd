@@ -4,10 +4,10 @@ extends Control
 ## Nightmare Passage already claims Escape for exit_nightmare, and the
 ## Backrooms deliberately has no player-initiated exit).
 ##
-## Reuses the same character-card art as Character Select so a mid-run
-## swap looks like the same choice, just made again — picking a card
-## swaps GameState.dreamer and calls Player.refresh_dreamer_visuals()
-## live, no chapter reload needed.
+## Uses the dedicated front/three-quarter portrait art from the locked
+## character body asset pack (distinct from the bigger Character Select
+## door cards) — picking a card swaps GameState.dreamer and calls
+## Player.refresh_dreamer_visuals() live, no chapter reload needed.
 
 @onready var bobby_button: BaseButton = %PauseCardBobby
 @onready var luna_button: BaseButton = %PauseCardLuna

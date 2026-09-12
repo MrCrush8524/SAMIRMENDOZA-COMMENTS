@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" path="res://assets/paws/polydactyl_cat_paws_with_golden_bell.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/paws/luna_s_scruffy_paws_first_person_view.png" id="3"]
 [ext_resource type="Texture2D" path="res://assets/paws/mateo_s_bengal_cat_first_person_view.png" id="4"]
-[ext_resource type="Texture2D" path="res://assets/characters/Bobby/Bobby_character_card.webp" id="5"]
-[ext_resource type="Texture2D" path="res://assets/characters/Luna/Luna_character_card.webp" id="6"]
-[ext_resource type="Texture2D" path="res://assets/characters/Mateo/Mateo_character_card.webp" id="7"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_bobby.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_luna.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_mateo.png" id="7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.22
@@ -36,9 +36,9 @@ cull_mask = 1048573
 target_position = Vector3(0, 0, -2.2)
 
 [node name="MirrorBody" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
 layers = 2
-pixel_size = 0.0009
+pixel_size = 0.001327
 billboard = 1
 double_sided = true
 no_depth_test = false

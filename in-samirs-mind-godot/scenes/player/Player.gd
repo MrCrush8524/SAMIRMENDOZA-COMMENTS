@@ -30,8 +30,9 @@ const SCROLL_WALK_HOLD_TIME := 0.25
 @export var paw_texture_luna: Texture2D
 @export var paw_texture_mateo: Texture2D
 
-## Full-body character-card art (same source as Character Select) used
-## only as the player's reflection in MirrorSurface instances — see
+## Dedicated "looking back" body art (from the locked character body
+## asset pack, distinct from the Character Select door cards) used only
+## as the player's reflection in MirrorSurface instances — see
 ## mirror_body below. Not paw art: mirrors want to show "you", not a
 ## first-person hand.
 @export var mirror_texture_bobby: Texture2D

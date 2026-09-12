@@ -1,12 +1,19 @@
 # In Samir's Mind — Designer Brief: Profile Screen, Pause Menu, Mirrors
 
 **Status update — see `docs/MASTER_ASSET_BRIEF.md` for current state.**
-The backgrounds (§1/§2) and the mirror frame + glass overlay (§3, minus
-character art) are delivered and integrated. Still open: the
-character-specific reflection cutouts (§3) and the pause-specific
-character cards (§2b) — both explicitly not fabricated by the designer
-without canon source art. The rest of this document is kept as the
-exact spec for those two remaining pieces.
+Everything in this brief is now delivered and integrated: the
+backgrounds (§1/§2), the mirror frame + glass overlay, the
+character-specific reflection cutouts (`dreamer_reflection_bobby/luna/
+mateo.png`), and the pause-specific character cards
+(`ui_pausecard_bobby/luna/mateo.png`) all landed and are wired in.
+Nothing open in this document anymore — kept as historical spec.
+
+A separate general-purpose "locked likeness" character body pack
+(front/three-quarter portraits, full-body cutouts, looking-back poses)
+also arrived and is stored under `assets/characters/<Name>/` but isn't
+wired into anything — the purpose-built assets above superseded it for
+both the mirror and pause-card use cases before it was needed. Kept
+available for whatever future UI wants a different character pose.
 
 Three new systems just went into the engine (save profiles, mid-run
 character swapping, reflective mirrors). All three work — code is done,

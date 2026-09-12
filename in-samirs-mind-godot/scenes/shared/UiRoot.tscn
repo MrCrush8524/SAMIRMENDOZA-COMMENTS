@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" path="res://assets/ui_backgrounds/journal_page_bg.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/ui_backgrounds/dream_track_card_bg.png" id="3"]
 [ext_resource type="Script" path="res://scenes/shared/PauseMenu.gd" id="4"]
-[ext_resource type="Texture2D" path="res://assets/characters/Bobby/Bobby_character_card.webp" id="5"]
-[ext_resource type="Texture2D" path="res://assets/characters/Luna/Luna_character_card.webp" id="6"]
-[ext_resource type="Texture2D" path="res://assets/characters/Mateo/Mateo_character_card.webp" id="7"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/ui_pausecard_bobby.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/ui_pausecard_luna.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/ui_pausecard_mateo.png" id="7"]
 [ext_resource type="Texture2D" path="res://assets/menu_art/ui_pause_bg.png" id="8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_transparent"]
