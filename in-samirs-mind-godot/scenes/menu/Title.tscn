@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://scenes/menu/SettingsOverlay.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/menu/ExtrasOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/menu/SoundtrackOverlay.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/menu/ChapterSelectOverlay.tscn" id="7"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -95,5 +96,9 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [node name="SoundtrackOverlay" parent="." instance=ExtResource("6")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="ChapterSelectOverlay" parent="." instance=ExtResource("7")]
 unique_name_in_owner = true
 layout_mode = 1

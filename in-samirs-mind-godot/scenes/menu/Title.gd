@@ -26,6 +26,7 @@ const REGIONS := {
 @onready var settings_overlay: Control = %SettingsOverlay
 @onready var extras_overlay: Control = %ExtrasOverlay
 @onready var soundtrack_overlay: Control = %SoundtrackOverlay
+@onready var chapter_select_overlay: Control = %ChapterSelectOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
@@ -68,8 +69,10 @@ func _on_continue() -> void:
 	if not SaveManager.load_game():
 		btn_continue.disabled = true
 		return
-	AudioManager.stop_menu()
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/player/GameRoot.tscn")
+	# Chapter Select decides where GameRoot actually spawns (exact resume,
+	# or the start of any chapter already visited) — the scene change to
+	# GameRoot.tscn happens from inside that overlay, not here.
+	chapter_select_overlay.open()
 
 func _on_lang_selected(index: int) -> void:
 	var codes := ["en", "es", "pt-BR"]

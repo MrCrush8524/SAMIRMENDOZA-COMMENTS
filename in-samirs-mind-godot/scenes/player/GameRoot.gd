@@ -117,6 +117,11 @@ func enter_chapter(chapter_id: String, spawn_marker: String = "start", random_sp
 	else:
 		GameState.spawn_id = spawn_marker
 	GameState.has_last_position = false
+	# Chapter Select only cares about real story chapters ("chapter01" ..
+	# "chapter06") — side levels (mall/zoo/terminal/...) use plain ids and
+	# never belong in this list, see GameState.visited_chapters.
+	if chapter_id.begins_with("chapter") and not GameState.visited_chapters.has(chapter_id):
+		GameState.visited_chapters.append(chapter_id)
 	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
 	SceneLoader.load_chapter(chapter_id, self)
 

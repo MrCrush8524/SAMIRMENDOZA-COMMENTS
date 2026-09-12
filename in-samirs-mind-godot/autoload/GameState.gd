@@ -80,6 +80,14 @@ var dream_tokens: int = 0
 ## was locked the whole time, not a new teleport.
 var neighborhood_discoveries: Array[String] = []
 
+## Every main-story chapter id ("chapter01".."chapter06") the player has
+## ever actually entered, in the order first reached. Powers the Chapter
+## Select screen (Title's Continue flow: resume exactly where you left
+## off, or jump back into any chapter you've already been to). Side
+## levels (mall/zoo/terminal/museum/liminal_junction) deliberately don't
+## belong here — those are door-accessible detours, not story progress.
+var visited_chapters: Array[String] = []
+
 ## The player's exact last-safe transform, captured by SaveManager at save
 ## time (see `current_player`). Null until a save has actually happened
 ## with a player present, so a fresh/legacy save falls back to spawn_id's
@@ -115,6 +123,8 @@ func new_run(chosen_dreamer: String) -> void:
 	backrooms_door_target = ""
 	dream_tokens = 0
 	neighborhood_discoveries.clear()
+	visited_chapters.clear()
+	visited_chapters.append("chapter01")
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -132,6 +142,7 @@ func to_dict() -> Dictionary:
 		"nightmare_rewards": nightmare_rewards,
 		"dream_tokens": dream_tokens,
 		"neighborhood_discoveries": neighborhood_discoveries,
+		"visited_chapters": visited_chapters,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -157,6 +168,9 @@ func from_dict(data: Dictionary) -> bool:
 	nightmare_rewards.assign(data.get("nightmare_rewards", []))
 	dream_tokens = int(data.get("dream_tokens", 0))
 	neighborhood_discoveries.assign(data.get("neighborhood_discoveries", []))
+	visited_chapters.assign(data.get("visited_chapters", [chapter]))
+	if not visited_chapters.has(chapter):
+		visited_chapters.append(chapter)
 	in_nightmare = false
 	nightmare_depth = 0
 
