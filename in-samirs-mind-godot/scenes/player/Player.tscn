@@ -38,7 +38,7 @@ target_position = Vector3(0, 0, -2.2)
 [node name="MirrorBody" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 layers = 2
-pixel_size = 0.0026
+pixel_size = 0.0009
 billboard = 1
 double_sided = true
 no_depth_test = false
