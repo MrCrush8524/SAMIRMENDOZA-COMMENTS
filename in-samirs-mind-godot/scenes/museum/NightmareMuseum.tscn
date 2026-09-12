@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://nightmare_museum"]
+[gd_scene load_steps=64 format=3 uid="uid://nightmare_museum"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -7,13 +7,36 @@
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_01.wav" id="5"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_02.wav" id="6"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_03.wav" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_gallery_floor.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_sleeping_wallpaper.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_velvet_rotunda.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_restoration_lab_tile.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_giftshop_shelving.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_carousel_archive.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_cloud_fossils.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_forgotten_toys_cabinet.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_reflecting_pool.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_01.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_02.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_03.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_04.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_05.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_soft_taxidermy_deer.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_soft_taxidermy_rabbit.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_star_nursery_crib.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_star_nursery_mobile.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_audio_guide_kiosk.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_blank_gallery_placard.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_impossible_corridor.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_lost_and_found.png" id="29"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(64, 0.2, 42)
 [sub_resource type="BoxShape3D" id="FloorShape"]
 size = Vector3(64, 0.2, 42)
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
-albedo_color = Color(0.28, 0.2, 0.16, 1)
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(6, 4, 1)
 roughness = 0.5
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
@@ -25,7 +48,8 @@ size = Vector3(42, 5, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeNS"]
 size = Vector3(42, 5, 0.3)
 [sub_resource type="StandardMaterial3D" id="WallMat"]
-albedo_color = Color(0.32, 0.24, 0.22, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(5, 1, 1)
 roughness = 0.9
 
 [sub_resource type="PlaneMesh" id="ZonePlaneRotunda"]
@@ -33,22 +57,27 @@ size = Vector2(14, 14)
 [sub_resource type="PlaneMesh" id="ZonePlaneGallery"]
 size = Vector2(16, 12)
 [sub_resource type="StandardMaterial3D" id="RotundaMat"]
-albedo_color = Color(0.35, 0.08, 0.14, 1)
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.5, 1.5, 1)
 roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="EntranceMat"]
-albedo_color = Color(0.4, 0.32, 0.2, 1)
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="PaintingsMat"]
-albedo_color = Color(0.85, 0.72, 0.5, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="MirrorMat"]
 albedo_color = Color(0.2, 0.22, 0.32, 1)
 roughness = 0.2
 [sub_resource type="StandardMaterial3D" id="CloudFossilsMat"]
-albedo_color = Color(0.55, 0.55, 0.6, 1)
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1.5, 1.25, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="ForgottenToysMat"]
-albedo_color = Color(0.5, 0.28, 0.3, 1)
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.5, 1.25, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="StarNurseryMat"]
 albedo_color = Color(0.25, 0.22, 0.42, 1)
@@ -57,10 +86,12 @@ roughness = 0.3
 albedo_color = Color(0.15, 0.15, 0.18, 1)
 roughness = 0.4
 [sub_resource type="StandardMaterial3D" id="WeatheredMemoriesMat"]
-albedo_color = Color(0.45, 0.4, 0.3, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(1.5, 1, 1)
 roughness = 0.85
 [sub_resource type="StandardMaterial3D" id="MoonStairMat"]
-albedo_color = Color(0.3, 0.32, 0.45, 1)
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.25, 1, 1)
 roughness = 0.4
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_rotunda"]
@@ -331,3 +362,90 @@ shape = SubResource("Shape_flavor_rotunda")
 [node name="Player" type="AudioStreamPlayer3D" parent="Stinger_Central"]
 unit_size = 15.0
 max_distance = 24.0
+
+[node name="Prop_CarouselArchive" type="Sprite3D" parent="Flavor_VelvetRotunda"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+texture = ExtResource("13")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_CloudFossils" type="Sprite3D" parent="Flavor_CloudFossils"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+texture = ExtResource("14")
+pixel_size = 0.0016
+
+[node name="Prop_ForgottenToysCabinet" type="Sprite3D" parent="Flavor_ForgottenToys"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+texture = ExtResource("15")
+pixel_size = 0.0018
+
+[node name="Prop_ReflectingPool" type="Sprite3D" parent="Flavor_MirrorRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+texture = ExtResource("16")
+pixel_size = 0.002
+
+[node name="Prop_SleepingPortrait1" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.8, -3)
+texture = ExtResource("17")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait2" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -3)
+texture = ExtResource("18")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait3" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -3)
+texture = ExtResource("19")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait4" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -3)
+texture = ExtResource("20")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait5" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.8, -3)
+texture = ExtResource("21")
+pixel_size = 0.0012
+
+[node name="Prop_TaxidermyDeer" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.9, 3)
+texture = ExtResource("22")
+pixel_size = 0.0016
+
+[node name="Prop_TaxidermyRabbit" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.6, 3)
+texture = ExtResource("23")
+pixel_size = 0.0014
+
+[node name="Prop_StarNurseryCrib" type="Sprite3D" parent="Flavor_StarNursery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
+texture = ExtResource("24")
+pixel_size = 0.0014
+
+[node name="Prop_StarNurseryMobile" type="Sprite3D" parent="Flavor_StarNursery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.2, 0)
+texture = ExtResource("25")
+pixel_size = 0.0012
+billboard = 1
+
+[node name="Sign_AudioGuideKiosk" type="Sprite3D" parent="Flavor_EntranceHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 3)
+texture = ExtResource("26")
+pixel_size = 0.0018
+
+[node name="Sign_BlankGalleryPlacard" type="Sprite3D" parent="Flavor_MoonStair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
+texture = ExtResource("27")
+pixel_size = 0.001
+
+[node name="Sign_ImpossibleCorridor" type="Sprite3D" parent="Flavor_ImpossibleCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -4)
+texture = ExtResource("28")
+pixel_size = 0.001
+
+[node name="Sign_LostAndFound" type="Sprite3D" parent="Flavor_WeatheredMemories"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
+texture = ExtResource("29")
+pixel_size = 0.001

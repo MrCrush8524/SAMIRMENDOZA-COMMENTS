@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=75 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -35,6 +35,8 @@
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_sign_gate_A14.png" id="33"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_sign_gate_A15.png" id="34"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_sign_gate_A16.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_tex_sleep_gate_carpet.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/textures/terminal/terminal_tex_velvet_lounge.png" id="37"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(48, 0.2, 44)
@@ -69,7 +71,7 @@ albedo_texture = ExtResource("10")
 uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="ConcourseMat"]
-albedo_texture = ExtResource("11")
+albedo_texture = ExtResource("36")
 uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="FoodCourtMat"]
@@ -77,7 +79,8 @@ albedo_texture = ExtResource("12")
 uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="VelvetLoungeMat"]
-albedo_color = Color(0.48, 0.38, 0.62, 1)
+albedo_texture = ExtResource("37")
+uv1_scale = Vector3(1.5, 1, 1)
 roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="TinyCinemaMat"]
 albedo_color = Color(0.15, 0.1, 0.2, 1)

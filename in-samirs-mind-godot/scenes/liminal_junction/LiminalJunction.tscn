@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://liminal_junction"]
+[gd_scene load_steps=94 format=3 uid="uid://liminal_junction"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -7,13 +7,62 @@
 [ext_resource type="AudioStream" path="res://assets/audio/levels/station_carousel_lounge.ogg" id="5"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/station_infinite_waiting.ogg" id="6"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/station_void_platform.ogg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_departure_marble.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_fountain_plaza.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_glass_trainshed.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_infinite_waiting_floor.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_mirror_passage.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_platform_floor.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_void_starfield.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_carousel_lounge.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_departure_clocktower.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_dining_car_table.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_dinosaur_skeleton.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_entrance_palms.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_garden_topiary.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_grand_hall_fountain.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_luggage_pile.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_parked_train.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_sleeper_bunks.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_departure_clock_face.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_lower_level_directory.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_01.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_02.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_03.png" id="29"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_04.png" id="30"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_05.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_06.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_07.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_08.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_09.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_10.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_11.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_12.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_13.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_14.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_15.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_16.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_17.png" id="43"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_18.png" id="44"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_19.png" id="45"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_20.png" id="46"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_21.png" id="47"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_22.png" id="48"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_23.png" id="49"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_24.png" id="50"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_time_room.png" id="51"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_anywhere.png" id="52"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_forgotten_places.png" id="53"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_somewhere_else.png" id="54"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_void_platform.png" id="55"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(70, 0.2, 50)
 [sub_resource type="BoxShape3D" id="FloorShape"]
 size = Vector3(70, 0.2, 50)
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
-albedo_color = Color(0.92, 0.86, 0.8, 1)
+albedo_texture = ExtResource("13")
+uv1_scale = Vector3(7, 5, 1)
 roughness = 0.4
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
@@ -25,7 +74,8 @@ size = Vector3(50, 6, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeNS"]
 size = Vector3(50, 6, 0.3)
 [sub_resource type="StandardMaterial3D" id="WallMat"]
-albedo_color = Color(0.95, 0.9, 0.85, 1)
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(5, 1, 1)
 roughness = 0.6
 
 [sub_resource type="PlaneMesh" id="ZonePlaneHall"]
@@ -35,19 +85,24 @@ size = Vector2(16, 10)
 [sub_resource type="PlaneMesh" id="ZonePlanePlatforms"]
 size = Vector2(10, 42)
 [sub_resource type="StandardMaterial3D" id="GrandHallMat"]
-albedo_color = Color(0.96, 0.84, 0.6, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(1.5, 1.25, 1)
 roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="DepartureMat"]
-albedo_color = Color(0.75, 0.82, 0.95, 1)
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(1.5, 1, 1)
 roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="PlatformMat"]
-albedo_color = Color(0.85, 0.78, 0.78, 1)
+albedo_texture = ExtResource("13")
+uv1_scale = Vector3(1, 4, 1)
 roughness = 0.8
 [sub_resource type="StandardMaterial3D" id="VoidMat"]
-albedo_color = Color(0.04, 0.03, 0.08, 1)
+albedo_texture = ExtResource("14")
+uv1_scale = Vector3(1.25, 1, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="MirrorPassageMat"]
-albedo_color = Color(0.85, 0.55, 0.75, 1)
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.25, 1, 1)
 roughness = 0.15
 [sub_resource type="StandardMaterial3D" id="CarouselLoungeMat"]
 albedo_color = Color(0.95, 0.75, 0.85, 1)
@@ -59,7 +114,8 @@ roughness = 0.75
 albedo_color = Color(0.55, 0.45, 0.35, 1)
 roughness = 0.8
 [sub_resource type="StandardMaterial3D" id="InfiniteWaitingMat"]
-albedo_color = Color(0.8, 0.78, 0.72, 1)
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1.75, 0.75, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="ObservationDeckMat"]
 albedo_color = Color(0.5, 0.6, 0.75, 1)
@@ -149,8 +205,11 @@ shape = SubResource("WallShapeNS")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 4)
 mesh = SubResource("ZonePlaneHall")
 surface_material_override/0 = SubResource("GrandHallMat")
-[node name="Fountain" type="MeshInstance3D" parent="ZoneGrandHall"]
-transform = Transform3D(1.5, 0, 0, 0, 1.2, 0, 0, 0, 1.5, 0, 0.6, 0)
+[node name="Fountain" type="Sprite3D" parent="ZoneGrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+texture = ExtResource("21")
+pixel_size = 0.0032
+billboard = 1
 [node name="Light" type="OmniLight3D" parent="ZoneGrandHall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 light_color = Color(1, 0.92, 0.75, 1)
@@ -391,3 +450,230 @@ shape = SubResource("Shape_flavor_oddity")
 [node name="Player" type="AudioStreamPlayer3D" parent="Ambience_VoidPlatform"]
 unit_size = 15.0
 max_distance = 24.0
+
+[node name="Prop_CarouselLounge" type="Sprite3D" parent="Flavor_CarouselLounge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+texture = ExtResource("15")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_DepartureClocktower" type="Sprite3D" parent="Flavor_Departure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -3)
+texture = ExtResource("16")
+pixel_size = 0.0024
+
+[node name="Prop_DiningCarTable" type="Sprite3D" parent="Flavor_GrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.6, 3)
+texture = ExtResource("17")
+pixel_size = 0.0014
+
+[node name="Prop_DinosaurSkeleton" type="Sprite3D" parent="Flavor_GrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, -3)
+texture = ExtResource("18")
+pixel_size = 0.002
+
+[node name="Prop_EntrancePalms" type="Sprite3D" parent="Flavor_GrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 5)
+texture = ExtResource("19")
+pixel_size = 0.0018
+billboard = 1
+
+[node name="Prop_GardenTopiary" type="Sprite3D" parent="Flavor_GardenPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.9, -1)
+texture = ExtResource("20")
+pixel_size = 0.0016
+billboard = 1
+
+[node name="Prop_LuggagePile" type="Sprite3D" parent="Flavor_LostLuggage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+texture = ExtResource("22")
+pixel_size = 0.0016
+
+[node name="Prop_ParkedTrain" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("23")
+pixel_size = 0.003
+
+[node name="Prop_SleeperBunks" type="Sprite3D" parent="Flavor_InfiniteWaitingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0)
+texture = ExtResource("24")
+pixel_size = 0.0014
+
+[node name="Sign_DepartureClockFace" type="Sprite3D" parent="Flavor_Departure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -3)
+texture = ExtResource("25")
+pixel_size = 0.0012
+
+[node name="Sign_LowerLevelDirectory" type="Sprite3D" parent="Flavor_ObservationDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -3)
+texture = ExtResource("26")
+pixel_size = 0.0014
+
+[node name="Sign_TimeRoom" type="Sprite3D" parent="Flavor_Departure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.4, 3)
+texture = ExtResource("51")
+pixel_size = 0.0012
+
+[node name="Sign_ToAnywhere" type="Sprite3D" parent="Flavor_GrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 6)
+texture = ExtResource("52")
+pixel_size = 0.0012
+
+[node name="Sign_ToForgottenPlaces" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
+texture = ExtResource("53")
+pixel_size = 0.0012
+
+[node name="Sign_ToSomewhereElse" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
+texture = ExtResource("54")
+pixel_size = 0.0012
+
+[node name="Sign_VoidPlatform" type="Sprite3D" parent="Flavor_VoidPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -3)
+texture = ExtResource("55")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform01" type="Sprite3D" parent="Platform_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("27")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform02" type="Sprite3D" parent="Platform_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("28")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform03" type="Sprite3D" parent="Platform_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("29")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform04" type="Sprite3D" parent="Platform_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("30")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform05" type="Sprite3D" parent="Platform_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("31")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform06" type="Sprite3D" parent="Platform_6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("32")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform07" type="Sprite3D" parent="Platform_7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("33")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform08" type="Sprite3D" parent="Platform_8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("34")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform09" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -16)
+texture = ExtResource("35")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform10" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -12)
+texture = ExtResource("36")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform11" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -8)
+texture = ExtResource("37")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform12" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -4)
+texture = ExtResource("38")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform13" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 0)
+texture = ExtResource("39")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform14" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 4)
+texture = ExtResource("40")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform15" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 8)
+texture = ExtResource("41")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform16" type="Sprite3D" parent="Flavor_PlatformsWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 12)
+texture = ExtResource("42")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform17" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -16)
+texture = ExtResource("43")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform18" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -12)
+texture = ExtResource("44")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform19" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -8)
+texture = ExtResource("45")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform20" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -4)
+texture = ExtResource("46")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform21" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 0)
+texture = ExtResource("47")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform22" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 4)
+texture = ExtResource("48")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform23" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 8)
+texture = ExtResource("49")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform24" type="Sprite3D" parent="Flavor_PlatformsEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 12)
+texture = ExtResource("50")
+pixel_size = 0.001
