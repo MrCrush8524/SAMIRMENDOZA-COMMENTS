@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://nightmare_museum"]
+[gd_scene load_steps=35 format=3 uid="uid://nightmare_museum"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -50,6 +50,12 @@ roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="ImpossibleCorridorMat"]
 albedo_color = Color(0.15, 0.15, 0.18, 1)
 roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="WeatheredMemoriesMat"]
+albedo_color = Color(0.45, 0.4, 0.3, 1)
+roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="MoonStairMat"]
+albedo_color = Color(0.3, 0.32, 0.45, 1)
+roughness = 0.4
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_rotunda"]
 size = Vector3(14, 3, 14)
@@ -63,6 +69,14 @@ size = Vector3(10, 3, 8)
 size = Vector2(12, 10)
 [sub_resource type="BoxShape3D" id="Shape_flavor_eastgallery"]
 size = Vector3(12, 3, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneWeatheredMemories"]
+size = Vector2(12, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_weatheredmemories"]
+size = Vector3(12, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneMoonStair"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_moonstair"]
+size = Vector3(10, 3, 8)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -240,6 +254,40 @@ flavor_text = "Quiet Mirror Room."
 [node name="Shape" type="CollisionShape3D" parent="Flavor_MirrorRoom"]
 shape = SubResource("Shape_flavor_gallery")
 
+[node name="ZoneWeatheredMemories" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.11, 14)
+mesh = SubResource("ZonePlaneWeatheredMemories")
+surface_material_override/0 = SubResource("WeatheredMemoriesMat")
+[node name="Light" type="OmniLight3D" parent="ZoneWeatheredMemories"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.75, 0.55, 1)
+light_energy = 0.3
+omni_range = 8.0
+
+[node name="ZoneMoonStair" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.11, 14)
+mesh = SubResource("ZonePlaneMoonStair")
+surface_material_override/0 = SubResource("MoonStairMat")
+[node name="Light" type="OmniLight3D" parent="ZoneMoonStair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.7, 0.72, 0.95, 1)
+light_energy = 0.4
+omni_range = 8.0
+
+[node name="Flavor_WeatheredMemories" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 14)
+script = ExtResource("1")
+flavor_text = "Weathered Memories Gallery. The frames outlasted what was in them."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_WeatheredMemories"]
+shape = SubResource("Shape_flavor_weatheredmemories")
+
+[node name="Flavor_MoonStair" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, 14)
+script = ExtResource("1")
+flavor_text = "Moon Stair Gallery. Steps that go up further than the building does."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MoonStair"]
+shape = SubResource("Shape_flavor_moonstair")
+
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 17)
 
@@ -254,3 +302,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, -8)
 
 [node name="SpawnImpossibleCorridor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, 6)
+
+[node name="SpawnWeatheredMemories" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, 14)
+
+[node name="SpawnMoonStair" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, 14)

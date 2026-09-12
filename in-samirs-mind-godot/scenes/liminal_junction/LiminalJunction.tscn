@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://liminal_junction"]
+[gd_scene load_steps=39 format=3 uid="uid://liminal_junction"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -49,6 +49,15 @@ roughness = 0.35
 [sub_resource type="StandardMaterial3D" id="GardenPlatformMat"]
 albedo_color = Color(0.6, 0.82, 0.6, 1)
 roughness = 0.75
+[sub_resource type="StandardMaterial3D" id="LostLuggageMat"]
+albedo_color = Color(0.55, 0.45, 0.35, 1)
+roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="InfiniteWaitingMat"]
+albedo_color = Color(0.8, 0.78, 0.72, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="ObservationDeckMat"]
+albedo_color = Color(0.5, 0.6, 0.75, 1)
+roughness = 0.25
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_hall"]
 size = Vector3(16, 3, 14)
@@ -66,6 +75,18 @@ size = Vector2(8, 6)
 size = Vector3(14, 3, 8)
 [sub_resource type="BoxShape3D" id="Shape_flavor_gardenplatform"]
 size = Vector3(8, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneLostLuggage"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_lostluggage"]
+size = Vector3(10, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneInfiniteWaiting"]
+size = Vector2(14, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_infinitewaiting"]
+size = Vector3(14, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneObservationDeck"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_observationdeck"]
+size = Vector3(10, 3, 8)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -236,6 +257,57 @@ flavor_text = "Platforms 17-24 (To Forgotten Places)."
 [node name="Shape" type="CollisionShape3D" parent="Flavor_PlatformsEast"]
 shape = SubResource("Shape_flavor_platforms")
 
+[node name="ZoneLostLuggage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.11, 20)
+mesh = SubResource("ZonePlaneLostLuggage")
+surface_material_override/0 = SubResource("LostLuggageMat")
+[node name="Light" type="OmniLight3D" parent="ZoneLostLuggage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.72, 0.55, 1)
+light_energy = 0.35
+omni_range = 8.0
+
+[node name="ZoneInfiniteWaitingRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -21)
+mesh = SubResource("ZonePlaneInfiniteWaiting")
+surface_material_override/0 = SubResource("InfiniteWaitingMat")
+[node name="Light" type="OmniLight3D" parent="ZoneInfiniteWaitingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.92, 0.9, 0.85, 1)
+light_energy = 0.5
+omni_range = 12.0
+
+[node name="ZoneObservationDeck" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.11, 20)
+mesh = SubResource("ZonePlaneObservationDeck")
+surface_material_override/0 = SubResource("ObservationDeckMat")
+[node name="Light" type="OmniLight3D" parent="ZoneObservationDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.65, 0.75, 0.95, 1)
+light_energy = 0.4
+omni_range = 8.0
+
+[node name="Flavor_LostLuggage" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 20)
+script = ExtResource("1")
+flavor_text = "Lost Luggage. None of it is yours. All of it feels like it could be."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_LostLuggage"]
+shape = SubResource("Shape_flavor_lostluggage")
+
+[node name="Flavor_InfiniteWaitingRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21)
+script = ExtResource("1")
+flavor_text = "Infinite Waiting Room. The number on your ticket never comes up."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_InfiniteWaitingRoom"]
+shape = SubResource("Shape_flavor_infinitewaiting")
+
+[node name="Flavor_ObservationDeck" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 20)
+script = ExtResource("1")
+flavor_text = "Observation Deck. You can see every platform from here. None of them are moving."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ObservationDeck"]
+shape = SubResource("Shape_flavor_observationdeck")
+
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 4)
 
@@ -267,3 +339,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -20)
 
 [node name="SpawnGardenPlatform" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
+
+[node name="SpawnLostLuggage" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.0, 20)
+
+[node name="SpawnInfiniteWaitingRoom" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -21)
+
+[node name="SpawnObservationDeck" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.0, 20)

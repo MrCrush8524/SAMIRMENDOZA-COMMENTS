@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=48 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -64,6 +64,12 @@ roughness = 0.55
 [sub_resource type="StandardMaterial3D" id="SouthBoutiquesMat"]
 albedo_color = Color(0.95, 0.82, 0.88, 1)
 roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="LostWingMat"]
+albedo_color = Color(0.7, 0.68, 0.75, 1)
+roughness = 0.95
+[sub_resource type="StandardMaterial3D" id="ClassroomMat"]
+albedo_color = Color(0.85, 0.8, 0.6, 1)
+roughness = 0.7
 
 [sub_resource type="PlaneMesh" id="ZonePlane16"]
 size = Vector2(16, 16)
@@ -87,6 +93,10 @@ size = Vector2(12, 12)
 size = Vector2(20, 14)
 [sub_resource type="PlaneMesh" id="ZonePlaneSouthBoutiques"]
 size = Vector2(14, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneLostWing"]
+size = Vector2(12, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneClassroom"]
+size = Vector2(10, 8)
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_big"]
 size = Vector3(16, 3, 16)
@@ -104,6 +114,10 @@ size = Vector3(12, 3, 12)
 size = Vector3(20, 3, 14)
 [sub_resource type="BoxShape3D" id="Shape_flavor_southboutiques"]
 size = Vector3(14, 3, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_lostwing"]
+size = Vector3(12, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_classroom"]
+size = Vector3(10, 3, 8)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -345,6 +359,40 @@ flavor_text = "The Lull — a quieter place. It's still here."
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Lull"]
 shape = SubResource("Shape_flavor_small")
 
+[node name="ZoneLostWing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.11, 14)
+mesh = SubResource("ZonePlaneLostWing")
+surface_material_override/0 = SubResource("LostWingMat")
+[node name="Light" type="OmniLight3D" parent="ZoneLostWing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.6, 0.6, 0.68, 1)
+light_energy = 0.25
+omni_range = 8.0
+
+[node name="ZoneClassroom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.11, 14)
+mesh = SubResource("ZonePlaneClassroom")
+surface_material_override/0 = SubResource("ClassroomMat")
+[node name="Light" type="OmniLight3D" parent="ZoneClassroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.9, 0.7, 1)
+light_energy = 0.4
+omni_range = 8.0
+
+[node name="Flavor_LostWing" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 14)
+script = ExtResource("1")
+flavor_text = "The Lost Wing — storefronts with no names left, still lit for no one."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_LostWing"]
+shape = SubResource("Shape_flavor_lostwing")
+
+[node name="Flavor_Classroom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 14)
+script = ExtResource("1")
+flavor_text = "A classroom that shouldn't be here. The chairs are the right size again."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Classroom"]
+shape = SubResource("Shape_flavor_classroom")
+
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)
 
@@ -377,3 +425,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1.0, -6)
 
 [node name="SpawnSouthBoutiques" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.0, 10)
+
+[node name="SpawnLostWing" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, 14)
+
+[node name="SpawnClassroom" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.0, 14)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=39 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 
@@ -50,6 +50,15 @@ roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="DiningCarMat"]
 albedo_color = Color(0.85, 0.7, 0.55, 1)
 roughness = 0.55
+[sub_resource type="StandardMaterial3D" id="ToyPharmacyMat"]
+albedo_color = Color(0.6, 0.85, 0.78, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="BlankGateMat"]
+albedo_color = Color(0.85, 0.85, 0.85, 1)
+roughness = 0.95
+[sub_resource type="StandardMaterial3D" id="LowerLevelMat"]
+albedo_color = Color(0.3, 0.28, 0.35, 1)
+roughness = 0.9
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_carousel"]
 size = Vector3(14, 3, 14)
@@ -71,6 +80,18 @@ size = Vector2(8, 6)
 size = Vector3(10, 3, 8)
 [sub_resource type="BoxShape3D" id="Shape_flavor_diningcar"]
 size = Vector3(8, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneToyPharmacy"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_toypharmacy"]
+size = Vector3(10, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneBlankGate"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_blankgate"]
+size = Vector3(10, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneLowerLevel"]
+size = Vector2(20, 4)
+[sub_resource type="BoxShape3D" id="Shape_flavor_lowerlevel"]
+size = Vector3(20, 3, 4)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -241,6 +262,57 @@ flavor_text = "Moon Food Court. Good food, softer days."
 [node name="Shape" type="CollisionShape3D" parent="Flavor_FoodCourt"]
 shape = SubResource("Shape_flavor_wide")
 
+[node name="ZoneToyPharmacy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.11, -16)
+mesh = SubResource("ZonePlaneToyPharmacy")
+surface_material_override/0 = SubResource("ToyPharmacyMat")
+[node name="Light" type="OmniLight3D" parent="ZoneToyPharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.75, 0.95, 0.9, 1)
+light_energy = 0.45
+omni_range = 8.0
+
+[node name="ZoneBlankGate" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.11, -16)
+mesh = SubResource("ZonePlaneBlankGate")
+surface_material_override/0 = SubResource("BlankGateMat")
+[node name="Light" type="OmniLight3D" parent="ZoneBlankGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.9, 0.9, 0.9, 1)
+light_energy = 0.15
+omni_range = 8.0
+
+[node name="ZoneLowerLevel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 20)
+mesh = SubResource("ZonePlaneLowerLevel")
+surface_material_override/0 = SubResource("LowerLevelMat")
+[node name="Light" type="OmniLight3D" parent="ZoneLowerLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(0.5, 0.5, 0.6, 1)
+light_energy = 0.3
+omni_range = 10.0
+
+[node name="Flavor_ToyPharmacy" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, -16)
+script = ExtResource("1")
+flavor_text = "Toy Pharmacy. The medicine is shaped like a toy. The toy is shaped like medicine."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ToyPharmacy"]
+shape = SubResource("Shape_flavor_toypharmacy")
+
+[node name="Flavor_BlankGate" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -16)
+script = ExtResource("1")
+flavor_text = "Blank Gate. No number, no destination board. Boarding anyway."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_BlankGate"]
+shape = SubResource("Shape_flavor_blankgate")
+
+[node name="Flavor_LowerLevel" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+script = ExtResource("1")
+flavor_text = "Lower Level. Baggage that was never claimed, still circling."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_LowerLevel"]
+shape = SubResource("Shape_flavor_lowerlevel")
+
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)
 
@@ -255,3 +327,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.0, 10)
 
 [node name="SpawnDiningCar" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.0, 14)
+
+[node name="SpawnToyPharmacy" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.0, -16)
+
+[node name="SpawnBlankGate" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.0, -16)
+
+[node name="SpawnLowerLevel" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
