@@ -30,10 +30,23 @@ const SCROLL_WALK_HOLD_TIME := 0.25
 @export var paw_texture_luna: Texture2D
 @export var paw_texture_mateo: Texture2D
 
+## Full-body character-card art (same source as Character Select) used
+## only as the player's reflection in MirrorSurface instances — see
+## mirror_body below. Not paw art: mirrors want to show "you", not a
+## first-person hand.
+@export var mirror_texture_bobby: Texture2D
+@export var mirror_texture_luna: Texture2D
+@export var mirror_texture_mateo: Texture2D
+
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
 @onready var paw_overlay: TextureRect = %PawOverlay
+## On MirrorSurface.MIRROR_ONLY_LAYER — invisible to the main first-person
+## camera (its cull_mask excludes that layer) but visible to any mirror's
+## viewport camera, which is how "the character reflects" without ever
+## putting a body in the way of normal play.
+@onready var mirror_body: Sprite3D = $MirrorBody
 
 var pitch: float = 0.0
 var touch_look_active: bool = false
@@ -51,11 +64,7 @@ func _ready() -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	match GameState.dreamer:
-		"Bobby": paw_overlay.texture = paw_texture_bobby
-		"Luna": paw_overlay.texture = paw_texture_luna
-		"Mateo": paw_overlay.texture = paw_texture_mateo
-
+	refresh_dreamer_visuals()
 	GameState.current_player = self
 
 func _exit_tree() -> void:
@@ -128,3 +137,22 @@ func _try_interact() -> void:
 func set_spawn(position_3d: Vector3, yaw: float) -> void:
 	global_position = position_3d
 	rotation.y = yaw
+
+## Re-applies whichever dreamer's paw art matches GameState.dreamer — run
+## once at spawn, and again any time the player changes character mid-run
+## via the pause menu (see PauseMenu.gd), so the swap is instant and
+## doesn't require a chapter reload.
+func refresh_dreamer_visuals() -> void:
+	match GameState.dreamer:
+		"Bobby": paw_overlay.texture = paw_texture_bobby
+		"Luna": paw_overlay.texture = paw_texture_luna
+		"Mateo": paw_overlay.texture = paw_texture_mateo
+	if mirror_body:
+		mirror_body.texture = _mirror_texture_for(GameState.dreamer)
+
+func _mirror_texture_for(dreamer_id: String) -> Texture2D:
+	match dreamer_id:
+		"Bobby": return mirror_texture_bobby
+		"Luna": return mirror_texture_luna
+		"Mateo": return mirror_texture_mateo
+	return null

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/RandomStinger.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/MirrorSpawner.gd" id="30"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_ambience.ogg" id="4"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_01.wav" id="5"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_02.wav" id="6"]
@@ -194,6 +195,15 @@ omni_range = 12.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.11, -6)
 mesh = SubResource("ZonePlaneGallery")
 surface_material_override/0 = SubResource("PaintingsMat")
+
+[node name="MirrorSpawner" type="Node3D" parent="."]
+script = ExtResource("30")
+
+[node name="Spot_QuietMirrorRoomA" type="Marker3D" parent="MirrorSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -20.7)
+
+[node name="Spot_QuietMirrorRoomB" type="Marker3D" parent="MirrorSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2.5, -20.7)
 
 [node name="ZoneQuietMirrorRoom" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.11, -8)

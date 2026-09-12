@@ -27,6 +27,7 @@ const REGIONS := {
 @onready var extras_overlay: Control = %ExtrasOverlay
 @onready var soundtrack_overlay: Control = %SoundtrackOverlay
 @onready var chapter_select_overlay: Control = %ChapterSelectOverlay
+@onready var name_prompt_overlay: Control = %NamePromptOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
@@ -63,6 +64,14 @@ func _on_lore() -> void:
 	lore_overlay.open()
 
 func _on_new_dream() -> void:
+	# "Create a profile" is just naming the save before picking a dreamer
+	# — the actual transition to Character Select happens once they
+	# confirm (see _on_name_confirmed), not immediately here.
+	if not name_prompt_overlay.confirmed.is_connected(_on_name_confirmed):
+		name_prompt_overlay.confirmed.connect(_on_name_confirmed, CONNECT_ONE_SHOT)
+	name_prompt_overlay.open()
+
+func _on_name_confirmed() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/CharacterSelect.tscn")
 
 func _on_continue() -> void:

@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" path="res://assets/paws/polydactyl_cat_paws_with_golden_bell.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/paws/luna_s_scruffy_paws_first_person_view.png" id="3"]
 [ext_resource type="Texture2D" path="res://assets/paws/mateo_s_bengal_cat_first_person_view.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/characters/Bobby/Bobby_character_card.webp" id="5"]
+[ext_resource type="Texture2D" path="res://assets/characters/Luna/Luna_character_card.webp" id="6"]
+[ext_resource type="Texture2D" path="res://assets/characters/Mateo/Mateo_character_card.webp" id="7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.22
@@ -14,6 +17,9 @@ script = ExtResource("1")
 paw_texture_bobby = ExtResource("2")
 paw_texture_luna = ExtResource("3")
 paw_texture_mateo = ExtResource("4")
+mirror_texture_bobby = ExtResource("5")
+mirror_texture_luna = ExtResource("6")
+mirror_texture_mateo = ExtResource("7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1")
@@ -24,9 +30,18 @@ position = Vector3(0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 fov = 70.0
+cull_mask = 1048573
 
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -2.2)
+
+[node name="MirrorBody" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+layers = 2
+pixel_size = 0.0026
+billboard = 1
+double_sided = true
+no_depth_test = false
 
 [node name="PawOverlayLayer" type="CanvasLayer" parent="."]
 

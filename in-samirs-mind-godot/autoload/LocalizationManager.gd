@@ -10,6 +10,11 @@ const STRINGS := {
 		"extras": "Extras",
 		"soundtrack": "Dream Soundtrack",
 		"select_dreamer": "Select Your Dreamer",
+		"enter_name": "What should we call you?",
+		"name_placeholder": "Your name",
+		"confirm": "Confirm",
+		"change_character": "Change Character",
+		"resume_game": "Resume",
 	},
 	"es": {
 		"title": "EN LA MENTE DE SAMIR",
@@ -20,6 +25,11 @@ const STRINGS := {
 		"extras": "Extras",
 		"soundtrack": "Banda Sonora",
 		"select_dreamer": "Elige a tu Soñador",
+		"enter_name": "¿Cómo te llamamos?",
+		"name_placeholder": "Tu nombre",
+		"confirm": "Confirmar",
+		"change_character": "Cambiar Personaje",
+		"resume_game": "Reanudar",
 	},
 	"pt-BR": {
 		"title": "NA MENTE DO SAMIR",
@@ -30,6 +40,11 @@ const STRINGS := {
 		"extras": "Extras",
 		"soundtrack": "Trilha Sonora",
 		"select_dreamer": "Escolha seu Sonhador",
+		"enter_name": "Como devemos te chamar?",
+		"name_placeholder": "Seu nome",
+		"confirm": "Confirmar",
+		"change_character": "Trocar Personagem",
+		"resume_game": "Continuar",
 	},
 }
 

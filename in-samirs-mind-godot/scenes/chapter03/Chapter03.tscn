@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/LevelDoor.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/MirrorSpawner.gd" id="4"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -267,6 +268,15 @@ mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallWest"]
 shape = SubResource("WallShapeNS")
+
+[node name="MirrorSpawner" type="Node3D" parent="SecondFloor"]
+script = ExtResource("4")
+
+[node name="Spot_MirrorHallA" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -21.7, 5.6, 1)
+
+[node name="Spot_MirrorHallB" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -21.7, 5.6, 7)
 
 [node name="ZoneMirrorHall" type="MeshInstance3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4.11, 4)

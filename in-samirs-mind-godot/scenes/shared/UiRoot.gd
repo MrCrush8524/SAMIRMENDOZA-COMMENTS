@@ -16,6 +16,7 @@ extends CanvasLayer
 @onready var nightmare_ui: ColorRect = $NightmareUI
 @onready var nightmare_big_label: Label = $NightmareUI/BigLabel
 @onready var nightmare_cashout_row: HBoxContainer = $NightmareUI/CashoutRow
+@onready var pause_menu: Control = $PauseMenu
 
 var _pending_pickup: Node = null
 
@@ -27,6 +28,26 @@ func _ready() -> void:
 	journal_popup.visible = false
 	track_popup.visible = false
 	save_toast.visible = false
+
+## Escape opens/closes the "change character" pause menu, but only during
+## plain exploration — a Nightmare Passage already claims Escape for its
+## own exit_nightmare (see NightmarePassage.gd), and the Backrooms is
+## deliberately inescapable by player input, so both are excluded here.
+## Also stays out of the way of any other popup already using the mouse
+## (journal, dream track card) rather than stacking on top of them.
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("ui_cancel"):
+		return
+	if pause_menu.visible:
+		pause_menu.close()
+		get_viewport().set_input_as_handled()
+		return
+	if GameState.in_nightmare or GameState.in_backrooms:
+		return
+	if journal_popup.visible or track_popup.visible:
+		return
+	pause_menu.open()
+	get_viewport().set_input_as_handled()
 
 func set_prompt(text: String) -> void:
 	prompt_label.text = text

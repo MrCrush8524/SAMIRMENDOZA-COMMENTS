@@ -72,7 +72,8 @@ func _refresh() -> void:
 	next_button.disabled = _entries.size() <= 1
 	if id == "":
 		var info: Dictionary = CHAPTER_INFO.get(GameState.chapter, {})
-		title_label.text = "Resume"
+		var who: String = GameState.profile_name if not GameState.profile_name.is_empty() else "Dreamer"
+		title_label.text = "Resume, %s" % who
 		subtitle_label.text = "Continue exactly where you left off — %s" % info.get("subtitle", "")
 		card_image.texture = _load_card(GameState.chapter)
 		select_button.text = "Resume"
