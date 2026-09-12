@@ -1,15 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://decay_rising_water"]
+[gd_scene load_steps=10 format=3 uid="uid://decay_rising_water"]
 
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/DecayRisingWater.gd" id="1"]
 [ext_resource type="Shader" path="res://scenes/nightmare/minigames/puddle_liquid.gdshader" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/decay_corrupted_water_tile_2048.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/wander_destination_zone.png" id="4"]
 
 [sub_resource type="ShaderMaterial" id="WaterMat"]
 shader = ExtResource("2")
+shader_parameter/water_texture = ExtResource("3")
 
 [sub_resource type="BoxMesh" id="WaterMesh"]
 size = Vector3(9, 1, 7)
 [sub_resource type="BoxShape3D" id="WaterShape"]
 size = Vector3(9, 1, 7)
+[sub_resource type="PlaneMesh" id="SafeZoneDecal"]
+size = Vector2(8, 6)
+[sub_resource type="StandardMaterial3D" id="SafeZoneDecalMat"]
+albedo_texture = ExtResource("4")
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.85)
 
 [node name="DecayRisingWater" type="Node3D"]
 script = ExtResource("1")
@@ -25,6 +35,10 @@ shape = SubResource("WaterShape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7)
 [node name="Shape" type="CollisionShape3D" parent="SafeZone"]
 shape = SubResource("WaterShape")
+[node name="Decal" type="MeshInstance3D" parent="SafeZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+mesh = SubResource("SafeZoneDecal")
+surface_material_override/0 = SubResource("SafeZoneDecalMat")
 [node name="Glow" type="OmniLight3D" parent="SafeZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 light_color = Color(0.75, 0.95, 0.85, 1)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://arcade_whack_a_mole"]
+[gd_scene load_steps=10 format=3 uid="uid://arcade_whack_a_mole"]
 
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/ArcadeWhackAMole.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/SelectablePad.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/arcade_dream_diver_shapes_strip.png" id="3"]
 
 [sub_resource type="SphereMesh" id="MoleMesh"]
 radius = 0.4
@@ -77,3 +78,8 @@ mesh = SubResource("MoleMesh")
 surface_material_override/0 = SubResource("MoleMat4")
 [node name="Shape" type="CollisionShape3D" parent="Hole4"]
 shape = SubResource("MoleShape")
+
+[node name="Marquee" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -2)
+texture = ExtResource("3")
+pixel_size = 0.0022

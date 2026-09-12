@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://decay_wrong_door"]
+[gd_scene load_steps=8 format=3 uid="uid://decay_wrong_door"]
 
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/DecayWrongDoor.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/SelectablePad.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/decay_debris_bent_pipe.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/decay_debris_ceiling_chunk.png" id="4"]
 
 [sub_resource type="BoxMesh" id="DoorMesh"]
 size = Vector3(1.3, 2.3, 0.12)
@@ -43,3 +45,13 @@ mesh = SubResource("DoorMesh")
 surface_material_override/0 = SubResource("DoorMat")
 [node name="Shape" type="CollisionShape3D" parent="Door2"]
 shape = SubResource("DoorShape")
+
+[node name="Debris_BentPipe" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.4, -2)
+texture = ExtResource("3")
+pixel_size = 0.0016
+
+[node name="Debris_CeilingChunk" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.3, -1)
+texture = ExtResource("4")
+pixel_size = 0.0018

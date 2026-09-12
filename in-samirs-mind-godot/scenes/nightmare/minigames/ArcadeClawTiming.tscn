@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://arcade_claw_timing"]
+[gd_scene load_steps=9 format=3 uid="uid://arcade_claw_timing"]
 
 [ext_resource type="Script" path="res://scenes/nightmare/minigames/ArcadeClawTiming.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/arcade_dream_diver_arrows_strip.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/wander_destination_zone.png" id="3"]
 
 [sub_resource type="BoxMesh" id="ClawMesh"]
 size = Vector3(0.6, 0.6, 0.6)
@@ -11,6 +13,10 @@ metallic = 0.6
 top_radius = 0.5
 bottom_radius = 0.5
 height = 0.1
+[sub_resource type="StandardMaterial3D" id="TargetMat"]
+albedo_texture = ExtResource("3")
+transparency = 1
+shading_mode = 0
 [sub_resource type="BoxShape3D" id="InteractShape"]
 size = Vector3(12, 4, 3)
 
@@ -27,8 +33,14 @@ surface_material_override/0 = SubResource("ClawMat")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.1, -2)
 [node name="Mesh" type="MeshInstance3D" parent="Target"]
 mesh = SubResource("TargetMesh")
+surface_material_override/0 = SubResource("TargetMat")
 
 [node name="InteractZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 [node name="Shape" type="CollisionShape3D" parent="InteractZone"]
 shape = SubResource("InteractShape")
+
+[node name="Marquee" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.4, -2)
+texture = ExtResource("2")
+pixel_size = 0.002
