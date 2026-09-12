@@ -1,0 +1,60 @@
+name: Build In Samir's Mind (Windows)
+
+on:
+  push:
+    branches: [claude/backrooms-map-threejs-rbc3q3]
+    paths:
+      - "in-samirs-mind-godot/**"
+      - ".github/workflows/build-godot-windows.yml"
+  workflow_dispatch: {}
+
+env:
+  GODOT_VERSION: "4.3-stable"
+  GODOT_VERSION_FOLDER: "4.3.stable"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: in-samirs-mind-godot
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot editor + export templates
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot editor + export templates
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot
+          cd ~/godot
+          curl -L -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot4
+          chmod +x godot4
+          curl -L -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION_FOLDER}
+          unzip -q templates.tpz -d /tmp/templates
+          mv /tmp/templates/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION_FOLDER}/
+
+      - name: Import project
+        run: ~/godot/godot4 --headless --path . --import
+
+      - name: Export Windows build
+        run: |
+          mkdir -p build/windows
+          ~/godot/godot4 --headless --path . --export-release "Windows Desktop" build/windows/InSamirsMind.exe
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: in-samirs-mind-windows
+          path: in-samirs-mind-godot/build/windows/
+          if-no-files-found: error
