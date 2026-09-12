@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=83 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -120,6 +120,52 @@ size = Vector3(10, 4.5, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatSide"]
 albedo_texture = ExtResource("13")
 roughness = 0.75
+
+
+[sub_resource type="StandardMaterial3D" id="HedgeMat"]
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(3, 1, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="HedgeMesh_18"]
+size = Vector3(18, 1.4, 0.3)
+[sub_resource type="BoxShape3D" id="HedgeShape_18"]
+size = Vector3(18, 1.4, 0.3)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_16NS"]
+size = Vector3(0.3, 1.4, 16)
+[sub_resource type="BoxShape3D" id="HedgeShape_16NS"]
+size = Vector3(0.3, 1.4, 16)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_6NS"]
+size = Vector3(0.3, 1.4, 6)
+[sub_resource type="BoxShape3D" id="HedgeShape_6NS"]
+size = Vector3(0.3, 1.4, 6)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_14"]
+size = Vector3(14, 1.4, 0.3)
+[sub_resource type="BoxShape3D" id="HedgeShape_14"]
+size = Vector3(14, 1.4, 0.3)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_5"]
+size = Vector3(5, 1.4, 0.3)
+[sub_resource type="BoxShape3D" id="HedgeShape_5"]
+size = Vector3(5, 1.4, 0.3)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_10NS"]
+size = Vector3(0.3, 1.4, 10)
+[sub_resource type="BoxShape3D" id="HedgeShape_10NS"]
+size = Vector3(0.3, 1.4, 10)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_16EW"]
+size = Vector3(16, 1.4, 0.3)
+[sub_resource type="BoxShape3D" id="HedgeShape_16EW"]
+size = Vector3(16, 1.4, 0.3)
+
+[sub_resource type="BoxMesh" id="HedgeMesh_6EW"]
+size = Vector3(6, 1.4, 0.3)
+[sub_resource type="BoxShape3D" id="HedgeShape_6EW"]
+size = Vector3(6, 1.4, 0.3)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -381,3 +427,183 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, 10)
 
 [node name="SpawnField" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
+
+[node name="Hedge_ParkBig_North" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.7, 2)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_North"]
+mesh = SubResource("HedgeMesh_18")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkBig_North"]
+shape = SubResource("HedgeShape_18")
+
+
+[node name="Hedge_ParkBig_South" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.7, 18)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_South"]
+mesh = SubResource("HedgeMesh_18")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkBig_South"]
+shape = SubResource("HedgeShape_18")
+
+
+[node name="Hedge_ParkBig_West" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.7, 10)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_West"]
+mesh = SubResource("HedgeMesh_16NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkBig_West"]
+shape = SubResource("HedgeShape_16NS")
+
+
+[node name="Hedge_ParkBig_GateA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.7, 5)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateA"]
+mesh = SubResource("HedgeMesh_6NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkBig_GateA"]
+shape = SubResource("HedgeShape_6NS")
+
+
+[node name="Hedge_ParkBig_GateB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.7, 15)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateB"]
+mesh = SubResource("HedgeMesh_6NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkBig_GateB"]
+shape = SubResource("HedgeShape_6NS")
+
+
+[node name="Hedge_Gazebo_North" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.7, 2)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_North"]
+mesh = SubResource("HedgeMesh_18")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Gazebo_North"]
+shape = SubResource("HedgeShape_18")
+
+
+[node name="Hedge_Gazebo_South" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.7, 18)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_South"]
+mesh = SubResource("HedgeMesh_18")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Gazebo_South"]
+shape = SubResource("HedgeShape_18")
+
+
+[node name="Hedge_Gazebo_East" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0.7, 10)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_East"]
+mesh = SubResource("HedgeMesh_16NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Gazebo_East"]
+shape = SubResource("HedgeShape_16NS")
+
+
+[node name="Hedge_Gazebo_GateA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.7, 5)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateA"]
+mesh = SubResource("HedgeMesh_6NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Gazebo_GateA"]
+shape = SubResource("HedgeShape_6NS")
+
+
+[node name="Hedge_Gazebo_GateB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.7, 15)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateB"]
+mesh = SubResource("HedgeMesh_6NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Gazebo_GateB"]
+shape = SubResource("HedgeShape_6NS")
+
+
+[node name="Hedge_ParkSmall_Far" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -23)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_Far"]
+mesh = SubResource("HedgeMesh_14")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkSmall_Far"]
+shape = SubResource("HedgeShape_14")
+
+
+[node name="Hedge_ParkSmall_GateA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.7, -13)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_GateA"]
+mesh = SubResource("HedgeMesh_5")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkSmall_GateA"]
+shape = SubResource("HedgeShape_5")
+
+
+[node name="Hedge_ParkSmall_GateB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.7, -13)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_GateB"]
+mesh = SubResource("HedgeMesh_5")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkSmall_GateB"]
+shape = SubResource("HedgeShape_5")
+
+
+[node name="Hedge_ParkSmall_East" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.7, -18)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_East"]
+mesh = SubResource("HedgeMesh_10NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkSmall_East"]
+shape = SubResource("HedgeShape_10NS")
+
+
+[node name="Hedge_ParkSmall_West" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, -18)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_West"]
+mesh = SubResource("HedgeMesh_10NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_ParkSmall_West"]
+shape = SubResource("HedgeShape_10NS")
+
+
+[node name="Hedge_Field_Far" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 25)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_Far"]
+mesh = SubResource("HedgeMesh_16EW")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Field_Far"]
+shape = SubResource("HedgeShape_16EW")
+
+
+[node name="Hedge_Field_GateA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7, 15)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_GateA"]
+mesh = SubResource("HedgeMesh_6EW")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Field_GateA"]
+shape = SubResource("HedgeShape_6EW")
+
+
+[node name="Hedge_Field_GateB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.7, 15)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_GateB"]
+mesh = SubResource("HedgeMesh_6EW")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Field_GateB"]
+shape = SubResource("HedgeShape_6EW")
+
+
+[node name="Hedge_Field_East" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.7, 20)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_East"]
+mesh = SubResource("HedgeMesh_10NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Field_East"]
+shape = SubResource("HedgeShape_10NS")
+
+
+[node name="Hedge_Field_West" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.7, 20)
+[node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_West"]
+mesh = SubResource("HedgeMesh_10NS")
+surface_material_override/0 = SubResource("HedgeMat")
+[node name="Shape" type="CollisionShape3D" parent="Hedge_Field_West"]
+shape = SubResource("HedgeShape_10NS")
+
