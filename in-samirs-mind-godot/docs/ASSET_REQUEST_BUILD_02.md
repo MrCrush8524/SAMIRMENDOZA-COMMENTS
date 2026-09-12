@@ -36,21 +36,19 @@ floor/wall textures + standalone transparent PNG props/signage):
   "wrong yellow" aesthetic, plus artifact and door variant art (10 artifact
   IDs, matching door IDs per `BackroomsManager.gd`).
 
-## Delivered but not yet wired into the actual minigames
+## Delivered art now wired into the actual minigames — done
 
-The Nightmare Minigames zip includes real art (`decay_corrupted_water_tile`,
-`decay_debris_bent_pipe/broken_light/ceiling_chunk`, `floor_tile_blue/green/
-red/yellow`, `arcade_dream_diver_arrows/shapes_strip`, `arcade_happy_forever_
-faces_strip`, `arcade_memory_mart_symbols_strip`, extra `wander_prop_books/
-phone/plant/table/teddy`) that predates the 11 minigames actually built this
-session (Rising Water, Wrong Door, Freeze, Follow the Light, Count and
-Answer, Hide and Seek, Simon Reversed, Claw Timing, Whack-a-Mole, plus the
-original Don't Touch the Water / What Changed). The two sets don't line up
-1:1 — this is an **engineering task for me**, not a new art ask: I'll reskin
-the built minigames with this delivered art (corrupted water tile onto the
-two water hazards, debris as Decay set-dressing, the arcade icon strips onto
-Simon Reversed's pads, the extra Wander props into Count and Answer/Follow
-the Light) in the next pass.
+~~The Nightmare Minigames zip includes real art~~ This is now wired in:
+corrupted-water tile onto both water hazards' shader, decay debris as
+Decay set-dressing (Wrong Door, Freeze), colored floor tiles onto Simon
+Reversed's four pads (matching their light colors), arcade icon strips as
+marquees (Happy Forever on Simon Reversed, Dream Diver shapes on
+Whack-a-Mole, Dream Diver arrows on Claw Timing, Memory Mart symbols on
+Count and Answer), the destination-zone decal on every win/exit zone
+(Don't Touch the Water, Rising Water, Hide and Seek, Claw Timing's
+target), and the five extra Wander props (books/phone/plant/table/teddy)
+replacing Count and Answer's plain glowing cubes. All 9 affected
+minigames re-verified headlessly.
 
 ## Remaining flat-color materials in the six side levels
 
@@ -68,22 +66,22 @@ delivery — worth commissioning if you want full coverage:
 - **Dreamcore Terminal**: Tiny Cinema, Sleeper Lounge, Dining Car, Toy
   Pharmacy, Blank Gate, Lower Level.
 
-## Terminal's "Pool Waiting" room doesn't exist yet
+## Terminal's "Pool Waiting" room — built, placement unconfirmed
 
-`terminal_pool_waiting.ogg` and `terminal_tex_pool_waiting_tile.png` were
-delivered, but Terminal has no dedicated Pool Waiting room in the current
-floor plan — I approximated by putting the audio on the Concourse and the
-sleep-gate carpet took the texture slot instead. If Pool Waiting is meant to
-be a real room, I need its floor-plan placement to build it properly.
+Terminal had no dedicated Pool Waiting room in the original floor plan, so
+I built one myself (a small room at the open corner past the Lower Level,
+with the real `terminal_pool_waiting.ogg` ambience, the real
+`terminal_tex_pool_waiting_tile.png` floor, and the airport-seating prop
+moved over from the Concourse to sit in it properly) rather than leave
+that texture and track homeless. If you have an actual floor-plan spot for
+it, let me know and I'll relocate the room — the placement right now is my
+best guess, not confirmed against a real layout.
 
 ## Bottom line for build.02
 
 1. Main story chapters (II-V) + Backrooms art is the priority — nothing
    else matters as much for how the game actually reads while playing the
    critical path.
-2. I'll handle re-skinning the 11 minigames with already-delivered art
-   myself, no new commission needed there.
+2. Minigame reskin and Terminal's Pool Waiting room are both done.
 3. The flat-color leftovers above are a nice-to-have polish pass whenever
    convenient.
-4. Confirm whether Pool Waiting is a real Terminal room before art is made
-   for it.
