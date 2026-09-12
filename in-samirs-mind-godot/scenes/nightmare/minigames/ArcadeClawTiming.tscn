@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://arcade_claw_timing"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/ArcadeClawTiming.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="ClawMesh"]
+size = Vector3(0.6, 0.6, 0.6)
+[sub_resource type="StandardMaterial3D" id="ClawMat"]
+albedo_color = Color(0.7, 0.7, 0.75, 1)
+metallic = 0.6
+[sub_resource type="CylinderMesh" id="TargetMesh"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 0.1
+[sub_resource type="BoxShape3D" id="InteractShape"]
+size = Vector3(12, 4, 3)
+
+[node name="ArcadeClawTiming" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Claw" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.2, -2)
+[node name="Mesh" type="MeshInstance3D" parent="Claw"]
+mesh = SubResource("ClawMesh")
+surface_material_override/0 = SubResource("ClawMat")
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.1, -2)
+[node name="Mesh" type="MeshInstance3D" parent="Target"]
+mesh = SubResource("TargetMesh")
+
+[node name="InteractZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+[node name="Shape" type="CollisionShape3D" parent="InteractZone"]
+shape = SubResource("InteractShape")

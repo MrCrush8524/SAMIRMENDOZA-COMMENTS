@@ -20,9 +20,23 @@ var _nightmare_return_yaw: float = 0.0
 ## never starts a ladder round. Add more scene paths here as they're
 ## built; one is picked at random each round.
 const MINIGAME_POOLS := {
-	"decay": ["res://scenes/nightmare/minigames/DecayDontTouchWater.tscn"],
-	"wander": ["res://scenes/nightmare/minigames/WanderWhatChanged.tscn"],
-	"arcade": [],
+	"decay": [
+		"res://scenes/nightmare/minigames/DecayDontTouchWater.tscn",
+		"res://scenes/nightmare/minigames/DecayRisingWater.tscn",
+		"res://scenes/nightmare/minigames/DecayWrongDoor.tscn",
+		"res://scenes/nightmare/minigames/DecayFreeze.tscn",
+	],
+	"wander": [
+		"res://scenes/nightmare/minigames/WanderWhatChanged.tscn",
+		"res://scenes/nightmare/minigames/WanderFollowLight.tscn",
+		"res://scenes/nightmare/minigames/WanderCountAndAnswer.tscn",
+		"res://scenes/nightmare/minigames/WanderHideAndSeek.tscn",
+	],
+	"arcade": [
+		"res://scenes/nightmare/minigames/ArcadeSimonReversed.tscn",
+		"res://scenes/nightmare/minigames/ArcadeClawTiming.tscn",
+		"res://scenes/nightmare/minigames/ArcadeWhackAMole.tscn",
+	],
 }
 
 var _current_nightmare_id: String = ""
