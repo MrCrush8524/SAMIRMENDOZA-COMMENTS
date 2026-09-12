@@ -1,9 +1,48 @@
-[gd_scene load_steps=34 format=3 uid="uid://chapter03_scene"]
+[gd_scene load_steps=80 format=3 uid="uid://chapter03_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/LevelDoor.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/shared/MirrorSpawner.gd" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_ground_floor.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_wall_shared.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_foyer_floor.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_living_rug.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_kitchen_tile.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_courtyard_paving.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_sunroom_floor.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_mirrorhall_floor.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_child_wallpaper.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_memory_floor.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_sitting_floor.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_attic_floor.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_attic_wall.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_duplicate_corridor.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_view_floor.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter03/chapter03_tex_liftpad.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_coat_hooks.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_foyer_console.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_family_photo_facedown.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_living_sofa.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_coffee_table.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_old_tv.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_dining_table.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_mismatched_chairs.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_old_refrigerator.png" id="29"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_hanging_pans.png" id="30"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_potted_plants.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_courtyard_fountain.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_wicker_chair.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_child_bed.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_toy_chest.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_record_player.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_keepsake_boxes.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_parlor_armchair.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_grandfather_clock.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_attic_boxes.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_dustsheet_furniture.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_bare_bulb.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_roof_hatch.png" id="43"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -19,7 +58,8 @@ size = Vector3(40, 4, 0.3)
 size = Vector3(40, 4, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="GroundFloorMat"]
-albedo_color = Color(0.85, 0.78, 0.7, 1)
+albedo_texture = ExtResource("5")
+uv1_scale = Vector3(4.4, 4, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="SecondFloorMat"]
 albedo_color = Color(0.82, 0.76, 0.82, 1)
@@ -30,52 +70,72 @@ size = Vector3(1.4, 0.15, 1.4)
 size = Vector3(1.4, 0.15, 1.4)
 
 [sub_resource type="StandardMaterial3D" id="AtticFloorMat"]
-albedo_color = Color(0.55, 0.48, 0.45, 1)
+albedo_texture = ExtResource("16")
+uv1_scale = Vector3(4.4, 4, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="WallMat"]
-albedo_color = Color(0.93, 0.9, 0.87, 1)
+albedo_texture = ExtResource("6")
+uv1_scale = Vector3(4, 1, 1)
 roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="AtticWallMat"]
+albedo_texture = ExtResource("17")
+uv1_scale = Vector3(4, 1, 1)
+roughness = 0.95
 
 [sub_resource type="PlaneMesh" id="ZonePlaneSmall"]
 size = Vector2(10, 8)
 [sub_resource type="PlaneMesh" id="ZonePlaneMed"]
 size = Vector2(12, 10)
 [sub_resource type="StandardMaterial3D" id="FoyerMat"]
-albedo_color = Color(0.9, 0.78, 0.82, 1)
+albedo_texture = ExtResource("7")
+uv1_scale = Vector3(1, 0.8, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="LivingRoomMat"]
-albedo_color = Color(0.92, 0.8, 0.84, 1)
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="KitchenMat"]
-albedo_color = Color(0.75, 0.85, 0.78, 1)
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="CourtyardMat"]
-albedo_color = Color(0.7, 0.85, 0.95, 1)
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="SunroomMat"]
-albedo_color = Color(0.8, 0.88, 0.9, 1)
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1, 0.8, 1)
 roughness = 0.4
 [sub_resource type="StandardMaterial3D" id="MirrorHallMat"]
-albedo_color = Color(0.75, 0.8, 0.85, 1)
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.2
 [sub_resource type="StandardMaterial3D" id="ChildsRoomMat"]
 albedo_color = Color(0.95, 0.8, 0.85, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="MemoryRoomMat"]
-albedo_color = Color(0.85, 0.78, 0.65, 1)
+albedo_texture = ExtResource("14")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="SittingRoomMat"]
-albedo_color = Color(0.92, 0.85, 0.68, 1)
+albedo_texture = ExtResource("15")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="AtticMat"]
-albedo_color = Color(0.6, 0.55, 0.5, 1)
+albedo_texture = ExtResource("16")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="DuplicateCorridorMat"]
-albedo_color = Color(0.7, 0.6, 0.7, 1)
+albedo_texture = ExtResource("18")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="ViewMat"]
-albedo_color = Color(0.65, 0.72, 0.78, 1)
+albedo_texture = ExtResource("19")
+uv1_scale = Vector3(1.2, 1, 1)
 roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="RoofHatchMat"]
+albedo_texture = ExtResource("43")
+roughness = 0.6
 
 [sub_resource type="BoxShape3D" id="Shape_flavor_small"]
 size = Vector3(10, 3, 8)
@@ -87,8 +147,15 @@ size = Vector3(2, 0.15, 2)
 [sub_resource type="BoxShape3D" id="LiftPadShape"]
 size = Vector3(2, 1.5, 2)
 [sub_resource type="StandardMaterial3D" id="LiftPadMat"]
-albedo_color = Color(0.6, 0.5, 0.35, 1)
+albedo_texture = ExtResource("20")
 roughness = 0.6
+
+[sub_resource type="BoxMesh" id="WallpaperAccentMesh"]
+size = Vector3(6, 4, 0.15)
+[sub_resource type="StandardMaterial3D" id="WallpaperAccentMat"]
+albedo_texture = ExtResource("13")
+uv1_scale = Vector3(1.5, 1, 1)
+roughness = 0.7
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -184,6 +251,18 @@ script = ExtResource("1")
 flavor_text = "Entry Foyer. \"Places remember you too.\""
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Foyer"]
 shape = SubResource("Shape_flavor_small")
+[node name="Prop_CoatHooks" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.866, -3)
+texture = ExtResource("21")
+pixel_size = 0.00121
+[node name="Prop_FoyerConsole" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.555, -3)
+texture = ExtResource("22")
+pixel_size = 0.001615
+[node name="Prop_FamilyPhoto" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.9206, 2)
+texture = ExtResource("23")
+pixel_size = 0.000396
 
 [node name="Flavor_LivingRoom" type="Area3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 10)
@@ -191,6 +270,18 @@ script = ExtResource("1")
 flavor_text = "Living Room."
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_LivingRoom"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_Sofa" type="Sprite3D" parent="GroundFloor/Flavor_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.421, -3)
+texture = ExtResource("24")
+pixel_size = 0.00214
+[node name="Prop_CoffeeTable" type="Sprite3D" parent="GroundFloor/Flavor_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.707, 0)
+texture = ExtResource("25")
+pixel_size = 0.001427
+[node name="Prop_OldTV" type="Sprite3D" parent="GroundFloor/Flavor_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.725, 3)
+texture = ExtResource("26")
+pixel_size = 0.001248
 
 [node name="Flavor_Kitchen" type="Area3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -6)
@@ -198,6 +289,22 @@ script = ExtResource("1")
 flavor_text = "Kitchen & Dining Nook. The Looping Corridor is nearby — does it end?"
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Kitchen"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_DiningTable" type="Sprite3D" parent="GroundFloor/Flavor_Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.371, 0)
+texture = ExtResource("27")
+pixel_size = 0.002282
+[node name="Prop_MismatchedChairs" type="Sprite3D" parent="GroundFloor/Flavor_Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.413, 2.5)
+texture = ExtResource("28")
+pixel_size = 0.002091
+[node name="Prop_OldFridge" type="Sprite3D" parent="GroundFloor/Flavor_Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.15, -3)
+texture = ExtResource("29")
+pixel_size = 0.001866
+[node name="Prop_HangingPans" type="Sprite3D" parent="GroundFloor/Flavor_Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.651, -3)
+texture = ExtResource("30")
+pixel_size = 0.001427
 
 [node name="Flavor_Courtyard" type="Area3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
@@ -205,6 +312,14 @@ script = ExtResource("1")
 flavor_text = "Inner Courtyard. Open to sky."
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Courtyard"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_PottedPlants" type="Sprite3D" parent="GroundFloor/Flavor_Courtyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.373, -3)
+texture = ExtResource("31")
+pixel_size = 0.001745
+[node name="Prop_Fountain" type="Sprite3D" parent="GroundFloor/Flavor_Courtyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+texture = ExtResource("32")
+pixel_size = 0.001547
 
 [node name="Flavor_Sunroom" type="Area3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -12)
@@ -212,6 +327,10 @@ script = ExtResource("1")
 flavor_text = "Sunroom."
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/Flavor_Sunroom"]
 shape = SubResource("Shape_flavor_small")
+[node name="Prop_WickerChair" type="Sprite3D" parent="GroundFloor/Flavor_Sunroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.664, 0)
+texture = ExtResource("33")
+pixel_size = 0.001397
 
 [node name="LiftUpToSecond" type="Area3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -14)
@@ -316,6 +435,19 @@ script = ExtResource("1")
 flavor_text = "Child's Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_ChildsRoom"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_ChildBed" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.507, -3)
+texture = ExtResource("34")
+pixel_size = 0.002049
+[node name="Prop_ToyChest" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.634, 2)
+texture = ExtResource("35")
+pixel_size = 0.001404
+
+[node name="WallpaperAccent" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -19.7)
+mesh = SubResource("WallpaperAccentMesh")
+surface_material_override/0 = SubResource("WallpaperAccentMat")
 
 [node name="Flavor_MemoryRoom" type="Area3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -14)
@@ -323,6 +455,14 @@ script = ExtResource("1")
 flavor_text = "Memory Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MemoryRoom"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_RecordPlayer" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.789, -3)
+texture = ExtResource("36")
+pixel_size = 0.001028
+[node name="Prop_KeepsakeBoxes" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.654, 2)
+texture = ExtResource("37")
+pixel_size = 0.001408
 
 [node name="Flavor_SittingRoom" type="Area3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5, 6)
@@ -330,6 +470,14 @@ script = ExtResource("1")
 flavor_text = "Sitting Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_SittingRoom"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_Armchair" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.641, -3)
+texture = ExtResource("38")
+pixel_size = 0.001404
+[node name="Prop_GrandfatherClock" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4.0, 3)
+texture = ExtResource("39")
+pixel_size = 0.002195
 
 [node name="Flavor_UpperLanding" type="Area3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -14)
@@ -377,7 +525,7 @@ shape = SubResource("FloorShape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -20)
 [node name="Mesh" type="MeshInstance3D" parent="Attic/WallNorth"]
 mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("WallMat")
+surface_material_override/0 = SubResource("AtticWallMat")
 [node name="Shape" type="CollisionShape3D" parent="Attic/WallNorth"]
 shape = SubResource("WallShapeEW")
 
@@ -385,7 +533,7 @@ shape = SubResource("WallShapeEW")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
 [node name="Mesh" type="MeshInstance3D" parent="Attic/WallSouth"]
 mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("WallMat")
+surface_material_override/0 = SubResource("AtticWallMat")
 [node name="Shape" type="CollisionShape3D" parent="Attic/WallSouth"]
 shape = SubResource("WallShapeEW")
 
@@ -393,7 +541,7 @@ shape = SubResource("WallShapeEW")
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 10, 0)
 [node name="Mesh" type="MeshInstance3D" parent="Attic/WallEast"]
 mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("WallMat")
+surface_material_override/0 = SubResource("AtticWallMat")
 [node name="Shape" type="CollisionShape3D" parent="Attic/WallEast"]
 shape = SubResource("WallShapeNS")
 
@@ -401,7 +549,7 @@ shape = SubResource("WallShapeNS")
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 10, 0)
 [node name="Mesh" type="MeshInstance3D" parent="Attic/WallWest"]
 mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("WallMat")
+surface_material_override/0 = SubResource("AtticWallMat")
 [node name="Shape" type="CollisionShape3D" parent="Attic/WallWest"]
 shape = SubResource("WallShapeNS")
 
@@ -426,6 +574,18 @@ script = ExtResource("1")
 flavor_text = "Attic (unfinished)."
 [node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_Attic"]
 shape = SubResource("Shape_flavor_med")
+[node name="Prop_AtticBoxes" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -8.655, -3)
+texture = ExtResource("40")
+pixel_size = 0.001498
+[node name="Prop_DustsheetFurniture" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -8.533, 2)
+texture = ExtResource("41")
+pixel_size = 0.001865
+[node name="Prop_BareBulb" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+texture = ExtResource("42")
+pixel_size = 0.000508
 
 [node name="Flavor_DuplicateCorridor" type="Area3D" parent="Attic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, 6)
@@ -449,6 +609,7 @@ spawn_marker = "RoofHatchLanding"
 door_label = "the hatch into the sky the attic keeps promising"
 [node name="Mesh" type="MeshInstance3D" parent="Attic/RoofHatch"]
 mesh = SubResource("BoxMesh_roofhatch")
+surface_material_override/0 = SubResource("RoofHatchMat")
 [node name="Shape" type="CollisionShape3D" parent="Attic/RoofHatch"]
 shape = SubResource("Shape_roofhatch")
 [node name="Light" type="OmniLight3D" parent="Attic/RoofHatch"]
