@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=88 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -21,6 +21,26 @@
 [ext_resource type="AudioStream" path="res://assets/audio/levels/mall_fountain_01.ogg" id="19"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/mall_fountain_02.ogg" id="20"]
 [ext_resource type="AudioStream" path="res://assets/audio/levels/mall_pool_court_muffled_01.ogg" id="21"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamcore_pastel_marble_mall_floor.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamcore_marble_gold_paneling.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamcore_marble_medallion_floor.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_cosmic_arcade_carpet_pattern.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_crescent_star_tile_pattern.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamy_pastel_pool_mosaic_pattern.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_gold_arched_panel_wallpaper.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/vintage_pastel_terrazzo_tile_texture.png" id="29"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_celestial_carpet_pattern.png" id="30"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/elegant_tiered_marble_fountain.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamcore_pastel_arcade_cabinet.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamy_cinema_marquee_lightbox.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_dreamcore_mall_directory_kiosk.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_dreamcore_indoor_playground_set.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/sweet_dreams_pastel_vending_machine.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_pink_teddy_bear_mascot.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_pool_float_carousel_rack.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_fantasy_watering_can.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/pastel_lost_wing_marquee_sign.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/textures/mall/dreamy_pastel_school_desk_asset.png" id="41"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(110, 0.2, 44)
@@ -29,7 +49,8 @@ size = Vector3(110, 0.2, 44)
 size = Vector3(110, 0.2, 44)
 
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
-albedo_color = Color(0.92, 0.85, 0.78, 1)
+albedo_texture = ExtResource("22")
+uv1_scale = Vector3(8, 4, 1)
 roughness = 0.6
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
@@ -45,47 +66,56 @@ size = Vector3(44, 5, 0.3)
 size = Vector3(44, 5, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="WallMat"]
-albedo_color = Color(0.96, 0.9, 0.94, 1)
+albedo_texture = ExtResource("23")
+uv1_scale = Vector3(6, 1, 1)
 roughness = 0.8
 
 [sub_resource type="StandardMaterial3D" id="RotundaMat"]
-albedo_color = Color(0.98, 0.9, 0.68, 1)
+albedo_texture = ExtResource("24")
 roughness = 0.3
 [sub_resource type="StandardMaterial3D" id="FoodCourtMat"]
-albedo_color = Color(0.98, 0.93, 0.72, 1)
+albedo_texture = ExtResource("30")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="CinemaMat"]
 albedo_color = Color(0.18, 0.12, 0.28, 1)
 roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="ArcadeMat"]
-albedo_color = Color(0.42, 0.14, 0.5, 1)
+albedo_texture = ExtResource("25")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="ToyBoxMat"]
-albedo_color = Color(0.98, 0.72, 0.82, 1)
+albedo_texture = ExtResource("26")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.6
 [sub_resource type="StandardMaterial3D" id="LullMat"]
 albedo_color = Color(0.82, 0.78, 0.92, 1)
 roughness = 0.4
 [sub_resource type="StandardMaterial3D" id="DaydreamsMat"]
-albedo_color = Color(0.92, 0.88, 0.82, 1)
+albedo_texture = ExtResource("28")
+uv1_scale = Vector3(2.5, 1.5, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="PlaygroundMat"]
 albedo_color = Color(0.98, 0.85, 0.6, 1)
 roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="PoolCourtMat"]
-albedo_color = Color(0.55, 0.85, 0.92, 1)
+albedo_texture = ExtResource("27")
+uv1_scale = Vector3(2, 1.5, 1)
 roughness = 0.15
 [sub_resource type="StandardMaterial3D" id="GreenhouseMat"]
 albedo_color = Color(0.55, 0.78, 0.55, 1)
 roughness = 0.8
 [sub_resource type="StandardMaterial3D" id="WestAnchorMat"]
-albedo_color = Color(0.9, 0.9, 0.92, 1)
+albedo_texture = ExtResource("29")
+uv1_scale = Vector3(2.5, 1.75, 1)
 roughness = 0.55
 [sub_resource type="StandardMaterial3D" id="SouthBoutiquesMat"]
-albedo_color = Color(0.95, 0.82, 0.88, 1)
+albedo_texture = ExtResource("29")
+uv1_scale = Vector3(1.75, 1.25, 1)
 roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="LostWingMat"]
-albedo_color = Color(0.7, 0.68, 0.75, 1)
+albedo_texture = ExtResource("29")
+uv1_scale = Vector3(1.5, 1, 1)
 roughness = 0.95
 [sub_resource type="StandardMaterial3D" id="ClassroomMat"]
 albedo_color = Color(0.85, 0.8, 0.6, 1)
@@ -195,8 +225,11 @@ shape = SubResource("WallShapeNS")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
 mesh = SubResource("ZonePlane16")
 surface_material_override/0 = SubResource("RotundaMat")
-[node name="Fountain" type="MeshInstance3D" parent="ZoneRotunda"]
-transform = Transform3D(1.5, 0, 0, 0, 1.2, 0, 0, 0, 1.5, 0, 0.6, 0)
+[node name="Fountain" type="Sprite3D" parent="ZoneRotunda"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+texture = ExtResource("31")
+pixel_size = 0.0032
+billboard = 1
 [node name="Light" type="OmniLight3D" parent="ZoneRotunda"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 light_color = Color(1, 0.96, 0.85, 1)
@@ -505,3 +538,58 @@ shape = SubResource("Shape_flavor_medium")
 [node name="Player" type="AudioStreamPlayer3D" parent="Ambience_PoolCourt"]
 unit_size = 15.0
 max_distance = 24.0
+
+[node name="Prop_ArcadeCabinet" type="Sprite3D" parent="ZoneArcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.3, -4)
+texture = ExtResource("32")
+pixel_size = 0.0022
+billboard = 1
+
+[node name="Prop_CinemaMarquee" type="Sprite3D" parent="ZoneCinema"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
+texture = ExtResource("33")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_DirectoryKiosk" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3, 8)
+texture = ExtResource("34")
+pixel_size = 0.002
+
+[node name="Prop_Playground" type="Sprite3D" parent="ZoneDreamPlayground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+texture = ExtResource("35")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_VendingMachine" type="Sprite3D" parent="ZoneFoodCourt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.2, -2)
+texture = ExtResource("36")
+pixel_size = 0.0018
+
+[node name="Prop_ToyBoxMascot" type="Sprite3D" parent="ZoneToyBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+texture = ExtResource("37")
+pixel_size = 0.0018
+billboard = 1
+
+[node name="Prop_PoolFloatRack" type="Sprite3D" parent="ZonePoolCourt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.1, 3)
+texture = ExtResource("38")
+pixel_size = 0.0018
+
+[node name="Prop_WateringCan" type="Sprite3D" parent="ZoneGreenhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, -2)
+texture = ExtResource("39")
+pixel_size = 0.0012
+
+[node name="Prop_LostWingSign" type="Sprite3D" parent="ZoneLostWing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -3)
+texture = ExtResource("40")
+pixel_size = 0.0022
+
+[node name="Prop_SchoolDesk" type="Sprite3D" parent="ZoneClassroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+texture = ExtResource("41")
+pixel_size = 0.0016
+billboard = 1
