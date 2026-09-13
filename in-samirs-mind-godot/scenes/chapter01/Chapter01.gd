@@ -6,12 +6,6 @@ extends Node3D
 
 @onready var doubt: Sprite3D = $Doubt
 
-const SPIRIT_TEXTURES := {
-	"Bobby": preload("res://assets/spirits/bobby_spirit_wrapper.png"),
-	"Luna": preload("res://assets/spirits/luna_spirit_wrapper.png"),
-	"Mateo": preload("res://assets/spirits/mateo_spirit_wrapper.png"),
-}
-
 var _doubt_timer := 6.0 + randf() * 6.0
 
 func _ready() -> void:
@@ -24,13 +18,6 @@ func _ready() -> void:
 			pickup.queue_free()
 		elif pickup.kind == pickup.Kind.DREAM_TRACK and GameState.dream_tracks.has(pickup.item_id):
 			pickup.queue_free()
-
-	# Spirit sightings show the two dreamers NOT currently played — a
-	# glimpse of your fellow dreamers, never yourself.
-	var others: Array = SPIRIT_TEXTURES.keys().filter(func(d): return d != GameState.dreamer)
-	others.shuffle()
-	$SpiritSighting1.set_texture(SPIRIT_TEXTURES[others[0]])
-	$SpiritSighting2.set_texture(SPIRIT_TEXTURES[others[1]])
 
 func _process(delta: float) -> void:
 	_doubt_timer -= delta
