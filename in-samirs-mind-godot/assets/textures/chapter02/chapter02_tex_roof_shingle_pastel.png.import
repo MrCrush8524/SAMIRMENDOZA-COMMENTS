@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dviwsi01f52q2"
-path="res://.godot/imported/chapter02_tex_roof_shingle_v2.png-5ae3c703b4f21b0c76add7287e883845.ctex"
+uid="uid://dgkulnsm5fr85"
+path="res://.godot/imported/chapter02_tex_roof_shingle_pastel.png-54767694ffb63554926649fd32a6376d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/chapter02/chapter02_tex_roof_shingle_v2.png"
-dest_files=["res://.godot/imported/chapter02_tex_roof_shingle_v2.png-5ae3c703b4f21b0c76add7287e883845.ctex"]
+source_file="res://assets/textures/chapter02/chapter02_tex_roof_shingle_pastel.png"
+dest_files=["res://.godot/imported/chapter02_tex_roof_shingle_pastel.png-54767694ffb63554926649fd32a6376d.ctex"]
 
 [params]
 

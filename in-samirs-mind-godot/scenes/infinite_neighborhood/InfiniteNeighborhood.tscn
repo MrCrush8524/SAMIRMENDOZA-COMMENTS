@@ -49,7 +49,7 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_unopened_mail.png" id="112"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_wrong_photograph_framed.png" id="113"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_roof_shingle.png" id="114"]
-[ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_roof_shingle_v2.png" id="121"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_roof_shingle_pastel.png" id="122"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_siding_pink.png" id="115"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_siding_teal_shingle.png" id="116"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_door_teal_glass.png" id="117"]
@@ -243,9 +243,9 @@ size = Vector3(4.6155, 0.15, 7.4)
 [sub_resource type="BoxShape3D" id="RoofShape_House1_Arrival"]
 size = Vector3(4.6155, 0.15, 7.4)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House1_Arrival"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.3008, 1, 3.6889)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.5039, 1, 4.0145)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House1_Arrival"]
 size = Vector3(5.0, 0.15, 2.0)
@@ -266,9 +266,9 @@ size = Vector3(4.8466, 0.15, 8.6)
 [sub_resource type="BoxShape3D" id="RoofShape_House2_Repeated"]
 size = Vector3(4.8466, 0.15, 8.6)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House2_Repeated"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.416, 1, 4.2871)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.6293, 1, 4.6655)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House2_Repeated"]
 size = Vector3(6.0, 0.15, 2.2)
@@ -289,9 +289,9 @@ size = Vector3(5.2347, 0.15, 8.9)
 [sub_resource type="BoxShape3D" id="RoofShape_House3_WrongPhoto"]
 size = Vector3(5.2347, 0.15, 8.9)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House3_WrongPhoto"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.6095, 1, 4.4367)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.8398, 1, 4.8282)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House3_WrongPhoto"]
 size = Vector3(5.0, 0.15, 2.0)
@@ -312,9 +312,9 @@ size = Vector3(4.3863, 0.15, 7.4)
 [sub_resource type="BoxShape3D" id="RoofShape_House4_Porch"]
 size = Vector3(4.3863, 0.15, 7.4)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House4_Porch"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.1866, 1, 3.6889)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.3796, 1, 4.0145)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House4_Porch"]
 size = Vector3(6.5, 0.15, 2.3)
@@ -335,9 +335,9 @@ size = Vector3(5.7726, 0.15, 9.9)
 [sub_resource type="BoxShape3D" id="RoofShape_House5_Final"]
 size = Vector3(5.7726, 0.15, 9.9)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House5_Final"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.8776, 1, 4.9352)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(3.1316, 1, 5.3708)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House5_Final"]
 size = Vector3(7.0, 0.15, 2.4)
@@ -358,9 +358,9 @@ size = Vector3(4.3863, 0.15, 7.4)
 [sub_resource type="BoxShape3D" id="RoofShape_House6_PorchOnly"]
 size = Vector3(4.3863, 0.15, 7.4)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House6_PorchOnly"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.1866, 1, 3.6889)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.3796, 1, 4.0145)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House6_PorchOnly"]
 size = Vector3(4.5, 0.15, 1.8)
@@ -381,9 +381,9 @@ size = Vector3(4.8847, 0.15, 8.4)
 [sub_resource type="BoxShape3D" id="RoofShape_House7_Impossible"]
 size = Vector3(4.8847, 0.15, 8.4)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House7_Impossible"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.435, 1, 4.1874)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.6499, 1, 4.557)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House7_Impossible"]
 size = Vector3(4.0, 0.15, 1.8)
@@ -404,9 +404,9 @@ size = Vector3(4.8466, 0.15, 8.4)
 [sub_resource type="BoxShape3D" id="RoofShape_House8_Distant"]
 size = Vector3(4.8466, 0.15, 8.4)
 [sub_resource type="StandardMaterial3D" id="RoofMat_House8_Distant"]
-albedo_texture = ExtResource("121")
-uv1_scale = Vector3(2.416, 1, 4.1874)
-roughness = 0.92
+albedo_texture = ExtResource("122")
+uv1_scale = Vector3(2.6293, 1, 4.557)
+roughness = 0.85
 
 [sub_resource type="BoxMesh" id="PorchMesh_House8_Distant"]
 size = Vector3(2.0, 0.15, 1.0)
