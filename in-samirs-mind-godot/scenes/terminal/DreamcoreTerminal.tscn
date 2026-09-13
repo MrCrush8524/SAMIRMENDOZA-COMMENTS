@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=104 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -153,6 +153,66 @@ size = Vector3(20, 3, 4)
 size = Vector2(10, 6)
 [sub_resource type="BoxShape3D" id="Shape_flavor_poolwaiting"]
 size = Vector3(10, 3, 6)
+
+[sub_resource type="BoxMesh" id="TermWall_1800x30"]
+size = Vector3(18, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="TermWall_1800x30Shape"]
+size = Vector3(18, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="TermWall_30x300"]
+size = Vector3(0.3, 5.0, 3.0)
+
+[sub_resource type="BoxShape3D" id="TermWall_30x300Shape"]
+size = Vector3(0.3, 5.0, 3.0)
+
+[sub_resource type="BoxMesh" id="TermWall_30x1200"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxShape3D" id="TermWall_30x1200Shape"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxMesh" id="TermWall_1000x30"]
+size = Vector3(10, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="TermWall_1000x30Shape"]
+size = Vector3(10, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="TermWall_30x800"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxShape3D" id="TermWall_30x800Shape"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxMesh" id="TermWall_30x200"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="BoxShape3D" id="TermWall_30x200Shape"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="BoxMesh" id="TermWall_250x30"]
+size = Vector3(2.5, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="TermWall_250x30Shape"]
+size = Vector3(2.5, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="TermWall_800x30"]
+size = Vector3(8, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="TermWall_800x30Shape"]
+size = Vector3(8, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="TermWall_30x600"]
+size = Vector3(0.3, 5.0, 6)
+
+[sub_resource type="BoxShape3D" id="TermWall_30x600Shape"]
+size = Vector3(0.3, 5.0, 6)
+
+[sub_resource type="BoxMesh" id="TermWall_300x30"]
+size = Vector3(3.0, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="TermWall_300x30Shape"]
+size = Vector3(3.0, 5.0, 0.3)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -574,3 +634,364 @@ pixel_size = 0.0012
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2.2, 2)
 texture = ExtResource("35")
 pixel_size = 0.0012
+
+[node name="PinkCheckIn_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, -10)
+[node name="Mesh" type="MeshInstance3D" parent="PinkCheckIn_N_0"]
+mesh = SubResource("TermWall_1800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PinkCheckIn_N_0"]
+shape = SubResource("TermWall_1800x30Shape")
+
+[node name="PinkCheckIn_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, 2)
+[node name="Mesh" type="MeshInstance3D" parent="PinkCheckIn_S_0"]
+mesh = SubResource("TermWall_1800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PinkCheckIn_S_0"]
+shape = SubResource("TermWall_1800x30Shape")
+
+[node name="PinkCheckIn_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, -8.5)
+[node name="Mesh" type="MeshInstance3D" parent="PinkCheckIn_E_0"]
+mesh = SubResource("TermWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PinkCheckIn_E_0"]
+shape = SubResource("TermWall_30x300Shape")
+
+[node name="PinkCheckIn_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, 0.5)
+[node name="Mesh" type="MeshInstance3D" parent="PinkCheckIn_E_1"]
+mesh = SubResource("TermWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PinkCheckIn_E_1"]
+shape = SubResource("TermWall_30x300Shape")
+
+[node name="PinkCheckIn_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 2.5, -4.0)
+[node name="Mesh" type="MeshInstance3D" parent="PinkCheckIn_W_0"]
+mesh = SubResource("TermWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PinkCheckIn_W_0"]
+shape = SubResource("TermWall_30x1200Shape")
+
+[node name="FoodCourt_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, -10)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_N_0"]
+mesh = SubResource("TermWall_1800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_N_0"]
+shape = SubResource("TermWall_1800x30Shape")
+
+[node name="FoodCourt_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, 2)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_S_0"]
+mesh = SubResource("TermWall_1800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_S_0"]
+shape = SubResource("TermWall_1800x30Shape")
+
+[node name="FoodCourt_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2.5, -4.0)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_E_0"]
+mesh = SubResource("TermWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_E_0"]
+shape = SubResource("TermWall_30x1200Shape")
+
+[node name="FoodCourt_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -8.5)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_W_0"]
+mesh = SubResource("TermWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_W_0"]
+shape = SubResource("TermWall_30x300Shape")
+
+[node name="FoodCourt_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 0.5)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_W_1"]
+mesh = SubResource("TermWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_W_1"]
+shape = SubResource("TermWall_30x300Shape")
+
+[node name="VelvetLounge_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, 6)
+[node name="Mesh" type="MeshInstance3D" parent="VelvetLounge_N_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="VelvetLounge_N_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="VelvetLounge_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, 14)
+[node name="Mesh" type="MeshInstance3D" parent="VelvetLounge_S_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="VelvetLounge_S_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="VelvetLounge_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 2.5, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="VelvetLounge_E_0"]
+mesh = SubResource("TermWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="VelvetLounge_E_0"]
+shape = SubResource("TermWall_30x800Shape")
+
+[node name="VelvetLounge_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.5, 7.0)
+[node name="Mesh" type="MeshInstance3D" parent="VelvetLounge_W_0"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="VelvetLounge_W_0"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="VelvetLounge_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.5, 13.0)
+[node name="Mesh" type="MeshInstance3D" parent="VelvetLounge_W_1"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="VelvetLounge_W_1"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="TinyCinema_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 2.5, 11)
+[node name="Mesh" type="MeshInstance3D" parent="TinyCinema_N_0"]
+mesh = SubResource("TermWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TinyCinema_N_0"]
+shape = SubResource("TermWall_250x30Shape")
+
+[node name="TinyCinema_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 2.5, 11)
+[node name="Mesh" type="MeshInstance3D" parent="TinyCinema_N_1"]
+mesh = SubResource("TermWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TinyCinema_N_1"]
+shape = SubResource("TermWall_250x30Shape")
+
+[node name="TinyCinema_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 2.5, 17)
+[node name="Mesh" type="MeshInstance3D" parent="TinyCinema_S_0"]
+mesh = SubResource("TermWall_800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TinyCinema_S_0"]
+shape = SubResource("TermWall_800x30Shape")
+
+[node name="TinyCinema_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="TinyCinema_E_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TinyCinema_E_0"]
+shape = SubResource("TermWall_30x600Shape")
+
+[node name="TinyCinema_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="TinyCinema_W_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TinyCinema_W_0"]
+shape = SubResource("TermWall_30x600Shape")
+
+[node name="SleeperLounge_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, 6)
+[node name="Mesh" type="MeshInstance3D" parent="SleeperLounge_N_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleeperLounge_N_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="SleeperLounge_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, 14)
+[node name="Mesh" type="MeshInstance3D" parent="SleeperLounge_S_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleeperLounge_S_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="SleeperLounge_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, 7.0)
+[node name="Mesh" type="MeshInstance3D" parent="SleeperLounge_E_0"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleeperLounge_E_0"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="SleeperLounge_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, 13.0)
+[node name="Mesh" type="MeshInstance3D" parent="SleeperLounge_E_1"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleeperLounge_E_1"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="SleeperLounge_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="SleeperLounge_W_0"]
+mesh = SubResource("TermWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleeperLounge_W_0"]
+shape = SubResource("TermWall_30x800Shape")
+
+[node name="DiningCar_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.75, 2.5, 11)
+[node name="Mesh" type="MeshInstance3D" parent="DiningCar_N_0"]
+mesh = SubResource("TermWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DiningCar_N_0"]
+shape = SubResource("TermWall_250x30Shape")
+
+[node name="DiningCar_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 2.5, 11)
+[node name="Mesh" type="MeshInstance3D" parent="DiningCar_N_1"]
+mesh = SubResource("TermWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DiningCar_N_1"]
+shape = SubResource("TermWall_250x30Shape")
+
+[node name="DiningCar_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 2.5, 17)
+[node name="Mesh" type="MeshInstance3D" parent="DiningCar_S_0"]
+mesh = SubResource("TermWall_800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DiningCar_S_0"]
+shape = SubResource("TermWall_800x30Shape")
+
+[node name="DiningCar_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="DiningCar_E_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DiningCar_E_0"]
+shape = SubResource("TermWall_30x600Shape")
+
+[node name="DiningCar_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="DiningCar_W_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DiningCar_W_0"]
+shape = SubResource("TermWall_30x600Shape")
+
+[node name="ToyPharmacy_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="ToyPharmacy_N_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyPharmacy_N_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="ToyPharmacy_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0, 2.5, -12)
+[node name="Mesh" type="MeshInstance3D" parent="ToyPharmacy_S_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyPharmacy_S_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="ToyPharmacy_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, -19.0)
+[node name="Mesh" type="MeshInstance3D" parent="ToyPharmacy_E_0"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyPharmacy_E_0"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="ToyPharmacy_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, -13.0)
+[node name="Mesh" type="MeshInstance3D" parent="ToyPharmacy_E_1"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyPharmacy_E_1"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="ToyPharmacy_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, -16.0)
+[node name="Mesh" type="MeshInstance3D" parent="ToyPharmacy_W_0"]
+mesh = SubResource("TermWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyPharmacy_W_0"]
+shape = SubResource("TermWall_30x800Shape")
+
+[node name="BlankGate_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="BlankGate_N_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="BlankGate_N_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="BlankGate_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0, 2.5, -12)
+[node name="Mesh" type="MeshInstance3D" parent="BlankGate_S_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="BlankGate_S_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="BlankGate_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 2.5, -16.0)
+[node name="Mesh" type="MeshInstance3D" parent="BlankGate_E_0"]
+mesh = SubResource("TermWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="BlankGate_E_0"]
+shape = SubResource("TermWall_30x800Shape")
+
+[node name="BlankGate_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.5, -19.0)
+[node name="Mesh" type="MeshInstance3D" parent="BlankGate_W_0"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="BlankGate_W_0"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="BlankGate_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.5, -13.0)
+[node name="Mesh" type="MeshInstance3D" parent="BlankGate_W_1"]
+mesh = SubResource("TermWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="BlankGate_W_1"]
+shape = SubResource("TermWall_30x200Shape")
+
+[node name="PoolWaiting_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 2.5, 15)
+[node name="Mesh" type="MeshInstance3D" parent="PoolWaiting_N_0"]
+mesh = SubResource("TermWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolWaiting_N_0"]
+shape = SubResource("TermWall_300x30Shape")
+
+[node name="PoolWaiting_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 2.5, 15)
+[node name="Mesh" type="MeshInstance3D" parent="PoolWaiting_N_1"]
+mesh = SubResource("TermWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolWaiting_N_1"]
+shape = SubResource("TermWall_300x30Shape")
+
+[node name="PoolWaiting_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0, 2.5, 21)
+[node name="Mesh" type="MeshInstance3D" parent="PoolWaiting_S_0"]
+mesh = SubResource("TermWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolWaiting_S_0"]
+shape = SubResource("TermWall_1000x30Shape")
+
+[node name="PoolWaiting_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="PoolWaiting_E_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolWaiting_E_0"]
+shape = SubResource("TermWall_30x600Shape")
+
+[node name="PoolWaiting_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.5, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="PoolWaiting_W_0"]
+mesh = SubResource("TermWall_30x600")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolWaiting_W_0"]
+shape = SubResource("TermWall_30x600Shape")
+
