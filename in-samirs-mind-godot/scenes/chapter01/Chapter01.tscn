@@ -1,4 +1,4 @@
-[gd_scene load_steps=306 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=301 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
@@ -575,242 +575,237 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled1"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(4.0000, 2.5000, 1)
+uv1_scale = Vector3(6.9669, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled2"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.6250, 2.5000, 1)
+uv1_scale = Vector3(1.0886, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled3"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.3750, 2.5000, 1)
+uv1_scale = Vector3(4.1366, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled4"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.5000, 1.1250, 1)
+uv1_scale = Vector3(4.3543, 1.9594, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled5"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(11.5000, 2.2500, 1)
+uv1_scale = Vector3(20.0297, 3.9189, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled6"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(5.2500, 2.2500, 1)
+uv1_scale = Vector3(9.1440, 3.9189, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled7"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(4.7500, 2.2500, 1)
+uv1_scale = Vector3(8.2731, 3.9189, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled8"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.2500, 1.1250, 1)
+uv1_scale = Vector3(3.9189, 1.9594, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled9"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(4.5000, 2.7500, 1)
+uv1_scale = Vector3(7.8377, 4.7897, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled10"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.6250, 2.7500, 1)
+uv1_scale = Vector3(2.8303, 4.7897, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled11"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.7500, 1.1250, 1)
+uv1_scale = Vector3(4.7897, 1.9594, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled12"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.8750, 2.5000, 1)
+uv1_scale = Vector3(1.5240, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled13"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.5000, 4.5000, 1)
+uv1_scale = Vector3(4.3543, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled14"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.5000, 1.6250, 1)
+uv1_scale = Vector3(4.3543, 2.8303, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled15"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(4.7500, 3.5000, 1)
+uv1_scale = Vector3(8.2731, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled16"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.2500, 3.5000, 1)
+uv1_scale = Vector3(3.9189, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled17"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.7500, 3.5000, 1)
+uv1_scale = Vector3(4.7897, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled18"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.0000, 3.5000, 1)
+uv1_scale = Vector3(1.7417, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled19"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.5750, 3.5000, 1)
+uv1_scale = Vector3(1.0014, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled20"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0750, 3.5000, 1)
+uv1_scale = Vector3(3.6140, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled21"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.5000, 1.6250, 1)
+uv1_scale = Vector3(6.0960, 2.8303, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled22"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.5000, 4.5000, 1)
+uv1_scale = Vector3(6.0960, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled23"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.6250, 3.0000, 1)
+uv1_scale = Vector3(2.8303, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled24"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.2500, 3.0000, 1)
+uv1_scale = Vector3(2.1771, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled25"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.7500, 3.0000, 1)
+uv1_scale = Vector3(3.0480, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled26"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.0000, 4.5000, 1)
+uv1_scale = Vector3(5.2251, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled27"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.6250, 2.7500, 1)
+uv1_scale = Vector3(1.0886, 4.7897, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled28"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.7500, 3.0000, 1)
+uv1_scale = Vector3(4.7897, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled29"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.7500, 0.8750, 1)
+uv1_scale = Vector3(4.7897, 1.5240, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled30"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.5000, 2.5000, 1)
+uv1_scale = Vector3(4.3543, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled31"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.5000, 2.0000, 1)
+uv1_scale = Vector3(4.3543, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled32"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(6.0000, 3.5000, 1)
+uv1_scale = Vector3(10.4503, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled33"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.5000, 0.8750, 1)
+uv1_scale = Vector3(6.0960, 1.5240, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled34"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.5000, 4.8750, 1)
+uv1_scale = Vector3(6.0960, 8.4909, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled35"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(3.5000, 7.0000, 1)
+uv1_scale = Vector3(6.0960, 12.1920, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled36"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.5000, 2.2500, 1)
+uv1_scale = Vector3(0.8709, 3.9189, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled37"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.2500, 2.5000, 1)
+uv1_scale = Vector3(3.9189, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled38"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.5000, 2.0000, 1)
+uv1_scale = Vector3(0.8709, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled39"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0000, 2.0000, 1)
+uv1_scale = Vector3(3.4834, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled40"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0000, 2.5000, 1)
+uv1_scale = Vector3(3.4834, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled41"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0000, 0.5000, 1)
+uv1_scale = Vector3(3.4834, 0.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled42"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(1.0000, 2.0000, 1)
+uv1_scale = Vector3(1.7417, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled43"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0000, 4.0000, 1)
+uv1_scale = Vector3(3.4834, 6.9669, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled44"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(0.5000, 2.7500, 1)
+uv1_scale = Vector3(0.5000, 4.7897, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled45"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.0000, 2.7500, 1)
+uv1_scale = Vector3(3.4834, 4.7897, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled46"]
 albedo_texture = ExtResource("100")
-uv1_scale = Vector3(2.7500, 2.0000, 1)
+uv1_scale = Vector3(4.7897, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_bench_area"]
 albedo_texture = ExtResource("101")
 uv1_scale = Vector3(1, 1, 1)
-roughness = 0.75
-
-[sub_resource type="StandardMaterial3D" id="Mat_wall_bench_area_tiled1"]
-albedo_texture = ExtResource("101")
-uv1_scale = Vector3(2.5000, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry"]
@@ -820,22 +815,22 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled1"]
 albedo_texture = ExtResource("102")
-uv1_scale = Vector3(4.0000, 3.5000, 1)
+uv1_scale = Vector3(6.9669, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled2"]
 albedo_texture = ExtResource("102")
-uv1_scale = Vector3(2.5000, 4.5000, 1)
+uv1_scale = Vector3(4.3543, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled3"]
 albedo_texture = ExtResource("102")
-uv1_scale = Vector3(2.5000, 2.0000, 1)
+uv1_scale = Vector3(4.3543, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled4"]
 albedo_texture = ExtResource("102")
-uv1_scale = Vector3(2.0000, 2.5000, 1)
+uv1_scale = Vector3(3.4834, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean"]
@@ -845,62 +840,62 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled1"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(4.0000, 3.5000, 1)
+uv1_scale = Vector3(6.9669, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled2"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(11.5000, 3.5000, 1)
+uv1_scale = Vector3(20.0297, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled3"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(4.5000, 3.5000, 1)
+uv1_scale = Vector3(7.8377, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled4"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(2.5000, 4.5000, 1)
+uv1_scale = Vector3(4.3543, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled5"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(13.0000, 4.5000, 1)
+uv1_scale = Vector3(22.6423, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled6"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(4.5000, 4.5000, 1)
+uv1_scale = Vector3(7.8377, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled7"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(2.5000, 3.0000, 1)
+uv1_scale = Vector3(4.3543, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled8"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(2.5000, 2.0000, 1)
+uv1_scale = Vector3(4.3543, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled9"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(6.0000, 7.0000, 1)
+uv1_scale = Vector3(10.4503, 12.1920, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled10"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(2.0000, 2.5000, 1)
+uv1_scale = Vector3(3.4834, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled11"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(1.0000, 4.0000, 1)
+uv1_scale = Vector3(1.7417, 6.9669, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled12"]
 albedo_texture = ExtResource("103")
-uv1_scale = Vector3(2.0000, 2.0000, 1)
+uv1_scale = Vector3(3.4834, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained"]
@@ -910,32 +905,27 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled1"]
 albedo_texture = ExtResource("104")
-uv1_scale = Vector3(11.5000, 3.5000, 1)
+uv1_scale = Vector3(20.0297, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled2"]
 albedo_texture = ExtResource("104")
-uv1_scale = Vector3(2.5000, 3.0000, 1)
+uv1_scale = Vector3(4.3543, 5.2251, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled3"]
 albedo_texture = ExtResource("104")
-uv1_scale = Vector3(2.0000, 2.5000, 1)
+uv1_scale = Vector3(3.4834, 4.3543, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled4"]
 albedo_texture = ExtResource("104")
-uv1_scale = Vector3(1.0000, 4.0000, 1)
+uv1_scale = Vector3(1.7417, 6.9669, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_exit_door"]
 albedo_texture = ExtResource("105")
 uv1_scale = Vector3(1, 1, 1)
-roughness = 0.75
-
-[sub_resource type="StandardMaterial3D" id="Mat_wall_exit_door_tiled1"]
-albedo_texture = ExtResource("105")
-uv1_scale = Vector3(2.7500, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal"]
@@ -945,17 +935,17 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled1"]
 albedo_texture = ExtResource("106")
-uv1_scale = Vector3(4.5000, 3.5000, 1)
+uv1_scale = Vector3(7.8377, 6.0960, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled2"]
 albedo_texture = ExtResource("106")
-uv1_scale = Vector3(6.0000, 7.0000, 1)
+uv1_scale = Vector3(10.4503, 12.1920, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled3"]
 albedo_texture = ExtResource("106")
-uv1_scale = Vector3(2.0000, 2.0000, 1)
+uv1_scale = Vector3(3.4834, 3.4834, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet"]
@@ -965,12 +955,12 @@ roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet_tiled1"]
 albedo_texture = ExtResource("107")
-uv1_scale = Vector3(13.0000, 4.5000, 1)
+uv1_scale = Vector3(22.6423, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet_tiled2"]
 albedo_texture = ExtResource("107")
-uv1_scale = Vector3(4.5000, 4.5000, 1)
+uv1_scale = Vector3(7.8377, 7.8377, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_utility_shelf_sink"]
@@ -978,29 +968,14 @@ albedo_texture = ExtResource("108")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
-[sub_resource type="StandardMaterial3D" id="Mat_wall_utility_shelf_sink_tiled1"]
-albedo_texture = ExtResource("108")
-uv1_scale = Vector3(3.0000, 4.5000, 1)
-roughness = 0.75
-
 [sub_resource type="StandardMaterial3D" id="Mat_wall_maintenance_door"]
 albedo_texture = ExtResource("109")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
-[sub_resource type="StandardMaterial3D" id="Mat_wall_maintenance_door_tiled1"]
-albedo_texture = ExtResource("109")
-uv1_scale = Vector3(2.0000, 2.2500, 1)
-roughness = 0.75
-
 [sub_resource type="StandardMaterial3D" id="Mat_wall_washer_window"]
 albedo_texture = ExtResource("110")
 uv1_scale = Vector3(1, 1, 1)
-roughness = 0.75
-
-[sub_resource type="StandardMaterial3D" id="Mat_wall_washer_window_tiled1"]
-albedo_texture = ExtResource("110")
-uv1_scale = Vector3(6.7500, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="DoorMesh_MallDoor"]
@@ -1056,7 +1031,7 @@ shape = SubResource("W_290_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallW_0"]
 mesh = SubResource("W_15_305_427")
-surface_material_override/0 = SubResource("Mat_wall_bench_area_tiled1")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallW_0"]
 shape = SubResource("W_15_305_427Shape")
 
@@ -1176,7 +1151,7 @@ shape = SubResource("W_15_335_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.6764, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallE_0"]
 mesh = SubResource("W_15_335_427")
-surface_material_override/0 = SubResource("Mat_wall_exit_door_tiled1")
+surface_material_override/0 = SubResource("Mat_wall_exit_door")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallE_0"]
 shape = SubResource("W_15_335_427Shape")
 
@@ -1240,7 +1215,7 @@ shape = SubResource("W_15_305_198Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0292, 2.1336, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallN_0"]
 mesh = SubResource("W_823_427_15")
-surface_material_override/0 = SubResource("Mat_wall_washer_window_tiled1")
+surface_material_override/0 = SubResource("Mat_wall_washer_window")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallN_0"]
 shape = SubResource("W_823_427_15Shape")
 
@@ -1360,7 +1335,7 @@ shape = SubResource("W_15_366_549Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.8288, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallE_0"]
 mesh = SubResource("W_15_366_549")
-surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink_tiled1")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallE_0"]
 shape = SubResource("W_15_366_549Shape")
 
@@ -1528,7 +1503,7 @@ shape = SubResource("W_61_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6096, 1.3716, 8.5344)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallS_0"]
 mesh = SubResource("W_244_274_15")
-surface_material_override/0 = SubResource("Mat_wall_maintenance_door_tiled1")
+surface_material_override/0 = SubResource("Mat_wall_maintenance_door")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallS_0"]
 shape = SubResource("W_244_274_15Shape")
 
