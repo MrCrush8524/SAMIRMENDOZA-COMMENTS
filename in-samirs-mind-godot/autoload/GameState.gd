@@ -24,6 +24,16 @@ var memory_cats: Array[String] = []
 ## rolled yet"; Chapter01.gd rolls and fills these on first _ready().
 var chapter01_cat_spawns: Array[String] = []
 var chapter01_journal_spawns: Array[String] = []
+
+## Chapter III — House That Knows You. Which of the 3 Room Checks
+## ("window_height", "exterior_distance", "impossible_room") have fired
+## this dream, and the escalating mutation stage that count drives
+## (0-3). Both must restore correctly on Continue rather than resetting
+## the house to Stage 0 after the player has already progressed it.
+var chapter3_room_checks: Array[String] = []
+var chapter3_mutation_stage: int = 0
+var chapter3_back_exit_unlocked: bool = false
+
 var inventory: Array[String] = []
 var dream_tracks: Array[String] = []
 var tv_seen: Array[String] = []
@@ -142,6 +152,9 @@ func new_run(chosen_dreamer: String) -> void:
 	visited_chapters.append("chapter01")
 	chapter01_cat_spawns.clear()
 	chapter01_journal_spawns.clear()
+	chapter3_room_checks.clear()
+	chapter3_mutation_stage = 0
+	chapter3_back_exit_unlocked = false
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -163,6 +176,9 @@ func to_dict() -> Dictionary:
 		"profile_name": profile_name,
 		"chapter01_cat_spawns": chapter01_cat_spawns,
 		"chapter01_journal_spawns": chapter01_journal_spawns,
+		"chapter3_room_checks": chapter3_room_checks,
+		"chapter3_mutation_stage": chapter3_mutation_stage,
+		"chapter3_back_exit_unlocked": chapter3_back_exit_unlocked,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -194,6 +210,9 @@ func from_dict(data: Dictionary) -> bool:
 	profile_name = String(data.get("profile_name", ""))
 	chapter01_cat_spawns.assign(data.get("chapter01_cat_spawns", []))
 	chapter01_journal_spawns.assign(data.get("chapter01_journal_spawns", []))
+	chapter3_room_checks.assign(data.get("chapter3_room_checks", []))
+	chapter3_mutation_stage = int(data.get("chapter3_mutation_stage", 0))
+	chapter3_back_exit_unlocked = bool(data.get("chapter3_back_exit_unlocked", false))
 	in_nightmare = false
 	nightmare_depth = 0
 

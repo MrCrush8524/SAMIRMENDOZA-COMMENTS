@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://chapter03_scene"]
+[gd_scene load_steps=128 format=3 uid="uid://chapter03_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -43,6 +43,11 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_dustsheet_furniture.png" id="41"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_bare_bulb.png" id="42"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter03/chapter03_prop_roof_hatch.png" id="43"]
+[ext_resource type="Script" path="res://scenes/chapter03/Chapter03.gd" id="50"]
+[ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="51"]
+[ext_resource type="Texture2D" path="res://assets/pickups/journal_grimoire_wrapper.png" id="52"]
+[ext_resource type="Script" path="res://scenes/shared/RoomCheckTrigger.gd" id="53"]
+[ext_resource type="Script" path="res://scenes/shared/BackExitDoor.gd" id="54"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -278,7 +283,28 @@ ambient_light_source = 2
 ambient_light_color = Color(0.9, 0.86, 0.84, 1)
 ambient_light_energy = 1.0
 
+
+[sub_resource type="SphereShape3D" id="Shape_pickup3"]
+radius = 0.65
+
+[sub_resource type="BoxShape3D" id="Shape_roomcheck"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BackExitDoorMesh"]
+size = Vector3(1.0, 2.1, 0.12)
+
+[sub_resource type="BoxShape3D" id="BackExitDoorShape"]
+size = Vector3(1.0, 2.1, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="BackExitDoorMat"]
+albedo_color = Color(0.32, 0.27, 0.24, 1)
+roughness = 0.7
+
+[sub_resource type="BoxShape3D" id="BackExitDoorTrigger"]
+size = Vector3(1.6, 2.4, 1.6)
+
 [node name="Chapter03" type="Node3D"]
+script = ExtResource("50")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Env")
@@ -1025,3 +1051,102 @@ surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="A_RowDivider_2"]
 shape = SubResource("WallSeg_1100x25Shape")
 
+[node name="Journal1" type="Area3D" parent="GroundFloor" groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.1, 12)
+script = ExtResource("51")
+kind = 0
+journal_text = "The windows seem higher than they were a minute ago."
+item_id = "3"
+[node name="Icon" type="Sprite3D" parent="GroundFloor/Journal1"]
+texture = ExtResource("52")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="GroundFloor/Journal1"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Journal1"]
+shape = SubResource("Shape_pickup3")
+
+[node name="Journal2" type="Area3D" parent="SecondFloor" groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5.1, 8)
+script = ExtResource("51")
+kind = 0
+journal_text = "Every time you look outside, the ground is a little farther away."
+item_id = "4"
+[node name="Icon" type="Sprite3D" parent="SecondFloor/Journal2"]
+texture = ExtResource("52")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="SecondFloor/Journal2"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Journal2"]
+shape = SubResource("Shape_pickup3")
+
+[node name="Journal3" type="Area3D" parent="Attic" groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 9.1, 4)
+script = ExtResource("51")
+kind = 0
+journal_text = "When you finally leave this house, don't expect the street to still be there."
+item_id = "5"
+[node name="Icon" type="Sprite3D" parent="Attic/Journal3"]
+texture = ExtResource("52")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Attic/Journal3"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="Attic/Journal3"]
+shape = SubResource("Shape_pickup3")
+
+[node name="RoomCheck_WindowHeight" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.5, 10)
+script = ExtResource("53")
+check_id = "window_height"
+check_text = "Some rooms are bigger than they appear."
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/RoomCheck_WindowHeight"]
+shape = SubResource("Shape_roomcheck")
+
+[node name="RoomCheck_ExteriorDistance" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.5, 6)
+script = ExtResource("53")
+check_id = "exterior_distance"
+check_text = "The ground outside is farther away than it should be."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/RoomCheck_ExteriorDistance"]
+shape = SubResource("Shape_roomcheck")
+
+[node name="RoomCheck_ImpossibleRoom" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9.1, 0)
+script = ExtResource("53")
+check_id = "impossible_room"
+check_text = "Um, was that door there last time?"
+[node name="Shape" type="CollisionShape3D" parent="Attic/RoomCheck_ImpossibleRoom"]
+shape = SubResource("Shape_roomcheck")
+
+[node name="Prop_FoyerConsole_Duplicate" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.555, 2.5)
+texture = ExtResource("22")
+pixel_size = 0.001615
+visible = false
+
+[node name="ZoneDuplicateCorridorExtra" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, 18)
+mesh = SubResource("ZonePlaneMed")
+surface_material_override/0 = SubResource("DuplicateCorridorMat")
+visible = false
+
+[node name="BackExitDoor" type="Area3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.2, -15.5)
+script = ExtResource("54")
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/BackExitDoor"]
+mesh = SubResource("BackExitDoorMesh")
+surface_material_override/0 = SubResource("BackExitDoorMat")
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/BackExitDoor"]
+shape = SubResource("BackExitDoorTrigger")
+[node name="Light" type="OmniLight3D" parent="GroundFloor/BackExitDoor"]
+light_color = Color(0.85, 0.9, 1, 1)
+light_energy = 0.0
+omni_range = 3.0
