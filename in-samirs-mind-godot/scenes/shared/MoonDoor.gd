@@ -11,7 +11,7 @@ func _ready() -> void:
 	body_exited.connect(func(b): if b.is_in_group("player"): _player_inside = false)
 
 func _process(delta: float) -> void:
-	var ready_to_open := GameState.journals.size() >= 3 and GameState.memory_cats.size() >= 1
+	var ready_to_open := GameState.journals.size() >= 3 and GameState.memory_cats.size() >= 3
 	glow.light_energy = (0.9 + sin(Time.get_ticks_msec() * 0.004) * 0.3) if ready_to_open else 0.05
 	if ready_to_open and _player_inside:
 		UiRoot.set_prompt("The Moon Door is awake. Press E to step through.")
