@@ -18,6 +18,51 @@ full house style): 1 unit = 1 meter, `chapter02_tex_*` / `chapter02_prop_*`
 
 ---
 
+## 0. Texture delivery rules — new, learned the hard way on Chapter I
+
+Chapter I's wall/floor rebuild shipped looking stretched, then "glitchy,"
+then dirty, across three separate rounds of fixes. All three came from
+the same root cause: the source art wasn't delivered as a clean, tileable
+material — it was cropped out of full "reference sheet" mockups that
+mixed several different asset types together. These rules exist so
+Chapter Two's textures don't repeat that. **Every wall/floor texture for
+Chapter Two must satisfy all four:**
+
+1. **One material per file, full bleed, no sheet.** Don't deliver a
+   contact-sheet/mockup image for me to crop from — deliver each material
+   as its own file that's *nothing but* the tileable pattern, edge to
+   edge. If a swatch has a label, caption, ruler, color chip, or a sliver
+   of a neighboring material anywhere in the frame, it is not a clean
+   delivery — I cannot crop it out without losing image resolution and
+   re-introducing seams.
+2. **Tileable materials vs. one-off murals are different asset types —
+   say which one you're delivering.** A repeating wall/floor pattern
+   (tile, wood, carpet) must actually tile (no unique focal detail that
+   would look wrong repeated). A one-off illustrated wall (a specific
+   door, a sink with personal clutter, a bulletin board with photos) is
+   a **mural** — it gets placed once at its native aspect ratio, never
+   tiled. Label the filename accordingly so it's unambiguous on my end:
+   `chapter02_tex_*` for tileable materials, `chapter02_mural_*` for
+   one-off illustrated walls.
+3. **Floors need a clean variant, always.** Chapter I's entire floor set
+   was stains/wet-footprints/grime by design, with no clean option, so
+   there was nothing to tile without repeating the same dirt patch every
+   half-meter. For Chapter Two: **every tileable floor texture needs a
+   clean (unstained, dry, unmarked) version delivered alongside any
+   distressed version.** Grime/wear is fine as a *separate* overlay or a
+   deliberately-placed one-off decal — never baked permanently into the
+   base tile itself.
+4. **Tile scale**: design the tileable pattern assuming it repeats
+   roughly every **0.4–0.6m** at in-game scale (a real bathroom/kitchen
+   tile is 10–20cm; this is denser than the 8–12m rule used for the big
+   open-world materials in `DESIGNER_BRIEF_MAIN_CHAPTERS.md` — that
+   number is right for a football-field-sized outdoor zone, wrong for an
+   indoor tiled wall or floor). Don't worry about matching this exactly;
+   just don't design a pattern where a single tile occupies more than
+   ~1m of wall, or it'll read as an oversized smeared block once tiled.
+
+---
+
 ## 1. What's already built and reusable — free, no new art needed
 
 **Textures** (`assets/textures/chapter02/`):
@@ -106,12 +151,15 @@ like reskins. Minimum ask per house (times however many houses get full
 interiors — recommend starting with 3):
 - 1 wall texture, 1 floor texture, distinct per house
   (`chapter02_tex_house<N>_wall`, `chapter02_tex_house<N>_floor`).
+- **Floor must have a clean variant** — see §0.3. A lived-in house can
+  still have personality in its floor (a rug pattern, real wood grain)
+  without it being visibly dirty; save actual grime for a one-off decal
+  prop, not the base tile.
 - Style: same photoreal pastel-dreamcore treatment as Chapter I's
   laundromat set (soft AI-photoreal, not flat cartoon) — reference
   `assets/textures/chapter01/*` for the exact finish and grain level.
-- Tileable at the same ~8–12m repeat density used everywhere else in the
-  build (see the Units section of `DESIGNER_BRIEF_MAIN_CHAPTERS.md`) so
-  it drops in with the same UV-tiling approach just fixed in Chapter I.
+- Deliver per §0: one clean tileable file per material, full bleed, no
+  labels/sheet/neighbor bleed, designed to repeat every ~0.4–0.6m.
 
 ### 2d. Street-specific "wrong" prop
 Your brief's spatial-weirdness escalation wants a specific "wrong
