@@ -47,14 +47,21 @@ func _process(delta: float) -> void:
 	var target_energy := GLOW_NEAR_ENERGY if near else GLOW_IDLE_ENERGY
 	glow.light_energy = lerp(glow.light_energy, target_energy, delta * 4.0)
 
+## Both required-discovery kinds (journals + Memory Cats) top out at 3 —
+## see MoonDoor.gd's wake condition. Not a generic pickup-system constant,
+## just how many of each Chapter I currently asks for.
+const REQUIRED_DISCOVERIES := 3
+
 func interact() -> void:
 	match kind:
 		Kind.JOURNAL:
 			GameState.journals.append(item_id.to_int())
 			UiRoot.show_journal(journal_text)
+			UiRoot.flash_toast("Journal fragment found. (%d of %d)" % [GameState.journals.size(), REQUIRED_DISCOVERIES])
 		Kind.MEMORY_CAT:
 			GameState.memory_cats.append(item_id)
 			UiRoot.show_journal("A memory cat, curled where the light pools. You remember it now.")
+			UiRoot.flash_toast("Memory Cat found. (%d of %d)" % [GameState.memory_cats.size(), REQUIRED_DISCOVERIES])
 		Kind.ITEM:
 			GameState.inventory.append(item_id)
 		Kind.DREAM_TRACK:

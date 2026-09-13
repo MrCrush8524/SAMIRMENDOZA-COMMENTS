@@ -85,9 +85,17 @@ func _on_track_play() -> void:
 	AudioManager.play_dream_track_now(stream, func(): pass)
 
 func flash_save_toast() -> void:
+	flash_toast("Dream saved.")
+
+## Generic subtle, non-blocking notice — reused for the save toast and
+## for quiet discovery feedback (a Memory Cat/journal found, the Moon
+## Door waking) that shouldn't interrupt movement the way show_journal's
+## modal popup does.
+func flash_toast(text: String, duration: float = 1.6) -> void:
+	save_toast.text = text
 	save_toast.visible = true
 	var t := create_tween()
-	t.tween_interval(1.2)
+	t.tween_interval(duration)
 	t.tween_callback(func(): save_toast.visible = false)
 
 ## Nightmare Passage minigame ladder UI — a soft color wash + centered

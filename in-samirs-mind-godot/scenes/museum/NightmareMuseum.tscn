@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://nightmare_museum"]
+[gd_scene load_steps=90 format=3 uid="uid://nightmare_museum"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_quiet_mirror_room.png" id="31"]
 [ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_star_nursery.png" id="32"]
 [ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_impossible_corridor.png" id="33"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="34"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(64, 0.2, 42)
@@ -197,6 +198,19 @@ fog_density = 0.025
 ambient_light_source = 2
 ambient_light_color = Color(0.28, 0.2, 0.2, 1)
 ambient_light_energy = 0.5
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.55, 0.15, 0.2, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.55, 0.15, 0.2, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
 
 [node name="NightmareMuseum" type="Node3D"]
 
@@ -892,3 +906,15 @@ surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="MoonStair_W_1"]
 shape = SubResource("MusWall_30x200Shape")
 
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 17)
+script = ExtResource("34")
+[node name="Mesh" type="MeshInstance3D" parent="SideLevelReturnDoor"]
+mesh = SubResource("ReturnDoorMesh")
+surface_material_override/0 = SubResource("ReturnDoorMat")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.55, 0.15, 0.2, 1)
+light_energy = 0.5
+omni_range = 3.0

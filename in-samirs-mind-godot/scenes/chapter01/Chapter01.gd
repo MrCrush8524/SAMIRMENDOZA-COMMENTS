@@ -9,6 +9,12 @@ extends Node3D
 var _doubt_timer := 6.0 + randf() * 6.0
 
 func _ready() -> void:
+	# Environmental nudge before any checklist UI exists — only on a truly
+	# fresh dream, never on a reload/continue where the player's already
+	# found something.
+	if GameState.journals.is_empty() and GameState.memory_cats.is_empty():
+		UiRoot.flash_toast("This place feels familiar.", 2.4)
+
 	for pickup in get_tree().get_nodes_in_group("pickups"):
 		if pickup.kind == pickup.Kind.JOURNAL and GameState.journals.has(pickup.item_id.to_int()):
 			pickup.queue_free()

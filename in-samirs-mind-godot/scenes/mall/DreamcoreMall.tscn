@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=130 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/mall/mall_tex_cinema_floor.png" id="42"]
 [ext_resource type="Texture2D" path="res://assets/textures/mall/mall_tex_dream_playground_floor.png" id="43"]
 [ext_resource type="Texture2D" path="res://assets/textures/mall/mall_tex_greenhouse_floor.png" id="44"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="45"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(110, 0.2, 44)
@@ -289,6 +290,19 @@ background_color = Color(0.95, 0.9, 0.95, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.95, 0.88, 0.9, 1)
 ambient_light_energy = 1.1
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.98, 0.9, 0.68, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.98, 0.9, 0.68, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
 
 [node name="DreamcoreMall" type="Node3D"]
 
@@ -1228,3 +1242,15 @@ surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="Classroom_W_0"]
 shape = SubResource("MallWall_30x800Shape")
 
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 5)
+script = ExtResource("45")
+[node name="Mesh" type="MeshInstance3D" parent="SideLevelReturnDoor"]
+mesh = SubResource("ReturnDoorMesh")
+surface_material_override/0 = SubResource("ReturnDoorMat")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.98, 0.9, 0.68, 1)
+light_energy = 0.5
+omni_range = 3.0

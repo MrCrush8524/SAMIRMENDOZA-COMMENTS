@@ -64,6 +64,16 @@ var _backrooms_return_chapter: String = ""
 var _backrooms_return_position: Vector3 = Vector3.ZERO
 var _backrooms_return_yaw: float = 0.0
 
+## Where to put the player back when a side level (Mall, Zoo, Terminal,
+## Museum, Liminal Junction, the Pink Hallway) is left — set by
+## enter_side_level, consumed by exit_side_level. Always chapter01 today
+## (every side-level door lives in its Impossible Door Gallery), but
+## stored generically in case a side level is ever entered from
+## somewhere else.
+var _sidelevel_return_chapter: String = ""
+var _sidelevel_return_position: Vector3 = Vector3.ZERO
+var _sidelevel_return_yaw: float = 0.0
+
 func _ready() -> void:
 	if not GameState.has_active_run:
 		# Defensive fallback: never spawn with no run — bounce to title.
@@ -136,6 +146,35 @@ func respawn_in_chapter_random(candidates: Array[String]) -> void:
 	GameState.has_last_position = false
 	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
 	SceneLoader.load_chapter(GameState.chapter, self)
+
+## Called by a LevelDoor when the player steps through it into one of the
+## optional side levels (Mall/Zoo/Terminal/Museum/Liminal Junction/Pink
+## Hallway) from the Impossible Door Gallery. Remembers exactly where the
+## player was standing so exit_side_level can put them back at that same
+## door, per the "return to the same door" round-trip requirement.
+func enter_side_level(chapter_id: String, spawn_marker: String = "start", random_spawn_candidates: Array[String] = []) -> void:
+	_sidelevel_return_chapter = GameState.chapter
+	_sidelevel_return_position = player.global_position
+	_sidelevel_return_yaw = player.rotation.y
+	enter_chapter(chapter_id, spawn_marker, random_spawn_candidates)
+
+## Called by a SideLevelReturnDoor. Puts the player back exactly where
+## they stepped in from, not just at the destination chapter's "start".
+func exit_side_level() -> void:
+	if _sidelevel_return_chapter.is_empty():
+		return
+	GameState.chapter = _sidelevel_return_chapter
+	GameState.has_last_position = true
+	GameState.last_position = _sidelevel_return_position
+	GameState.last_yaw = _sidelevel_return_yaw
+	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
+	SceneLoader.load_chapter(_sidelevel_return_chapter, self)
+	# Only save once the player has actually been moved to the return spot
+	# by _on_chapter_ready above (load_chapter emits scene_ready
+	# synchronously) — save_game() reads the player's live position, so
+	# saving before the move would silently overwrite our return
+	# transform with wherever they were still standing in the side level.
+	SaveManager.save_game()
 
 ## Called by a NightmareDoor when the player steps through it. Remembers
 ## the exact chapter + transform so exit_nightmare/collapse can put the

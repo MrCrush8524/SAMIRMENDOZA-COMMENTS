@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://dreamcore_terminal"]
+[gd_scene load_steps=108 format=3 uid="uid://dreamcore_terminal"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_retro_futurist_tile_grid.png" id="41"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_retro_futuristic_transit_wall.png" id="42"]
 [ext_resource type="Texture2D" path="res://assets/textures/terminal/pastel_marble_crossway_plaza_pattern.png" id="43"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="44"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(48, 0.2, 44)
@@ -220,6 +221,19 @@ background_color = Color(0.95, 0.92, 0.98, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.94, 0.9, 0.98, 1)
 ambient_light_energy = 1.0
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.8, 0.78, 0.98, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.8, 0.78, 0.98, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
 
 [node name="DreamcoreTerminal" type="Node3D"]
 
@@ -995,3 +1009,15 @@ surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="PoolWaiting_W_0"]
 shape = SubResource("TermWall_30x600Shape")
 
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 5)
+script = ExtResource("44")
+[node name="Mesh" type="MeshInstance3D" parent="SideLevelReturnDoor"]
+mesh = SubResource("ReturnDoorMesh")
+surface_material_override/0 = SubResource("ReturnDoorMat")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.8, 0.78, 0.98, 1)
+light_energy = 0.5
+omni_range = 3.0

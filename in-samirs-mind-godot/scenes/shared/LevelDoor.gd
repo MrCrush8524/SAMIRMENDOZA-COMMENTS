@@ -26,4 +26,4 @@ func _step_through() -> void:
 	var game_root: Node = get_tree().get_first_node_in_group("game_root")
 	if game_root:
 		SaveManager.save_game()
-		game_root.enter_chapter(chapter_id, spawn_marker, random_spawn_candidates)
+		game_root.enter_side_level(chapter_id, spawn_marker, random_spawn_candidates)

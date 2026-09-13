@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dreamcore_level4"]
+[gd_scene load_steps=45 format=3 uid="uid://dreamcore_level4"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/level4/level4_party_streamers.png" id="20"]
 [ext_resource type="Texture2D" path="res://assets/textures/level4/level4_staircase.png" id="21"]
 [ext_resource type="Texture2D" path="res://assets/textures/level4/level4_arch_doorway.png" id="22"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="23"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -81,6 +82,19 @@ background_color = Color(0.97, 0.9, 0.94, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.96, 0.88, 0.92, 1)
 ambient_light_energy = 1.0
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.95, 0.6, 0.8, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.95, 0.6, 0.8, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
 
 [node name="DreamcoreLevel4" type="Node3D"]
 
@@ -267,3 +281,16 @@ pixel_size = 0.002
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.6, 9)
 texture = ExtResource("22")
 pixel_size = 0.002
+
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.15, 15)
+script = ExtResource("23")
+[node name="Mesh" type="MeshInstance3D" parent="SideLevelReturnDoor"]
+mesh = SubResource("ReturnDoorMesh")
+surface_material_override/0 = SubResource("ReturnDoorMat")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.95, 0.6, 0.8, 1)
+light_energy = 0.5
+omni_range = 3.0
