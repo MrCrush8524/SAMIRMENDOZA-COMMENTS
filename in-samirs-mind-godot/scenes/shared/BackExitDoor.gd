@@ -1,9 +1,23 @@
 extends Area3D
-## Chapter III's Back Exit — the Moon Door's equivalent, but deliberately
-## unremarkable: an ordinary back door, present from the start, locked
-## until the house has shown itself 3 times over (3 Journal Fragments +
-## 3 Room Checks). Never teleports the player — it just unlocks in place
-## and waits for them to walk back through the changed house to it.
+## Chapter III exit — the Moon Door's equivalent, but deliberately
+## unremarkable: an ordinary door, present from the start, locked until
+## the house has shown itself 3 times over (3 Journal Fragments + 3 Room
+## Checks). Never teleports the player — it just unlocks in place and
+## waits for them to walk back through the changed house to it.
+##
+## Shared by both of Chapter III's exits — the ground-floor Back Exit
+## (the canonical route) and the attic Roof Hatch (a secret alternate
+## for players who explored that far) — so a player can't bypass the
+## completion gate by finding the hatch first. Same unlock condition,
+## different flavor text per @export, set per-instance in the scene.
+
+@export var locked_prompt: String = "The handle moves. It doesn't open."
+@export var locked_toast: String = "You can go back. Find the way."
+@export var unlocked_prompt: String = "The back door is open. Press E to leave."
+@export var unlock_toast: String = "Somewhere in the house, a deadbolt turns."
+@export var transition_text: String = "The back door is open. The light outside is wrong."
+@export var destination_chapter: String = "chapter04"
+@export var destination_spawn_marker: String = "start"
 
 @onready var deadbolt_light: OmniLight3D = $Light
 
@@ -30,22 +44,22 @@ func _process(_delta: float) -> void:
 
 	if _player_inside:
 		if ready_to_open:
-			UiRoot.set_prompt("The back door is open. Press E to leave.")
+			UiRoot.set_prompt(unlocked_prompt)
 			if Input.is_action_just_pressed("interact"):
 				_trigger_transition()
 		else:
-			UiRoot.set_prompt("The handle moves. It doesn't open.")
+			UiRoot.set_prompt(locked_prompt)
 			if Input.is_action_just_pressed("interact"):
-				UiRoot.flash_toast("You can go back. Find the way.")
+				UiRoot.flash_toast(locked_toast)
 
 func _unlock() -> void:
 	GameState.chapter3_back_exit_unlocked = true
-	UiRoot.flash_toast("Somewhere in the house, a deadbolt turns.", 2.2)
+	UiRoot.flash_toast(unlock_toast, 2.2)
 	SaveManager.save_game()
 
 func _trigger_transition() -> void:
-	UiRoot.show_journal("The back door is open. The light outside is wrong.")
+	UiRoot.show_journal(transition_text)
 	SaveManager.save_game()
 	var game_root: Node = get_tree().get_first_node_in_group("game_root")
 	if game_root:
-		game_root.enter_chapter("chapter04")
+		game_root.enter_chapter(destination_chapter, destination_spawn_marker)

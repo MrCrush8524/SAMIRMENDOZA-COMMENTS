@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://chapter03_scene"]
+[gd_scene load_steps=157 format=3 uid="uid://chapter03_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -303,6 +303,94 @@ roughness = 0.7
 [sub_resource type="BoxShape3D" id="BackExitDoorTrigger"]
 size = Vector3(1.6, 2.4, 1.6)
 
+
+[sub_resource type="BoxMesh" id="SecondFloor_LeftFrameMesh"]
+size = Vector3(18, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="SecondFloor_LeftFrameMeshShape"]
+size = Vector3(18, 0.2, 40)
+
+[sub_resource type="BoxMesh" id="SecondFloor_RightFrameMesh"]
+size = Vector3(24, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="SecondFloor_RightFrameMeshShape"]
+size = Vector3(24, 0.2, 40)
+
+[sub_resource type="BoxMesh" id="SecondFloor_FrontFrameMesh"]
+size = Vector3(2, 0.2, 31)
+
+[sub_resource type="BoxShape3D" id="SecondFloor_FrontFrameMeshShape"]
+size = Vector3(2, 0.2, 31)
+
+[sub_resource type="BoxMesh" id="SecondFloor_BackFrameMesh"]
+size = Vector3(2, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="SecondFloor_BackFrameMeshShape"]
+size = Vector3(2, 0.2, 3)
+
+[sub_resource type="BoxMesh" id="Attic_LeftFrameMesh"]
+size = Vector3(29, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="Attic_LeftFrameMeshShape"]
+size = Vector3(29, 0.2, 40)
+
+[sub_resource type="BoxMesh" id="Attic_RightFrameMesh"]
+size = Vector3(13, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="Attic_RightFrameMeshShape"]
+size = Vector3(13, 0.2, 40)
+
+[sub_resource type="BoxMesh" id="Attic_FrontFrameMesh"]
+size = Vector3(2, 0.2, 30)
+
+[sub_resource type="BoxShape3D" id="Attic_FrontFrameMeshShape"]
+size = Vector3(2, 0.2, 30)
+
+[sub_resource type="BoxMesh" id="Attic_BackFrameMesh"]
+size = Vector3(2, 0.2, 4)
+
+[sub_resource type="BoxShape3D" id="Attic_BackFrameMeshShape"]
+size = Vector3(2, 0.2, 4)
+
+[sub_resource type="BoxMesh" id="StairStepMesh0"]
+size = Vector3(1.8, 0.33333, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh1"]
+size = Vector3(1.8, 0.66667, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh2"]
+size = Vector3(1.8, 1.00000, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh3"]
+size = Vector3(1.8, 1.33333, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh4"]
+size = Vector3(1.8, 1.66667, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh5"]
+size = Vector3(1.8, 2.00000, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh6"]
+size = Vector3(1.8, 2.33333, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh7"]
+size = Vector3(1.8, 2.66667, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh8"]
+size = Vector3(1.8, 3.00000, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh9"]
+size = Vector3(1.8, 3.33333, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh10"]
+size = Vector3(1.8, 3.66667, 0.5)
+
+[sub_resource type="BoxMesh" id="StairStepMesh11"]
+size = Vector3(1.8, 4.00000, 0.5)
+
+[sub_resource type="BoxShape3D" id="StairRampShape"]
+size = Vector3(1.8, 0.3, 10.21110)
+
 [node name="Chapter03" type="Node3D"]
 script = ExtResource("50")
 
@@ -472,29 +560,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.664, 0)
 texture = ExtResource("33")
 pixel_size = 0.001397
 
-[node name="LiftUpToSecond" type="Area3D" parent="GroundFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -14)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromGround")
-lift_label = "the stairs up to L2"
-[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/LiftUpToSecond"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="GroundFloor/LiftUpToSecond"]
-shape = SubResource("LiftPadShape")
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 16)
 
 [node name="SecondFloor" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/Floor"]
-mesh = SubResource("FloorMesh")
-surface_material_override/0 = SubResource("SecondFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Floor"]
-shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -20)
@@ -629,37 +700,10 @@ shape = SubResource("Shape_flavor_small")
 [node name="LandingFromGround" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, -14)
 
-[node name="LiftDownToGround" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, -14)
-script = ExtResource("2")
-target_marker = NodePath("../../start")
-lift_label = "the stairs down to the ground floor"
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/LiftDownToGround"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/LiftDownToGround"]
-shape = SubResource("LiftPadShape")
 
-[node name="LiftUpToAttic" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.5, -10)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromSecond")
-lift_label = "the stairs up to the attic"
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/LiftUpToAttic"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/LiftUpToAttic"]
-shape = SubResource("LiftPadShape")
 
 [node name="Attic" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/Floor"]
-mesh = SubResource("FloorMesh")
-surface_material_override/0 = SubResource("AtticFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/Floor"]
-shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="Attic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -20)
@@ -743,10 +787,14 @@ shape = SubResource("Shape_flavor_med")
 
 [node name="RoofHatch" type="Area3D" parent="Attic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8.6, 8)
-script = ExtResource("3")
-chapter_id = "chapter04"
-spawn_marker = "RoofHatchLanding"
-door_label = "the hatch into the sky the attic keeps promising"
+script = ExtResource("54")
+locked_prompt = "The hatch won't lift."
+locked_toast = "It lifts half an inch, then catches on something that isn't there."
+unlocked_prompt = "The hatch lifts freely now. Press E to climb through."
+unlock_toast = "Something in the attic just let go."
+transition_text = "The hatch opens onto the same wrong sky the Back Exit does."
+destination_chapter = "chapter04"
+destination_spawn_marker = "RoofHatchLanding"
 [node name="Mesh" type="MeshInstance3D" parent="Attic/RoofHatch"]
 mesh = SubResource("BoxMesh_roofhatch")
 surface_material_override/0 = SubResource("RoofHatchMat")
@@ -760,16 +808,6 @@ omni_range = 3.0
 [node name="LandingFromSecond" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)
 
-[node name="LiftDownToSecond" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8.5, -10)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromGround")
-lift_label = "the stairs down to the second floor"
-[node name="Mesh" type="MeshInstance3D" parent="Attic/LiftDownToSecond"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/LiftDownToSecond"]
-shape = SubResource("LiftPadShape")
 
 [node name="G_LivingRoom_Foyer_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.6, 6.0)
@@ -1150,3 +1188,197 @@ shape = SubResource("BackExitDoorTrigger")
 light_color = Color(0.85, 0.9, 1, 1)
 light_energy = 0.0
 omni_range = 3.0
+
+[node name="FloorLeft" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0, 4, 0.0)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorLeft"]
+mesh = SubResource("SecondFloor_LeftFrameMesh")
+surface_material_override/0 = SubResource("SecondFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorLeft"]
+shape = SubResource("SecondFloor_LeftFrameMeshShape")
+
+[node name="FloorRight" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 4, 0.0)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorRight"]
+mesh = SubResource("SecondFloor_RightFrameMesh")
+surface_material_override/0 = SubResource("SecondFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorRight"]
+shape = SubResource("SecondFloor_RightFrameMeshShape")
+
+[node name="FloorFront" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 4, 4.5)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorFront"]
+mesh = SubResource("SecondFloor_FrontFrameMesh")
+surface_material_override/0 = SubResource("SecondFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorFront"]
+shape = SubResource("SecondFloor_FrontFrameMeshShape")
+
+[node name="FloorBack" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 4, -18.5)
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorBack"]
+mesh = SubResource("SecondFloor_BackFrameMesh")
+surface_material_override/0 = SubResource("SecondFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorBack"]
+shape = SubResource("SecondFloor_BackFrameMeshShape")
+
+[node name="FloorLeft" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 0.0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorLeft"]
+mesh = SubResource("Attic_LeftFrameMesh")
+surface_material_override/0 = SubResource("AtticFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/FloorLeft"]
+shape = SubResource("Attic_LeftFrameMeshShape")
+
+[node name="FloorRight" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 8, 0.0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorRight"]
+mesh = SubResource("Attic_RightFrameMesh")
+surface_material_override/0 = SubResource("AtticFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/FloorRight"]
+shape = SubResource("Attic_RightFrameMeshShape")
+
+[node name="FloorFront" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 8, 5.0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorFront"]
+mesh = SubResource("Attic_FrontFrameMesh")
+surface_material_override/0 = SubResource("AtticFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/FloorFront"]
+shape = SubResource("Attic_FrontFrameMeshShape")
+
+[node name="FloorBack" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 8, -18.0)
+[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorBack"]
+mesh = SubResource("Attic_BackFrameMesh")
+surface_material_override/0 = SubResource("AtticFloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/FloorBack"]
+shape = SubResource("Attic_BackFrameMeshShape")
+
+[node name="Stair1_Step0" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.26667, -11.25000)
+mesh = SubResource("StairStepMesh0")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step1" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.43333, -11.75000)
+mesh = SubResource("StairStepMesh1")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step2" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.60000, -12.25000)
+mesh = SubResource("StairStepMesh2")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step3" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.76667, -12.75000)
+mesh = SubResource("StairStepMesh3")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step4" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.93333, -13.25000)
+mesh = SubResource("StairStepMesh4")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step5" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.10000, -13.75000)
+mesh = SubResource("StairStepMesh5")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step6" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.26667, -14.25000)
+mesh = SubResource("StairStepMesh6")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step7" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.43333, -14.75000)
+mesh = SubResource("StairStepMesh7")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step8" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.60000, -15.25000)
+mesh = SubResource("StairStepMesh8")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step9" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.76667, -15.75000)
+mesh = SubResource("StairStepMesh9")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step10" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.93333, -16.25000)
+mesh = SubResource("StairStepMesh10")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_Step11" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.10000, -16.75000)
+mesh = SubResource("StairStepMesh11")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair1_RampCollision" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1.00000, 0.00000, 0.00000, 0.00000, -0.83205, 0.55470, 0.00000, -0.55470, -0.83205, -3, 2.0999999999999996, -14.0)
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/Stair1_RampCollision"]
+shape = SubResource("StairRampShape")
+
+[node name="Stair2_Step0" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.26667, -10.25000)
+mesh = SubResource("StairStepMesh0")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step1" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.43333, -10.75000)
+mesh = SubResource("StairStepMesh1")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step2" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.60000, -11.25000)
+mesh = SubResource("StairStepMesh2")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step3" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.76667, -11.75000)
+mesh = SubResource("StairStepMesh3")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step4" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.93333, -12.25000)
+mesh = SubResource("StairStepMesh4")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step5" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.10000, -12.75000)
+mesh = SubResource("StairStepMesh5")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step6" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.26667, -13.25000)
+mesh = SubResource("StairStepMesh6")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step7" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.43333, -13.75000)
+mesh = SubResource("StairStepMesh7")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step8" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.60000, -14.25000)
+mesh = SubResource("StairStepMesh8")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step9" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.76667, -14.75000)
+mesh = SubResource("StairStepMesh9")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step10" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.93333, -15.25000)
+mesh = SubResource("StairStepMesh10")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step11" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6.10000, -15.75000)
+mesh = SubResource("StairStepMesh11")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_RampCollision" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1.00000, 0.00000, 0.00000, 0.00000, -0.83205, 0.55470, 0.00000, -0.55470, -0.83205, 8, 6.1, -13.0)
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Stair2_RampCollision"]
+shape = SubResource("StairRampShape")
