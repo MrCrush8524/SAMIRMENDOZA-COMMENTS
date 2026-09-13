@@ -16,6 +16,14 @@ var chapter: String = "chapter01"
 var spawn_id: String = "start"
 var journals: Array[int] = []
 var memory_cats: Array[String] = []
+
+## Which of Chapter I's spawn-point pool markers this dream picked for
+## its 3 Memory Cats / 3 Journal Fragments — chosen once on new_run() and
+## kept for the rest of the dream so a reload doesn't relocate an
+## unfound item the player already knows the spot of. Empty means "not
+## rolled yet"; Chapter01.gd rolls and fills these on first _ready().
+var chapter01_cat_spawns: Array[String] = []
+var chapter01_journal_spawns: Array[String] = []
 var inventory: Array[String] = []
 var dream_tracks: Array[String] = []
 var tv_seen: Array[String] = []
@@ -132,6 +140,8 @@ func new_run(chosen_dreamer: String) -> void:
 	neighborhood_discoveries.clear()
 	visited_chapters.clear()
 	visited_chapters.append("chapter01")
+	chapter01_cat_spawns.clear()
+	chapter01_journal_spawns.clear()
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -151,6 +161,8 @@ func to_dict() -> Dictionary:
 		"neighborhood_discoveries": neighborhood_discoveries,
 		"visited_chapters": visited_chapters,
 		"profile_name": profile_name,
+		"chapter01_cat_spawns": chapter01_cat_spawns,
+		"chapter01_journal_spawns": chapter01_journal_spawns,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -180,6 +192,8 @@ func from_dict(data: Dictionary) -> bool:
 	if not visited_chapters.has(chapter):
 		visited_chapters.append(chapter)
 	profile_name = String(data.get("profile_name", ""))
+	chapter01_cat_spawns.assign(data.get("chapter01_cat_spawns", []))
+	chapter01_journal_spawns.assign(data.get("chapter01_journal_spawns", []))
 	in_nightmare = false
 	nightmare_depth = 0
 
