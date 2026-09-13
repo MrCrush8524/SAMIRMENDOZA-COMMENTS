@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=79 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
@@ -101,6 +101,14 @@ radius = 2.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_moondoor"]
 size = Vector3(1.3, 2.3, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="Mat_moondoor"]
+albedo_color = Color(0.88, 0.85, 0.94, 1)
+roughness = 0.35
+metallic = 0.1
+emission_enabled = true
+emission = Color(0.85, 0.8, 0.95, 1)
+emission_energy_multiplier = 0.12
 
 [sub_resource type="QuadMesh" id="QuadMesh_nightmaredoor"]
 size = Vector2(1.3, 2.3)
@@ -391,6 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, -7.9)
 script = ExtResource("4")
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="MoonDoor"]
@@ -621,6 +630,7 @@ spawn_marker = "start"
 door_label = "a door that smells faintly of a shopping mall food court"
 [node name="Mesh" type="MeshInstance3D" parent="MallDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="MallDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="MallDoor"]
@@ -636,6 +646,7 @@ spawn_marker = "start"
 door_label = "the pink hallway door"
 [node name="Mesh" type="MeshInstance3D" parent="Level4Door"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="Level4Door"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="Level4Door"]
@@ -651,6 +662,7 @@ spawn_marker = "start"
 door_label = "a door that smells like clean air"
 [node name="Mesh" type="MeshInstance3D" parent="ZooDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="ZooDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="ZooDoor"]
@@ -666,6 +678,7 @@ spawn_marker = "start"
 door_label = "a door shaped like a departure gate"
 [node name="Mesh" type="MeshInstance3D" parent="TerminalDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="TerminalDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="TerminalDoor"]
@@ -681,6 +694,7 @@ spawn_marker = "start"
 door_label = "a door that feels older than the rest of the house"
 [node name="Mesh" type="MeshInstance3D" parent="MuseumDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="MuseumDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="MuseumDoor"]
@@ -696,6 +710,7 @@ random_spawn_candidates = Array[String](["Platform_1", "Platform_2", "Platform_3
 door_label = "a door with a faint smell of train exhaust"
 [node name="Mesh" type="MeshInstance3D" parent="LiminalJunctionDoor"]
 mesh = SubResource("BoxMesh_moondoor")
+surface_material_override/0 = SubResource("Mat_moondoor")
 [node name="Shape" type="CollisionShape3D" parent="LiminalJunctionDoor"]
 shape = SubResource("Shape_moondoor")
 [node name="Glow" type="OmniLight3D" parent="LiminalJunctionDoor"]
