@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://clouds_zoo"]
+[gd_scene load_steps=72 format=3 uid="uid://clouds_zoo"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -113,6 +113,35 @@ size = Vector3(16, 4, 14)
 size = Vector2(14, 8)
 [sub_resource type="BoxShape3D" id="Shape_flavor_small2"]
 size = Vector3(14, 4, 8)
+
+[sub_resource type="StandardMaterial3D" id="FenceMat"]
+albedo_color = Color(0.55, 0.58, 0.62, 1)
+roughness = 0.6
+metallic = 0.2
+
+[sub_resource type="BoxMesh" id="Fence_560x15"]
+size = Vector3(5.6, 1.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="Fence_560x15Shape"]
+size = Vector3(5.6, 1.1, 0.15)
+
+[sub_resource type="BoxMesh" id="Fence_15x490"]
+size = Vector3(0.15, 1.1, 4.9)
+
+[sub_resource type="BoxShape3D" id="Fence_15x490Shape"]
+size = Vector3(0.15, 1.1, 4.9)
+
+[sub_resource type="BoxMesh" id="Fence_490x15"]
+size = Vector3(4.9, 1.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="Fence_490x15Shape"]
+size = Vector3(4.9, 1.1, 0.15)
+
+[sub_resource type="BoxMesh" id="Fence_15x280"]
+size = Vector3(0.15, 1.1, 2.8)
+
+[sub_resource type="BoxShape3D" id="Fence_15x280Shape"]
+size = Vector3(0.15, 1.1, 2.8)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -480,3 +509,196 @@ pixel_size = 0.0016
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.2, 2)
 texture = ExtResource("33")
 pixel_size = 0.0016
+
+[node name="CelestialAviary_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 0.55, -16.45)
+[node name="Mesh" type="MeshInstance3D" parent="CelestialAviary_FenceN"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CelestialAviary_FenceN"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="CelestialAviary_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 0.55, -11.55)
+[node name="Mesh" type="MeshInstance3D" parent="CelestialAviary_FenceS"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CelestialAviary_FenceS"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="CelestialAviary_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8, 0.55, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="CelestialAviary_FenceE"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CelestialAviary_FenceE"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="CelestialAviary_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2, 0.55, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="CelestialAviary_FenceW"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CelestialAviary_FenceW"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="SkyWhales_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 0.55, -16.45)
+[node name="Mesh" type="MeshInstance3D" parent="SkyWhales_FenceN"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="SkyWhales_FenceN"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="SkyWhales_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 0.55, -11.55)
+[node name="Mesh" type="MeshInstance3D" parent="SkyWhales_FenceS"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="SkyWhales_FenceS"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="SkyWhales_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2, 0.55, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="SkyWhales_FenceE"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="SkyWhales_FenceE"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="SkyWhales_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8, 0.55, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="SkyWhales_FenceW"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="SkyWhales_FenceW"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="GentleGiants_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 0.55, -32.45)
+[node name="Mesh" type="MeshInstance3D" parent="GentleGiants_FenceN"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GentleGiants_FenceN"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="GentleGiants_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 0.55, -27.55)
+[node name="Mesh" type="MeshInstance3D" parent="GentleGiants_FenceS"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GentleGiants_FenceS"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="GentleGiants_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8, 0.55, -30.0)
+[node name="Mesh" type="MeshInstance3D" parent="GentleGiants_FenceE"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GentleGiants_FenceE"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="GentleGiants_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2, 0.55, -30.0)
+[node name="Mesh" type="MeshInstance3D" parent="GentleGiants_FenceW"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GentleGiants_FenceW"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="TwilightForest_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 0.55, -32.45)
+[node name="Mesh" type="MeshInstance3D" parent="TwilightForest_FenceN"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="TwilightForest_FenceN"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="TwilightForest_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 0.55, -27.55)
+[node name="Mesh" type="MeshInstance3D" parent="TwilightForest_FenceS"]
+mesh = SubResource("Fence_560x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="TwilightForest_FenceS"]
+shape = SubResource("Fence_560x15Shape")
+
+[node name="TwilightForest_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2, 0.55, -30.0)
+[node name="Mesh" type="MeshInstance3D" parent="TwilightForest_FenceE"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="TwilightForest_FenceE"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="TwilightForest_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8, 0.55, -30.0)
+[node name="Mesh" type="MeshInstance3D" parent="TwilightForest_FenceW"]
+mesh = SubResource("Fence_15x490")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="TwilightForest_FenceW"]
+shape = SubResource("Fence_15x490Shape")
+
+[node name="CoralReef_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, -41.4)
+[node name="Mesh" type="MeshInstance3D" parent="CoralReef_FenceN"]
+mesh = SubResource("Fence_490x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CoralReef_FenceN"]
+shape = SubResource("Fence_490x15Shape")
+
+[node name="CoralReef_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, -38.6)
+[node name="Mesh" type="MeshInstance3D" parent="CoralReef_FenceS"]
+mesh = SubResource("Fence_490x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CoralReef_FenceS"]
+shape = SubResource("Fence_490x15Shape")
+
+[node name="CoralReef_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.45, 0.55, -40.0)
+[node name="Mesh" type="MeshInstance3D" parent="CoralReef_FenceE"]
+mesh = SubResource("Fence_15x280")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CoralReef_FenceE"]
+shape = SubResource("Fence_15x280Shape")
+
+[node name="CoralReef_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 0.55, -40.0)
+[node name="Mesh" type="MeshInstance3D" parent="CoralReef_FenceW"]
+mesh = SubResource("Fence_15x280")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="CoralReef_FenceW"]
+shape = SubResource("Fence_15x280Shape")
+
+[node name="WhisperMeadow_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 0.55, -41.4)
+[node name="Mesh" type="MeshInstance3D" parent="WhisperMeadow_FenceN"]
+mesh = SubResource("Fence_490x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="WhisperMeadow_FenceN"]
+shape = SubResource("Fence_490x15Shape")
+
+[node name="WhisperMeadow_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 0.55, -38.6)
+[node name="Mesh" type="MeshInstance3D" parent="WhisperMeadow_FenceS"]
+mesh = SubResource("Fence_490x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="WhisperMeadow_FenceS"]
+shape = SubResource("Fence_490x15Shape")
+
+[node name="WhisperMeadow_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 0.55, -40.0)
+[node name="Mesh" type="MeshInstance3D" parent="WhisperMeadow_FenceE"]
+mesh = SubResource("Fence_15x280")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="WhisperMeadow_FenceE"]
+shape = SubResource("Fence_15x280Shape")
+
+[node name="WhisperMeadow_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.45, 0.55, -40.0)
+[node name="Mesh" type="MeshInstance3D" parent="WhisperMeadow_FenceW"]
+mesh = SubResource("Fence_15x280")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="WhisperMeadow_FenceW"]
+shape = SubResource("Fence_15x280Shape")
+
