@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=182 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -48,24 +48,28 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_unopened_mail.png" id="112"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_wrong_photograph_framed.png" id="113"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_roof_shingle.png" id="114"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_siding_pink.png" id="115"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_siding_teal_shingle.png" id="116"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_door_teal_glass.png" id="117"]
+[ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_fanlight_window.png" id="118"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
-size = Vector3(70, 0.2, 60)
+size = Vector3(96, 0.2, 72)
 [sub_resource type="BoxShape3D" id="FloorShape"]
-size = Vector3(70, 0.2, 60)
+size = Vector3(96, 0.2, 72)
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
 albedo_texture = ExtResource("7")
 uv1_scale = Vector3(7, 6, 1)
 roughness = 0.85
 
 [sub_resource type="BoxMesh" id="WallMeshEW"]
-size = Vector3(70, 5, 0.3)
+size = Vector3(96, 5, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeEW"]
-size = Vector3(70, 5, 0.3)
+size = Vector3(96, 5, 0.3)
 [sub_resource type="BoxMesh" id="WallMeshNS"]
-size = Vector3(60, 5, 0.3)
+size = Vector3(72, 5, 0.3)
 [sub_resource type="BoxShape3D" id="WallShapeNS"]
-size = Vector3(60, 5, 0.3)
+size = Vector3(72, 5, 0.3)
 [sub_resource type="StandardMaterial3D" id="WallMat"]
 albedo_texture = ExtResource("8")
 uv1_scale = Vector3(6, 1, 1)
@@ -212,6 +216,216 @@ ambient_light_source = 2
 ambient_light_color = Color(0.92, 0.88, 0.85, 1)
 ambient_light_energy = 1.1
 
+
+[sub_resource type="BoxMesh" id="BoxMesh_House1_Arrival"]
+size = Vector3(8.5, 2.9, 7.0)
+[sub_resource type="BoxShape3D" id="BoxShape_House1_Arrival"]
+size = Vector3(8.5, 2.9, 7.0)
+[sub_resource type="StandardMaterial3D" id="Mat_House1_Arrival"]
+albedo_texture = ExtResource("115")
+uv1_scale = Vector3(2.7389154480689912, 1.2320427883317557, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House1_Arrival"]
+size = Vector3(4.6155, 0.15, 7.4)
+[sub_resource type="BoxShape3D" id="RoofShape_House1_Arrival"]
+size = Vector3(4.6155, 0.15, 7.4)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House1_Arrival"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House1_Arrival"]
+size = Vector3(5.0, 0.15, 2.0)
+[sub_resource type="BoxShape3D" id="PorchShape_House1_Arrival"]
+size = Vector3(5.0, 0.15, 2.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House2_Repeated"]
+size = Vector3(9.0, 2.9, 8.2)
+[sub_resource type="BoxShape3D" id="BoxShape_House2_Repeated"]
+size = Vector3(9.0, 2.9, 8.2)
+[sub_resource type="StandardMaterial3D" id="Mat_House2_Repeated"]
+albedo_texture = ExtResource("101")
+uv1_scale = Vector3(2.783789573207665, 1.2631450295925692, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House2_Repeated"]
+size = Vector3(4.8466, 0.15, 8.6)
+[sub_resource type="BoxShape3D" id="RoofShape_House2_Repeated"]
+size = Vector3(4.8466, 0.15, 8.6)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House2_Repeated"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House2_Repeated"]
+size = Vector3(6.0, 0.15, 2.2)
+[sub_resource type="BoxShape3D" id="PorchShape_House2_Repeated"]
+size = Vector3(6.0, 0.15, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House3_WrongPhoto"]
+size = Vector3(9.5, 5.6, 8.5)
+[sub_resource type="BoxShape3D" id="BoxShape_House3_WrongPhoto"]
+size = Vector3(9.5, 5.6, 8.5)
+[sub_resource type="StandardMaterial3D" id="Mat_House3_WrongPhoto"]
+albedo_texture = ExtResource("116")
+uv1_scale = Vector3(4.839748292333023, 9.186351706036744, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House3_WrongPhoto"]
+size = Vector3(5.2347, 0.15, 8.9)
+[sub_resource type="BoxShape3D" id="RoofShape_House3_WrongPhoto"]
+size = Vector3(5.2347, 0.15, 8.9)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House3_WrongPhoto"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House3_WrongPhoto"]
+size = Vector3(5.0, 0.15, 2.0)
+[sub_resource type="BoxShape3D" id="PorchShape_House3_WrongPhoto"]
+size = Vector3(5.0, 0.15, 2.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House4_Porch"]
+size = Vector3(8.0, 2.9, 7.0)
+[sub_resource type="BoxShape3D" id="BoxShape_House4_Porch"]
+size = Vector3(8.0, 2.9, 7.0)
+[sub_resource type="StandardMaterial3D" id="Mat_House4_Porch"]
+albedo_texture = ExtResource("101")
+uv1_scale = Vector3(2.4744796206290354, 1.2631450295925692, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House4_Porch"]
+size = Vector3(4.3863, 0.15, 7.4)
+[sub_resource type="BoxShape3D" id="RoofShape_House4_Porch"]
+size = Vector3(4.3863, 0.15, 7.4)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House4_Porch"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House4_Porch"]
+size = Vector3(6.5, 0.15, 2.3)
+[sub_resource type="BoxShape3D" id="PorchShape_House4_Porch"]
+size = Vector3(6.5, 0.15, 2.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House5_Final"]
+size = Vector3(10.5, 5.8, 9.5)
+[sub_resource type="BoxShape3D" id="BoxShape_House5_Final"]
+size = Vector3(10.5, 5.8, 9.5)
+[sub_resource type="StandardMaterial3D" id="Mat_House5_Final"]
+albedo_texture = ExtResource("115")
+uv1_scale = Vector3(3.3833661417322833, 2.4640855766635115, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House5_Final"]
+size = Vector3(5.7726, 0.15, 9.9)
+[sub_resource type="BoxShape3D" id="RoofShape_House5_Final"]
+size = Vector3(5.7726, 0.15, 9.9)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House5_Final"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House5_Final"]
+size = Vector3(7.0, 0.15, 2.4)
+[sub_resource type="BoxShape3D" id="PorchShape_House5_Final"]
+size = Vector3(7.0, 0.15, 2.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House6_PorchOnly"]
+size = Vector3(8.0, 2.9, 7.0)
+[sub_resource type="BoxShape3D" id="BoxShape_House6_PorchOnly"]
+size = Vector3(8.0, 2.9, 7.0)
+[sub_resource type="StandardMaterial3D" id="Mat_House6_PorchOnly"]
+albedo_texture = ExtResource("116")
+uv1_scale = Vector3(4.075577509333072, 4.757217847769028, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House6_PorchOnly"]
+size = Vector3(4.3863, 0.15, 7.4)
+[sub_resource type="BoxShape3D" id="RoofShape_House6_PorchOnly"]
+size = Vector3(4.3863, 0.15, 7.4)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House6_PorchOnly"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House6_PorchOnly"]
+size = Vector3(4.5, 0.15, 1.8)
+[sub_resource type="BoxShape3D" id="PorchShape_House6_PorchOnly"]
+size = Vector3(4.5, 0.15, 1.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House7_Impossible"]
+size = Vector3(9.0, 2.9, 8.0)
+[sub_resource type="BoxShape3D" id="BoxShape_House7_Impossible"]
+size = Vector3(9.0, 2.9, 8.0)
+[sub_resource type="StandardMaterial3D" id="Mat_House7_Impossible"]
+albedo_texture = ExtResource("101")
+uv1_scale = Vector3(2.783789573207665, 1.2631450295925692, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House7_Impossible"]
+size = Vector3(4.8847, 0.15, 8.4)
+[sub_resource type="BoxShape3D" id="RoofShape_House7_Impossible"]
+size = Vector3(4.8847, 0.15, 8.4)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House7_Impossible"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House7_Impossible"]
+size = Vector3(4.0, 0.15, 1.8)
+[sub_resource type="BoxShape3D" id="PorchShape_House7_Impossible"]
+size = Vector3(4.0, 0.15, 1.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_House8_Distant"]
+size = Vector3(9.0, 2.9, 8.0)
+[sub_resource type="BoxShape3D" id="BoxShape_House8_Distant"]
+size = Vector3(9.0, 2.9, 8.0)
+[sub_resource type="StandardMaterial3D" id="Mat_House8_Distant"]
+albedo_texture = ExtResource("101")
+uv1_scale = Vector3(2.783789573207665, 1.2631450295925692, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="RoofMesh_House8_Distant"]
+size = Vector3(4.8466, 0.15, 8.4)
+[sub_resource type="BoxShape3D" id="RoofShape_House8_Distant"]
+size = Vector3(4.8466, 0.15, 8.4)
+[sub_resource type="StandardMaterial3D" id="RoofMat_House8_Distant"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="PorchMesh_House8_Distant"]
+size = Vector3(2.0, 0.15, 1.0)
+[sub_resource type="BoxShape3D" id="PorchShape_House8_Distant"]
+size = Vector3(2.0, 0.15, 1.0)
+
+[sub_resource type="BoxMesh" id="RoadMainMesh"]
+size = Vector3(80, 0.1, 7)
+[sub_resource type="BoxShape3D" id="RoadMainShape"]
+size = Vector3(80, 0.1, 7)
+[sub_resource type="StandardMaterial3D" id="RoadMat"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="SidewalkNSMesh"]
+size = Vector3(80, 0.12, 1.6)
+[sub_resource type="BoxShape3D" id="SidewalkNSShape"]
+size = Vector3(80, 0.12, 1.6)
+[sub_resource type="StandardMaterial3D" id="SidewalkMat"]
+albedo_color = Color(0.72, 0.71, 0.68, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="RoadSideMesh"]
+size = Vector3(7, 0.1, 28)
+[sub_resource type="BoxShape3D" id="RoadSideShape"]
+size = Vector3(7, 0.1, 28)
+[sub_resource type="BoxMesh" id="SidewalkEWMesh"]
+size = Vector3(1.6, 0.12, 28)
+[sub_resource type="BoxShape3D" id="SidewalkEWShape"]
+size = Vector3(1.6, 0.12, 28)
+
 [node name="InfiniteNeighborhood" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -225,7 +439,7 @@ surface_material_override/0 = SubResource("FloorMat")
 shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -34)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -233,7 +447,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallSouth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 34)
 [node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -241,7 +455,7 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeEW")
 
 [node name="WallEast" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 35, 2.5, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 48, 2.5, 0)
 [node name="Mesh" type="MeshInstance3D" parent="WallEast"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
@@ -249,35 +463,26 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallShapeNS")
 
 [node name="WallWest" type="StaticBody3D" parent="."]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -35, 2.5, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48, 2.5, 0)
 [node name="Mesh" type="MeshInstance3D" parent="WallWest"]
 mesh = SubResource("WallMeshNS")
 surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="WallWest"]
 shape = SubResource("WallShapeNS")
 
-[node name="ZoneHub" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
-mesh = SubResource("ZonePlaneHub")
-surface_material_override/0 = SubResource("HubMat")
-[node name="Light" type="OmniLight3D" parent="ZoneHub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-light_color = Color(1, 0.92, 0.82, 1)
-light_energy = 0.75
-omni_range = 12.0
 
 [node name="ZoneParkBig" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.11, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.11, 25.0)
 mesh = SubResource("ZonePlaneParkBig")
 surface_material_override/0 = SubResource("ParkBigMat")
 
 [node name="ZoneParkSmall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.11, -3.0)
 mesh = SubResource("ZonePlaneParkSmall")
 surface_material_override/0 = SubResource("ParkSmallMat")
 
 [node name="ZoneGazebo" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.11, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.11, 25.0)
 mesh = SubResource("ZonePlaneGazebo")
 surface_material_override/0 = SubResource("GazeboMat")
 [node name="Light" type="OmniLight3D" parent="ZoneGazebo"]
@@ -287,31 +492,13 @@ light_energy = 0.6
 omni_range = 12.0
 
 [node name="ZoneField" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 20)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.11, 35.0)
 mesh = SubResource("ZonePlaneField")
 surface_material_override/0 = SubResource("FieldMat")
 
-[node name="Flavor_Hub" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1")
-flavor_text = "The Hub of Quiet."
-[node name="Shape" type="CollisionShape3D" parent="Flavor_Hub"]
-shape = SubResource("Shape_flavor_hub")
-[node name="Prop_HubPlanter" type="Sprite3D" parent="Flavor_Hub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56, 0)
-texture = ExtResource("18")
-pixel_size = 0.00128
-[node name="Prop_StopSign" type="Sprite3D" parent="Flavor_Hub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.05, 3)
-texture = ExtResource("19")
-pixel_size = 0.00223
-[node name="Prop_BusStopBench" type="Sprite3D" parent="Flavor_Hub"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -3.5, -0.4, -2.5)
-texture = ExtResource("20")
-pixel_size = 0.002305
 
 [node name="Flavor_ParkBig" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 1.0, 25.0)
 script = ExtResource("5")
 flavor_text = "The Park of Forgotten Balls."
 discovery_id = "park_big"
@@ -347,7 +534,7 @@ texture = ExtResource("28")
 pixel_size = 0.000466
 
 [node name="Flavor_ParkSmall" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, -3.0)
 script = ExtResource("5")
 flavor_text = "The Park of Forgotten Balls. Again? Twilight Station. Memory Lane Stop."
 discovery_id = "park_small"
@@ -367,14 +554,14 @@ texture = ExtResource("29")
 pixel_size = 0.001382
 
 [node name="Flavor_Gazebo" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 1.0, 25.0)
 script = ExtResource("5")
 flavor_text = "The Gazebo Plaza."
 discovery_id = "gazebo"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Gazebo"]
 shape = SubResource("Shape_flavor_gazebo")
 [node name="Prop_Gazebo" type="Sprite3D" parent="Flavor_Gazebo"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.1, 2)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 2.0, 1.1, 17.0)
 texture = ExtResource("30")
 pixel_size = 0.004463
 [node name="Prop_StringLights" type="Sprite3D" parent="Flavor_Gazebo"]
@@ -387,7 +574,7 @@ texture = ExtResource("32")
 pixel_size = 0.001998
 
 [node name="Flavor_Field" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 35.0)
 script = ExtResource("5")
 flavor_text = "Nostalgia Field. Void of missing context."
 discovery_id = "field"
@@ -398,36 +585,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.75, 2)
 texture = ExtResource("33")
 pixel_size = 0.000786
 
-[node name="HouseFacadeMain" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.25, -29.7)
-[node name="Mesh" type="MeshInstance3D" parent="HouseFacadeMain"]
-mesh = SubResource("FacadeMeshMain")
-surface_material_override/0 = SubResource("FacadeMatMain")
-[node name="Shape" type="CollisionShape3D" parent="HouseFacadeMain"]
-shape = SubResource("FacadeShapeMain")
-[node name="Shutter_Left" type="Sprite3D" parent="HouseFacadeMain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.35, 0.15)
-texture = ExtResource("15")
-pixel_size = 0.000985
-[node name="Shutter_Right" type="Sprite3D" parent="HouseFacadeMain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.35, 0.15)
-texture = ExtResource("16")
-pixel_size = 0.000985
 
-[node name="HouseFacadeSide" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.25, -29.7)
-[node name="Mesh" type="MeshInstance3D" parent="HouseFacadeSide"]
-mesh = SubResource("FacadeMeshSide")
-surface_material_override/0 = SubResource("FacadeMatSide")
-[node name="Shape" type="CollisionShape3D" parent="HouseFacadeSide"]
-shape = SubResource("FacadeShapeSide")
-[node name="Shutter" type="Sprite3D" parent="HouseFacadeSide"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.15)
-texture = ExtResource("17")
-pixel_size = 0.000985
 
 [node name="NeighborhoodHouseDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.15, -27.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 1.1, -24.3)
 script = ExtResource("6")
 [node name="Mesh" type="Sprite3D" parent="NeighborhoodHouseDoor"]
 texture = ExtResource("14")
@@ -452,22 +613,22 @@ script = ExtResource("3")
 shape = SubResource("Shape_doubt_catch")
 
 [node name="start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 6)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -20, 1.0, 10)
 
 [node name="SpawnParkBig" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 1.0, 25.0)
 
 [node name="SpawnParkSmall" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, -3.0)
 
 [node name="SpawnGazebo" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 1.0, 25.0)
 
 [node name="SpawnField" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 35.0)
 
 [node name="Hedge_ParkBig_North" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.7, 2)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.7, 17.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_North"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -476,7 +637,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_ParkBig_South" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.7, 18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.7, 33.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_South"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -485,7 +646,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_ParkBig_West" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.7, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -29.0, 0.7, 25.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_West"]
 mesh = SubResource("HedgeMesh_16NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -494,7 +655,7 @@ shape = SubResource("HedgeShape_16NS")
 
 
 [node name="Hedge_ParkBig_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.7, 5)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -11.0, 0.7, 20.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateA"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -503,7 +664,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_ParkBig_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.7, 15)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -11.0, 0.7, 30.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateB"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -512,7 +673,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_Gazebo_North" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.7, 2)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.7, 17.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_North"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -521,7 +682,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_Gazebo_South" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.7, 18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.7, 33.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_South"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -530,7 +691,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_Gazebo_East" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0.7, 10)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 29.0, 0.7, 25.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_East"]
 mesh = SubResource("HedgeMesh_16NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -539,7 +700,7 @@ shape = SubResource("HedgeShape_16NS")
 
 
 [node name="Hedge_Gazebo_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.7, 5)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 11.0, 0.7, 20.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateA"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -548,7 +709,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_Gazebo_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.7, 15)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 11.0, 0.7, 30.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateB"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -557,7 +718,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_ParkSmall_Far" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -23)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.7, -8.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_Far"]
 mesh = SubResource("HedgeMesh_14")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -566,7 +727,7 @@ shape = SubResource("HedgeShape_14")
 
 
 [node name="Hedge_ParkSmall_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.7, -13)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -4.5, 0.7, 2.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_GateA"]
 mesh = SubResource("HedgeMesh_5")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -575,7 +736,7 @@ shape = SubResource("HedgeShape_5")
 
 
 [node name="Hedge_ParkSmall_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.7, -13)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 4.5, 0.7, 2.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_GateB"]
 mesh = SubResource("HedgeMesh_5")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -584,7 +745,7 @@ shape = SubResource("HedgeShape_5")
 
 
 [node name="Hedge_ParkSmall_East" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.7, -18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 7.0, 0.7, -3.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_East"]
 mesh = SubResource("HedgeMesh_10NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -593,7 +754,7 @@ shape = SubResource("HedgeShape_10NS")
 
 
 [node name="Hedge_ParkSmall_West" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.7, -18)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -7.0, 0.7, -3.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkSmall_West"]
 mesh = SubResource("HedgeMesh_10NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -602,7 +763,7 @@ shape = SubResource("HedgeShape_10NS")
 
 
 [node name="Hedge_Field_Far" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 25)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.7, 40.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_Far"]
 mesh = SubResource("HedgeMesh_16EW")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -611,7 +772,7 @@ shape = SubResource("HedgeShape_16EW")
 
 
 [node name="Hedge_Field_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7, 15)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -5.0, 0.7, 30.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_GateA"]
 mesh = SubResource("HedgeMesh_6EW")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -620,7 +781,7 @@ shape = SubResource("HedgeShape_6EW")
 
 
 [node name="Hedge_Field_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.7, 15)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 5.0, 0.7, 30.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_GateB"]
 mesh = SubResource("HedgeMesh_6EW")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -629,7 +790,7 @@ shape = SubResource("HedgeShape_6EW")
 
 
 [node name="Hedge_Field_East" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.7, 20)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 8.0, 0.7, 35.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_East"]
 mesh = SubResource("HedgeMesh_10NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -638,58 +799,13 @@ shape = SubResource("HedgeShape_10NS")
 
 
 [node name="Hedge_Field_West" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.7, 20)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -8.0, 0.7, 35.0)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Field_West"]
 mesh = SubResource("HedgeMesh_10NS")
 surface_material_override/0 = SubResource("HedgeMat")
 [node name="Shape" type="CollisionShape3D" parent="Hedge_Field_West"]
 shape = SubResource("HedgeShape_10NS")
 
-[node name="HouseFacadeThird" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -29.7)
-[node name="Mesh" type="MeshInstance3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.85)
-mesh = SubResource("FacadeMeshThird")
-surface_material_override/0 = SubResource("FacadeMatThird")
-[node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.85)
-shape = SubResource("FacadeShapeThird")
-[node name="RoofLeft" type="MeshInstance3D" parent="HouseFacadeThird"]
-transform = Transform3D(0.88235, -0.47059, 0, 0.47059, 0.88235, 0, 0, 0, 1, -1.5, 2.8, -1.85)
-mesh = SubResource("RoofPanelMesh")
-surface_material_override/0 = SubResource("RoofMatThird")
-[node name="RoofLeftShape" type="StaticBody3D" parent="HouseFacadeThird"]
-transform = Transform3D(0.88235, -0.47059, 0, 0.47059, 0.88235, 0, 0, 0, 1, -1.5, 2.8, -1.85)
-[node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird/RoofLeftShape"]
-shape = SubResource("RoofPanelShape")
-[node name="RoofRight" type="MeshInstance3D" parent="HouseFacadeThird"]
-transform = Transform3D(-0.88235, -0.47059, 0, 0.47059, -0.88235, 0, 0, 0, 1, 1.5, 2.8, -1.85)
-mesh = SubResource("RoofPanelMesh")
-surface_material_override/0 = SubResource("RoofMatThird")
-[node name="RoofRightShape" type="StaticBody3D" parent="HouseFacadeThird"]
-transform = Transform3D(-0.88235, -0.47059, 0, 0.47059, -0.88235, 0, 0, 0, 1, 1.5, 2.8, -1.85)
-[node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird/RoofRightShape"]
-shape = SubResource("RoofPanelShape")
-[node name="Prop_Door" type="Sprite3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.16)
-texture = ExtResource("102")
-pixel_size = 0.0024
-[node name="Prop_WindowLeft" type="Sprite3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.4, 0.16)
-texture = ExtResource("103")
-pixel_size = 0.0016
-[node name="Prop_WindowRight" type="Sprite3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.4, 0.16)
-texture = ExtResource("103")
-pixel_size = 0.0016
-[node name="Prop_GableVent" type="Sprite3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0.16)
-texture = ExtResource("109")
-pixel_size = 0.0016
-[node name="Prop_HouseNumber" type="Sprite3D" parent="HouseFacadeThird"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, -0.9, 0.16)
-texture = ExtResource("108")
-pixel_size = 0.0012
 
 [node name="Prop_PorchColumnLeft" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0.6, -28.5)
@@ -717,7 +833,7 @@ texture = ExtResource("107")
 pixel_size = 0.0018
 
 [node name="PorchDiscovery_Shoes" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, -1.1, -27.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.2, 7.5)
 script = ExtResource("100")
 discovery_id = "porch_shoes"
 discovery_text = "A worn pair of shoes by the door. Nobody's worn these in a long time."
@@ -728,7 +844,7 @@ pixel_size = 0.0014
 shape = SubResource("Shape_storyprop")
 
 [node name="PorchDiscovery_Chime" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.35, -28.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1.3, 6.9)
 script = ExtResource("100")
 discovery_id = "porch_chime"
 discovery_text = "A seashell wind chime, still swaying. There's no wind."
@@ -739,7 +855,7 @@ pixel_size = 0.0014
 shape = SubResource("Shape_storyprop")
 
 [node name="PorchDiscovery_Mail" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, -0.75, -27)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.2, 8.0)
 script = ExtResource("100")
 discovery_id = "porch_mail"
 discovery_text = "A bundle of letters, tied with twine, addressed to a house number that doesn't exist on this street."
@@ -750,7 +866,7 @@ pixel_size = 0.0014
 shape = SubResource("Shape_storyprop")
 
 [node name="Flavor_WrongPhotograph" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -0.7, -28.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.3, 7.5)
 script = ExtResource("1")
 flavor_text = "A framed photograph, leaning against the porch rail. Someone in it is standing where you're standing now."
 [node name="Shape" type="CollisionShape3D" parent="Flavor_WrongPhotograph"]
@@ -759,3 +875,350 @@ shape = SubResource("Shape_storyprop")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 texture = ExtResource("113")
 pixel_size = 0.0016
+
+[node name="House1_Arrival" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -25, 1.45, 6.5)
+[node name="Mesh" type="MeshInstance3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+mesh = SubResource("BoxMesh_House1_Arrival")
+surface_material_override/0 = SubResource("Mat_House1_Arrival")
+[node name="Shape" type="CollisionShape3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+shape = SubResource("BoxShape_House1_Arrival")
+[node name="RoofLeft" type="MeshInstance3D" parent="House1_Arrival"]
+transform = Transform3D(0.92082, -0.38999, 0, 0.38999, 0.92082, 0, 0, 0, 1, -2.125, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House1_Arrival")
+surface_material_override/0 = SubResource("RoofMat_House1_Arrival")
+[node name="RoofRight" type="MeshInstance3D" parent="House1_Arrival"]
+transform = Transform3D(-0.92082, -0.38999, 0, 0.38999, -0.92082, 0, 0, 0, 1, 2.125, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House1_Arrival")
+surface_material_override/0 = SubResource("RoofMat_House1_Arrival")
+
+[node name="Prop_Door" type="Sprite3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
+texture = ExtResource("102")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.913, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.913, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House1_Arrival"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 1.150)
+[node name="Mesh" type="MeshInstance3D" parent="House1_Arrival/Porch"]
+mesh = SubResource("PorchMesh_House1_Arrival")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House1_Arrival/Porch"]
+shape = SubResource("PorchShape_House1_Arrival")
+
+[node name="House2_Repeated" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -9, 1.45, 6.5)
+[node name="Mesh" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.950)
+mesh = SubResource("BoxMesh_House2_Repeated")
+surface_material_override/0 = SubResource("Mat_House2_Repeated")
+[node name="Shape" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.950)
+shape = SubResource("BoxShape_House2_Repeated")
+[node name="RoofLeft" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.950)
+mesh = SubResource("RoofMesh_House2_Repeated")
+surface_material_override/0 = SubResource("RoofMat_House2_Repeated")
+[node name="RoofRight" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.950)
+mesh = SubResource("RoofMesh_House2_Repeated")
+surface_material_override/0 = SubResource("RoofMat_House2_Repeated")
+
+[node name="Prop_Door" type="Sprite3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
+texture = ExtResource("102")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.025, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 1.250)
+[node name="Mesh" type="MeshInstance3D" parent="House2_Repeated/Porch"]
+mesh = SubResource("PorchMesh_House2_Repeated")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House2_Repeated/Porch"]
+shape = SubResource("PorchShape_House2_Repeated")
+
+[node name="House3_WrongPhoto" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 8, 2.8, 6.5)
+[node name="Mesh" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.100)
+mesh = SubResource("BoxMesh_House3_WrongPhoto")
+surface_material_override/0 = SubResource("Mat_House3_WrongPhoto")
+[node name="Shape" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.100)
+shape = SubResource("BoxShape_House3_WrongPhoto")
+[node name="RoofLeft" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(0.90740, -0.42027, 0, 0.42027, 0.90740, 0, 0, 0, 1, -2.375, 3.900, -4.100)
+mesh = SubResource("RoofMesh_House3_WrongPhoto")
+surface_material_override/0 = SubResource("RoofMat_House3_WrongPhoto")
+[node name="RoofRight" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(-0.90740, -0.42027, 0, 0.42027, -0.90740, 0, 0, 0, 1, 2.375, 3.900, -4.100)
+mesh = SubResource("RoofMesh_House3_WrongPhoto")
+surface_material_override/0 = SubResource("RoofMat_House3_WrongPhoto")
+
+[node name="Prop_Door" type="Sprite3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.700, 0.16)
+texture = ExtResource("117")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.138, 0.560, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.138, 0.560, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.725, 1.150)
+[node name="Mesh" type="MeshInstance3D" parent="House3_WrongPhoto/Porch"]
+mesh = SubResource("PorchMesh_House3_WrongPhoto")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House3_WrongPhoto/Porch"]
+shape = SubResource("PorchShape_House3_WrongPhoto")
+
+[node name="House4_Porch" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 24, 1.45, 6.5)
+[node name="Mesh" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+mesh = SubResource("BoxMesh_House4_Porch")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="Shape" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+shape = SubResource("BoxShape_House4_Porch")
+[node name="RoofLeft" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House4_Porch")
+surface_material_override/0 = SubResource("RoofMat_House4_Porch")
+[node name="RoofRight" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House4_Porch")
+surface_material_override/0 = SubResource("RoofMat_House4_Porch")
+
+[node name="Prop_Door" type="Sprite3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
+texture = ExtResource("102")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.800, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 1.300)
+[node name="Mesh" type="MeshInstance3D" parent="House4_Porch/Porch"]
+mesh = SubResource("PorchMesh_House4_Porch")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House4_Porch/Porch"]
+shape = SubResource("PorchShape_House4_Porch")
+
+[node name="House5_Final" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 2.9, -24.5)
+[node name="Mesh" type="MeshInstance3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.600)
+mesh = SubResource("BoxMesh_House5_Final")
+surface_material_override/0 = SubResource("Mat_House5_Final")
+[node name="Shape" type="CollisionShape3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.600)
+shape = SubResource("BoxShape_House5_Final")
+[node name="RoofLeft" type="MeshInstance3D" parent="House5_Final"]
+transform = Transform3D(0.90947, -0.41576, 0, 0.41576, 0.90947, 0, 0, 0, 1, -2.625, 4.100, -4.600)
+mesh = SubResource("RoofMesh_House5_Final")
+surface_material_override/0 = SubResource("RoofMat_House5_Final")
+[node name="RoofRight" type="MeshInstance3D" parent="House5_Final"]
+transform = Transform3D(-0.90947, -0.41576, 0, 0.41576, -0.90947, 0, 0, 0, 1, 2.625, 4.100, -4.600)
+mesh = SubResource("RoofMesh_House5_Final")
+surface_material_override/0 = SubResource("RoofMat_House5_Final")
+
+[node name="Prop_Door" type="Sprite3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.800, 0.16)
+texture = ExtResource("117")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363, 0.580, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363, 0.580, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House5_Final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.825, 1.350)
+[node name="Mesh" type="MeshInstance3D" parent="House5_Final/Porch"]
+mesh = SubResource("PorchMesh_House5_Final")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House5_Final/Porch"]
+shape = SubResource("PorchShape_House5_Final")
+
+[node name="House6_PorchOnly" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1.45, -24.5)
+[node name="Mesh" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+mesh = SubResource("BoxMesh_House6_PorchOnly")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="Shape" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
+shape = SubResource("BoxShape_House6_PorchOnly")
+[node name="RoofLeft" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House6_PorchOnly")
+surface_material_override/0 = SubResource("RoofMat_House6_PorchOnly")
+[node name="RoofRight" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
+mesh = SubResource("RoofMesh_House6_PorchOnly")
+surface_material_override/0 = SubResource("RoofMat_House6_PorchOnly")
+
+[node name="Prop_Door" type="Sprite3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
+texture = ExtResource("102")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.800, 0.290, 0.16)
+texture = ExtResource("103")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 1.050)
+[node name="Mesh" type="MeshInstance3D" parent="House6_PorchOnly/Porch"]
+mesh = SubResource("PorchMesh_House6_PorchOnly")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House6_PorchOnly/Porch"]
+shape = SubResource("PorchShape_House6_PorchOnly")
+
+[node name="House7_Impossible" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 1.45, -24.5)
+[node name="Mesh" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.850)
+mesh = SubResource("BoxMesh_House7_Impossible")
+surface_material_override/0 = SubResource("Mat_House7_Impossible")
+[node name="Shape" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.850)
+shape = SubResource("BoxShape_House7_Impossible")
+[node name="RoofLeft" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(0.92125, -0.38897, 0, 0.38897, 0.92125, 0, 0, 0, 1, -2.25, 2.400, -3.850)
+mesh = SubResource("RoofMesh_House7_Impossible")
+surface_material_override/0 = SubResource("RoofMat_House7_Impossible")
+[node name="RoofRight" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(-0.92125, -0.38897, 0, 0.38897, -0.92125, 0, 0, 0, 1, 2.25, 2.400, -3.850)
+mesh = SubResource("RoofMesh_House7_Impossible")
+surface_material_override/0 = SubResource("RoofMat_House7_Impossible")
+
+[node name="Prop_Door" type="Sprite3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
+texture = ExtResource("117")
+pixel_size = 0.0024
+[node name="Prop_WindowLeft" type="Sprite3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+[node name="Prop_WindowRight" type="Sprite3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.025, 0.290, 0.16)
+texture = ExtResource("118")
+pixel_size = 0.0016
+
+[node name="Porch" type="StaticBody3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 1.050)
+[node name="Mesh" type="MeshInstance3D" parent="House7_Impossible/Porch"]
+mesh = SubResource("PorchMesh_House7_Impossible")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House7_Impossible/Porch"]
+shape = SubResource("PorchShape_House7_Impossible")
+
+[node name="House8_Distant" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.45, -45.0)
+[node name="Mesh" type="MeshInstance3D" parent="House8_Distant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.850)
+mesh = SubResource("BoxMesh_House8_Distant")
+surface_material_override/0 = SubResource("Mat_House8_Distant")
+[node name="Shape" type="CollisionShape3D" parent="House8_Distant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.850)
+shape = SubResource("BoxShape_House8_Distant")
+[node name="RoofLeft" type="MeshInstance3D" parent="House8_Distant"]
+transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.850)
+mesh = SubResource("RoofMesh_House8_Distant")
+surface_material_override/0 = SubResource("RoofMat_House8_Distant")
+[node name="RoofRight" type="MeshInstance3D" parent="House8_Distant"]
+transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.850)
+mesh = SubResource("RoofMesh_House8_Distant")
+surface_material_override/0 = SubResource("RoofMat_House8_Distant")
+
+[node name="Porch" type="StaticBody3D" parent="House8_Distant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 0.650)
+[node name="Mesh" type="MeshInstance3D" parent="House8_Distant/Porch"]
+mesh = SubResource("PorchMesh_House8_Distant")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="House8_Distant/Porch"]
+shape = SubResource("PorchShape_House8_Distant")
+
+[node name="RoadMain" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+[node name="Mesh" type="MeshInstance3D" parent="RoadMain"]
+mesh = SubResource("RoadMainMesh")
+surface_material_override/0 = SubResource("RoadMat")
+[node name="Shape" type="CollisionShape3D" parent="RoadMain"]
+shape = SubResource("RoadMainShape")
+
+[node name="SidewalkNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, -4.3)
+[node name="Mesh" type="MeshInstance3D" parent="SidewalkNorth"]
+mesh = SubResource("SidewalkNSMesh")
+surface_material_override/0 = SubResource("SidewalkMat")
+[node name="Shape" type="CollisionShape3D" parent="SidewalkNorth"]
+shape = SubResource("SidewalkNSShape")
+
+[node name="SidewalkSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 4.3)
+[node name="Mesh" type="MeshInstance3D" parent="SidewalkSouth"]
+mesh = SubResource("SidewalkNSMesh")
+surface_material_override/0 = SubResource("SidewalkMat")
+[node name="Shape" type="CollisionShape3D" parent="SidewalkSouth"]
+shape = SubResource("SidewalkNSShape")
+
+[node name="RoadSide" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.06, -17)
+[node name="Mesh" type="MeshInstance3D" parent="RoadSide"]
+mesh = SubResource("RoadSideMesh")
+surface_material_override/0 = SubResource("RoadMat")
+[node name="Shape" type="CollisionShape3D" parent="RoadSide"]
+shape = SubResource("RoadSideShape")
+
+[node name="SidewalkSideWest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.07, -17)
+[node name="Mesh" type="MeshInstance3D" parent="SidewalkSideWest"]
+mesh = SubResource("SidewalkEWMesh")
+surface_material_override/0 = SubResource("SidewalkMat")
+[node name="Shape" type="CollisionShape3D" parent="SidewalkSideWest"]
+shape = SubResource("SidewalkEWShape")
+
+[node name="SidewalkSideEast" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3, 0.07, -17)
+[node name="Mesh" type="MeshInstance3D" parent="SidewalkSideEast"]
+mesh = SubResource("SidewalkEWMesh")
+surface_material_override/0 = SubResource("SidewalkMat")
+[node name="Shape" type="CollisionShape3D" parent="SidewalkSideEast"]
+shape = SubResource("SidewalkEWShape")
