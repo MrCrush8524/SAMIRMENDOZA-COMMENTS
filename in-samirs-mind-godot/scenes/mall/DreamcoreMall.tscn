@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://dreamcore_mall"]
+[gd_scene load_steps=126 format=3 uid="uid://dreamcore_mall"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
@@ -174,6 +174,114 @@ size = Vector3(14, 3, 10)
 size = Vector3(12, 3, 8)
 [sub_resource type="BoxShape3D" id="Shape_flavor_classroom"]
 size = Vector3(10, 3, 8)
+
+[sub_resource type="BoxMesh" id="MallWall_2000x30"]
+size = Vector3(20, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_2000x30Shape"]
+size = Vector3(20, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_700x30"]
+size = Vector3(7.0, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_700x30Shape"]
+size = Vector3(7.0, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_30x1200"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x1200Shape"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxMesh" id="MallWall_1600x30"]
+size = Vector3(16, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_1600x30Shape"]
+size = Vector3(16, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_550x30"]
+size = Vector3(5.5, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_550x30Shape"]
+size = Vector3(5.5, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_30x800"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x800Shape"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxMesh" id="MallWall_1400x30"]
+size = Vector3(14, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_1400x30Shape"]
+size = Vector3(14, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_30x350"]
+size = Vector3(0.3, 5.0, 3.5)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x350Shape"]
+size = Vector3(0.3, 5.0, 3.5)
+
+[sub_resource type="BoxMesh" id="MallWall_250x30"]
+size = Vector3(2.5, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_250x30Shape"]
+size = Vector3(2.5, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_800x30"]
+size = Vector3(8, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_800x30Shape"]
+size = Vector3(8, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_30x400"]
+size = Vector3(0.3, 5.0, 4.0)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x400Shape"]
+size = Vector3(0.3, 5.0, 4.0)
+
+[sub_resource type="BoxMesh" id="MallWall_30x1400"]
+size = Vector3(0.3, 5.0, 14)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x1400Shape"]
+size = Vector3(0.3, 5.0, 14)
+
+[sub_resource type="BoxMesh" id="MallWall_30x250"]
+size = Vector3(0.3, 5.0, 2.5)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x250Shape"]
+size = Vector3(0.3, 5.0, 2.5)
+
+[sub_resource type="BoxMesh" id="MallWall_30x1000"]
+size = Vector3(0.3, 5.0, 10)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x1000Shape"]
+size = Vector3(0.3, 5.0, 10)
+
+[sub_resource type="BoxMesh" id="MallWall_1200x30"]
+size = Vector3(12, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_1200x30Shape"]
+size = Vector3(12, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_30x200"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="BoxShape3D" id="MallWall_30x200Shape"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="BoxMesh" id="MallWall_300x30"]
+size = Vector3(3.0, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_300x30Shape"]
+size = Vector3(3.0, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MallWall_1000x30"]
+size = Vector3(10, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MallWall_1000x30Shape"]
+size = Vector3(10, 5.0, 0.3)
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -599,3 +707,524 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 texture = ExtResource("41")
 pixel_size = 0.0016
 billboard = 1
+
+[node name="FoodCourt_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_N_0"]
+mesh = SubResource("MallWall_2000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_N_0"]
+shape = SubResource("MallWall_2000x30Shape")
+
+[node name="FoodCourt_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.5, -8)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_S_0"]
+mesh = SubResource("MallWall_700x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_S_0"]
+shape = SubResource("MallWall_700x30Shape")
+
+[node name="FoodCourt_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.5, -8)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_S_1"]
+mesh = SubResource("MallWall_700x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_S_1"]
+shape = SubResource("MallWall_700x30Shape")
+
+[node name="FoodCourt_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_E_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_E_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="FoodCourt_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -14.0)
+[node name="Mesh" type="MeshInstance3D" parent="FoodCourt_W_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="FoodCourt_W_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="Cinema_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 2.5, -28)
+[node name="Mesh" type="MeshInstance3D" parent="Cinema_N_0"]
+mesh = SubResource("MallWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Cinema_N_0"]
+shape = SubResource("MallWall_1600x30Shape")
+
+[node name="Cinema_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="Cinema_S_0"]
+mesh = SubResource("MallWall_550x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Cinema_S_0"]
+shape = SubResource("MallWall_550x30Shape")
+
+[node name="Cinema_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 2.5, -20)
+[node name="Mesh" type="MeshInstance3D" parent="Cinema_S_1"]
+mesh = SubResource("MallWall_550x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Cinema_S_1"]
+shape = SubResource("MallWall_550x30Shape")
+
+[node name="Cinema_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, -24.0)
+[node name="Mesh" type="MeshInstance3D" parent="Cinema_E_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Cinema_E_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="Cinema_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, -24.0)
+[node name="Mesh" type="MeshInstance3D" parent="Cinema_W_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Cinema_W_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="Arcade_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0, 2.5, -12)
+[node name="Mesh" type="MeshInstance3D" parent="Arcade_N_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Arcade_N_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="Arcade_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Arcade_S_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Arcade_S_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="Arcade_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 2.5, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="Arcade_E_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Arcade_E_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="Arcade_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -10.25)
+[node name="Mesh" type="MeshInstance3D" parent="Arcade_W_0"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Arcade_W_0"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="Arcade_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -1.75)
+[node name="Mesh" type="MeshInstance3D" parent="Arcade_W_1"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Arcade_W_1"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="ToyBox_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0, 2.5, -12)
+[node name="Mesh" type="MeshInstance3D" parent="ToyBox_N_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyBox_N_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="ToyBox_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="ToyBox_S_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyBox_S_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="ToyBox_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -10.25)
+[node name="Mesh" type="MeshInstance3D" parent="ToyBox_E_0"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyBox_E_0"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="ToyBox_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1.75)
+[node name="Mesh" type="MeshInstance3D" parent="ToyBox_E_1"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyBox_E_1"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="ToyBox_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 2.5, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="ToyBox_W_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ToyBox_W_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="TheLull_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 2.5, 9)
+[node name="Mesh" type="MeshInstance3D" parent="TheLull_N_0"]
+mesh = SubResource("MallWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TheLull_N_0"]
+shape = SubResource("MallWall_250x30Shape")
+
+[node name="TheLull_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 2.5, 9)
+[node name="Mesh" type="MeshInstance3D" parent="TheLull_N_1"]
+mesh = SubResource("MallWall_250x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TheLull_N_1"]
+shape = SubResource("MallWall_250x30Shape")
+
+[node name="TheLull_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 2.5, 17)
+[node name="Mesh" type="MeshInstance3D" parent="TheLull_S_0"]
+mesh = SubResource("MallWall_800x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TheLull_S_0"]
+shape = SubResource("MallWall_800x30Shape")
+
+[node name="TheLull_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 13.0)
+[node name="Mesh" type="MeshInstance3D" parent="TheLull_E_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TheLull_E_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="TheLull_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 13.0)
+[node name="Mesh" type="MeshInstance3D" parent="TheLull_W_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="TheLull_W_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="WestAnchor_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="WestAnchor_N_0"]
+mesh = SubResource("MallWall_2000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WestAnchor_N_0"]
+shape = SubResource("MallWall_2000x30Shape")
+
+[node name="WestAnchor_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0, 2.5, 1)
+[node name="Mesh" type="MeshInstance3D" parent="WestAnchor_S_0"]
+mesh = SubResource("MallWall_2000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WestAnchor_S_0"]
+shape = SubResource("MallWall_2000x30Shape")
+
+[node name="WestAnchor_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 2.5, -11.0)
+[node name="Mesh" type="MeshInstance3D" parent="WestAnchor_E_0"]
+mesh = SubResource("MallWall_30x400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WestAnchor_E_0"]
+shape = SubResource("MallWall_30x400Shape")
+
+[node name="WestAnchor_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 2.5, -1.0)
+[node name="Mesh" type="MeshInstance3D" parent="WestAnchor_E_1"]
+mesh = SubResource("MallWall_30x400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WestAnchor_E_1"]
+shape = SubResource("MallWall_30x400Shape")
+
+[node name="WestAnchor_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2.5, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="WestAnchor_W_0"]
+mesh = SubResource("MallWall_30x1400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WestAnchor_W_0"]
+shape = SubResource("MallWall_30x1400Shape")
+
+[node name="SouthBoutiques_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0, 2.5, 5)
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoutiques_N_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SouthBoutiques_N_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="SouthBoutiques_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0, 2.5, 15)
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoutiques_S_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SouthBoutiques_S_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="SouthBoutiques_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, 6.25)
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoutiques_E_0"]
+mesh = SubResource("MallWall_30x250")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SouthBoutiques_E_0"]
+shape = SubResource("MallWall_30x250Shape")
+
+[node name="SouthBoutiques_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, 13.75)
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoutiques_E_1"]
+mesh = SubResource("MallWall_30x250")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SouthBoutiques_E_1"]
+shape = SubResource("MallWall_30x250Shape")
+
+[node name="SouthBoutiques_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 2.5, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoutiques_W_0"]
+mesh = SubResource("MallWall_30x1000")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SouthBoutiques_W_0"]
+shape = SubResource("MallWall_30x1000Shape")
+
+[node name="Daydreams_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="Daydreams_N_0"]
+mesh = SubResource("MallWall_2000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Daydreams_N_0"]
+shape = SubResource("MallWall_2000x30Shape")
+
+[node name="Daydreams_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0, 2.5, 1)
+[node name="Mesh" type="MeshInstance3D" parent="Daydreams_S_0"]
+mesh = SubResource("MallWall_2000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Daydreams_S_0"]
+shape = SubResource("MallWall_2000x30Shape")
+
+[node name="Daydreams_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2.5, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="Daydreams_E_0"]
+mesh = SubResource("MallWall_30x1400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Daydreams_E_0"]
+shape = SubResource("MallWall_30x1400Shape")
+
+[node name="Daydreams_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 2.5, -11.0)
+[node name="Mesh" type="MeshInstance3D" parent="Daydreams_W_0"]
+mesh = SubResource("MallWall_30x400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Daydreams_W_0"]
+shape = SubResource("MallWall_30x400Shape")
+
+[node name="Daydreams_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 2.5, -1.0)
+[node name="Mesh" type="MeshInstance3D" parent="Daydreams_W_1"]
+mesh = SubResource("MallWall_30x400")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Daydreams_W_1"]
+shape = SubResource("MallWall_30x400Shape")
+
+[node name="DreamPlayground_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0, 2.5, -25)
+[node name="Mesh" type="MeshInstance3D" parent="DreamPlayground_N_0"]
+mesh = SubResource("MallWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DreamPlayground_N_0"]
+shape = SubResource("MallWall_1600x30Shape")
+
+[node name="DreamPlayground_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0, 2.5, -15)
+[node name="Mesh" type="MeshInstance3D" parent="DreamPlayground_S_0"]
+mesh = SubResource("MallWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DreamPlayground_S_0"]
+shape = SubResource("MallWall_1600x30Shape")
+
+[node name="DreamPlayground_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 2.5, -20.0)
+[node name="Mesh" type="MeshInstance3D" parent="DreamPlayground_E_0"]
+mesh = SubResource("MallWall_30x1000")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DreamPlayground_E_0"]
+shape = SubResource("MallWall_30x1000Shape")
+
+[node name="DreamPlayground_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 2.5, -23.75)
+[node name="Mesh" type="MeshInstance3D" parent="DreamPlayground_W_0"]
+mesh = SubResource("MallWall_30x250")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DreamPlayground_W_0"]
+shape = SubResource("MallWall_30x250Shape")
+
+[node name="DreamPlayground_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 2.5, -16.25)
+[node name="Mesh" type="MeshInstance3D" parent="DreamPlayground_W_1"]
+mesh = SubResource("MallWall_30x250")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="DreamPlayground_W_1"]
+shape = SubResource("MallWall_30x250Shape")
+
+[node name="PoolCourt_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.0, 2.5, 4)
+[node name="Mesh" type="MeshInstance3D" parent="PoolCourt_N_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolCourt_N_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="PoolCourt_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.0, 2.5, 16)
+[node name="Mesh" type="MeshInstance3D" parent="PoolCourt_S_0"]
+mesh = SubResource("MallWall_1400x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolCourt_S_0"]
+shape = SubResource("MallWall_1400x30Shape")
+
+[node name="PoolCourt_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 2.5, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="PoolCourt_E_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolCourt_E_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="PoolCourt_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2.5, 5.75)
+[node name="Mesh" type="MeshInstance3D" parent="PoolCourt_W_0"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolCourt_W_0"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="PoolCourt_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2.5, 14.25)
+[node name="Mesh" type="MeshInstance3D" parent="PoolCourt_W_1"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="PoolCourt_W_1"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="Greenhouse_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0, 2.5, 4)
+[node name="Mesh" type="MeshInstance3D" parent="Greenhouse_N_0"]
+mesh = SubResource("MallWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Greenhouse_N_0"]
+shape = SubResource("MallWall_1200x30Shape")
+
+[node name="Greenhouse_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.0, 2.5, 16)
+[node name="Mesh" type="MeshInstance3D" parent="Greenhouse_S_0"]
+mesh = SubResource("MallWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Greenhouse_S_0"]
+shape = SubResource("MallWall_1200x30Shape")
+
+[node name="Greenhouse_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2.5, 10.0)
+[node name="Mesh" type="MeshInstance3D" parent="Greenhouse_E_0"]
+mesh = SubResource("MallWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Greenhouse_E_0"]
+shape = SubResource("MallWall_30x1200Shape")
+
+[node name="Greenhouse_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 2.5, 5.75)
+[node name="Mesh" type="MeshInstance3D" parent="Greenhouse_W_0"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Greenhouse_W_0"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="Greenhouse_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 2.5, 14.25)
+[node name="Mesh" type="MeshInstance3D" parent="Greenhouse_W_1"]
+mesh = SubResource("MallWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Greenhouse_W_1"]
+shape = SubResource("MallWall_30x350Shape")
+
+[node name="LostWing_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 2.5, 10)
+[node name="Mesh" type="MeshInstance3D" parent="LostWing_N_0"]
+mesh = SubResource("MallWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="LostWing_N_0"]
+shape = SubResource("MallWall_1200x30Shape")
+
+[node name="LostWing_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 2.5, 18)
+[node name="Mesh" type="MeshInstance3D" parent="LostWing_S_0"]
+mesh = SubResource("MallWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="LostWing_S_0"]
+shape = SubResource("MallWall_1200x30Shape")
+
+[node name="LostWing_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostWing_E_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="LostWing_E_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="LostWing_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.5, 11.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostWing_W_0"]
+mesh = SubResource("MallWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="LostWing_W_0"]
+shape = SubResource("MallWall_30x200Shape")
+
+[node name="LostWing_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.5, 17.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostWing_W_1"]
+mesh = SubResource("MallWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="LostWing_W_1"]
+shape = SubResource("MallWall_30x200Shape")
+
+[node name="Classroom_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 2.5, 10)
+[node name="Mesh" type="MeshInstance3D" parent="Classroom_N_0"]
+mesh = SubResource("MallWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Classroom_N_0"]
+shape = SubResource("MallWall_300x30Shape")
+
+[node name="Classroom_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.5, 10)
+[node name="Mesh" type="MeshInstance3D" parent="Classroom_N_1"]
+mesh = SubResource("MallWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Classroom_N_1"]
+shape = SubResource("MallWall_300x30Shape")
+
+[node name="Classroom_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 2.5, 18)
+[node name="Mesh" type="MeshInstance3D" parent="Classroom_S_0"]
+mesh = SubResource("MallWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Classroom_S_0"]
+shape = SubResource("MallWall_1000x30Shape")
+
+[node name="Classroom_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="Classroom_E_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Classroom_E_0"]
+shape = SubResource("MallWall_30x800Shape")
+
+[node name="Classroom_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="Classroom_W_0"]
+mesh = SubResource("MallWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="Classroom_W_0"]
+shape = SubResource("MallWall_30x800Shape")
+
