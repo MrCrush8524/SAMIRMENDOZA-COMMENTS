@@ -125,6 +125,7 @@ size = Vector3(8, 4.5, 0.3)
 size = Vector3(8, 4.5, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatMain"]
 albedo_texture = ExtResource("12")
+uv1_scale = Vector3(2.136, 1.201, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="FacadeMeshSide"]
@@ -133,6 +134,7 @@ size = Vector3(10, 4.5, 0.3)
 size = Vector3(10, 4.5, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatSide"]
 albedo_texture = ExtResource("13")
+uv1_scale = Vector3(2.670, 1.201, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="FacadeMeshThird"]
@@ -141,7 +143,7 @@ size = Vector3(6, 4.0, 0.3)
 size = Vector3(6, 4.0, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatThird"]
 albedo_texture = ExtResource("101")
-uv1_scale = Vector3(3, 2, 1)
+uv1_scale = Vector3(1.856, 1.742, 1)
 roughness = 0.8
 
 [sub_resource type="BoxShape3D" id="Shape_storyprop"]
