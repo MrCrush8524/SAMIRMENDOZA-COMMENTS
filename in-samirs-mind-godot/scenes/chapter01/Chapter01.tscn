@@ -1,4 +1,4 @@
-[gd_scene load_steps=230 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=306 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/Pickup.gd" id="2"]
@@ -573,9 +573,244 @@ albedo_texture = ExtResource("100")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled1"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(4.0000, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled2"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.6250, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled3"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.3750, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled4"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.5000, 1.1250, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled5"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(11.5000, 2.2500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled6"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(5.2500, 2.2500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled7"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(4.7500, 2.2500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled8"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.2500, 1.1250, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled9"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(4.5000, 2.7500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled10"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.6250, 2.7500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled11"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.7500, 1.1250, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled12"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.8750, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled13"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.5000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled14"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.5000, 1.6250, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled15"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(4.7500, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled16"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.2500, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled17"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.7500, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled18"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.0000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled19"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.5750, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled20"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0750, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled21"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.5000, 1.6250, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled22"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.5000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled23"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.6250, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled24"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.2500, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled25"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.7500, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled26"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.0000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled27"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.6250, 2.7500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled28"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.7500, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled29"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.7500, 0.8750, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled30"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.5000, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled31"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.5000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled32"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(6.0000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled33"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.5000, 0.8750, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled34"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.5000, 4.8750, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled35"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(3.5000, 7.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled36"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.5000, 2.2500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled37"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.2500, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled38"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.5000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled39"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled40"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0000, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled41"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0000, 0.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled42"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(1.0000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled43"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0000, 4.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled44"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(0.5000, 2.7500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled45"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.0000, 2.7500, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_tile_mint_tiled46"]
+albedo_texture = ExtResource("100")
+uv1_scale = Vector3(2.7500, 2.0000, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_wall_bench_area"]
 albedo_texture = ExtResource("101")
 uv1_scale = Vector3(1, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_bench_area_tiled1"]
+albedo_texture = ExtResource("101")
+uv1_scale = Vector3(2.5000, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry"]
@@ -583,9 +818,89 @@ albedo_texture = ExtResource("102")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled1"]
+albedo_texture = ExtResource("102")
+uv1_scale = Vector3(4.0000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled2"]
+albedo_texture = ExtResource("102")
+uv1_scale = Vector3(2.5000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled3"]
+albedo_texture = ExtResource("102")
+uv1_scale = Vector3(2.5000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_pink_dry_tiled4"]
+albedo_texture = ExtResource("102")
+uv1_scale = Vector3(2.0000, 2.5000, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean"]
 albedo_texture = ExtResource("103")
 uv1_scale = Vector3(1, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled1"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(4.0000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled2"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(11.5000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled3"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(4.5000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled4"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(2.5000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled5"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(13.0000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled6"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(4.5000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled7"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(2.5000, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled8"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(2.5000, 2.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled9"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(6.0000, 7.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled10"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(2.0000, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled11"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(1.0000, 4.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_ceiling_clean_tiled12"]
+albedo_texture = ExtResource("103")
+uv1_scale = Vector3(2.0000, 2.0000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained"]
@@ -593,9 +908,34 @@ albedo_texture = ExtResource("104")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled1"]
+albedo_texture = ExtResource("104")
+uv1_scale = Vector3(11.5000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled2"]
+albedo_texture = ExtResource("104")
+uv1_scale = Vector3(2.5000, 3.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled3"]
+albedo_texture = ExtResource("104")
+uv1_scale = Vector3(2.0000, 2.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_service_stained_tiled4"]
+albedo_texture = ExtResource("104")
+uv1_scale = Vector3(1.0000, 4.0000, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_wall_exit_door"]
 albedo_texture = ExtResource("105")
 uv1_scale = Vector3(1, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_exit_door_tiled1"]
+albedo_texture = ExtResource("105")
+uv1_scale = Vector3(2.7500, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal"]
@@ -603,9 +943,34 @@ albedo_texture = ExtResource("106")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled1"]
+albedo_texture = ExtResource("106")
+uv1_scale = Vector3(4.5000, 3.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled2"]
+albedo_texture = ExtResource("106")
+uv1_scale = Vector3(6.0000, 7.0000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_reflective_teal_tiled3"]
+albedo_texture = ExtResource("106")
+uv1_scale = Vector3(2.0000, 2.0000, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet"]
 albedo_texture = ExtResource("107")
 uv1_scale = Vector3(1, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet_tiled1"]
+albedo_texture = ExtResource("107")
+uv1_scale = Vector3(13.0000, 4.5000, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_checker_wet_tiled2"]
+albedo_texture = ExtResource("107")
+uv1_scale = Vector3(4.5000, 4.5000, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="Mat_wall_utility_shelf_sink"]
@@ -613,14 +978,29 @@ albedo_texture = ExtResource("108")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_wall_utility_shelf_sink_tiled1"]
+albedo_texture = ExtResource("108")
+uv1_scale = Vector3(3.0000, 4.5000, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_wall_maintenance_door"]
 albedo_texture = ExtResource("109")
 uv1_scale = Vector3(1, 1, 1)
 roughness = 0.75
 
+[sub_resource type="StandardMaterial3D" id="Mat_wall_maintenance_door_tiled1"]
+albedo_texture = ExtResource("109")
+uv1_scale = Vector3(2.0000, 2.2500, 1)
+roughness = 0.75
+
 [sub_resource type="StandardMaterial3D" id="Mat_wall_washer_window"]
 albedo_texture = ExtResource("110")
 uv1_scale = Vector3(1, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_washer_window_tiled1"]
+albedo_texture = ExtResource("110")
+uv1_scale = Vector3(6.7500, 3.5000, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="DoorMesh_MallDoor"]
@@ -652,7 +1032,7 @@ script = ExtResource("1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7536, 1.5240, -4.2672)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallN_0"]
 mesh = SubResource("W_488_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallN_0"]
 shape = SubResource("W_488_305_15Shape")
 
@@ -660,7 +1040,7 @@ shape = SubResource("W_488_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.5240, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallS_0"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallS_0"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -668,7 +1048,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7630, 1.5240, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallS_1"]
 mesh = SubResource("W_290_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled3")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallS_1"]
 shape = SubResource("W_290_305_15Shape")
 
@@ -676,7 +1056,7 @@ shape = SubResource("W_290_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallW_0"]
 mesh = SubResource("W_15_305_427")
-surface_material_override/0 = SubResource("Mat_wall_bench_area")
+surface_material_override/0 = SubResource("Mat_wall_bench_area_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallW_0"]
 shape = SubResource("W_15_305_427Shape")
 
@@ -684,7 +1064,7 @@ shape = SubResource("W_15_305_427Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3152, 1.5240, -3.5814)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallE_0"]
 mesh = SubResource("W_15_305_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallE_0"]
 shape = SubResource("W_15_305_137Shape")
 
@@ -692,7 +1072,7 @@ shape = SubResource("W_15_305_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3152, 1.5240, -0.6858)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallE_1"]
 mesh = SubResource("W_15_305_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallE_1"]
 shape = SubResource("W_15_305_137Shape")
 
@@ -700,7 +1080,7 @@ shape = SubResource("W_15_305_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3048, 1.3716, -4.2672)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_0"]
 mesh = SubResource("W_1402_274_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_0"]
 shape = SubResource("W_1402_274_15Shape")
 
@@ -708,7 +1088,7 @@ shape = SubResource("W_1402_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1148, 1.3716, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallS_0"]
 mesh = SubResource("W_640_274_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled6")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallS_0"]
 shape = SubResource("W_640_274_15Shape")
 
@@ -716,7 +1096,7 @@ shape = SubResource("W_640_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8100, 1.3716, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallS_1"]
 mesh = SubResource("W_579_274_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled7")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallS_1"]
 shape = SubResource("W_579_274_15Shape")
 
@@ -724,7 +1104,7 @@ shape = SubResource("W_579_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3152, 1.3716, -3.5814)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallW_0"]
 mesh = SubResource("W_15_274_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled8")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallW_0"]
 shape = SubResource("W_15_274_137Shape")
 
@@ -732,7 +1112,7 @@ shape = SubResource("W_15_274_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3152, 1.3716, -0.6858)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallW_1"]
 mesh = SubResource("W_15_274_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled8")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallW_1"]
 shape = SubResource("W_15_274_137Shape")
 
@@ -740,7 +1120,7 @@ shape = SubResource("W_15_274_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 1.3716, -3.5814)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallE_0"]
 mesh = SubResource("W_15_274_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled8")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallE_0"]
 shape = SubResource("W_15_274_137Shape")
 
@@ -748,7 +1128,7 @@ shape = SubResource("W_15_274_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 1.3716, -0.6858)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_WallE_1"]
 mesh = SubResource("W_15_274_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled8")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_WallE_1"]
 shape = SubResource("W_15_274_137Shape")
 
@@ -756,7 +1136,7 @@ shape = SubResource("W_15_274_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4488, 1.6764, -4.2672)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallN_0"]
 mesh = SubResource("W_549_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled9")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallN_0"]
 shape = SubResource("W_549_335_15Shape")
 
@@ -764,7 +1144,7 @@ shape = SubResource("W_549_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6962, 1.6764, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallS_0"]
 mesh = SubResource("W_198_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled10")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallS_0"]
 shape = SubResource("W_198_335_15Shape")
 
@@ -772,7 +1152,7 @@ shape = SubResource("W_198_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2014, 1.6764, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallS_1"]
 mesh = SubResource("W_198_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled10")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallS_1"]
 shape = SubResource("W_198_335_15Shape")
 
@@ -780,7 +1160,7 @@ shape = SubResource("W_198_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 1.6764, -3.5814)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallW_0"]
 mesh = SubResource("W_15_335_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled11")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallW_0"]
 shape = SubResource("W_15_335_137Shape")
 
@@ -788,7 +1168,7 @@ shape = SubResource("W_15_335_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 1.6764, -0.6858)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallW_1"]
 mesh = SubResource("W_15_335_137")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled11")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallW_1"]
 shape = SubResource("W_15_335_137Shape")
 
@@ -796,7 +1176,7 @@ shape = SubResource("W_15_335_137Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.6764, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_WallE_0"]
 mesh = SubResource("W_15_335_427")
-surface_material_override/0 = SubResource("Mat_wall_exit_door")
+surface_material_override/0 = SubResource("Mat_wall_exit_door_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_WallE_0"]
 shape = SubResource("W_15_335_427Shape")
 
@@ -804,7 +1184,7 @@ shape = SubResource("W_15_335_427Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.5240, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallN_0"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallN_0"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -812,7 +1192,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6774, 1.5240, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallN_1"]
 mesh = SubResource("W_107_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled12")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallN_1"]
 shape = SubResource("W_107_305_15Shape")
 
@@ -820,7 +1200,7 @@ shape = SubResource("W_107_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.5240, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallS_0"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallS_0"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -828,7 +1208,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5250, 1.5240, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallS_1"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallS_1"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -836,7 +1216,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallW_0"]
 mesh = SubResource("W_15_305_549")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallW_0"]
 shape = SubResource("W_15_305_549Shape")
 
@@ -844,7 +1224,7 @@ shape = SubResource("W_15_305_549Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.5240, 0.9906)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallE_0"]
 mesh = SubResource("W_15_305_198")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled14")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallE_0"]
 shape = SubResource("W_15_305_198Shape")
 
@@ -852,7 +1232,7 @@ shape = SubResource("W_15_305_198Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.5240, 4.4958)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallE_1"]
 mesh = SubResource("W_15_305_198")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled14")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallE_1"]
 shape = SubResource("W_15_305_198Shape")
 
@@ -860,7 +1240,7 @@ shape = SubResource("W_15_305_198Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0292, 2.1336, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallN_0"]
 mesh = SubResource("W_823_427_15")
-surface_material_override/0 = SubResource("Mat_wall_washer_window")
+surface_material_override/0 = SubResource("Mat_wall_washer_window_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallN_0"]
 shape = SubResource("W_823_427_15Shape")
 
@@ -868,7 +1248,7 @@ shape = SubResource("W_823_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8100, 2.1336, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallN_1"]
 mesh = SubResource("W_579_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled15")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallN_1"]
 shape = SubResource("W_579_427_15Shape")
 
@@ -876,7 +1256,7 @@ shape = SubResource("W_579_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7724, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallS_0"]
 mesh = SubResource("W_274_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled16")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallS_0"]
 shape = SubResource("W_274_427_15Shape")
 
@@ -884,7 +1264,7 @@ shape = SubResource("W_274_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8956, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallS_1"]
 mesh = SubResource("W_335_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled17")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallS_1"]
 shape = SubResource("W_335_427_15Shape")
 
@@ -892,7 +1272,7 @@ shape = SubResource("W_335_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6096, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallS_2"]
 mesh = SubResource("W_122_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled18")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallS_2"]
 shape = SubResource("W_122_427_15Shape")
 
@@ -900,7 +1280,7 @@ shape = SubResource("W_122_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7889, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallS_3"]
 mesh = SubResource("W_70_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled19")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallS_3"]
 shape = SubResource("W_70_427_15Shape")
 
@@ -908,7 +1288,7 @@ shape = SubResource("W_70_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4407, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallS_4"]
 mesh = SubResource("W_253_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled20")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallS_4"]
 shape = SubResource("W_253_427_15Shape")
 
@@ -916,7 +1296,7 @@ shape = SubResource("W_253_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 2.1336, 0.9906)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallW_0"]
 mesh = SubResource("W_15_427_198")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled21")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallW_0"]
 shape = SubResource("W_15_427_198Shape")
 
@@ -924,7 +1304,7 @@ shape = SubResource("W_15_427_198Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 2.1336, 4.4958)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallW_1"]
 mesh = SubResource("W_15_427_198")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled21")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallW_1"]
 shape = SubResource("W_15_427_198Shape")
 
@@ -932,7 +1312,7 @@ shape = SubResource("W_15_427_198Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 2.1336, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_WallE_0"]
 mesh = SubResource("W_15_427_549")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled22")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_WallE_0"]
 shape = SubResource("W_15_427_549Shape")
 
@@ -940,7 +1320,7 @@ shape = SubResource("W_15_427_549Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6962, 1.8288, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallN_0"]
 mesh = SubResource("W_198_366_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled23")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallN_0"]
 shape = SubResource("W_198_366_15Shape")
 
@@ -948,7 +1328,7 @@ shape = SubResource("W_198_366_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2014, 1.8288, 0.0000)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallN_1"]
 mesh = SubResource("W_198_366_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled23")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallN_1"]
 shape = SubResource("W_198_366_15Shape")
 
@@ -956,7 +1336,7 @@ shape = SubResource("W_198_366_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4676, 1.8288, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallS_0"]
 mesh = SubResource("W_152_366_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled24")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallS_0"]
 shape = SubResource("W_152_366_15Shape")
 
@@ -964,7 +1344,7 @@ shape = SubResource("W_152_366_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1252, 1.8288, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallS_1"]
 mesh = SubResource("W_213_366_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled25")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallS_1"]
 shape = SubResource("W_213_366_15Shape")
 
@@ -972,7 +1352,7 @@ shape = SubResource("W_213_366_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7056, 1.8288, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallW_0"]
 mesh = SubResource("W_15_366_549")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled26")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallW_0"]
 shape = SubResource("W_15_366_549Shape")
 
@@ -980,7 +1360,7 @@ shape = SubResource("W_15_366_549Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.8288, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallE_0"]
 mesh = SubResource("W_15_366_549")
-surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallE_0"]
 shape = SubResource("W_15_366_549Shape")
 
@@ -988,7 +1368,7 @@ shape = SubResource("W_15_366_549Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.6764, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallN_0"]
 mesh = SubResource("W_76_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled27")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallN_0"]
 shape = SubResource("W_76_335_15Shape")
 
@@ -996,7 +1376,7 @@ shape = SubResource("W_76_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5250, 1.6764, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallN_1"]
 mesh = SubResource("W_76_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled27")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallN_1"]
 shape = SubResource("W_76_335_15Shape")
 
@@ -1004,7 +1384,7 @@ shape = SubResource("W_76_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.6764, 9.1440)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallS_0"]
 mesh = SubResource("W_76_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled27")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallS_0"]
 shape = SubResource("W_76_335_15Shape")
 
@@ -1012,7 +1392,7 @@ shape = SubResource("W_76_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5250, 1.6764, 9.1440)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallS_1"]
 mesh = SubResource("W_76_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled27")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallS_1"]
 shape = SubResource("W_76_335_15Shape")
 
@@ -1020,7 +1400,7 @@ shape = SubResource("W_76_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.6764, 7.3152)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallW_0"]
 mesh = SubResource("W_15_335_366")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled28")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallW_0"]
 shape = SubResource("W_15_335_366Shape")
 
@@ -1028,7 +1408,7 @@ shape = SubResource("W_15_335_366Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.6764, 6.0198)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallE_0"]
 mesh = SubResource("W_15_335_107")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled29")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallE_0"]
 shape = SubResource("W_15_335_107Shape")
 
@@ -1036,7 +1416,7 @@ shape = SubResource("W_15_335_107Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.6764, 8.6106)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallE_1"]
 mesh = SubResource("W_15_335_107")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled29")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_WallE_1"]
 shape = SubResource("W_15_335_107Shape")
 
@@ -1044,7 +1424,7 @@ shape = SubResource("W_15_335_107Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.5240, 9.1440)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallN_0"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallN_0"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -1052,7 +1432,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5250, 1.5240, 9.1440)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallN_1"]
 mesh = SubResource("W_76_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallN_1"]
 shape = SubResource("W_76_305_15Shape")
 
@@ -1060,7 +1440,7 @@ shape = SubResource("W_76_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 1.5240, 11.5824)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallS_0"]
 mesh = SubResource("W_305_305_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled30")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallS_0"]
 shape = SubResource("W_305_305_15Shape")
 
@@ -1068,7 +1448,7 @@ shape = SubResource("W_305_305_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 10.3632)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallW_0"]
 mesh = SubResource("W_15_305_244")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallW_0"]
 shape = SubResource("W_15_305_244Shape")
 
@@ -1076,7 +1456,7 @@ shape = SubResource("W_15_305_244Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.5240, 10.3632)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallE_0"]
 mesh = SubResource("W_15_305_244")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallE_0"]
 shape = SubResource("W_15_305_244Shape")
 
@@ -1084,7 +1464,7 @@ shape = SubResource("W_15_305_244Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7724, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallN_0"]
 mesh = SubResource("W_274_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled16")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallN_0"]
 shape = SubResource("W_274_427_15Shape")
 
@@ -1092,7 +1472,7 @@ shape = SubResource("W_274_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2004, 2.1336, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallN_1"]
 mesh = SubResource("W_274_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled16")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallN_1"]
 shape = SubResource("W_274_427_15Shape")
 
@@ -1100,7 +1480,7 @@ shape = SubResource("W_274_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 2.1336, 14.0208)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallS_0"]
 mesh = SubResource("W_732_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallS_0"]
 shape = SubResource("W_732_427_15Shape")
 
@@ -1108,7 +1488,7 @@ shape = SubResource("W_732_427_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 2.1336, 6.0198)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallW_0"]
 mesh = SubResource("W_15_427_107")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled33")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallW_0"]
 shape = SubResource("W_15_427_107Shape")
 
@@ -1116,7 +1496,7 @@ shape = SubResource("W_15_427_107Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 2.1336, 11.0490)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallW_1"]
 mesh = SubResource("W_15_427_594")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled34")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallW_1"]
 shape = SubResource("W_15_427_594Shape")
 
@@ -1124,7 +1504,7 @@ shape = SubResource("W_15_427_594Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 2.1336, 9.7536)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallE_0"]
 mesh = SubResource("W_15_427_853")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallE_0"]
 shape = SubResource("W_15_427_853Shape")
 
@@ -1132,7 +1512,7 @@ shape = SubResource("W_15_427_853Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5240, 1.3716, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallN_0"]
 mesh = SubResource("W_61_274_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled36")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallN_0"]
 shape = SubResource("W_61_274_15Shape")
 
@@ -1140,7 +1520,7 @@ shape = SubResource("W_61_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3048, 1.3716, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallN_1"]
 mesh = SubResource("W_61_274_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled36")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallN_1"]
 shape = SubResource("W_61_274_15Shape")
 
@@ -1148,7 +1528,7 @@ shape = SubResource("W_61_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6096, 1.3716, 8.5344)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallS_0"]
 mesh = SubResource("W_244_274_15")
-surface_material_override/0 = SubResource("Mat_wall_maintenance_door")
+surface_material_override/0 = SubResource("Mat_wall_maintenance_door_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallS_0"]
 shape = SubResource("W_244_274_15Shape")
 
@@ -1156,7 +1536,7 @@ shape = SubResource("W_244_274_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 1.3716, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallW_0"]
 mesh = SubResource("W_15_274_305")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled37")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallW_0"]
 shape = SubResource("W_15_274_305Shape")
 
@@ -1164,7 +1544,7 @@ shape = SubResource("W_15_274_305Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6096, 1.3716, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallE_0"]
 mesh = SubResource("W_15_274_305")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled37")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallE_0"]
 shape = SubResource("W_15_274_305Shape")
 
@@ -1172,7 +1552,7 @@ shape = SubResource("W_15_274_305Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, 1.2192, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_WallN_0"]
 mesh = SubResource("W_61_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled38")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_WallN_0"]
 shape = SubResource("W_61_244_15Shape")
 
@@ -1180,7 +1560,7 @@ shape = SubResource("W_61_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7432, 1.2192, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_WallN_1"]
 mesh = SubResource("W_61_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled38")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_WallN_1"]
 shape = SubResource("W_61_244_15Shape")
 
@@ -1188,7 +1568,7 @@ shape = SubResource("W_61_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8288, 1.2192, 8.5344)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_WallS_0"]
 mesh = SubResource("W_244_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled39")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_WallS_0"]
 shape = SubResource("W_244_244_15Shape")
 
@@ -1196,7 +1576,7 @@ shape = SubResource("W_244_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6096, 1.2192, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_WallW_0"]
 mesh = SubResource("W_15_244_305")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled40")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_WallW_0"]
 shape = SubResource("W_15_244_305Shape")
 
@@ -1204,7 +1584,7 @@ shape = SubResource("W_15_244_305Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0480, 1.2192, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_WallE_0"]
 mesh = SubResource("W_15_244_305")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled40")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_WallE_0"]
 shape = SubResource("W_15_244_305Shape")
 
@@ -1212,7 +1592,7 @@ shape = SubResource("W_15_244_305Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0937, 1.2192, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallN_0"]
 mesh = SubResource("W_9_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled41")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallN_0"]
 shape = SubResource("W_9_244_15Shape")
 
@@ -1220,7 +1600,7 @@ shape = SubResource("W_9_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2215, 1.2192, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallN_1"]
 mesh = SubResource("W_9_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled41")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallN_1"]
 shape = SubResource("W_9_244_15Shape")
 
@@ -1228,7 +1608,7 @@ shape = SubResource("W_9_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 1.2192, 10.3632)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallS_0"]
 mesh = SubResource("W_122_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallS_0"]
 shape = SubResource("W_122_244_15Shape")
 
@@ -1236,7 +1616,7 @@ shape = SubResource("W_122_244_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0480, 1.2192, 7.9248)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallW_0"]
 mesh = SubResource("W_15_244_488")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled43")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallW_0"]
 shape = SubResource("W_15_244_488Shape")
 
@@ -1244,7 +1624,7 @@ shape = SubResource("W_15_244_488Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2672, 1.2192, 7.9248)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallE_0"]
 mesh = SubResource("W_15_244_488")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled43")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallE_0"]
 shape = SubResource("W_15_244_488Shape")
 
@@ -1252,7 +1632,7 @@ shape = SubResource("W_15_244_488Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0772, 1.6764, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallN_0"]
 mesh = SubResource("W_30_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled44")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallN_0"]
 shape = SubResource("W_30_335_15Shape")
 
@@ -1260,7 +1640,7 @@ shape = SubResource("W_30_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2108, 1.6764, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallN_1"]
 mesh = SubResource("W_30_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled44")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallN_1"]
 shape = SubResource("W_30_335_15Shape")
 
@@ -1268,7 +1648,7 @@ shape = SubResource("W_30_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1440, 1.6764, 7.9248)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallS_0"]
 mesh = SubResource("W_244_335_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled45")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallS_0"]
 shape = SubResource("W_244_335_15Shape")
 
@@ -1276,7 +1656,7 @@ shape = SubResource("W_244_335_15Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9248, 1.6764, 6.7056)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallW_0"]
 mesh = SubResource("W_15_335_244")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled46")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallW_0"]
 shape = SubResource("W_15_335_244Shape")
 
@@ -1284,7 +1664,7 @@ shape = SubResource("W_15_335_244Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3632, 1.6764, 6.7056)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallE_0"]
 mesh = SubResource("W_15_335_244")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled46")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallE_0"]
 shape = SubResource("W_15_335_244Shape")
 
@@ -1292,170 +1672,170 @@ shape = SubResource("W_15_335_244Shape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7536, 0.0000, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_Floor"]
 mesh = SubResource("F_488_6_427")
-surface_material_override/0 = SubResource("Mat_floor_pink_dry")
+surface_material_override/0 = SubResource("Mat_floor_pink_dry_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_Floor"]
 shape = SubResource("F_488_6_427Shape")
 
 [node name="TVLounge_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7536, 3.0480, -2.1336)
 mesh = SubResource("C_488_5_427")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled1")
 
 [node name="Gallery_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3048, 0.0000, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="Gallery_Floor"]
 mesh = SubResource("F_1402_6_427")
-surface_material_override/0 = SubResource("Mat_floor_service_stained")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="Gallery_Floor"]
 shape = SubResource("F_1402_6_427Shape")
 
 [node name="Gallery_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3048, 2.7432, -2.1336)
 mesh = SubResource("C_1402_5_427")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled2")
 
 [node name="MoonVestibule_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4488, 0.0000, -2.1336)
 [node name="Mesh" type="MeshInstance3D" parent="MoonVestibule_Floor"]
 mesh = SubResource("F_549_6_427")
-surface_material_override/0 = SubResource("Mat_floor_reflective_teal")
+surface_material_override/0 = SubResource("Mat_floor_reflective_teal_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="MoonVestibule_Floor"]
 shape = SubResource("F_549_6_427Shape")
 
 [node name="MoonVestibule_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4488, 3.3528, -2.1336)
 mesh = SubResource("C_549_5_427")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled3")
 
 [node name="ArrivalFoyer_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 0.0000, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_Floor"]
 mesh = SubResource("F_305_6_549")
-surface_material_override/0 = SubResource("Mat_floor_pink_dry")
+surface_material_override/0 = SubResource("Mat_floor_pink_dry_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_Floor"]
 shape = SubResource("F_305_6_549Shape")
 
 [node name="ArrivalFoyer_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 3.0480, 2.7432)
 mesh = SubResource("C_305_5_549")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled4")
 
 [node name="MainHall_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2192, 0.0000, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="MainHall_Floor"]
 mesh = SubResource("F_1585_6_549")
-surface_material_override/0 = SubResource("Mat_floor_checker_wet")
+surface_material_override/0 = SubResource("Mat_floor_checker_wet_tiled1")
 [node name="Shape" type="CollisionShape3D" parent="MainHall_Floor"]
 shape = SubResource("F_1585_6_549Shape")
 
 [node name="MainHall_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2192, 4.2672, 2.7432)
 mesh = SubResource("C_1585_5_549")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled5")
 
 [node name="LaundryHallExt_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4488, 0.0000, 2.7432)
 [node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_Floor"]
 mesh = SubResource("F_549_6_549")
-surface_material_override/0 = SubResource("Mat_floor_checker_wet")
+surface_material_override/0 = SubResource("Mat_floor_checker_wet_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_Floor"]
 shape = SubResource("F_549_6_549Shape")
 
 [node name="LaundryHallExt_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4488, 3.6576, 2.7432)
 mesh = SubResource("C_549_5_549")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled6")
 
 [node name="QuietStair_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 0.0000, 7.3152)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_Floor"]
 mesh = SubResource("F_305_6_366")
-surface_material_override/0 = SubResource("Mat_floor_service_stained")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="QuietStair_Floor"]
 shape = SubResource("F_305_6_366Shape")
 
 [node name="QuietStair_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 3.3528, 7.3152)
 mesh = SubResource("C_305_5_366")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled7")
 
 [node name="ObservationNiche_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 0.0000, 10.3632)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_Floor"]
 mesh = SubResource("F_305_6_244")
-surface_material_override/0 = SubResource("Mat_floor_pink_dry")
+surface_material_override/0 = SubResource("Mat_floor_pink_dry_tiled3")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_Floor"]
 shape = SubResource("F_305_6_244Shape")
 
 [node name="ObservationNiche_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6680, 3.0480, 10.3632)
 mesh = SubResource("C_305_5_244")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled8")
 
 [node name="MemoryAtrium_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 0.0000, 9.7536)
 [node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_Floor"]
 mesh = SubResource("F_732_6_853")
-surface_material_override/0 = SubResource("Mat_floor_reflective_teal")
+surface_material_override/0 = SubResource("Mat_floor_reflective_teal_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_Floor"]
 shape = SubResource("F_732_6_853Shape")
 
 [node name="MemoryAtrium_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 4.2672, 9.7536)
 mesh = SubResource("C_732_5_853")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled9")
 
 [node name="RestroomUtility_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6096, 0.0000, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_Floor"]
 mesh = SubResource("F_244_6_305")
-surface_material_override/0 = SubResource("Mat_floor_service_stained")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled3")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_Floor"]
 shape = SubResource("F_244_6_305Shape")
 
 [node name="RestroomUtility_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6096, 2.7432, 7.0104)
 mesh = SubResource("C_244_5_305")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled10")
 
 [node name="SecretMemoryRoom_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8288, 0.0000, 7.0104)
 [node name="Mesh" type="MeshInstance3D" parent="SecretMemoryRoom_Floor"]
 mesh = SubResource("F_244_6_305")
-surface_material_override/0 = SubResource("Mat_floor_pink_dry")
+surface_material_override/0 = SubResource("Mat_floor_pink_dry_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="SecretMemoryRoom_Floor"]
 shape = SubResource("F_244_6_305Shape")
 
 [node name="SecretMemoryRoom_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8288, 2.4384, 7.0104)
 mesh = SubResource("C_244_5_305")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled10")
 
 [node name="DeadEndCorridor_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 0.0000, 7.9248)
 [node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_Floor"]
 mesh = SubResource("F_122_6_488")
-surface_material_override/0 = SubResource("Mat_floor_service_stained")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_Floor"]
 shape = SubResource("F_122_6_488Shape")
 
 [node name="DeadEndCorridor_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 2.4384, 7.9248)
 mesh = SubResource("C_122_5_488")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled11")
 
 [node name="MoonDoorAlcove_Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1440, 0.0000, 6.7056)
 [node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_Floor"]
 mesh = SubResource("F_244_6_244")
-surface_material_override/0 = SubResource("Mat_floor_reflective_teal")
+surface_material_override/0 = SubResource("Mat_floor_reflective_teal_tiled3")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_Floor"]
 shape = SubResource("F_244_6_244Shape")
 
 [node name="MoonDoorAlcove_Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1440, 3.3528, 6.7056)
 mesh = SubResource("C_244_5_244")
-surface_material_override/0 = SubResource("Mat_ceiling_clean")
+surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled12")
 
 [node name="MallDoor" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4008, 1.2192, -4.2672)
