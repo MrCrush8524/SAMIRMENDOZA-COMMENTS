@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=104 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_wind_chime.png" id="111"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_unopened_mail.png" id="112"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_wrong_photograph_framed.png" id="113"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_roof_shingle.png" id="114"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(70, 0.2, 60)
@@ -138,13 +139,22 @@ uv1_scale = Vector3(2.670, 1.201, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="FacadeMeshThird"]
-size = Vector3(6, 4.0, 0.3)
+size = Vector3(6, 4.0, 4.0)
 [sub_resource type="BoxShape3D" id="FacadeShapeThird"]
-size = Vector3(6, 4.0, 0.3)
+size = Vector3(6, 4.0, 4.0)
 [sub_resource type="StandardMaterial3D" id="FacadeMatThird"]
 albedo_texture = ExtResource("101")
 uv1_scale = Vector3(1.856, 1.742, 1)
 roughness = 0.8
+
+[sub_resource type="BoxMesh" id="RoofPanelMesh"]
+size = Vector3(3.4, 0.15, 4.4)
+[sub_resource type="BoxShape3D" id="RoofPanelShape"]
+size = Vector3(3.4, 0.15, 4.4)
+[sub_resource type="StandardMaterial3D" id="RoofMatThird"]
+albedo_texture = ExtResource("114")
+uv1_scale = Vector3(5.5, 1, 5.0)
+roughness = 0.95
 
 [sub_resource type="BoxShape3D" id="Shape_storyprop"]
 size = Vector3(1.2, 1.2, 1.2)
@@ -638,10 +648,28 @@ shape = SubResource("HedgeShape_10NS")
 [node name="HouseFacadeThird" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -29.7)
 [node name="Mesh" type="MeshInstance3D" parent="HouseFacadeThird"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.85)
 mesh = SubResource("FacadeMeshThird")
 surface_material_override/0 = SubResource("FacadeMatThird")
 [node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.85)
 shape = SubResource("FacadeShapeThird")
+[node name="RoofLeft" type="MeshInstance3D" parent="HouseFacadeThird"]
+transform = Transform3D(0.88235, -0.47059, 0, 0.47059, 0.88235, 0, 0, 0, 1, -1.5, 2.8, -1.85)
+mesh = SubResource("RoofPanelMesh")
+surface_material_override/0 = SubResource("RoofMatThird")
+[node name="RoofLeftShape" type="StaticBody3D" parent="HouseFacadeThird"]
+transform = Transform3D(0.88235, -0.47059, 0, 0.47059, 0.88235, 0, 0, 0, 1, -1.5, 2.8, -1.85)
+[node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird/RoofLeftShape"]
+shape = SubResource("RoofPanelShape")
+[node name="RoofRight" type="MeshInstance3D" parent="HouseFacadeThird"]
+transform = Transform3D(-0.88235, -0.47059, 0, 0.47059, -0.88235, 0, 0, 0, 1, 1.5, 2.8, -1.85)
+mesh = SubResource("RoofPanelMesh")
+surface_material_override/0 = SubResource("RoofMatThird")
+[node name="RoofRightShape" type="StaticBody3D" parent="HouseFacadeThird"]
+transform = Transform3D(-0.88235, -0.47059, 0, 0.47059, -0.88235, 0, 0, 0, 1, 1.5, 2.8, -1.85)
+[node name="Shape" type="CollisionShape3D" parent="HouseFacadeThird/RoofRightShape"]
+shape = SubResource("RoofPanelShape")
 [node name="Prop_Door" type="Sprite3D" parent="HouseFacadeThird"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.16)
 texture = ExtResource("102")
