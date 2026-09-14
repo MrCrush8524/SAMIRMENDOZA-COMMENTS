@@ -4187,8 +4187,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0000, 0.9000, 22.5500)
 mesh = SubResource("RI_H2BackMesh2")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2BackShape3_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2BackShape3_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0000, 0.9000, 22.5500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2BackShape3_Body"]
 shape = SubResource("RI_H2BackShape3")
 
 [node name="RI_H2EastMesh4_N" type="MeshInstance3D" parent="."]
@@ -4196,8 +4198,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 0.9000, 18.5500)
 mesh = SubResource("RI_H2EastMesh4")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2EastShape5_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2EastShape5_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 0.9000, 18.5500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2EastShape5_Body"]
 shape = SubResource("RI_H2EastShape5")
 
 [node name="RI_H2WestMesh6_N" type="MeshInstance3D" parent="."]
@@ -4205,8 +4209,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 16.0250)
 mesh = SubResource("RI_H2WestMesh6")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2WestShape7_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2WestShape7_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 16.0250)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2WestShape7_Body"]
 shape = SubResource("RI_H2WestShape7")
 
 [node name="RI_H2WestMesh8_N" type="MeshInstance3D" parent="."]
@@ -4214,8 +4220,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 20.5250)
 mesh = SubResource("RI_H2WestMesh8")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2WestShape9_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2WestShape9_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 20.5250)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2WestShape9_Body"]
 shape = SubResource("RI_H2WestShape9")
 
 [node name="RI_H2WestPostMesh10_N" type="MeshInstance3D" parent="."]
@@ -4238,8 +4246,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5000, 0.6750, 10.6750)
 mesh = SubResource("RI_H2PassageOuterMesh13")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2PassageOuterShape14_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2PassageOuterShape14_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5000, 0.6750, 10.6750)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2PassageOuterShape14_Body"]
 shape = SubResource("RI_H2PassageOuterShape14")
 
 [node name="RI_H2FrontCapMesh15_N" type="MeshInstance3D" parent="."]
@@ -4247,8 +4257,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2500, 0.6750, 6.8000)
 mesh = SubResource("RI_H2FrontCapMesh15")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2FrontCapShape16_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2FrontCapShape16_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2500, 0.6750, 6.8000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2FrontCapShape16_Body"]
 shape = SubResource("RI_H2FrontCapShape16")
 
 [node name="RI_H2FrontCapMesh17_N" type="MeshInstance3D" parent="."]
@@ -4256,8 +4268,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7500, 0.6750, 6.8000)
 mesh = SubResource("RI_H2FrontCapMesh17")
 surface_material_override/0 = SubResource("FenceWoodMat")
 
-[node name="RI_H2FrontCapShape18_N" type="CollisionShape3D" parent="."]
+[node name="RI_H2FrontCapShape18_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7500, 0.6750, 6.8000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H2FrontCapShape18_Body"]
 shape = SubResource("RI_H2FrontCapShape18")
 
 [node name="RI_H2FrontCapPostMesh19_N" type="MeshInstance3D" parent="."]
@@ -4280,8 +4294,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3750, 0.9000, 21.8500)
 mesh = SubResource("RI_H3BackMesh22")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_H3BackShape23_N" type="CollisionShape3D" parent="."]
+[node name="RI_H3BackShape23_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3750, 0.9000, 21.8500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H3BackShape23_Body"]
 shape = SubResource("RI_H3BackShape23")
 
 [node name="RI_H3BackMesh24_N" type="MeshInstance3D" parent="."]
@@ -4289,8 +4305,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6250, 0.9000, 21.8500)
 mesh = SubResource("RI_H3BackMesh24")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_H3BackShape25_N" type="CollisionShape3D" parent="."]
+[node name="RI_H3BackShape25_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6250, 0.9000, 21.8500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H3BackShape25_Body"]
 shape = SubResource("RI_H3BackShape25")
 
 [node name="RI_H3BackPostMesh26_N" type="MeshInstance3D" parent="."]
@@ -4308,8 +4326,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2500, 0.9000, 18.3500)
 mesh = SubResource("RI_H3WestMesh28")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_H3WestShape29_N" type="CollisionShape3D" parent="."]
+[node name="RI_H3WestShape29_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2500, 0.9000, 18.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H3WestShape29_Body"]
 shape = SubResource("RI_H3WestShape29")
 
 [node name="RI_H3EastMesh30_N" type="MeshInstance3D" parent="."]
@@ -4317,8 +4337,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 15.9250)
 mesh = SubResource("RI_H3EastMesh30")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_H3EastShape31_N" type="CollisionShape3D" parent="."]
+[node name="RI_H3EastShape31_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 15.9250)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H3EastShape31_Body"]
 shape = SubResource("RI_H3EastShape31")
 
 [node name="RI_H3EastMesh32_N" type="MeshInstance3D" parent="."]
@@ -4326,8 +4348,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 19.9250)
 mesh = SubResource("RI_H3EastMesh32")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_H3EastShape33_N" type="CollisionShape3D" parent="."]
+[node name="RI_H3EastShape33_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 19.9250)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H3EastShape33_Body"]
 shape = SubResource("RI_H3EastShape33")
 
 [node name="RI_H3EastPostMesh34_N" type="MeshInstance3D" parent="."]
@@ -4350,8 +4374,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7500, 0.9000, 21.8500)
 mesh = SubResource("RI_H4BackMesh37")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H4BackShape38_N" type="CollisionShape3D" parent="."]
+[node name="RI_H4BackShape38_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7500, 0.9000, 21.8500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H4BackShape38_Body"]
 shape = SubResource("RI_H4BackShape38")
 
 [node name="RI_H4BackMesh39_N" type="MeshInstance3D" parent="."]
@@ -4359,8 +4385,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2500, 0.9000, 21.8500)
 mesh = SubResource("RI_H4BackMesh39")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H4BackShape40_N" type="CollisionShape3D" parent="."]
+[node name="RI_H4BackShape40_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2500, 0.9000, 21.8500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H4BackShape40_Body"]
 shape = SubResource("RI_H4BackShape40")
 
 [node name="RI_H4BackPostMesh41_N" type="MeshInstance3D" parent="."]
@@ -4378,8 +4406,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0000, 0.9000, 17.6000)
 mesh = SubResource("RI_H4EastMesh43")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H4EastShape44_N" type="CollisionShape3D" parent="."]
+[node name="RI_H4EastShape44_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0000, 0.9000, 17.6000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H4EastShape44_Body"]
 shape = SubResource("RI_H4EastShape44")
 
 [node name="RI_H4WestMesh45_N" type="MeshInstance3D" parent="."]
@@ -4387,8 +4417,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 15.1750)
 mesh = SubResource("RI_H4WestMesh45")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H4WestShape46_N" type="CollisionShape3D" parent="."]
+[node name="RI_H4WestShape46_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 15.1750)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H4WestShape46_Body"]
 shape = SubResource("RI_H4WestShape46")
 
 [node name="RI_H4WestMesh47_N" type="MeshInstance3D" parent="."]
@@ -4396,8 +4428,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 19.9250)
 mesh = SubResource("RI_H4WestMesh47")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H4WestShape48_N" type="CollisionShape3D" parent="."]
+[node name="RI_H4WestShape48_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 19.9250)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H4WestShape48_Body"]
 shape = SubResource("RI_H4WestShape48")
 
 [node name="RI_H4WestPostMesh49_N" type="MeshInstance3D" parent="."]
@@ -4420,8 +4454,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2500, 0.6750, 6.5000)
 mesh = SubResource("RI_H34FrontCapMesh52")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H34FrontCapShape53_N" type="CollisionShape3D" parent="."]
+[node name="RI_H34FrontCapShape53_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2500, 0.6750, 6.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H34FrontCapShape53_Body"]
 shape = SubResource("RI_H34FrontCapShape53")
 
 [node name="RI_H34FrontCapMesh54_N" type="MeshInstance3D" parent="."]
@@ -4429,8 +4465,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7500, 0.6750, 6.5000)
 mesh = SubResource("RI_H34FrontCapMesh54")
 surface_material_override/0 = SubResource("FenceMetalMat")
 
-[node name="RI_H34FrontCapShape55_N" type="CollisionShape3D" parent="."]
+[node name="RI_H34FrontCapShape55_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7500, 0.6750, 6.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H34FrontCapShape55_Body"]
 shape = SubResource("RI_H34FrontCapShape55")
 
 [node name="RI_H34FrontCapPostMesh56_N" type="MeshInstance3D" parent="."]
@@ -4448,8 +4486,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 0.0400, 19.5000)
 mesh = SubResource("RI_ShedFloorMesh58")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedFloorShape59_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedFloorShape59_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 0.0400, 19.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedFloorShape59_Body"]
 shape = SubResource("RI_ShedFloorShape59")
 
 [node name="RI_ShedWallNMesh60_N" type="MeshInstance3D" parent="."]
@@ -4457,8 +4497,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 17.9000)
 mesh = SubResource("RI_ShedWallNMesh60")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallNShape61_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallNShape61_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 17.9000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallNShape61_Body"]
 shape = SubResource("RI_ShedWallNShape61")
 
 [node name="RI_ShedWallNMesh62_N" type="MeshInstance3D" parent="."]
@@ -4466,8 +4508,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 17.9000)
 mesh = SubResource("RI_ShedWallNMesh62")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallNShape63_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallNShape63_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 17.9000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallNShape63_Body"]
 shape = SubResource("RI_ShedWallNShape63")
 
 [node name="RI_ShedWallNPostMesh64_N" type="MeshInstance3D" parent="."]
@@ -4485,8 +4529,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 21.1000)
 mesh = SubResource("RI_ShedWallSMesh66")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallSShape67_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallSShape67_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 21.1000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallSShape67_Body"]
 shape = SubResource("RI_ShedWallSShape67")
 
 [node name="RI_ShedWallSMesh68_N" type="MeshInstance3D" parent="."]
@@ -4494,8 +4540,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 21.1000)
 mesh = SubResource("RI_ShedWallSMesh68")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallSShape69_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallSShape69_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 21.1000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallSShape69_Body"]
 shape = SubResource("RI_ShedWallSShape69")
 
 [node name="RI_ShedWallSPostMesh70_N" type="MeshInstance3D" parent="."]
@@ -4513,8 +4561,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1000, 1.2300, 19.5000)
 mesh = SubResource("RI_ShedWallWMesh72")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallWShape73_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallWShape73_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1000, 1.2300, 19.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallWShape73_Body"]
 shape = SubResource("RI_ShedWallWShape73")
 
 [node name="RI_ShedWallEMesh74_N" type="MeshInstance3D" parent="."]
@@ -4522,8 +4572,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9000, 1.2300, 19.5000)
 mesh = SubResource("RI_ShedWallEMesh74")
 surface_material_override/0 = SubResource("ShedMat")
 
-[node name="RI_ShedWallEShape75_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedWallEShape75_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9000, 1.2300, 19.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedWallEShape75_Body"]
 shape = SubResource("RI_ShedWallEShape75")
 
 [node name="RI_ShedRoofMesh76_N" type="MeshInstance3D" parent="."]
@@ -4531,8 +4583,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 2.4200, 19.5000)
 mesh = SubResource("RI_ShedRoofMesh76")
 surface_material_override/0 = SubResource("ShedRoofMat")
 
-[node name="RI_ShedRoofShape77_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShedRoofShape77_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 2.4200, 19.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShedRoofShape77_Body"]
 shape = SubResource("RI_ShedRoofShape77")
 
 [node name="ZooDoor" type="Area3D" parent="."]
@@ -4560,8 +4614,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5000, 0.9000, -40.3500)
 mesh = SubResource("RI_H7BackMesh80")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7BackShape81_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7BackShape81_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5000, 0.9000, -40.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7BackShape81_Body"]
 shape = SubResource("RI_H7BackShape81")
 
 [node name="RI_H7EastMesh82_N" type="MeshInstance3D" parent="."]
@@ -4569,8 +4625,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0000, 0.9000, -36.3500)
 mesh = SubResource("RI_H7EastMesh82")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7EastShape83_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7EastShape83_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0000, 0.9000, -36.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7EastShape83_Body"]
 shape = SubResource("RI_H7EastShape83")
 
 [node name="RI_H7WestMesh84_N" type="MeshInstance3D" parent="."]
@@ -4578,8 +4636,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -38.6750)
 mesh = SubResource("RI_H7WestMesh84")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7WestShape85_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7WestShape85_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -38.6750)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7WestShape85_Body"]
 shape = SubResource("RI_H7WestShape85")
 
 [node name="RI_H7WestMesh86_N" type="MeshInstance3D" parent="."]
@@ -4587,8 +4647,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -34.1750)
 mesh = SubResource("RI_H7WestMesh86")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7WestShape87_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7WestShape87_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -34.1750)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7WestShape87_Body"]
 shape = SubResource("RI_H7WestShape87")
 
 [node name="RI_H7WestPostMesh88_N" type="MeshInstance3D" parent="."]
@@ -4611,8 +4673,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0000, 0.6750, -28.3500)
 mesh = SubResource("RI_H7PassageOuterMesh91")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7PassageOuterShape92_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7PassageOuterShape92_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0000, 0.6750, -28.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7PassageOuterShape92_Body"]
 shape = SubResource("RI_H7PassageOuterShape92")
 
 [node name="RI_H7FrontCapMesh93_N" type="MeshInstance3D" parent="."]
@@ -4620,8 +4684,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2500, 0.6750, -24.3500)
 mesh = SubResource("RI_H7FrontCapMesh93")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7FrontCapShape94_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7FrontCapShape94_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2500, 0.6750, -24.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7FrontCapShape94_Body"]
 shape = SubResource("RI_H7FrontCapShape94")
 
 [node name="RI_H7FrontCapMesh95_N" type="MeshInstance3D" parent="."]
@@ -4629,8 +4695,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7500, 0.6750, -24.3500)
 mesh = SubResource("RI_H7FrontCapMesh95")
 surface_material_override/0 = SubResource("FenceHedgeMat")
 
-[node name="RI_H7FrontCapShape96_N" type="CollisionShape3D" parent="."]
+[node name="RI_H7FrontCapShape96_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7500, 0.6750, -24.3500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_H7FrontCapShape96_Body"]
 shape = SubResource("RI_H7FrontCapShape96")
 
 [node name="RI_H7FrontCapPostMesh97_N" type="MeshInstance3D" parent="."]
@@ -4653,8 +4721,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 0.9000, 22.7500)
 mesh = SubResource("RI_AlleyWestCapMesh100")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_AlleyWestCapShape101_N" type="CollisionShape3D" parent="."]
+[node name="RI_AlleyWestCapShape101_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 0.9000, 22.7500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_AlleyWestCapShape101_Body"]
 shape = SubResource("RI_AlleyWestCapShape101")
 
 [node name="RI_AlleySouthWallMesh102_N" type="MeshInstance3D" parent="."]
@@ -4662,8 +4732,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2000, 0.9000, 23.6500)
 mesh = SubResource("RI_AlleySouthWallMesh102")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_AlleySouthWallShape103_N" type="CollisionShape3D" parent="."]
+[node name="RI_AlleySouthWallShape103_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2000, 0.9000, 23.6500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_AlleySouthWallShape103_Body"]
 shape = SubResource("RI_AlleySouthWallShape103")
 
 [node name="RI_UtilPole1Mesh104_N" type="MeshInstance3D" parent="."]
@@ -4671,8 +4743,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0000, 1.6000, 23.5000)
 mesh = SubResource("RI_UtilPole1Mesh104")
 surface_material_override/0 = SubResource("UtilityPoleMat")
 
-[node name="RI_UtilPole1Shape105_N" type="CollisionShape3D" parent="."]
+[node name="RI_UtilPole1Shape105_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0000, 1.6000, 23.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_UtilPole1Shape105_Body"]
 shape = SubResource("RI_UtilPole1Shape105")
 
 [node name="RI_UtilMeter1Mesh106_N" type="MeshInstance3D" parent="."]
@@ -4685,8 +4759,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5000, 1.6000, 23.5000)
 mesh = SubResource("RI_UtilPole2Mesh107")
 surface_material_override/0 = SubResource("UtilityPoleMat")
 
-[node name="RI_UtilPole2Shape108_N" type="CollisionShape3D" parent="."]
+[node name="RI_UtilPole2Shape108_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5000, 1.6000, 23.5000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_UtilPole2Shape108_Body"]
 shape = SubResource("RI_UtilPole2Shape108")
 
 [node name="RI_AlleyBin1Mesh109_N" type="MeshInstance3D" parent="."]
@@ -4694,8 +4770,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 0.4000, 22.2000)
 mesh = SubResource("RI_AlleyBin1Mesh109")
 surface_material_override/0 = SubResource("BinMat")
 
-[node name="RI_AlleyBin1Shape110_N" type="CollisionShape3D" parent="."]
+[node name="RI_AlleyBin1Shape110_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 0.4000, 22.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_AlleyBin1Shape110_Body"]
 shape = SubResource("RI_AlleyBin1Shape110")
 
 [node name="RI_AlleyBin2Mesh111_N" type="MeshInstance3D" parent="."]
@@ -4703,8 +4781,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0000, 0.4000, 22.2000)
 mesh = SubResource("RI_AlleyBin2Mesh111")
 surface_material_override/0 = SubResource("BinMat")
 
-[node name="RI_AlleyBin2Shape112_N" type="CollisionShape3D" parent="."]
+[node name="RI_AlleyBin2Shape112_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0000, 0.4000, 22.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_AlleyBin2Shape112_Body"]
 shape = SubResource("RI_AlleyBin2Shape112")
 
 [node name="RI_AlleyDrainMesh113_N" type="MeshInstance3D" parent="."]
@@ -4727,8 +4807,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4000, 0.9000, 25.1500)
 mesh = SubResource("RI_TurnWestWallMesh116")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_TurnWestWallShape117_N" type="CollisionShape3D" parent="."]
+[node name="RI_TurnWestWallShape117_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4000, 0.9000, 25.1500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_TurnWestWallShape117_Body"]
 shape = SubResource("RI_TurnWestWallShape117")
 
 [node name="RI_TurnEastWallMesh118_N" type="MeshInstance3D" parent="."]
@@ -4736,8 +4818,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0000, 0.9000, 25.1500)
 mesh = SubResource("RI_TurnEastWallMesh118")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_TurnEastWallShape119_N" type="CollisionShape3D" parent="."]
+[node name="RI_TurnEastWallShape119_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0000, 0.9000, 25.1500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_TurnEastWallShape119_Body"]
 shape = SubResource("RI_TurnEastWallShape119")
 
 [node name="RI_WrongSignMesh120_N" type="MeshInstance3D" parent="."]
@@ -4765,8 +4849,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5875, 0.9000, 26.6500)
 mesh = SubResource("RI_TurnEndWallMesh122")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_TurnEndWallShape123_N" type="CollisionShape3D" parent="."]
+[node name="RI_TurnEndWallShape123_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5875, 0.9000, 26.6500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_TurnEndWallShape123_Body"]
 shape = SubResource("RI_TurnEndWallShape123")
 
 [node name="RI_TurnEndWallMesh124_N" type="MeshInstance3D" parent="."]
@@ -4774,8 +4860,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8125, 0.9000, 26.6500)
 mesh = SubResource("RI_TurnEndWallMesh124")
 surface_material_override/0 = SubResource("FenceChainMat")
 
-[node name="RI_TurnEndWallShape125_N" type="CollisionShape3D" parent="."]
+[node name="RI_TurnEndWallShape125_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8125, 0.9000, 26.6500)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_TurnEndWallShape125_Body"]
 shape = SubResource("RI_TurnEndWallShape125")
 
 [node name="RI_TurnEndWallPostMesh126_N" type="MeshInstance3D" parent="."]
@@ -4798,8 +4886,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.3000)
 mesh = SubResource("RI_ShelterBackWallMesh129")
 surface_material_override/0 = SubResource("ShelterMat")
 
-[node name="RI_ShelterBackWallShape130_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShelterBackWallShape130_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.3000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShelterBackWallShape130_Body"]
 shape = SubResource("RI_ShelterBackWallShape130")
 
 [node name="RI_ShelterEndWestMesh131_N" type="MeshInstance3D" parent="."]
@@ -4807,8 +4897,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7500, 1.1500, 5.2000)
 mesh = SubResource("RI_ShelterEndWestMesh131")
 surface_material_override/0 = SubResource("ShelterMat")
 
-[node name="RI_ShelterEndWestShape132_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShelterEndWestShape132_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7500, 1.1500, 5.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShelterEndWestShape132_Body"]
 shape = SubResource("RI_ShelterEndWestShape132")
 
 [node name="RI_ShelterEndEastMesh133_N" type="MeshInstance3D" parent="."]
@@ -4816,8 +4908,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2500, 1.1500, 5.2000)
 mesh = SubResource("RI_ShelterEndEastMesh133")
 surface_material_override/0 = SubResource("ShelterMat")
 
-[node name="RI_ShelterEndEastShape134_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShelterEndEastShape134_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2500, 1.1500, 5.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShelterEndEastShape134_Body"]
 shape = SubResource("RI_ShelterEndEastShape134")
 
 [node name="RI_ShelterRoofMesh135_N" type="MeshInstance3D" parent="."]
@@ -4825,8 +4919,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 2.3600, 5.2000)
 mesh = SubResource("RI_ShelterRoofMesh135")
 surface_material_override/0 = SubResource("ShelterRoofMat")
 
-[node name="RI_ShelterRoofShape136_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShelterRoofShape136_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 2.3600, 5.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShelterRoofShape136_Body"]
 shape = SubResource("RI_ShelterRoofShape136")
 
 [node name="RI_ShelterBenchMesh137_N" type="MeshInstance3D" parent="."]
@@ -4834,8 +4930,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 0.4500, 5.8000)
 mesh = SubResource("RI_ShelterBenchMesh137")
 surface_material_override/0 = SubResource("BenchMat")
 
-[node name="RI_ShelterBenchShape138_N" type="CollisionShape3D" parent="."]
+[node name="RI_ShelterBenchShape138_Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 0.4500, 5.8000)
+
+[node name="Shape" type="CollisionShape3D" parent="RI_ShelterBenchShape138_Body"]
 shape = SubResource("RI_ShelterBenchShape138")
 
 [node name="RI_ShelterSignMesh139_N" type="MeshInstance3D" parent="."]
