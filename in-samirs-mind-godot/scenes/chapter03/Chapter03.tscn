@@ -1,4 +1,4 @@
-[gd_scene load_steps=385 format=3 uid="uid://chapter03_scene"]
+[gd_scene load_steps=545 format=3 uid="uid://chapter03_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -1082,6 +1082,486 @@ size = Vector3(2.0000, 4.0000, 0.2200)
 [sub_resource type="BoxShape3D" id="C3_MainStairRampShape324"]
 size = Vector3(2.0000, 0.15, 6.2286)
 
+[sub_resource type="BoxMesh" id="C3S_MainCeil2WestMesh1"]
+size = Vector3(11.5000, 0.1500, 9.0000)
+
+[sub_resource type="BoxMesh" id="C3S_MainCeil2EastMesh2"]
+size = Vector3(5.5000, 0.1500, 9.0000)
+
+[sub_resource type="BoxMesh" id="C3S_MainCeil2SouthMesh3"]
+size = Vector3(3.0000, 0.1500, 6.5000)
+
+[sub_resource type="BoxMesh" id="C3S_MainCeil2NorthMesh4"]
+size = Vector3(3.0000, 0.1500, 1.0000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtNorth2FMesh5"]
+size = Vector3(20.0000, 4.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtNorth2FShape7"]
+size = Vector3(20.0000, 4.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtSouth2FMesh8"]
+size = Vector3(11.5000, 4.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtSouth2FShape10"]
+size = Vector3(11.5000, 4.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtSouth2FMesh11"]
+size = Vector3(5.5000, 4.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtSouth2FShape13"]
+size = Vector3(5.5000, 4.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtSouth2FLintelMesh14"]
+size = Vector3(3.0000, 1.7000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtSouth2FLintelShape16"]
+size = Vector3(3.0000, 1.7000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtWest2FMesh17"]
+size = Vector3(0.2000, 4.0000, 19.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtWest2FShape19"]
+size = Vector3(0.2000, 4.0000, 19.0000)
+
+[sub_resource type="BoxMesh" id="C3S_ExtEast2FMesh20"]
+size = Vector3(0.2000, 4.0000, 19.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_ExtEast2FShape22"]
+size = Vector3(0.2000, 4.0000, 19.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_MainStairRampShapeWide23"]
+size = Vector3(2.0000, 0.15, 8.4286)
+
+[sub_resource type="BoxMesh" id="C3S_W_CorridorS_Chapel_EastOfDoorMesh25"]
+size = Vector3(1.0000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W_CorridorS_Chapel_EastOfDoorShape27"]
+size = Vector3(1.0000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W_CorridorS_Chapel_WestOfStairMesh28"]
+size = Vector3(0.7000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W_CorridorS_Chapel_WestOfStairShape30"]
+size = Vector3(0.7000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_storageMesh31"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_storageShape33"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_upper_landingEMesh34"]
+size = Vector3(5.5000, 0.1500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_upper_landingEShape36"]
+size = Vector3(5.5000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_upper_landingNMesh37"]
+size = Vector3(2.5000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_upper_landingNShape39"]
+size = Vector3(2.5000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_mirror_hallMesh40"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_mirror_hallShape42"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_hidden_serviceMesh43"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_hidden_serviceShape45"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_childs_roomMesh46"]
+size = Vector3(8.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_childs_roomShape48"]
+size = Vector3(8.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_sitting_roomMesh49"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_sitting_roomShape51"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_memory_roomMesh52"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_memory_roomShape54"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_bedroomMesh55"]
+size = Vector3(8.0000, 0.1500, 4.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_bedroomShape57"]
+size = Vector3(8.0000, 0.1500, 4.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_small_roomMesh58"]
+size = Vector3(8.0000, 0.1500, 2.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_small_roomShape60"]
+size = Vector3(8.0000, 0.1500, 2.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_storageWMesh61"]
+size = Vector3(1.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_storageEMesh62"]
+size = Vector3(3.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_upper_landingMesh63"]
+size = Vector3(8.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_mirror_hallMesh64"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_hidden_serviceMesh65"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_childs_roomMesh66"]
+size = Vector3(8.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_sitting_roomMesh67"]
+size = Vector3(7.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_memory_roomMesh68"]
+size = Vector3(5.0000, 0.1500, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_bedroomMesh69"]
+size = Vector3(8.0000, 0.1500, 4.0000)
+
+[sub_resource type="BoxMesh" id="C3S_Ceil2_small_roomMesh70"]
+size = Vector3(8.0000, 0.1500, 2.0000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_HiddenMesh71"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_HiddenShape73"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_HiddenMesh74"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_HiddenShape76"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_HiddenLintelMesh77"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_HiddenLintelShape79"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Sitting_MemoryMesh80"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Sitting_MemoryShape82"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Sitting_MemoryMesh83"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Sitting_MemoryShape85"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Sitting_MemoryLintelMesh86"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Sitting_MemoryLintelShape88"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_ChildsMesh89"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_ChildsShape91"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_ChildsMesh92"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_ChildsShape94"]
+size = Vector3(0.1200, 4.0000, 2.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_ChildsLintelMesh95"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_ChildsLintelShape97"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_SmallMesh98"]
+size = Vector3(0.1200, 4.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_SmallShape100"]
+size = Vector3(0.1200, 4.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_SmallMesh101"]
+size = Vector3(0.1200, 4.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_SmallShape103"]
+size = Vector3(0.1200, 4.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_SmallLintelMesh104"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_SmallLintelShape106"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_BedroomMesh107"]
+size = Vector3(0.1200, 4.0000, 1.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_BedroomShape109"]
+size = Vector3(0.1200, 4.0000, 1.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_BedroomMesh110"]
+size = Vector3(0.1200, 4.0000, 1.3000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_BedroomShape112"]
+size = Vector3(0.1200, 4.0000, 1.3000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Memory_BedroomLintelMesh113"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Memory_BedroomLintelShape115"]
+size = Vector3(0.1200, 1.7000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_BridgeMesh116"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_BridgeShape118"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_BridgeMesh119"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_BridgeShape121"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_BridgeLintelMesh122"]
+size = Vector3(0.1200, 1.7000, 1.6000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_BridgeLintelShape124"]
+size = Vector3(0.1200, 1.7000, 1.6000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_BridgeMesh125"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_BridgeShape127"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_BridgeMesh128"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_BridgeShape130"]
+size = Vector3(0.1200, 4.0000, 2.7000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_BridgeLintelMesh131"]
+size = Vector3(0.1200, 1.7000, 1.6000)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_BridgeLintelShape133"]
+size = Vector3(0.1200, 1.7000, 1.6000)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_MirrorMesh134"]
+size = Vector3(4.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_MirrorShape136"]
+size = Vector3(4.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_MirrorMesh137"]
+size = Vector3(0.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_MirrorShape139"]
+size = Vector3(0.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Storage_MirrorLintelMesh140"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Storage_MirrorLintelShape142"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_ShaftEdgeMesh143"]
+size = Vector3(5.0000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_ShaftEdgeShape145"]
+size = Vector3(5.0000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_ChildsMesh146"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_ChildsShape148"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_ChildsMesh149"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_ChildsShape151"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Landing_ChildsLintelMesh152"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Landing_ChildsLintelShape154"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_SittingMesh155"]
+size = Vector3(2.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_SittingShape157"]
+size = Vector3(2.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_SittingMesh158"]
+size = Vector3(2.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_SittingShape160"]
+size = Vector3(2.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Mirror_SittingLintelMesh161"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Mirror_SittingLintelShape163"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_MemoryMesh164"]
+size = Vector3(1.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_MemoryShape166"]
+size = Vector3(1.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_MemoryMesh167"]
+size = Vector3(1.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_MemoryShape169"]
+size = Vector3(1.8000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Hidden_MemoryLintelMesh170"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Hidden_MemoryLintelShape172"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Childs_SmallMesh173"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Childs_SmallShape175"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Childs_SmallMesh176"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Childs_SmallShape178"]
+size = Vector3(3.3000, 4.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_W2_Childs_SmallLintelMesh179"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_W2_Childs_SmallLintelShape181"]
+size = Vector3(1.4000, 1.7000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_SittingLowMesh182"]
+size = Vector3(7.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_SittingLowShape184"]
+size = Vector3(7.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_SittingMidMesh185"]
+size = Vector3(2.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_SittingMidShape187"]
+size = Vector3(2.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_SittingMidMesh188"]
+size = Vector3(2.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_SittingMidShape190"]
+size = Vector3(2.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_SittingHighMesh191"]
+size = Vector3(7.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_SittingHighShape193"]
+size = Vector3(7.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_MemoryLowMesh194"]
+size = Vector3(5.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_MemoryLowShape196"]
+size = Vector3(5.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_MemoryMidMesh197"]
+size = Vector3(1.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_MemoryMidShape199"]
+size = Vector3(1.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_MemoryMidMesh200"]
+size = Vector3(1.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_MemoryMidShape202"]
+size = Vector3(1.7000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_MemoryHighMesh203"]
+size = Vector3(5.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_MemoryHighShape205"]
+size = Vector3(5.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_BedroomLowMesh206"]
+size = Vector3(8.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_BedroomLowShape208"]
+size = Vector3(8.0000, 1.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_BedroomMidMesh209"]
+size = Vector3(3.2000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_BedroomMidShape211"]
+size = Vector3(3.2000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_BedroomMidMesh212"]
+size = Vector3(3.2000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_BedroomMidShape214"]
+size = Vector3(3.2000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Win2_BedroomHighMesh215"]
+size = Vector3(8.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3S_Win2_BedroomHighShape217"]
+size = Vector3(8.0000, 1.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3S_Floor2_bridgeMesh218"]
+size = Vector3(5.0000, 0.1500, 1.6000)
+
+[sub_resource type="BoxShape3D" id="C3S_Floor2_bridgeShape220"]
+size = Vector3(5.0000, 0.1500, 1.6000)
+
+[sub_resource type="BoxMesh" id="C3S_BridgeRailSouthMesh221"]
+size = Vector3(5.0000, 1.0000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="C3S_BridgeRailSouthShape223"]
+size = Vector3(5.0000, 1.0000, 0.0800)
+
+[sub_resource type="BoxMesh" id="C3S_BridgeRailNorthMesh224"]
+size = Vector3(5.0000, 1.0000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="C3S_BridgeRailNorthShape226"]
+size = Vector3(5.0000, 1.0000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="C3S_FlavorShapeMirrorHall227"]
+size = Vector3(6.0000, 3.0000, 5.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_FlavorShapeChildsRoom228"]
+size = Vector3(7.0000, 3.0000, 5.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_FlavorShapeMemoryRoom229"]
+size = Vector3(4.0000, 3.0000, 5.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_FlavorShapeSittingRoom230"]
+size = Vector3(6.0000, 3.0000, 5.0000)
+
+[sub_resource type="BoxShape3D" id="C3S_FlavorShapeUpperLanding231"]
+size = Vector3(7.0000, 3.0000, 6.0000)
+
 [node name="Chapter03" type="Node3D"]
 script = ExtResource("50")
 
@@ -1100,135 +1580,10 @@ environment = SubResource("Env")
 [node name="SecondFloor" type="Node3D" parent="."]
 
 
-[node name="WallNorth" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -20)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallNorth"]
-mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallNorth"]
-shape = SubResource("WallShapeEW")
 
-[node name="WallSouth" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 20)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallSouth"]
-mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallSouth"]
-shape = SubResource("WallShapeEW")
 
-[node name="WallEast" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 6, 0)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallEast"]
-mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallEast"]
-shape = SubResource("WallShapeNS")
 
-[node name="WallWest" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 6, 0)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/WallWest"]
-mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/WallWest"]
-shape = SubResource("WallShapeNS")
 
-[node name="MirrorSpawner" type="Node3D" parent="SecondFloor"]
-script = ExtResource("4")
-
-[node name="Spot_MirrorHallA" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -21.7, 5.6, 1)
-
-[node name="Spot_MirrorHallB" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -21.7, 5.6, 7)
-
-[node name="ZoneMirrorHall" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4.11, 4)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("MirrorHallMat")
-
-[node name="ZoneChildsRoom" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4.11, -14)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("ChildsRoomMat")
-
-[node name="ZoneMemoryRoom" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.11, -14)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("MemoryRoomMat")
-[node name="Light" type="OmniLight3D" parent="SecondFloor/ZoneMemoryRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
-light_color = Color(0.95, 0.88, 0.75, 1)
-light_energy = 0.5
-omni_range = 9.0
-
-[node name="ZoneSittingRoom" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4.11, 6)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("SittingRoomMat")
-
-[node name="Flavor_MirrorHall" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 5, 4)
-script = ExtResource("1")
-flavor_text = "Mirror Hall."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MirrorHall"]
-shape = SubResource("Shape_flavor_med")
-
-[node name="Flavor_ChildsRoom" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, -14)
-script = ExtResource("1")
-flavor_text = "Child's Room."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_ChildsRoom"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_ChildBed" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.507, -3)
-texture = ExtResource("34")
-pixel_size = 0.002049
-[node name="Prop_ToyChest" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.634, 2)
-texture = ExtResource("35")
-pixel_size = 0.001404
-
-[node name="WallpaperAccent" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -19.7)
-mesh = SubResource("WallpaperAccentMesh")
-surface_material_override/0 = SubResource("WallpaperAccentMat")
-
-[node name="Flavor_MemoryRoom" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -14)
-script = ExtResource("1")
-flavor_text = "Memory Room."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MemoryRoom"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_RecordPlayer" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.789, -3)
-texture = ExtResource("36")
-pixel_size = 0.001028
-[node name="Prop_KeepsakeBoxes" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.654, 2)
-texture = ExtResource("37")
-pixel_size = 0.001408
-
-[node name="Flavor_SittingRoom" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5, 6)
-script = ExtResource("1")
-flavor_text = "Sitting Room."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_SittingRoom"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_Armchair" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.641, -3)
-texture = ExtResource("38")
-pixel_size = 0.001404
-[node name="Prop_GrandfatherClock" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4.0, 3)
-texture = ExtResource("39")
-pixel_size = 0.002195
-
-[node name="Flavor_UpperLanding" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -14)
-script = ExtResource("1")
-flavor_text = "Upper Landing. You've been here before."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_UpperLanding"]
-shape = SubResource("Shape_flavor_small")
 
 [node name="LandingFromGround" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, -14)
@@ -1356,133 +1711,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)
 
 
 
-[node name="S_MirrorHall_East_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 5.6, 1.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_MirrorHall_East_0"]
-mesh = SubResource("WallSeg_25x400")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_MirrorHall_East_0"]
-shape = SubResource("WallSeg_25x400Shape")
 
-[node name="S_MirrorHall_East_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 5.6, 12.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_MirrorHall_East_1"]
-mesh = SubResource("WallSeg_25x1500")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_MirrorHall_East_1"]
-shape = SubResource("WallSeg_25x1500Shape")
 
-[node name="S_SittingRoom_West_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5.6, 2.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_SittingRoom_West_0"]
-mesh = SubResource("WallSeg_25x600")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_SittingRoom_West_0"]
-shape = SubResource("WallSeg_25x600Shape")
 
-[node name="S_SittingRoom_West_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5.6, 13.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_SittingRoom_West_1"]
-mesh = SubResource("WallSeg_25x1300")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_SittingRoom_West_1"]
-shape = SubResource("WallSeg_25x1300Shape")
 
-[node name="S_ChildsRoom_UpperLanding_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 5.6, -9)
-[node name="Mesh" type="MeshInstance3D" parent="S_ChildsRoom_UpperLanding_0"]
-mesh = SubResource("WallSeg_500x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_ChildsRoom_UpperLanding_0"]
-shape = SubResource("WallSeg_500x25Shape")
 
-[node name="S_ChildsRoom_UpperLanding_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0, 5.6, -9)
-[node name="Mesh" type="MeshInstance3D" parent="S_ChildsRoom_UpperLanding_1"]
-mesh = SubResource("WallSeg_400x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_ChildsRoom_UpperLanding_1"]
-shape = SubResource("WallSeg_400x25Shape")
 
-[node name="S_UpperLanding_MemoryRoom_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 5.6, 4)
-[node name="Mesh" type="MeshInstance3D" parent="S_UpperLanding_MemoryRoom_0"]
-mesh = SubResource("WallSeg_500x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_UpperLanding_MemoryRoom_0"]
-shape = SubResource("WallSeg_500x25Shape")
 
-[node name="S_UpperLanding_MemoryRoom_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0, 5.6, 4)
-[node name="Mesh" type="MeshInstance3D" parent="S_UpperLanding_MemoryRoom_1"]
-mesh = SubResource("WallSeg_400x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_UpperLanding_MemoryRoom_1"]
-shape = SubResource("WallSeg_400x25Shape")
 
-[node name="S_NorthRow_South_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 5.6, -17.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_NorthRow_South_0"]
-mesh = SubResource("WallSeg_25x900")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_NorthRow_South_0"]
-shape = SubResource("WallSeg_25x900Shape")
 
-[node name="S_NorthRow_South_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 5.6, -7.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_NorthRow_South_1"]
-mesh = SubResource("WallSeg_25x800")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_NorthRow_South_1"]
-shape = SubResource("WallSeg_25x800Shape")
 
-[node name="S_NorthRow_South_2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 5.6, 4.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_NorthRow_South_2"]
-mesh = SubResource("WallSeg_25x1000")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_NorthRow_South_2"]
-shape = SubResource("WallSeg_25x1000Shape")
 
-[node name="S_NorthRow_South_3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 5.6, 16.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_NorthRow_South_3"]
-mesh = SubResource("WallSeg_25x1100")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_NorthRow_South_3"]
-shape = SubResource("WallSeg_25x1100Shape")
 
-[node name="S_MirrorHall_North_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.6, -18.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_MirrorHall_North_0"]
-mesh = SubResource("WallSeg_25x700")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_MirrorHall_North_0"]
-shape = SubResource("WallSeg_25x700Shape")
 
-[node name="S_MirrorHall_North_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.6, -10.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_MirrorHall_North_1"]
-mesh = SubResource("WallSeg_25x600")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_MirrorHall_North_1"]
-shape = SubResource("WallSeg_25x600Shape")
 
-[node name="S_SittingRoom_North_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.6, 10.0)
-[node name="Mesh" type="MeshInstance3D" parent="S_SittingRoom_North_0"]
-mesh = SubResource("WallSeg_25x600")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_SittingRoom_North_0"]
-shape = SubResource("WallSeg_25x600Shape")
 
-[node name="S_SittingRoom_North_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.6, 18.5)
-[node name="Mesh" type="MeshInstance3D" parent="S_SittingRoom_North_1"]
-mesh = SubResource("WallSeg_25x700")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="S_SittingRoom_North_1"]
-shape = SubResource("WallSeg_25x700Shape")
 
 [node name="A_ColumnDivider_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9.6, -7.5)
@@ -1525,22 +1768,6 @@ surface_material_override/0 = SubResource("WallMat")
 shape = SubResource("WallSeg_1100x25Shape")
 
 
-[node name="Journal2" type="Area3D" parent="SecondFloor" groups=["pickups"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5.1, 8)
-script = ExtResource("51")
-kind = 0
-journal_text = "Every time you look outside, the ground is a little farther away."
-item_id = "4"
-[node name="Icon" type="Sprite3D" parent="SecondFloor/Journal2"]
-texture = ExtResource("52")
-pixel_size = 0.0016
-billboard = 1
-[node name="Glow" type="OmniLight3D" parent="SecondFloor/Journal2"]
-light_color = Color(1, 0.949, 0.788, 1)
-light_energy = 0.35
-omni_range = 1.4
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Journal2"]
-shape = SubResource("Shape_pickup3")
 
 [node name="Journal3" type="Area3D" parent="Attic" groups=["pickups"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 9.1, 4)
@@ -1560,13 +1787,6 @@ omni_range = 1.4
 shape = SubResource("Shape_pickup3")
 
 
-[node name="RoomCheck_ExteriorDistance" type="Area3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.5, 6)
-script = ExtResource("53")
-check_id = "exterior_distance"
-check_text = "The ground outside is farther away than it should be."
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/RoomCheck_ExteriorDistance"]
-shape = SubResource("Shape_roomcheck")
 
 [node name="RoomCheck_ImpossibleRoom" type="Area3D" parent="Attic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9.1, 0)
@@ -1584,37 +1804,7 @@ surface_material_override/0 = SubResource("DuplicateCorridorMat")
 visible = false
 
 
-[node name="FloorLeft" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0, 4, 0.0)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorLeft"]
-mesh = SubResource("SecondFloor_LeftFrameMesh")
-surface_material_override/0 = SubResource("SecondFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorLeft"]
-shape = SubResource("SecondFloor_LeftFrameMeshShape")
 
-[node name="FloorRight" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 4, 0.0)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorRight"]
-mesh = SubResource("SecondFloor_RightFrameMesh")
-surface_material_override/0 = SubResource("SecondFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorRight"]
-shape = SubResource("SecondFloor_RightFrameMeshShape")
-
-[node name="FloorFront" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 4, 4.5)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorFront"]
-mesh = SubResource("SecondFloor_FrontFrameMesh")
-surface_material_override/0 = SubResource("SecondFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorFront"]
-shape = SubResource("SecondFloor_FrontFrameMeshShape")
-
-[node name="FloorBack" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 4, -18.5)
-[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/FloorBack"]
-mesh = SubResource("SecondFloor_BackFrameMesh")
-surface_material_override/0 = SubResource("SecondFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/FloorBack"]
-shape = SubResource("SecondFloor_BackFrameMeshShape")
 
 [node name="FloorLeft" type="StaticBody3D" parent="Attic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 0.0)
@@ -1658,80 +1848,24 @@ shape = SubResource("Attic_BackFrameMeshShape")
 
 
 
-[node name="Stair2_Step0" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.26667, -10.25000)
-mesh = SubResource("StairStepMesh0")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step1" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.43333, -10.75000)
-mesh = SubResource("StairStepMesh1")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step2" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.60000, -11.25000)
-mesh = SubResource("StairStepMesh2")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step3" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.76667, -11.75000)
-mesh = SubResource("StairStepMesh3")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step4" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.93333, -12.25000)
-mesh = SubResource("StairStepMesh4")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step5" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.10000, -12.75000)
-mesh = SubResource("StairStepMesh5")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step6" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.26667, -13.25000)
-mesh = SubResource("StairStepMesh6")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step7" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.43333, -13.75000)
-mesh = SubResource("StairStepMesh7")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step8" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.60000, -14.25000)
-mesh = SubResource("StairStepMesh8")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step9" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.76667, -14.75000)
-mesh = SubResource("StairStepMesh9")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step10" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.93333, -15.25000)
-mesh = SubResource("StairStepMesh10")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_Step11" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6.10000, -15.75000)
-mesh = SubResource("StairStepMesh11")
-surface_material_override/0 = SubResource("WallMat")
 
-[node name="Stair2_RampCollision" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1.00000, 0.00000, 0.00000, 0.00000, -0.83205, 0.55470, 0.00000, -0.55470, -0.83205, 8, 6.1, -13.0)
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Stair2_RampCollision"]
-shape = SubResource("StairRampShape")
 
 [node name="C3_MainCeilMesh1_N" type="MeshInstance3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 4.0750, 4.0000)
 mesh = SubResource("C3_MainCeilMesh1")
 surface_material_override/0 = SubResource("GroundFloorMat")
 
-[node name="C3_MainCeilMesh2_N" type="MeshInstance3D" parent="GroundFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 4.0750, -11.5000)
-mesh = SubResource("C3_MainCeilMesh2")
-surface_material_override/0 = SubResource("GroundFloorMat")
 
 [node name="C3_MainCeilMesh3_N" type="MeshInstance3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 4.0750, -4.5000)
@@ -2433,15 +2567,6 @@ surface_material_override/0 = SubResource("WallMat")
 [node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3_W_CorridorS_ChapelBody210"]
 shape = SubResource("C3_W_CorridorS_ChapelShape211")
 
-[node name="C3_W_CorridorS_ChapelBody213" type="StaticBody3D" parent="GroundFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8500, 2.0000, -9.0000)
-
-[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/C3_W_CorridorS_ChapelBody213"]
-mesh = SubResource("C3_W_CorridorS_ChapelMesh212")
-surface_material_override/0 = SubResource("WallMat")
-
-[node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3_W_CorridorS_ChapelBody213"]
-shape = SubResource("C3_W_CorridorS_ChapelShape214")
 
 [node name="C3_W_CorridorS_ChapelLintelBody216" type="StaticBody3D" parent="GroundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 3.1500, -9.0000)
@@ -2838,11 +2963,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 2.0000, -8.6500)
 mesh = SubResource("C3_MainStairStep17Mesh323")
 surface_material_override/0 = SubResource("StairMat")
 
-[node name="C3_MainStairRampBody325" type="StaticBody3D" parent="GroundFloor"]
-transform = Transform3D(1, 0.000000, 0.000000, 0, 0.703545, 0.710651, 0, -0.710651, 0.703545, 3.0000, 2.0000, -10.5200)
-
-[node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3_MainStairRampBody325"]
-shape = SubResource("C3_MainStairRampShape324")
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
@@ -2898,4 +3018,938 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.555, 1.2)
 texture = ExtResource("22")
 pixel_size = 0.001615
 visible = false
+
+[node name="C3S_MainCeil2WestMesh1_N" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2500, 4.0750, -11.5000)
+mesh = SubResource("C3S_MainCeil2WestMesh1")
+surface_material_override/0 = SubResource("GroundFloorMat")
+
+[node name="C3S_MainCeil2EastMesh2_N" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2500, 4.0750, -11.5000)
+mesh = SubResource("C3S_MainCeil2EastMesh2")
+surface_material_override/0 = SubResource("GroundFloorMat")
+
+[node name="C3S_MainCeil2SouthMesh3_N" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 4.0750, -12.7500)
+mesh = SubResource("C3S_MainCeil2SouthMesh3")
+surface_material_override/0 = SubResource("GroundFloorMat")
+
+[node name="C3S_MainCeil2NorthMesh4_N" type="MeshInstance3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 4.0750, -7.5000)
+mesh = SubResource("C3S_MainCeil2NorthMesh4")
+surface_material_override/0 = SubResource("GroundFloorMat")
+
+[node name="C3S_ExtNorth2FBody6" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 6.0000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtNorth2FBody6"]
+mesh = SubResource("C3S_ExtNorth2FMesh5")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtNorth2FBody6"]
+shape = SubResource("C3S_ExtNorth2FShape7")
+
+[node name="C3S_ExtSouth2FBody9" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2500, 6.0000, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtSouth2FBody9"]
+mesh = SubResource("C3S_ExtSouth2FMesh8")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtSouth2FBody9"]
+shape = SubResource("C3S_ExtSouth2FShape10")
+
+[node name="C3S_ExtSouth2FBody12" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2500, 6.0000, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtSouth2FBody12"]
+mesh = SubResource("C3S_ExtSouth2FMesh11")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtSouth2FBody12"]
+shape = SubResource("C3S_ExtSouth2FShape13")
+
+[node name="C3S_ExtSouth2FLintelBody15" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 7.1500, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtSouth2FLintelBody15"]
+mesh = SubResource("C3S_ExtSouth2FLintelMesh14")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtSouth2FLintelBody15"]
+shape = SubResource("C3S_ExtSouth2FLintelShape16")
+
+[node name="C3S_ExtWest2FBody18" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0000, 6.0000, 0.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtWest2FBody18"]
+mesh = SubResource("C3S_ExtWest2FMesh17")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtWest2FBody18"]
+shape = SubResource("C3S_ExtWest2FShape19")
+
+[node name="C3S_ExtEast2FBody21" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0000, 6.0000, 0.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_ExtEast2FBody21"]
+mesh = SubResource("C3S_ExtEast2FMesh20")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_ExtEast2FBody21"]
+shape = SubResource("C3S_ExtEast2FShape22")
+
+[node name="C3S_MainStairRampBodyWide24" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, 0.703545, 0.710651, 0, -0.710651, 0.703545, 3.0000, 2.0000, -10.5200)
+
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3S_MainStairRampBodyWide24"]
+shape = SubResource("C3S_MainStairRampShapeWide23")
+
+[node name="C3S_W_CorridorS_Chapel_EastOfDoorBody26" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2000, 2.0000, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/C3S_W_CorridorS_Chapel_EastOfDoorBody26"]
+mesh = SubResource("C3S_W_CorridorS_Chapel_EastOfDoorMesh25")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3S_W_CorridorS_Chapel_EastOfDoorBody26"]
+shape = SubResource("C3S_W_CorridorS_Chapel_EastOfDoorShape27")
+
+[node name="C3S_W_CorridorS_Chapel_WestOfStairBody29" type="StaticBody3D" parent="GroundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6500, 2.0000, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="GroundFloor/C3S_W_CorridorS_Chapel_WestOfStairBody29"]
+mesh = SubResource("C3S_W_CorridorS_Chapel_WestOfStairMesh28")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="GroundFloor/C3S_W_CorridorS_Chapel_WestOfStairBody29"]
+shape = SubResource("C3S_W_CorridorS_Chapel_WestOfStairShape30")
+
+[node name="C3S_Floor2_storageBody32" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 3.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_storageBody32"]
+mesh = SubResource("C3S_Floor2_storageMesh31")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_storageBody32"]
+shape = SubResource("C3S_Floor2_storageShape33")
+
+[node name="C3S_Floor2_upper_landingEBody35" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2500, 3.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_upper_landingEBody35"]
+mesh = SubResource("C3S_Floor2_upper_landingEMesh34")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_upper_landingEBody35"]
+shape = SubResource("C3S_Floor2_upper_landingEShape36")
+
+[node name="C3S_Floor2_upper_landingNBody38" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2500, 3.9250, -5.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_upper_landingNBody38"]
+mesh = SubResource("C3S_Floor2_upper_landingNMesh37")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_upper_landingNBody38"]
+shape = SubResource("C3S_Floor2_upper_landingNShape39")
+
+[node name="C3S_Floor2_mirror_hallBody41" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 3.9250, 1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_mirror_hallBody41"]
+mesh = SubResource("C3S_Floor2_mirror_hallMesh40")
+surface_material_override/0 = SubResource("MirrorHallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_mirror_hallBody41"]
+shape = SubResource("C3S_Floor2_mirror_hallShape42")
+
+[node name="C3S_Floor2_hidden_serviceBody44" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 3.9250, 1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_hidden_serviceBody44"]
+mesh = SubResource("C3S_Floor2_hidden_serviceMesh43")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_hidden_serviceBody44"]
+shape = SubResource("C3S_Floor2_hidden_serviceShape45")
+
+[node name="C3S_Floor2_childs_roomBody47" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 3.9250, 1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_childs_roomBody47"]
+mesh = SubResource("C3S_Floor2_childs_roomMesh46")
+surface_material_override/0 = SubResource("ChildsRoomMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_childs_roomBody47"]
+shape = SubResource("C3S_Floor2_childs_roomShape48")
+
+[node name="C3S_Floor2_sitting_roomBody50" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 3.9250, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_sitting_roomBody50"]
+mesh = SubResource("C3S_Floor2_sitting_roomMesh49")
+surface_material_override/0 = SubResource("SittingRoomMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_sitting_roomBody50"]
+shape = SubResource("C3S_Floor2_sitting_roomShape51")
+
+[node name="C3S_Floor2_memory_roomBody53" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 3.9250, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_memory_roomBody53"]
+mesh = SubResource("C3S_Floor2_memory_roomMesh52")
+surface_material_override/0 = SubResource("MemoryRoomMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_memory_roomBody53"]
+shape = SubResource("C3S_Floor2_memory_roomShape54")
+
+[node name="C3S_Floor2_bedroomBody56" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 3.9250, 8.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_bedroomBody56"]
+mesh = SubResource("C3S_Floor2_bedroomMesh55")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_bedroomBody56"]
+shape = SubResource("C3S_Floor2_bedroomShape57")
+
+[node name="C3S_Floor2_small_roomBody59" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 3.9250, 5.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_small_roomBody59"]
+mesh = SubResource("C3S_Floor2_small_roomMesh58")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_small_roomBody59"]
+shape = SubResource("C3S_Floor2_small_roomShape60")
+
+[node name="C3S_Ceil2_storageWMesh61_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5000, 8.0750, -5.5000)
+mesh = SubResource("C3S_Ceil2_storageWMesh61")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_Ceil2_storageEMesh62_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 8.0750, -5.5000)
+mesh = SubResource("C3S_Ceil2_storageEMesh62")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_Ceil2_upper_landingMesh63_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 8.0750, -5.5000)
+mesh = SubResource("C3S_Ceil2_upper_landingMesh63")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_Ceil2_mirror_hallMesh64_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 8.0750, 1.0000)
+mesh = SubResource("C3S_Ceil2_mirror_hallMesh64")
+surface_material_override/0 = SubResource("MirrorHallMat")
+
+[node name="C3S_Ceil2_hidden_serviceMesh65_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 8.0750, 1.0000)
+mesh = SubResource("C3S_Ceil2_hidden_serviceMesh65")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_Ceil2_childs_roomMesh66_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 8.0750, 1.0000)
+mesh = SubResource("C3S_Ceil2_childs_roomMesh66")
+surface_material_override/0 = SubResource("ChildsRoomMat")
+
+[node name="C3S_Ceil2_sitting_roomMesh67_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 8.0750, 7.0000)
+mesh = SubResource("C3S_Ceil2_sitting_roomMesh67")
+surface_material_override/0 = SubResource("SittingRoomMat")
+
+[node name="C3S_Ceil2_memory_roomMesh68_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 8.0750, 7.0000)
+mesh = SubResource("C3S_Ceil2_memory_roomMesh68")
+surface_material_override/0 = SubResource("MemoryRoomMat")
+
+[node name="C3S_Ceil2_bedroomMesh69_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 8.0750, 8.0000)
+mesh = SubResource("C3S_Ceil2_bedroomMesh69")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_Ceil2_small_roomMesh70_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 8.0750, 5.0000)
+mesh = SubResource("C3S_Ceil2_small_roomMesh70")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="C3S_W2_Mirror_HiddenBody72" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, -0.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_HiddenBody72"]
+mesh = SubResource("C3S_W2_Mirror_HiddenMesh71")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_HiddenBody72"]
+shape = SubResource("C3S_W2_Mirror_HiddenShape73")
+
+[node name="C3S_W2_Mirror_HiddenBody75" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, 2.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_HiddenBody75"]
+mesh = SubResource("C3S_W2_Mirror_HiddenMesh74")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_HiddenBody75"]
+shape = SubResource("C3S_W2_Mirror_HiddenShape76")
+
+[node name="C3S_W2_Mirror_HiddenLintelBody78" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 7.1500, 1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_HiddenLintelBody78"]
+mesh = SubResource("C3S_W2_Mirror_HiddenLintelMesh77")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_HiddenLintelBody78"]
+shape = SubResource("C3S_W2_Mirror_HiddenLintelShape79")
+
+[node name="C3S_W2_Sitting_MemoryBody81" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, 5.1500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Sitting_MemoryBody81"]
+mesh = SubResource("C3S_W2_Sitting_MemoryMesh80")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Sitting_MemoryBody81"]
+shape = SubResource("C3S_W2_Sitting_MemoryShape82")
+
+[node name="C3S_W2_Sitting_MemoryBody84" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, 8.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Sitting_MemoryBody84"]
+mesh = SubResource("C3S_W2_Sitting_MemoryMesh83")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Sitting_MemoryBody84"]
+shape = SubResource("C3S_W2_Sitting_MemoryShape85")
+
+[node name="C3S_W2_Sitting_MemoryLintelBody87" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 7.1500, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Sitting_MemoryLintelBody87"]
+mesh = SubResource("C3S_W2_Sitting_MemoryLintelMesh86")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Sitting_MemoryLintelBody87"]
+shape = SubResource("C3S_W2_Sitting_MemoryLintelShape88")
+
+[node name="C3S_W2_Hidden_ChildsBody90" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, -0.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_ChildsBody90"]
+mesh = SubResource("C3S_W2_Hidden_ChildsMesh89")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_ChildsBody90"]
+shape = SubResource("C3S_W2_Hidden_ChildsShape91")
+
+[node name="C3S_W2_Hidden_ChildsBody93" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, 2.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_ChildsBody93"]
+mesh = SubResource("C3S_W2_Hidden_ChildsMesh92")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_ChildsBody93"]
+shape = SubResource("C3S_W2_Hidden_ChildsShape94")
+
+[node name="C3S_W2_Hidden_ChildsLintelBody96" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 7.1500, 1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_ChildsLintelBody96"]
+mesh = SubResource("C3S_W2_Hidden_ChildsLintelMesh95")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_ChildsLintelBody96"]
+shape = SubResource("C3S_W2_Hidden_ChildsLintelShape97")
+
+[node name="C3S_W2_Memory_SmallBody99" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, 4.1500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_SmallBody99"]
+mesh = SubResource("C3S_W2_Memory_SmallMesh98")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_SmallBody99"]
+shape = SubResource("C3S_W2_Memory_SmallShape100")
+
+[node name="C3S_W2_Memory_SmallBody102" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, 5.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_SmallBody102"]
+mesh = SubResource("C3S_W2_Memory_SmallMesh101")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_SmallBody102"]
+shape = SubResource("C3S_W2_Memory_SmallShape103")
+
+[node name="C3S_W2_Memory_SmallLintelBody105" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 7.1500, 5.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_SmallLintelBody105"]
+mesh = SubResource("C3S_W2_Memory_SmallLintelMesh104")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_SmallLintelBody105"]
+shape = SubResource("C3S_W2_Memory_SmallLintelShape106")
+
+[node name="C3S_W2_Memory_BedroomBody108" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, 6.6500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_BedroomBody108"]
+mesh = SubResource("C3S_W2_Memory_BedroomMesh107")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_BedroomBody108"]
+shape = SubResource("C3S_W2_Memory_BedroomShape109")
+
+[node name="C3S_W2_Memory_BedroomBody111" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, 9.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_BedroomBody111"]
+mesh = SubResource("C3S_W2_Memory_BedroomMesh110")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_BedroomBody111"]
+shape = SubResource("C3S_W2_Memory_BedroomShape112")
+
+[node name="C3S_W2_Memory_BedroomLintelBody114" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 7.1500, 8.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Memory_BedroomLintelBody114"]
+mesh = SubResource("C3S_W2_Memory_BedroomLintelMesh113")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Memory_BedroomLintelBody114"]
+shape = SubResource("C3S_W2_Memory_BedroomLintelShape115")
+
+[node name="C3S_W2_Storage_BridgeBody117" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, -7.6500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_BridgeBody117"]
+mesh = SubResource("C3S_W2_Storage_BridgeMesh116")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_BridgeBody117"]
+shape = SubResource("C3S_W2_Storage_BridgeShape118")
+
+[node name="C3S_W2_Storage_BridgeBody120" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 6.0000, -3.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_BridgeBody120"]
+mesh = SubResource("C3S_W2_Storage_BridgeMesh119")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_BridgeBody120"]
+shape = SubResource("C3S_W2_Storage_BridgeShape121")
+
+[node name="C3S_W2_Storage_BridgeLintelBody123" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 7.1500, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_BridgeLintelBody123"]
+mesh = SubResource("C3S_W2_Storage_BridgeLintelMesh122")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_BridgeLintelBody123"]
+shape = SubResource("C3S_W2_Storage_BridgeLintelShape124")
+
+[node name="C3S_W2_Landing_BridgeBody126" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, -7.6500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_BridgeBody126"]
+mesh = SubResource("C3S_W2_Landing_BridgeMesh125")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_BridgeBody126"]
+shape = SubResource("C3S_W2_Landing_BridgeShape127")
+
+[node name="C3S_W2_Landing_BridgeBody129" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 6.0000, -3.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_BridgeBody129"]
+mesh = SubResource("C3S_W2_Landing_BridgeMesh128")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_BridgeBody129"]
+shape = SubResource("C3S_W2_Landing_BridgeShape130")
+
+[node name="C3S_W2_Landing_BridgeLintelBody132" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 7.1500, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_BridgeLintelBody132"]
+mesh = SubResource("C3S_W2_Landing_BridgeLintelMesh131")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_BridgeLintelBody132"]
+shape = SubResource("C3S_W2_Landing_BridgeLintelShape133")
+
+[node name="C3S_W2_Storage_MirrorBody135" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6000, 6.0000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_MirrorBody135"]
+mesh = SubResource("C3S_W2_Storage_MirrorMesh134")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_MirrorBody135"]
+shape = SubResource("C3S_W2_Storage_MirrorShape136")
+
+[node name="C3S_W2_Storage_MirrorBody138" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4000, 6.0000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_MirrorBody138"]
+mesh = SubResource("C3S_W2_Storage_MirrorMesh137")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_MirrorBody138"]
+shape = SubResource("C3S_W2_Storage_MirrorShape139")
+
+[node name="C3S_W2_Storage_MirrorLintelBody141" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 7.1500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Storage_MirrorLintelBody141"]
+mesh = SubResource("C3S_W2_Storage_MirrorLintelMesh140")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Storage_MirrorLintelBody141"]
+shape = SubResource("C3S_W2_Storage_MirrorLintelShape142")
+
+[node name="C3S_W2_Hidden_ShaftEdgeBody144" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 6.0000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_ShaftEdgeBody144"]
+mesh = SubResource("C3S_W2_Hidden_ShaftEdgeMesh143")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_ShaftEdgeBody144"]
+shape = SubResource("C3S_W2_Hidden_ShaftEdgeShape145")
+
+[node name="C3S_W2_Landing_ChildsBody147" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6500, 6.0000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_ChildsBody147"]
+mesh = SubResource("C3S_W2_Landing_ChildsMesh146")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_ChildsBody147"]
+shape = SubResource("C3S_W2_Landing_ChildsShape148")
+
+[node name="C3S_W2_Landing_ChildsBody150" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3500, 6.0000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_ChildsBody150"]
+mesh = SubResource("C3S_W2_Landing_ChildsMesh149")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_ChildsBody150"]
+shape = SubResource("C3S_W2_Landing_ChildsShape151")
+
+[node name="C3S_W2_Landing_ChildsLintelBody153" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 7.1500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Landing_ChildsLintelBody153"]
+mesh = SubResource("C3S_W2_Landing_ChildsLintelMesh152")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Landing_ChildsLintelBody153"]
+shape = SubResource("C3S_W2_Landing_ChildsLintelShape154")
+
+[node name="C3S_W2_Mirror_SittingBody156" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6000, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_SittingBody156"]
+mesh = SubResource("C3S_W2_Mirror_SittingMesh155")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_SittingBody156"]
+shape = SubResource("C3S_W2_Mirror_SittingShape157")
+
+[node name="C3S_W2_Mirror_SittingBody159" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4000, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_SittingBody159"]
+mesh = SubResource("C3S_W2_Mirror_SittingMesh158")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_SittingBody159"]
+shape = SubResource("C3S_W2_Mirror_SittingShape160")
+
+[node name="C3S_W2_Mirror_SittingLintelBody162" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 7.1500, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Mirror_SittingLintelBody162"]
+mesh = SubResource("C3S_W2_Mirror_SittingLintelMesh161")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Mirror_SittingLintelBody162"]
+shape = SubResource("C3S_W2_Mirror_SittingLintelShape163")
+
+[node name="C3S_W2_Hidden_MemoryBody165" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1000, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_MemoryBody165"]
+mesh = SubResource("C3S_W2_Hidden_MemoryMesh164")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_MemoryBody165"]
+shape = SubResource("C3S_W2_Hidden_MemoryShape166")
+
+[node name="C3S_W2_Hidden_MemoryBody168" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_MemoryBody168"]
+mesh = SubResource("C3S_W2_Hidden_MemoryMesh167")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_MemoryBody168"]
+shape = SubResource("C3S_W2_Hidden_MemoryShape169")
+
+[node name="C3S_W2_Hidden_MemoryLintelBody171" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 7.1500, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Hidden_MemoryLintelBody171"]
+mesh = SubResource("C3S_W2_Hidden_MemoryLintelMesh170")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Hidden_MemoryLintelBody171"]
+shape = SubResource("C3S_W2_Hidden_MemoryLintelShape172")
+
+[node name="C3S_W2_Childs_SmallBody174" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6500, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Childs_SmallBody174"]
+mesh = SubResource("C3S_W2_Childs_SmallMesh173")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Childs_SmallBody174"]
+shape = SubResource("C3S_W2_Childs_SmallShape175")
+
+[node name="C3S_W2_Childs_SmallBody177" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3500, 6.0000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Childs_SmallBody177"]
+mesh = SubResource("C3S_W2_Childs_SmallMesh176")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Childs_SmallBody177"]
+shape = SubResource("C3S_W2_Childs_SmallShape178")
+
+[node name="C3S_W2_Childs_SmallLintelBody180" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 7.1500, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_W2_Childs_SmallLintelBody180"]
+mesh = SubResource("C3S_W2_Childs_SmallLintelMesh179")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_W2_Childs_SmallLintelBody180"]
+shape = SubResource("C3S_W2_Childs_SmallLintelShape181")
+
+[node name="C3S_Win2_SittingLowBody183" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 4.7500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_SittingLowBody183"]
+mesh = SubResource("C3S_Win2_SittingLowMesh182")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_SittingLowBody183"]
+shape = SubResource("C3S_Win2_SittingLowShape184")
+
+[node name="C3S_Win2_SittingMidBody186" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6500, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_SittingMidBody186"]
+mesh = SubResource("C3S_Win2_SittingMidMesh185")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_SittingMidBody186"]
+shape = SubResource("C3S_Win2_SittingMidShape187")
+
+[node name="C3S_Win2_SittingMidBody189" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3500, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_SittingMidBody189"]
+mesh = SubResource("C3S_Win2_SittingMidMesh188")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_SittingMidBody189"]
+shape = SubResource("C3S_Win2_SittingMidShape190")
+
+[node name="C3S_Win2_SittingHighBody192" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 7.3500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_SittingHighBody192"]
+mesh = SubResource("C3S_Win2_SittingHighMesh191")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_SittingHighBody192"]
+shape = SubResource("C3S_Win2_SittingHighShape193")
+
+[node name="C3S_Win2_MemoryLowBody195" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 4.7500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_MemoryLowBody195"]
+mesh = SubResource("C3S_Win2_MemoryLowMesh194")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_MemoryLowBody195"]
+shape = SubResource("C3S_Win2_MemoryLowShape196")
+
+[node name="C3S_Win2_MemoryMidBody198" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_MemoryMidBody198"]
+mesh = SubResource("C3S_Win2_MemoryMidMesh197")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_MemoryMidBody198"]
+shape = SubResource("C3S_Win2_MemoryMidShape199")
+
+[node name="C3S_Win2_MemoryMidBody201" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1500, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_MemoryMidBody201"]
+mesh = SubResource("C3S_Win2_MemoryMidMesh200")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_MemoryMidBody201"]
+shape = SubResource("C3S_Win2_MemoryMidShape202")
+
+[node name="C3S_Win2_MemoryHighBody204" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 7.3500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_MemoryHighBody204"]
+mesh = SubResource("C3S_Win2_MemoryHighMesh203")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_MemoryHighBody204"]
+shape = SubResource("C3S_Win2_MemoryHighShape205")
+
+[node name="C3S_Win2_BedroomLowBody207" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 4.7500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_BedroomLowBody207"]
+mesh = SubResource("C3S_Win2_BedroomLowMesh206")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_BedroomLowBody207"]
+shape = SubResource("C3S_Win2_BedroomLowShape208")
+
+[node name="C3S_Win2_BedroomMidBody210" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6000, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_BedroomMidBody210"]
+mesh = SubResource("C3S_Win2_BedroomMidMesh209")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_BedroomMidBody210"]
+shape = SubResource("C3S_Win2_BedroomMidShape211")
+
+[node name="C3S_Win2_BedroomMidBody213" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4000, 6.1000, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_BedroomMidBody213"]
+mesh = SubResource("C3S_Win2_BedroomMidMesh212")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_BedroomMidBody213"]
+shape = SubResource("C3S_Win2_BedroomMidShape214")
+
+[node name="C3S_Win2_BedroomHighBody216" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 7.3500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Win2_BedroomHighBody216"]
+mesh = SubResource("C3S_Win2_BedroomHighMesh215")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Win2_BedroomHighBody216"]
+shape = SubResource("C3S_Win2_BedroomHighShape217")
+
+[node name="C3S_Floor2_bridgeBody219" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 3.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_Floor2_bridgeBody219"]
+mesh = SubResource("C3S_Floor2_bridgeMesh218")
+surface_material_override/0 = SubResource("SecondFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_bridgeBody219"]
+shape = SubResource("C3S_Floor2_bridgeShape220")
+
+[node name="C3S_BridgeRailSouthBody222" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 4.5000, -6.3000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_BridgeRailSouthBody222"]
+mesh = SubResource("C3S_BridgeRailSouthMesh221")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_BridgeRailSouthBody222"]
+shape = SubResource("C3S_BridgeRailSouthShape223")
+
+[node name="C3S_BridgeRailNorthBody225" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000, 4.5000, -4.7000)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondFloor/C3S_BridgeRailNorthBody225"]
+mesh = SubResource("C3S_BridgeRailNorthMesh224")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_BridgeRailNorthBody225"]
+shape = SubResource("C3S_BridgeRailNorthShape226")
+
+[node name="Flavor_MirrorHall" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 5, 1)
+script = ExtResource("1")
+flavor_text = "Mirror Hall."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MirrorHall"]
+shape = SubResource("C3S_FlavorShapeMirrorHall227")
+
+[node name="Flavor_ChildsRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, 1)
+script = ExtResource("1")
+flavor_text = "Child's Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_ChildsRoom"]
+shape = SubResource("C3S_FlavorShapeChildsRoom228")
+[node name="Prop_ChildBed" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.507, -3)
+texture = ExtResource("34")
+pixel_size = 0.002049
+[node name="Prop_ToyChest" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.634, 2)
+texture = ExtResource("35")
+pixel_size = 0.001404
+
+[node name="Flavor_MemoryRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, 7)
+script = ExtResource("1")
+flavor_text = "Memory Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MemoryRoom"]
+shape = SubResource("C3S_FlavorShapeMemoryRoom229")
+[node name="Prop_RecordPlayer" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.789, -3)
+texture = ExtResource("36")
+pixel_size = 0.001028
+[node name="Prop_KeepsakeBoxes" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.654, 2)
+texture = ExtResource("37")
+pixel_size = 0.001408
+
+[node name="Flavor_SittingRoom" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 5, 7)
+script = ExtResource("1")
+flavor_text = "Sitting Room."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_SittingRoom"]
+shape = SubResource("C3S_FlavorShapeSittingRoom230")
+[node name="Prop_Armchair" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.641, -3)
+texture = ExtResource("38")
+pixel_size = 0.001404
+[node name="Prop_GrandfatherClock" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4.0, 3)
+texture = ExtResource("39")
+pixel_size = 0.002195
+
+[node name="Flavor_UpperLanding" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -5.5)
+script = ExtResource("1")
+flavor_text = "Upper Landing. You've been here before."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_UpperLanding"]
+shape = SubResource("C3S_FlavorShapeUpperLanding231")
+
+[node name="MirrorSpawner" type="Node3D" parent="SecondFloor"]
+script = ExtResource("4")
+
+[node name="Spot_MirrorHallA" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+
+[node name="Spot_MirrorHallB" type="Marker3D" parent="SecondFloor/MirrorSpawner"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.7, 5.6, 2.5)
+
+[node name="Journal2" type="Area3D" parent="SecondFloor" groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 4.9, 8.5)
+script = ExtResource("51")
+kind = 0
+journal_text = "Every time you look outside, the ground is a little farther away."
+item_id = "4"
+[node name="Icon" type="Sprite3D" parent="SecondFloor/Journal2"]
+texture = ExtResource("52")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="SecondFloor/Journal2"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Journal2"]
+shape = SubResource("Shape_pickup3")
+
+[node name="RoomCheck_ExteriorDistance" type="Area3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 5.5, 9.0)
+script = ExtResource("53")
+check_id = "exterior_distance"
+check_text = "The ground outside is farther away than it should be."
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/RoomCheck_ExteriorDistance"]
+shape = SubResource("Shape_roomcheck")
+
+[node name="Stair2_Step0" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.26667, -3.2)
+mesh = SubResource("StairStepMesh0")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step1" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.43334, -3.7)
+mesh = SubResource("StairStepMesh1")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step2" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.60001, -4.2)
+mesh = SubResource("StairStepMesh2")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step3" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.76668, -4.7)
+mesh = SubResource("StairStepMesh3")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step4" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.93335, -5.2)
+mesh = SubResource("StairStepMesh4")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step5" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.10002, -5.7)
+mesh = SubResource("StairStepMesh5")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step6" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.26669, -6.2)
+mesh = SubResource("StairStepMesh6")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step7" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.43336, -6.7)
+mesh = SubResource("StairStepMesh7")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step8" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.60003, -7.2)
+mesh = SubResource("StairStepMesh8")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step9" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.76670, -7.7)
+mesh = SubResource("StairStepMesh9")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step10" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.93337, -8.2)
+mesh = SubResource("StairStepMesh10")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_Step11" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 6.10004, -8.7)
+mesh = SubResource("StairStepMesh11")
+surface_material_override/0 = SubResource("WallMat")
+
+[node name="Stair2_RampCollision" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1.00000, 0.00000, 0.00000, 0.00000, -0.83205, 0.55470, 0.00000, -0.55470, -0.83205, -8.0, 6.1, -5.9500)
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Stair2_RampCollision"]
+shape = SubResource("StairRampShape")
 
