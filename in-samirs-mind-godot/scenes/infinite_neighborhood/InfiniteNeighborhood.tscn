@@ -1,4 +1,4 @@
-[gd_scene load_steps=497 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=658 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -54,11 +54,12 @@
 [ext_resource type="Texture2D" path="res://assets/textures/chapter02/chapter02_tex_siding_teal_shingle.png" id="116"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_door_teal_glass.png" id="117"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter02/chapter02_prop_fanlight_window.png" id="118"]
+[ext_resource type="Script" path="res://scenes/shared/LevelDoor.gd" id="100_LevelDoor"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
-size = Vector3(96, 0.2, 72)
+size = Vector3(96, 0.2, 82)
 [sub_resource type="BoxShape3D" id="FloorShape"]
-size = Vector3(96, 0.2, 72)
+size = Vector3(96, 0.2, 82)
 [sub_resource type="StandardMaterial3D" id="FloorMat"]
 albedo_texture = ExtResource("7")
 uv1_scale = Vector3(7, 6, 1)
@@ -1074,12 +1075,536 @@ size = Vector3(0.1000, 0.9000, 0.9000)
 [sub_resource type="BoxShape3D" id="House5_Final_UpDivLintelShape92"]
 size = Vector3(0.1000, 0.9000, 0.9000)
 
+[sub_resource type="StandardMaterial3D" id="FenceWoodMat"]
+albedo_color = Color(0.72, 0.58, 0.42, 1.0)
+roughness = 0.85
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="FenceChainMat"]
+albedo_color = Color(0.55, 0.55, 0.58, 0.4)
+transparency = 1
+roughness = 0.6
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="FenceMetalMat"]
+albedo_color = Color(0.12, 0.12, 0.14, 1.0)
+roughness = 0.35
+metallic = 0.7
+
+[sub_resource type="StandardMaterial3D" id="FenceHedgeMat"]
+albedo_color = Color(0.28, 0.42, 0.24, 1.0)
+roughness = 0.9
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="ShedMat"]
+albedo_color = Color(0.58, 0.5, 0.42, 1.0)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="ShedRoofMat"]
+albedo_color = Color(0.35, 0.32, 0.3, 1.0)
+roughness = 0.7
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="ShedDoorMat"]
+albedo_color = Color(0.3, 0.24, 0.18, 1.0)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="ZooDoorMat"]
+albedo_color = Color(0.45, 0.62, 0.55, 1.0)
+roughness = 0.6
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="TerminalDoorMat"]
+albedo_color = Color(0.5, 0.5, 0.55, 1.0)
+roughness = 0.55
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="LiminalDoorMat"]
+albedo_color = Color(0.22, 0.2, 0.18, 1.0)
+roughness = 0.5
+metallic = 0.4
+
+[sub_resource type="StandardMaterial3D" id="ShelterMat"]
+albedo_color = Color(0.42, 0.44, 0.48, 1.0)
+roughness = 0.6
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="ShelterRoofMat"]
+albedo_color = Color(0.3, 0.32, 0.36, 1.0)
+roughness = 0.55
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="BenchMat"]
+albedo_color = Color(0.4, 0.3, 0.22, 1.0)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="UtilityPoleMat"]
+albedo_color = Color(0.3, 0.28, 0.26, 1.0)
+roughness = 0.7
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="BinMat"]
+albedo_color = Color(0.2, 0.35, 0.28, 1.0)
+roughness = 0.7
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="SignMat"]
+albedo_color = Color(0.85, 0.82, 0.7, 1.0)
+roughness = 0.6
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="PipeMat"]
+albedo_color = Color(0.4, 0.38, 0.35, 1.0)
+roughness = 0.5
+metallic = 0.5
+
+[sub_resource type="BoxMesh" id="RI_GroundH2YardMesh1"]
+size = Vector3(9.0000, 0.0600, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H2BackMesh2"]
+size = Vector3(9.0000, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H2BackShape3"]
+size = Vector3(9.0000, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H2EastMesh4"]
+size = Vector3(0.1000, 1.8000, 8.0000)
+
+[sub_resource type="BoxShape3D" id="RI_H2EastShape5"]
+size = Vector3(0.1000, 1.8000, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H2WestMesh6"]
+size = Vector3(0.1000, 1.8000, 2.9500)
+
+[sub_resource type="BoxShape3D" id="RI_H2WestShape7"]
+size = Vector3(0.1000, 1.8000, 2.9500)
+
+[sub_resource type="BoxMesh" id="RI_H2WestMesh8"]
+size = Vector3(0.1000, 1.8000, 4.0500)
+
+[sub_resource type="BoxShape3D" id="RI_H2WestShape9"]
+size = Vector3(0.1000, 1.8000, 4.0500)
+
+[sub_resource type="BoxMesh" id="RI_H2WestPostMesh10"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_H2WestPostMesh11"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_GroundH2PassageMesh12"]
+size = Vector3(2.0000, 0.0600, 7.7500)
+
+[sub_resource type="BoxMesh" id="RI_H2PassageOuterMesh13"]
+size = Vector3(0.1000, 1.3500, 7.7500)
+
+[sub_resource type="BoxShape3D" id="RI_H2PassageOuterShape14"]
+size = Vector3(0.1000, 1.3500, 7.7500)
+
+[sub_resource type="BoxMesh" id="RI_H2FrontCapMesh15"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H2FrontCapShape16"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H2FrontCapMesh17"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H2FrontCapShape18"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H2FrontCapPostMesh19"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H2FrontCapPostMesh20"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_GroundH3YardMesh21"]
+size = Vector3(9.5000, 0.0600, 7.0000)
+
+[sub_resource type="BoxMesh" id="RI_H3BackMesh22"]
+size = Vector3(4.2500, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H3BackShape23"]
+size = Vector3(4.2500, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H3BackMesh24"]
+size = Vector3(4.2500, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H3BackShape25"]
+size = Vector3(4.2500, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H3BackPostMesh26"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H3BackPostMesh27"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H3WestMesh28"]
+size = Vector3(0.1000, 1.8000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="RI_H3WestShape29"]
+size = Vector3(0.1000, 1.8000, 7.0000)
+
+[sub_resource type="BoxMesh" id="RI_H3EastMesh30"]
+size = Vector3(0.1000, 1.8000, 2.1500)
+
+[sub_resource type="BoxShape3D" id="RI_H3EastShape31"]
+size = Vector3(0.1000, 1.8000, 2.1500)
+
+[sub_resource type="BoxMesh" id="RI_H3EastMesh32"]
+size = Vector3(0.1000, 1.8000, 3.8500)
+
+[sub_resource type="BoxShape3D" id="RI_H3EastShape33"]
+size = Vector3(0.1000, 1.8000, 3.8500)
+
+[sub_resource type="BoxMesh" id="RI_H3EastPostMesh34"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_H3EastPostMesh35"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_GroundH4YardMesh36"]
+size = Vector3(8.0000, 0.0600, 8.5000)
+
+[sub_resource type="BoxMesh" id="RI_H4BackMesh37"]
+size = Vector3(5.5000, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H4BackShape38"]
+size = Vector3(5.5000, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H4BackMesh39"]
+size = Vector3(1.5000, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H4BackShape40"]
+size = Vector3(1.5000, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H4BackPostMesh41"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H4BackPostMesh42"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H4EastMesh43"]
+size = Vector3(0.1000, 1.8000, 8.5000)
+
+[sub_resource type="BoxShape3D" id="RI_H4EastShape44"]
+size = Vector3(0.1000, 1.8000, 8.5000)
+
+[sub_resource type="BoxMesh" id="RI_H4WestMesh45"]
+size = Vector3(0.1000, 1.8000, 3.6500)
+
+[sub_resource type="BoxShape3D" id="RI_H4WestShape46"]
+size = Vector3(0.1000, 1.8000, 3.6500)
+
+[sub_resource type="BoxMesh" id="RI_H4WestMesh47"]
+size = Vector3(0.1000, 1.8000, 3.8500)
+
+[sub_resource type="BoxShape3D" id="RI_H4WestShape48"]
+size = Vector3(0.1000, 1.8000, 3.8500)
+
+[sub_resource type="BoxMesh" id="RI_H4WestPostMesh49"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_H4WestPostMesh50"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_GroundH34CorridorMesh51"]
+size = Vector3(2.0000, 0.0600, 15.3500)
+
+[sub_resource type="BoxMesh" id="RI_H34FrontCapMesh52"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H34FrontCapShape53"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H34FrontCapMesh54"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H34FrontCapShape55"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H34FrontCapPostMesh56"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H34FrontCapPostMesh57"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_ShedFloorMesh58"]
+size = Vector3(2.8000, 0.0800, 3.2000)
+
+[sub_resource type="BoxShape3D" id="RI_ShedFloorShape59"]
+size = Vector3(2.8000, 0.0800, 3.2000)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallNMesh60"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallNShape61"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallNMesh62"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallNShape63"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallNPostMesh64"]
+size = Vector3(0.0800, 2.5300, 0.1800)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallNPostMesh65"]
+size = Vector3(0.0800, 2.5300, 0.1800)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallSMesh66"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallSShape67"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallSMesh68"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallSShape69"]
+size = Vector3(0.9500, 2.3000, 0.1200)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallSPostMesh70"]
+size = Vector3(0.0800, 2.5300, 0.1800)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallSPostMesh71"]
+size = Vector3(0.0800, 2.5300, 0.1800)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallWMesh72"]
+size = Vector3(0.1200, 2.3000, 3.2000)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallWShape73"]
+size = Vector3(0.1200, 2.3000, 3.2000)
+
+[sub_resource type="BoxMesh" id="RI_ShedWallEMesh74"]
+size = Vector3(0.1200, 2.3000, 3.2000)
+
+[sub_resource type="BoxShape3D" id="RI_ShedWallEShape75"]
+size = Vector3(0.1200, 2.3000, 3.2000)
+
+[sub_resource type="BoxMesh" id="RI_ShedRoofMesh76"]
+size = Vector3(3.1000, 0.0800, 3.5000)
+
+[sub_resource type="BoxShape3D" id="RI_ShedRoofShape77"]
+size = Vector3(3.1000, 0.0800, 3.5000)
+
+[sub_resource type="BoxMesh" id="RI_ZooDoorPanelMesh78"]
+size = Vector3(0.9000, 2.0000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="RI_ZooDoorShape"]
+size = Vector3(0.9, 1.6, 0.5)
+
+[sub_resource type="BoxMesh" id="RI_GroundH7YardMesh79"]
+size = Vector3(9.0000, 0.0600, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H7BackMesh80"]
+size = Vector3(9.0000, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H7BackShape81"]
+size = Vector3(9.0000, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H7EastMesh82"]
+size = Vector3(0.1000, 1.8000, 8.0000)
+
+[sub_resource type="BoxShape3D" id="RI_H7EastShape83"]
+size = Vector3(0.1000, 1.8000, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H7WestMesh84"]
+size = Vector3(0.1000, 1.8000, 3.3500)
+
+[sub_resource type="BoxShape3D" id="RI_H7WestShape85"]
+size = Vector3(0.1000, 1.8000, 3.3500)
+
+[sub_resource type="BoxMesh" id="RI_H7WestMesh86"]
+size = Vector3(0.1000, 1.8000, 3.6500)
+
+[sub_resource type="BoxShape3D" id="RI_H7WestShape87"]
+size = Vector3(0.1000, 1.8000, 3.6500)
+
+[sub_resource type="BoxMesh" id="RI_H7WestPostMesh88"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_H7WestPostMesh89"]
+size = Vector3(0.1500, 1.9800, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_GroundH7PassageMesh90"]
+size = Vector3(2.0000, 0.0600, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H7PassageOuterMesh91"]
+size = Vector3(0.1000, 1.3500, 8.0000)
+
+[sub_resource type="BoxShape3D" id="RI_H7PassageOuterShape92"]
+size = Vector3(0.1000, 1.3500, 8.0000)
+
+[sub_resource type="BoxMesh" id="RI_H7FrontCapMesh93"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H7FrontCapShape94"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H7FrontCapMesh95"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_H7FrontCapShape96"]
+size = Vector3(0.5000, 1.3500, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_H7FrontCapPostMesh97"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_H7FrontCapPostMesh98"]
+size = Vector3(0.0800, 1.4850, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_GroundAlleyMesh99"]
+size = Vector3(24.0000, 0.0600, 1.8000)
+
+[sub_resource type="BoxMesh" id="RI_AlleyWestCapMesh100"]
+size = Vector3(0.1000, 1.8000, 1.8000)
+
+[sub_resource type="BoxShape3D" id="RI_AlleyWestCapShape101"]
+size = Vector3(0.1000, 1.8000, 1.8000)
+
+[sub_resource type="BoxMesh" id="RI_AlleySouthWallMesh102"]
+size = Vector3(22.4000, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_AlleySouthWallShape103"]
+size = Vector3(22.4000, 1.8000, 0.1000)
+
+[sub_resource type="CylinderMesh" id="RI_UtilPole1Mesh104"]
+top_radius = 0.080
+bottom_radius = 0.080
+height = 3.200
+
+[sub_resource type="CylinderShape3D" id="RI_UtilPole1Shape105"]
+radius = 0.080
+height = 3.200
+
+[sub_resource type="BoxMesh" id="RI_UtilMeter1Mesh106"]
+size = Vector3(0.3000, 0.4000, 0.1500)
+
+[sub_resource type="CylinderMesh" id="RI_UtilPole2Mesh107"]
+top_radius = 0.080
+bottom_radius = 0.080
+height = 3.200
+
+[sub_resource type="CylinderShape3D" id="RI_UtilPole2Shape108"]
+radius = 0.080
+height = 3.200
+
+[sub_resource type="BoxMesh" id="RI_AlleyBin1Mesh109"]
+size = Vector3(0.5000, 0.8000, 0.5000)
+
+[sub_resource type="BoxShape3D" id="RI_AlleyBin1Shape110"]
+size = Vector3(0.5000, 0.8000, 0.5000)
+
+[sub_resource type="BoxMesh" id="RI_AlleyBin2Mesh111"]
+size = Vector3(0.5000, 0.8000, 0.5000)
+
+[sub_resource type="BoxShape3D" id="RI_AlleyBin2Shape112"]
+size = Vector3(0.5000, 0.8000, 0.5000)
+
+[sub_resource type="CylinderMesh" id="RI_AlleyDrainMesh113"]
+top_radius = 0.300
+bottom_radius = 0.300
+height = 0.050
+
+[sub_resource type="BoxMesh" id="RI_AlleyPipeRunMesh114"]
+size = Vector3(3.0000, 0.1000, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_GroundTurnNookMesh115"]
+size = Vector3(1.6000, 0.0600, 3.0000)
+
+[sub_resource type="BoxMesh" id="RI_TurnWestWallMesh116"]
+size = Vector3(0.1000, 1.8000, 3.0000)
+
+[sub_resource type="BoxShape3D" id="RI_TurnWestWallShape117"]
+size = Vector3(0.1000, 1.8000, 3.0000)
+
+[sub_resource type="BoxMesh" id="RI_TurnEastWallMesh118"]
+size = Vector3(0.1000, 1.8000, 3.0000)
+
+[sub_resource type="BoxShape3D" id="RI_TurnEastWallShape119"]
+size = Vector3(0.1000, 1.8000, 3.0000)
+
+[sub_resource type="BoxMesh" id="RI_WrongSignMesh120"]
+size = Vector3(0.0500, 0.4000, 0.6000)
+
+[sub_resource type="BoxMesh" id="RI_LiminalDoorPanelMesh121"]
+size = Vector3(0.8500, 2.0000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_LiminalDoorShape"]
+size = Vector3(0.85, 2.0, 0.5)
+
+[sub_resource type="BoxMesh" id="RI_TurnEndWallMesh122"]
+size = Vector3(0.3750, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_TurnEndWallShape123"]
+size = Vector3(0.3750, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_TurnEndWallMesh124"]
+size = Vector3(0.3750, 1.8000, 0.1000)
+
+[sub_resource type="BoxShape3D" id="RI_TurnEndWallShape125"]
+size = Vector3(0.3750, 1.8000, 0.1000)
+
+[sub_resource type="BoxMesh" id="RI_TurnEndWallPostMesh126"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_TurnEndWallPostMesh127"]
+size = Vector3(0.0800, 1.9800, 0.1500)
+
+[sub_resource type="BoxMesh" id="RI_GroundShelterMesh128"]
+size = Vector3(3.5000, 0.0600, 1.8000)
+
+[sub_resource type="BoxMesh" id="RI_ShelterBackWallMesh129"]
+size = Vector3(3.5000, 2.3000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="RI_ShelterBackWallShape130"]
+size = Vector3(3.5000, 2.3000, 0.0800)
+
+[sub_resource type="BoxMesh" id="RI_ShelterEndWestMesh131"]
+size = Vector3(0.0800, 2.3000, 1.8000)
+
+[sub_resource type="BoxShape3D" id="RI_ShelterEndWestShape132"]
+size = Vector3(0.0800, 2.3000, 1.8000)
+
+[sub_resource type="BoxMesh" id="RI_ShelterEndEastMesh133"]
+size = Vector3(0.0800, 2.3000, 1.8000)
+
+[sub_resource type="BoxShape3D" id="RI_ShelterEndEastShape134"]
+size = Vector3(0.0800, 2.3000, 1.8000)
+
+[sub_resource type="BoxMesh" id="RI_ShelterRoofMesh135"]
+size = Vector3(3.9000, 0.1000, 2.2000)
+
+[sub_resource type="BoxShape3D" id="RI_ShelterRoofShape136"]
+size = Vector3(3.9000, 0.1000, 2.2000)
+
+[sub_resource type="BoxMesh" id="RI_ShelterBenchMesh137"]
+size = Vector3(2.9000, 0.0800, 0.3500)
+
+[sub_resource type="BoxShape3D" id="RI_ShelterBenchShape138"]
+size = Vector3(2.9000, 0.0800, 0.3500)
+
+[sub_resource type="BoxMesh" id="RI_ShelterSignMesh139"]
+size = Vector3(0.8000, 0.5000, 0.0300)
+
+[sub_resource type="BoxMesh" id="RI_TerminalDoorPanelMesh140"]
+size = Vector3(0.8500, 1.9000, 0.0800)
+
+[sub_resource type="BoxShape3D" id="RI_TerminalDoorShape"]
+size = Vector3(0.85, 1.9, 0.5)
+
 [node name="InfiniteNeighborhood" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Env")
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("FloorMesh")
 surface_material_override/0 = SubResource("FloorMat")
@@ -1087,7 +1612,7 @@ surface_material_override/0 = SubResource("FloorMat")
 shape = SubResource("FloorShape")
 
 [node name="WallNorth" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -34)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -44)
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
 mesh = SubResource("WallMeshEW")
 surface_material_override/0 = SubResource("WallMat")
@@ -1120,7 +1645,7 @@ shape = SubResource("WallShapeNS")
 
 
 [node name="ZoneParkBig" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.11, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0.11, 25)
 mesh = SubResource("ZonePlaneParkBig")
 surface_material_override/0 = SubResource("ParkBigMat")
 
@@ -1130,7 +1655,7 @@ mesh = SubResource("ZonePlaneParkSmall")
 surface_material_override/0 = SubResource("ParkSmallMat")
 
 [node name="ZoneGazebo" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.11, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0.11, 25)
 mesh = SubResource("ZonePlaneGazebo")
 surface_material_override/0 = SubResource("GazeboMat")
 [node name="Light" type="OmniLight3D" parent="ZoneGazebo"]
@@ -1146,7 +1671,7 @@ surface_material_override/0 = SubResource("FieldMat")
 
 
 [node name="Flavor_ParkBig" type="Area3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 1.0, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 1, 25)
 script = ExtResource("5")
 flavor_text = "The Park of Forgotten Balls."
 discovery_id = "park_big"
@@ -1202,7 +1727,7 @@ texture = ExtResource("29")
 pixel_size = 0.001382
 
 [node name="Flavor_Gazebo" type="Area3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 1.0, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, 25)
 script = ExtResource("5")
 flavor_text = "The Gazebo Plaza."
 discovery_id = "gazebo"
@@ -1264,19 +1789,19 @@ shape = SubResource("Shape_doubt_catch")
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -20, 1.0, 10)
 
 [node name="SpawnParkBig" type="Marker3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 1.0, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 1, 25)
 
 [node name="SpawnParkSmall" type="Marker3D" parent="."]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, -3.0)
 
 [node name="SpawnGazebo" type="Marker3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 1.0, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, 25)
 
 [node name="SpawnField" type="Marker3D" parent="."]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 35.0)
 
 [node name="Hedge_ParkBig_North" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.7, 17.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0.7, 17)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_North"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1285,7 +1810,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_ParkBig_South" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -20.0, 0.7, 33.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0.7, 33)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_South"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1294,7 +1819,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_ParkBig_West" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -29.0, 0.7, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0.7, 25)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_West"]
 mesh = SubResource("HedgeMesh_16NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1303,7 +1828,7 @@ shape = SubResource("HedgeShape_16NS")
 
 
 [node name="Hedge_ParkBig_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -11.0, 0.7, 20.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.7, 20)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateA"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1312,7 +1837,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_ParkBig_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -11.0, 0.7, 30.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.7, 30)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_ParkBig_GateB"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1321,7 +1846,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_Gazebo_North" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.7, 17.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0.7, 17)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_North"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1330,7 +1855,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_Gazebo_South" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 20.0, 0.7, 33.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0.7, 33)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_South"]
 mesh = SubResource("HedgeMesh_18")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1339,7 +1864,7 @@ shape = SubResource("HedgeShape_18")
 
 
 [node name="Hedge_Gazebo_East" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 29.0, 0.7, 25.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0.7, 25)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_East"]
 mesh = SubResource("HedgeMesh_16NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1348,7 +1873,7 @@ shape = SubResource("HedgeShape_16NS")
 
 
 [node name="Hedge_Gazebo_GateA" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 11.0, 0.7, 20.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0.7, 20)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateA"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -1357,7 +1882,7 @@ shape = SubResource("HedgeShape_6NS")
 
 
 [node name="Hedge_Gazebo_GateB" type="StaticBody3D" parent="."]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 11.0, 0.7, 30.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0.7, 30)
 [node name="Mesh" type="MeshInstance3D" parent="Hedge_Gazebo_GateB"]
 mesh = SubResource("HedgeMesh_6NS")
 surface_material_override/0 = SubResource("HedgeMat")
@@ -2953,3 +3478,685 @@ mesh = SubResource("SidewalkEWMesh")
 surface_material_override/0 = SubResource("SidewalkMat")
 [node name="Shape" type="CollisionShape3D" parent="SidewalkSideEast"]
 shape = SubResource("SidewalkEWShape")
+
+[node name="RI_GroundH2YardMesh1_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0000, 0.0300, 18.5500)
+mesh = SubResource("RI_GroundH2YardMesh1")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H2BackMesh2_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0000, 0.9000, 22.5500)
+mesh = SubResource("RI_H2BackMesh2")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2BackShape3_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0000, 0.9000, 22.5500)
+shape = SubResource("RI_H2BackShape3")
+
+[node name="RI_H2EastMesh4_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 0.9000, 18.5500)
+mesh = SubResource("RI_H2EastMesh4")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2EastShape5_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 0.9000, 18.5500)
+shape = SubResource("RI_H2EastShape5")
+
+[node name="RI_H2WestMesh6_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 16.0250)
+mesh = SubResource("RI_H2WestMesh6")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2WestShape7_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 16.0250)
+shape = SubResource("RI_H2WestShape7")
+
+[node name="RI_H2WestMesh8_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 20.5250)
+mesh = SubResource("RI_H2WestMesh8")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2WestShape9_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9000, 20.5250)
+shape = SubResource("RI_H2WestShape9")
+
+[node name="RI_H2WestPostMesh10_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9900, 17.5000)
+mesh = SubResource("RI_H2WestPostMesh10")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2WestPostMesh11_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5000, 0.9900, 18.5000)
+mesh = SubResource("RI_H2WestPostMesh11")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_GroundH2PassageMesh12_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5000, 0.0300, 10.6750)
+mesh = SubResource("RI_GroundH2PassageMesh12")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H2PassageOuterMesh13_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5000, 0.6750, 10.6750)
+mesh = SubResource("RI_H2PassageOuterMesh13")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2PassageOuterShape14_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5000, 0.6750, 10.6750)
+shape = SubResource("RI_H2PassageOuterShape14")
+
+[node name="RI_H2FrontCapMesh15_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2500, 0.6750, 6.8000)
+mesh = SubResource("RI_H2FrontCapMesh15")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2FrontCapShape16_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2500, 0.6750, 6.8000)
+shape = SubResource("RI_H2FrontCapShape16")
+
+[node name="RI_H2FrontCapMesh17_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7500, 0.6750, 6.8000)
+mesh = SubResource("RI_H2FrontCapMesh17")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2FrontCapShape18_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7500, 0.6750, 6.8000)
+shape = SubResource("RI_H2FrontCapShape18")
+
+[node name="RI_H2FrontCapPostMesh19_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0000, 0.7425, 6.8000)
+mesh = SubResource("RI_H2FrontCapPostMesh19")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_H2FrontCapPostMesh20_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0000, 0.7425, 6.8000)
+mesh = SubResource("RI_H2FrontCapPostMesh20")
+surface_material_override/0 = SubResource("FenceWoodMat")
+
+[node name="RI_GroundH3YardMesh21_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0000, 0.0300, 18.3500)
+mesh = SubResource("RI_GroundH3YardMesh21")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H3BackMesh22_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3750, 0.9000, 21.8500)
+mesh = SubResource("RI_H3BackMesh22")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3BackShape23_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3750, 0.9000, 21.8500)
+shape = SubResource("RI_H3BackShape23")
+
+[node name="RI_H3BackMesh24_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6250, 0.9000, 21.8500)
+mesh = SubResource("RI_H3BackMesh24")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3BackShape25_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6250, 0.9000, 21.8500)
+shape = SubResource("RI_H3BackShape25")
+
+[node name="RI_H3BackPostMesh26_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5000, 0.9900, 21.8500)
+mesh = SubResource("RI_H3BackPostMesh26")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3BackPostMesh27_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5000, 0.9900, 21.8500)
+mesh = SubResource("RI_H3BackPostMesh27")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3WestMesh28_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2500, 0.9000, 18.3500)
+mesh = SubResource("RI_H3WestMesh28")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3WestShape29_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2500, 0.9000, 18.3500)
+shape = SubResource("RI_H3WestShape29")
+
+[node name="RI_H3EastMesh30_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 15.9250)
+mesh = SubResource("RI_H3EastMesh30")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3EastShape31_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 15.9250)
+shape = SubResource("RI_H3EastShape31")
+
+[node name="RI_H3EastMesh32_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 19.9250)
+mesh = SubResource("RI_H3EastMesh32")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3EastShape33_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9000, 19.9250)
+shape = SubResource("RI_H3EastShape33")
+
+[node name="RI_H3EastPostMesh34_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9900, 17.0000)
+mesh = SubResource("RI_H3EastPostMesh34")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_H3EastPostMesh35_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7500, 0.9900, 18.0000)
+mesh = SubResource("RI_H3EastPostMesh35")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_GroundH4YardMesh36_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0000, 0.0300, 17.6000)
+mesh = SubResource("RI_GroundH4YardMesh36")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H4BackMesh37_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7500, 0.9000, 21.8500)
+mesh = SubResource("RI_H4BackMesh37")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4BackShape38_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7500, 0.9000, 21.8500)
+shape = SubResource("RI_H4BackShape38")
+
+[node name="RI_H4BackMesh39_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2500, 0.9000, 21.8500)
+mesh = SubResource("RI_H4BackMesh39")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4BackShape40_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2500, 0.9000, 21.8500)
+shape = SubResource("RI_H4BackShape40")
+
+[node name="RI_H4BackPostMesh41_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 0.9900, 21.8500)
+mesh = SubResource("RI_H4BackPostMesh41")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4BackPostMesh42_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5000, 0.9900, 21.8500)
+mesh = SubResource("RI_H4BackPostMesh42")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4EastMesh43_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0000, 0.9000, 17.6000)
+mesh = SubResource("RI_H4EastMesh43")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4EastShape44_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0000, 0.9000, 17.6000)
+shape = SubResource("RI_H4EastShape44")
+
+[node name="RI_H4WestMesh45_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 15.1750)
+mesh = SubResource("RI_H4WestMesh45")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4WestShape46_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 15.1750)
+shape = SubResource("RI_H4WestShape46")
+
+[node name="RI_H4WestMesh47_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 19.9250)
+mesh = SubResource("RI_H4WestMesh47")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4WestShape48_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9000, 19.9250)
+shape = SubResource("RI_H4WestShape48")
+
+[node name="RI_H4WestPostMesh49_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9900, 17.0000)
+mesh = SubResource("RI_H4WestPostMesh49")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H4WestPostMesh50_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0000, 0.9900, 18.0000)
+mesh = SubResource("RI_H4WestPostMesh50")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_GroundH34CorridorMesh51_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0000, 0.0300, 14.1750)
+mesh = SubResource("RI_GroundH34CorridorMesh51")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H34FrontCapMesh52_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2500, 0.6750, 6.5000)
+mesh = SubResource("RI_H34FrontCapMesh52")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H34FrontCapShape53_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2500, 0.6750, 6.5000)
+shape = SubResource("RI_H34FrontCapShape53")
+
+[node name="RI_H34FrontCapMesh54_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7500, 0.6750, 6.5000)
+mesh = SubResource("RI_H34FrontCapMesh54")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H34FrontCapShape55_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7500, 0.6750, 6.5000)
+shape = SubResource("RI_H34FrontCapShape55")
+
+[node name="RI_H34FrontCapPostMesh56_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5000, 0.7425, 6.5000)
+mesh = SubResource("RI_H34FrontCapPostMesh56")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_H34FrontCapPostMesh57_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5000, 0.7425, 6.5000)
+mesh = SubResource("RI_H34FrontCapPostMesh57")
+surface_material_override/0 = SubResource("FenceMetalMat")
+
+[node name="RI_ShedFloorMesh58_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 0.0400, 19.5000)
+mesh = SubResource("RI_ShedFloorMesh58")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedFloorShape59_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 0.0400, 19.5000)
+shape = SubResource("RI_ShedFloorShape59")
+
+[node name="RI_ShedWallNMesh60_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 17.9000)
+mesh = SubResource("RI_ShedWallNMesh60")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallNShape61_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 17.9000)
+shape = SubResource("RI_ShedWallNShape61")
+
+[node name="RI_ShedWallNMesh62_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 17.9000)
+mesh = SubResource("RI_ShedWallNMesh62")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallNShape63_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 17.9000)
+shape = SubResource("RI_ShedWallNShape63")
+
+[node name="RI_ShedWallNPostMesh64_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0500, 1.3450, 17.9000)
+mesh = SubResource("RI_ShedWallNPostMesh64")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallNPostMesh65_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9500, 1.3450, 17.9000)
+mesh = SubResource("RI_ShedWallNPostMesh65")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallSMesh66_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 21.1000)
+mesh = SubResource("RI_ShedWallSMesh66")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallSShape67_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5750, 1.2300, 21.1000)
+shape = SubResource("RI_ShedWallSShape67")
+
+[node name="RI_ShedWallSMesh68_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 21.1000)
+mesh = SubResource("RI_ShedWallSMesh68")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallSShape69_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4250, 1.2300, 21.1000)
+shape = SubResource("RI_ShedWallSShape69")
+
+[node name="RI_ShedWallSPostMesh70_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0500, 1.3450, 21.1000)
+mesh = SubResource("RI_ShedWallSPostMesh70")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallSPostMesh71_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9500, 1.3450, 21.1000)
+mesh = SubResource("RI_ShedWallSPostMesh71")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallWMesh72_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1000, 1.2300, 19.5000)
+mesh = SubResource("RI_ShedWallWMesh72")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallWShape73_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1000, 1.2300, 19.5000)
+shape = SubResource("RI_ShedWallWShape73")
+
+[node name="RI_ShedWallEMesh74_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9000, 1.2300, 19.5000)
+mesh = SubResource("RI_ShedWallEMesh74")
+surface_material_override/0 = SubResource("ShedMat")
+
+[node name="RI_ShedWallEShape75_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9000, 1.2300, 19.5000)
+shape = SubResource("RI_ShedWallEShape75")
+
+[node name="RI_ShedRoofMesh76_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 2.4200, 19.5000)
+mesh = SubResource("RI_ShedRoofMesh76")
+surface_material_override/0 = SubResource("ShedRoofMat")
+
+[node name="RI_ShedRoofShape77_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 2.4200, 19.5000)
+shape = SubResource("RI_ShedRoofShape77")
+
+[node name="ZooDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 1.2300, 21.1500)
+script = ExtResource("100_LevelDoor")
+chapter_id = "zoo"
+spawn_marker = "start"
+door_label = "the shed's back door"
+
+[node name="RI_ZooDoorPanelMesh78_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5000, 1.2300, 21.1500)
+mesh = SubResource("RI_ZooDoorPanelMesh78")
+surface_material_override/0 = SubResource("ZooDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="ZooDoor"]
+shape = SubResource("RI_ZooDoorShape")
+
+[node name="RI_GroundH7YardMesh79_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5000, 0.0300, -36.3500)
+mesh = SubResource("RI_GroundH7YardMesh79")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H7BackMesh80_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5000, 0.9000, -40.3500)
+mesh = SubResource("RI_H7BackMesh80")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7BackShape81_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5000, 0.9000, -40.3500)
+shape = SubResource("RI_H7BackShape81")
+
+[node name="RI_H7EastMesh82_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0000, 0.9000, -36.3500)
+mesh = SubResource("RI_H7EastMesh82")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7EastShape83_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0000, 0.9000, -36.3500)
+shape = SubResource("RI_H7EastShape83")
+
+[node name="RI_H7WestMesh84_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -38.6750)
+mesh = SubResource("RI_H7WestMesh84")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7WestShape85_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -38.6750)
+shape = SubResource("RI_H7WestShape85")
+
+[node name="RI_H7WestMesh86_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -34.1750)
+mesh = SubResource("RI_H7WestMesh86")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7WestShape87_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9000, -34.1750)
+shape = SubResource("RI_H7WestShape87")
+
+[node name="RI_H7WestPostMesh88_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9900, -37.0000)
+mesh = SubResource("RI_H7WestPostMesh88")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7WestPostMesh89_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.9900, -36.0000)
+mesh = SubResource("RI_H7WestPostMesh89")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_GroundH7PassageMesh90_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0000, 0.0300, -28.3500)
+mesh = SubResource("RI_GroundH7PassageMesh90")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_H7PassageOuterMesh91_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0000, 0.6750, -28.3500)
+mesh = SubResource("RI_H7PassageOuterMesh91")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7PassageOuterShape92_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0000, 0.6750, -28.3500)
+shape = SubResource("RI_H7PassageOuterShape92")
+
+[node name="RI_H7FrontCapMesh93_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2500, 0.6750, -24.3500)
+mesh = SubResource("RI_H7FrontCapMesh93")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7FrontCapShape94_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2500, 0.6750, -24.3500)
+shape = SubResource("RI_H7FrontCapShape94")
+
+[node name="RI_H7FrontCapMesh95_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7500, 0.6750, -24.3500)
+mesh = SubResource("RI_H7FrontCapMesh95")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7FrontCapShape96_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7500, 0.6750, -24.3500)
+shape = SubResource("RI_H7FrontCapShape96")
+
+[node name="RI_H7FrontCapPostMesh97_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5000, 0.7425, -24.3500)
+mesh = SubResource("RI_H7FrontCapPostMesh97")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_H7FrontCapPostMesh98_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5000, 0.7425, -24.3500)
+mesh = SubResource("RI_H7FrontCapPostMesh98")
+surface_material_override/0 = SubResource("FenceHedgeMat")
+
+[node name="RI_GroundAlleyMesh99_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0000, 0.0300, 22.7500)
+mesh = SubResource("RI_GroundAlleyMesh99")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_AlleyWestCapMesh100_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 0.9000, 22.7500)
+mesh = SubResource("RI_AlleyWestCapMesh100")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_AlleyWestCapShape101_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 0.9000, 22.7500)
+shape = SubResource("RI_AlleyWestCapShape101")
+
+[node name="RI_AlleySouthWallMesh102_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2000, 0.9000, 23.6500)
+mesh = SubResource("RI_AlleySouthWallMesh102")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_AlleySouthWallShape103_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2000, 0.9000, 23.6500)
+shape = SubResource("RI_AlleySouthWallShape103")
+
+[node name="RI_UtilPole1Mesh104_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0000, 1.6000, 23.5000)
+mesh = SubResource("RI_UtilPole1Mesh104")
+surface_material_override/0 = SubResource("UtilityPoleMat")
+
+[node name="RI_UtilPole1Shape105_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0000, 1.6000, 23.5000)
+shape = SubResource("RI_UtilPole1Shape105")
+
+[node name="RI_UtilMeter1Mesh106_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0000, 1.4000, 23.4000)
+mesh = SubResource("RI_UtilMeter1Mesh106")
+surface_material_override/0 = SubResource("PipeMat")
+
+[node name="RI_UtilPole2Mesh107_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5000, 1.6000, 23.5000)
+mesh = SubResource("RI_UtilPole2Mesh107")
+surface_material_override/0 = SubResource("UtilityPoleMat")
+
+[node name="RI_UtilPole2Shape108_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5000, 1.6000, 23.5000)
+shape = SubResource("RI_UtilPole2Shape108")
+
+[node name="RI_AlleyBin1Mesh109_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 0.4000, 22.2000)
+mesh = SubResource("RI_AlleyBin1Mesh109")
+surface_material_override/0 = SubResource("BinMat")
+
+[node name="RI_AlleyBin1Shape110_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 0.4000, 22.2000)
+shape = SubResource("RI_AlleyBin1Shape110")
+
+[node name="RI_AlleyBin2Mesh111_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0000, 0.4000, 22.2000)
+mesh = SubResource("RI_AlleyBin2Mesh111")
+surface_material_override/0 = SubResource("BinMat")
+
+[node name="RI_AlleyBin2Shape112_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0000, 0.4000, 22.2000)
+shape = SubResource("RI_AlleyBin2Shape112")
+
+[node name="RI_AlleyDrainMesh113_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0000, 0.1500, 23.1500)
+mesh = SubResource("RI_AlleyDrainMesh113")
+surface_material_override/0 = SubResource("PipeMat")
+
+[node name="RI_AlleyPipeRunMesh114_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5000, 0.3500, 23.5500)
+mesh = SubResource("RI_AlleyPipeRunMesh114")
+surface_material_override/0 = SubResource("PipeMat")
+
+[node name="RI_GroundTurnNookMesh115_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2000, 0.0300, 25.1500)
+mesh = SubResource("RI_GroundTurnNookMesh115")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_TurnWestWallMesh116_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4000, 0.9000, 25.1500)
+mesh = SubResource("RI_TurnWestWallMesh116")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_TurnWestWallShape117_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4000, 0.9000, 25.1500)
+shape = SubResource("RI_TurnWestWallShape117")
+
+[node name="RI_TurnEastWallMesh118_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0000, 0.9000, 25.1500)
+mesh = SubResource("RI_TurnEastWallMesh118")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_TurnEastWallShape119_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0000, 0.9000, 25.1500)
+shape = SubResource("RI_TurnEastWallShape119")
+
+[node name="RI_WrongSignMesh120_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4500, 2.0000, 23.9500)
+mesh = SubResource("RI_WrongSignMesh120")
+surface_material_override/0 = SubResource("SignMat")
+
+[node name="LiminalJunctionDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2000, 1.1, 26.6000)
+script = ExtResource("100_LevelDoor")
+chapter_id = "liminal_junction"
+spawn_marker = "start"
+door_label = "a service door that shouldn't lead anywhere"
+
+[node name="RI_LiminalDoorPanelMesh121_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2000, 1.1000, 26.6000)
+mesh = SubResource("RI_LiminalDoorPanelMesh121")
+surface_material_override/0 = SubResource("LiminalDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LiminalJunctionDoor"]
+shape = SubResource("RI_LiminalDoorShape")
+
+[node name="RI_TurnEndWallMesh122_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5875, 0.9000, 26.6500)
+mesh = SubResource("RI_TurnEndWallMesh122")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_TurnEndWallShape123_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5875, 0.9000, 26.6500)
+shape = SubResource("RI_TurnEndWallShape123")
+
+[node name="RI_TurnEndWallMesh124_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8125, 0.9000, 26.6500)
+mesh = SubResource("RI_TurnEndWallMesh124")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_TurnEndWallShape125_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8125, 0.9000, 26.6500)
+shape = SubResource("RI_TurnEndWallShape125")
+
+[node name="RI_TurnEndWallPostMesh126_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7750, 0.9900, 26.6500)
+mesh = SubResource("RI_TurnEndWallPostMesh126")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_TurnEndWallPostMesh127_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6250, 0.9900, 26.6500)
+mesh = SubResource("RI_TurnEndWallPostMesh127")
+surface_material_override/0 = SubResource("FenceChainMat")
+
+[node name="RI_GroundShelterMesh128_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 0.0300, 5.2000)
+mesh = SubResource("RI_GroundShelterMesh128")
+surface_material_override/0 = SubResource("FloorMat")
+
+[node name="RI_ShelterBackWallMesh129_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.3000)
+mesh = SubResource("RI_ShelterBackWallMesh129")
+surface_material_override/0 = SubResource("ShelterMat")
+
+[node name="RI_ShelterBackWallShape130_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.3000)
+shape = SubResource("RI_ShelterBackWallShape130")
+
+[node name="RI_ShelterEndWestMesh131_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7500, 1.1500, 5.2000)
+mesh = SubResource("RI_ShelterEndWestMesh131")
+surface_material_override/0 = SubResource("ShelterMat")
+
+[node name="RI_ShelterEndWestShape132_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7500, 1.1500, 5.2000)
+shape = SubResource("RI_ShelterEndWestShape132")
+
+[node name="RI_ShelterEndEastMesh133_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2500, 1.1500, 5.2000)
+mesh = SubResource("RI_ShelterEndEastMesh133")
+surface_material_override/0 = SubResource("ShelterMat")
+
+[node name="RI_ShelterEndEastShape134_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2500, 1.1500, 5.2000)
+shape = SubResource("RI_ShelterEndEastShape134")
+
+[node name="RI_ShelterRoofMesh135_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 2.3600, 5.2000)
+mesh = SubResource("RI_ShelterRoofMesh135")
+surface_material_override/0 = SubResource("ShelterRoofMat")
+
+[node name="RI_ShelterRoofShape136_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 2.3600, 5.2000)
+shape = SubResource("RI_ShelterRoofShape136")
+
+[node name="RI_ShelterBenchMesh137_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 0.4500, 5.8000)
+mesh = SubResource("RI_ShelterBenchMesh137")
+surface_material_override/0 = SubResource("BenchMat")
+
+[node name="RI_ShelterBenchShape138_N" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 0.4500, 5.8000)
+shape = SubResource("RI_ShelterBenchShape138")
+
+[node name="RI_ShelterSignMesh139_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.5500, 4.3600)
+mesh = SubResource("RI_ShelterSignMesh139")
+surface_material_override/0 = SubResource("SignMat")
+
+[node name="TerminalDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.2500)
+script = ExtResource("100_LevelDoor")
+chapter_id = "terminal"
+spawn_marker = "start"
+door_label = "a maintenance door behind the shelter"
+
+[node name="RI_TerminalDoorPanelMesh140_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5000, 1.1500, 4.2500)
+mesh = SubResource("RI_TerminalDoorPanelMesh140")
+surface_material_override/0 = SubResource("TerminalDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="TerminalDoor"]
+shape = SubResource("RI_TerminalDoorShape")
+
