@@ -34,6 +34,14 @@ var chapter3_room_checks: Array[String] = []
 var chapter3_mutation_stage: int = 0
 var chapter3_back_exit_unlocked: bool = false
 
+## Chapter IV — Above the Street. 3 required rooftop discoveries drive
+## an escalating mutation stage (0-4), same shape as Chapter III's Room
+## Checks. chapter4_exit_unlocked gates the Final Observation Roof's
+## own exit once all 3 are found.
+var chapter4_discoveries: Array[String] = []
+var chapter4_mutation_stage: int = 0
+var chapter4_exit_unlocked: bool = false
+
 var inventory: Array[String] = []
 var dream_tracks: Array[String] = []
 var tv_seen: Array[String] = []
@@ -155,6 +163,9 @@ func new_run(chosen_dreamer: String) -> void:
 	chapter3_room_checks.clear()
 	chapter3_mutation_stage = 0
 	chapter3_back_exit_unlocked = false
+	chapter4_discoveries.clear()
+	chapter4_mutation_stage = 0
+	chapter4_exit_unlocked = false
 
 func to_dict() -> Dictionary:
 	var data := {
@@ -179,6 +190,9 @@ func to_dict() -> Dictionary:
 		"chapter3_room_checks": chapter3_room_checks,
 		"chapter3_mutation_stage": chapter3_mutation_stage,
 		"chapter3_back_exit_unlocked": chapter3_back_exit_unlocked,
+		"chapter4_discoveries": chapter4_discoveries,
+		"chapter4_mutation_stage": chapter4_mutation_stage,
+		"chapter4_exit_unlocked": chapter4_exit_unlocked,
 	}
 	if has_last_position:
 		data["last_position"] = {"x": last_position.x, "y": last_position.y, "z": last_position.z}
@@ -213,6 +227,9 @@ func from_dict(data: Dictionary) -> bool:
 	chapter3_room_checks.assign(data.get("chapter3_room_checks", []))
 	chapter3_mutation_stage = int(data.get("chapter3_mutation_stage", 0))
 	chapter3_back_exit_unlocked = bool(data.get("chapter3_back_exit_unlocked", false))
+	chapter4_discoveries.assign(data.get("chapter4_discoveries", []))
+	chapter4_mutation_stage = int(data.get("chapter4_mutation_stage", 0))
+	chapter4_exit_unlocked = bool(data.get("chapter4_exit_unlocked", false))
 	in_nightmare = false
 	nightmare_depth = 0
 

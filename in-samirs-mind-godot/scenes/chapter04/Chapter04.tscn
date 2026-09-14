@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=304 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_skylight_frame.png" id="23"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_smoke_wisp.png" id="24"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_water_tower.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick.png" id="e101"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_shingle_charcoal.png" id="e102"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof.png" id="e103"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank.png" id="e104"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_parapet.png" id="e105"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(40, 0.2, 36)
@@ -154,6 +159,737 @@ ambient_light_source = 2
 ambient_light_color = Color(0.7, 0.72, 0.85, 1)
 ambient_light_energy = 1.2
 
+[sub_resource type="StandardMaterial3D" id="BrickMat"]
+albedo_texture = ExtResource("e101")
+uv1_scale = Vector3(6, 3, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="ShingleMat"]
+albedo_texture = ExtResource("e102")
+uv1_scale = Vector3(9, 5, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="TarGravelMat"]
+albedo_texture = ExtResource("e103")
+uv1_scale = Vector3(20, 20, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="WoodPlankMat"]
+albedo_texture = ExtResource("e104")
+uv1_scale = Vector3(3, 1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="MetalTrimMat"]
+albedo_texture = ExtResource("e105")
+uv1_scale = Vector3(4, 2, 1)
+roughness = 0.55
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="MetalRailMat"]
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+roughness = 0.45
+metallic = 0.5
+
+[sub_resource type="StandardMaterial3D" id="HVACMat"]
+albedo_color = Color(0.72, 0.74, 0.7, 1)
+roughness = 0.6
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StairMat4"]
+albedo_color = Color(0.35, 0.34, 0.36, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="GlassMat"]
+albedo_color = Color(0.6, 0.75, 0.7, 0.55)
+roughness = 0.2
+transparency = 1
+
+[sub_resource type="BoxMesh" id="C4_MassANMesh1"]
+size = Vector3(11.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassANShape3"]
+size = Vector3(11.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassASMesh4"]
+size = Vector3(11.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassASShape6"]
+size = Vector3(11.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassAEMesh7"]
+size = Vector3(0.3000, 5.0000, 9.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassAEShape9"]
+size = Vector3(0.3000, 5.0000, 9.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassAWMesh10"]
+size = Vector3(0.3000, 5.0000, 9.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassAWShape12"]
+size = Vector3(0.3000, 5.0000, 9.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofASlopeNMesh13"]
+size = Vector3(11.0000, 0.1500, 3.8599)
+
+[sub_resource type="BoxShape3D" id="C4_RoofASlopeNShape15"]
+size = Vector3(11.0000, 0.1500, 3.8599)
+
+[sub_resource type="BoxMesh" id="C4_RoofASlopeSMesh16"]
+size = Vector3(11.0000, 0.1500, 3.8599)
+
+[sub_resource type="BoxShape3D" id="C4_RoofASlopeSShape18"]
+size = Vector3(11.0000, 0.1500, 3.8599)
+
+[sub_resource type="BoxMesh" id="C4_RoofARidgeMesh19"]
+size = Vector3(11.2000, 0.1600, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_RoofAFasciaNMesh20"]
+size = Vector3(11.2000, 0.3000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofAFasciaNShape22"]
+size = Vector3(11.2000, 0.3000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_RoofAGutterNMesh23"]
+size = Vector3(11.0000, 0.1000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C4_RoofAFasciaSMesh24"]
+size = Vector3(11.2000, 0.3000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofAFasciaSShape26"]
+size = Vector3(11.2000, 0.3000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_RoofAGutterSMesh27"]
+size = Vector3(11.0000, 0.1000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C4_RoofASoffitNMesh28"]
+size = Vector3(11.0000, 0.0300, 0.3500)
+
+[sub_resource type="BoxMesh" id="C4_RoofASoffitSMesh29"]
+size = Vector3(11.0000, 0.0300, 0.3500)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckMesh30"]
+size = Vector3(11.0000, 0.2000, 3.4200)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckShape32"]
+size = Vector3(11.0000, 0.2000, 3.4200)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParNMesh33"]
+size = Vector3(4.9000, 0.9000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParNShape35"]
+size = Vector3(4.9000, 0.9000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParNMesh36"]
+size = Vector3(4.9000, 0.9000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParNShape38"]
+size = Vector3(4.9000, 0.9000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParSMesh39"]
+size = Vector3(4.8000, 0.9000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParSShape41"]
+size = Vector3(4.8000, 0.9000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParSMesh42"]
+size = Vector3(4.8000, 0.9000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParSShape44"]
+size = Vector3(4.8000, 0.9000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParEMesh45"]
+size = Vector3(0.2000, 0.9000, 3.4200)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParEShape47"]
+size = Vector3(0.2000, 0.9000, 3.4200)
+
+[sub_resource type="BoxMesh" id="C4_RoofADeckParWMesh48"]
+size = Vector3(0.2000, 0.9000, 3.4200)
+
+[sub_resource type="BoxShape3D" id="C4_RoofADeckParWShape50"]
+size = Vector3(0.2000, 0.9000, 3.4200)
+
+[sub_resource type="BoxMesh" id="C4_ChimneyMesh51"]
+size = Vector3(0.7000, 1.8000, 0.7000)
+
+[sub_resource type="BoxShape3D" id="C4_ChimneyShape53"]
+size = Vector3(0.7000, 1.8000, 0.7000)
+
+[sub_resource type="CylinderMesh" id="C4_VentStackMesh54"]
+top_radius = 0.120
+bottom_radius = 0.120
+height = 1.100
+
+[sub_resource type="CylinderShape3D" id="C4_VentStackShape56"]
+radius = 0.120
+height = 1.100
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseDoorWallMesh57"]
+size = Vector3(0.6500, 2.2000, 0.2500)
+
+[sub_resource type="BoxShape3D" id="C4_AccessHouseDoorWallShape59"]
+size = Vector3(0.6500, 2.2000, 0.2500)
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseDoorWallMesh60"]
+size = Vector3(0.6500, 2.2000, 0.2500)
+
+[sub_resource type="BoxShape3D" id="C4_AccessHouseDoorWallShape62"]
+size = Vector3(0.6500, 2.2000, 0.2500)
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseBackMesh63"]
+size = Vector3(2.4000, 2.2000, 0.2500)
+
+[sub_resource type="BoxShape3D" id="C4_AccessHouseBackShape65"]
+size = Vector3(2.4000, 2.2000, 0.2500)
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseSideWMesh66"]
+size = Vector3(0.2500, 2.2000, 2.4000)
+
+[sub_resource type="BoxShape3D" id="C4_AccessHouseSideWShape68"]
+size = Vector3(0.2500, 2.2000, 2.4000)
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseSideEMesh69"]
+size = Vector3(0.2500, 2.2000, 2.4000)
+
+[sub_resource type="BoxShape3D" id="C4_AccessHouseSideEShape71"]
+size = Vector3(0.2500, 2.2000, 2.4000)
+
+[sub_resource type="BoxMesh" id="C4_AccessHouseRoofMesh72"]
+size = Vector3(2.7000, 0.1600, 2.7000)
+
+[sub_resource type="BoxMesh" id="C4_MassBNMesh73"]
+size = Vector3(13.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassBNShape75"]
+size = Vector3(13.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassBSMesh76"]
+size = Vector3(13.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassBSShape78"]
+size = Vector3(13.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassBEMesh79"]
+size = Vector3(0.3000, 5.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassBEShape81"]
+size = Vector3(0.3000, 5.0000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassBWMesh82"]
+size = Vector3(0.3000, 5.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassBWShape84"]
+size = Vector3(0.3000, 5.0000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBFloorCol1Mesh85"]
+size = Vector3(0.4000, 0.2000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBFloorCol1Shape87"]
+size = Vector3(0.4000, 0.2000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBFloorCol2Mesh88"]
+size = Vector3(1.2000, 0.2000, 7.2200)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBFloorCol2Shape90"]
+size = Vector3(1.2000, 0.2000, 7.2200)
+
+[sub_resource type="BoxMesh" id="C4_RoofBFloorCol3Mesh91"]
+size = Vector3(4.3000, 0.2000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBFloorCol3Shape93"]
+size = Vector3(4.3000, 0.2000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBFloorCol4Mesh94"]
+size = Vector3(1.2000, 0.2000, 9.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBFloorCol4Shape96"]
+size = Vector3(1.2000, 0.2000, 9.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBFloorCol5Mesh97"]
+size = Vector3(5.9000, 0.2000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBFloorCol5Shape99"]
+size = Vector3(5.9000, 0.2000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBParNMesh100"]
+size = Vector3(5.7000, 1.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBParNShape102"]
+size = Vector3(5.7000, 1.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBParNMesh103"]
+size = Vector3(5.7000, 1.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBParNShape105"]
+size = Vector3(5.7000, 1.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBParSMesh106"]
+size = Vector3(13.0000, 1.0000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBParSShape108"]
+size = Vector3(13.0000, 1.0000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBParEMesh109"]
+size = Vector3(0.2000, 1.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBParEShape111"]
+size = Vector3(0.2000, 1.0000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofBParWMesh112"]
+size = Vector3(0.2000, 1.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofBParWShape114"]
+size = Vector3(0.2000, 1.0000, 10.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step0Mesh115"]
+size = Vector3(1.1000, 0.1667, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step1Mesh116"]
+size = Vector3(1.1000, 0.3333, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step2Mesh117"]
+size = Vector3(1.1000, 0.5000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step3Mesh118"]
+size = Vector3(1.1000, 0.6667, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step4Mesh119"]
+size = Vector3(1.1000, 0.8333, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step5Mesh120"]
+size = Vector3(1.1000, 1.0000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step6Mesh121"]
+size = Vector3(1.1000, 1.1667, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step7Mesh122"]
+size = Vector3(1.1000, 1.3333, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_Step8Mesh123"]
+size = Vector3(1.1000, 1.5000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_RampMesh124"]
+size = Vector3(1.1000, 0.1200, 3.4326)
+
+[sub_resource type="BoxShape3D" id="C4_StairAB_RampShape126"]
+size = Vector3(1.1000, 0.1200, 3.4326)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_RailWMesh127"]
+size = Vector3(0.0600, 2.4000, 2.5200)
+
+[sub_resource type="BoxShape3D" id="C4_StairAB_RailWShape129"]
+size = Vector3(0.0600, 2.4000, 2.5200)
+
+[sub_resource type="BoxMesh" id="C4_StairAB_RailEMesh130"]
+size = Vector3(0.0600, 2.4000, 2.5200)
+
+[sub_resource type="BoxShape3D" id="C4_StairAB_RailEShape132"]
+size = Vector3(0.0600, 2.4000, 2.5200)
+
+[sub_resource type="BoxMesh" id="C4_HVAC1Mesh133"]
+size = Vector3(2.2000, 1.2000, 1.6000)
+
+[sub_resource type="BoxShape3D" id="C4_HVAC1Shape135"]
+size = Vector3(2.2000, 1.2000, 1.6000)
+
+[sub_resource type="BoxMesh" id="C4_HVAC2Mesh136"]
+size = Vector3(2.2000, 1.2000, 1.6000)
+
+[sub_resource type="BoxShape3D" id="C4_HVAC2Shape138"]
+size = Vector3(2.2000, 1.2000, 1.6000)
+
+[sub_resource type="BoxMesh" id="C4_Duct1Mesh139"]
+size = Vector3(0.4000, 0.4000, 1.2000)
+
+[sub_resource type="CylinderMesh" id="C4_Vent1Mesh140"]
+top_radius = 0.250
+bottom_radius = 0.250
+height = 0.700
+
+[sub_resource type="CylinderShape3D" id="C4_Vent1Shape142"]
+radius = 0.250
+height = 0.700
+
+[sub_resource type="CylinderMesh" id="C4_Vent2Mesh143"]
+top_radius = 0.250
+bottom_radius = 0.250
+height = 0.700
+
+[sub_resource type="CylinderShape3D" id="C4_Vent2Shape145"]
+radius = 0.250
+height = 0.700
+
+[sub_resource type="BoxMesh" id="C4_UtilityCabinetMesh146"]
+size = Vector3(0.9000, 1.5000, 0.6000)
+
+[sub_resource type="BoxShape3D" id="C4_UtilityCabinetShape148"]
+size = Vector3(0.9000, 1.5000, 0.6000)
+
+[sub_resource type="CylinderMesh" id="C4_DrainMesh149"]
+top_radius = 0.200
+bottom_radius = 0.200
+height = 0.050
+
+[sub_resource type="BoxMesh" id="C4_MaintPathMesh150"]
+size = Vector3(1.3000, 0.0200, 8.5000)
+
+[sub_resource type="BoxMesh" id="C4_MassC1NMesh151"]
+size = Vector3(7.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC1NShape153"]
+size = Vector3(7.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC1SMesh154"]
+size = Vector3(7.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC1SShape156"]
+size = Vector3(7.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC1EMesh157"]
+size = Vector3(0.3000, 5.0000, 8.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC1EShape159"]
+size = Vector3(0.3000, 5.0000, 8.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassC1WMesh160"]
+size = Vector3(0.3000, 5.0000, 8.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC1WShape162"]
+size = Vector3(0.3000, 5.0000, 8.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassC2NMesh163"]
+size = Vector3(8.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC2NShape165"]
+size = Vector3(8.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC2SMesh166"]
+size = Vector3(8.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC2SShape168"]
+size = Vector3(8.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC2EMesh169"]
+size = Vector3(0.3000, 5.0000, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC2EShape171"]
+size = Vector3(0.3000, 5.0000, 6.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassC2WMesh172"]
+size = Vector3(0.3000, 5.0000, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC2WShape174"]
+size = Vector3(0.3000, 5.0000, 6.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassC3NMesh175"]
+size = Vector3(6.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC3NShape177"]
+size = Vector3(6.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC3SMesh178"]
+size = Vector3(6.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC3SShape180"]
+size = Vector3(6.0000, 5.0000, 0.3000)
+
+[sub_resource type="BoxMesh" id="C4_MassC3EMesh181"]
+size = Vector3(0.3000, 5.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC3EShape183"]
+size = Vector3(0.3000, 5.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_MassC3WMesh184"]
+size = Vector3(0.3000, 5.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_MassC3WShape186"]
+size = Vector3(0.3000, 5.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1Mesh187"]
+size = Vector3(7.0000, 0.2000, 8.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1Shape189"]
+size = Vector3(7.0000, 0.2000, 8.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2Mesh190"]
+size = Vector3(8.0000, 0.2000, 6.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2Shape192"]
+size = Vector3(8.0000, 0.2000, 6.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3Mesh193"]
+size = Vector3(6.0000, 0.2000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3Shape195"]
+size = Vector3(6.0000, 0.2000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParNMesh196"]
+size = Vector3(5.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParNShape198"]
+size = Vector3(5.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParNMesh199"]
+size = Vector3(0.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParNShape201"]
+size = Vector3(0.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParSMesh202"]
+size = Vector3(7.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParSShape204"]
+size = Vector3(7.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParEMesh205"]
+size = Vector3(0.2000, 0.8500, 2.6500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParEShape207"]
+size = Vector3(0.2000, 0.8500, 2.6500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParEMesh208"]
+size = Vector3(0.2000, 0.8500, 4.1500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParEShape210"]
+size = Vector3(0.2000, 0.8500, 4.1500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC1ParWMesh211"]
+size = Vector3(0.2000, 0.8500, 8.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC1ParWShape213"]
+size = Vector3(0.2000, 0.8500, 8.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParNMesh214"]
+size = Vector3(3.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParNShape216"]
+size = Vector3(3.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParNMesh217"]
+size = Vector3(3.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParNShape219"]
+size = Vector3(3.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParSMesh220"]
+size = Vector3(8.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParSShape222"]
+size = Vector3(8.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParEMesh223"]
+size = Vector3(0.2000, 0.8500, 3.1500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParEShape225"]
+size = Vector3(0.2000, 0.8500, 3.1500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParEMesh226"]
+size = Vector3(0.2000, 0.8500, 1.6500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParEShape228"]
+size = Vector3(0.2000, 0.8500, 1.6500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParWMesh229"]
+size = Vector3(0.2000, 0.8500, 3.1500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParWShape231"]
+size = Vector3(0.2000, 0.8500, 3.1500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC2ParWMesh232"]
+size = Vector3(0.2000, 0.8500, 1.6500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC2ParWShape234"]
+size = Vector3(0.2000, 0.8500, 1.6500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParNMesh235"]
+size = Vector3(2.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParNShape237"]
+size = Vector3(2.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParNMesh238"]
+size = Vector3(2.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParNShape240"]
+size = Vector3(2.2500, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParSMesh241"]
+size = Vector3(6.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParSShape243"]
+size = Vector3(6.0000, 0.8500, 0.2000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParEMesh244"]
+size = Vector3(0.2000, 0.8500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParEShape246"]
+size = Vector3(0.2000, 0.8500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParWMesh247"]
+size = Vector3(0.2000, 0.8500, 2.1500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParWShape249"]
+size = Vector3(0.2000, 0.8500, 2.1500)
+
+[sub_resource type="BoxMesh" id="C4_RoofC3ParWMesh250"]
+size = Vector3(0.2000, 0.8500, 3.6500)
+
+[sub_resource type="BoxShape3D" id="C4_RoofC3ParWShape252"]
+size = Vector3(0.2000, 0.8500, 3.6500)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step0Mesh253"]
+size = Vector3(1.0000, 0.1000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step1Mesh254"]
+size = Vector3(1.0000, 0.2000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step2Mesh255"]
+size = Vector3(1.0000, 0.3000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step3Mesh256"]
+size = Vector3(1.0000, 0.4000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step4Mesh257"]
+size = Vector3(1.0000, 0.5000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_Step5Mesh258"]
+size = Vector3(1.0000, 0.6000, 0.2800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_RampMesh259"]
+size = Vector3(1.0000, 0.1200, 2.2839)
+
+[sub_resource type="BoxShape3D" id="C4_StairBC1_RampShape261"]
+size = Vector3(1.0000, 0.1200, 2.2839)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_RailWMesh262"]
+size = Vector3(0.0600, 1.5000, 1.6800)
+
+[sub_resource type="BoxShape3D" id="C4_StairBC1_RailWShape264"]
+size = Vector3(0.0600, 1.5000, 1.6800)
+
+[sub_resource type="BoxMesh" id="C4_StairBC1_RailEMesh265"]
+size = Vector3(0.0600, 1.5000, 1.6800)
+
+[sub_resource type="BoxShape3D" id="C4_StairBC1_RailEShape267"]
+size = Vector3(0.0600, 1.5000, 1.6800)
+
+[sub_resource type="BoxMesh" id="C4_CatwalkC1C2Mesh268"]
+size = Vector3(1.5000, 0.2000, 1.2000)
+
+[sub_resource type="BoxShape3D" id="C4_CatwalkC1C2Shape270"]
+size = Vector3(1.5000, 0.2000, 1.2000)
+
+[sub_resource type="BoxMesh" id="C4_CatwalkC1C2RailNMesh271"]
+size = Vector3(1.5000, 1.0000, 0.0600)
+
+[sub_resource type="BoxShape3D" id="C4_CatwalkC1C2RailNShape273"]
+size = Vector3(1.5000, 1.0000, 0.0600)
+
+[sub_resource type="BoxMesh" id="C4_CatwalkC1C2RailSMesh274"]
+size = Vector3(1.5000, 1.0000, 0.0600)
+
+[sub_resource type="BoxShape3D" id="C4_CatwalkC1C2RailSShape276"]
+size = Vector3(1.5000, 1.0000, 0.0600)
+
+[sub_resource type="BoxMesh" id="C4_CatwalkRampC1Mesh277"]
+size = Vector3(1.2000, 0.1000, 0.6592)
+
+[sub_resource type="BoxShape3D" id="C4_CatwalkRampC1Shape279"]
+size = Vector3(1.2000, 0.1000, 0.6592)
+
+[sub_resource type="BoxMesh" id="C4_WoodBridgeC2C3Mesh280"]
+size = Vector3(1.5000, 0.2000, 1.1000)
+
+[sub_resource type="BoxShape3D" id="C4_WoodBridgeC2C3Shape282"]
+size = Vector3(1.5000, 0.2000, 1.1000)
+
+[sub_resource type="BoxMesh" id="C4_WoodBridgeRailNMesh283"]
+size = Vector3(1.5000, 0.9500, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_WoodBridgeRailNShape285"]
+size = Vector3(1.5000, 0.9500, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_WoodBridgeRailSMesh286"]
+size = Vector3(1.5000, 0.9500, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_WoodBridgeRailSShape288"]
+size = Vector3(1.5000, 0.9500, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_Loop0Mesh289"]
+size = Vector3(26.4000, 0.2000, 1.2000)
+
+[sub_resource type="BoxShape3D" id="C4_Loop0Shape291"]
+size = Vector3(26.4000, 0.2000, 1.2000)
+
+[sub_resource type="BoxMesh" id="C4_Loop0RailNMesh292"]
+size = Vector3(26.4000, 1.0000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_Loop0RailNShape294"]
+size = Vector3(26.4000, 1.0000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_Loop0RailSMesh295"]
+size = Vector3(26.4000, 1.0000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_Loop0RailSShape297"]
+size = Vector3(26.4000, 1.0000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_Loop1Mesh298"]
+size = Vector3(1.2000, 0.2000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_Loop1Shape300"]
+size = Vector3(1.2000, 0.2000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_Loop1RailEMesh301"]
+size = Vector3(0.0500, 1.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_Loop1RailEShape303"]
+size = Vector3(0.0500, 1.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_Loop1RailWMesh304"]
+size = Vector3(0.0500, 1.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C4_Loop1RailWShape306"]
+size = Vector3(0.0500, 1.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C4_Loop2Mesh307"]
+size = Vector3(11.7000, 0.2000, 1.2000)
+
+[sub_resource type="BoxShape3D" id="C4_Loop2Shape309"]
+size = Vector3(11.7000, 0.2000, 1.2000)
+
+[sub_resource type="BoxMesh" id="C4_Loop2RailNMesh310"]
+size = Vector3(11.7000, 1.0000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_Loop2RailNShape312"]
+size = Vector3(11.7000, 1.0000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_Loop2RailSMesh313"]
+size = Vector3(11.7000, 1.0000, 0.0500)
+
+[sub_resource type="BoxShape3D" id="C4_Loop2RailSShape315"]
+size = Vector3(11.7000, 1.0000, 0.0500)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_Step0Mesh316"]
+size = Vector3(0.2800, 0.2400, 1.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_Step1Mesh317"]
+size = Vector3(0.2800, 0.4800, 1.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_Step2Mesh318"]
+size = Vector3(0.2800, 0.7200, 1.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_Step3Mesh319"]
+size = Vector3(0.2800, 0.9600, 1.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_Step4Mesh320"]
+size = Vector3(0.2800, 1.2000, 1.0000)
+
+[sub_resource type="BoxMesh" id="C4_StairLoop_RampMesh321"]
+size = Vector3(2.2439, 0.1200, 1.0000)
+
+[sub_resource type="BoxShape3D" id="C4_StairLoop_RampShape323"]
+size = Vector3(2.2439, 0.1200, 1.0000)
+
 [node name="Chapter04" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -161,618 +897,1161 @@ environment = SubResource("Env")
 
 [node name="LowerRoofs" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="LowerRoofs"]
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/Floor"]
-mesh = SubResource("FloorMesh")
-surface_material_override/0 = SubResource("LowerFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Floor"]
-shape = SubResource("FloorShape")
-
-[node name="ParapetNorth" type="StaticBody3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -18)
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetNorth"]
-mesh = SubResource("ParapetMeshEW")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetNorth"]
-shape = SubResource("ParapetShapeEW")
-
-[node name="ParapetSouth" type="StaticBody3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 18)
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetSouth"]
-mesh = SubResource("ParapetMeshEW")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetSouth"]
-shape = SubResource("ParapetShapeEW")
-
-[node name="ParapetEast" type="StaticBody3D" parent="LowerRoofs"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 0.55, 0)
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetEast"]
-mesh = SubResource("ParapetMeshNS")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetEast"]
-shape = SubResource("ParapetShapeNS")
-
-[node name="ParapetWest" type="StaticBody3D" parent="LowerRoofs"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -20, 0.55, 0)
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/ParapetWest"]
-mesh = SubResource("ParapetMeshNS")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/ParapetWest"]
-shape = SubResource("ParapetShapeNS")
-
-[node name="ZoneChimneyRow" type="MeshInstance3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.11, -8)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("ChimneyRowMat")
-
-[node name="ZoneGutterWalk" type="MeshInstance3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.11, 8)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("GutterWalkMat")
-
-[node name="Flavor_ChimneyRow" type="Area3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -8)
-script = ExtResource("1")
-flavor_text = "Chimney Row. Smoke that never finishes rising."
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_ChimneyRow"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_ChimneySet" type="Sprite3D" parent="LowerRoofs/Flavor_ChimneyRow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-texture = ExtResource("14")
-pixel_size = 0.003348
-[node name="Prop_SmokeWisp" type="Sprite3D" parent="LowerRoofs/Flavor_ChimneyRow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
-texture = ExtResource("24")
-pixel_size = 0.001664
-billboard = 1
-modulate = Color(1, 1, 1, 0.6)
-
-[node name="Flavor_GutterWalk" type="Area3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 8)
-script = ExtResource("1")
-flavor_text = "Gutter Walk. Rain that fell somewhere else."
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/Flavor_GutterWalk"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_Downspout" type="Sprite3D" parent="LowerRoofs/Flavor_GutterWalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -4)
-texture = ExtResource("17")
-pixel_size = 0.00361
-[node name="Prop_PuddleDecal" type="Sprite3D" parent="LowerRoofs/Flavor_GutterWalk"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -4, -0.98, -3)
-texture = ExtResource("21")
-pixel_size = 0.00214
-
-[node name="RoofHatchLanding" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
-
-[node name="start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 12)
-
-[node name="LandingFromLower" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.5, -8)
-
-[node name="LandingFromMid" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.5, 6)
-
-[node name="LiftUpToMid" type="Area3D" parent="LowerRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 12)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromLower")
-lift_label = "the fire escape ladder up"
-[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/LiftUpToMid"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/LiftUpToMid"]
-shape = SubResource("LiftPadShape")
-
 [node name="MidRoofs" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/Floor"]
-mesh = SubResource("FloorMesh")
-surface_material_override/0 = SubResource("MidFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Floor"]
-shape = SubResource("FloorShape")
+[node name="BridgeDistrict" type="Node3D" parent="."]
 
-[node name="ParapetNorth" type="StaticBody3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, -18)
-[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/ParapetNorth"]
-mesh = SubResource("ParapetMeshEW")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/ParapetNorth"]
-shape = SubResource("ParapetShapeEW")
-
-[node name="ParapetSouth" type="StaticBody3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 18)
-[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/ParapetSouth"]
-mesh = SubResource("ParapetMeshEW")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/ParapetSouth"]
-shape = SubResource("ParapetShapeEW")
-
-[node name="ZoneRopeBridge" type="MeshInstance3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 6.11, 0)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("RopeBridgeMat")
-
-[node name="ZoneWaterTower" type="MeshInstance3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6.11, -10)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("WaterTowerMat")
-
-[node name="ZoneSkylight" type="MeshInstance3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.11, 8)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("SkylightMat")
-
-[node name="Flavor_RopeBridge" type="Area3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 0)
-script = ExtResource("1")
-flavor_text = "Rope Bridge. It sways whether or not you're on it."
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_RopeBridge"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_RopeBridge" type="Sprite3D" parent="MidRoofs/Flavor_RopeBridge"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.505, 0)
-texture = ExtResource("22")
-pixel_size = 0.005
-
-[node name="Flavor_WaterTower" type="Area3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 7, -10)
-script = ExtResource("1")
-flavor_text = "Water Tower Roof. Something drips on a schedule."
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_WaterTower"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_WaterTower" type="Sprite3D" parent="MidRoofs/Flavor_WaterTower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.0, 0)
-texture = ExtResource("25")
-pixel_size = 0.004854
-[node name="Prop_DripDecal" type="Sprite3D" parent="MidRoofs/Flavor_WaterTower"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -6.98, 2)
-texture = ExtResource("18")
-pixel_size = 0.001672
-
-[node name="Flavor_Skylight" type="Area3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 7, 8)
-script = ExtResource("1")
-flavor_text = "Skylight Roof. You can see a room that isn't underneath it."
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/Flavor_Skylight"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_SkylightFrame" type="Sprite3D" parent="MidRoofs/Flavor_Skylight"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -6.98, 0)
-texture = ExtResource("23")
-pixel_size = 0.004756
-
-[node name="LiftDownToLower" type="Area3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.5, -14)
-script = ExtResource("2")
-target_marker = NodePath("../../start")
-lift_label = "the ladder back down"
-[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/LiftDownToLower"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/LiftDownToLower"]
-shape = SubResource("LiftPadShape")
-
-[node name="LiftUpToHigh" type="Area3D" parent="MidRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.5, 10)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromMid")
-lift_label = "the water tower ladder up"
-[node name="Mesh" type="MeshInstance3D" parent="MidRoofs/LiftUpToHigh"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="MidRoofs/LiftUpToHigh"]
-shape = SubResource("LiftPadShape")
+[node name="ServiceTower" type="Node3D" parent="."]
 
 [node name="HighRoofs" type="Node3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
-[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/Floor"]
-mesh = SubResource("FloorMesh")
-surface_material_override/0 = SubResource("HighFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Floor"]
-shape = SubResource("FloorShape")
+[node name="TowerNetwork" type="Node3D" parent="."]
 
-[node name="ParapetNorth" type="StaticBody3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.55, -18)
-[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/ParapetNorth"]
-mesh = SubResource("ParapetMeshEW")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/ParapetNorth"]
-shape = SubResource("ParapetShapeEW")
+[node name="FinalObservationRoof" type="Node3D" parent="."]
 
-[node name="ZoneClockTower" type="MeshInstance3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 12.11, -6)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("ClockTowerMat")
+[node name="JournalSpawnPool" type="Node3D" parent="."]
 
-[node name="ZoneAntenna" type="MeshInstance3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 12.11, -6)
-mesh = SubResource("ZonePlaneSmall")
-surface_material_override/0 = SubResource("AntennaMat")
+[node name="DiscoveryNodes" type="Node3D" parent="."]
 
-[node name="ZoneOpenDream" type="MeshInstance3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.11, 10)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("OpenDreamMat")
+[node name="SideLevelDoors" type="Node3D" parent="."]
 
-[node name="Light" type="OmniLight3D" parent="HighRoofs/ZoneOpenDream"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-light_color = Color(0.95, 0.9, 1, 1)
-light_energy = 0.9
-omni_range = 14.0
+[node name="Checkpoints" type="Node3D" parent="."]
 
-[node name="Flavor_ClockTower" type="Area3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 13, -6)
-script = ExtResource("1")
-flavor_text = "Clock Tower. Every hand points to a different hour."
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_ClockTower"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_ClockTower" type="Sprite3D" parent="HighRoofs/Flavor_ClockTower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 0)
-texture = ExtResource("16")
-pixel_size = 0.005808
-[node name="Prop_ClockFace" type="Sprite3D" parent="HighRoofs/Flavor_ClockTower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.16)
-texture = ExtResource("15")
-pixel_size = 0.002091
+[node name="C4_MassANBody2" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 5.2500, 18.5000)
 
-[node name="Flavor_Antenna" type="Area3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, -6)
-script = ExtResource("1")
-flavor_text = "Antenna Spire. Picks up nothing, broadcasts anyway."
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_Antenna"]
-shape = SubResource("Shape_flavor_small")
-[node name="Prop_AntennaSpire" type="Sprite3D" parent="HighRoofs/Flavor_Antenna"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.75, 0)
-texture = ExtResource("13")
-pixel_size = 0.004881
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassANBody2"]
+mesh = SubResource("C4_MassANMesh1")
+surface_material_override/0 = SubResource("BrickMat")
 
-[node name="Flavor_OpenDream" type="Area3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 10)
-script = ExtResource("1")
-flavor_text = "The Open Dream. Above the street, above everything else you've seen so far."
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/Flavor_OpenDream"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_OpenDreamPlatform" type="Sprite3D" parent="HighRoofs/Flavor_OpenDream"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.315, 0)
-texture = ExtResource("20")
-pixel_size = 0.004405
-[node name="Prop_OpenDreamChair" type="Sprite3D" parent="HighRoofs/Flavor_OpenDream"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.5, 2)
-texture = ExtResource("19")
-pixel_size = 0.001634
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassANBody2"]
+shape = SubResource("C4_MassANShape3")
 
-[node name="LiftDownToMid" type="Area3D" parent="HighRoofs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 12.5, -12)
-script = ExtResource("2")
-target_marker = NodePath("../../LandingFromLower")
-lift_label = "the ladder back down"
-[node name="Mesh" type="MeshInstance3D" parent="HighRoofs/LiftDownToMid"]
-mesh = SubResource("LiftPadMesh")
-surface_material_override/0 = SubResource("LiftPadMat")
-[node name="Shape" type="CollisionShape3D" parent="HighRoofs/LiftDownToMid"]
-shape = SubResource("LiftPadShape")
+[node name="C4_MassASBody5" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 5.2500, 9.5000)
 
-[node name="L_ChimneyRow_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0, 0.55, -14)
-[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassASBody5"]
+mesh = SubResource("C4_MassASMesh4")
+surface_material_override/0 = SubResource("BrickMat")
 
-[node name="L_ChimneyRow_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 0.55, -2)
-[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_S_0"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_S_0"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassASBody5"]
+shape = SubResource("C4_MassASShape6")
 
-[node name="L_ChimneyRow_S_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 0.55, -2)
-[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_S_1"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_S_1"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="C4_MassAEBody8" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5000, 5.2500, 14.0000)
 
-[node name="L_ChimneyRow_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.55, -8.0)
-[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_E_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_E_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassAEBody8"]
+mesh = SubResource("C4_MassAEMesh7")
+surface_material_override/0 = SubResource("BrickMat")
 
-[node name="L_ChimneyRow_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.55, -8.0)
-[node name="Mesh" type="MeshInstance3D" parent="L_ChimneyRow_W_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_ChimneyRow_W_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassAEBody8"]
+shape = SubResource("C4_MassAEShape9")
 
-[node name="L_GutterWalk_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 2)
-[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="C4_MassAWBody11" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 5.2500, 14.0000)
 
-[node name="L_GutterWalk_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 14)
-[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_S_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_S_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassAWBody11"]
+mesh = SubResource("C4_MassAWMesh10")
+surface_material_override/0 = SubResource("BrickMat")
 
-[node name="L_GutterWalk_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.55, 8.0)
-[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_E_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_E_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassAWBody11"]
+shape = SubResource("C4_MassAWShape12")
 
-[node name="L_GutterWalk_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.55, 4.0)
-[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_W_0"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_W_0"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="C4_RoofASlopeNBody14" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, 0.882948, -0.469472, 0, 0.469472, 0.882948, 0.0000, 8.7417, 17.1050)
 
-[node name="L_GutterWalk_W_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.55, 12.0)
-[node name="Mesh" type="MeshInstance3D" parent="L_GutterWalk_W_1"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="L_GutterWalk_W_1"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofASlopeNBody14"]
+mesh = SubResource("C4_RoofASlopeNMesh13")
+surface_material_override/0 = SubResource("ShingleMat")
 
-[node name="M_RopeBridge_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 6.55, -6)
-[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofASlopeNBody14"]
+shape = SubResource("C4_RoofASlopeNShape15")
 
-[node name="M_RopeBridge_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 6.55, 6)
-[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_S_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_S_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="C4_RoofASlopeSBody17" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, -0.882948, -0.469472, 0, 0.469472, -0.882948, 0.0000, 8.7417, 14.3150)
 
-[node name="M_RopeBridge_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6.55, -4.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_E_0"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_E_0"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofASlopeSBody17"]
+mesh = SubResource("C4_RoofASlopeSMesh16")
+surface_material_override/0 = SubResource("ShingleMat")
 
-[node name="M_RopeBridge_E_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6.55, 4.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_E_1"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_E_1"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofASlopeSBody17"]
+shape = SubResource("C4_RoofASlopeSShape18")
 
-[node name="M_RopeBridge_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6.55, 0.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_RopeBridge_W_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_RopeBridge_W_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="C4_RoofARidgeMesh19_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.5635, 15.7100)
+mesh = SubResource("C4_RoofARidgeMesh19")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_WaterTower_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 6.55, -16)
-[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="C4_RoofAFasciaNBody21" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.8500, 18.7500)
 
-[node name="M_WaterTower_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 6.55, -4)
-[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_S_0"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_S_0"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofAFasciaNBody21"]
+mesh = SubResource("C4_RoofAFasciaNMesh20")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_WaterTower_S_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0, 6.55, -4)
-[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_S_1"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_S_1"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofAFasciaNBody21"]
+shape = SubResource("C4_RoofAFasciaNShape22")
 
-[node name="M_WaterTower_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 6.55, -10.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_E_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_E_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="C4_RoofAGutterNMesh23_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.6800, 18.7000)
+mesh = SubResource("C4_RoofAGutterNMesh23")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_WaterTower_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.55, -10.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_WaterTower_W_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_WaterTower_W_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="C4_RoofAFasciaSBody25" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.8500, 12.6700)
 
-[node name="M_Skylight_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 6.55, 2)
-[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_Skylight_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofAFasciaSBody25"]
+mesh = SubResource("C4_RoofAFasciaSMesh24")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_Skylight_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 6.55, 14)
-[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_S_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_Skylight_S_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofAFasciaSBody25"]
+shape = SubResource("C4_RoofAFasciaSShape26")
 
-[node name="M_Skylight_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 6.55, 8.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_E_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_Skylight_E_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="C4_RoofAGutterSMesh27_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.6800, 12.7200)
+mesh = SubResource("C4_RoofAGutterSMesh27")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_Skylight_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 4.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_W_0"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_Skylight_W_0"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="C4_RoofASoffitNMesh28_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.9500, 18.6800)
+mesh = SubResource("C4_RoofASoffitNMesh28")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="M_Skylight_W_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.55, 12.0)
-[node name="Mesh" type="MeshInstance3D" parent="M_Skylight_W_1"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="M_Skylight_W_1"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="C4_RoofASoffitSMesh29_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.9500, 12.7400)
+mesh = SubResource("C4_RoofASoffitSMesh29")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="H_ClockTower_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 12.55, -12)
-[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_N_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_N_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="C4_RoofADeckBody31" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.9000, 11.2100)
 
-[node name="H_ClockTower_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 12.55, 0)
-[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_S_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_S_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckBody31"]
+mesh = SubResource("C4_RoofADeckMesh30")
+surface_material_override/0 = SubResource("TarGravelMat")
 
-[node name="H_ClockTower_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12.55, -10.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_E_0"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_E_0"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckBody31"]
+shape = SubResource("C4_RoofADeckShape32")
 
-[node name="H_ClockTower_E_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12.55, -2.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_E_1"]
-mesh = SubResource("ParaSeg_30x400")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_E_1"]
-shape = SubResource("ParaSeg_30x400Shape")
+[node name="C4_RoofADeckParNBody34" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0500, 8.4500, 12.9200)
 
-[node name="H_ClockTower_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 12.55, -6.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_ClockTower_W_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_ClockTower_W_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParNBody34"]
+mesh = SubResource("C4_RoofADeckParNMesh33")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="H_Antenna_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 12.55, -10)
-[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_N_0"]
-mesh = SubResource("ParaSeg_800x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_Antenna_N_0"]
-shape = SubResource("ParaSeg_800x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParNBody34"]
+shape = SubResource("C4_RoofADeckParNShape35")
 
-[node name="H_Antenna_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 12.55, -2)
-[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_S_0"]
-mesh = SubResource("ParaSeg_800x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_Antenna_S_0"]
-shape = SubResource("ParaSeg_800x30Shape")
+[node name="C4_RoofADeckParNBody37" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0500, 8.4500, 12.9200)
 
-[node name="H_Antenna_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 12.55, -6.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_E_0"]
-mesh = SubResource("ParaSeg_30x800")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_Antenna_E_0"]
-shape = SubResource("ParaSeg_30x800Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParNBody37"]
+mesh = SubResource("C4_RoofADeckParNMesh36")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="H_Antenna_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, -9.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_W_0"]
-mesh = SubResource("ParaSeg_30x200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_Antenna_W_0"]
-shape = SubResource("ParaSeg_30x200Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParNBody37"]
+shape = SubResource("C4_RoofADeckParNShape38")
 
-[node name="H_Antenna_W_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, -3.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_Antenna_W_1"]
-mesh = SubResource("ParaSeg_30x200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_Antenna_W_1"]
-shape = SubResource("ParaSeg_30x200Shape")
+[node name="C4_RoofADeckParSBody40" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1000, 8.4500, 9.5000)
 
-[node name="H_OpenDream_N_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0, 12.55, 4)
-[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_N_0"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_N_0"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParSBody40"]
+mesh = SubResource("C4_RoofADeckParSMesh39")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="H_OpenDream_N_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 12.55, 4)
-[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_N_1"]
-mesh = SubResource("ParaSeg_400x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_N_1"]
-shape = SubResource("ParaSeg_400x30Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParSBody40"]
+shape = SubResource("C4_RoofADeckParSShape41")
 
-[node name="H_OpenDream_S_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 12.55, 16)
-[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_S_0"]
-mesh = SubResource("ParaSeg_1200x30")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_S_0"]
-shape = SubResource("ParaSeg_1200x30Shape")
+[node name="C4_RoofADeckParSBody43" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, 8.4500, 9.5000)
 
-[node name="H_OpenDream_E_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12.55, 10.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_E_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_E_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParSBody43"]
+mesh = SubResource("C4_RoofADeckParSMesh42")
+surface_material_override/0 = SubResource("MetalTrimMat")
 
-[node name="H_OpenDream_W_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 12.55, 10.0)
-[node name="Mesh" type="MeshInstance3D" parent="H_OpenDream_W_0"]
-mesh = SubResource("ParaSeg_30x1200")
-surface_material_override/0 = SubResource("ParapetMat")
-[node name="Shape" type="CollisionShape3D" parent="H_OpenDream_W_0"]
-shape = SubResource("ParaSeg_30x1200Shape")
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParSBody43"]
+shape = SubResource("C4_RoofADeckParSShape44")
+
+[node name="C4_RoofADeckParEBody46" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5000, 8.4500, 11.2100)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParEBody46"]
+mesh = SubResource("C4_RoofADeckParEMesh45")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParEBody46"]
+shape = SubResource("C4_RoofADeckParEShape47")
+
+[node name="C4_RoofADeckParWBody49" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 8.4500, 11.2100)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofADeckParWBody49"]
+mesh = SubResource("C4_RoofADeckParWMesh48")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofADeckParWBody49"]
+shape = SubResource("C4_RoofADeckParWShape50")
+
+[node name="C4_ChimneyBody52" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5000, 9.1835, 15.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_ChimneyBody52"]
+mesh = SubResource("C4_ChimneyMesh51")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_ChimneyBody52"]
+shape = SubResource("C4_ChimneyShape53")
+
+[node name="C4_VentStackBody55" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000, 8.5500, 13.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_VentStackBody55"]
+mesh = SubResource("C4_VentStackMesh54")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_VentStackBody55"]
+shape = SubResource("C4_VentStackShape56")
+
+[node name="C4_AccessHouseDoorWallBody58" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8750, 9.1000, 12.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_AccessHouseDoorWallBody58"]
+mesh = SubResource("C4_AccessHouseDoorWallMesh57")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_AccessHouseDoorWallBody58"]
+shape = SubResource("C4_AccessHouseDoorWallShape59")
+
+[node name="C4_AccessHouseDoorWallBody61" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1250, 9.1000, 12.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_AccessHouseDoorWallBody61"]
+mesh = SubResource("C4_AccessHouseDoorWallMesh60")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_AccessHouseDoorWallBody61"]
+shape = SubResource("C4_AccessHouseDoorWallShape62")
+
+[node name="C4_AccessHouseBackBody64" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 9.1000, 9.6000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_AccessHouseBackBody64"]
+mesh = SubResource("C4_AccessHouseBackMesh63")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_AccessHouseBackBody64"]
+shape = SubResource("C4_AccessHouseBackShape65")
+
+[node name="C4_AccessHouseSideWBody67" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2000, 9.1000, 10.8000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_AccessHouseSideWBody67"]
+mesh = SubResource("C4_AccessHouseSideWMesh66")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_AccessHouseSideWBody67"]
+shape = SubResource("C4_AccessHouseSideWShape68")
+
+[node name="C4_AccessHouseSideEBody70" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8000, 9.1000, 10.8000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_AccessHouseSideEBody70"]
+mesh = SubResource("C4_AccessHouseSideEMesh69")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_AccessHouseSideEBody70"]
+shape = SubResource("C4_AccessHouseSideEShape71")
+
+[node name="C4_AccessHouseRoofMesh72_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 10.2800, 10.8000)
+mesh = SubResource("C4_AccessHouseRoofMesh72")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="C4_MassBNBody74" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 6.7500, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassBNBody74"]
+mesh = SubResource("C4_MassBNMesh73")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassBNBody74"]
+shape = SubResource("C4_MassBNShape75")
+
+[node name="C4_MassBSBody77" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 6.7500, -3.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassBSBody77"]
+mesh = SubResource("C4_MassBSMesh76")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassBSBody77"]
+shape = SubResource("C4_MassBSShape78")
+
+[node name="C4_MassBEBody80" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 6.7500, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassBEBody80"]
+mesh = SubResource("C4_MassBEMesh79")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassBEBody80"]
+shape = SubResource("C4_MassBEShape81")
+
+[node name="C4_MassBWBody83" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 6.7500, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassBWBody83"]
+mesh = SubResource("C4_MassBWMesh82")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassBWBody83"]
+shape = SubResource("C4_MassBWShape84")
+
+[node name="C4_RoofBFloorCol1Body86" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3000, 9.4000, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBFloorCol1Body86"]
+mesh = SubResource("C4_RoofBFloorCol1Mesh85")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBFloorCol1Body86"]
+shape = SubResource("C4_RoofBFloorCol1Shape87")
+
+[node name="C4_RoofBFloorCol2Body89" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.4000, 3.3900)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBFloorCol2Body89"]
+mesh = SubResource("C4_RoofBFloorCol2Mesh88")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBFloorCol2Body89"]
+shape = SubResource("C4_RoofBFloorCol2Shape90")
+
+[node name="C4_RoofBFloorCol3Body92" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7500, 9.4000, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBFloorCol3Body92"]
+mesh = SubResource("C4_RoofBFloorCol3Mesh91")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBFloorCol3Body92"]
+shape = SubResource("C4_RoofBFloorCol3Shape93")
+
+[node name="C4_RoofBFloorCol4Body95" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.4000, 1.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBFloorCol4Body95"]
+mesh = SubResource("C4_RoofBFloorCol4Mesh94")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBFloorCol4Body95"]
+shape = SubResource("C4_RoofBFloorCol4Shape96")
+
+[node name="C4_RoofBFloorCol5Body98" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5500, 9.4000, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBFloorCol5Body98"]
+mesh = SubResource("C4_RoofBFloorCol5Mesh97")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBFloorCol5Body98"]
+shape = SubResource("C4_RoofBFloorCol5Shape99")
+
+[node name="C4_RoofBParNBody101" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6500, 10.0000, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBParNBody101"]
+mesh = SubResource("C4_RoofBParNMesh100")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBParNBody101"]
+shape = SubResource("C4_RoofBParNShape102")
+
+[node name="C4_RoofBParNBody104" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6500, 10.0000, 7.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBParNBody104"]
+mesh = SubResource("C4_RoofBParNMesh103")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBParNBody104"]
+shape = SubResource("C4_RoofBParNShape105")
+
+[node name="C4_RoofBParSBody107" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 10.0000, -3.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBParSBody107"]
+mesh = SubResource("C4_RoofBParSMesh106")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBParSBody107"]
+shape = SubResource("C4_RoofBParSShape108")
+
+[node name="C4_RoofBParEBody110" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 10.0000, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBParEBody110"]
+mesh = SubResource("C4_RoofBParEMesh109")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBParEBody110"]
+shape = SubResource("C4_RoofBParEShape111")
+
+[node name="C4_RoofBParWBody113" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 10.0000, 2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofBParWBody113"]
+mesh = SubResource("C4_RoofBParWMesh112")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofBParWBody113"]
+shape = SubResource("C4_RoofBParWShape114")
+
+[node name="C4_StairAB_Step0Mesh115_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.0833, 9.3400)
+mesh = SubResource("C4_StairAB_Step0Mesh115")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step1Mesh116_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.1667, 9.0600)
+mesh = SubResource("C4_StairAB_Step1Mesh116")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step2Mesh117_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.2500, 8.7800)
+mesh = SubResource("C4_StairAB_Step2Mesh117")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step3Mesh118_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.3333, 8.5000)
+mesh = SubResource("C4_StairAB_Step3Mesh118")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step4Mesh119_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.4167, 8.2200)
+mesh = SubResource("C4_StairAB_Step4Mesh119")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step5Mesh120_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.5000, 7.9400)
+mesh = SubResource("C4_StairAB_Step5Mesh120")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step6Mesh121_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.5833, 7.6600)
+mesh = SubResource("C4_StairAB_Step6Mesh121")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step7Mesh122_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.6667, 7.3800)
+mesh = SubResource("C4_StairAB_Step7Mesh122")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_Step8Mesh123_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.7500, 7.1000)
+mesh = SubResource("C4_StairAB_Step8Mesh123")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairAB_RampBody125" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, -0.859293, 0.511484, 0, -0.511484, -0.859293, 0.0000, 8.7500, 8.2200)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairAB_RampBody125"]
+mesh = SubResource("C4_StairAB_RampMesh124")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairAB_RampBody125"]
+shape = SubResource("C4_StairAB_RampShape126")
+
+[node name="C4_StairAB_RailWBody128" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6000, 9.2000, 8.2200)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairAB_RailWBody128"]
+mesh = SubResource("C4_StairAB_RailWMesh127")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairAB_RailWBody128"]
+shape = SubResource("C4_StairAB_RailWShape129")
+
+[node name="C4_StairAB_RailEBody131" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6000, 9.2000, 8.2200)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairAB_RailEBody131"]
+mesh = SubResource("C4_StairAB_RailEMesh130")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairAB_RailEBody131"]
+shape = SubResource("C4_StairAB_RailEShape132")
+
+[node name="C4_HVAC1Body134" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5000, 10.1000, -0.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_HVAC1Body134"]
+mesh = SubResource("C4_HVAC1Mesh133")
+surface_material_override/0 = SubResource("HVACMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_HVAC1Body134"]
+shape = SubResource("C4_HVAC1Shape135")
+
+[node name="C4_HVAC2Body137" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5000, 10.1000, 1.7000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_HVAC2Body137"]
+mesh = SubResource("C4_HVAC2Mesh136")
+surface_material_override/0 = SubResource("HVACMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_HVAC2Body137"]
+shape = SubResource("C4_HVAC2Shape138")
+
+[node name="C4_Duct1Mesh139_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5000, 10.8500, 0.6000)
+mesh = SubResource("C4_Duct1Mesh139")
+surface_material_override/0 = SubResource("HVACMat")
+
+[node name="C4_Vent1Body141" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0000, 9.8500, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Vent1Body141"]
+mesh = SubResource("C4_Vent1Mesh140")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Vent1Body141"]
+shape = SubResource("C4_Vent1Shape142")
+
+[node name="C4_Vent2Body144" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8000, 9.8500, 4.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Vent2Body144"]
+mesh = SubResource("C4_Vent2Mesh143")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Vent2Body144"]
+shape = SubResource("C4_Vent2Shape145")
+
+[node name="C4_UtilityCabinetBody147" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2000, 10.2500, -1.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_UtilityCabinetBody147"]
+mesh = SubResource("C4_UtilityCabinetMesh146")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_UtilityCabinetBody147"]
+shape = SubResource("C4_UtilityCabinetShape148")
+
+[node name="C4_DrainMesh149_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 9.5200, 5.5000)
+mesh = SubResource("C4_DrainMesh149")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="C4_MaintPathMesh150_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4000, 9.5100, 2.0000)
+mesh = SubResource("C4_MaintPathMesh150")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="C4_MassC1NBody152" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 6.1500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC1NBody152"]
+mesh = SubResource("C4_MassC1NMesh151")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC1NBody152"]
+shape = SubResource("C4_MassC1NShape153")
+
+[node name="C4_MassC1SBody155" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 6.1500, -10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC1SBody155"]
+mesh = SubResource("C4_MassC1SMesh154")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC1SBody155"]
+shape = SubResource("C4_MassC1SShape156")
+
+[node name="C4_MassC1EBody158" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 6.1500, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC1EBody158"]
+mesh = SubResource("C4_MassC1EMesh157")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC1EBody158"]
+shape = SubResource("C4_MassC1EShape159")
+
+[node name="C4_MassC1WBody161" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5000, 6.1500, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC1WBody161"]
+mesh = SubResource("C4_MassC1WMesh160")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC1WBody161"]
+shape = SubResource("C4_MassC1WShape162")
+
+[node name="C4_MassC2NBody164" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 5.6500, -4.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC2NBody164"]
+mesh = SubResource("C4_MassC2NMesh163")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC2NBody164"]
+shape = SubResource("C4_MassC2NShape165")
+
+[node name="C4_MassC2SBody167" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 5.6500, -10.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC2SBody167"]
+mesh = SubResource("C4_MassC2SMesh166")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC2SBody167"]
+shape = SubResource("C4_MassC2SShape168")
+
+[node name="C4_MassC2EBody170" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 5.6500, -7.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC2EBody170"]
+mesh = SubResource("C4_MassC2EMesh169")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC2EBody170"]
+shape = SubResource("C4_MassC2EShape171")
+
+[node name="C4_MassC2WBody173" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 5.6500, -7.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC2WBody173"]
+mesh = SubResource("C4_MassC2WMesh172")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC2WBody173"]
+shape = SubResource("C4_MassC2WShape174")
+
+[node name="C4_MassC3NBody176" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5000, 5.6500, -2.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC3NBody176"]
+mesh = SubResource("C4_MassC3NMesh175")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC3NBody176"]
+shape = SubResource("C4_MassC3NShape177")
+
+[node name="C4_MassC3SBody179" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5000, 5.6500, -9.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC3SBody179"]
+mesh = SubResource("C4_MassC3SMesh178")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC3SBody179"]
+shape = SubResource("C4_MassC3SShape180")
+
+[node name="C4_MassC3EBody182" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5000, 5.6500, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC3EBody182"]
+mesh = SubResource("C4_MassC3EMesh181")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC3EBody182"]
+shape = SubResource("C4_MassC3EShape183")
+
+[node name="C4_MassC3WBody185" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 5.6500, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_MassC3WBody185"]
+mesh = SubResource("C4_MassC3WMesh184")
+surface_material_override/0 = SubResource("BrickMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_MassC3WBody185"]
+shape = SubResource("C4_MassC3WShape186")
+
+[node name="C4_RoofC1Body188" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 8.8000, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1Body188"]
+mesh = SubResource("C4_RoofC1Mesh187")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1Body188"]
+shape = SubResource("C4_RoofC1Shape189")
+
+[node name="C4_RoofC2Body191" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 8.3000, -7.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2Body191"]
+mesh = SubResource("C4_RoofC2Mesh190")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2Body191"]
+shape = SubResource("C4_RoofC2Shape192")
+
+[node name="C4_RoofC3Body194" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5000, 8.3000, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3Body194"]
+mesh = SubResource("C4_RoofC3Mesh193")
+surface_material_override/0 = SubResource("TarGravelMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3Body194"]
+shape = SubResource("C4_RoofC3Shape195")
+
+[node name="C4_RoofC1ParNBody197" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8750, 9.3250, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParNBody197"]
+mesh = SubResource("C4_RoofC1ParNMesh196")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParNBody197"]
+shape = SubResource("C4_RoofC1ParNShape198")
+
+[node name="C4_RoofC1ParNBody200" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6250, 9.3250, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParNBody200"]
+mesh = SubResource("C4_RoofC1ParNMesh199")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParNBody200"]
+shape = SubResource("C4_RoofC1ParNShape201")
+
+[node name="C4_RoofC1ParSBody203" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 9.3250, -10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParSBody203"]
+mesh = SubResource("C4_RoofC1ParSMesh202")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParSBody203"]
+shape = SubResource("C4_RoofC1ParSShape204")
+
+[node name="C4_RoofC1ParEBody206" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 9.3250, -8.6750)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParEBody206"]
+mesh = SubResource("C4_RoofC1ParEMesh205")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParEBody206"]
+shape = SubResource("C4_RoofC1ParEShape207")
+
+[node name="C4_RoofC1ParEBody209" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 9.3250, -4.0750)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParEBody209"]
+mesh = SubResource("C4_RoofC1ParEMesh208")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParEBody209"]
+shape = SubResource("C4_RoofC1ParEShape210")
+
+[node name="C4_RoofC1ParWBody212" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5000, 9.3250, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC1ParWBody212"]
+mesh = SubResource("C4_RoofC1ParWMesh211")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC1ParWBody212"]
+shape = SubResource("C4_RoofC1ParWShape213")
+
+[node name="C4_RoofC2ParNBody215" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3750, 8.8250, -4.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParNBody215"]
+mesh = SubResource("C4_RoofC2ParNMesh214")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParNBody215"]
+shape = SubResource("C4_RoofC2ParNShape216")
+
+[node name="C4_RoofC2ParNBody218" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3750, 8.8250, -4.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParNBody218"]
+mesh = SubResource("C4_RoofC2ParNMesh217")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParNBody218"]
+shape = SubResource("C4_RoofC2ParNShape219")
+
+[node name="C4_RoofC2ParSBody221" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 8.8250, -10.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParSBody221"]
+mesh = SubResource("C4_RoofC2ParSMesh220")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParSBody221"]
+shape = SubResource("C4_RoofC2ParSShape222")
+
+[node name="C4_RoofC2ParEBody224" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 8.8250, -8.9250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParEBody224"]
+mesh = SubResource("C4_RoofC2ParEMesh223")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParEBody224"]
+shape = SubResource("C4_RoofC2ParEShape225")
+
+[node name="C4_RoofC2ParEBody227" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0000, 8.8250, -5.3250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParEBody227"]
+mesh = SubResource("C4_RoofC2ParEMesh226")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParEBody227"]
+shape = SubResource("C4_RoofC2ParEShape228")
+
+[node name="C4_RoofC2ParWBody230" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 8.8250, -8.9250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParWBody230"]
+mesh = SubResource("C4_RoofC2ParWMesh229")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParWBody230"]
+shape = SubResource("C4_RoofC2ParWShape231")
+
+[node name="C4_RoofC2ParWBody233" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 8.8250, -5.3250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC2ParWBody233"]
+mesh = SubResource("C4_RoofC2ParWMesh232")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC2ParWBody233"]
+shape = SubResource("C4_RoofC2ParWShape234")
+
+[node name="C4_RoofC3ParNBody236" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6250, 8.8250, -2.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParNBody236"]
+mesh = SubResource("C4_RoofC3ParNMesh235")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParNBody236"]
+shape = SubResource("C4_RoofC3ParNShape237")
+
+[node name="C4_RoofC3ParNBody239" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3750, 8.8250, -2.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParNBody239"]
+mesh = SubResource("C4_RoofC3ParNMesh238")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParNBody239"]
+shape = SubResource("C4_RoofC3ParNShape240")
+
+[node name="C4_RoofC3ParSBody242" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5000, 8.8250, -9.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParSBody242"]
+mesh = SubResource("C4_RoofC3ParSMesh241")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParSBody242"]
+shape = SubResource("C4_RoofC3ParSShape243")
+
+[node name="C4_RoofC3ParEBody245" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5000, 8.8250, -6.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParEBody245"]
+mesh = SubResource("C4_RoofC3ParEMesh244")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParEBody245"]
+shape = SubResource("C4_RoofC3ParEShape246")
+
+[node name="C4_RoofC3ParWBody248" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 8.8250, -8.4250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParWBody248"]
+mesh = SubResource("C4_RoofC3ParWMesh247")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParWBody248"]
+shape = SubResource("C4_RoofC3ParWShape249")
+
+[node name="C4_RoofC3ParWBody251" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 8.8250, -4.3250)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_RoofC3ParWBody251"]
+mesh = SubResource("C4_RoofC3ParWMesh250")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_RoofC3ParWBody251"]
+shape = SubResource("C4_RoofC3ParWShape252")
+
+[node name="C4_StairBC1_Step0Mesh253_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 8.9500, -1.8600)
+mesh = SubResource("C4_StairBC1_Step0Mesh253")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_Step1Mesh254_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.0000, -1.5800)
+mesh = SubResource("C4_StairBC1_Step1Mesh254")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_Step2Mesh255_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.0500, -1.3000)
+mesh = SubResource("C4_StairBC1_Step2Mesh255")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_Step3Mesh256_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.1000, -1.0200)
+mesh = SubResource("C4_StairBC1_Step3Mesh256")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_Step4Mesh257_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.1500, -0.7400)
+mesh = SubResource("C4_StairBC1_Step4Mesh257")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_Step5Mesh258_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 9.2000, -0.4600)
+mesh = SubResource("C4_StairBC1_Step5Mesh258")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairBC1_RampBody260" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, 0.941742, 0.336336, 0, -0.336336, 0.941742, -5.5000, 9.2000, -1.1600)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairBC1_RampBody260"]
+mesh = SubResource("C4_StairBC1_RampMesh259")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairBC1_RampBody260"]
+shape = SubResource("C4_StairBC1_RampShape261")
+
+[node name="C4_StairBC1_RailWBody263" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0500, 9.6500, -1.1600)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairBC1_RailWBody263"]
+mesh = SubResource("C4_StairBC1_RailWMesh262")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairBC1_RailWBody263"]
+shape = SubResource("C4_StairBC1_RailWShape264")
+
+[node name="C4_StairBC1_RailEBody266" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9500, 9.6500, -1.1600)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairBC1_RailEBody266"]
+mesh = SubResource("C4_StairBC1_RailEMesh265")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairBC1_RailEBody266"]
+shape = SubResource("C4_StairBC1_RailEShape267")
+
+[node name="C4_CatwalkC1C2Body269" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7500, 8.5500, -6.7500)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_CatwalkC1C2Body269"]
+mesh = SubResource("C4_CatwalkC1C2Mesh268")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_CatwalkC1C2Body269"]
+shape = SubResource("C4_CatwalkC1C2Shape270")
+
+[node name="C4_CatwalkC1C2RailNBody272" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7500, 9.1500, -6.1500)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_CatwalkC1C2RailNBody272"]
+mesh = SubResource("C4_CatwalkC1C2RailNMesh271")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_CatwalkC1C2RailNBody272"]
+shape = SubResource("C4_CatwalkC1C2RailNShape273")
+
+[node name="C4_CatwalkC1C2RailSBody275" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7500, 9.1500, -7.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_CatwalkC1C2RailSBody275"]
+mesh = SubResource("C4_CatwalkC1C2RailSMesh274")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_CatwalkC1C2RailSBody275"]
+shape = SubResource("C4_CatwalkC1C2RailSShape276")
+
+[node name="C4_CatwalkRampC1Body278" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, 0.925305, -0.379223, 0, 0.379223, 0.925305, -4.3500, 8.7750, -1.7050)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_CatwalkRampC1Body278"]
+mesh = SubResource("C4_CatwalkRampC1Mesh277")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_CatwalkRampC1Body278"]
+shape = SubResource("C4_CatwalkRampC1Shape279")
+
+[node name="C4_WoodBridgeC2C3Body281" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7500, 8.3000, -6.7500)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_WoodBridgeC2C3Body281"]
+mesh = SubResource("C4_WoodBridgeC2C3Mesh280")
+surface_material_override/0 = SubResource("WoodPlankMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_WoodBridgeC2C3Body281"]
+shape = SubResource("C4_WoodBridgeC2C3Shape282")
+
+[node name="C4_WoodBridgeRailNBody284" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7500, 8.8750, -6.2000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_WoodBridgeRailNBody284"]
+mesh = SubResource("C4_WoodBridgeRailNMesh283")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_WoodBridgeRailNBody284"]
+shape = SubResource("C4_WoodBridgeRailNShape285")
+
+[node name="C4_WoodBridgeRailSBody287" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7500, 8.8750, -7.3000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_WoodBridgeRailSBody287"]
+mesh = SubResource("C4_WoodBridgeRailSMesh286")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_WoodBridgeRailSBody287"]
+shape = SubResource("C4_WoodBridgeRailSShape288")
+
+[node name="C4_Loop0Body290" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5000, 10.0000, -11.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop0Body290"]
+mesh = SubResource("C4_Loop0Mesh289")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop0Body290"]
+shape = SubResource("C4_Loop0Shape291")
+
+[node name="C4_Loop0RailNBody293" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5000, 10.6000, -10.9000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop0RailNBody293"]
+mesh = SubResource("C4_Loop0RailNMesh292")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop0RailNBody293"]
+shape = SubResource("C4_Loop0RailNShape294")
+
+[node name="C4_Loop0RailSBody296" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5000, 10.6000, -12.1000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop0RailSBody296"]
+mesh = SubResource("C4_Loop0RailSMesh295")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop0RailSBody296"]
+shape = SubResource("C4_Loop0RailSShape297")
+
+[node name="C4_Loop1Body299" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7000, 10.0000, -8.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop1Body299"]
+mesh = SubResource("C4_Loop1Mesh298")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop1Body299"]
+shape = SubResource("C4_Loop1Shape300")
+
+[node name="C4_Loop1RailEBody302" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3000, 10.6000, -8.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop1RailEBody302"]
+mesh = SubResource("C4_Loop1RailEMesh301")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop1RailEBody302"]
+shape = SubResource("C4_Loop1RailEShape303")
+
+[node name="C4_Loop1RailWBody305" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1000, 10.6000, -8.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop1RailWBody305"]
+mesh = SubResource("C4_Loop1RailWMesh304")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop1RailWBody305"]
+shape = SubResource("C4_Loop1RailWShape306")
+
+[node name="C4_Loop2Body308" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8500, 10.0000, -4.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop2Body308"]
+mesh = SubResource("C4_Loop2Mesh307")
+surface_material_override/0 = SubResource("MetalTrimMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop2Body308"]
+shape = SubResource("C4_Loop2Shape309")
+
+[node name="C4_Loop2RailNBody311" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8500, 10.6000, -3.9000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop2RailNBody311"]
+mesh = SubResource("C4_Loop2RailNMesh310")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop2RailNBody311"]
+shape = SubResource("C4_Loop2RailNShape312")
+
+[node name="C4_Loop2RailSBody314" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8500, 10.6000, -5.1000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_Loop2RailSBody314"]
+mesh = SubResource("C4_Loop2RailSMesh313")
+surface_material_override/0 = SubResource("MetalRailMat")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_Loop2RailSBody314"]
+shape = SubResource("C4_Loop2RailSShape315")
+
+[node name="C4_StairLoop_Step0Mesh316_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8400, 9.0200, -10.6000)
+mesh = SubResource("C4_StairLoop_Step0Mesh316")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairLoop_Step1Mesh317_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1200, 9.2600, -10.6000)
+mesh = SubResource("C4_StairLoop_Step1Mesh317")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairLoop_Step2Mesh318_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4000, 9.5000, -10.6000)
+mesh = SubResource("C4_StairLoop_Step2Mesh318")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairLoop_Step3Mesh319_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6800, 9.7400, -10.6000)
+mesh = SubResource("C4_StairLoop_Step3Mesh319")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairLoop_Step4Mesh320_N" type="MeshInstance3D" parent="LowerRoofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9600, 9.9800, -10.6000)
+mesh = SubResource("C4_StairLoop_Step4Mesh320")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="C4_StairLoop_RampBody322" type="StaticBody3D" parent="LowerRoofs"]
+transform = Transform3D(0.650791, 0.759257, 0, -0.650791, 0.759257, 0, 0, 0, 1, -13.4000, 9.5000, -10.6000)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerRoofs/C4_StairLoop_RampBody322"]
+mesh = SubResource("C4_StairLoop_RampMesh321")
+surface_material_override/0 = SubResource("StairMat4")
+
+[node name="Shape" type="CollisionShape3D" parent="LowerRoofs/C4_StairLoop_RampBody322"]
+shape = SubResource("C4_StairLoop_RampShape323")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 9.0, 12.200000000000001)
+
+[node name="RoofHatchLanding" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7999999999999998, 9.0, 10.8)
+
+
+[node name="LandingFromLower" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 10.5, 2.0)
+
+[node name="LandingFromMid" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 10.5, 2.0)
 
