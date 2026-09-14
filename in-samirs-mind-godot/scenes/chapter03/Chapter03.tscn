@@ -1,4 +1,4 @@
-[gd_scene load_steps=545 format=3 uid="uid://chapter03_scene"]
+[gd_scene load_steps=638 format=3 uid="uid://chapter03_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -1562,6 +1562,285 @@ size = Vector3(6.0000, 3.0000, 5.0000)
 [sub_resource type="BoxShape3D" id="C3S_FlavorShapeUpperLanding231"]
 size = Vector3(7.0000, 3.0000, 6.0000)
 
+[sub_resource type="BoxMesh" id="C3A_Ceil2_storageW2Mesh1"]
+size = Vector3(0.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil2_storageE2Mesh2"]
+size = Vector3(3.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil2_storageS2Mesh3"]
+size = Vector3(2.6000, 0.1500, 0.3000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil2_storageN2Mesh4"]
+size = Vector3(2.6000, 0.1500, -0.3000)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step0Mesh5"]
+size = Vector3(2.0000, 0.1867, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step1Mesh6"]
+size = Vector3(2.0000, 0.3733, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step2Mesh7"]
+size = Vector3(2.0000, 0.5599, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step3Mesh8"]
+size = Vector3(2.0000, 0.7466, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step4Mesh9"]
+size = Vector3(2.0000, 0.9333, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step5Mesh10"]
+size = Vector3(2.0000, 1.1199, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step6Mesh11"]
+size = Vector3(2.0000, 1.3065, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step7Mesh12"]
+size = Vector3(2.0000, 1.4932, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step8Mesh13"]
+size = Vector3(2.0000, 1.6799, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step9Mesh14"]
+size = Vector3(2.0000, 1.8665, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step10Mesh15"]
+size = Vector3(2.0000, 2.0531, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step11Mesh16"]
+size = Vector3(2.0000, 2.2398, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step12Mesh17"]
+size = Vector3(2.0000, 2.4264, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step13Mesh18"]
+size = Vector3(2.0000, 2.6131, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step14Mesh19"]
+size = Vector3(2.0000, 2.7997, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step15Mesh20"]
+size = Vector3(2.0000, 2.9864, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step16Mesh21"]
+size = Vector3(2.0000, 3.1730, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step17Mesh22"]
+size = Vector3(2.0000, 3.3597, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step18Mesh23"]
+size = Vector3(2.0000, 3.5463, 0.3300)
+
+[sub_resource type="BoxMesh" id="C3A_Stair2Step19Mesh24"]
+size = Vector3(2.0000, 3.7330, 0.3300)
+
+[sub_resource type="BoxShape3D" id="C3A_Stair2RampShape25"]
+size = Vector3(2.0000, 0.15, 9.9826)
+
+[sub_resource type="BoxMesh" id="C3A_ExtNorthAtticMesh27"]
+size = Vector3(20.0000, 3.5000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3A_ExtNorthAtticShape29"]
+size = Vector3(20.0000, 3.5000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3A_ExtSouthAtticMesh30"]
+size = Vector3(20.0000, 3.5000, 0.2000)
+
+[sub_resource type="BoxShape3D" id="C3A_ExtSouthAtticShape32"]
+size = Vector3(20.0000, 3.5000, 0.2000)
+
+[sub_resource type="BoxMesh" id="C3A_ExtWestAtticMesh33"]
+size = Vector3(0.2000, 3.5000, 19.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_ExtWestAtticShape35"]
+size = Vector3(0.2000, 3.5000, 19.0000)
+
+[sub_resource type="BoxMesh" id="C3A_ExtEastAtticMesh36"]
+size = Vector3(0.2000, 3.5000, 19.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_ExtEastAtticShape38"]
+size = Vector3(0.2000, 3.5000, 19.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_landingWMesh39"]
+size = Vector3(0.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_landingWShape41"]
+size = Vector3(0.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_landingEMesh42"]
+size = Vector3(3.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_landingEShape44"]
+size = Vector3(3.7000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_landingSMesh45"]
+size = Vector3(2.6000, 0.1500, 0.3000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_landingSShape47"]
+size = Vector3(2.6000, 0.1500, 0.3000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_attic_landingMesh48"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_roof_view_deckMesh49"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_roof_view_deckShape51"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_roof_view_deckMesh52"]
+size = Vector3(7.0000, 0.1500, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_main_atticMesh53"]
+size = Vector3(9.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_main_atticShape55"]
+size = Vector3(9.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_main_atticMesh56"]
+size = Vector3(9.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_duplicate_corridorMesh57"]
+size = Vector3(2.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_duplicate_corridorShape59"]
+size = Vector3(2.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_duplicate_corridorMesh60"]
+size = Vector3(2.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Floor3_east_attic_wingMesh61"]
+size = Vector3(9.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_Floor3_east_attic_wingShape63"]
+size = Vector3(9.0000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_ParapetShaftWestMesh64"]
+size = Vector3(0.1200, 1.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_ParapetShaftWestShape66"]
+size = Vector3(0.1200, 1.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_ParapetShaftEastMesh67"]
+size = Vector3(0.1200, 1.0000, 7.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_ParapetShaftEastShape69"]
+size = Vector3(0.1200, 1.0000, 7.0000)
+
+[sub_resource type="BoxMesh" id="C3A_ParapetShaftNorthMesh70"]
+size = Vector3(6.0000, 1.0000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_ParapetShaftNorthShape72"]
+size = Vector3(6.0000, 1.0000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_MainAttic_CorridorMesh73"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_MainAttic_CorridorShape75"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_MainAttic_CorridorMesh76"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_MainAttic_CorridorShape78"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_MainAttic_CorridorLintelMesh79"]
+size = Vector3(0.1200, 1.2000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_MainAttic_CorridorLintelShape81"]
+size = Vector3(0.1200, 1.2000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Corridor_EastWingMesh82"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Corridor_EastWingShape84"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Corridor_EastWingMesh85"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Corridor_EastWingShape87"]
+size = Vector3(0.1200, 3.5000, 5.3000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Corridor_EastWingLintelMesh88"]
+size = Vector3(0.1200, 1.2000, 1.4000)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Corridor_EastWingLintelShape90"]
+size = Vector3(0.1200, 1.2000, 1.4000)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Landing_MainAtticMesh91"]
+size = Vector3(5.3000, 3.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Landing_MainAtticShape93"]
+size = Vector3(5.3000, 3.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Landing_MainAtticMesh94"]
+size = Vector3(0.3000, 3.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Landing_MainAtticShape96"]
+size = Vector3(0.3000, 3.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Landing_MainAtticLintelMesh97"]
+size = Vector3(1.4000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Landing_MainAtticLintelShape99"]
+size = Vector3(1.4000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Deck_EastWingMesh100"]
+size = Vector3(2.8000, 3.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Deck_EastWingShape102"]
+size = Vector3(2.8000, 3.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Deck_EastWingMesh103"]
+size = Vector3(2.8000, 3.5000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Deck_EastWingShape105"]
+size = Vector3(2.8000, 3.5000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_W3_Deck_EastWingLintelMesh106"]
+size = Vector3(1.4000, 1.2000, 0.1200)
+
+[sub_resource type="BoxShape3D" id="C3A_W3_Deck_EastWingLintelShape108"]
+size = Vector3(1.4000, 1.2000, 0.1200)
+
+[sub_resource type="BoxMesh" id="C3A_CorridorBeam0Mesh109"]
+size = Vector3(2.0000, 0.2000, 0.1500)
+
+[sub_resource type="BoxMesh" id="C3A_CorridorBeam1Mesh110"]
+size = Vector3(2.0000, 0.2000, 0.1500)
+
+[sub_resource type="BoxMesh" id="C3A_CorridorBeam2Mesh111"]
+size = Vector3(2.0000, 0.2000, 0.1500)
+
+[sub_resource type="BoxMesh" id="C3A_CorridorBeam3Mesh112"]
+size = Vector3(2.0000, 0.2000, 0.1500)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_eastWingWMesh113"]
+size = Vector3(4.1000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_eastWingEMesh114"]
+size = Vector3(3.1000, 0.1500, 12.0000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_eastWingSMesh115"]
+size = Vector3(1.8000, 0.1500, 7.1000)
+
+[sub_resource type="BoxMesh" id="C3A_Ceil3_eastWingNMesh116"]
+size = Vector3(1.8000, 0.1500, 3.1000)
+
+[sub_resource type="BoxShape3D" id="C3A_FlavorShapeAttic117"]
+size = Vector3(7.0000, 3.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_FlavorShapeDup118"]
+size = Vector3(1.8000, 3.0000, 10.0000)
+
+[sub_resource type="BoxShape3D" id="C3A_FlavorShapeView119"]
+size = Vector3(6.0000, 3.0000, 6.0000)
+
+[sub_resource type="BoxMesh" id="C3A_ExtraCorridorMesh120"]
+size = Vector3(2.0, 0.15, 6.0)
+
 [node name="Chapter03" type="Node3D"]
 script = ExtResource("50")
 
@@ -1593,105 +1872,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, -14)
 [node name="Attic" type="Node3D" parent="."]
 
 
-[node name="WallNorth" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -20)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/WallNorth"]
-mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("AtticWallMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/WallNorth"]
-shape = SubResource("WallShapeEW")
 
-[node name="WallSouth" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/WallSouth"]
-mesh = SubResource("WallMeshEW")
-surface_material_override/0 = SubResource("AtticWallMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/WallSouth"]
-shape = SubResource("WallShapeEW")
 
-[node name="WallEast" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 22, 10, 0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/WallEast"]
-mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("AtticWallMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/WallEast"]
-shape = SubResource("WallShapeNS")
 
-[node name="WallWest" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -22, 10, 0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/WallWest"]
-mesh = SubResource("WallMeshNS")
-surface_material_override/0 = SubResource("AtticWallMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/WallWest"]
-shape = SubResource("WallShapeNS")
 
-[node name="ZoneAttic" type="MeshInstance3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, -8)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("AtticMat")
 
-[node name="ZoneDuplicateCorridor" type="MeshInstance3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, 6)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("DuplicateCorridorMat")
-
-[node name="ZoneView" type="MeshInstance3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8.11, 6)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("ViewMat")
-
-[node name="Flavor_Attic" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, -8)
-script = ExtResource("1")
-flavor_text = "Attic (unfinished)."
-[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_Attic"]
-shape = SubResource("Shape_flavor_med")
-[node name="Prop_AtticBoxes" type="Sprite3D" parent="Attic/Flavor_Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -8.655, -3)
-texture = ExtResource("40")
-pixel_size = 0.001498
-[node name="Prop_DustsheetFurniture" type="Sprite3D" parent="Attic/Flavor_Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -8.533, 2)
-texture = ExtResource("41")
-pixel_size = 0.001865
-[node name="Prop_BareBulb" type="Sprite3D" parent="Attic/Flavor_Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-texture = ExtResource("42")
-pixel_size = 0.000508
-
-[node name="Flavor_DuplicateCorridor" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, 6)
-script = ExtResource("1")
-flavor_text = "Duplicate Corridor (slightly different)."
-[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_DuplicateCorridor"]
-shape = SubResource("Shape_flavor_med")
-
-[node name="Flavor_View" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 9, 6)
-script = ExtResource("1")
-flavor_text = "View to Courtyard Below. The roof remembers a different sky."
-[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_View"]
-shape = SubResource("Shape_flavor_med")
-
-[node name="RoofHatch" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8.6, 8)
-script = ExtResource("54")
-locked_prompt = "The hatch won't lift."
-locked_toast = "It lifts half an inch, then catches on something that isn't there."
-unlocked_prompt = "The hatch lifts freely now. Press E to climb through."
-unlock_toast = "Something in the attic just let go."
-transition_text = "The hatch opens onto the same wrong sky the Back Exit does."
-destination_chapter = "chapter04"
-destination_spawn_marker = "RoofHatchLanding"
-[node name="Mesh" type="MeshInstance3D" parent="Attic/RoofHatch"]
-mesh = SubResource("BoxMesh_roofhatch")
-surface_material_override/0 = SubResource("RoofHatchMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/RoofHatch"]
-shape = SubResource("Shape_roofhatch")
-[node name="Light" type="OmniLight3D" parent="Attic/RoofHatch"]
-light_color = Color(0.85, 0.88, 1, 1)
-light_energy = 0.5
-omni_range = 3.0
 
 [node name="LandingFromSecond" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)
@@ -1708,135 +1893,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.5, -10)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[node name="A_ColumnDivider_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9.6, -7.5)
-[node name="Mesh" type="MeshInstance3D" parent="A_ColumnDivider_0"]
-mesh = SubResource("WallSeg_25x2500")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="A_ColumnDivider_0"]
-shape = SubResource("WallSeg_25x2500Shape")
-
-[node name="A_ColumnDivider_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9.6, 13.5)
-[node name="Mesh" type="MeshInstance3D" parent="A_ColumnDivider_1"]
-mesh = SubResource("WallSeg_25x1300")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="A_ColumnDivider_1"]
-shape = SubResource("WallSeg_25x1300Shape")
-
-[node name="A_RowDivider_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 9.6, -2)
-[node name="Mesh" type="MeshInstance3D" parent="A_RowDivider_0"]
-mesh = SubResource("WallSeg_1300x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="A_RowDivider_0"]
-shape = SubResource("WallSeg_1300x25Shape")
-
-[node name="A_RowDivider_1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0, 9.6, -2)
-[node name="Mesh" type="MeshInstance3D" parent="A_RowDivider_1"]
-mesh = SubResource("WallSeg_1600x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="A_RowDivider_1"]
-shape = SubResource("WallSeg_1600x25Shape")
-
-[node name="A_RowDivider_2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 9.6, -2)
-[node name="Mesh" type="MeshInstance3D" parent="A_RowDivider_2"]
-mesh = SubResource("WallSeg_1100x25")
-surface_material_override/0 = SubResource("WallMat")
-[node name="Shape" type="CollisionShape3D" parent="A_RowDivider_2"]
-shape = SubResource("WallSeg_1100x25Shape")
-
-
-
-[node name="Journal3" type="Area3D" parent="Attic" groups=["pickups"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 9.1, 4)
-script = ExtResource("51")
-kind = 0
-journal_text = "When you finally leave this house, don't expect the street to still be there."
-item_id = "5"
-[node name="Icon" type="Sprite3D" parent="Attic/Journal3"]
-texture = ExtResource("52")
-pixel_size = 0.0016
-billboard = 1
-[node name="Glow" type="OmniLight3D" parent="Attic/Journal3"]
-light_color = Color(1, 0.949, 0.788, 1)
-light_energy = 0.35
-omni_range = 1.4
-[node name="Shape" type="CollisionShape3D" parent="Attic/Journal3"]
-shape = SubResource("Shape_pickup3")
-
-
-
-[node name="RoomCheck_ImpossibleRoom" type="Area3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9.1, 0)
-script = ExtResource("53")
-check_id = "impossible_room"
-check_text = "Um, was that door there last time?"
-[node name="Shape" type="CollisionShape3D" parent="Attic/RoomCheck_ImpossibleRoom"]
-shape = SubResource("Shape_roomcheck")
-
-
-[node name="ZoneDuplicateCorridorExtra" type="MeshInstance3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8.11, 18)
-mesh = SubResource("ZonePlaneMed")
-surface_material_override/0 = SubResource("DuplicateCorridorMat")
-visible = false
-
-
-
-
-[node name="FloorLeft" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 0.0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorLeft"]
-mesh = SubResource("Attic_LeftFrameMesh")
-surface_material_override/0 = SubResource("AtticFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/FloorLeft"]
-shape = SubResource("Attic_LeftFrameMeshShape")
-
-[node name="FloorRight" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 8, 0.0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorRight"]
-mesh = SubResource("Attic_RightFrameMesh")
-surface_material_override/0 = SubResource("AtticFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/FloorRight"]
-shape = SubResource("Attic_RightFrameMeshShape")
-
-[node name="FloorFront" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 8, 5.0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorFront"]
-mesh = SubResource("Attic_FrontFrameMesh")
-surface_material_override/0 = SubResource("AtticFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/FloorFront"]
-shape = SubResource("Attic_FrontFrameMeshShape")
-
-[node name="FloorBack" type="StaticBody3D" parent="Attic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0, 8, -18.0)
-[node name="Mesh" type="MeshInstance3D" parent="Attic/FloorBack"]
-mesh = SubResource("Attic_BackFrameMesh")
-surface_material_override/0 = SubResource("AtticFloorMat")
-[node name="Shape" type="CollisionShape3D" parent="Attic/FloorBack"]
-shape = SubResource("Attic_BackFrameMeshShape")
 
 
 
@@ -3225,15 +3281,7 @@ surface_material_override/0 = SubResource("SecondFloorMat")
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3S_Floor2_small_roomBody59"]
 shape = SubResource("C3S_Floor2_small_roomShape60")
 
-[node name="C3S_Ceil2_storageWMesh61_N" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5000, 8.0750, -5.5000)
-mesh = SubResource("C3S_Ceil2_storageWMesh61")
-surface_material_override/0 = SubResource("SecondFloorMat")
 
-[node name="C3S_Ceil2_storageEMesh62_N" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5000, 8.0750, -5.5000)
-mesh = SubResource("C3S_Ceil2_storageEMesh62")
-surface_material_override/0 = SubResource("SecondFloorMat")
 
 [node name="C3S_Ceil2_upper_landingMesh63_N" type="MeshInstance3D" parent="SecondFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 8.0750, -5.5000)
@@ -3888,68 +3936,560 @@ check_text = "The ground outside is farther away than it should be."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/RoomCheck_ExteriorDistance"]
 shape = SubResource("Shape_roomcheck")
 
-[node name="Stair2_Step0" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.26667, -3.2)
-mesh = SubResource("StairStepMesh0")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Ceil2_storageW2Mesh1_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6500, 4.0750, -5.5000)
+mesh = SubResource("C3A_Ceil2_storageW2Mesh1")
+surface_material_override/0 = SubResource("SecondFloorMat")
 
-[node name="Stair2_Step1" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.43334, -3.7)
-mesh = SubResource("StairStepMesh1")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Ceil2_storageE2Mesh2_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8500, 4.0750, -5.5000)
+mesh = SubResource("C3A_Ceil2_storageE2Mesh2")
+surface_material_override/0 = SubResource("SecondFloorMat")
 
-[node name="Stair2_Step2" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.60001, -4.2)
-mesh = SubResource("StairStepMesh2")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Ceil2_storageS2Mesh3_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.0750, -8.8500)
+mesh = SubResource("C3A_Ceil2_storageS2Mesh3")
+surface_material_override/0 = SubResource("SecondFloorMat")
 
-[node name="Stair2_Step3" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.76668, -4.7)
-mesh = SubResource("StairStepMesh3")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Ceil2_storageN2Mesh4_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.0750, -1.8500)
+mesh = SubResource("C3A_Ceil2_storageN2Mesh4")
+surface_material_override/0 = SubResource("SecondFloorMat")
 
-[node name="Stair2_Step4" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 4.93335, -5.2)
-mesh = SubResource("StairStepMesh4")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step0Mesh5_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.3603, -8.3350)
+mesh = SubResource("C3A_Stair2Step0Mesh5")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step5" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.10002, -5.7)
-mesh = SubResource("StairStepMesh5")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step1Mesh6_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.4536, -8.0050)
+mesh = SubResource("C3A_Stair2Step1Mesh6")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step6" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.26669, -6.2)
-mesh = SubResource("StairStepMesh6")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step2Mesh7_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.5470, -7.6750)
+mesh = SubResource("C3A_Stair2Step2Mesh7")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step7" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.43336, -6.7)
-mesh = SubResource("StairStepMesh7")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step3Mesh8_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.6403, -7.3450)
+mesh = SubResource("C3A_Stair2Step3Mesh8")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step8" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.60003, -7.2)
-mesh = SubResource("StairStepMesh8")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step4Mesh9_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.7336, -7.0150)
+mesh = SubResource("C3A_Stair2Step4Mesh9")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step9" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.76670, -7.7)
-mesh = SubResource("StairStepMesh9")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step5Mesh10_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.8270, -6.6850)
+mesh = SubResource("C3A_Stair2Step5Mesh10")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step10" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 5.93337, -8.2)
-mesh = SubResource("StairStepMesh10")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step6Mesh11_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 4.9203, -6.3550)
+mesh = SubResource("C3A_Stair2Step6Mesh11")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_Step11" type="MeshInstance3D" parent="SecondFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0, 6.10004, -8.7)
-mesh = SubResource("StairStepMesh11")
-surface_material_override/0 = SubResource("WallMat")
+[node name="C3A_Stair2Step7Mesh12_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.0136, -6.0250)
+mesh = SubResource("C3A_Stair2Step7Mesh12")
+surface_material_override/0 = SubResource("StairMat")
 
-[node name="Stair2_RampCollision" type="StaticBody3D" parent="SecondFloor"]
-transform = Transform3D(1.00000, 0.00000, 0.00000, 0.00000, -0.83205, 0.55470, 0.00000, -0.55470, -0.83205, -8.0, 6.1, -5.9500)
-[node name="Shape" type="CollisionShape3D" parent="SecondFloor/Stair2_RampCollision"]
-shape = SubResource("StairRampShape")
+[node name="C3A_Stair2Step8Mesh13_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.1069, -5.6950)
+mesh = SubResource("C3A_Stair2Step8Mesh13")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step9Mesh14_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.2003, -5.3650)
+mesh = SubResource("C3A_Stair2Step9Mesh14")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step10Mesh15_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.2936, -5.0350)
+mesh = SubResource("C3A_Stair2Step10Mesh15")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step11Mesh16_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.3869, -4.7050)
+mesh = SubResource("C3A_Stair2Step11Mesh16")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step12Mesh17_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.4802, -4.3750)
+mesh = SubResource("C3A_Stair2Step12Mesh17")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step13Mesh18_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.5736, -4.0450)
+mesh = SubResource("C3A_Stair2Step13Mesh18")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step14Mesh19_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.6669, -3.7150)
+mesh = SubResource("C3A_Stair2Step14Mesh19")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step15Mesh20_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.7602, -3.3850)
+mesh = SubResource("C3A_Stair2Step15Mesh20")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step16Mesh21_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.8535, -3.0550)
+mesh = SubResource("C3A_Stair2Step16Mesh21")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step17Mesh22_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.9468, -2.7250)
+mesh = SubResource("C3A_Stair2Step17Mesh22")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step18Mesh23_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 6.0402, -2.3950)
+mesh = SubResource("C3A_Stair2Step18Mesh23")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2Step19Mesh24_N" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 6.1335, -2.0650)
+mesh = SubResource("C3A_Stair2Step19Mesh24")
+surface_material_override/0 = SubResource("StairMat")
+
+[node name="C3A_Stair2RampBody26" type="StaticBody3D" parent="SecondFloor"]
+transform = Transform3D(1, 0.000000, 0.000000, 0, 0.870418, 0.492314, 0, -0.492314, 0.870418, -8.0000, 6.1335, -5.2000)
+
+[node name="Shape" type="CollisionShape3D" parent="SecondFloor/C3A_Stair2RampBody26"]
+shape = SubResource("C3A_Stair2RampShape25")
+
+[node name="C3A_ExtNorthAtticBody28" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.7500, 10.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ExtNorthAtticBody28"]
+mesh = SubResource("C3A_ExtNorthAtticMesh27")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ExtNorthAtticBody28"]
+shape = SubResource("C3A_ExtNorthAtticShape29")
+
+[node name="C3A_ExtSouthAtticBody31" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.7500, -9.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ExtSouthAtticBody31"]
+mesh = SubResource("C3A_ExtSouthAtticMesh30")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ExtSouthAtticBody31"]
+shape = SubResource("C3A_ExtSouthAtticShape32")
+
+[node name="C3A_ExtWestAtticBody34" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0000, 9.7500, 0.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ExtWestAtticBody34"]
+mesh = SubResource("C3A_ExtWestAtticMesh33")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ExtWestAtticBody34"]
+shape = SubResource("C3A_ExtWestAtticShape35")
+
+[node name="C3A_ExtEastAtticBody37" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0000, 9.7500, 0.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ExtEastAtticBody37"]
+mesh = SubResource("C3A_ExtEastAtticMesh36")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ExtEastAtticBody37"]
+shape = SubResource("C3A_ExtEastAtticShape38")
+
+[node name="C3A_Floor3_landingWBody40" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6500, 7.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_landingWBody40"]
+mesh = SubResource("C3A_Floor3_landingWMesh39")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_landingWBody40"]
+shape = SubResource("C3A_Floor3_landingWShape41")
+
+[node name="C3A_Floor3_landingEBody43" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8500, 7.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_landingEBody43"]
+mesh = SubResource("C3A_Floor3_landingEMesh42")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_landingEBody43"]
+shape = SubResource("C3A_Floor3_landingEShape44")
+
+[node name="C3A_Floor3_landingSBody46" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 7.9250, -8.8500)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_landingSBody46"]
+mesh = SubResource("C3A_Floor3_landingSMesh45")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_landingSBody46"]
+shape = SubResource("C3A_Floor3_landingSShape47")
+
+[node name="C3A_Ceil3_attic_landingMesh48_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5000, 11.5750, -5.5000)
+mesh = SubResource("C3A_Ceil3_attic_landingMesh48")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="C3A_Floor3_roof_view_deckBody50" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 7.9250, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_roof_view_deckBody50"]
+mesh = SubResource("C3A_Floor3_roof_view_deckMesh49")
+surface_material_override/0 = SubResource("ViewMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_roof_view_deckBody50"]
+shape = SubResource("C3A_Floor3_roof_view_deckShape51")
+
+[node name="C3A_Ceil3_roof_view_deckMesh52_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 11.5750, -5.5000)
+mesh = SubResource("C3A_Ceil3_roof_view_deckMesh52")
+surface_material_override/0 = SubResource("ViewMat")
+
+[node name="C3A_Floor3_main_atticBody54" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 7.9250, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_main_atticBody54"]
+mesh = SubResource("C3A_Floor3_main_atticMesh53")
+surface_material_override/0 = SubResource("AtticMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_main_atticBody54"]
+shape = SubResource("C3A_Floor3_main_atticShape55")
+
+[node name="C3A_Ceil3_main_atticMesh56_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5000, 11.5750, 4.0000)
+mesh = SubResource("C3A_Ceil3_main_atticMesh56")
+surface_material_override/0 = SubResource("AtticMat")
+
+[node name="C3A_Floor3_duplicate_corridorBody58" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 7.9250, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_duplicate_corridorBody58"]
+mesh = SubResource("C3A_Floor3_duplicate_corridorMesh57")
+surface_material_override/0 = SubResource("DuplicateCorridorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_duplicate_corridorBody58"]
+shape = SubResource("C3A_Floor3_duplicate_corridorShape59")
+
+[node name="C3A_Ceil3_duplicate_corridorMesh60_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 11.5750, 4.0000)
+mesh = SubResource("C3A_Ceil3_duplicate_corridorMesh60")
+surface_material_override/0 = SubResource("DuplicateCorridorMat")
+
+[node name="C3A_Floor3_east_attic_wingBody62" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5000, 7.9250, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_Floor3_east_attic_wingBody62"]
+mesh = SubResource("C3A_Floor3_east_attic_wingMesh61")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_Floor3_east_attic_wingBody62"]
+shape = SubResource("C3A_Floor3_east_attic_wingShape63")
+
+[node name="C3A_ParapetShaftWestBody65" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000, 8.5000, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ParapetShaftWestBody65"]
+mesh = SubResource("C3A_ParapetShaftWestMesh64")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ParapetShaftWestBody65"]
+shape = SubResource("C3A_ParapetShaftWestShape66")
+
+[node name="C3A_ParapetShaftEastBody68" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000, 8.5000, -5.5000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ParapetShaftEastBody68"]
+mesh = SubResource("C3A_ParapetShaftEastMesh67")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ParapetShaftEastBody68"]
+shape = SubResource("C3A_ParapetShaftEastShape69")
+
+[node name="C3A_ParapetShaftNorthBody71" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 8.5000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_ParapetShaftNorthBody71"]
+mesh = SubResource("C3A_ParapetShaftNorthMesh70")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_ParapetShaftNorthBody71"]
+shape = SubResource("C3A_ParapetShaftNorthShape72")
+
+[node name="C3A_W3_MainAttic_CorridorBody74" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0000, 9.7500, 0.6500)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_MainAttic_CorridorBody74"]
+mesh = SubResource("C3A_W3_MainAttic_CorridorMesh73")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_MainAttic_CorridorBody74"]
+shape = SubResource("C3A_W3_MainAttic_CorridorShape75")
+
+[node name="C3A_W3_MainAttic_CorridorBody77" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0000, 9.7500, 7.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_MainAttic_CorridorBody77"]
+mesh = SubResource("C3A_W3_MainAttic_CorridorMesh76")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_MainAttic_CorridorBody77"]
+shape = SubResource("C3A_W3_MainAttic_CorridorShape78")
+
+[node name="C3A_W3_MainAttic_CorridorLintelBody80" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0000, 10.9000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_MainAttic_CorridorLintelBody80"]
+mesh = SubResource("C3A_W3_MainAttic_CorridorLintelMesh79")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_MainAttic_CorridorLintelBody80"]
+shape = SubResource("C3A_W3_MainAttic_CorridorLintelShape81")
+
+[node name="C3A_W3_Corridor_EastWingBody83" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 9.7500, 0.6500)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Corridor_EastWingBody83"]
+mesh = SubResource("C3A_W3_Corridor_EastWingMesh82")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Corridor_EastWingBody83"]
+shape = SubResource("C3A_W3_Corridor_EastWingShape84")
+
+[node name="C3A_W3_Corridor_EastWingBody86" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 9.7500, 7.3500)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Corridor_EastWingBody86"]
+mesh = SubResource("C3A_W3_Corridor_EastWingMesh85")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Corridor_EastWingBody86"]
+shape = SubResource("C3A_W3_Corridor_EastWingShape87")
+
+[node name="C3A_W3_Corridor_EastWingLintelBody89" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, 10.9000, 4.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Corridor_EastWingLintelBody89"]
+mesh = SubResource("C3A_W3_Corridor_EastWingLintelMesh88")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Corridor_EastWingLintelBody89"]
+shape = SubResource("C3A_W3_Corridor_EastWingLintelShape90")
+
+[node name="C3A_W3_Landing_MainAtticBody92" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3500, 9.7500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Landing_MainAtticBody92"]
+mesh = SubResource("C3A_W3_Landing_MainAtticMesh91")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Landing_MainAtticBody92"]
+shape = SubResource("C3A_W3_Landing_MainAtticShape93")
+
+[node name="C3A_W3_Landing_MainAtticBody95" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1500, 9.7500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Landing_MainAtticBody95"]
+mesh = SubResource("C3A_W3_Landing_MainAtticMesh94")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Landing_MainAtticBody95"]
+shape = SubResource("C3A_W3_Landing_MainAtticShape96")
+
+[node name="C3A_W3_Landing_MainAtticLintelBody98" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0000, 10.9000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Landing_MainAtticLintelBody98"]
+mesh = SubResource("C3A_W3_Landing_MainAtticLintelMesh97")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Landing_MainAtticLintelBody98"]
+shape = SubResource("C3A_W3_Landing_MainAtticLintelShape99")
+
+[node name="C3A_W3_Deck_EastWingBody101" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4000, 9.7500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Deck_EastWingBody101"]
+mesh = SubResource("C3A_W3_Deck_EastWingMesh100")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Deck_EastWingBody101"]
+shape = SubResource("C3A_W3_Deck_EastWingShape102")
+
+[node name="C3A_W3_Deck_EastWingBody104" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6000, 9.7500, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Deck_EastWingBody104"]
+mesh = SubResource("C3A_W3_Deck_EastWingMesh103")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Deck_EastWingBody104"]
+shape = SubResource("C3A_W3_Deck_EastWingShape105")
+
+[node name="C3A_W3_Deck_EastWingLintelBody107" type="StaticBody3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000, 10.9000, -2.0000)
+
+[node name="Mesh" type="MeshInstance3D" parent="Attic/C3A_W3_Deck_EastWingLintelBody107"]
+mesh = SubResource("C3A_W3_Deck_EastWingLintelMesh106")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="Shape" type="CollisionShape3D" parent="Attic/C3A_W3_Deck_EastWingLintelBody107"]
+shape = SubResource("C3A_W3_Deck_EastWingLintelShape108")
+
+[node name="C3A_CorridorBeam0Mesh109_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.6000, -1.0000)
+mesh = SubResource("C3A_CorridorBeam0Mesh109")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="CorridorLight0" type="OmniLight3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6000, -1.0)
+light_color = Color(0.75, 0.8, 0.85, 1)
+light_energy = 0.18
+omni_range = 3.2
+
+[node name="C3A_CorridorBeam1Mesh110_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.6000, 2.0000)
+mesh = SubResource("C3A_CorridorBeam1Mesh110")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="CorridorLight1" type="OmniLight3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6000, 2.0)
+light_color = Color(0.75, 0.8, 0.85, 1)
+light_energy = 0.18
+omni_range = 3.2
+
+[node name="C3A_CorridorBeam2Mesh111_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.6000, 5.0000)
+mesh = SubResource("C3A_CorridorBeam2Mesh111")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="CorridorLight2" type="OmniLight3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6000, 5.0)
+light_color = Color(0.75, 0.8, 0.85, 1)
+light_energy = 0.18
+omni_range = 3.2
+
+[node name="C3A_CorridorBeam3Mesh112_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 9.6000, 8.0000)
+mesh = SubResource("C3A_CorridorBeam3Mesh112")
+surface_material_override/0 = SubResource("AtticWallMat")
+
+[node name="CorridorLight3" type="OmniLight3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6000, 8.0)
+light_color = Color(0.75, 0.8, 0.85, 1)
+light_energy = 0.18
+omni_range = 3.2
+
+[node name="C3A_Ceil3_eastWingWMesh113_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0500, 11.5750, 4.0000)
+mesh = SubResource("C3A_Ceil3_eastWingWMesh113")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="C3A_Ceil3_eastWingEMesh114_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4500, 11.5750, 4.0000)
+mesh = SubResource("C3A_Ceil3_eastWingEMesh114")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="C3A_Ceil3_eastWingSMesh115_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 11.5750, 1.5500)
+mesh = SubResource("C3A_Ceil3_eastWingSMesh115")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="C3A_Ceil3_eastWingNMesh116_N" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0000, 11.5750, 8.4500)
+mesh = SubResource("C3A_Ceil3_eastWingNMesh116")
+surface_material_override/0 = SubResource("AtticFloorMat")
+
+[node name="RoofHatch" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0, 11.4, 6.0)
+script = ExtResource("54")
+locked_prompt = "The hatch won't lift."
+locked_toast = "It lifts half an inch, then catches on something that isn't there."
+unlocked_prompt = "The hatch lifts freely now. Press E to climb through."
+unlock_toast = "Something in the attic just let go."
+transition_text = "The hatch opens onto the same wrong sky the Back Exit does."
+destination_chapter = "chapter04"
+destination_spawn_marker = "RoofHatchLanding"
+[node name="Mesh" type="MeshInstance3D" parent="Attic/RoofHatch"]
+mesh = SubResource("BoxMesh_roofhatch")
+surface_material_override/0 = SubResource("RoofHatchMat")
+[node name="Shape" type="CollisionShape3D" parent="Attic/RoofHatch"]
+shape = SubResource("Shape_roofhatch")
+[node name="Light" type="OmniLight3D" parent="Attic/RoofHatch"]
+light_color = Color(0.85, 0.88, 1, 1)
+light_energy = 0.5
+omni_range = 3.0
+
+[node name="Flavor_Attic" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 9.0, 4)
+script = ExtResource("1")
+flavor_text = "Attic (unfinished)."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_Attic"]
+shape = SubResource("C3A_FlavorShapeAttic117")
+[node name="Prop_AtticBoxes" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -8.655, -3)
+texture = ExtResource("40")
+pixel_size = 0.001498
+[node name="Prop_DustsheetFurniture" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -8.533, 2)
+texture = ExtResource("41")
+pixel_size = 0.001865
+[node name="Prop_BareBulb" type="Sprite3D" parent="Attic/Flavor_Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+texture = ExtResource("42")
+pixel_size = 0.000508
+
+[node name="Flavor_DuplicateCorridor" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.0, 4)
+script = ExtResource("1")
+flavor_text = "Duplicate Corridor (slightly different)."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_DuplicateCorridor"]
+shape = SubResource("C3A_FlavorShapeDup118")
+
+[node name="Flavor_View" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 9.0, -5.5)
+script = ExtResource("1")
+flavor_text = "View to Courtyard Below. The roof remembers a different sky."
+[node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_View"]
+shape = SubResource("C3A_FlavorShapeView119")
+
+[node name="Journal3" type="Area3D" parent="Attic" groups=["pickups"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 8.9, 8.5)
+script = ExtResource("51")
+kind = 0
+journal_text = "When you finally leave this house, don't expect the street to still be there."
+item_id = "5"
+[node name="Icon" type="Sprite3D" parent="Attic/Journal3"]
+texture = ExtResource("52")
+pixel_size = 0.0016
+billboard = 1
+[node name="Glow" type="OmniLight3D" parent="Attic/Journal3"]
+light_color = Color(1, 0.949, 0.788, 1)
+light_energy = 0.35
+omni_range = 1.4
+[node name="Shape" type="CollisionShape3D" parent="Attic/Journal3"]
+shape = SubResource("Shape_pickup3")
+
+
+
+[node name="RoomCheck_ImpossibleRoom" type="Area3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.1, 4)
+script = ExtResource("53")
+check_id = "impossible_room"
+check_text = "Um, was that door there last time?"
+[node name="Shape" type="CollisionShape3D" parent="Attic/RoomCheck_ImpossibleRoom"]
+shape = SubResource("Shape_roomcheck")
+
+
+[node name="ZoneDuplicateCorridorExtra" type="MeshInstance3D" parent="Attic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.0000, 13.0)
+mesh = SubResource("C3A_ExtraCorridorMesh120")
+surface_material_override/0 = SubResource("DuplicateCorridorMat")
+visible = false
 
