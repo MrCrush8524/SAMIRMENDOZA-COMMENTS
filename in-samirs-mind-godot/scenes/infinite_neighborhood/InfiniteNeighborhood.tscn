@@ -1,4 +1,4 @@
-[gd_scene load_steps=658 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=725 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -1597,6 +1597,211 @@ size = Vector3(0.8500, 1.9000, 0.0800)
 
 [sub_resource type="BoxShape3D" id="RI_TerminalDoorShape"]
 size = Vector3(0.85, 1.9, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="PinkHallwayDoorMat"]
+albedo_color = Color(0.95, 0.6, 0.8, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="MallDoorMat"]
+albedo_color = Color(0.55, 0.75, 0.85, 1)
+roughness = 0.5
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="MuseumDoorMat"]
+albedo_color = Color(0.35, 0.3, 0.4, 1)
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetFloorMesh1"]
+size = Vector3(1.2000, 0.0400, 1.0000)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetFloorShape2"]
+size = Vector3(1.2000, 0.0400, 1.0000)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetFrontMesh3"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetFrontShape4"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetFrontMesh5"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetFrontShape6"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetFrontLintelMesh7"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetFrontLintelShape8"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetBackMesh9"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetBackShape10"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetBackMesh11"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetBackShape12"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetBackLintelMesh13"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetBackLintelShape14"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetSide1Mesh15"]
+size = Vector3(0.0800, 2.1500, 1.0000)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetSide1Shape16"]
+size = Vector3(0.0800, 2.1500, 1.0000)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetSide2Mesh17"]
+size = Vector3(0.0800, 2.1500, 1.0000)
+
+[sub_resource type="BoxShape3D" id="SD_H2ClosetSide2Shape18"]
+size = Vector3(0.0800, 2.1500, 1.0000)
+
+[sub_resource type="BoxMesh" id="SD_H2ClosetCeilMesh19"]
+size = Vector3(1.2000, 0.0400, 1.0000)
+
+[sub_resource type="BoxMesh" id="SD_DoorPanelMesh20"]
+size = Vector3(0.8500, 1.9000, 0.05)
+
+[sub_resource type="BoxShape3D" id="SD_DoorShape21"]
+size = Vector3(0.8500, 1.9000, 0.5)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityFloorMesh22"]
+size = Vector3(1.4000, 0.0400, 1.4000)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityFloorShape23"]
+size = Vector3(1.4000, 0.0400, 1.4000)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityFrontMesh24"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityFrontShape25"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityFrontMesh26"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityFrontShape27"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityFrontLintelMesh28"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityFrontLintelShape29"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityBackMesh30"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityBackShape31"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityBackMesh32"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityBackShape33"]
+size = Vector3(0.3000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityBackLintelMesh34"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilityBackLintelShape35"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilitySide1Mesh36"]
+size = Vector3(0.0800, 2.1500, 1.4000)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilitySide1Shape37"]
+size = Vector3(0.0800, 2.1500, 1.4000)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilitySide2Mesh38"]
+size = Vector3(0.0800, 2.1500, 1.4000)
+
+[sub_resource type="BoxShape3D" id="SD_H3UtilitySide2Shape39"]
+size = Vector3(0.0800, 2.1500, 1.4000)
+
+[sub_resource type="BoxMesh" id="SD_H3UtilityCeilMesh40"]
+size = Vector3(1.4000, 0.0400, 1.4000)
+
+[sub_resource type="BoxMesh" id="SD_DoorPanelMesh41"]
+size = Vector3(0.8500, 1.9000, 0.05)
+
+[sub_resource type="BoxShape3D" id="SD_DoorShape42"]
+size = Vector3(0.8500, 1.9000, 0.5)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveFloorMesh43"]
+size = Vector3(1.2000, 0.0400, 1.2000)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveFloorShape44"]
+size = Vector3(1.2000, 0.0400, 1.2000)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveFrontMesh45"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveFrontShape46"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveFrontMesh47"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveFrontShape48"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveFrontLintelMesh49"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveFrontLintelShape50"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveBackMesh51"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveBackShape52"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveBackMesh53"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveBackShape54"]
+size = Vector3(0.2000, 2.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveBackLintelMesh55"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveBackLintelShape56"]
+size = Vector3(0.8000, 0.1500, 0.0800)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveSide1Mesh57"]
+size = Vector3(0.0800, 2.1500, 1.2000)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveSide1Shape58"]
+size = Vector3(0.0800, 2.1500, 1.2000)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveSide2Mesh59"]
+size = Vector3(0.0800, 2.1500, 1.2000)
+
+[sub_resource type="BoxShape3D" id="SD_H7AlcoveSide2Shape60"]
+size = Vector3(0.0800, 2.1500, 1.2000)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveCeilMesh61"]
+size = Vector3(1.2000, 0.0400, 1.2000)
+
+[sub_resource type="BoxMesh" id="SD_DoorPanelMesh62"]
+size = Vector3(0.8500, 1.9000, 0.05)
+
+[sub_resource type="BoxShape3D" id="SD_DoorShape63"]
+size = Vector3(0.8500, 1.9000, 0.5)
+
+[sub_resource type="BoxMesh" id="SD_H7AlcoveSignMesh64"]
+size = Vector3(0.9000, 0.0500, 0.0200)
 
 [node name="InfiniteNeighborhood" type="Node3D"]
 
@@ -4159,4 +4364,309 @@ surface_material_override/0 = SubResource("TerminalDoorMat")
 
 [node name="Shape" type="CollisionShape3D" parent="TerminalDoor"]
 shape = SubResource("RI_TerminalDoorShape")
+
+[node name="SD_H2ClosetFloorMesh1_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, -1.3500, -6.9500)
+mesh = SubResource("SD_H2ClosetFloorMesh1")
+surface_material_override/0 = SubResource("BedroomFloorMat")
+
+[node name="SD_H2ClosetFloorShape2_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, -1.3500, -6.9500)
+shape = SubResource("SD_H2ClosetFloorShape2")
+
+[node name="SD_H2ClosetFrontMesh3_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000, -0.2950, -6.4500)
+mesh = SubResource("SD_H2ClosetFrontMesh3")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetFrontShape4_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000, -0.2950, -6.4500)
+shape = SubResource("SD_H2ClosetFrontShape4")
+
+[node name="SD_H2ClosetFrontMesh5_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1000, -0.2950, -6.4500)
+mesh = SubResource("SD_H2ClosetFrontMesh5")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetFrontShape6_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1000, -0.2950, -6.4500)
+shape = SubResource("SD_H2ClosetFrontShape6")
+
+[node name="SD_H2ClosetFrontLintelMesh7_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, 0.7050, -6.4500)
+mesh = SubResource("SD_H2ClosetFrontLintelMesh7")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetFrontLintelShape8_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, 0.7050, -6.4500)
+shape = SubResource("SD_H2ClosetFrontLintelShape8")
+
+[node name="SD_H2ClosetBackMesh9_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000, -0.2950, -7.4500)
+mesh = SubResource("SD_H2ClosetBackMesh9")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetBackShape10_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000, -0.2950, -7.4500)
+shape = SubResource("SD_H2ClosetBackShape10")
+
+[node name="SD_H2ClosetBackMesh11_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1000, -0.2950, -7.4500)
+mesh = SubResource("SD_H2ClosetBackMesh11")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetBackShape12_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1000, -0.2950, -7.4500)
+shape = SubResource("SD_H2ClosetBackShape12")
+
+[node name="SD_H2ClosetBackLintelMesh13_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, 0.7050, -7.4500)
+mesh = SubResource("SD_H2ClosetBackLintelMesh13")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetBackLintelShape14_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, 0.7050, -7.4500)
+shape = SubResource("SD_H2ClosetBackLintelShape14")
+
+[node name="SD_H2ClosetSide1Mesh15_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, -0.2950, -6.9500)
+mesh = SubResource("SD_H2ClosetSide1Mesh15")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetSide1Shape16_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, -0.2950, -6.9500)
+shape = SubResource("SD_H2ClosetSide1Shape16")
+
+[node name="SD_H2ClosetSide2Mesh17_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2000, -0.2950, -6.9500)
+mesh = SubResource("SD_H2ClosetSide2Mesh17")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H2ClosetSide2Shape18_N" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2000, -0.2950, -6.9500)
+shape = SubResource("SD_H2ClosetSide2Shape18")
+
+[node name="SD_H2ClosetCeilMesh19_N" type="MeshInstance3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, 0.8000, -6.9500)
+mesh = SubResource("SD_H2ClosetCeilMesh19")
+surface_material_override/0 = SubResource("IntCeilingMat")
+
+[node name="H2ClosetDoor" type="Area3D" parent="House2_Repeated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000, -0.3700, -7.5100)
+script = ExtResource("100_LevelDoor")
+chapter_id = "chapter06"
+spawn_marker = "start"
+door_label = "the closet door that hums faintly pink"
+
+[node name="Panel" type="MeshInstance3D" parent="House2_Repeated/H2ClosetDoor"]
+mesh = SubResource("SD_DoorPanelMesh20")
+surface_material_override/0 = SubResource("PinkHallwayDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="House2_Repeated/H2ClosetDoor"]
+shape = SubResource("SD_DoorShape21")
+
+[node name="SD_H3UtilityFloorMesh22_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -2.7000, -7.0500)
+mesh = SubResource("SD_H3UtilityFloorMesh22")
+surface_material_override/0 = SubResource("LivingFloorMat")
+
+[node name="SD_H3UtilityFloorShape23_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -2.7000, -7.0500)
+shape = SubResource("SD_H3UtilityFloorShape23")
+
+[node name="SD_H3UtilityFrontMesh24_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1500, -1.6450, -6.3500)
+mesh = SubResource("SD_H3UtilityFrontMesh24")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityFrontShape25_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1500, -1.6450, -6.3500)
+shape = SubResource("SD_H3UtilityFrontShape25")
+
+[node name="SD_H3UtilityFrontMesh26_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2500, -1.6450, -6.3500)
+mesh = SubResource("SD_H3UtilityFrontMesh26")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityFrontShape27_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2500, -1.6450, -6.3500)
+shape = SubResource("SD_H3UtilityFrontShape27")
+
+[node name="SD_H3UtilityFrontLintelMesh28_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -0.6450, -6.3500)
+mesh = SubResource("SD_H3UtilityFrontLintelMesh28")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityFrontLintelShape29_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -0.6450, -6.3500)
+shape = SubResource("SD_H3UtilityFrontLintelShape29")
+
+[node name="SD_H3UtilityBackMesh30_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1500, -1.6450, -7.7500)
+mesh = SubResource("SD_H3UtilityBackMesh30")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityBackShape31_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1500, -1.6450, -7.7500)
+shape = SubResource("SD_H3UtilityBackShape31")
+
+[node name="SD_H3UtilityBackMesh32_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2500, -1.6450, -7.7500)
+mesh = SubResource("SD_H3UtilityBackMesh32")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityBackShape33_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2500, -1.6450, -7.7500)
+shape = SubResource("SD_H3UtilityBackShape33")
+
+[node name="SD_H3UtilityBackLintelMesh34_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -0.6450, -7.7500)
+mesh = SubResource("SD_H3UtilityBackLintelMesh34")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilityBackLintelShape35_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -0.6450, -7.7500)
+shape = SubResource("SD_H3UtilityBackLintelShape35")
+
+[node name="SD_H3UtilitySide1Mesh36_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, -1.6450, -7.0500)
+mesh = SubResource("SD_H3UtilitySide1Mesh36")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilitySide1Shape37_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000, -1.6450, -7.0500)
+shape = SubResource("SD_H3UtilitySide1Shape37")
+
+[node name="SD_H3UtilitySide2Mesh38_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4000, -1.6450, -7.0500)
+mesh = SubResource("SD_H3UtilitySide2Mesh38")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H3UtilitySide2Shape39_N" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4000, -1.6450, -7.0500)
+shape = SubResource("SD_H3UtilitySide2Shape39")
+
+[node name="SD_H3UtilityCeilMesh40_N" type="MeshInstance3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -0.5500, -7.0500)
+mesh = SubResource("SD_H3UtilityCeilMesh40")
+surface_material_override/0 = SubResource("IntCeilingMat")
+
+[node name="H3UtilityDoor" type="Area3D" parent="House3_WrongPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000, -1.7200, -7.8100)
+script = ExtResource("100_LevelDoor")
+chapter_id = "mall"
+spawn_marker = "start"
+door_label = "a utility door marked with a store directory"
+
+[node name="Panel" type="MeshInstance3D" parent="House3_WrongPhoto/H3UtilityDoor"]
+mesh = SubResource("SD_DoorPanelMesh41")
+surface_material_override/0 = SubResource("MallDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="House3_WrongPhoto/H3UtilityDoor"]
+shape = SubResource("SD_DoorShape42")
+
+[node name="SD_H7AlcoveFloorMesh43_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, -1.3500, -6.7500)
+mesh = SubResource("SD_H7AlcoveFloorMesh43")
+surface_material_override/0 = SubResource("BedroomFloorMat")
+
+[node name="SD_H7AlcoveFloorShape44_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, -1.3500, -6.7500)
+shape = SubResource("SD_H7AlcoveFloorShape44")
+
+[node name="SD_H7AlcoveFrontMesh45_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000, -0.2950, -6.1500)
+mesh = SubResource("SD_H7AlcoveFrontMesh45")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveFrontShape46_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000, -0.2950, -6.1500)
+shape = SubResource("SD_H7AlcoveFrontShape46")
+
+[node name="SD_H7AlcoveFrontMesh47_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000, -0.2950, -6.1500)
+mesh = SubResource("SD_H7AlcoveFrontMesh47")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveFrontShape48_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000, -0.2950, -6.1500)
+shape = SubResource("SD_H7AlcoveFrontShape48")
+
+[node name="SD_H7AlcoveFrontLintelMesh49_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 0.7050, -6.1500)
+mesh = SubResource("SD_H7AlcoveFrontLintelMesh49")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveFrontLintelShape50_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 0.7050, -6.1500)
+shape = SubResource("SD_H7AlcoveFrontLintelShape50")
+
+[node name="SD_H7AlcoveBackMesh51_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000, -0.2950, -7.3500)
+mesh = SubResource("SD_H7AlcoveBackMesh51")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveBackShape52_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000, -0.2950, -7.3500)
+shape = SubResource("SD_H7AlcoveBackShape52")
+
+[node name="SD_H7AlcoveBackMesh53_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000, -0.2950, -7.3500)
+mesh = SubResource("SD_H7AlcoveBackMesh53")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveBackShape54_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000, -0.2950, -7.3500)
+shape = SubResource("SD_H7AlcoveBackShape54")
+
+[node name="SD_H7AlcoveBackLintelMesh55_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 0.7050, -7.3500)
+mesh = SubResource("SD_H7AlcoveBackLintelMesh55")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveBackLintelShape56_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 0.7050, -7.3500)
+shape = SubResource("SD_H7AlcoveBackLintelShape56")
+
+[node name="SD_H7AlcoveSide1Mesh57_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0000, -0.2950, -6.7500)
+mesh = SubResource("SD_H7AlcoveSide1Mesh57")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveSide1Shape58_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0000, -0.2950, -6.7500)
+shape = SubResource("SD_H7AlcoveSide1Shape58")
+
+[node name="SD_H7AlcoveSide2Mesh59_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8000, -0.2950, -6.7500)
+mesh = SubResource("SD_H7AlcoveSide2Mesh59")
+surface_material_override/0 = SubResource("IntWallMat")
+
+[node name="SD_H7AlcoveSide2Shape60_N" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8000, -0.2950, -6.7500)
+shape = SubResource("SD_H7AlcoveSide2Shape60")
+
+[node name="SD_H7AlcoveCeilMesh61_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 0.8000, -6.7500)
+mesh = SubResource("SD_H7AlcoveCeilMesh61")
+surface_material_override/0 = SubResource("IntCeilingMat")
+
+[node name="H7AlcoveDoor" type="Area3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, -0.3700, -7.4100)
+script = ExtResource("100_LevelDoor")
+chapter_id = "museum"
+spawn_marker = "start"
+door_label = "a door that's taller on the inside than the outside"
+
+[node name="Panel" type="MeshInstance3D" parent="House7_Impossible/H7AlcoveDoor"]
+mesh = SubResource("SD_DoorPanelMesh62")
+surface_material_override/0 = SubResource("MuseumDoorMat")
+
+[node name="Shape" type="CollisionShape3D" parent="House7_Impossible/H7AlcoveDoor"]
+shape = SubResource("SD_DoorShape63")
+
+[node name="SD_H7AlcoveSignMesh64_N" type="MeshInstance3D" parent="House7_Impossible"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000, 1.1300, -6.7500)
+mesh = SubResource("SD_H7AlcoveSignMesh64")
+surface_material_override/0 = SubResource("MuseumDoorMat")
 
