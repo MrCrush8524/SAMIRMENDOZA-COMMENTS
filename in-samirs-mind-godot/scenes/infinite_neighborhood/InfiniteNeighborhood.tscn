@@ -1,4 +1,4 @@
-[gd_scene load_steps=807 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=802 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -108,8 +108,6 @@ albedo_texture = ExtResource("11")
 uv1_scale = Vector3(1.8, 1.1, 1)
 roughness = 0.9
 
-[sub_resource type="BoxShape3D" id="Shape_flavor_hub"]
-size = Vector3(10, 4, 10)
 [sub_resource type="BoxShape3D" id="Shape_flavor_parkbig"]
 size = Vector3(18, 4, 16)
 [sub_resource type="BoxShape3D" id="Shape_flavor_parksmall"]
@@ -129,16 +127,12 @@ radius = 1.6
 
 [sub_resource type="BoxMesh" id="FacadeMeshMain"]
 size = Vector3(8, 4.5, 0.3)
-[sub_resource type="BoxShape3D" id="FacadeShapeMain"]
-size = Vector3(8, 4.5, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatMain"]
 albedo_texture = ExtResource("12")
 uv1_scale = Vector3(2.136, 1.201, 1)
 roughness = 0.75
 
 [sub_resource type="BoxMesh" id="FacadeMeshSide"]
-size = Vector3(10, 4.5, 0.3)
-[sub_resource type="BoxShape3D" id="FacadeShapeSide"]
 size = Vector3(10, 4.5, 0.3)
 [sub_resource type="StandardMaterial3D" id="FacadeMatSide"]
 albedo_texture = ExtResource("13")
@@ -147,16 +141,12 @@ roughness = 0.75
 
 [sub_resource type="BoxMesh" id="FacadeMeshThird"]
 size = Vector3(6, 4.0, 4.0)
-[sub_resource type="BoxShape3D" id="FacadeShapeThird"]
-size = Vector3(6, 4.0, 4.0)
 [sub_resource type="StandardMaterial3D" id="FacadeMatThird"]
 albedo_texture = ExtResource("101")
 uv1_scale = Vector3(1.856, 1.742, 1)
 roughness = 0.8
 
 [sub_resource type="BoxMesh" id="RoofPanelMesh"]
-size = Vector3(3.4, 0.15, 4.4)
-[sub_resource type="BoxShape3D" id="RoofPanelShape"]
 size = Vector3(3.4, 0.15, 4.4)
 [sub_resource type="StandardMaterial3D" id="RoofMatThird"]
 albedo_texture = ExtResource("114")
@@ -2577,10 +2567,16 @@ surface_material_override/0 = SubResource("IntCeilingMat")
 transform = Transform3D(0.92082, -0.38999, 0, 0.38999, 0.92082, 0, 0, 0, 1, -2.125, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House1_Arrival")
 surface_material_override/0 = SubResource("RoofMat_House1_Arrival")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House1_Arrival"]
+transform = Transform3D(0.92082, -0.38999, 0, 0.38999, 0.92082, 0, 0, 0, 1, -2.125, 2.350, -3.350)
+shape = SubResource("RoofShape_House1_Arrival")
 [node name="RoofRight" type="MeshInstance3D" parent="House1_Arrival"]
 transform = Transform3D(-0.92082, -0.38999, 0, 0.38999, -0.92082, 0, 0, 0, 1, 2.125, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House1_Arrival")
 surface_material_override/0 = SubResource("RoofMat_House1_Arrival")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House1_Arrival"]
+transform = Transform3D(-0.92082, -0.38999, 0, 0.38999, -0.92082, 0, 0, 0, 1, 2.125, 2.350, -3.350)
+shape = SubResource("RoofShape_House1_Arrival")
 
 [node name="Prop_Door" type="Sprite3D" parent="House1_Arrival"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
@@ -2761,10 +2757,16 @@ surface_material_override/0 = SubResource("IntCeilingMat")
 transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.950)
 mesh = SubResource("RoofMesh_House2_Repeated")
 surface_material_override/0 = SubResource("RoofMat_House2_Repeated")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.950)
+shape = SubResource("RoofShape_House2_Repeated")
 [node name="RoofRight" type="MeshInstance3D" parent="House2_Repeated"]
 transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.950)
 mesh = SubResource("RoofMesh_House2_Repeated")
 surface_material_override/0 = SubResource("RoofMat_House2_Repeated")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House2_Repeated"]
+transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.950)
+shape = SubResource("RoofShape_House2_Repeated")
 
 [node name="Prop_Door" type="Sprite3D" parent="House2_Repeated"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
@@ -3124,10 +3126,16 @@ shape = SubResource("House3_WrongPhoto_UpDivLintelShape92")
 transform = Transform3D(0.90740, -0.42027, 0, 0.42027, 0.90740, 0, 0, 0, 1, -2.375, 3.900, -4.100)
 mesh = SubResource("RoofMesh_House3_WrongPhoto")
 surface_material_override/0 = SubResource("RoofMat_House3_WrongPhoto")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(0.90740, -0.42027, 0, 0.42027, 0.90740, 0, 0, 0, 1, -2.375, 3.900, -4.100)
+shape = SubResource("RoofShape_House3_WrongPhoto")
 [node name="RoofRight" type="MeshInstance3D" parent="House3_WrongPhoto"]
 transform = Transform3D(-0.90740, -0.42027, 0, 0.42027, -0.90740, 0, 0, 0, 1, 2.375, 3.900, -4.100)
 mesh = SubResource("RoofMesh_House3_WrongPhoto")
 surface_material_override/0 = SubResource("RoofMat_House3_WrongPhoto")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House3_WrongPhoto"]
+transform = Transform3D(-0.90740, -0.42027, 0, 0.42027, -0.90740, 0, 0, 0, 1, 2.375, 3.900, -4.100)
+shape = SubResource("RoofShape_House3_WrongPhoto")
 
 [node name="Prop_Door" type="Sprite3D" parent="House3_WrongPhoto"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.700, 0.16)
@@ -3308,10 +3316,16 @@ surface_material_override/0 = SubResource("IntCeilingMat")
 transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House4_Porch")
 surface_material_override/0 = SubResource("RoofMat_House4_Porch")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
+shape = SubResource("RoofShape_House4_Porch")
 [node name="RoofRight" type="MeshInstance3D" parent="House4_Porch"]
 transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House4_Porch")
 surface_material_override/0 = SubResource("RoofMat_House4_Porch")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
+shape = SubResource("RoofShape_House4_Porch")
 
 [node name="Prop_Door" type="Sprite3D" parent="House4_Porch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
@@ -3671,10 +3685,16 @@ shape = SubResource("House5_Final_UpDivLintelShape92")
 transform = Transform3D(0.90947, -0.41576, 0, 0.41576, 0.90947, 0, 0, 0, 1, -2.625, 4.100, -4.600)
 mesh = SubResource("RoofMesh_House5_Final")
 surface_material_override/0 = SubResource("RoofMat_House5_Final")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House5_Final"]
+transform = Transform3D(0.90947, -0.41576, 0, 0.41576, 0.90947, 0, 0, 0, 1, -2.625, 4.100, -4.600)
+shape = SubResource("RoofShape_House5_Final")
 [node name="RoofRight" type="MeshInstance3D" parent="House5_Final"]
 transform = Transform3D(-0.90947, -0.41576, 0, 0.41576, -0.90947, 0, 0, 0, 1, 2.625, 4.100, -4.600)
 mesh = SubResource("RoofMesh_House5_Final")
 surface_material_override/0 = SubResource("RoofMat_House5_Final")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House5_Final"]
+transform = Transform3D(-0.90947, -0.41576, 0, 0.41576, -0.90947, 0, 0, 0, 1, 2.625, 4.100, -4.600)
+shape = SubResource("RoofShape_House5_Final")
 
 [node name="Prop_Door" type="Sprite3D" parent="House5_Final"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.800, 0.16)
@@ -3855,10 +3875,16 @@ surface_material_override/0 = SubResource("IntCeilingMat")
 transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House6_PorchOnly")
 surface_material_override/0 = SubResource("RoofMat_House6_PorchOnly")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
+shape = SubResource("RoofShape_House6_PorchOnly")
 [node name="RoofRight" type="MeshInstance3D" parent="House6_PorchOnly"]
 transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House6_PorchOnly")
 surface_material_override/0 = SubResource("RoofMat_House6_PorchOnly")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.0, 2.350, -3.350)
+shape = SubResource("RoofShape_House6_PorchOnly")
 
 [node name="Prop_Door" type="Sprite3D" parent="House6_PorchOnly"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
@@ -4039,10 +4065,16 @@ surface_material_override/0 = SubResource("IntCeilingMat")
 transform = Transform3D(0.92125, -0.38897, 0, 0.38897, 0.92125, 0, 0, 0, 1, -2.25, 2.400, -3.850)
 mesh = SubResource("RoofMesh_House7_Impossible")
 surface_material_override/0 = SubResource("RoofMat_House7_Impossible")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(0.92125, -0.38897, 0, 0.38897, 0.92125, 0, 0, 0, 1, -2.25, 2.400, -3.850)
+shape = SubResource("RoofShape_House7_Impossible")
 [node name="RoofRight" type="MeshInstance3D" parent="House7_Impossible"]
 transform = Transform3D(-0.92125, -0.38897, 0, 0.38897, -0.92125, 0, 0, 0, 1, 2.25, 2.400, -3.850)
 mesh = SubResource("RoofMesh_House7_Impossible")
 surface_material_override/0 = SubResource("RoofMat_House7_Impossible")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House7_Impossible"]
+transform = Transform3D(-0.92125, -0.38897, 0, 0.38897, -0.92125, 0, 0, 0, 1, 2.25, 2.400, -3.850)
+shape = SubResource("RoofShape_House7_Impossible")
 
 [node name="Prop_Door" type="Sprite3D" parent="House7_Impossible"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
@@ -4078,10 +4110,16 @@ shape = SubResource("BoxShape_House8_Distant")
 transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.850)
 mesh = SubResource("RoofMesh_House8_Distant")
 surface_material_override/0 = SubResource("RoofMat_House8_Distant")
+[node name="RoofLeftShape" type="CollisionShape3D" parent="House8_Distant"]
+transform = Transform3D(0.92848, -0.37139, 0, 0.37139, 0.92848, 0, 0, 0, 1, -2.25, 2.350, -3.850)
+shape = SubResource("RoofShape_House8_Distant")
 [node name="RoofRight" type="MeshInstance3D" parent="House8_Distant"]
 transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.850)
 mesh = SubResource("RoofMesh_House8_Distant")
 surface_material_override/0 = SubResource("RoofMat_House8_Distant")
+[node name="RoofRightShape" type="CollisionShape3D" parent="House8_Distant"]
+transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.25, 2.350, -3.850)
+shape = SubResource("RoofShape_House8_Distant")
 
 [node name="Porch" type="StaticBody3D" parent="House8_Distant"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, 0.650)
