@@ -1,4 +1,4 @@
-[gd_scene load_steps=725 format=3 uid="uid://infinite_neighborhood"]
+[gd_scene load_steps=807 format=3 uid="uid://infinite_neighborhood"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/DoubtWander.gd" id="2"]
@@ -287,10 +287,6 @@ size = Vector3(5.0, 0.15, 2.0)
 [sub_resource type="BoxShape3D" id="PorchShape_House3_WrongPhoto"]
 size = Vector3(5.0, 0.15, 2.0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_House4_Porch"]
-size = Vector3(8.0, 2.9, 7.0)
-[sub_resource type="BoxShape3D" id="BoxShape_House4_Porch"]
-size = Vector3(8.0, 2.9, 7.0)
 [sub_resource type="StandardMaterial3D" id="Mat_House4_Porch"]
 albedo_texture = ExtResource("101")
 uv1_scale = Vector3(2.4744796206290354, 1.2631450295925692, 1)
@@ -329,10 +325,6 @@ size = Vector3(7.0, 0.15, 2.4)
 [sub_resource type="BoxShape3D" id="PorchShape_House5_Final"]
 size = Vector3(7.0, 0.15, 2.4)
 
-[sub_resource type="BoxMesh" id="BoxMesh_House6_PorchOnly"]
-size = Vector3(8.0, 2.9, 7.0)
-[sub_resource type="BoxShape3D" id="BoxShape_House6_PorchOnly"]
-size = Vector3(8.0, 2.9, 7.0)
 [sub_resource type="StandardMaterial3D" id="Mat_House6_PorchOnly"]
 albedo_texture = ExtResource("116")
 uv1_scale = Vector3(4.075577509333072, 4.757217847769028, 1)
@@ -1803,6 +1795,179 @@ size = Vector3(0.8500, 1.9000, 0.5)
 [sub_resource type="BoxMesh" id="SD_H7AlcoveSignMesh64"]
 size = Vector3(0.9000, 0.0500, 0.0200)
 
+[sub_resource type="BoxMesh" id="House4_Porch_ExtFrontMesh1"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtFrontShape2"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_ExtFrontMesh3"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtFrontShape4"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_ExtFrontLintelMesh5"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtFrontLintelShape6"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_ExtBackMesh7"]
+size = Vector3(8.0000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtBackShape8"]
+size = Vector3(8.0000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_ExtLeftMesh9"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtLeftShape10"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxMesh" id="House4_Porch_ExtRightMesh11"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxShape3D" id="House4_Porch_ExtRightShape12"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div0Mesh13"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div0Shape14"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div0Mesh15"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div0Shape16"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div0LintelMesh17"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div0LintelShape18"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div1Mesh19"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div1Shape20"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div1Mesh21"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div1Shape22"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_Div1LintelMesh23"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_Div1LintelShape24"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_FloorMesh25"]
+size = Vector3(7.7000, 0.0800, 3.0500)
+[sub_resource type="BoxShape3D" id="House4_Porch_FloorShape26"]
+size = Vector3(7.7000, 0.0800, 3.0500)
+[sub_resource type="BoxMesh" id="House4_Porch_FloorMesh27"]
+size = Vector3(1.5000, 0.0800, 1.5000)
+[sub_resource type="BoxShape3D" id="House4_Porch_FloorShape28"]
+size = Vector3(1.5000, 0.0800, 1.5000)
+[sub_resource type="BoxMesh" id="House4_Porch_FloorMesh29"]
+size = Vector3(6.2000, 0.0800, 2.0000)
+[sub_resource type="BoxShape3D" id="House4_Porch_FloorShape30"]
+size = Vector3(6.2000, 0.0800, 2.0000)
+[sub_resource type="BoxMesh" id="House4_Porch_FloorMesh31"]
+size = Vector3(1.5000, 0.0800, 0.5000)
+[sub_resource type="BoxShape3D" id="House4_Porch_FloorShape32"]
+size = Vector3(1.5000, 0.0800, 0.5000)
+[sub_resource type="BoxMesh" id="House4_Porch_FloorMesh33"]
+size = Vector3(7.7000, 0.0800, 1.6500)
+[sub_resource type="BoxShape3D" id="House4_Porch_FloorShape34"]
+size = Vector3(7.7000, 0.0800, 1.6500)
+[sub_resource type="BoxMesh" id="House4_Porch_BathMesh35"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxShape3D" id="House4_Porch_BathShape36"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxMesh" id="House4_Porch_BathMesh37"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxShape3D" id="House4_Porch_BathShape38"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxMesh" id="House4_Porch_BathLintelMesh39"]
+size = Vector3(0.1000, 0.9000, 0.9000)
+[sub_resource type="BoxShape3D" id="House4_Porch_BathLintelShape40"]
+size = Vector3(0.1000, 0.9000, 0.9000)
+[sub_resource type="BoxMesh" id="House4_Porch_BathBackMesh41"]
+size = Vector3(1.5000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House4_Porch_BathBackShape42"]
+size = Vector3(1.5000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House4_Porch_CeilMesh43"]
+size = Vector3(7.7000, 0.0800, 6.7000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtFrontMesh1"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtFrontShape2"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtFrontMesh3"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtFrontShape4"]
+size = Vector3(3.5500, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtFrontLintelMesh5"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtFrontLintelShape6"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtBackMesh7"]
+size = Vector3(8.0000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtBackShape8"]
+size = Vector3(8.0000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtLeftMesh9"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtLeftShape10"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_ExtRightMesh11"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_ExtRightShape12"]
+size = Vector3(0.1000, 2.9000, 7.0000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div0Mesh13"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div0Shape14"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div0Mesh15"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div0Shape16"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div0LintelMesh17"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div0LintelShape18"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div1Mesh19"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div1Shape20"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div1Mesh21"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div1Shape22"]
+size = Vector3(3.4000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_Div1LintelMesh23"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_Div1LintelShape24"]
+size = Vector3(0.9000, 0.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_FloorMesh25"]
+size = Vector3(7.7000, 0.0800, 3.0500)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_FloorShape26"]
+size = Vector3(7.7000, 0.0800, 3.0500)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_FloorMesh27"]
+size = Vector3(1.5000, 0.0800, 1.5000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_FloorShape28"]
+size = Vector3(1.5000, 0.0800, 1.5000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_FloorMesh29"]
+size = Vector3(6.2000, 0.0800, 2.0000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_FloorShape30"]
+size = Vector3(6.2000, 0.0800, 2.0000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_FloorMesh31"]
+size = Vector3(1.5000, 0.0800, 0.5000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_FloorShape32"]
+size = Vector3(1.5000, 0.0800, 0.5000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_FloorMesh33"]
+size = Vector3(7.7000, 0.0800, 1.6500)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_FloorShape34"]
+size = Vector3(7.7000, 0.0800, 1.6500)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_BathMesh35"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_BathShape36"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_BathMesh37"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_BathShape38"]
+size = Vector3(0.1000, 2.9000, 0.3000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_BathLintelMesh39"]
+size = Vector3(0.1000, 0.9000, 0.9000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_BathLintelShape40"]
+size = Vector3(0.1000, 0.9000, 0.9000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_BathBackMesh41"]
+size = Vector3(1.5000, 2.9000, 0.1000)
+[sub_resource type="BoxShape3D" id="House6_PorchOnly_BathBackShape42"]
+size = Vector3(1.5000, 2.9000, 0.1000)
+[sub_resource type="BoxMesh" id="House6_PorchOnly_CeilMesh43"]
+size = Vector3(7.7000, 0.0800, 6.7000)
+
 [node name="InfiniteNeighborhood" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -2987,13 +3152,158 @@ shape = SubResource("PorchShape_House3_WrongPhoto")
 
 [node name="House4_Porch" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 24, 1.45, 6.5)
-[node name="Mesh" type="MeshInstance3D" parent="House4_Porch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
-mesh = SubResource("BoxMesh_House4_Porch")
+[node name="House4_Porch_ExtFrontMesh1_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2250, 0.0000, 0.0750)
+mesh = SubResource("House4_Porch_ExtFrontMesh1")
 surface_material_override/0 = SubResource("Mat_House4_Porch")
-[node name="Shape" type="CollisionShape3D" parent="House4_Porch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
-shape = SubResource("BoxShape_House4_Porch")
+[node name="House4_Porch_ExtFrontShape2_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2250, 0.0000, 0.0750)
+shape = SubResource("House4_Porch_ExtFrontShape2")
+[node name="House4_Porch_ExtFrontMesh3_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2250, 0.0000, 0.0750)
+mesh = SubResource("House4_Porch_ExtFrontMesh3")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="House4_Porch_ExtFrontShape4_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2250, 0.0000, 0.0750)
+shape = SubResource("House4_Porch_ExtFrontShape4")
+[node name="House4_Porch_ExtFrontLintelMesh5_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, 0.0750)
+mesh = SubResource("House4_Porch_ExtFrontLintelMesh5")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="House4_Porch_ExtFrontLintelShape6_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, 0.0750)
+shape = SubResource("House4_Porch_ExtFrontLintelShape6")
+[node name="House4_Porch_ExtBackMesh7_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.0000, -6.7750)
+mesh = SubResource("House4_Porch_ExtBackMesh7")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="House4_Porch_ExtBackShape8_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.0000, -6.7750)
+shape = SubResource("House4_Porch_ExtBackShape8")
+[node name="House4_Porch_ExtLeftMesh9_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9250, 0.0000, -3.3500)
+mesh = SubResource("House4_Porch_ExtLeftMesh9")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="House4_Porch_ExtLeftShape10_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9250, 0.0000, -3.3500)
+shape = SubResource("House4_Porch_ExtLeftShape10")
+[node name="House4_Porch_ExtRightMesh11_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9250, 0.0000, -3.3500)
+mesh = SubResource("House4_Porch_ExtRightMesh11")
+surface_material_override/0 = SubResource("Mat_House4_Porch")
+[node name="House4_Porch_ExtRightShape12_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9250, 0.0000, -3.3500)
+shape = SubResource("House4_Porch_ExtRightShape12")
+[node name="House4_Porch_Div0Mesh13_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -3.0500)
+mesh = SubResource("House4_Porch_Div0Mesh13")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div0Shape14_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -3.0500)
+shape = SubResource("House4_Porch_Div0Shape14")
+[node name="House4_Porch_Div0Mesh15_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -3.0500)
+mesh = SubResource("House4_Porch_Div0Mesh15")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div0Shape16_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -3.0500)
+shape = SubResource("House4_Porch_Div0Shape16")
+[node name="House4_Porch_Div0LintelMesh17_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -3.0500)
+mesh = SubResource("House4_Porch_Div0LintelMesh17")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div0LintelShape18_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -3.0500)
+shape = SubResource("House4_Porch_Div0LintelShape18")
+[node name="House4_Porch_Div1Mesh19_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -5.0500)
+mesh = SubResource("House4_Porch_Div1Mesh19")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div1Shape20_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -5.0500)
+shape = SubResource("House4_Porch_Div1Shape20")
+[node name="House4_Porch_Div1Mesh21_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -5.0500)
+mesh = SubResource("House4_Porch_Div1Mesh21")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div1Shape22_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -5.0500)
+shape = SubResource("House4_Porch_Div1Shape22")
+[node name="House4_Porch_Div1LintelMesh23_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -5.0500)
+mesh = SubResource("House4_Porch_Div1LintelMesh23")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_Div1LintelShape24_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -5.0500)
+shape = SubResource("House4_Porch_Div1LintelShape24")
+[node name="House4_Porch_FloorMesh25_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -1.5250)
+mesh = SubResource("House4_Porch_FloorMesh25")
+surface_material_override/0 = SubResource("LivingFloorMat")
+[node name="House4_Porch_FloorShape26_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -1.5250)
+shape = SubResource("House4_Porch_FloorShape26")
+[node name="House4_Porch_FloorMesh27_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -3.8000)
+mesh = SubResource("House4_Porch_FloorMesh27")
+surface_material_override/0 = SubResource("BathFloorMat")
+[node name="House4_Porch_FloorShape28_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -3.8000)
+shape = SubResource("House4_Porch_FloorShape28")
+[node name="House4_Porch_FloorMesh29_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7500, -1.4100, -4.0500)
+mesh = SubResource("House4_Porch_FloorMesh29")
+surface_material_override/0 = SubResource("KitchenFloorMat")
+[node name="House4_Porch_FloorShape30_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7500, -1.4100, -4.0500)
+shape = SubResource("House4_Porch_FloorShape30")
+[node name="House4_Porch_FloorMesh31_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -4.8000)
+mesh = SubResource("House4_Porch_FloorMesh31")
+surface_material_override/0 = SubResource("KitchenFloorMat")
+[node name="House4_Porch_FloorShape32_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -4.8000)
+shape = SubResource("House4_Porch_FloorShape32")
+[node name="House4_Porch_FloorMesh33_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -5.8750)
+mesh = SubResource("House4_Porch_FloorMesh33")
+surface_material_override/0 = SubResource("BedroomFloorMat")
+[node name="House4_Porch_FloorShape34_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -5.8750)
+shape = SubResource("House4_Porch_FloorShape34")
+[node name="House4_Porch_BathMesh35_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -3.2000)
+mesh = SubResource("House4_Porch_BathMesh35")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_BathShape36_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -3.2000)
+shape = SubResource("House4_Porch_BathShape36")
+[node name="House4_Porch_BathMesh37_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -4.4000)
+mesh = SubResource("House4_Porch_BathMesh37")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_BathShape38_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -4.4000)
+shape = SubResource("House4_Porch_BathShape38")
+[node name="House4_Porch_BathLintelMesh39_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 1.0000, -3.8000)
+mesh = SubResource("House4_Porch_BathLintelMesh39")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_BathLintelShape40_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 1.0000, -3.8000)
+shape = SubResource("House4_Porch_BathLintelShape40")
+[node name="House4_Porch_BathBackMesh41_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, 0.0000, -4.5500)
+mesh = SubResource("House4_Porch_BathBackMesh41")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House4_Porch_BathBackShape42_N" type="CollisionShape3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, 0.0000, -4.5500)
+shape = SubResource("House4_Porch_BathBackShape42")
+[node name="House4_Porch_CeilMesh43_N" type="MeshInstance3D" parent="House4_Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.4100, -3.3500)
+mesh = SubResource("House4_Porch_CeilMesh43")
+surface_material_override/0 = SubResource("IntCeilingMat")
+
 [node name="RoofLeft" type="MeshInstance3D" parent="House4_Porch"]
 transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House4_Porch")
@@ -3389,13 +3699,158 @@ shape = SubResource("PorchShape_House5_Final")
 
 [node name="House6_PorchOnly" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1.45, -24.5)
-[node name="Mesh" type="MeshInstance3D" parent="House6_PorchOnly"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
-mesh = SubResource("BoxMesh_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtFrontMesh1_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2250, 0.0000, 0.0750)
+mesh = SubResource("House6_PorchOnly_ExtFrontMesh1")
 surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
-[node name="Shape" type="CollisionShape3D" parent="House6_PorchOnly"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.350)
-shape = SubResource("BoxShape_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtFrontShape2_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2250, 0.0000, 0.0750)
+shape = SubResource("House6_PorchOnly_ExtFrontShape2")
+[node name="House6_PorchOnly_ExtFrontMesh3_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2250, 0.0000, 0.0750)
+mesh = SubResource("House6_PorchOnly_ExtFrontMesh3")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtFrontShape4_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2250, 0.0000, 0.0750)
+shape = SubResource("House6_PorchOnly_ExtFrontShape4")
+[node name="House6_PorchOnly_ExtFrontLintelMesh5_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, 0.0750)
+mesh = SubResource("House6_PorchOnly_ExtFrontLintelMesh5")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtFrontLintelShape6_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, 0.0750)
+shape = SubResource("House6_PorchOnly_ExtFrontLintelShape6")
+[node name="House6_PorchOnly_ExtBackMesh7_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.0000, -6.7750)
+mesh = SubResource("House6_PorchOnly_ExtBackMesh7")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtBackShape8_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.0000, -6.7750)
+shape = SubResource("House6_PorchOnly_ExtBackShape8")
+[node name="House6_PorchOnly_ExtLeftMesh9_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9250, 0.0000, -3.3500)
+mesh = SubResource("House6_PorchOnly_ExtLeftMesh9")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtLeftShape10_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9250, 0.0000, -3.3500)
+shape = SubResource("House6_PorchOnly_ExtLeftShape10")
+[node name="House6_PorchOnly_ExtRightMesh11_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9250, 0.0000, -3.3500)
+mesh = SubResource("House6_PorchOnly_ExtRightMesh11")
+surface_material_override/0 = SubResource("Mat_House6_PorchOnly")
+[node name="House6_PorchOnly_ExtRightShape12_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9250, 0.0000, -3.3500)
+shape = SubResource("House6_PorchOnly_ExtRightShape12")
+[node name="House6_PorchOnly_Div0Mesh13_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -3.0500)
+mesh = SubResource("House6_PorchOnly_Div0Mesh13")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div0Shape14_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -3.0500)
+shape = SubResource("House6_PorchOnly_Div0Shape14")
+[node name="House6_PorchOnly_Div0Mesh15_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -3.0500)
+mesh = SubResource("House6_PorchOnly_Div0Mesh15")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div0Shape16_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -3.0500)
+shape = SubResource("House6_PorchOnly_Div0Shape16")
+[node name="House6_PorchOnly_Div0LintelMesh17_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -3.0500)
+mesh = SubResource("House6_PorchOnly_Div0LintelMesh17")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div0LintelShape18_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -3.0500)
+shape = SubResource("House6_PorchOnly_Div0LintelShape18")
+[node name="House6_PorchOnly_Div1Mesh19_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -5.0500)
+mesh = SubResource("House6_PorchOnly_Div1Mesh19")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div1Shape20_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1500, 0.0000, -5.0500)
+shape = SubResource("House6_PorchOnly_Div1Shape20")
+[node name="House6_PorchOnly_Div1Mesh21_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -5.0500)
+mesh = SubResource("House6_PorchOnly_Div1Mesh21")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div1Shape22_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1500, 0.0000, -5.0500)
+shape = SubResource("House6_PorchOnly_Div1Shape22")
+[node name="House6_PorchOnly_Div1LintelMesh23_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -5.0500)
+mesh = SubResource("House6_PorchOnly_Div1LintelMesh23")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_Div1LintelShape24_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.0000, -5.0500)
+shape = SubResource("House6_PorchOnly_Div1LintelShape24")
+[node name="House6_PorchOnly_FloorMesh25_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -1.5250)
+mesh = SubResource("House6_PorchOnly_FloorMesh25")
+surface_material_override/0 = SubResource("LivingFloorMat")
+[node name="House6_PorchOnly_FloorShape26_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -1.5250)
+shape = SubResource("House6_PorchOnly_FloorShape26")
+[node name="House6_PorchOnly_FloorMesh27_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -3.8000)
+mesh = SubResource("House6_PorchOnly_FloorMesh27")
+surface_material_override/0 = SubResource("BathFloorMat")
+[node name="House6_PorchOnly_FloorShape28_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -3.8000)
+shape = SubResource("House6_PorchOnly_FloorShape28")
+[node name="House6_PorchOnly_FloorMesh29_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7500, -1.4100, -4.0500)
+mesh = SubResource("House6_PorchOnly_FloorMesh29")
+surface_material_override/0 = SubResource("KitchenFloorMat")
+[node name="House6_PorchOnly_FloorShape30_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7500, -1.4100, -4.0500)
+shape = SubResource("House6_PorchOnly_FloorShape30")
+[node name="House6_PorchOnly_FloorMesh31_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -4.8000)
+mesh = SubResource("House6_PorchOnly_FloorMesh31")
+surface_material_override/0 = SubResource("KitchenFloorMat")
+[node name="House6_PorchOnly_FloorShape32_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, -1.4100, -4.8000)
+shape = SubResource("House6_PorchOnly_FloorShape32")
+[node name="House6_PorchOnly_FloorMesh33_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -5.8750)
+mesh = SubResource("House6_PorchOnly_FloorMesh33")
+surface_material_override/0 = SubResource("BedroomFloorMat")
+[node name="House6_PorchOnly_FloorShape34_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, -1.4100, -5.8750)
+shape = SubResource("House6_PorchOnly_FloorShape34")
+[node name="House6_PorchOnly_BathMesh35_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -3.2000)
+mesh = SubResource("House6_PorchOnly_BathMesh35")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_BathShape36_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -3.2000)
+shape = SubResource("House6_PorchOnly_BathShape36")
+[node name="House6_PorchOnly_BathMesh37_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -4.4000)
+mesh = SubResource("House6_PorchOnly_BathMesh37")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_BathShape38_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 0.0000, -4.4000)
+shape = SubResource("House6_PorchOnly_BathShape38")
+[node name="House6_PorchOnly_BathLintelMesh39_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 1.0000, -3.8000)
+mesh = SubResource("House6_PorchOnly_BathLintelMesh39")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_BathLintelShape40_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3500, 1.0000, -3.8000)
+shape = SubResource("House6_PorchOnly_BathLintelShape40")
+[node name="House6_PorchOnly_BathBackMesh41_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, 0.0000, -4.5500)
+mesh = SubResource("House6_PorchOnly_BathBackMesh41")
+surface_material_override/0 = SubResource("IntWallMat")
+[node name="House6_PorchOnly_BathBackShape42_N" type="CollisionShape3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1000, 0.0000, -4.5500)
+shape = SubResource("House6_PorchOnly_BathBackShape42")
+[node name="House6_PorchOnly_CeilMesh43_N" type="MeshInstance3D" parent="House6_PorchOnly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.4100, -3.3500)
+mesh = SubResource("House6_PorchOnly_CeilMesh43")
+surface_material_override/0 = SubResource("IntCeilingMat")
+
 [node name="RoofLeft" type="MeshInstance3D" parent="House6_PorchOnly"]
 transform = Transform3D(0.91192, -0.41036, 0, 0.41036, 0.91192, 0, 0, 0, 1, -2.0, 2.350, -3.350)
 mesh = SubResource("RoofMesh_House6_PorchOnly")
