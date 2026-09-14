@@ -1,4 +1,4 @@
-[gd_scene load_steps=581 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=583 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_smoke_wisp.png" id="24"]
 [ext_resource type="Texture2D" path="res://assets/props/chapter04/chapter04_prop_water_tower.png" id="25"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick.png" id="e101"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_b.png" id="e301"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_c.png" id="e302"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_shingle_charcoal.png" id="e102"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof.png" id="e103"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank.png" id="e104"]
@@ -166,7 +168,7 @@ ambient_light_color = Color(0.7, 0.72, 0.85, 1)
 ambient_light_energy = 1.2
 
 [sub_resource type="StandardMaterial3D" id="BrickMat"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(6, 3, 1)
 roughness = 0.85
 normal_enabled = true
@@ -223,7 +225,7 @@ metallic = 0.3
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_14x6x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(14, 6, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -232,7 +234,7 @@ roughness_texture = ExtResource("e202")
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x6x12"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(0.3, 6, 12)
 roughness = 0.85
 normal_enabled = true
@@ -289,7 +291,7 @@ metallic = 0.3
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p75x2p25x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.75, 2.25, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -307,7 +309,7 @@ roughness_texture = ExtResource("e202")
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x2p25x2"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.3, 2.25, 2)
 roughness = 0.85
 normal_enabled = true
@@ -353,7 +355,7 @@ roughness = 0.95
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_12x6x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(12, 6, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -387,7 +389,7 @@ roughness = 0.55
 metallic = 0.3
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_11x5x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(11, 5, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -395,7 +397,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x5x9"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(0.3, 5, 9)
 roughness = 0.85
 normal_enabled = true
@@ -440,7 +442,7 @@ roughness = 0.55
 metallic = 0.3
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p75x1p75x0p75"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.75, 1.75, 0.75)
 roughness = 0.85
 normal_enabled = true
@@ -448,7 +450,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p75x2p25x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.75, 2.25, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -464,7 +466,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x2p25x2p5"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.3, 2.25, 2.5)
 roughness = 0.85
 normal_enabled = true
@@ -472,7 +474,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_13x5x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(13, 5, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -537,7 +539,7 @@ roughness = 0.55
 metallic = 0.3
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_7x5x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e301")
 uv1_scale = Vector3(7, 5, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -545,7 +547,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x5x8"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.3, 5, 8)
 roughness = 0.85
 normal_enabled = true
@@ -561,7 +563,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x5x6"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.3, 5, 6)
 roughness = 0.85
 normal_enabled = true
@@ -569,7 +571,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_6x5x0p3"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(6, 5, 0.3)
 roughness = 0.85
 normal_enabled = true
@@ -577,7 +579,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_0p3x5x7"]
-albedo_texture = ExtResource("e101")
+albedo_texture = ExtResource("e302")
 uv1_scale = Vector3(0.3, 5, 7)
 roughness = 0.85
 normal_enabled = true
