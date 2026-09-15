@@ -35,7 +35,13 @@ interface TtsEngine {
 sealed class ModelDownloadState {
     data object NotStarted : ModelDownloadState()
     data class Downloading(val bytesDownloaded: Long, val totalBytes: Long) : ModelDownloadState()
-    data object Installing : ModelDownloadState()
+    /**
+     * Extraction is CPU-bound (bzip2 decompression) and can take minutes on a phone, with no
+     * network activity to show for it -- [bytesWritten] lets the UI prove it's still progressing
+     * rather than just showing a static "Installing..." that looks identical whether it's 5%
+     * done or hung.
+     */
+    data class Installing(val bytesWritten: Long, val filesExtracted: Int) : ModelDownloadState()
     data object Ready : ModelDownloadState()
     data class Failed(val message: String) : ModelDownloadState()
 }

@@ -124,8 +124,21 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
                 LinearProgressIndicator(progress = { progress }, color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             }
 
-            is ModelDownloadState.Installing ->
-                Text("Installing model...", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
+            is ModelDownloadState.Installing -> {
+                val writtenMb = state.bytesWritten / (1024 * 1024)
+                Text(
+                    "Installing model... ${writtenMb}MB unpacked, ${state.filesExtracted} files",
+                    color = SmrPalette.CreamDim,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    "This step decompresses the model and can take a few minutes -- it's still " +
+                        "working as long as the numbers above keep climbing.",
+                    color = SmrPalette.CreamDim,
+                    style = MaterialTheme.typography.labelSmall
+                )
+                LinearProgressIndicator(color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
+            }
 
             is ModelDownloadState.Ready ->
                 Text("Narration model ready", color = SmrPalette.Teal, style = MaterialTheme.typography.bodyMedium)

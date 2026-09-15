@@ -93,15 +93,29 @@ class CloneModelManager(
     }
 
     private fun install() {
-        _state.value = ModelDownloadState.Installing
         modelDir.mkdirs()
         val zipFile = File(context.cacheDir, "clone-download.zip")
+
+        var totalBytesWritten = 0L
+        var filesExtracted = 0
+        _state.value = ModelDownloadState.Installing(totalBytesWritten, filesExtracted)
+
         ZipInputStream(zipFile.inputStream()).use { zip ->
             var entry = zip.nextEntry
             while (entry != null) {
                 if (!entry.isDirectory) {
                     val outFile = File(modelDir, File(entry.name).name)
-                    outFile.outputStream().use { zip.copyTo(it) }
+                    outFile.outputStream().use { out ->
+                        val buffer = ByteArray(64 * 1024)
+                        while (true) {
+                            val read = zip.read(buffer)
+                            if (read == -1) break
+                            out.write(buffer, 0, read)
+                            totalBytesWritten += read
+                            _state.value = ModelDownloadState.Installing(totalBytesWritten, filesExtracted)
+                        }
+                    }
+                    filesExtracted++
                 }
                 entry = zip.nextEntry
             }

@@ -113,9 +113,12 @@ class KokoroModelManager(
      * [modelDir], preserving the espeak-ng-data subdirectory structure sherpa-onnx expects.
      */
     private fun install() {
-        _state.value = ModelDownloadState.Installing
         modelDir.mkdirs()
         val archiveFile = File(context.cacheDir, "kokoro-download.tar.bz2")
+
+        var totalBytesWritten = 0L
+        var filesExtracted = 0
+        _state.value = ModelDownloadState.Installing(totalBytesWritten, filesExtracted)
 
         TarArchiveInputStream(BZip2CompressorInputStream(archiveFile.inputStream())).use { tar ->
             var entry = tar.nextEntry
@@ -124,7 +127,19 @@ class KokoroModelManager(
                     val relativePath = entry.name.substringAfter('/', entry.name)
                     val outFile = File(modelDir, relativePath)
                     outFile.parentFile?.mkdirs()
-                    outFile.outputStream().use { tar.copyTo(it) }
+                    outFile.outputStream().use { out ->
+                        val buffer = ByteArray(64 * 1024)
+                        while (true) {
+                            val read = tar.read(buffer)
+                            if (read == -1) break
+                            out.write(buffer, 0, read)
+                            totalBytesWritten += read
+                            // Extraction is bzip2-decompression-bound, not network-bound -- this
+                            // is what lets the UI show it's still making progress, not hung.
+                            _state.value = ModelDownloadState.Installing(totalBytesWritten, filesExtracted)
+                        }
+                    }
+                    filesExtracted++
                 }
                 entry = tar.nextEntry
             }
