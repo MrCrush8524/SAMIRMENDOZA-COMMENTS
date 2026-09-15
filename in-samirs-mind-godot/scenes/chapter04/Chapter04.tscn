@@ -1,4 +1,4 @@
-[gd_scene load_steps=583 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=587 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -30,6 +30,10 @@
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_c.png" id="e302"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_shingle_charcoal.png" id="e102"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof.png" id="e103"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_b.png" id="e401"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_c.png" id="e402"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_normal.png" id="e403"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_rough.png" id="e404"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank.png" id="e104"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_parapet.png" id="e105"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_normal.png" id="e201"]
@@ -184,9 +188,13 @@ normal_texture = ExtResource("e203")
 roughness_texture = ExtResource("e204")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(20, 20, 1)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="WoodPlankMat"]
 albedo_texture = ExtResource("e104")
@@ -243,9 +251,13 @@ roughness_texture = ExtResource("e202")
 
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_14x0p3x12"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(14, 0.3, 12)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_14x1x0p3"]
@@ -318,9 +330,13 @@ roughness_texture = ExtResource("e202")
 
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_2p5x0p3x2"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(2.5, 0.3, 2)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_0p3x3x0p3"]
@@ -349,9 +365,13 @@ roughness_texture = ExtResource("e206")
 
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_2x0p3x6"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(2, 0.3, 6)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 
 [sub_resource type="StandardMaterial3D" id="BrickMat_12x6x0p3"]
@@ -364,15 +384,23 @@ roughness_texture = ExtResource("e202")
 
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_12x0p3x3p5"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(12, 0.3, 3.5)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_3p5x0p3x5"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(3.5, 0.3, 5)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_5x1x0p3"]
@@ -422,6 +450,10 @@ metallic = 0.3
 albedo_texture = ExtResource("e103")
 uv1_scale = Vector3(11, 0.3, 3.5)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_5x1x0p3"]
 albedo_texture = ExtResource("e105")
@@ -490,29 +522,49 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_0p5x0p3x10"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(0.5, 0.3, 10)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_1p25x0p3x7p25"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(1.25, 0.3, 7.25)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_4p25x0p3x10"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e402")
 uv1_scale = Vector3(4.25, 0.3, 10)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_1p25x0p3x9"]
 albedo_texture = ExtResource("e103")
 uv1_scale = Vector3(1.25, 0.3, 9)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_6x0p3x10"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(6, 0.3, 10)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_5p75x1x0p3"]
 albedo_texture = ExtResource("e105")
@@ -590,16 +642,28 @@ roughness_texture = ExtResource("e202")
 albedo_texture = ExtResource("e103")
 uv1_scale = Vector3(7, 0.3, 8)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_8x0p3x6"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(8, 0.3, 6)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat_6x0p3x7"]
-albedo_texture = ExtResource("e103")
+albedo_texture = ExtResource("e401")
 uv1_scale = Vector3(6, 0.3, 7)
 roughness = 0.95
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("e403")
+roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="MetalTrimMat_5p25x0p75x0p3"]
 albedo_texture = ExtResource("e105")

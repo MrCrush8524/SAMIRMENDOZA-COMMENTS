@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bknvqfxp2cec"
-path="res://.godot/imported/chapter04_prop_skylight_frame.png-8a5035f66a68f5070b0f9b1a9dfff2af.ctex"
+uid="uid://dmmppa7um5j07"
+path="res://.godot/imported/chapter04_tex_lower_roof_b.png-e4429fdfb81b13d8266059af5780602e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/chapter04/chapter04_prop_skylight_frame.png"
-dest_files=["res://.godot/imported/chapter04_prop_skylight_frame.png-8a5035f66a68f5070b0f9b1a9dfff2af.ctex"]
+source_file="res://assets/textures/chapter04/chapter04_tex_lower_roof_b.png"
+dest_files=["res://.godot/imported/chapter04_tex_lower_roof_b.png-e4429fdfb81b13d8266059af5780602e.ctex"]
 
 [params]
 
