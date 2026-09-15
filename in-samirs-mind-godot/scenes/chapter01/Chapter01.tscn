@@ -169,11 +169,41 @@ size = Vector3(4.8768, 0.0457, 4.2672)
 [sub_resource type="BoxShape3D" id="C_488_5_427Shape"]
 size = Vector3(4.8768, 0.0457, 4.2672)
 
-[sub_resource type="BoxMesh" id="W_1402_274_15"]
-size = Vector3(14.0208, 2.7432, 0.1524)
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg0Mesh"]
+size = Vector3(1.0668, 2.74, 0.1524)
 
-[sub_resource type="BoxShape3D" id="W_1402_274_15Shape"]
-size = Vector3(14.0208, 2.7432, 0.1524)
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg0Shape"]
+size = Vector3(1.0668, 2.74, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg1Mesh"]
+size = Vector3(1.3716, 2.74, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg1Shape"]
+size = Vector3(1.3716, 2.74, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg2Mesh"]
+size = Vector3(0.9144, 2.74, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg2Shape"]
+size = Vector3(0.9144, 2.74, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg3Mesh"]
+size = Vector3(0.9144, 2.74, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg3Shape"]
+size = Vector3(0.9144, 2.74, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg4Mesh"]
+size = Vector3(1.2954, 2.74, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg4Shape"]
+size = Vector3(1.2954, 2.74, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_Gallery_WallN_Seg5Mesh"]
+size = Vector3(0.3806, 2.74, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_Gallery_WallN_Seg5Shape"]
+size = Vector3(0.3806, 2.74, 0.1524)
 
 [sub_resource type="BoxMesh" id="W_640_274_15"]
 size = Vector3(6.4008, 2.7432, 0.1524)
@@ -547,11 +577,17 @@ size = Vector3(0.3048, 3.3528, 0.1524)
 [sub_resource type="BoxShape3D" id="W_30_335_15Shape"]
 size = Vector3(0.3048, 3.3528, 0.1524)
 
-[sub_resource type="BoxMesh" id="W_244_335_15"]
-size = Vector3(2.4384, 3.3528, 0.1524)
+[sub_resource type="BoxMesh" id="WSeg_MoonDoorAlcove_WallS_Seg0Mesh"]
+size = Vector3(0.4572, 3.3528, 0.1524)
 
-[sub_resource type="BoxShape3D" id="W_244_335_15Shape"]
-size = Vector3(2.4384, 3.3528, 0.1524)
+[sub_resource type="BoxShape3D" id="WSeg_MoonDoorAlcove_WallS_Seg0Shape"]
+size = Vector3(0.4572, 3.3528, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_MoonDoorAlcove_WallS_Seg1Mesh"]
+size = Vector3(0.4572, 3.3528, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_MoonDoorAlcove_WallS_Seg1Shape"]
+size = Vector3(0.4572, 3.3528, 0.1524)
 
 [sub_resource type="BoxMesh" id="W_15_335_244"]
 size = Vector3(0.1524, 3.3528, 2.4384)
@@ -1075,13 +1111,53 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallE_1"]
 shape = SubResource("W_15_305_137Shape")
 
-[node name="Gallery_WallN_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3048, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_0"]
-mesh = SubResource("W_1402_274_15")
+[node name="Gallery_WallN_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9530, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg0"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg0Mesh")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_0"]
-shape = SubResource("W_1402_274_15Shape")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg0"]
+shape = SubResource("WSeg_Gallery_WallN_Seg0Shape")
+
+[node name="Gallery_WallN_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8194, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg1"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg1"]
+shape = SubResource("WSeg_Gallery_WallN_Seg1Shape")
+
+[node name="Gallery_WallN_Seg2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4572, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg2"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg2Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg2"]
+shape = SubResource("WSeg_Gallery_WallN_Seg2Shape")
+
+[node name="Gallery_WallN_Seg3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2860, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg3"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg3Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg3"]
+shape = SubResource("WSeg_Gallery_WallN_Seg3Shape")
+
+[node name="Gallery_WallN_Seg4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6101, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg4"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg4Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg4"]
+shape = SubResource("WSeg_Gallery_WallN_Seg4Shape")
+
+[node name="Gallery_WallN_Seg5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5149, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg5"]
+mesh = SubResource("WSeg_Gallery_WallN_Seg5Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg5"]
+shape = SubResource("WSeg_Gallery_WallN_Seg5Shape")
 
 [node name="Gallery_WallS_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1148, 1.3716, 0.0000)
@@ -1643,13 +1719,21 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled44")
 [node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallN_1"]
 shape = SubResource("W_30_335_15Shape")
 
-[node name="MoonDoorAlcove_WallS_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1440, 1.6764, 7.9248)
-[node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallS_0"]
-mesh = SubResource("W_244_335_15")
+[node name="MoonDoorAlcove_WallS_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1534, 1.6764, 7.9248)
+[node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallS_Seg0"]
+mesh = SubResource("WSeg_MoonDoorAlcove_WallS_Seg0Mesh")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled45")
-[node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallS_0"]
-shape = SubResource("W_244_335_15Shape")
+[node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallS_Seg0"]
+shape = SubResource("WSeg_MoonDoorAlcove_WallS_Seg0Shape")
+
+[node name="MoonDoorAlcove_WallS_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1346, 1.6764, 7.9248)
+[node name="Mesh" type="MeshInstance3D" parent="MoonDoorAlcove_WallS_Seg1"]
+mesh = SubResource("WSeg_MoonDoorAlcove_WallS_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled45")
+[node name="Shape" type="CollisionShape3D" parent="MoonDoorAlcove_WallS_Seg1"]
+shape = SubResource("WSeg_MoonDoorAlcove_WallS_Seg1Shape")
 
 [node name="MoonDoorAlcove_WallW_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9248, 1.6764, 6.7056)

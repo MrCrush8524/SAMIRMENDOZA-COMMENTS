@@ -129,12 +129,44 @@ func _update_paw_overlay() -> void:
 	var t: float = clampf(inverse_lerp(PAW_FADE_START, PAW_FADE_FULL, downward), 0.0, 1.0)
 	paw_overlay.modulate.a = t * PAW_MAX_OPACITY
 
+const INTERACT_RANGE := 2.2
+const MAX_INTERACT_PIERCE := 6
+
+## A plain RayCast3D only ever reports its single nearest hit, and with
+## collide_with_areas on, that's just as likely to be an incidental
+## trigger volume (an ambience/flavor zone, the Backrooms entrance) as a
+## real interactable - those have no interact() method, so bailing out
+## on the first hit silently "blocked" every pickup standing behind one.
+## Query the space directly instead, excluding each non-interactable hit
+## and re-casting, so a real interactable further along the same ray is
+## still found.
 func _try_interact() -> void:
-	if interact_ray.is_colliding():
-		var target := interact_ray.get_collider()
+	var space_state := get_world_3d().direct_space_state
+	var from := interact_ray.global_transform.origin
+	# interact_ray's own forward direction, not an assumption about the
+	# player body's facing, since the camera can pitch independently.
+	var to := from + interact_ray.global_transform.basis.z * -1.0 * INTERACT_RANGE
+	var query := PhysicsRayQueryParameters3D.create(from, to)
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	var excluded: Array[RID] = []
+	for _i in MAX_INTERACT_PIERCE:
+		query.exclude = excluded
+		var result := space_state.intersect_ray(query)
+		if result.is_empty():
+			return
+		var target: Object = result["collider"]
 		if target and target.has_method("interact"):
 			interact_pressed.emit(target)
 			target.interact()
+			return
+		if not (target is CollisionObject3D):
+			return
+		# a solid wall/body blocks line of sight entirely - don't pierce it,
+		# only skip past non-interactable Area3D triggers.
+		if target is StaticBody3D or target is CharacterBody3D or target is RigidBody3D:
+			return
+		excluded.append(target.get_rid())
 
 func set_spawn(position_3d: Vector3, yaw: float) -> void:
 	global_position = position_3d

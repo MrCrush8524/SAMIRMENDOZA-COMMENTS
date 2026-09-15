@@ -86,6 +86,9 @@ ambient_light_energy = 1.0
 [sub_resource type="BoxMesh" id="ReturnDoorMesh"]
 size = Vector3(1.2, 2.2, 0.1)
 
+[sub_resource type="BoxShape3D" id="ReturnDoorSolidShape"]
+size = Vector3(1.2, 2.2, 0.1)
+
 [sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
 albedo_color = Color(0.95, 0.6, 0.8, 1)
 roughness = 0.4
@@ -290,6 +293,9 @@ mesh = SubResource("ReturnDoorMesh")
 surface_material_override/0 = SubResource("ReturnDoorMat")
 [node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
 shape = SubResource("ReturnDoorShape")
+[node name="Solid" type="StaticBody3D" parent="SideLevelReturnDoor"]
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor/Solid"]
+shape = SubResource("ReturnDoorSolidShape")
 [node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
 light_color = Color(0.95, 0.6, 0.8, 1)
 light_energy = 0.5

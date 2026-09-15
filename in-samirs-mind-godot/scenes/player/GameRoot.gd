@@ -160,15 +160,25 @@ func enter_side_level(chapter_id: String, spawn_marker: String = "start", random
 
 ## Called by a SideLevelReturnDoor. Puts the player back exactly where
 ## they stepped in from, not just at the destination chapter's "start".
+## _sidelevel_return_chapter is only ever set in-memory by
+## enter_side_level, so a fresh GameRoot that loaded straight into a side
+## level (e.g. resuming a save made while already inside one) never has
+## it - falling through silently there left the return door permanently
+## dead, with no way out of that side level at all. Every side level is
+## reached from Chapter I's Impossible Door Gallery today, so that's the
+## one sane fallback destination rather than doing nothing.
 func exit_side_level() -> void:
+	var return_chapter := _sidelevel_return_chapter if not _sidelevel_return_chapter.is_empty() else "chapter01"
+	GameState.chapter = return_chapter
 	if _sidelevel_return_chapter.is_empty():
-		return
-	GameState.chapter = _sidelevel_return_chapter
-	GameState.has_last_position = true
-	GameState.last_position = _sidelevel_return_position
-	GameState.last_yaw = _sidelevel_return_yaw
+		GameState.spawn_id = "start"
+		GameState.has_last_position = false
+	else:
+		GameState.has_last_position = true
+		GameState.last_position = _sidelevel_return_position
+		GameState.last_yaw = _sidelevel_return_yaw
 	SceneLoader.scene_ready.connect(_on_chapter_ready, CONNECT_ONE_SHOT)
-	SceneLoader.load_chapter(_sidelevel_return_chapter, self)
+	SceneLoader.load_chapter(return_chapter, self)
 	# Only save once the player has actually been moved to the return spot
 	# by _on_chapter_ready above (load_chapter emits scene_ready
 	# synchronously) — save_game() reads the player's live position, so
