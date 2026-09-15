@@ -50,9 +50,6 @@ const SCROLL_WALK_HOLD_TIME := 0.25
 @onready var mirror_body: Sprite3D = $MirrorBody
 
 var pitch: float = 0.0
-var touch_look_active: bool = false
-var touch_look_id: int = -1
-var touch_look_start := Vector2.ZERO
 
 var _scroll_forward_timer: float = 0.0
 var _scroll_backward_timer: float = 0.0
@@ -60,9 +57,13 @@ var _scroll_backward_timer: float = 0.0
 signal interact_pressed(target: Node)
 
 func _ready() -> void:
-	if OS.has_feature("mobile") or OS.get_name() in ["Android", "iOS"]:
-		pass # touch look handled via _unhandled_input below regardless of platform
-	else:
+	# DisplayServer.is_touchscreen_available() is what actually tells us
+	# a touchscreen is present, on native mobile AND a web build running
+	# in an iPad/iPhone/Android browser alike - OS.has_feature("mobile")
+	# is false for the web export even when it's running on a phone, so
+	# checking that alone left touch devices with the mouse wrongly
+	# captured (and hidden) the moment they tapped the canvas.
+	if not DisplayServer.is_touchscreen_available():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	refresh_dreamer_visuals()
