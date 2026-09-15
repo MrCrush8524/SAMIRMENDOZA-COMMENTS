@@ -13,17 +13,25 @@ import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
 import java.io.File
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
  * Downloads and unpacks the quantized Kokoro ONNX model bundle on first use. The app itself
- * ships without the model (it's tens of MB), so the Voices screen is what actually triggers
- * this the first time a user picks a standard narration voice.
+ * ships without the model (it's ~320MB, the real Kokoro v0.19 release size), so the Voices
+ * screen is what actually triggers this the first time a user picks a standard narration voice.
  */
 class KokoroModelManager(
     private val context: Context,
-    private val httpClient: OkHttpClient = OkHttpClient()
+    private val httpClient: OkHttpClient = OkHttpClient.Builder()
+        // Defaults (10s) are far too short for a 320MB download over a mobile connection --
+        // a brief stall between chunks would otherwise throw a spurious SocketTimeoutException
+        // partway through and fail the whole download.
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.MINUTES)
+        .writeTimeout(5, TimeUnit.MINUTES)
+        .build()
 ) {
     private val _state = MutableStateFlow<ModelDownloadState>(ModelDownloadState.NotStarted)
     val state: StateFlow<ModelDownloadState> = _state

@@ -105,7 +105,22 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
 
             is ModelDownloadState.Downloading -> {
                 val progress = if (state.totalBytes > 0) state.bytesDownloaded.toFloat() / state.totalBytes else 0f
-                Text("Downloading model...", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
+                val downloadedMb = state.bytesDownloaded / (1024 * 1024)
+                val totalMb = state.totalBytes / (1024 * 1024)
+                Text(
+                    if (state.totalBytes > 0) {
+                        "Downloading model... ${downloadedMb}MB / ${totalMb}MB (${(progress * 100).toInt()}%)"
+                    } else {
+                        "Downloading model... ${downloadedMb}MB"
+                    },
+                    color = SmrPalette.CreamDim,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    "This is a large download (~320MB) -- Wi-Fi recommended.",
+                    color = SmrPalette.CreamDim,
+                    style = MaterialTheme.typography.labelSmall
+                )
                 LinearProgressIndicator(progress = { progress }, color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             }
 
@@ -115,8 +130,14 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
             is ModelDownloadState.Ready ->
                 Text("Narration model ready", color = SmrPalette.Teal, style = MaterialTheme.typography.bodyMedium)
 
-            is ModelDownloadState.Failed ->
+            is ModelDownloadState.Failed -> {
                 Text("Download failed: ${state.message}", color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
+                Button(
+                    onClick = onDownload,
+                    colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal),
+                    modifier = Modifier.padding(top = 8.dp)
+                ) { Text("Retry download", color = SmrPalette.Base) }
+            }
         }
     }
 }
