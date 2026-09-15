@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.wrangler/
+.netlify/
+*.local
+.DS_Store
+
+# Local dev secrets -- Claude API key lives in the host's dashboard env vars in production,
+# never committed here.
+.dev.vars
+.env
+.env.local

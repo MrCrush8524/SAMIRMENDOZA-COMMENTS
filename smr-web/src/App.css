@@ -1,0 +1,48 @@
+.app-shell {
+  position: relative;
+  min-height: 100%;
+}
+
+.app-shell__scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+.app-shell__content {
+  min-height: 100%;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: calc(var(--safe-top) + 16px) 16px 16px;
+}
+
+.topbar__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--smr-cream);
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  color: var(--smr-lavender);
+  font-size: 22px;
+  line-height: 1;
+  padding: 8px;
+  border-radius: 999px;
+}
+
+.icon-button:hover {
+  background: var(--smr-base-elevated);
+}
+
+.screen {
+  padding: 0 20px 40px;
+  max-width: 480px;
+  margin: 0 auto;
+}
