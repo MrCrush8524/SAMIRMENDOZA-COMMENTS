@@ -1,0 +1,36 @@
+name: Build SMR Android APK
+
+on:
+  push:
+    branches: [claude/smr-android-app-21z2np, claude/backrooms-map-threejs-rbc3q3]
+    paths:
+      - "smr-android/**"
+      - ".github/workflows/build-smr-android.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: smr-android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: smr-stories-made-real-debug
+          path: smr-android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
