@@ -22,8 +22,15 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      # ubuntu-latest runners ship with an Android SDK already installed at $ANDROID_HOME,
+      # including recent platforms/build-tools. Just make sure the platform this project
+      # compiles against (34) and licenses are present rather than pulling in
+      # android-actions/setup-android, which tries to install the long-removed legacy
+      # "tools" package and fails outright on current SDK repository metadata.
+      - name: Ensure required SDK packages are installed
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --no-daemon
