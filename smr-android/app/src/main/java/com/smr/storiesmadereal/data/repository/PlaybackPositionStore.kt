@@ -1,7 +1,6 @@
 package com.smr.storiesmadereal.data.repository
 
 import android.content.Context
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -19,7 +18,9 @@ class PlaybackPositionStore(private val context: Context) {
     private val lastOpenedKey = stringPreferencesKey("last_opened_manuscript_id")
 
     suspend fun savePosition(manuscriptId: String, positionMs: Long) {
-        context.dataStore.edit { prefs: Preferences ->
+        // The lambda parameter must infer as MutablePreferences (not the read-only
+        // Preferences supertype) -- only MutablePreferences defines the set operator used below.
+        context.dataStore.edit { prefs ->
             prefs[positionKey(manuscriptId)] = positionMs
             prefs[lastOpenedKey] = manuscriptId
         }

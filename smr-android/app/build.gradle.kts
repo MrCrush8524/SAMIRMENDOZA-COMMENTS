@@ -91,6 +91,9 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+        // TopAppBar and a few other Material 3 components used across the screens are marked
+        // @ExperimentalMaterial3Api; opted in globally rather than annotating every call site.
+        freeCompilerArgs += listOf("-opt-in=androidx.compose.material3.ExperimentalMaterial3Api")
     }
 
     buildFeatures {

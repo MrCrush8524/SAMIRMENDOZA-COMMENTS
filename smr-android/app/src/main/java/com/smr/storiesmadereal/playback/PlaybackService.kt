@@ -10,7 +10,6 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSession.ConnectionResult
 import androidx.media3.session.MediaSessionService
 import androidx.media3.session.SessionCommand
-import androidx.media3.session.SessionCommands
 import androidx.media3.session.SessionResult
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
@@ -95,8 +94,7 @@ class PlaybackService : MediaSessionService() {
         private val focusModeCommand = SessionCommand(AUDIO_FOCUS_MODE_COMMAND, Bundle.EMPTY)
 
         override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): ConnectionResult {
-            val sessionCommands = SessionCommands.Builder()
-                .addSessionCommands(ConnectionResult.DEFAULT_SESSION_AND_LIBRARY_COMMANDS.sessionCommands)
+            val sessionCommands = ConnectionResult.DEFAULT_SESSION_AND_LIBRARY_COMMANDS.buildUpon()
                 .add(focusModeCommand)
                 .build()
             return ConnectionResult.accept(sessionCommands, ConnectionResult.DEFAULT_PLAYER_COMMANDS)

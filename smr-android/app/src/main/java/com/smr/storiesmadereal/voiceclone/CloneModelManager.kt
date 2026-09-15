@@ -57,7 +57,11 @@ class CloneModelManager(
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use { resp ->
-                        val body = resp.body ?: return close(IOException("empty body"))
+                        val body = resp.body
+                        if (body == null) {
+                            close(IOException("empty body"))
+                            return
+                        }
                         val total = body.contentLength()
                         var downloaded = 0L
                         zipFile.outputStream().use { out ->
