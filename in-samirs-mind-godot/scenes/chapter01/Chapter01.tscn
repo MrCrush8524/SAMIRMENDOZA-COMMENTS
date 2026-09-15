@@ -2325,7 +2325,7 @@ still_frame = ExtResource("12")
 mesh = SubResource("BoxMesh_tv")
 surface_material_override/0 = SubResource("TVBodyMat")
 [node name="Screen" type="MeshInstance3D" parent="TVManual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.34)
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0.34)
 mesh = SubResource("PlaneMesh_screen")
 [node name="BroadcastAudio" type="AudioStreamPlayer3D" parent="TVManual"]
 unit_size = 4.0
@@ -2346,7 +2346,7 @@ playlist_stills = Array[Texture2D]([ExtResource("28"), ExtResource("29"), ExtRes
 mesh = SubResource("BoxMesh_tv")
 surface_material_override/0 = SubResource("TVBodyMat")
 [node name="Screen" type="MeshInstance3D" parent="TVProximity"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.34)
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0.34)
 mesh = SubResource("PlaneMesh_screen")
 [node name="BroadcastAudio" type="AudioStreamPlayer3D" parent="TVProximity"]
 unit_size = 4.0
