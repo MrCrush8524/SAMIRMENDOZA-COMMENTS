@@ -5,6 +5,7 @@
 
 # Export builds
 export/
+build/
 *.exe
 *.apk
 *.aab
