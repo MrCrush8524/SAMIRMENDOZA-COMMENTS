@@ -5,6 +5,9 @@
 [ext_resource type="Script" path="res://scenes/chapter04/Chapter4ExitDoor.gd" id="gp_ch4exitdoor"]
 [ext_resource type="Script" path="res://scenes/shared/CheckpointZone.gd" id="gp_checkpoint"]
 [ext_resource type="Texture2D" path="res://assets/pickups/journal_grimoire_wrapper.png" id="gp_journaltex"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_paver.png" id="gp_paver1"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_paver_normal.png" id="gp_paver_n"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_paver_rough.png" id="gp_paver_r"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -218,6 +221,15 @@ roughness = 0.9
 normal_enabled = true
 normal_texture = ExtResource("e203")
 roughness_texture = ExtResource("e204")
+
+[sub_resource type="StandardMaterial3D" id="PaverMat"]
+albedo_texture = ExtResource("gp_paver1")
+uv1_scale = Vector3(10, 10, 1)
+roughness = 0.85
+texture_filter = 5
+normal_enabled = true
+normal_texture = ExtResource("gp_paver_n")
+roughness_texture = ExtResource("gp_paver_r")
 
 [sub_resource type="StandardMaterial3D" id="TarGravelMat"]
 albedo_texture = ExtResource("e401")
@@ -6559,7 +6571,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3800, 23.9000, -7.3100)
 
 [node name="Mesh" type="MeshInstance3D" parent="HighRoofs/C4_RoofGBody3208"]
 mesh = SubResource("C4_RoofGMesh3207")
-surface_material_override/0 = SubResource("TarGravelMat")
+surface_material_override/0 = SubResource("PaverMat")
 
 [node name="Shape" type="CollisionShape3D" parent="HighRoofs/C4_RoofGBody3208"]
 shape = SubResource("C4_RoofGShape3209")
