@@ -1,4 +1,4 @@
-[gd_scene load_steps=587 format=3 uid="uid://chapter04_scene"]
+[gd_scene load_steps=591 format=3 uid="uid://chapter04_scene"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/TierLift.gd" id="2"]
@@ -35,6 +35,10 @@
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_normal.png" id="e403"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_lower_roof_rough.png" id="e404"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank.png" id="e104"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank_b.png" id="e501"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_wood_plank_c.png" id="e502"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_shingle_charcoal_b.png" id="e601"]
+[ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_shingle_charcoal_c.png" id="e602"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_parapet.png" id="e105"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_normal.png" id="e201"]
 [ext_resource type="Texture2D" path="res://assets/textures/chapter04/chapter04_tex_brick_rough.png" id="e202"]
@@ -197,7 +201,7 @@ normal_texture = ExtResource("e403")
 roughness_texture = ExtResource("e404")
 
 [sub_resource type="StandardMaterial3D" id="WoodPlankMat"]
-albedo_texture = ExtResource("e104")
+albedo_texture = ExtResource("e502")
 uv1_scale = Vector3(3, 1, 1)
 roughness = 0.75
 normal_enabled = true
@@ -347,7 +351,7 @@ metallic = 0.3
 
 
 [sub_resource type="StandardMaterial3D" id="WoodPlankMat_2x0p3x6"]
-albedo_texture = ExtResource("e104")
+albedo_texture = ExtResource("e501")
 uv1_scale = Vector3(2, 0.3, 6)
 roughness = 0.75
 normal_enabled = true
@@ -433,7 +437,7 @@ normal_texture = ExtResource("e201")
 roughness_texture = ExtResource("e202")
 
 [sub_resource type="StandardMaterial3D" id="ShingleMat_11x0p3x3p75"]
-albedo_texture = ExtResource("e102")
+albedo_texture = ExtResource("e601")
 uv1_scale = Vector3(11, 0.3, 3.75)
 roughness = 0.9
 normal_enabled = true
@@ -768,7 +772,7 @@ roughness = 0.55
 metallic = 0.3
 
 [sub_resource type="StandardMaterial3D" id="WoodPlankMat_1p5x0p3x1"]
-albedo_texture = ExtResource("e104")
+albedo_texture = ExtResource("e501")
 uv1_scale = Vector3(1.5, 0.3, 1)
 roughness = 0.75
 normal_enabled = true
