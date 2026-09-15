@@ -22,9 +22,11 @@ class VoicesViewModel(
 ) : ViewModel() {
 
     private val _clonedVoices = MutableStateFlow<List<Voice>>(emptyList())
+    private val _cloneError = MutableStateFlow<String?>(null)
 
     val standardVoices: List<Voice> = BuiltInVoices.list
     val clonedVoices: StateFlow<List<Voice>> = _clonedVoices
+    val cloneError: StateFlow<String?> = _cloneError
 
     val kokoroDownloadState: StateFlow<ModelDownloadState> = ttsEngine.observeDownloadProgress()
         .stateIn(viewModelScope, kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5_000), ModelDownloadState.NotStarted)
@@ -57,9 +59,14 @@ class VoicesViewModel(
 
     fun cloneFromSample(sampleFile: File, displayName: String, onDone: () -> Unit) {
         viewModelScope.launch {
-            voiceCloneEngine.cloneFromSample(sampleFile, displayName)
-            refreshClonedVoices()
-            onDone()
+            _cloneError.value = null
+            try {
+                voiceCloneEngine.cloneFromSample(sampleFile, displayName)
+                refreshClonedVoices()
+                onDone()
+            } catch (e: Exception) {
+                _cloneError.value = e.message ?: "Couldn't save custom voice"
+            }
         }
     }
 

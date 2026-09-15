@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,6 +54,7 @@ fun CustomVoiceScreen(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val cloneError by viewModel.cloneError.collectAsState()
 
     var displayName by remember { mutableStateOf("") }
     var isRecording by remember { mutableStateOf(false) }
@@ -149,6 +151,11 @@ fun CustomVoiceScreen(
                 colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal)
             ) {
                 Text("Save custom voice", color = SmrPalette.Base)
+            }
+
+            cloneError?.let {
+                Spacer(Modifier.height(16.dp))
+                Text(it, color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }

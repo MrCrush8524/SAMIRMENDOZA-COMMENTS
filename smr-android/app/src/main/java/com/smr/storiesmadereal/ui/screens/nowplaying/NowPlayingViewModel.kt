@@ -117,31 +117,40 @@ class NowPlayingViewModel(
             _uiState.update { it.copy(isBuffering = true) }
             _generationError.value = null
 
-            val manuscriptText = File(manuscript.textFilePath).readText()
-            val narrationText = if (mode == PlaybackMode.READ) {
-                manuscriptText
-            } else {
-                when (val result = claudeRepository.generateScript(manuscriptText, manuscript.title, mode)) {
-                    is ClaudeScriptResult.Success -> result.script.lines.joinToString("\n") { it.text }
-                    is ClaudeScriptResult.Failure -> {
-                        _generationError.value = result.message
-                        _uiState.update { it.copy(isBuffering = false) }
-                        return@launch
+            try {
+                val manuscriptText = File(manuscript.textFilePath).readText()
+                val narrationText = if (mode == PlaybackMode.READ) {
+                    manuscriptText
+                } else {
+                    when (val result = claudeRepository.generateScript(manuscriptText, manuscript.title, mode)) {
+                        is ClaudeScriptResult.Success -> result.script.lines.joinToString("\n") { it.text }
+                        is ClaudeScriptResult.Failure -> {
+                            _generationError.value = result.message
+                            return@launch
+                        }
                     }
                 }
-            }
 
-            ttsEngine.ensureModelReady()
-            val outputDir = File(appContext.cacheDir, "narration/${manuscript.id}_${mode.name}")
-            val chunks = ttsEngine.synthesize(
-                text = narrationText,
-                voice = _uiState.value.voice,
-                speed = _uiState.value.speed,
-                outputDir = outputDir
-            )
-            playbackRepository.enqueueChunks(chunks)
-            playbackRepository.seekTo(_uiState.value.positionMs)
-            _uiState.update { it.copy(isBuffering = false) }
+                ttsEngine.ensureModelReady()
+                if (!ttsEngine.isModelReady) {
+                    _generationError.value = "Narration model isn't downloaded yet -- open Voices and download it first."
+                    return@launch
+                }
+
+                val outputDir = File(appContext.cacheDir, "narration/${manuscript.id}_${mode.name}")
+                val chunks = ttsEngine.synthesize(
+                    text = narrationText,
+                    voice = _uiState.value.voice,
+                    speed = _uiState.value.speed,
+                    outputDir = outputDir
+                )
+                playbackRepository.enqueueChunks(chunks)
+                playbackRepository.seekTo(_uiState.value.positionMs)
+            } catch (e: Exception) {
+                _generationError.value = e.message ?: "Narration failed"
+            } finally {
+                _uiState.update { it.copy(isBuffering = false) }
+            }
         }
     }
 
