@@ -10,9 +10,10 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
+import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
 import java.io.File
 import java.io.IOException
-import java.util.zip.ZipInputStream
 
 /**
  * Downloads and unpacks the quantized Kokoro ONNX model bundle on first use. The app itself
@@ -30,14 +31,15 @@ class KokoroModelManager(
         get() = File(context.filesDir, "models/kokoro")
 
     val isInstalled: Boolean
-        get() = File(modelDir, "kokoro.onnx").exists() && File(modelDir, "voices.bin").exists()
+        get() = File(modelDir, "model.onnx").exists() && File(modelDir, "voices.bin").exists()
 
     /**
-     * Bundle URL is intentionally left as a configuration point rather than hardcoded here --
-     * point it at whichever quantized Kokoro release/mirror the build wants to ship. Swap this
-     * to a self-hosted mirror for reproducible builds.
+     * Official k2-fsa/sherpa-onnx release of Kokoro v0.19 (English), packaged exactly as this
+     * engine expects: kokoro.onnx, voices.bin, tokens.txt, espeak-ng-data/. Overridable so a
+     * build can point at a self-hosted mirror or a newer/multilingual release instead.
      */
-    var modelBundleUrl: String = "https://huggingface.co/api/models/kokoro-onnx-int8/resolve/main/kokoro-int8.zip"
+    var modelBundleUrl: String =
+        "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-en-v0_19.tar.bz2"
 
     suspend fun ensureInstalled() {
         if (isInstalled) {
@@ -50,7 +52,7 @@ class KokoroModelManager(
     }
 
     private suspend fun download() {
-        val zipFile = File(context.cacheDir, "kokoro-download.zip")
+        val archiveFile = File(context.cacheDir, "kokoro-download.tar.bz2")
         callbackFlow {
             val request = Request.Builder().url(modelBundleUrl).build()
             val call = httpClient.newCall(request)
@@ -65,7 +67,7 @@ class KokoroModelManager(
                         val body = resp.body ?: return close(IOException("empty body"))
                         val total = body.contentLength()
                         var downloaded = 0L
-                        zipFile.outputStream().use { out ->
+                        archiveFile.outputStream().use { out ->
                             body.byteStream().use { input ->
                                 val buffer = ByteArray(64 * 1024)
                                 while (true) {
@@ -86,20 +88,28 @@ class KokoroModelManager(
         }
     }
 
+    /**
+     * The release archive extracts to a single top-level folder (e.g. "kokoro-en-v0_19/model.onnx",
+     * ".../espeak-ng-data/en_dict"). Strip that top-level folder so files land directly in
+     * [modelDir], preserving the espeak-ng-data subdirectory structure sherpa-onnx expects.
+     */
     private fun install() {
         _state.value = ModelDownloadState.Installing
         modelDir.mkdirs()
-        val zipFile = File(context.cacheDir, "kokoro-download.zip")
-        ZipInputStream(zipFile.inputStream()).use { zip ->
-            var entry = zip.nextEntry
+        val archiveFile = File(context.cacheDir, "kokoro-download.tar.bz2")
+
+        TarArchiveInputStream(BZip2CompressorInputStream(archiveFile.inputStream())).use { tar ->
+            var entry = tar.nextEntry
             while (entry != null) {
                 if (!entry.isDirectory) {
-                    val outFile = File(modelDir, File(entry.name).name)
-                    outFile.outputStream().use { zip.copyTo(it) }
+                    val relativePath = entry.name.substringAfter('/', entry.name)
+                    val outFile = File(modelDir, relativePath)
+                    outFile.parentFile?.mkdirs()
+                    outFile.outputStream().use { tar.copyTo(it) }
                 }
-                entry = zip.nextEntry
+                entry = tar.nextEntry
             }
         }
-        zipFile.delete()
+        archiveFile.delete()
     }
 }

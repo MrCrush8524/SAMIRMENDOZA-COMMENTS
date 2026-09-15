@@ -6,6 +6,48 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+// --- sherpa-onnx native libraries ---------------------------------------------------------
+//
+// k2-fsa/sherpa-onnx doesn't publish an Android Maven artifact (confirmed: nothing exists
+// under the com.k2fsa group on Maven Central, and the one third-party Maven mirror that does
+// exist -- com.bihe0832.android:lib-sherpa-onnx -- turns out to be ASR/KWS-only across every
+// published version, with no TTS classes at all). The real, upstream-sanctioned pattern is to
+// compile the Kotlin API source directly into the app (com/k2fsa/sherpa/onnx/Tts.kt, vendored
+// verbatim below) and pair it with prebuilt native .so libraries from a GitHub release. This
+// task downloads and unpacks those libraries at build time instead of committing ~40MB of
+// binaries to the repo, and is a no-op once already fetched.
+val sherpaOnnxVersion = "1.12.14"
+val sherpaOnnxJniLibsDir = layout.buildDirectory.dir("sherpaOnnxJniLibs")
+
+val fetchSherpaOnnxNativeLibs by tasks.registering {
+    val outputDir = sherpaOnnxJniLibsDir.get().asFile
+    val markerFile = File(outputDir, ".fetched-$sherpaOnnxVersion")
+    outputs.dir(outputDir)
+    onlyIf { !markerFile.exists() }
+
+    doLast {
+        outputDir.mkdirs()
+        val archiveUrl =
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/v$sherpaOnnxVersion/" +
+                "sherpa-onnx-v$sherpaOnnxVersion-android.tar.bz2"
+        val archiveFile = File(temporaryDir, "sherpa-onnx-android.tar.bz2")
+
+        ant.withGroovyBuilder {
+            "get"("src" to archiveUrl, "dest" to archiveFile, "skipexisting" to false)
+        }
+
+        copy {
+            from(tarTree(resources.bzip2(archiveFile)))
+            into(outputDir)
+            include("jniLibs/**")
+            eachFile { path = path.removePrefix("jniLibs/") }
+            includeEmptyDirs = false
+        }
+
+        markerFile.writeText("fetched")
+    }
+}
+
 android {
     namespace = "com.smr.storiesmadereal"
     // Target device: Samsung Galaxy A71 5G (SM-A716U), Android 13 (API 33)
@@ -61,6 +103,16 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs(sherpaOnnxJniLibsDir)
+        }
+    }
+}
+
+tasks.named("preBuild") {
+    dependsOn(fetchSherpaOnnxNativeLibs)
 }
 
 dependencies {
@@ -90,10 +142,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
-    // Local on-device inference (Kokoro TTS + PocketTTS clone adapter run through sherpa-onnx's
-    // ONNX Runtime JNI bindings). Swapped out independently of the rest of the app — see
-    // tts/TtsEngine.kt and voiceclone/VoiceCloneEngine.kt.
-    implementation("com.k2fsa.sherpa.onnx:sherpa-onnx:1.10.30")
+    // sherpa-onnx: no Maven dependency needed here. The Kotlin API is vendored as source at
+    // com/k2fsa/sherpa/onnx/Tts.kt, and its native .so libraries are fetched by the
+    // fetchSherpaOnnxNativeLibs task above (see that comment for why). See tts/TtsEngine.kt
+    // and voiceclone/VoiceCloneEngine.kt for how this app isolates the engine behind
+    // replaceable interfaces.
+
+    // Kokoro's official sherpa-onnx release bundle ships as .tar.bz2, not .zip.
+    implementation("org.apache.commons:commons-compress:1.26.2")
+    implementation("org.tukaani:xz:1.9")
 
     // Local persistence
     implementation("androidx.datastore:datastore-preferences:1.1.1")

@@ -39,7 +39,7 @@ class KokoroTtsEngine(
         if (tts != null) return
         val dir = modelManager.modelDir
         val kokoroConfig = OfflineTtsKokoroModelConfig(
-            model = File(dir, "kokoro.onnx").absolutePath,
+            model = File(dir, "model.onnx").absolutePath,
             voices = File(dir, "voices.bin").absolutePath,
             tokens = File(dir, "tokens.txt").absolutePath,
             dataDir = File(dir, "espeak-ng-data").absolutePath,
