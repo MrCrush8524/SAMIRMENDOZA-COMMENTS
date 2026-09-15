@@ -36,6 +36,11 @@ class VoicesViewModel(
 
     init {
         refreshClonedVoices()
+        // The narration model ships inside the APK now -- proactively copy it into local
+        // storage as soon as this screen is visible, rather than waiting for a button tap.
+        // ensureModelReady() is a no-op once already installed, so this is safe to call on
+        // every visit to this screen.
+        downloadKokoroModel()
     }
 
     fun refreshClonedVoices() {

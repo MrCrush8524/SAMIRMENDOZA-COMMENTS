@@ -48,6 +48,48 @@ val fetchSherpaOnnxNativeLibs by tasks.registering {
     }
 }
 
+// --- Kokoro narration model, bundled into the APK at build time --------------------------
+//
+// The user wants the built APK to already contain the narration model -- fetch it from GitHub
+// once via `git fetch`/download the APK artifact, never see a separate in-app download step.
+// The model itself (~320MB) can't be committed to this repo (GitHub hard-blocks pushes over
+// 100MB without Git LFS), so it's fetched here during the CI build, exactly like the native
+// .so libraries above, and packaged as a raw Android asset. At runtime, KokoroTtsEngine copies
+// it from the bundled asset into local storage once (fast local I/O, no network) instead of
+// downloading it -- see that class for why file-based loading is used instead of loading
+// straight from AssetManager (the native binding's asset-loading support for a whole
+// directory tree like espeak-ng-data/ isn't something this project has verified).
+val kokoroModelAssetsDir = layout.buildDirectory.dir("kokoroModelAssets")
+
+val fetchKokoroModelAsset by tasks.registering {
+    val outputDir = kokoroModelAssetsDir.get().asFile
+    val markerFile = File(outputDir, ".fetched")
+    outputs.dir(outputDir)
+    onlyIf { !markerFile.exists() }
+
+    doLast {
+        val assetDir = File(outputDir, "assets/kokoro_model")
+        assetDir.mkdirs()
+        val archiveUrl = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-en-v0_19.tar.bz2"
+        val archiveFile = File(temporaryDir, "kokoro-en-v0_19.tar.bz2")
+
+        ant.withGroovyBuilder {
+            "get"("src" to archiveUrl, "dest" to archiveFile, "skipexisting" to false)
+        }
+
+        copy {
+            from(tarTree(resources.bzip2(archiveFile)))
+            into(assetDir)
+            // The archive extracts to a single top-level "kokoro-en-v0_19/" folder; strip it so
+            // model.onnx, voices.bin, tokens.txt, espeak-ng-data/ land directly in the asset dir.
+            eachFile { path = path.substringAfter('/') }
+            includeEmptyDirs = false
+        }
+
+        markerFile.writeText("fetched")
+    }
+}
+
 android {
     namespace = "com.smr.storiesmadereal"
     // Target device: Samsung Galaxy A71 5G (SM-A716U), Android 13 (API 33)
@@ -107,15 +149,23 @@ android {
         }
     }
 
+    androidResources {
+        // The bundled model files are already dense binary data (ONNX weights) -- forcing APK
+        // zip compression on them wastes real build/install time for negligible size savings,
+        // and keeps them directly mmap-able from the APK instead of needing decompression.
+        noCompress += listOf("onnx", "bin", "dict")
+    }
+
     sourceSets {
         getByName("main") {
             jniLibs.srcDirs(sherpaOnnxJniLibsDir)
+            assets.srcDirs(kokoroModelAssetsDir.map { it.dir("assets") })
         }
     }
 }
 
 tasks.named("preBuild") {
-    dependsOn(fetchSherpaOnnxNativeLibs)
+    dependsOn(fetchSherpaOnnxNativeLibs, fetchKokoroModelAsset)
 }
 
 dependencies {
@@ -149,11 +199,9 @@ dependencies {
     // com/k2fsa/sherpa/onnx/Tts.kt, and its native .so libraries are fetched by the
     // fetchSherpaOnnxNativeLibs task above (see that comment for why). See tts/TtsEngine.kt
     // and voiceclone/VoiceCloneEngine.kt for how this app isolates the engine behind
-    // replaceable interfaces.
-
-    // Kokoro's official sherpa-onnx release bundle ships as .tar.bz2, not .zip.
-    implementation("org.apache.commons:commons-compress:1.26.2")
-    implementation("org.tukaani:xz:1.9")
+    // replaceable interfaces. The Kokoro model itself is bundled as an asset by
+    // fetchKokoroModelAsset and copied from there at runtime (KokoroModelManager) --
+    // no tar.bz2 extraction happens on-device anymore, so commons-compress isn't needed here.
 
     // Local persistence
     implementation("androidx.datastore:datastore-preferences:1.1.1")

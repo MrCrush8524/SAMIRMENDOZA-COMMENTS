@@ -101,39 +101,27 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
             is ModelDownloadState.NotStarted -> Button(
                 onClick = onDownload,
                 colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal)
-            ) { Text("Download narration model", color = SmrPalette.Base) }
+            ) { Text("Prepare narration model", color = SmrPalette.Base) }
 
+            // The model ships bundled inside the APK (see fetchKokoroModelAsset in
+            // app/build.gradle.kts) -- KokoroModelManager never downloads it over the network,
+            // so this state is unreachable for the standard voices in practice. Kept only
+            // because ModelDownloadState is a shared sealed type.
             is ModelDownloadState.Downloading -> {
                 val progress = if (state.totalBytes > 0) state.bytesDownloaded.toFloat() / state.totalBytes else 0f
-                val downloadedMb = state.bytesDownloaded / (1024 * 1024)
-                val totalMb = state.totalBytes / (1024 * 1024)
-                Text(
-                    if (state.totalBytes > 0) {
-                        "Downloading model... ${downloadedMb}MB / ${totalMb}MB (${(progress * 100).toInt()}%)"
-                    } else {
-                        "Downloading model... ${downloadedMb}MB"
-                    },
-                    color = SmrPalette.CreamDim,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Text(
-                    "This is a large download (~320MB) -- Wi-Fi recommended.",
-                    color = SmrPalette.CreamDim,
-                    style = MaterialTheme.typography.labelSmall
-                )
+                Text("Downloading... ${(progress * 100).toInt()}%", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
                 LinearProgressIndicator(progress = { progress }, color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             }
 
             is ModelDownloadState.Installing -> {
                 val writtenMb = state.bytesWritten / (1024 * 1024)
                 Text(
-                    "Installing model... ${writtenMb}MB unpacked, ${state.filesExtracted} files",
+                    "Preparing model... ${writtenMb}MB copied, ${state.filesExtracted} files",
                     color = SmrPalette.CreamDim,
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    "This step decompresses the model and can take a few minutes -- it's still " +
-                        "working as long as the numbers above keep climbing.",
+                    "Copying the bundled model into local storage -- a few seconds, no network needed.",
                     color = SmrPalette.CreamDim,
                     style = MaterialTheme.typography.labelSmall
                 )
@@ -144,12 +132,12 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
                 Text("Narration model ready", color = SmrPalette.Teal, style = MaterialTheme.typography.bodyMedium)
 
             is ModelDownloadState.Failed -> {
-                Text("Download failed: ${state.message}", color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
+                Text("Couldn't prepare model: ${state.message}", color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
                 Button(
                     onClick = onDownload,
                     colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal),
                     modifier = Modifier.padding(top = 8.dp)
-                ) { Text("Retry download", color = SmrPalette.Base) }
+                ) { Text("Retry", color = SmrPalette.Base) }
             }
         }
     }

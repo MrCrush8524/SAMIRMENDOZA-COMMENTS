@@ -15,8 +15,9 @@ import java.io.RandomAccessFile
 
 /**
  * Local/offline neural TTS backed by Kokoro running through sherpa-onnx's ONNX Runtime
- * bindings. Nothing here touches the network at synthesis time -- narration audio is
- * generated entirely on-device.
+ * bindings. The model is bundled into the APK at build time (see fetchKokoroModelAsset in
+ * app/build.gradle.kts) and copied from assets into local storage on first use -- nothing here
+ * ever touches the network, not even to fetch the model.
  */
 class KokoroTtsEngine(
     private val context: Context,
