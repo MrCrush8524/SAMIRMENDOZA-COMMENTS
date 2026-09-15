@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Manuscripts and clone-voice samples are private and stay off backup by default;
+only small playback/preference state is eligible.
+-->
+<full-backup-content>
+    <exclude domain="file" path="manuscripts/" />
+    <exclude domain="file" path="voice_clones/" />
+    <exclude domain="file" path="models/" />
+    <include domain="sharedpref" path="smr_prefs.xml" />
+</full-backup-content>
