@@ -60,6 +60,7 @@ fun NowPlayingScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val error by viewModel.generationError.collectAsState()
+    val playbackError by viewModel.playbackError.collectAsState()
     var showSpeedMenu by remember { mutableStateOf(false) }
     var showSleepMenu by remember { mutableStateOf(false) }
 
@@ -110,6 +111,10 @@ fun NowPlayingScreen(
             ModeSelector(current = state.mode, onSelect = viewModel::selectMode)
 
             error?.let {
+                Spacer(Modifier.height(8.dp))
+                Text(it, color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
+            }
+            playbackError?.let {
                 Spacer(Modifier.height(8.dp))
                 Text(it, color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
             }

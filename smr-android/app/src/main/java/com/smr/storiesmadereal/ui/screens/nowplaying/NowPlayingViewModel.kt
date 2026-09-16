@@ -40,6 +40,11 @@ class NowPlayingViewModel(
     private val _generationError = MutableStateFlow<String?>(null)
     val generationError: StateFlow<String?> = _generationError
 
+    /** Surfaces real ExoPlayer failures (bad file, unsupported format, etc.) -- previously
+     *  invisible, since play()/enqueueChunks() are safe-call no-ops with nothing watching
+     *  for errors on the underlying player. */
+    val playbackError: StateFlow<String?> = playbackRepository.playbackError
+
     init {
         playbackRepository.connect(onReady = { resumeLastManuscript() })
         observePlaybackPosition()

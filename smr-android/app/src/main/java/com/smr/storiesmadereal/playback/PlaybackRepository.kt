@@ -3,6 +3,8 @@ package com.smr.storiesmadereal.playback
 import android.content.ComponentName
 import android.content.Context
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
@@ -36,17 +38,35 @@ class PlaybackRepository(
     private val _audioFocusMode = MutableStateFlow(AudioFocusMode.default)
     val audioFocusMode: StateFlow<AudioFocusMode> = _audioFocusMode
 
+    // Until this existed, a real ExoPlayer failure (a malformed WAV, a file it can't open, an
+    // unsupported format) failed completely silently -- enqueueChunks()/play() are safe-call
+    // no-ops on a null controller, and nothing else in this class surfaced Player errors at all.
+    private val _playbackError = MutableStateFlow<String?>(null)
+    val playbackError: StateFlow<String?> = _playbackError
+
+    private val playerListener = object : Player.Listener {
+        override fun onPlayerError(error: PlaybackException) {
+            _playbackError.value = "Playback error: ${error.errorCodeName} -- ${error.message}"
+        }
+
+        override fun onPlayerErrorChanged(error: PlaybackException?) {
+            if (error == null) _playbackError.value = null
+        }
+    }
+
     fun connect(onReady: () -> Unit = {}) {
         val sessionToken = SessionToken(context, ComponentName(context, PlaybackService::class.java))
         val future = MediaController.Builder(context, sessionToken).buildAsync()
         controllerFuture = future
         future.addListener({
             controller = future.get()
+            controller?.addListener(playerListener)
             onReady()
         }, context.mainExecutor)
     }
 
     fun disconnect() {
+        controller?.removeListener(playerListener)
         controllerFuture?.let { MediaController.releaseFuture(it) }
         controller = null
         sleepTimer.cancel()
@@ -54,6 +74,7 @@ class PlaybackRepository(
 
     /** Enqueues synthesized narration chunks in playback order as they are produced by the TTS engine. */
     fun enqueueChunks(chunkFiles: List<File>, clearExisting: Boolean = true) {
+        _playbackError.value = null
         val items = chunkFiles.map { MediaItem.fromUri(it.toURI().toString()) }
         controller?.apply {
             if (clearExisting) clearMediaItems()
