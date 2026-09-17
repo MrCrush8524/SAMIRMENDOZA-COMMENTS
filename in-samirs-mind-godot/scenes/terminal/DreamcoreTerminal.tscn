@@ -65,6 +65,63 @@ size = Vector3(44, 5, 0.3)
 albedo_color = Color(0.95, 0.9, 0.98, 1)
 roughness = 0.8
 
+[sub_resource type="StandardMaterial3D" id="Airplane_FuselageMat"]
+albedo_color = Color(0.82, 0.84, 0.88, 1)
+metallic = 0.3
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="Airplane_WingMat"]
+albedo_color = Color(0.68, 0.7, 0.75, 1)
+metallic = 0.35
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Airplane_WindowMat"]
+albedo_color = Color(0.08, 0.1, 0.14, 1)
+metallic = 0.1
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.3, 0.35, 0.45, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="CylinderMesh" id="Airplane_NoseConeMesh"]
+top_radius = 1.4000
+bottom_radius = 0.0000
+height = 2.0000
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="Airplane_FuseSeg1Mesh"]
+top_radius = 1.4000
+bottom_radius = 1.4000
+height = 4.0000
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="Airplane_FuseSeg2Mesh"]
+top_radius = 1.4000
+bottom_radius = 1.4000
+height = 4.0000
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="Airplane_FuseSeg3Mesh"]
+top_radius = 1.4000
+bottom_radius = 1.4000
+height = 4.0000
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="Airplane_TailTaperMesh"]
+top_radius = 0.7700
+bottom_radius = 1.4000
+height = 2.0000
+radial_segments = 16
+
+[sub_resource type="BoxMesh" id="Airplane_WingMesh"]
+size = Vector3(11.0000, 0.1800, 2.2000)
+
+[sub_resource type="BoxMesh" id="Airplane_FinMesh"]
+size = Vector3(0.18, 2.4, 1.6)
+
+[sub_resource type="BoxMesh" id="Airplane_WindowStripeMesh"]
+size = Vector3(0.06, 0.35, 8.0000)
+
 [sub_resource type="PlaneMesh" id="ZonePlaneCarousel"]
 size = Vector2(14, 14)
 [sub_resource type="PlaneMesh" id="ZonePlaneWide"]
@@ -1021,3 +1078,56 @@ shape = SubResource("ReturnDoorShape")
 light_color = Color(0.8, 0.78, 0.98, 1)
 light_energy = 0.5
 omni_range = 3.0
+
+[node name="Airplane" type="Node3D" parent="."]
+
+[node name="NoseCone" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 18.0000, 3.5000, -29.0000)
+mesh = SubResource("Airplane_NoseConeMesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="FuseSeg1" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 18.0000, 3.5000, -26.0000)
+mesh = SubResource("Airplane_FuseSeg1Mesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="FuseSeg2" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 18.0000, 3.5000, -22.0000)
+mesh = SubResource("Airplane_FuseSeg2Mesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="FuseSeg3" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 18.0000, 3.5000, -18.0000)
+mesh = SubResource("Airplane_FuseSeg3Mesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="TailTaper" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 18.0000, 3.5000, -15.0000)
+mesh = SubResource("Airplane_TailTaperMesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="WingL" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4000, 3.2000, -18.5000)
+mesh = SubResource("Airplane_WingMesh")
+surface_material_override/0 = SubResource("Airplane_WingMat")
+
+[node name="WingR" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6000, 3.2000, -18.5000)
+mesh = SubResource("Airplane_WingMesh")
+surface_material_override/0 = SubResource("Airplane_WingMat")
+
+[node name="TailFin" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0000, 5.2700, -15.2000)
+mesh = SubResource("Airplane_FinMesh")
+surface_material_override/0 = SubResource("Airplane_FuselageMat")
+
+[node name="WindowStripeL" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6300, 3.5000, -18.0000)
+mesh = SubResource("Airplane_WindowStripeMesh")
+surface_material_override/0 = SubResource("Airplane_WindowMat")
+
+[node name="WindowStripeR" type="MeshInstance3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3700, 3.5000, -18.0000)
+mesh = SubResource("Airplane_WindowStripeMesh")
+surface_material_override/0 = SubResource("Airplane_WindowMat")
+
