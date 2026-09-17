@@ -84,6 +84,9 @@ emission_energy_multiplier = 0.12
 [sub_resource type="QuadMesh" id="QuadMesh_nightmaredoor"]
 size = Vector2(1.3, 2.3)
 
+[sub_resource type="BoxShape3D" id="SolidShape_NightmareDoor_HallCloset"]
+size = Vector3(1.3, 2.3, 0.15)
+
 [sub_resource type="BoxShape3D" id="Shape_backrooms_trigger"]
 size = Vector3(1.0, 1.8, 1.0)
 
@@ -499,11 +502,17 @@ size = Vector3(0.6096, 2.7432, 0.1524)
 [sub_resource type="BoxShape3D" id="W_61_274_15Shape"]
 size = Vector3(0.6096, 2.7432, 0.1524)
 
-[sub_resource type="BoxMesh" id="W_244_274_15"]
-size = Vector3(2.4384, 2.7432, 0.1524)
+[sub_resource type="BoxMesh" id="WSeg_RestroomUtility_WallS_Seg0Mesh"]
+size = Vector3(0.5692, 2.7432, 0.1524)
 
-[sub_resource type="BoxShape3D" id="W_244_274_15Shape"]
-size = Vector3(2.4384, 2.7432, 0.1524)
+[sub_resource type="BoxShape3D" id="WSeg_RestroomUtility_WallS_Seg0Shape"]
+size = Vector3(0.5692, 2.7432, 0.1524)
+
+[sub_resource type="BoxMesh" id="WSeg_RestroomUtility_WallS_Seg1Mesh"]
+size = Vector3(0.5692, 2.7432, 0.1524)
+
+[sub_resource type="BoxShape3D" id="WSeg_RestroomUtility_WallS_Seg1Shape"]
+size = Vector3(0.5692, 2.7432, 0.1524)
 
 [sub_resource type="BoxMesh" id="W_15_274_305"]
 size = Vector3(0.1524, 2.7432, 3.0480)
@@ -1599,13 +1608,21 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled36")
 [node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallN_1"]
 shape = SubResource("W_61_274_15Shape")
 
-[node name="RestroomUtility_WallS_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6096, 1.3716, 8.5344)
-[node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallS_0"]
-mesh = SubResource("W_244_274_15")
+[node name="RestroomUtility_WallS_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5442, 1.3716, 8.5344)
+[node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallS_Seg0"]
+mesh = SubResource("WSeg_RestroomUtility_WallS_Seg0Mesh")
 surface_material_override/0 = SubResource("Mat_wall_maintenance_door")
-[node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallS_0"]
-shape = SubResource("W_244_274_15Shape")
+[node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallS_Seg0"]
+shape = SubResource("WSeg_RestroomUtility_WallS_Seg0Shape")
+
+[node name="RestroomUtility_WallS_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3250, 1.3716, 8.5344)
+[node name="Mesh" type="MeshInstance3D" parent="RestroomUtility_WallS_Seg1"]
+mesh = SubResource("WSeg_RestroomUtility_WallS_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_maintenance_door")
+[node name="Shape" type="CollisionShape3D" parent="RestroomUtility_WallS_Seg1"]
+shape = SubResource("WSeg_RestroomUtility_WallS_Seg1Shape")
 
 [node name="RestroomUtility_WallW_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 1.3716, 7.0104)
@@ -2396,6 +2413,9 @@ shape = SubResource("Shape_moondoor")
 light_color = Color(0.5, 0.1, 0.15, 1)
 light_energy = 0.15
 omni_range = 2.0
+[node name="Solid" type="StaticBody3D" parent="NightmareDoor"]
+[node name="Shape" type="CollisionShape3D" parent="NightmareDoor/Solid"]
+shape = SubResource("SolidShape_NightmareDoor_HallCloset")
 
 [node name="Window" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 12.1920, 2.0000, -2.1336)
