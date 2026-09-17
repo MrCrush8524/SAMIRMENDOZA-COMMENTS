@@ -722,14 +722,8 @@ shape = SubResource("Fence_15x280Shape")
 [node name="SideLevelReturnDoor" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 18)
 script = ExtResource("38")
-[node name="Mesh" type="MeshInstance3D" parent="SideLevelReturnDoor"]
-mesh = SubResource("ReturnDoorMesh")
-surface_material_override/0 = SubResource("ReturnDoorMat")
 [node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
 shape = SubResource("ReturnDoorShape")
-[node name="Solid" type="StaticBody3D" parent="SideLevelReturnDoor"]
-[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor/Solid"]
-shape = SubResource("ReturnDoorSolidShape")
 [node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
 light_color = Color(0.6, 0.85, 0.95, 1)
 light_energy = 0.5
