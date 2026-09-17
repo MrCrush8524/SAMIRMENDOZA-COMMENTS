@@ -2798,3 +2798,11 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
 [node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallR"]
 shape = SubResource("WalkC_WalkC_LiminalJunctionDoor_WallRShape")
 
+[node name="WalkC_TerminalDoor_Sign" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, 2.1, -4.6)
+text = "TERMINAL
+Gate check-in, always boarding, never late"
+font_size = 48
+outline_size = 8
+modulate = Color(1, 1, 1, 1)
+billboard = 1
