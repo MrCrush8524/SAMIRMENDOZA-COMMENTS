@@ -1,8 +1,7 @@
 extends CanvasLayer
 ## Persistent HUD/overlay layer: interaction prompt, journal popup, Dream
 ## Track popup, save toast. Lives above whatever chapter is currently
-## loaded. TVs handle their own broadcast audio/prompt (see TVScreen.gd)
-## since there's no in-engine video decoder to project a fullscreen feed.
+## loaded.
 
 @onready var prompt_label: Label = $Prompt
 @onready var journal_popup: Panel = $JournalPopup

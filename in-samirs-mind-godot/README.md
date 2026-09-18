@@ -29,11 +29,6 @@ Godot 4 project, GDScript, not C#.
   Roller), one Dream Track pickup — SAVE FOR LATER / PLAY NOW correctly
   fades the main soundtrack out, pauses at its exact position, plays the
   track, and resumes from that position
-- One manual TV (single clip) and one proximity-auto TV that cycles a
-  3-clip playlist (Humeat hiring, Methalkezon, Beyond Outlets) once
-  per trigger, ducking the main soundtrack for the whole break and
-  resuming it only after the last clip — not fading in between clips
-  (see **Video is not solved yet** below for what "TV" means right now)
 - A Doubt glimpse (translucent black cat, timer-driven, never a chase)
 - A Moon Door that only lights up once required discoveries are made
 - Versioned `user://savegame_v1.json` save/load, including the
@@ -59,23 +54,6 @@ exercised — there is no touch input to simulate headlessly.
   Dream Resonance unlocks, Extras gallery, Settings screen.
 - Quality-profile tuning has a skeleton (`QualityManager.gd`) but has
   not been measured against a real frame budget on any target.
-
-## Video is not solved yet — a real engine limitation, not a placeholder bug
-
-Stock Godot 4.3 ships **no video codec at all**. `VideoStreamTheora`
-does not exist in this engine build (confirmed by dumping its actual
-registered classes, not assumed), so the supplied `.mp4` files can't be
-played through the built-in `VideoStreamPlayer` without a third-party
-GDExtension — and no such extension has been vetted here for all three
-export targets (Windows/Android native + Web).
-
-Until that's integrated, `TVScreen.gd` plays the broadcast's real audio
-track (extracted from the source `.mp4` via ffmpeg) and shows a still
-frame on the screen mesh, with the same duck/resume behavior as before.
-That's a genuine, working design for a background/diegetic broadcast —
-not a stand-in for the mechanic — but it is not fullscreen video
-playback. Revisit with a vetted video GDExtension before calling the TV
-system feature-complete.
 
 ## Asset format notes
 

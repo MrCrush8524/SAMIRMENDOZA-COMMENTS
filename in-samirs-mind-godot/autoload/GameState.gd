@@ -44,7 +44,6 @@ var chapter4_exit_unlocked: bool = false
 
 var inventory: Array[String] = []
 var dream_tracks: Array[String] = []
-var tv_seen: Array[String] = []
 var has_active_run: bool = false
 
 ## 0..1. Drained only inside a Decay Nightmare Passage; collapse at 0
@@ -142,7 +141,6 @@ func new_run(chosen_dreamer: String) -> void:
 	memory_cats.clear()
 	inventory.clear()
 	dream_tracks.clear()
-	tv_seen.clear()
 	has_active_run = true
 	has_last_position = false
 	composure = 1.0
@@ -177,7 +175,6 @@ func to_dict() -> Dictionary:
 		"memory_cats": memory_cats,
 		"inventory": inventory,
 		"dream_tracks": dream_tracks,
-		"tv_seen": tv_seen,
 		"composure": composure,
 		"nightmare_assignments": nightmare_assignments,
 		"nightmare_rewards": nightmare_rewards,
@@ -211,7 +208,6 @@ func from_dict(data: Dictionary) -> bool:
 	memory_cats.assign(data.get("memory_cats", []))
 	inventory.assign(data.get("inventory", []))
 	dream_tracks.assign(data.get("dream_tracks", []))
-	tv_seen.assign(data.get("tv_seen", []))
 	has_active_run = true
 	composure = clampf(float(data.get("composure", 1.0)), 0.0, 1.0)
 	nightmare_assignments = data.get("nightmare_assignments", {}).duplicate()
