@@ -307,6 +307,91 @@ emission_energy_multiplier = 0.35
 [sub_resource type="SphereShape3D" id="ReturnDoorShape"]
 radius = 1.4
 
+[sub_resource type="StandardMaterial3D" id="MezzStructureMat"]
+albedo_color = Color(0.75, 0.73, 0.78, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="AboveStoreMat"]
+albedo_color = Color(0.82, 0.78, 0.7, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="PrizeCounterMat"]
+albedo_color = Color(0.85, 0.6, 0.65, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="SecondHandAtticMat"]
+albedo_color = Color(0.7, 0.62, 0.5, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="MezzNorthMesh"]
+size = Vector3(48.0000, 0.3000, 20.0000)
+
+[sub_resource type="BoxShape3D" id="MezzNorthShape"]
+size = Vector3(48.0000, 0.3000, 20.0000)
+
+[sub_resource type="BoxMesh" id="MezzEastMesh"]
+size = Vector3(16.0000, 0.3000, 16.0000)
+
+[sub_resource type="BoxShape3D" id="MezzEastShape"]
+size = Vector3(16.0000, 0.3000, 16.0000)
+
+[sub_resource type="BoxMesh" id="MezzWestMesh"]
+size = Vector3(16.0000, 0.3000, 16.0000)
+
+[sub_resource type="BoxShape3D" id="MezzWestShape"]
+size = Vector3(16.0000, 0.3000, 16.0000)
+
+[sub_resource type="PlaneMesh" id="ZonePlaneAboveStore"]
+size = Vector2(44.0000, 16.0000)
+
+[sub_resource type="PlaneMesh" id="ZonePlanePrizeCounter"]
+size = Vector2(14.0000, 14.0000)
+
+[sub_resource type="PlaneMesh" id="ZonePlaneSecondHandAttic"]
+size = Vector2(14.0000, 14.0000)
+
+[sub_resource type="BoxMesh" id="RailNorthLMesh"]
+size = Vector3(6.8000, 1.0000, 0.1500)
+
+[sub_resource type="BoxShape3D" id="RailNorthLShape"]
+size = Vector3(6.8000, 1.0000, 0.1500)
+
+[sub_resource type="BoxMesh" id="RailNorthRMesh"]
+size = Vector3(6.8000, 1.0000, 0.1500)
+
+[sub_resource type="BoxShape3D" id="RailNorthRShape"]
+size = Vector3(6.8000, 1.0000, 0.1500)
+
+[sub_resource type="BoxMesh" id="RailEastNMesh"]
+size = Vector3(0.1500, 1.0000, 10.8000)
+
+[sub_resource type="BoxShape3D" id="RailEastNShape"]
+size = Vector3(0.1500, 1.0000, 10.8000)
+
+[sub_resource type="BoxMesh" id="RailEastSMesh"]
+size = Vector3(0.1500, 1.0000, 2.8000)
+
+[sub_resource type="BoxShape3D" id="RailEastSShape"]
+size = Vector3(0.1500, 1.0000, 2.8000)
+
+[sub_resource type="BoxMesh" id="RailWestMesh"]
+size = Vector3(0.1500, 1.0000, 16.0000)
+
+[sub_resource type="BoxShape3D" id="RailWestShape"]
+size = Vector3(0.1500, 1.0000, 16.0000)
+
+[sub_resource type="BoxMesh" id="EscalatorMesh"]
+size = Vector3(2.4000, 0.3000, 9.5143)
+
+[sub_resource type="BoxShape3D" id="EscalatorShape"]
+size = Vector3(2.4000, 0.3000, 9.5143)
+
+[sub_resource type="BoxMesh" id="StaircaseMesh"]
+size = Vector3(9.5143, 0.3000, 2.0000)
+
+[sub_resource type="BoxShape3D" id="StaircaseShape"]
+size = Vector3(9.5143, 0.3000, 2.0000)
+
 [node name="DreamcoreMall" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1254,3 +1339,135 @@ shape = SubResource("ReturnDoorShape")
 light_color = Color(0.98, 0.9, 0.68, 1)
 light_energy = 0.5
 omni_range = 3.0
+
+[node name="MezzNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 5.1500, -18.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzNorth"]
+mesh = SubResource("MezzNorthMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzNorth"]
+shape = SubResource("MezzNorthShape")
+
+
+[node name="MezzEast" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0000, 5.1500, 0.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzEast"]
+mesh = SubResource("MezzEastMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzEast"]
+shape = SubResource("MezzEastShape")
+
+
+[node name="MezzWest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0000, 5.1500, 0.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzWest"]
+mesh = SubResource("MezzWestMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzWest"]
+shape = SubResource("MezzWestShape")
+
+
+[node name="ZoneAboveStore" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 5.3100, -18.0000)
+mesh = SubResource("ZonePlaneAboveStore")
+surface_material_override/0 = SubResource("AboveStoreMat")
+
+
+[node name="Flavor_ZoneAboveStore" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 6.1500, -18.0000)
+script = ExtResource("1")
+flavor_text = "The Above-Store — Unopened merchandise, unpriced always, a sale that never starts."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ZoneAboveStore"]
+shape = SubResource("Shape_flavor_medium")
+
+
+[node name="ZonePrizeCounter" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0000, 5.3100, 0.0000)
+mesh = SubResource("ZonePlanePrizeCounter")
+surface_material_override/0 = SubResource("PrizeCounterMat")
+
+
+[node name="Flavor_ZonePrizeCounter" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0000, 6.1500, 0.0000)
+script = ExtResource("1")
+flavor_text = "The Prize Counter — Ten thousand tickets. Nothing behind the glass is for sale."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ZonePrizeCounter"]
+shape = SubResource("Shape_flavor_medium")
+
+
+[node name="ZoneSecondHandAttic" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0000, 5.3100, 0.0000)
+mesh = SubResource("ZonePlaneSecondHandAttic")
+surface_material_override/0 = SubResource("SecondHandAtticMat")
+
+
+[node name="Flavor_ZoneSecondHandAttic" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0000, 6.1500, 0.0000)
+script = ExtResource("1")
+flavor_text = "Second-Hand Attic — Every toy still works. No one remembers whose."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ZoneSecondHandAttic"]
+shape = SubResource("Shape_flavor_medium")
+
+
+[node name="MezzRail_NorthL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6000, 5.8000, -8.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzRail_NorthL"]
+mesh = SubResource("RailNorthLMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzRail_NorthL"]
+shape = SubResource("RailNorthLShape")
+
+
+[node name="MezzRail_NorthR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6000, 5.8000, -8.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzRail_NorthR"]
+mesh = SubResource("RailNorthRMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzRail_NorthR"]
+shape = SubResource("RailNorthRShape")
+
+
+[node name="MezzRail_EastN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0000, 5.8000, -2.6000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzRail_EastN"]
+mesh = SubResource("RailEastNMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzRail_EastN"]
+shape = SubResource("RailEastNShape")
+
+
+[node name="MezzRail_EastS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0000, 5.8000, 6.6000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzRail_EastS"]
+mesh = SubResource("RailEastSMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzRail_EastS"]
+shape = SubResource("RailEastSShape")
+
+
+[node name="MezzRail_West" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0000, 5.8000, 0.0000)
+[node name="Mesh" type="MeshInstance3D" parent="MezzRail_West"]
+mesh = SubResource("RailWestMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="MezzRail_West"]
+shape = SubResource("RailWestShape")
+
+
+[node name="Escalator" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.840837, -0.541289, 0, 0.541289, 0.840837, 0.0000, 2.5750, -4.0000)
+[node name="Mesh" type="MeshInstance3D" parent="Escalator"]
+mesh = SubResource("EscalatorMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="Escalator"]
+shape = SubResource("EscalatorShape")
+
+
+[node name="Staircase" type="StaticBody3D" parent="."]
+transform = Transform3D(0.840837, -0.541289, 0, 0.541289, 0.840837, 0, 0, 0, 1, 4.0000, 2.5750, 4.0000)
+[node name="Mesh" type="MeshInstance3D" parent="Staircase"]
+mesh = SubResource("StaircaseMesh")
+surface_material_override/0 = SubResource("MezzStructureMat")
+[node name="Shape" type="CollisionShape3D" parent="Staircase"]
+shape = SubResource("StaircaseShape")
+
