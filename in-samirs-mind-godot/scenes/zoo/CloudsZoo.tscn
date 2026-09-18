@@ -48,6 +48,16 @@
 [ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_03.png" id="46"]
 [ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_04.png" id="47"]
 [ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_05.png" id="48"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_00.png" id="49"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_01.png" id="50"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_02.png" id="51"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_03.png" id="52"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_04.png" id="53"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_05.png" id="54"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_06.png" id="55"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_07.png" id="56"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_08.png" id="57"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_09.png" id="58"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(60, 0.2, 70)
@@ -806,3 +816,101 @@ sprite_frames = SubResource("ElephantFrames")
 autoplay = "default"
 billboard = 1
 pixel_size = 0.0017
+
+[node name="Planet_00" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.865, 21.113, -36.044)
+billboard = 1
+texture = ExtResource("49")
+pixel_size = 0.00672
+
+
+[node name="Planet_01" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.009, 12.812, -21.865)
+billboard = 1
+texture = ExtResource("50")
+pixel_size = 0.01107
+
+
+[node name="Planet_02" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.900, 12.978, -17.379)
+billboard = 1
+texture = ExtResource("51")
+pixel_size = 0.00691
+
+
+[node name="Planet_03" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.227, 13.733, 8.572)
+billboard = 1
+texture = ExtResource("52")
+pixel_size = 0.00823
+
+
+[node name="Planet_04" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.136, 20.079, 16.549)
+billboard = 1
+texture = ExtResource("53")
+pixel_size = 0.00997
+
+
+[node name="Planet_05" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.670, 24.019, -42.926)
+billboard = 1
+texture = ExtResource("54")
+pixel_size = 0.00890
+
+
+[node name="Planet_06" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.922, 16.319, -38.226)
+billboard = 1
+texture = ExtResource("55")
+pixel_size = 0.01416
+
+
+[node name="Planet_07" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.879, 20.945, -7.614)
+billboard = 1
+texture = ExtResource("56")
+pixel_size = 0.00972
+
+
+[node name="Planet_08" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.674, 12.834, -41.856)
+billboard = 1
+texture = ExtResource("57")
+pixel_size = 0.00806
+
+
+[node name="Planet_09" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.102, 16.398, -17.779)
+billboard = 1
+texture = ExtResource("58")
+pixel_size = 0.01186
+
+
+[node name="Planet_10" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.622, 23.121, -26.215)
+billboard = 1
+texture = ExtResource("49")
+pixel_size = 0.01299
+
+
+[node name="Planet_11" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.331, 19.353, -8.088)
+billboard = 1
+texture = ExtResource("50")
+pixel_size = 0.01475
+
+
+[node name="Planet_12" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.849, 25.722, -26.996)
+billboard = 1
+texture = ExtResource("51")
+pixel_size = 0.00718
+
+
+[node name="Planet_13" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.585, 14.128, 3.971)
+billboard = 1
+texture = ExtResource("52")
+pixel_size = 0.01089
+
