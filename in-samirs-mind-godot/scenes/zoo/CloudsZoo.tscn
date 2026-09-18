@@ -38,6 +38,16 @@
 [ext_resource type="Texture2D" path="res://assets/textures/zoo/zoo_tex_twilight_forest_floor.png" id="36"]
 [ext_resource type="Texture2D" path="res://assets/textures/zoo/zoo_tex_coral_cloud_reef_floor.png" id="37"]
 [ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="38"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/giraffe_01.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/giraffe_02.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/giraffe_03.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/giraffe_04.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/giraffe_05.png" id="43"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_01.png" id="44"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_02.png" id="45"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_03.png" id="46"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_04.png" id="47"]
+[ext_resource type="Texture2D" path="res://assets/textures/zoo/animals/elephant_05.png" id="48"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(60, 0.2, 70)
@@ -169,6 +179,60 @@ emission_energy_multiplier = 0.35
 
 [sub_resource type="SphereShape3D" id="ReturnDoorShape"]
 radius = 1.4
+
+[sub_resource type="SpriteFrames" id="GiraffeFrames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("40")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("41")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("42")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("43")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
+
+[sub_resource type="SpriteFrames" id="ElephantFrames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("44")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("45")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("46")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("47")
+},
+{
+"duration": 1.0,
+"texture": ExtResource("48")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
 
 [node name="CloudsZoo" type="Node3D"]
 
@@ -728,3 +792,17 @@ shape = SubResource("ReturnDoorShape")
 light_color = Color(0.6, 0.85, 0.95, 1)
 light_energy = 0.5
 omni_range = 3.0
+
+[node name="Animal_Giraffe" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0, 1.82, -31.5)
+sprite_frames = SubResource("GiraffeFrames")
+autoplay = "default"
+billboard = 1
+pixel_size = 0.0028
+
+[node name="Animal_Elephant" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3, 1.045, -28.6)
+sprite_frames = SubResource("ElephantFrames")
+autoplay = "default"
+billboard = 1
+pixel_size = 0.0017
