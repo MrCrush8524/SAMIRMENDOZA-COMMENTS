@@ -47,6 +47,25 @@ jobs:
       - name: Import project
         run: ~/godot/godot4 --headless --path . --import
 
+      - name: Set up rcedit (embeds the app icon/version info into the .exe)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wine64
+          curl -sSL -o "$HOME/rcedit-x64.exe" "https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe"
+          mkdir -p ~/.config/godot
+          # Godot's Windows export only injects the custom icon/version info
+          # (application/modify_resources=true in export_presets.cfg) when it
+          # can shell out to rcedit - and on a Linux runner that means telling
+          # it to run rcedit.exe through Wine. Without this, the exported
+          # .exe silently falls back to Godot's own default icon.
+          cat > ~/.config/godot/editor_settings-4.3.tres << EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/windows/rcedit = "$HOME/rcedit-x64.exe"
+          export/windows/wine = "/usr/bin/wine"
+          EOF
+
       - name: Export Windows build
         run: |
           mkdir -p build/windows
