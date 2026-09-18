@@ -58,6 +58,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_07.png" id="56"]
 [ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_08.png" id="57"]
 [ext_resource type="Texture2D" path="res://assets/textures/shared/planets/pastel_planet_09.png" id="58"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/skyboxes/skybox-day.png" id="59"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(60, 0.2, 70)
@@ -164,8 +165,15 @@ size = Vector3(0.15, 1.1, 2.8)
 [sub_resource type="BoxShape3D" id="Fence_15x280Shape"]
 size = Vector3(0.15, 1.1, 2.8)
 
+[sub_resource type="PanoramaSkyMaterial" id="ZooSkyMat"]
+panorama = ExtResource("59")
+
+[sub_resource type="Sky" id="ZooSky"]
+sky_material = SubResource("ZooSkyMat")
+
 [sub_resource type="Environment" id="Env"]
-background_mode = 1
+background_mode = 2
+sky = SubResource("ZooSky")
 background_color = Color(0.75, 0.85, 0.98, 1)
 fog_enabled = true
 fog_light_color = Color(0.8, 0.88, 0.98, 1)

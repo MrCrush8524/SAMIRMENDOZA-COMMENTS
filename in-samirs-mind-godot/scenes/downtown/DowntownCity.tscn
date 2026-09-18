@@ -11,9 +11,17 @@
 [ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_ManholeCover.gltf" id="9"]
 [ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_Drain.gltf" id="10"]
 [ext_resource type="PackedScene" path="res://assets/models/downtown/Decal_Crosswalk_Wide.gltf" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/skyboxes/skybox-downtown-dusk.png" id="12"]
+
+[sub_resource type="PanoramaSkyMaterial" id="DowntownSkyMat"]
+panorama = ExtResource("12")
+
+[sub_resource type="Sky" id="DowntownSky"]
+sky_material = SubResource("DowntownSkyMat")
 
 [sub_resource type="Environment" id="Env"]
-background_mode = 1
+background_mode = 2
+sky = SubResource("DowntownSky")
 background_color = Color(0.93, 0.82, 0.9, 1)
 fog_enabled = true
 fog_light_color = Color(0.95, 0.85, 0.88, 1)
