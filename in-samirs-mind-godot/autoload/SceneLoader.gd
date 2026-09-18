@@ -22,6 +22,7 @@ const CHAPTER_SCENES := {
 	"terminal": "res://scenes/terminal/DreamcoreTerminal.tscn",
 	"museum": "res://scenes/museum/NightmareMuseum.tscn",
 	"liminal_junction": "res://scenes/liminal_junction/LiminalJunction.tscn",
+	"downtown": "res://scenes/downtown/DowntownCity.tscn",
 }
 
 ## Nightmare Passages are loaded the same way as a chapter (swapped in

@@ -1423,6 +1423,42 @@ size = Vector3(0.1500, 2.4384, 3.0000)
 [sub_resource type="BoxShape3D" id="WalkC_LiminalJunctionDoor_WallRShape"]
 size = Vector3(0.1500, 2.4384, 3.0000)
 
+[sub_resource type="BoxMesh" id="MemoryAtrium_WallE_Seg0Mesh"]
+size = Vector3(0.1524, 4.2672, 4.4468)
+
+[sub_resource type="BoxShape3D" id="MemoryAtrium_WallE_Seg0Shape"]
+size = Vector3(0.1524, 4.2672, 4.4468)
+
+[sub_resource type="BoxMesh" id="MemoryAtrium_WallE_Seg1Mesh"]
+size = Vector3(0.1524, 4.2672, 1.9540)
+
+[sub_resource type="BoxShape3D" id="MemoryAtrium_WallE_Seg1Shape"]
+size = Vector3(0.1524, 4.2672, 1.9540)
+
+[sub_resource type="BoxMesh" id="CityExitCorr_FloorMesh"]
+size = Vector3(3.0, 0.15, 2.1336)
+
+[sub_resource type="BoxShape3D" id="CityExitCorr_FloorShape"]
+size = Vector3(3.0, 0.15, 2.1336)
+
+[sub_resource type="BoxMesh" id="CityExitCorr_CeilingMesh"]
+size = Vector3(3.0, 0.15, 2.1336)
+
+[sub_resource type="BoxShape3D" id="CityExitCorr_CeilingShape"]
+size = Vector3(3.0, 0.15, 2.1336)
+
+[sub_resource type="BoxMesh" id="CityExitCorr_WallLMesh"]
+size = Vector3(3.0, 2.4384, 0.15)
+
+[sub_resource type="BoxShape3D" id="CityExitCorr_WallLShape"]
+size = Vector3(3.0, 2.4384, 0.15)
+
+[sub_resource type="BoxMesh" id="CityExitCorr_WallRMesh"]
+size = Vector3(3.0, 2.4384, 0.15)
+
+[sub_resource type="BoxShape3D" id="CityExitCorr_WallRShape"]
+size = Vector3(3.0, 2.4384, 0.15)
+
 [node name="Chapter01" type="Node3D"]
 script = ExtResource("1")
 
@@ -1849,14 +1885,6 @@ mesh = SubResource("W_15_427_594")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled34")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallW_1"]
 shape = SubResource("W_15_427_594Shape")
-
-[node name="MemoryAtrium_WallE_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 2.1336, 9.7536)
-[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallE_0"]
-mesh = SubResource("W_15_427_853")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
-[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallE_0"]
-shape = SubResource("W_15_427_853Shape")
 
 [node name="RestroomUtility_WallN_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5240, 1.3716, 5.4864)
@@ -3008,4 +3036,79 @@ mesh = SubResource("WalkC_LiminalJunctionDoor_WallRMesh")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
 [node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallR"]
 shape = SubResource("WalkC_LiminalJunctionDoor_WallRShape")
+
+[node name="MemoryAtrium_WallE_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 2.1336, 7.7098)
+[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallE_Seg0"]
+mesh = SubResource("MemoryAtrium_WallE_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
+[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallE_Seg0"]
+shape = SubResource("MemoryAtrium_WallE_Seg0Shape")
+
+
+[node name="MemoryAtrium_WallE_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8288, 2.1336, 13.0438)
+[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallE_Seg1"]
+mesh = SubResource("MemoryAtrium_WallE_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
+[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallE_Seg1"]
+shape = SubResource("MemoryAtrium_WallE_Seg1Shape")
+
+
+[node name="CityExitCorr_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3288, -0.075, 11.0000)
+[node name="Mesh" type="MeshInstance3D" parent="CityExitCorr_Floor"]
+mesh = SubResource("CityExitCorr_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="CityExitCorr_Floor"]
+shape = SubResource("CityExitCorr_FloorShape")
+
+
+[node name="CityExitCorr_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3288, 2.5134, 11.0000)
+[node name="Mesh" type="MeshInstance3D" parent="CityExitCorr_Ceiling"]
+mesh = SubResource("CityExitCorr_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
+[node name="Shape" type="CollisionShape3D" parent="CityExitCorr_Ceiling"]
+shape = SubResource("CityExitCorr_CeilingShape")
+
+
+[node name="CityExitCorr_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3288, 1.2192, 9.8582)
+[node name="Mesh" type="MeshInstance3D" parent="CityExitCorr_WallL"]
+mesh = SubResource("CityExitCorr_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
+[node name="Shape" type="CollisionShape3D" parent="CityExitCorr_WallL"]
+shape = SubResource("CityExitCorr_WallLShape")
+
+
+[node name="CityExitCorr_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3288, 1.2192, 12.1418)
+[node name="Mesh" type="MeshInstance3D" parent="CityExitCorr_WallR"]
+mesh = SubResource("CityExitCorr_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled35")
+[node name="Shape" type="CollisionShape3D" parent="CityExitCorr_WallR"]
+shape = SubResource("CityExitCorr_WallRShape")
+
+
+[node name="CityExitDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1712, 1.2192, 11.0000)
+script = ExtResource("47")
+chapter_id = "downtown"
+spawn_marker = "start"
+[node name="Shape" type="CollisionShape3D" parent="CityExitDoor"]
+shape = SubResource("Shape_moondoor")
+[node name="Glow" type="OmniLight3D" parent="CityExitDoor"]
+light_color = Color(0.75, 0.8, 0.9, 1)
+light_energy = 0.35
+omni_range = 2.5
+
+[node name="CityExitDoor_Sign" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6712, 2.1, 11.0000)
+text = "The street outside.
+It wasn’t there this morning."
+font_size = 44
+outline_size = 8
+modulate = Color(1, 1, 1, 1)
+billboard = 1
 
