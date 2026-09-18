@@ -45,6 +45,29 @@
 [ext_resource type="Texture2D" path="res://assets/textures/mall/mall_tex_dream_playground_floor.png" id="43"]
 [ext_resource type="Texture2D" path="res://assets/textures/mall/mall_tex_greenhouse_floor.png" id="44"]
 [ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="45"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/table_medium.gltf" id="46"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/chair_A.gltf" id="47"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/chair_B.gltf" id="48"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/shelf_A_big.gltf" id="49"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/shelf_B_large.gltf" id="50"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/cabinet_medium.gltf" id="51"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/table_small.gltf" id="52"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/chair_C.gltf" id="53"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/shelf_B_large_decorated.gltf" id="54"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/cabinet_small_decorated.gltf" id="55"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/chair_stool.gltf" id="56"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/chair_stool_wood.gltf" id="57"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/table_low.gltf" id="58"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/pictureframe_medium.gltf" id="59"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/shelf_A_small.gltf" id="60"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/couch.gltf" id="61"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/armchair.gltf" id="62"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/rug_rectangle_A.gltf" id="63"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/lamp_standing.gltf" id="64"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/cabinet_medium_decorated.gltf" id="65"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/book_set.gltf" id="66"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/cactus_medium_A.gltf" id="67"]
+[ext_resource type="PackedScene" path="res://assets/models/furniture/kaykit/pictureframe_standing_A.gltf" id="68"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(110, 0.2, 44)
@@ -1470,4 +1493,95 @@ mesh = SubResource("StaircaseMesh")
 surface_material_override/0 = SubResource("MezzStructureMat")
 [node name="Shape" type="CollisionShape3D" parent="Staircase"]
 shape = SubResource("StaircaseShape")
+
+[node name="Furn_AboveStore_Table1" parent="." instance=ExtResource("46")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -14.000, 5.300, -22.000)
+
+
+[node name="Furn_AboveStore_Chair1" parent="." instance=ExtResource("47")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -13.000, 5.300, -20.500)
+
+
+[node name="Furn_AboveStore_Chair2" parent="." instance=ExtResource("48")]
+transform = Transform3D(0.866025, 0, -0.500000, 0, 1, 0, 0.500000, 0, 0.866025, -15.000, 5.300, -20.500)
+
+
+[node name="Furn_AboveStore_ShelfL" parent="." instance=ExtResource("49")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, 18.000, 5.300, -24.500)
+
+
+[node name="Furn_AboveStore_ShelfR" parent="." instance=ExtResource("50")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, -18.000, 5.300, -24.500)
+
+
+[node name="Furn_AboveStore_Cabinet" parent="." instance=ExtResource("51")]
+transform = Transform3D(-1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, -1.000000, 10.000, 5.300, -13.000)
+
+
+[node name="Furn_AboveStore_Table2" parent="." instance=ExtResource("52")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 6.000, 5.300, -22.000)
+
+
+[node name="Furn_AboveStore_Chair3" parent="." instance=ExtResource("53")]
+transform = Transform3D(0.939693, 0, 0.342020, 0, 1, 0, -0.342020, 0, 0.939693, 14.000, 5.300, -14.000)
+
+
+[node name="Furn_PrizeCounter_ShelfDeco" parent="." instance=ExtResource("54")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 21.000, 5.300, -5.000)
+
+
+[node name="Furn_PrizeCounter_CabinetDeco" parent="." instance=ExtResource("55")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 21.000, 5.300, 3.000)
+
+
+[node name="Furn_PrizeCounter_StoolL" parent="." instance=ExtResource("56")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 13.000, 5.300, -5.000)
+
+
+[node name="Furn_PrizeCounter_StoolR" parent="." instance=ExtResource("57")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 13.000, 5.300, 5.000)
+
+
+[node name="Furn_PrizeCounter_Table" parent="." instance=ExtResource("58")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 17.000, 5.300, 0.000)
+
+
+[node name="Furn_PrizeCounter_Frame" parent="." instance=ExtResource("59")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 22.500, 5.300, 0.000)
+
+
+[node name="Furn_PrizeCounter_Shelf" parent="." instance=ExtResource("60")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, 10.000, 5.300, -6.000)
+
+
+[node name="Furn_Attic_Couch" parent="." instance=ExtResource("61")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -20.000, 5.300, -4.000)
+
+
+[node name="Furn_Attic_Armchair" parent="." instance=ExtResource("62")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, -14.000, 5.300, -4.000)
+
+
+[node name="Furn_Attic_Rug" parent="." instance=ExtResource("63")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -17.000, 5.300, 0.000)
+
+
+[node name="Furn_Attic_Lamp" parent="." instance=ExtResource("64")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -22.000, 5.300, 2.000)
+
+
+[node name="Furn_Attic_CabinetDeco" parent="." instance=ExtResource("65")]
+transform = Transform3D(-1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, -1.000000, -11.000, 5.300, -5.000)
+
+
+[node name="Furn_Attic_Books" parent="." instance=ExtResource("66")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -11.000, 5.300, 2.000)
+
+
+[node name="Furn_Attic_Cactus" parent="." instance=ExtResource("67")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -22.000, 5.300, -6.000)
+
+
+[node name="Furn_Attic_Frame" parent="." instance=ExtResource("68")]
+transform = Transform3D(0.866025, 0, 0.500000, 0, 1, 0, -0.500000, 0, 0.866025, -15.000, 5.300, 5.000)
 
