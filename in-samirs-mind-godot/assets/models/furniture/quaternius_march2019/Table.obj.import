@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5st8tvfwicef"
+path="res://.godot/imported/Table.obj-77374d1a0aa1de5d91f56820c2a24fce.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Table.obj-77374d1a0aa1de5d91f56820c2a24fce.mesh"]
+
+source_file="res://assets/models/furniture/quaternius_march2019/Table.obj"
+dest_files=["res://.godot/imported/Table.obj-77374d1a0aa1de5d91f56820c2a24fce.mesh", "res://.godot/imported/Table.obj-77374d1a0aa1de5d91f56820c2a24fce.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

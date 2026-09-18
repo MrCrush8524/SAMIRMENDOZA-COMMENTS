@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cvridajj3ed3x"
+path="res://.godot/imported/Stool.obj-ed52235d761eb3a60fa53a35edfd925c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Stool.obj-ed52235d761eb3a60fa53a35edfd925c.mesh"]
+
+source_file="res://assets/models/furniture/quaternius_march2019/Stool.obj"
+dest_files=["res://.godot/imported/Stool.obj-ed52235d761eb3a60fa53a35edfd925c.mesh", "res://.godot/imported/Stool.obj-ed52235d761eb3a60fa53a35edfd925c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

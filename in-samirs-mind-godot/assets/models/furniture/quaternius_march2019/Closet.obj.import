@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c4bfmsdspgjix"
+path="res://.godot/imported/Closet.obj-d5ab5ee683ce2453a462c71c2903615c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Closet.obj-d5ab5ee683ce2453a462c71c2903615c.mesh"]
+
+source_file="res://assets/models/furniture/quaternius_march2019/Closet.obj"
+dest_files=["res://.godot/imported/Closet.obj-d5ab5ee683ce2453a462c71c2903615c.mesh", "res://.godot/imported/Closet.obj-d5ab5ee683ce2453a462c71c2903615c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
