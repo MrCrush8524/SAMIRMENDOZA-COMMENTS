@@ -5,15 +5,17 @@ extends Control
 ## Menu_Chapter_Art/button_regions.json (verified against the delivered
 ## 1920x1080 image before use).
 
-const IMAGE_SIZE := Vector2(1920, 1080)
+## Pool/motel title art (2026 refresh) - measured directly against this
+## exact 1672x941 source image; re-measure both if the art changes again.
+const IMAGE_SIZE := Vector2(1672, 941)
 const REGIONS := {
-	"BtnNewDream": [1298, 164, 529, 101],
-	"BtnContinue": [1298, 290, 529, 101],
-	"BtnSettings": [1298, 415, 529, 101],
-	"BtnExtras": [1298, 541, 529, 101],
-	"BtnSoundtrack": [1298, 666, 529, 101],
-	"BtnLore": [1298, 791, 529, 101],
-	"LangOption": [47, 941, 85, 83],
+	"BtnNewDream": [1211, 192, 391, 73],
+	"BtnContinue": [1211, 277, 391, 73],
+	"BtnSettings": [1212, 360, 389, 75],
+	"BtnExtras": [1212, 446, 389, 76],
+	"BtnSoundtrack": [1212, 534, 389, 74],
+	"BtnLore": [1211, 620, 391, 75],
+	"LangOption": [35, 795, 68, 68],
 }
 
 @onready var btn_new_dream: Button = %BtnNewDream
