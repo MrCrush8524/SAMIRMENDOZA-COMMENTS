@@ -17,10 +17,23 @@ const CHAPTER_INFO := {
 	"chapter04": {"title": "Chapter IV", "subtitle": "Above the Street"},
 	"chapter05": {"title": "Chapter V", "subtitle": "Pastel Dreamscape"},
 	"chapter06": {"title": "Chapter VI", "subtitle": "Pink Hallway"},
+	"mall": {"title": "Side Level", "subtitle": "Dreamcore Mall"},
+	"zoo": {"title": "Side Level", "subtitle": "Clouds Zoo"},
+	"terminal": {"title": "Side Level", "subtitle": "Dreamcore Terminal"},
+	"museum": {"title": "Side Level", "subtitle": "Nightmare Museum"},
+	"liminal_junction": {"title": "Side Level", "subtitle": "Liminal Junction"},
+	"downtown": {"title": "Side Level", "subtitle": "Downtown"},
 }
 ## Kept in fixed story order regardless of the (possibly out-of-order)
-## order chapters were actually first visited in.
-const CHAPTER_ORDER := ["chapter01", "chapter02", "chapter03", "chapter04", "chapter05", "chapter06"]
+## order chapters were actually first visited in. All entries always show
+## here (a dev-facing "try any chapter" menu) rather than being filtered
+## to GameState.visited_chapters - there is no in-fiction reason to gate
+## replay access, and testing every chapter from a fresh save otherwise
+## requires playing the whole game first.
+const CHAPTER_ORDER := [
+	"chapter01", "chapter02", "chapter03", "chapter04", "chapter05", "chapter06",
+	"mall", "zoo", "terminal", "museum", "liminal_junction", "downtown",
+]
 
 @onready var card_image: TextureRect = %CardImage
 @onready var title_label: Label = %CardTitle
@@ -44,9 +57,7 @@ func _ready() -> void:
 
 func open() -> void:
 	_entries = [""]
-	for id in CHAPTER_ORDER:
-		if GameState.visited_chapters.has(id):
-			_entries.append(id)
+	_entries.append_array(CHAPTER_ORDER)
 	_index = 0
 	visible = true
 	_refresh()

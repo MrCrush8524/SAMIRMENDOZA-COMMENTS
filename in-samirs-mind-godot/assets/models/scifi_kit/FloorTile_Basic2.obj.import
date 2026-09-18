@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bkokc84juxix0"
+path="res://.godot/imported/FloorTile_Basic2.obj-cb6705b68a227dfa7f95dd9352ba1423.mesh"
+
+[deps]
+
+files=["res://.godot/imported/FloorTile_Basic2.obj-cb6705b68a227dfa7f95dd9352ba1423.mesh"]
+
+source_file="res://assets/models/scifi_kit/FloorTile_Basic2.obj"
+dest_files=["res://.godot/imported/FloorTile_Basic2.obj-cb6705b68a227dfa7f95dd9352ba1423.mesh", "res://.godot/imported/FloorTile_Basic2.obj-cb6705b68a227dfa7f95dd9352ba1423.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

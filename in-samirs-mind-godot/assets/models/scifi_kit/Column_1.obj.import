@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5crhj3osy0v7"
+path="res://.godot/imported/Column_1.obj-b4eacd71337c1f7bcf0fb135b44e0765.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Column_1.obj-b4eacd71337c1f7bcf0fb135b44e0765.mesh"]
+
+source_file="res://assets/models/scifi_kit/Column_1.obj"
+dest_files=["res://.godot/imported/Column_1.obj-b4eacd71337c1f7bcf0fb135b44e0765.mesh", "res://.godot/imported/Column_1.obj-b4eacd71337c1f7bcf0fb135b44e0765.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

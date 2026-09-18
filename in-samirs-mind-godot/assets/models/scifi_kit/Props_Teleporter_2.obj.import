@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cq407cvdtd5ic"
+path="res://.godot/imported/Props_Teleporter_2.obj-7091856663f5ed0066148aee8adae84a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_Teleporter_2.obj-7091856663f5ed0066148aee8adae84a.mesh"]
+
+source_file="res://assets/models/scifi_kit/Props_Teleporter_2.obj"
+dest_files=["res://.godot/imported/Props_Teleporter_2.obj-7091856663f5ed0066148aee8adae84a.mesh", "res://.godot/imported/Props_Teleporter_2.obj-7091856663f5ed0066148aee8adae84a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

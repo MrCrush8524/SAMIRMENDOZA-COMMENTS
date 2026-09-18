@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c8xo11d4p60og"
+path="res://.godot/imported/SmallWindows_Wall_SideA.obj-3f097eac07846a3a443adcc9e397faf2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SmallWindows_Wall_SideA.obj-3f097eac07846a3a443adcc9e397faf2.mesh"]
+
+source_file="res://assets/models/scifi_kit/SmallWindows_Wall_SideA.obj"
+dest_files=["res://.godot/imported/SmallWindows_Wall_SideA.obj-3f097eac07846a3a443adcc9e397faf2.mesh", "res://.godot/imported/SmallWindows_Wall_SideA.obj-3f097eac07846a3a443adcc9e397faf2.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

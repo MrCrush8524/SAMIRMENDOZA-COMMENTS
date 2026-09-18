@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://grqmxq0rhaad"
+path="res://.godot/imported/Props_Statue.obj-b7efe4f8243cc473c86b1d4f2feb89cb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_Statue.obj-b7efe4f8243cc473c86b1d4f2feb89cb.mesh"]
+
+source_file="res://assets/models/scifi_kit/Props_Statue.obj"
+dest_files=["res://.godot/imported/Props_Statue.obj-b7efe4f8243cc473c86b1d4f2feb89cb.mesh", "res://.godot/imported/Props_Statue.obj-b7efe4f8243cc473c86b1d4f2feb89cb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

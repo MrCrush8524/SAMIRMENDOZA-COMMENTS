@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cn58awfx3fqcc"
+path="res://.godot/imported/RoofTile_Vents.obj-5726b3e5f8c518745746793f74b129e6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/RoofTile_Vents.obj-5726b3e5f8c518745746793f74b129e6.mesh"]
+
+source_file="res://assets/models/scifi_kit/RoofTile_Vents.obj"
+dest_files=["res://.godot/imported/RoofTile_Vents.obj-5726b3e5f8c518745746793f74b129e6.mesh", "res://.godot/imported/RoofTile_Vents.obj-5726b3e5f8c518745746793f74b129e6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

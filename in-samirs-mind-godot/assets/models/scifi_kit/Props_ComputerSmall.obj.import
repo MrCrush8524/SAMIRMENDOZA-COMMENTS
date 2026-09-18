@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://4y6n8vdsjk4m"
+path="res://.godot/imported/Props_ComputerSmall.obj-0abe08098d7d051688c5be81039cf0a6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_ComputerSmall.obj-0abe08098d7d051688c5be81039cf0a6.mesh"]
+
+source_file="res://assets/models/scifi_kit/Props_ComputerSmall.obj"
+dest_files=["res://.godot/imported/Props_ComputerSmall.obj-0abe08098d7d051688c5be81039cf0a6.mesh", "res://.godot/imported/Props_ComputerSmall.obj-0abe08098d7d051688c5be81039cf0a6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

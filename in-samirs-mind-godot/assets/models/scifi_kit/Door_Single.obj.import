@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b3fi8hd38r2oe"
+path="res://.godot/imported/Door_Single.obj-b24bd5dcacfa55096ea6b39f0f237cbd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Door_Single.obj-b24bd5dcacfa55096ea6b39f0f237cbd.mesh"]
+
+source_file="res://assets/models/scifi_kit/Door_Single.obj"
+dest_files=["res://.godot/imported/Door_Single.obj-b24bd5dcacfa55096ea6b39f0f237cbd.mesh", "res://.godot/imported/Door_Single.obj-b24bd5dcacfa55096ea6b39f0f237cbd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

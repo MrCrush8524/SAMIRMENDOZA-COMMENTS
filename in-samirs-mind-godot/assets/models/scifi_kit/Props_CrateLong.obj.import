@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bua7eathjoydo"
+path="res://.godot/imported/Props_CrateLong.obj-c298c636b3f6e53c8bd6cb1b56d96334.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_CrateLong.obj-c298c636b3f6e53c8bd6cb1b56d96334.mesh"]
+
+source_file="res://assets/models/scifi_kit/Props_CrateLong.obj"
+dest_files=["res://.godot/imported/Props_CrateLong.obj-c298c636b3f6e53c8bd6cb1b56d96334.mesh", "res://.godot/imported/Props_CrateLong.obj-c298c636b3f6e53c8bd6cb1b56d96334.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

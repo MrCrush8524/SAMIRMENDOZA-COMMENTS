@@ -32,7 +32,9 @@ const REGIONS := {
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
 func _ready() -> void:
-	btn_continue.disabled = not SaveManager.has_valid_save()
+	# Chapter Select (behind Continue) always opens, save or no save - it's
+	# the "try any chapter" menu now, not just a resume point, so a fresh
+	# install shouldn't be locked out of it.
 	btn_new_dream.pressed.connect(_on_new_dream)
 	btn_continue.pressed.connect(_on_continue)
 	btn_lore.pressed.connect(_on_lore)
@@ -75,12 +77,13 @@ func _on_name_confirmed() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/CharacterSelect.tscn")
 
 func _on_continue() -> void:
-	if not SaveManager.load_game():
-		btn_continue.disabled = true
-		return
-	# Chapter Select decides where GameRoot actually spawns (exact resume,
-	# or the start of any chapter already visited) — the scene change to
-	# GameRoot.tscn happens from inside that overlay, not here.
+	# Load whatever save exists so "Resume" reflects it; a missing/invalid
+	# save just leaves GameState at its fresh-profile defaults, which is
+	# fine since every other entry in Chapter Select starts a chapter from
+	# scratch anyway. Chapter Select decides where GameRoot actually
+	# spawns - the scene change to GameRoot.tscn happens from inside that
+	# overlay, not here.
+	SaveManager.load_game()
 	chapter_select_overlay.open()
 
 func _on_lang_selected(index: int) -> void:

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dr33mh8u7afyd"
+path="res://.godot/imported/Wall_3.obj-feaf975607c14d9abceb353a6c6fe820.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_3.obj-feaf975607c14d9abceb353a6c6fe820.mesh"]
+
+source_file="res://assets/models/scifi_kit/Wall_3.obj"
+dest_files=["res://.godot/imported/Wall_3.obj-feaf975607c14d9abceb353a6c6fe820.mesh", "res://.godot/imported/Wall_3.obj-feaf975607c14d9abceb353a6c6fe820.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dneasj3igllsl"
+path="res://.godot/imported/Details_Cylinder.obj-90eb9694c1f7b245bec585d55ce66eaa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Details_Cylinder.obj-90eb9694c1f7b245bec585d55ce66eaa.mesh"]
+
+source_file="res://assets/models/scifi_kit/Details_Cylinder.obj"
+dest_files=["res://.godot/imported/Details_Cylinder.obj-90eb9694c1f7b245bec585d55ce66eaa.mesh", "res://.godot/imported/Details_Cylinder.obj-90eb9694c1f7b245bec585d55ce66eaa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
