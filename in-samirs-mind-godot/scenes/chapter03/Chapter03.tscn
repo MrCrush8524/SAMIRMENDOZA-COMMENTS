@@ -48,6 +48,11 @@
 [ext_resource type="Texture2D" path="res://assets/pickups/journal_grimoire_wrapper.png" id="52"]
 [ext_resource type="Script" path="res://scenes/shared/RoomCheckTrigger.gd" id="53"]
 [ext_resource type="Script" path="res://scenes/shared/BackExitDoor.gd" id="54"]
+[ext_resource type="Mesh" path="res://assets/models/scifi_kit/Props_Teleporter_1.obj" id="55"]
+[ext_resource type="Mesh" path="res://assets/models/scifi_kit/Props_Computer.obj" id="56"]
+[ext_resource type="Mesh" path="res://assets/models/scifi_kit/Props_Statue.obj" id="57"]
+[ext_resource type="Mesh" path="res://assets/models/scifi_kit/Props_Vessel_Tall.obj" id="58"]
+[ext_resource type="Mesh" path="res://assets/models/scifi_kit/Props_Crate.obj" id="59"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(44, 0.2, 40)
@@ -4495,4 +4500,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.0000, 13.0)
 mesh = SubResource("C3A_ExtraCorridorMesh120")
 surface_material_override/0 = SubResource("DuplicateCorridorMat")
 visible = false
+
+[node name="SciFi_Teleporter" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -0.5000, 4.0000, 1.0000)
+mesh = ExtResource("55")
+
+
+[node name="SciFi_Computer" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(0.866025, 0, 0.500000, 0, 1, 0, -0.500000, 0, 0.866025, -2.3000, 4.0000, -1.3000)
+mesh = ExtResource("56")
+
+
+[node name="SciFi_Statue" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(0.939693, 0, -0.342020, 0, 1, 0, 0.342020, 0, 0.939693, 0.8000, 4.0000, 3.0000)
+mesh = ExtResource("57")
+
+
+[node name="SciFi_VesselL" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -1.4000, 4.0000, 1.0000)
+mesh = ExtResource("58")
+
+
+[node name="SciFi_VesselR" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.4000, 4.0000, 1.0000)
+mesh = ExtResource("58")
+
+
+[node name="SciFi_Crate" type="MeshInstance3D" parent="SecondFloor"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2.3000, 4.0000, 3.0000)
+mesh = ExtResource("59")
+
+
+[node name="SciFi_Sign" type="Label3D" parent="SecondFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5.6, -1.8)
+text = "THIS ROOM DOES NOT BELONG HERE.
+(It never did. Keep going.)"
+font_size = 40
+outline_size = 8
+modulate = Color(0.7, 1, 0.85, 1)
+billboard = 1
 
