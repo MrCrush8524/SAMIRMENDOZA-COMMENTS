@@ -7,7 +7,7 @@ import com.smr.storiesmadereal.data.claude.ClaudeRepository
 import com.smr.storiesmadereal.data.model.Manuscript
 import com.smr.storiesmadereal.data.repository.LibraryRepository
 import com.smr.storiesmadereal.data.repository.PlaybackPositionStore
-import com.smr.storiesmadereal.tts.KokoroTtsEngine
+import com.smr.storiesmadereal.tts.AndroidSystemTtsEngine
 import com.smr.storiesmadereal.tts.TtsEngine
 import com.smr.storiesmadereal.voiceclone.LocalCloneEngine
 import com.smr.storiesmadereal.voiceclone.VoiceCloneEngine
@@ -26,7 +26,7 @@ class AppContainer(context: Context) {
     val libraryRepository: LibraryRepository by lazy { LibraryRepository(context) }
     val playbackPositionStore: PlaybackPositionStore by lazy { PlaybackPositionStore(context) }
 
-    val ttsEngine: TtsEngine by lazy { KokoroTtsEngine(context) }
+    val ttsEngine: TtsEngine by lazy { AndroidSystemTtsEngine(context) }
     val voiceCloneEngine: VoiceCloneEngine by lazy { LocalCloneEngine(context) }
 
     private val claudeApiClient: ClaudeApiClient by lazy { ClaudeApiClient(apiKey = BuildConfig.CLAUDE_API_KEY) }
@@ -37,6 +37,9 @@ class AppContainer(context: Context) {
 
     /** Settings -> Now Playing hand-off for the audio-focus mode (Mix/Duck/Pause; Mix default). */
     val audioFocusMode = MutableStateFlow(com.smr.storiesmadereal.data.model.AudioFocusMode.default)
+
+    /** Voices -> Now Playing hand-off: set when the user taps a voice in the Voices screen. */
+    val selectedVoice = MutableStateFlow<com.smr.storiesmadereal.data.model.Voice?>(null)
 
     companion object {
         @Volatile private var instance: AppContainer? = null

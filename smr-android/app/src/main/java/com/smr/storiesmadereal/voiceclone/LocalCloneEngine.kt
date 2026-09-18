@@ -16,9 +16,10 @@ import java.util.UUID
 
 /**
  * Local/offline voice cloning through a PocketTTS-style decoder running on sherpa-onnx's ONNX
- * Runtime JNI bindings -- the same on-device runtime Kokoro uses, so no embedded Python and no
- * network round-trip for either enrollment or synthesis. Reference recordings and derived
- * speaker embeddings never leave the device.
+ * Runtime JNI bindings, so no embedded Python and no network round-trip for either enrollment
+ * or synthesis. Reference recordings and derived speaker embeddings never leave the device.
+ * (Standard narration no longer shares this runtime -- see tts/AndroidSystemTtsEngine.kt --
+ * this remains the one place in the app that still uses sherpa-onnx.)
  *
  * The registration/storage half of this class (enrolling a sample, keeping a manifest, listing
  * and deleting clones) is fully wired. [synthesize] is the one seam intentionally left open:

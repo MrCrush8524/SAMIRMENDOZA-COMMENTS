@@ -18,8 +18,9 @@ import kotlin.coroutines.resumeWithException
 
 /**
  * First-run download/install for the local voice-cloning model bundle (speaker encoder +
- * PocketTTS decoder weights). Structurally identical to [com.smr.storiesmadereal.tts.KokoroModelManager]
- * but kept as its own class since the two model bundles version and update independently.
+ * PocketTTS decoder weights). Standard narration no longer needs an equivalent of this class --
+ * it uses Android's system TTS engine (see tts/AndroidSystemTtsEngine.kt), which the OS already
+ * ships and maintains -- so this remains the one model this app still downloads at runtime.
  */
 class CloneModelManager(
     private val context: Context,

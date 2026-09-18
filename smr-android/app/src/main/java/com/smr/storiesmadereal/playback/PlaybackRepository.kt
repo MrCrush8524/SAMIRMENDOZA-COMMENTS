@@ -20,7 +20,7 @@ import java.io.File
  * layer (ViewModels) never touches Media3 types directly.
  *
  * V1 status: connects to the service, drives transport controls (play/pause/seek/±15s/speed),
- * and exposes audio-focus-mode + sleep-timer state. Queuing synthesized Kokoro/clone WAV chunks
+ * and exposes audio-focus-mode + sleep-timer state. Queuing synthesized narration WAV chunks
  * as they're produced (rather than one at a time) and resuming at an exact saved position are
  * the two pieces flagged in the README as still to finish -- [enqueueChunks] and [seekTo] below
  * are the integration points for that work.

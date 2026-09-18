@@ -31,7 +31,8 @@ class NowPlayingViewModel(
     private val ttsEngine: TtsEngine,
     private val claudeRepository: ClaudeRepository,
     private val selectedManuscriptBus: kotlinx.coroutines.flow.StateFlow<Manuscript?>,
-    private val audioFocusModeBus: kotlinx.coroutines.flow.StateFlow<AudioFocusMode>
+    private val audioFocusModeBus: kotlinx.coroutines.flow.StateFlow<AudioFocusMode>,
+    private val selectedVoiceBus: kotlinx.coroutines.flow.StateFlow<Voice?>
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PlaybackUiState())
@@ -50,6 +51,17 @@ class NowPlayingViewModel(
         observePlaybackPosition()
         observeLibrarySelection()
         observeAudioFocusMode()
+        observeVoiceSelection()
+    }
+
+    private fun observeVoiceSelection() {
+        viewModelScope.launch {
+            selectedVoiceBus.collect { voice ->
+                if (voice != null && voice.id != _uiState.value.voice.id) {
+                    selectVoice(voice)
+                }
+            }
+        }
     }
 
     private fun observeAudioFocusMode() {
@@ -198,7 +210,8 @@ class NowPlayingViewModel(
                 ttsEngine = container.ttsEngine,
                 claudeRepository = container.claudeRepository,
                 selectedManuscriptBus = container.selectedManuscript,
-                audioFocusModeBus = container.audioFocusMode
+                audioFocusModeBus = container.audioFocusMode,
+                selectedVoiceBus = container.selectedVoice
             ) as T
         }
     }

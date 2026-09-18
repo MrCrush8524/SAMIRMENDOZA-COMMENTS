@@ -5,14 +5,15 @@ import java.io.File
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Replaceable narration engine seam. Kokoro (local/offline, via sherpa-onnx) is the V1
- * implementation; a cloud engine or a different local model could implement this same
+ * Replaceable narration engine seam. Android's system TTS (see AndroidSystemTtsEngine) is the
+ * V1 implementation; a cloud engine or a bundled local model could implement this same
  * interface without touching the player, the UI, or the Claude layer.
  */
 interface TtsEngine {
     val isModelReady: Boolean
 
-    /** True while a model download/install triggered by [ensureModelReady] is in progress. */
+    /** Reflects engine initialization (or, for engines that need one, a model
+     *  download/install) triggered by [ensureModelReady]. */
     fun observeDownloadProgress(): Flow<ModelDownloadState>
 
     suspend fun ensureModelReady()

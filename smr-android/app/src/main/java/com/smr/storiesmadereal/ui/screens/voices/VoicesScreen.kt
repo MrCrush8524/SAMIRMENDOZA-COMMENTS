@@ -1,5 +1,6 @@
 package com.smr.storiesmadereal.ui.screens.voices
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,7 +43,8 @@ fun VoicesScreen(
     viewModel: VoicesViewModel = viewModel(factory = VoicesViewModel.Factory(LocalContext.current))
 ) {
     val clonedVoices by viewModel.clonedVoices.collectAsState()
-    val kokoroState by viewModel.kokoroDownloadState.collectAsState()
+    val standardVoices by viewModel.standardVoices.collectAsState()
+    val engineState by viewModel.narrationEngineState.collectAsState()
 
     Scaffold(
         containerColor = SmrPalette.Base,
@@ -61,9 +63,9 @@ fun VoicesScreen(
         LazyColumn(modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 20.dp)) {
             item {
                 Text("Standard", style = MaterialTheme.typography.titleMedium, color = SmrPalette.Lavender, modifier = Modifier.padding(vertical = 12.dp))
-                DownloadStatusRow(kokoroState, onDownload = viewModel::downloadKokoroModel)
+                EngineStatusRow(engineState, onRetry = viewModel::prepareNarrationEngine)
             }
-            items(viewModel.standardVoices) { voice -> VoiceRow(voice) }
+            items(standardVoices) { voice -> VoiceRow(voice, onClick = { viewModel.selectVoice(voice) }) }
 
             item {
                 Spacer(Modifier.height(20.dp))
@@ -94,47 +96,28 @@ fun VoicesScreen(
     }
 }
 
+/**
+ * Status of Android's system TTS engine (see AndroidSystemTtsEngine) -- not a download, just
+ * initialization, since the voices themselves are whatever the phone already has installed
+ * under Settings > Language & input > Text-to-speech output.
+ */
 @Composable
-private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit) {
+private fun EngineStatusRow(state: ModelDownloadState, onRetry: () -> Unit) {
     Column(modifier = Modifier.padding(bottom = 12.dp)) {
         when (state) {
-            is ModelDownloadState.NotStarted -> Button(
-                onClick = onDownload,
-                colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal)
-            ) { Text("Prepare narration model", color = SmrPalette.Base) }
+            is ModelDownloadState.NotStarted, is ModelDownloadState.Downloading ->
+                Text("Starting narration engine...", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
 
-            // The model ships bundled inside the APK (see fetchKokoroModelAsset in
-            // app/build.gradle.kts) -- KokoroModelManager never downloads it over the network,
-            // so this state is unreachable for the standard voices in practice. Kept only
-            // because ModelDownloadState is a shared sealed type.
-            is ModelDownloadState.Downloading -> {
-                val progress = if (state.totalBytes > 0) state.bytesDownloaded.toFloat() / state.totalBytes else 0f
-                Text("Downloading... ${(progress * 100).toInt()}%", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
-                LinearProgressIndicator(progress = { progress }, color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
-            }
-
-            is ModelDownloadState.Installing -> {
-                val writtenMb = state.bytesWritten / (1024 * 1024)
-                Text(
-                    "Preparing model... ${writtenMb}MB copied, ${state.filesExtracted} files",
-                    color = SmrPalette.CreamDim,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Text(
-                    "Copying the bundled model into local storage -- a few seconds, no network needed.",
-                    color = SmrPalette.CreamDim,
-                    style = MaterialTheme.typography.labelSmall
-                )
-                LinearProgressIndicator(color = SmrPalette.Teal, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
-            }
+            is ModelDownloadState.Installing ->
+                Text("Starting narration engine...", color = SmrPalette.CreamDim, style = MaterialTheme.typography.bodyMedium)
 
             is ModelDownloadState.Ready ->
-                Text("Narration model ready", color = SmrPalette.Teal, style = MaterialTheme.typography.bodyMedium)
+                Text("Narration engine ready -- tap a voice below to use it", color = SmrPalette.Teal, style = MaterialTheme.typography.bodyMedium)
 
             is ModelDownloadState.Failed -> {
-                Text("Couldn't prepare model: ${state.message}", color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
+                Text("Couldn't start narration engine: ${state.message}", color = SmrPalette.Error, style = MaterialTheme.typography.bodyMedium)
                 Button(
-                    onClick = onDownload,
+                    onClick = onRetry,
                     colors = ButtonDefaults.buttonColors(containerColor = SmrPalette.Teal),
                     modifier = Modifier.padding(top = 8.dp)
                 ) { Text("Retry", color = SmrPalette.Base) }
@@ -144,9 +127,12 @@ private fun DownloadStatusRow(state: ModelDownloadState, onDownload: () -> Unit)
 }
 
 @Composable
-private fun VoiceRow(voice: Voice) {
+private fun VoiceRow(voice: Voice, onClick: (() -> Unit)? = null) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .let { if (onClick != null) it.clickable(onClick = onClick) else it }
+            .padding(vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(voice.displayName, color = SmrPalette.Cream, style = MaterialTheme.typography.bodyLarge)

@@ -1,9 +1,14 @@
 package com.smr.storiesmadereal.data.model
 
+/** Sentinel meaning "use whatever voice the system TTS engine already has selected" -- its id
+ *  deliberately matches no real device voice, so AndroidSystemTtsEngine's applyVoice() no-ops
+ *  and leaves the engine's own default voice in place until the user picks one explicitly. */
+val DEFAULT_VOICE = Voice(id = "", displayName = "Default")
+
 data class PlaybackUiState(
     val manuscript: Manuscript? = null,
     val mode: PlaybackMode = PlaybackMode.READ,
-    val voice: Voice = BuiltInVoices.list.first(),
+    val voice: Voice = DEFAULT_VOICE,
     val isPlaying: Boolean = false,
     val isBuffering: Boolean = false,
     val positionMs: Long = 0L,

@@ -23,16 +23,18 @@ cobalt bloom effect.
 - Hamburger drawer navigation (Now Playing / Library / Voices / Settings)
 - Library screen with plain-text manuscript import
 - Read / Retell / Summary / Podcast modes
-- Claude Messages API client + repository for Retell/Summary/Podcast script generation
-- Kokoro local/offline neural TTS integration through sherpa-onnx, **bundled into
-  the APK at build time** (see "Model bundling" below) -- no in-app download step
+- Local narration through **Android's own system Text-to-Speech engine** (see
+  "Narration engine" below) -- no bundled model, no native bindings, natural
+  voices for free
 - Local voice-cloning UI (record a sample, name it, save it) backed by a
   PocketTTS/sherpa-onnx adapter slot, with its own first-run model download
-- Voice picker, playback speed, sleep-timer state
+- Voice picker (tap a voice in the Voices screen to select it for narration),
+  playback speed, sleep-timer state
 - Mix / Duck / Pause audio-focus modes in Settings, with Mix as the default so
   YouTube/Spotify/Apple Music can keep playing underneath narration
 - Media3 foreground playback service (`PlaybackService`) with lock-screen /
-  notification transport controls
+  notification transport controls, plus a real `Player.Listener` surfacing
+  playback errors on screen instead of failing silently
 - Room-backed local library + DataStore-backed saved playback position
 - Automatic copyright-safe fallback cover art (locally generated placeholder;
   Open Library lookup stubbed as the swap-in network source)
@@ -42,41 +44,42 @@ cobalt bloom effect.
 Each of the three "engine" concerns is behind its own interface so it can be
 replaced without touching the UI, navigation, or the rest of the player:
 
-- `tts/TtsEngine.kt` — standard narration. Implemented by `KokoroTtsEngine`.
+- `tts/TtsEngine.kt` — standard narration. Implemented by
+  `AndroidSystemTtsEngine`.
 - `voiceclone/VoiceCloneEngine.kt` — custom cloned voices. Implemented by
   `LocalCloneEngine`.
 - `data/claude/ClaudeApiClient.kt` — the only module that talks to a cloud
   model, used solely for Retell/Summary/Podcast script generation. Read mode
   never calls it.
 
-### Model bundling
+### Narration engine
 
-The Kokoro narration model (~320MB, the real k2-fsa release size) is fetched and packaged as
-an Android asset *at build time*, not downloaded by the app at runtime. The
-`fetchKokoroModelAsset` Gradle task in `app/build.gradle.kts` (same pattern as
-`fetchSherpaOnnxNativeLibs` for the native `.so` libraries) downloads the official release
-during the build and bundles it into `assets/kokoro_model/`. The model can't be committed to
-this repo directly -- GitHub hard-blocks pushes over 100MB without Git LFS -- so this fetch has
-to happen in CI/at build time; the resulting APK (~380-400MB) is otherwise self-contained.
+V1 originally bundled Kokoro (a local ONNX model, ~320MB, run through a vendored
+sherpa-onnx JNI binding) directly into the APK. That approach was dropped after
+two real problems surfaced: the voice quality was poor, and the amount of custom
+native-library/model-bundling machinery it required was a large, hard-to-verify
+surface for bugs relative to what it bought.
 
-At runtime, `KokoroModelManager` copies the bundled asset into local app storage once (plain
-local file I/O, no network call, typically a few seconds), rather than loading straight from
-`AssetManager` -- the native sherpa-onnx binding's asset-loading support for a whole directory
-tree (`espeak-ng-data/`, dozens of small files) isn't something this project has verified, so
-the already-tested file-path-based loading is used instead. The net effect: fetch the built
-APK from a GitHub Actions artifact, install it, and narration works with no further download,
-same as the request that shaped this design.
+`AndroidSystemTtsEngine` uses `android.speech.tts.TextToSpeech` instead -- the
+OS's own TTS engine, which on almost every real Android phone is Google's own
+"Speech Services" TTS: already installed, already maintained, genuinely natural
+neural voices, completely free, and nothing this app has to download, bundle,
+or link native code for. `synthesizeToFile()` writes a standard WAV directly,
+so it plugs into the exact same chunked-WAV player pipeline the old engine used
+-- no changes needed anywhere else in the app.
 
-The voice-cloning model (separate from Kokoro) is *not* bundled this way -- it remains a
-first-run in-app download, since voice cloning is already an intentionally unfinished stub
-(see below) and bundling an unused model would just be wasted APK size.
+The trade-off worth naming: voice availability and exact on-device-ness now
+depend on what the phone's owner has installed under Settings > Language &
+input > Text-to-speech output, not on anything this app controls. Most
+Android phones ship at least one on-device voice by default.
 
 ### Voice cloning implementation note
 
 Earlier planning discussed OpenVoice V2. For this Android-native package, the
 project uses a PocketTTS/sherpa-onnx local cloning adapter slot instead,
-because it runs in the same Android/JNI runtime as Kokoro and avoids embedding
-Python on the phone.
+because it runs entirely on-device and avoids embedding Python on the phone.
+This is the one place in the app that still uses sherpa-onnx -- standard
+narration no longer shares this runtime (see "Narration engine" above).
 
 The custom-voice UI, sample recording, and first-run local voice-cloning model
 download are fully wired. The final PocketTTS synthesis call is intentionally
@@ -99,9 +102,9 @@ Or build from the command line:
 ./gradlew assembleDebug
 ```
 
-The APK will be at `app/build/outputs/apk/debug/app-debug.apk`. First build downloads the
-~320MB Kokoro model bundle (cached after that, like the native libraries), so expect the
-first `assembleDebug` to take noticeably longer than a normal incremental build.
+The APK will be at `app/build/outputs/apk/debug/app-debug.apk`. No large model
+download happens at build time anymore -- the narration engine is part of the
+OS, so this is a normal-sized Android build.
 
 ### Claude API key (local/dev only)
 
@@ -111,14 +114,15 @@ Never commit a real key — see "Still to finish" below for the production path.
 
 ## First launch
 
-Kokoro is already inside the APK (see "Model bundling" above) -- opening the Voices screen
-(or just playing a manuscript) copies it into local storage automatically, no download, no
-button to tap. The local voice-clone model is the one thing that still downloads on first use,
-from the Voices / Custom Voice screens.
+Narration works immediately -- the system TTS engine is part of the OS, not
+something this app downloads. Open the Voices screen to see which voices are
+available on this phone and tap one to use it. The local voice-clone model is
+the one thing that still downloads on first use, from the Voices / Custom
+Voice screens.
 
 ## Still to finish before calling it production
 
-- wire generated Kokoro/clone WAV chunks into the Media3 queue incrementally
+- wire generated narration/clone WAV chunks into the Media3 queue incrementally
   as they're synthesized, rather than after the full batch completes
 - exact-position resume verified against Media3's own state restoration
 - sleep timer's end-of-chapter mode wired to real chapter boundaries once
