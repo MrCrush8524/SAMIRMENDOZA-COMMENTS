@@ -27,6 +27,7 @@ const PROXIMITY_RANGE := 2.2
 var _base_y: float
 var _t := randf() * TAU
 var _player: Node3D = null
+var _player_inside: bool = false
 
 signal picked_up(pickup: Area3D)
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		_player = players[0]
+	body_entered.connect(func(b): if b.is_in_group("player"): _player_inside = true)
+	body_exited.connect(func(b): if b.is_in_group("player"): _player_inside = false; UiRoot.set_prompt(""))
 
 func _process(delta: float) -> void:
 	_t += delta
@@ -46,6 +49,25 @@ func _process(delta: float) -> void:
 		near = global_position.distance_to(_player.global_position) < PROXIMITY_RANGE
 	var target_energy := GLOW_NEAR_ENERGY if near else GLOW_IDLE_ENERGY
 	glow.light_energy = lerp(glow.light_energy, target_energy, delta * 4.0)
+
+	# The raycast-based interact system (Player.gd's _try_interact) never
+	# shows its own affordance - every other interactable announces itself
+	# via UiRoot.set_prompt while the player's nearby, and pickups need the
+	# same or they just read as floating decoration with no indication
+	# they're the thing E picks up.
+	if _player_inside:
+		UiRoot.set_prompt(_prompt_text())
+
+func _prompt_text() -> String:
+	match kind:
+		Kind.JOURNAL:
+			return "Press E to read."
+		Kind.MEMORY_CAT:
+			return "Press E to remember."
+		Kind.DREAM_TRACK:
+			return "Press E to take the Dream Track."
+		_:
+			return "Press E to pick up."
 
 ## Both required-discovery kinds (journals + Memory Cats) top out at 3 —
 ## see MoonDoor.gd's wake condition. Not a generic pickup-system constant,

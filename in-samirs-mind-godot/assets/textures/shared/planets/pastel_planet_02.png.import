@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmhbgibl82sih"
-path="res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.ctex"
+path.s3tc="res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.s3tc.ctex"
+path.etc2="res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/shared/planets/pastel_planet_02.png"
-dest_files=["res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.ctex"]
+dest_files=["res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.s3tc.ctex", "res://.godot/imported/pastel_planet_02.png-d95fc76e3df6f18d000eb5e8ca357ecd.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
