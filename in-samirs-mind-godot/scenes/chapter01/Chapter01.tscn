@@ -1213,6 +1213,216 @@ size = Vector3(1.5240, 2.4384, 0.12)
 size = Vector3(1.5240, 2.4384, 0.12)
 
 
+[sub_resource type="BoxMesh" id="Gallery_WallN_Mesh"]
+size = Vector3(14.0208, 2.7400, 0.1524)
+
+[sub_resource type="BoxShape3D" id="Gallery_WallN_Shape"]
+size = Vector3(14.0208, 2.7400, 0.1524)
+
+[sub_resource type="BoxMesh" id="ArrivalFoyer_WallW_Seg0Mesh"]
+size = Vector3(0.1524, 3.0480, 1.8288)
+
+[sub_resource type="BoxShape3D" id="ArrivalFoyer_WallW_Seg0Shape"]
+size = Vector3(0.1524, 3.0480, 1.8288)
+
+[sub_resource type="BoxMesh" id="ArrivalFoyer_WallW_Seg1Mesh"]
+size = Vector3(0.1524, 3.0480, 1.8288)
+
+[sub_resource type="BoxShape3D" id="ArrivalFoyer_WallW_Seg1Shape"]
+size = Vector3(0.1524, 3.0480, 1.8288)
+
+[sub_resource type="BoxMesh" id="ObservationNiche_WallW_Seg0Mesh"]
+size = Vector3(0.1524, 3.0480, 0.6096)
+
+[sub_resource type="BoxShape3D" id="ObservationNiche_WallW_Seg0Shape"]
+size = Vector3(0.1524, 3.0480, 0.6096)
+
+[sub_resource type="BoxMesh" id="ObservationNiche_WallW_Seg1Mesh"]
+size = Vector3(0.1524, 3.0480, 0.6096)
+
+[sub_resource type="BoxShape3D" id="ObservationNiche_WallW_Seg1Shape"]
+size = Vector3(0.1524, 3.0480, 0.6096)
+
+[sub_resource type="BoxMesh" id="MemoryAtrium_WallS_Seg0Mesh"]
+size = Vector3(3.0480, 4.2672, 0.1524)
+
+[sub_resource type="BoxShape3D" id="MemoryAtrium_WallS_Seg0Shape"]
+size = Vector3(3.0480, 4.2672, 0.1524)
+
+[sub_resource type="BoxMesh" id="MemoryAtrium_WallS_Seg1Mesh"]
+size = Vector3(3.0480, 4.2672, 0.1524)
+
+[sub_resource type="BoxShape3D" id="MemoryAtrium_WallS_Seg1Shape"]
+size = Vector3(3.0480, 4.2672, 0.1524)
+
+[sub_resource type="BoxMesh" id="LaundryHallExt_WallE_Seg0Mesh"]
+size = Vector3(0.1524, 3.6576, 1.8288)
+
+[sub_resource type="BoxShape3D" id="LaundryHallExt_WallE_Seg0Shape"]
+size = Vector3(0.1524, 3.6576, 1.8288)
+
+[sub_resource type="BoxMesh" id="LaundryHallExt_WallE_Seg1Mesh"]
+size = Vector3(0.1524, 3.6576, 1.8288)
+
+[sub_resource type="BoxShape3D" id="LaundryHallExt_WallE_Seg1Shape"]
+size = Vector3(0.1524, 3.6576, 1.8288)
+
+[sub_resource type="BoxMesh" id="TVLounge_WallW_Seg0Mesh"]
+size = Vector3(0.1524, 3.0480, 1.6764)
+
+[sub_resource type="BoxShape3D" id="TVLounge_WallW_Seg0Shape"]
+size = Vector3(0.1524, 3.0480, 1.6764)
+
+[sub_resource type="BoxMesh" id="TVLounge_WallW_Seg1Mesh"]
+size = Vector3(0.1524, 3.0480, 1.6764)
+
+[sub_resource type="BoxShape3D" id="TVLounge_WallW_Seg1Shape"]
+size = Vector3(0.1524, 3.0480, 1.6764)
+
+[sub_resource type="BoxMesh" id="WalkC_TerminalDoor_FloorMesh"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxShape3D" id="WalkC_TerminalDoor_FloorShape"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxMesh" id="WalkC_TerminalDoor_CeilingMesh"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxShape3D" id="WalkC_TerminalDoor_CeilingShape"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxMesh" id="WalkC_TerminalDoor_WallLMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_TerminalDoor_WallLShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_TerminalDoor_WallRMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_TerminalDoor_WallRShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_ZooDoor_FloorMesh"]
+size = Vector3(3.0000, 0.1500, 1.2192)
+
+[sub_resource type="BoxShape3D" id="WalkC_ZooDoor_FloorShape"]
+size = Vector3(3.0000, 0.1500, 1.2192)
+
+[sub_resource type="BoxMesh" id="WalkC_ZooDoor_CeilingMesh"]
+size = Vector3(3.0000, 0.1500, 1.2192)
+
+[sub_resource type="BoxShape3D" id="WalkC_ZooDoor_CeilingShape"]
+size = Vector3(3.0000, 0.1500, 1.2192)
+
+[sub_resource type="BoxMesh" id="WalkC_ZooDoor_WallLMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_ZooDoor_WallLShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_ZooDoor_WallRMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_ZooDoor_WallRShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_MallDoor_FloorMesh"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxShape3D" id="WalkC_MallDoor_FloorShape"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxMesh" id="WalkC_MallDoor_CeilingMesh"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxShape3D" id="WalkC_MallDoor_CeilingShape"]
+size = Vector3(3.0000, 0.1500, 1.8288)
+
+[sub_resource type="BoxMesh" id="WalkC_MallDoor_WallLMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_MallDoor_WallLShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_MallDoor_WallRMesh"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_MallDoor_WallRShape"]
+size = Vector3(3.0000, 2.4384, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_PinkHallwayDoor_FloorMesh"]
+size = Vector3(3.0000, 0.1500, 0.9144)
+
+[sub_resource type="BoxShape3D" id="WalkC_PinkHallwayDoor_FloorShape"]
+size = Vector3(3.0000, 0.1500, 0.9144)
+
+[sub_resource type="BoxMesh" id="WalkC_PinkHallwayDoor_CeilingMesh"]
+size = Vector3(3.0000, 0.1500, 0.9144)
+
+[sub_resource type="BoxShape3D" id="WalkC_PinkHallwayDoor_CeilingShape"]
+size = Vector3(3.0000, 0.1500, 0.9144)
+
+[sub_resource type="BoxMesh" id="WalkC_PinkHallwayDoor_WallLMesh"]
+size = Vector3(3.0000, 2.1336, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_PinkHallwayDoor_WallLShape"]
+size = Vector3(3.0000, 2.1336, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_PinkHallwayDoor_WallRMesh"]
+size = Vector3(3.0000, 2.1336, 0.1500)
+
+[sub_resource type="BoxShape3D" id="WalkC_PinkHallwayDoor_WallRShape"]
+size = Vector3(3.0000, 2.1336, 0.1500)
+
+[sub_resource type="BoxMesh" id="WalkC_MuseumDoor_FloorMesh"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_MuseumDoor_FloorShape"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_MuseumDoor_CeilingMesh"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_MuseumDoor_CeilingShape"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_MuseumDoor_WallLMesh"]
+size = Vector3(0.1500, 2.7432, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_MuseumDoor_WallLShape"]
+size = Vector3(0.1500, 2.7432, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_MuseumDoor_WallRMesh"]
+size = Vector3(0.1500, 2.7432, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_MuseumDoor_WallRShape"]
+size = Vector3(0.1500, 2.7432, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_LiminalJunctionDoor_FloorMesh"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_LiminalJunctionDoor_FloorShape"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_LiminalJunctionDoor_CeilingMesh"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_LiminalJunctionDoor_CeilingShape"]
+size = Vector3(1.2192, 0.1500, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_LiminalJunctionDoor_WallLMesh"]
+size = Vector3(0.1500, 2.4384, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_LiminalJunctionDoor_WallLShape"]
+size = Vector3(0.1500, 2.4384, 3.0000)
+
+[sub_resource type="BoxMesh" id="WalkC_LiminalJunctionDoor_WallRMesh"]
+size = Vector3(0.1500, 2.4384, 3.0000)
+
+[sub_resource type="BoxShape3D" id="WalkC_LiminalJunctionDoor_WallRShape"]
+size = Vector3(0.1500, 2.4384, 3.0000)
+
 [node name="Chapter01" type="Node3D"]
 script = ExtResource("1")
 
@@ -1240,14 +1450,6 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled3")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallS_1"]
 shape = SubResource("W_290_305_15Shape")
 
-[node name="TVLounge_WallW_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, -2.1336)
-[node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallW_0"]
-mesh = SubResource("W_15_305_427")
-surface_material_override/0 = SubResource("Mat_wall_bench_area")
-[node name="Shape" type="CollisionShape3D" parent="TVLounge_WallW_0"]
-shape = SubResource("W_15_305_427Shape")
-
 [node name="TVLounge_WallE_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3152, 1.5240, -3.5814)
 [node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallE_0"]
@@ -1263,54 +1465,6 @@ mesh = SubResource("W_15_305_137")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled4")
 [node name="Shape" type="CollisionShape3D" parent="TVLounge_WallE_1"]
 shape = SubResource("W_15_305_137Shape")
-
-[node name="Gallery_WallN_Seg0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9530, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg0"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg0Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg0"]
-shape = SubResource("WSeg_Gallery_WallN_Seg0Shape")
-
-[node name="Gallery_WallN_Seg1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8194, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg1"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg1Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg1"]
-shape = SubResource("WSeg_Gallery_WallN_Seg1Shape")
-
-[node name="Gallery_WallN_Seg2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4572, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg2"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg2Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg2"]
-shape = SubResource("WSeg_Gallery_WallN_Seg2Shape")
-
-[node name="Gallery_WallN_Seg3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2860, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg3"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg3Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg3"]
-shape = SubResource("WSeg_Gallery_WallN_Seg3Shape")
-
-[node name="Gallery_WallN_Seg4" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6101, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg4"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg4Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg4"]
-shape = SubResource("WSeg_Gallery_WallN_Seg4Shape")
-
-[node name="Gallery_WallN_Seg5" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5149, 1.3716, -4.2672)
-[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN_Seg5"]
-mesh = SubResource("WSeg_Gallery_WallN_Seg5Mesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN_Seg5"]
-shape = SubResource("WSeg_Gallery_WallN_Seg5Shape")
 
 [node name="Gallery_WallS_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1148, 1.3716, 0.0000)
@@ -1439,14 +1593,6 @@ mesh = SubResource("W_76_305_15")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled2")
 [node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallS_1"]
 shape = SubResource("W_76_305_15Shape")
-
-[node name="ArrivalFoyer_WallW_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 2.7432)
-[node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallW_0"]
-mesh = SubResource("W_15_305_549")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
-[node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallW_0"]
-shape = SubResource("W_15_305_549Shape")
 
 [node name="ArrivalFoyer_WallE_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.5240, 0.9906)
@@ -1584,14 +1730,6 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled26")
 [node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallW_0"]
 shape = SubResource("W_15_366_549Shape")
 
-[node name="LaundryHallExt_WallE_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.8288, 2.7432)
-[node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallE_0"]
-mesh = SubResource("W_15_366_549")
-surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
-[node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallE_0"]
-shape = SubResource("W_15_366_549Shape")
-
 [node name="QuietStair_WallN_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8110, 1.6764, 5.4864)
 [node name="Mesh" type="MeshInstance3D" parent="QuietStair_WallN_0"]
@@ -1672,14 +1810,6 @@ surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled30")
 [node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallS_0"]
 shape = SubResource("W_305_305_15Shape")
 
-[node name="ObservationNiche_WallW_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 10.3632)
-[node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallW_0"]
-mesh = SubResource("W_15_305_244")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
-[node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallW_0"]
-shape = SubResource("W_15_305_244Shape")
-
 [node name="ObservationNiche_WallE_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 1.5240, 10.3632)
 [node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallE_0"]
@@ -1703,14 +1833,6 @@ mesh = SubResource("W_274_427_15")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled16")
 [node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallN_1"]
 shape = SubResource("W_274_427_15Shape")
-
-[node name="MemoryAtrium_WallS_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 2.1336, 14.0208)
-[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallS_0"]
-mesh = SubResource("W_732_427_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
-[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallS_0"]
-shape = SubResource("W_732_427_15Shape")
 
 [node name="MemoryAtrium_WallW_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1440, 2.1336, 6.0198)
@@ -1839,14 +1961,6 @@ mesh = SubResource("W_9_244_15")
 surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled41")
 [node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallN_1"]
 shape = SubResource("W_9_244_15Shape")
-
-[node name="DeadEndCorridor_WallS_0" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 1.2192, 10.3632)
-[node name="Mesh" type="MeshInstance3D" parent="DeadEndCorridor_WallS_0"]
-mesh = SubResource("W_122_244_15")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
-[node name="Shape" type="CollisionShape3D" parent="DeadEndCorridor_WallS_0"]
-shape = SubResource("W_122_244_15Shape")
 
 [node name="DeadEndCorridor_WallW_0" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0480, 1.2192, 7.9248)
@@ -2082,7 +2196,7 @@ mesh = SubResource("C_244_5_244")
 surface_material_override/0 = SubResource("Mat_ceiling_clean_tiled12")
 
 [node name="MallDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4008, 1.2192, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1920, 1.2192, 2.7432)
 script = ExtResource("47")
 chapter_id = "mall"
 spawn_marker = "start"
@@ -2096,7 +2210,7 @@ omni_range = 2.5
 
 
 [node name="PinkHallwayDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9624, 1.0668, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1920, 1.0668, -2.1336)
 script = ExtResource("47")
 chapter_id = "chapter06"
 spawn_marker = "start"
@@ -2110,7 +2224,7 @@ omni_range = 2.5
 
 
 [node name="ZooDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5240, 1.2192, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1920, 1.2192, 10.3632)
 script = ExtResource("47")
 chapter_id = "zoo"
 spawn_marker = "start"
@@ -2124,7 +2238,7 @@ omni_range = 2.5
 
 
 [node name="TerminalDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, 1.2192, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1920, 1.2192, 2.7432)
 script = ExtResource("47")
 chapter_id = "terminal"
 spawn_marker = "start"
@@ -2138,7 +2252,7 @@ omni_range = 2.5
 
 
 [node name="MuseumDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3528, 1.3716, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 1.3716, 17.0208)
 script = ExtResource("47")
 chapter_id = "museum"
 spawn_marker = "start"
@@ -2152,7 +2266,7 @@ omni_range = 2.5
 
 
 [node name="LiminalJunctionDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7912, 1.2192, -7.2672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 1.2192, 13.3632)
 script = ExtResource("47")
 chapter_id = "liminal_junction"
 spawn_marker = "start"
@@ -2606,198 +2720,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7536, 1.1000, -2.7432)
 [node name="JournalSpawn12" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5720, 1.1000, 4.5720)
 
-[node name="WalkC_MallDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4008, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_MallDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_Floor"]
-shape = SubResource("WalkC_WalkC_MallDoor_FloorShape")
-
-[node name="WalkC_MallDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4008, 2.5134, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_MallDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_MallDoor_CeilingShape")
-
-[node name="WalkC_MallDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3902, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_MallDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_WallL"]
-shape = SubResource("WalkC_WalkC_MallDoor_WallLShape")
-
-[node name="WalkC_MallDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4114, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_MallDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_WallR"]
-shape = SubResource("WalkC_WalkC_MallDoor_WallRShape")
-
-[node name="WalkC_PinkHallwayDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9624, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_PinkHallwayDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_Floor"]
-shape = SubResource("WalkC_WalkC_PinkHallwayDoor_FloorShape")
-
-[node name="WalkC_PinkHallwayDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9624, 2.2086, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_PinkHallwayDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_PinkHallwayDoor_CeilingShape")
-
-[node name="WalkC_PinkHallwayDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4946, 1.0668, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_PinkHallwayDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_WallL"]
-shape = SubResource("WalkC_WalkC_PinkHallwayDoor_WallLShape")
-
-[node name="WalkC_PinkHallwayDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4302, 1.0668, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_PinkHallwayDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_WallR"]
-shape = SubResource("WalkC_WalkC_PinkHallwayDoor_WallRShape")
-
-[node name="WalkC_ZooDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5240, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_ZooDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_Floor"]
-shape = SubResource("WalkC_WalkC_ZooDoor_FloorShape")
-
-[node name="WalkC_ZooDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5240, 2.5134, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_ZooDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_ZooDoor_CeilingShape")
-
-[node name="WalkC_ZooDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2086, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_ZooDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_WallL"]
-shape = SubResource("WalkC_WalkC_ZooDoor_WallLShape")
-
-[node name="WalkC_ZooDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8394, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_ZooDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_WallR"]
-shape = SubResource("WalkC_WalkC_ZooDoor_WallRShape")
-
-[node name="WalkC_TerminalDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_TerminalDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_Floor"]
-shape = SubResource("WalkC_WalkC_TerminalDoor_FloorShape")
-
-[node name="WalkC_TerminalDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, 2.5134, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_TerminalDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_TerminalDoor_CeilingShape")
-
-[node name="WalkC_TerminalDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0750, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_TerminalDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_WallL"]
-shape = SubResource("WalkC_WalkC_TerminalDoor_WallLShape")
-
-[node name="WalkC_TerminalDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9038, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_TerminalDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_WallR"]
-shape = SubResource("WalkC_WalkC_TerminalDoor_WallRShape")
-
-[node name="WalkC_MuseumDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3528, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_MuseumDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_Floor"]
-shape = SubResource("WalkC_WalkC_MuseumDoor_FloorShape")
-
-[node name="WalkC_MuseumDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3528, 2.8182, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_MuseumDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_MuseumDoor_CeilingShape")
-
-[node name="WalkC_MuseumDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6682, 1.3716, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_MuseumDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_WallL"]
-shape = SubResource("WalkC_WalkC_MuseumDoor_WallLShape")
-
-[node name="WalkC_MuseumDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0374, 1.3716, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_MuseumDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_WallR"]
-shape = SubResource("WalkC_WalkC_MuseumDoor_WallRShape")
-
-[node name="WalkC_LiminalJunctionDoor_Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7912, -0.0750, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_Floor"]
-mesh = SubResource("WalkC_WalkC_LiminalJunctionDoor_FloorMesh")
-surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_Floor"]
-shape = SubResource("WalkC_WalkC_LiminalJunctionDoor_FloorShape")
-
-[node name="WalkC_LiminalJunctionDoor_Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7912, 2.5134, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_Ceiling"]
-mesh = SubResource("WalkC_WalkC_LiminalJunctionDoor_CeilingMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_Ceiling"]
-shape = SubResource("WalkC_WalkC_LiminalJunctionDoor_CeilingShape")
-
-[node name="WalkC_LiminalJunctionDoor_WallL" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1828, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_WallL"]
-mesh = SubResource("WalkC_WalkC_LiminalJunctionDoor_WallLMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallL"]
-shape = SubResource("WalkC_WalkC_LiminalJunctionDoor_WallLShape")
-
-[node name="WalkC_LiminalJunctionDoor_WallR" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3996, 1.2192, -5.7672)
-[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_WallR"]
-mesh = SubResource("WalkC_WalkC_LiminalJunctionDoor_WallRMesh")
-surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
-[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallR"]
-shape = SubResource("WalkC_WalkC_LiminalJunctionDoor_WallRShape")
-
 [node name="WalkC_TerminalDoor_Sign" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9144, 2.1, -4.6)
 text = "TERMINAL
@@ -2806,3 +2728,284 @@ font_size = 48
 outline_size = 8
 modulate = Color(1, 1, 1, 1)
 billboard = 1
+
+[node name="Gallery_WallN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3048, 1.3716, -4.2672)
+[node name="Mesh" type="MeshInstance3D" parent="Gallery_WallN"]
+mesh = SubResource("Gallery_WallN_Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled5")
+[node name="Shape" type="CollisionShape3D" parent="Gallery_WallN"]
+shape = SubResource("Gallery_WallN_Shape")
+
+[node name="ArrivalFoyer_WallW_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 0.9144)
+[node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallW_Seg0"]
+mesh = SubResource("ArrivalFoyer_WallW_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
+[node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallW_Seg0"]
+shape = SubResource("ArrivalFoyer_WallW_Seg0Shape")
+
+[node name="ArrivalFoyer_WallW_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 4.5720)
+[node name="Mesh" type="MeshInstance3D" parent="ArrivalFoyer_WallW_Seg1"]
+mesh = SubResource("ArrivalFoyer_WallW_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
+[node name="Shape" type="CollisionShape3D" parent="ArrivalFoyer_WallW_Seg1"]
+shape = SubResource("ArrivalFoyer_WallW_Seg1Shape")
+
+[node name="ObservationNiche_WallW_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 9.4488)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallW_Seg0"]
+mesh = SubResource("ObservationNiche_WallW_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
+[node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallW_Seg0"]
+shape = SubResource("ObservationNiche_WallW_Seg0Shape")
+
+[node name="ObservationNiche_WallW_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, 11.2776)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationNiche_WallW_Seg1"]
+mesh = SubResource("ObservationNiche_WallW_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
+[node name="Shape" type="CollisionShape3D" parent="ObservationNiche_WallW_Seg1"]
+shape = SubResource("ObservationNiche_WallW_Seg1Shape")
+
+[node name="MemoryAtrium_WallS_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6200, 2.1336, 14.0208)
+[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallS_Seg0"]
+mesh = SubResource("MemoryAtrium_WallS_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
+[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallS_Seg0"]
+shape = SubResource("MemoryAtrium_WallS_Seg0Shape")
+
+[node name="MemoryAtrium_WallS_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3528, 2.1336, 14.0208)
+[node name="Mesh" type="MeshInstance3D" parent="MemoryAtrium_WallS_Seg1"]
+mesh = SubResource("MemoryAtrium_WallS_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
+[node name="Shape" type="CollisionShape3D" parent="MemoryAtrium_WallS_Seg1"]
+shape = SubResource("MemoryAtrium_WallS_Seg1Shape")
+
+[node name="LaundryHallExt_WallE_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.8288, 0.9144)
+[node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallE_Seg0"]
+mesh = SubResource("LaundryHallExt_WallE_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+[node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallE_Seg0"]
+shape = SubResource("LaundryHallExt_WallE_Seg0Shape")
+
+[node name="LaundryHallExt_WallE_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1920, 1.8288, 4.5720)
+[node name="Mesh" type="MeshInstance3D" parent="LaundryHallExt_WallE_Seg1"]
+mesh = SubResource("LaundryHallExt_WallE_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+[node name="Shape" type="CollisionShape3D" parent="LaundryHallExt_WallE_Seg1"]
+shape = SubResource("LaundryHallExt_WallE_Seg1Shape")
+
+[node name="TVLounge_WallW_Seg0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, -3.4290)
+[node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallW_Seg0"]
+mesh = SubResource("TVLounge_WallW_Seg0Mesh")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
+[node name="Shape" type="CollisionShape3D" parent="TVLounge_WallW_Seg0"]
+shape = SubResource("TVLounge_WallW_Seg0Shape")
+
+[node name="TVLounge_WallW_Seg1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1920, 1.5240, -0.8382)
+[node name="Mesh" type="MeshInstance3D" parent="TVLounge_WallW_Seg1"]
+mesh = SubResource("TVLounge_WallW_Seg1Mesh")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
+[node name="Shape" type="CollisionShape3D" parent="TVLounge_WallW_Seg1"]
+shape = SubResource("TVLounge_WallW_Seg1Shape")
+
+[node name="WalkC_TerminalDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, -0.0750, 2.7432)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_Floor"]
+mesh = SubResource("WalkC_TerminalDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_Floor"]
+shape = SubResource("WalkC_TerminalDoor_FloorShape")
+
+[node name="WalkC_TerminalDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 2.5134, 2.7432)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_Ceiling"]
+mesh = SubResource("WalkC_TerminalDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_Ceiling"]
+shape = SubResource("WalkC_TerminalDoor_CeilingShape")
+
+[node name="WalkC_TerminalDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.2192, 1.7538)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_WallL"]
+mesh = SubResource("WalkC_TerminalDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_WallL"]
+shape = SubResource("WalkC_TerminalDoor_WallLShape")
+
+[node name="WalkC_TerminalDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.2192, 3.7326)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_TerminalDoor_WallR"]
+mesh = SubResource("WalkC_TerminalDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled13")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_TerminalDoor_WallR"]
+shape = SubResource("WalkC_TerminalDoor_WallRShape")
+
+[node name="WalkC_ZooDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, -0.0750, 10.3632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_Floor"]
+mesh = SubResource("WalkC_ZooDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_Floor"]
+shape = SubResource("WalkC_ZooDoor_FloorShape")
+
+[node name="WalkC_ZooDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 2.5134, 10.3632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_Ceiling"]
+mesh = SubResource("WalkC_ZooDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_Ceiling"]
+shape = SubResource("WalkC_ZooDoor_CeilingShape")
+
+[node name="WalkC_ZooDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.2192, 9.6786)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_WallL"]
+mesh = SubResource("WalkC_ZooDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_WallL"]
+shape = SubResource("WalkC_ZooDoor_WallLShape")
+
+[node name="WalkC_ZooDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.2192, 11.0478)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_ZooDoor_WallR"]
+mesh = SubResource("WalkC_ZooDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled31")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_ZooDoor_WallR"]
+shape = SubResource("WalkC_ZooDoor_WallRShape")
+
+[node name="WalkC_MallDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6920, -0.0750, 2.7432)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_Floor"]
+mesh = SubResource("WalkC_MallDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_Floor"]
+shape = SubResource("WalkC_MallDoor_FloorShape")
+
+[node name="WalkC_MallDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6920, 2.5134, 2.7432)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_Ceiling"]
+mesh = SubResource("WalkC_MallDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_Ceiling"]
+shape = SubResource("WalkC_MallDoor_CeilingShape")
+
+[node name="WalkC_MallDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6920, 1.2192, 1.7538)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_WallL"]
+mesh = SubResource("WalkC_MallDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_WallL"]
+shape = SubResource("WalkC_MallDoor_WallLShape")
+
+[node name="WalkC_MallDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6920, 1.2192, 3.7326)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MallDoor_WallR"]
+mesh = SubResource("WalkC_MallDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_utility_shelf_sink")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MallDoor_WallR"]
+shape = SubResource("WalkC_MallDoor_WallRShape")
+
+[node name="WalkC_PinkHallwayDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, -0.0750, -2.1336)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_Floor"]
+mesh = SubResource("WalkC_PinkHallwayDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_Floor"]
+shape = SubResource("WalkC_PinkHallwayDoor_FloorShape")
+
+[node name="WalkC_PinkHallwayDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 2.2086, -2.1336)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_Ceiling"]
+mesh = SubResource("WalkC_PinkHallwayDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_Ceiling"]
+shape = SubResource("WalkC_PinkHallwayDoor_CeilingShape")
+
+[node name="WalkC_PinkHallwayDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.0668, -2.6658)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_WallL"]
+mesh = SubResource("WalkC_PinkHallwayDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_WallL"]
+shape = SubResource("WalkC_PinkHallwayDoor_WallLShape")
+
+[node name="WalkC_PinkHallwayDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6920, 1.0668, -1.6014)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_PinkHallwayDoor_WallR"]
+mesh = SubResource("WalkC_PinkHallwayDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_bench_area")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_PinkHallwayDoor_WallR"]
+shape = SubResource("WalkC_PinkHallwayDoor_WallRShape")
+
+[node name="WalkC_MuseumDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, -0.0750, 15.5208)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_Floor"]
+mesh = SubResource("WalkC_MuseumDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_Floor"]
+shape = SubResource("WalkC_MuseumDoor_FloorShape")
+
+[node name="WalkC_MuseumDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4864, 2.8182, 15.5208)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_Ceiling"]
+mesh = SubResource("WalkC_MuseumDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_Ceiling"]
+shape = SubResource("WalkC_MuseumDoor_CeilingShape")
+
+[node name="WalkC_MuseumDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1710, 1.3716, 15.5208)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_WallL"]
+mesh = SubResource("WalkC_MuseumDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_WallL"]
+shape = SubResource("WalkC_MuseumDoor_WallLShape")
+
+[node name="WalkC_MuseumDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8018, 1.3716, 15.5208)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_MuseumDoor_WallR"]
+mesh = SubResource("WalkC_MuseumDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled32")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_MuseumDoor_WallR"]
+shape = SubResource("WalkC_MuseumDoor_WallRShape")
+
+[node name="WalkC_LiminalJunctionDoor_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, -0.0750, 11.8632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_Floor"]
+mesh = SubResource("WalkC_LiminalJunctionDoor_FloorMesh")
+surface_material_override/0 = SubResource("Mat_floor_service_stained_tiled1")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_Floor"]
+shape = SubResource("WalkC_LiminalJunctionDoor_FloorShape")
+
+[node name="WalkC_LiminalJunctionDoor_Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6576, 2.5134, 11.8632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_Ceiling"]
+mesh = SubResource("WalkC_LiminalJunctionDoor_CeilingMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_Ceiling"]
+shape = SubResource("WalkC_LiminalJunctionDoor_CeilingShape")
+
+[node name="WalkC_LiminalJunctionDoor_WallL" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9730, 1.2192, 11.8632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_WallL"]
+mesh = SubResource("WalkC_LiminalJunctionDoor_WallLMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallL"]
+shape = SubResource("WalkC_LiminalJunctionDoor_WallLShape")
+
+[node name="WalkC_LiminalJunctionDoor_WallR" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3422, 1.2192, 11.8632)
+[node name="Mesh" type="MeshInstance3D" parent="WalkC_LiminalJunctionDoor_WallR"]
+mesh = SubResource("WalkC_LiminalJunctionDoor_WallRMesh")
+surface_material_override/0 = SubResource("Mat_wall_tile_mint_tiled42")
+[node name="Shape" type="CollisionShape3D" parent="WalkC_LiminalJunctionDoor_WallR"]
+shape = SubResource("WalkC_LiminalJunctionDoor_WallRShape")
+
