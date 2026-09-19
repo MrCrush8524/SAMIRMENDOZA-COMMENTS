@@ -64,11 +64,14 @@ no_depth_test = false
 
 [node name="PawOverlay" type="TextureRect" parent="PawOverlayLayer"]
 unique_name_in_owner = true
-anchors_preset = 12
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -420.0
+offset_left = -345.5
+offset_top = -884.0
+offset_right = 345.5
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0

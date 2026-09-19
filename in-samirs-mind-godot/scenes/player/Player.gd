@@ -20,6 +20,17 @@ const PAW_FADE_START := deg_to_rad(25.0)
 const PAW_FADE_FULL := deg_to_rad(55.0)
 const PAW_MAX_OPACITY := 0.94
 
+## A static overlay reads as a pasted picture no matter how well it's
+## framed - this is the cheap, standard first-person-view trick to sell
+## "attached to a moving body" instead: a small sine bob/sway timed to
+## footsteps, silent (no offset) while standing still so it doesn't look
+## like idle jitter.
+const PAW_BOB_HEIGHT := 14.0
+const PAW_BOB_SWAY := 6.0
+const PAW_BOB_CYCLES_PER_METER := 1.8
+var _paw_bob_phase: float = 0.0
+var _paw_overlay_rest_position: Vector2
+
 ## Scroll wheel is a discrete per-tick event, not a held axis, so each
 ## tick refreshes a short "still walking" window instead of stepping the
 ## player once per notch — scrolling steadily then reads as continuous
@@ -67,6 +78,7 @@ func _ready() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	refresh_dreamer_visuals()
+	_paw_overlay_rest_position = paw_overlay.position
 	GameState.current_player = self
 	# Belt-and-suspenders against UiRoot's Pause Menu (a persistent autoload
 	# overlay that outlives scene changes) ever starting a fresh dream
@@ -125,13 +137,23 @@ func _physics_process(delta: float) -> void:
 	velocity.z = direction.z * speed
 
 	move_and_slide()
-	_update_paw_overlay()
+	_update_paw_overlay(delta)
 
-func _update_paw_overlay() -> void:
+func _update_paw_overlay(delta: float) -> void:
 	# pitch is negative when looking down (see _unhandled_input above).
 	var downward: float = maxf(0.0, -pitch)
 	var t: float = clampf(inverse_lerp(PAW_FADE_START, PAW_FADE_FULL, downward), 0.0, 1.0)
 	paw_overlay.modulate.a = t * PAW_MAX_OPACITY
+
+	# Phase advances by distance traveled, not time, so the bob is a real
+	# footstep cadence (faster steps at sprint) rather than a constant
+	# wobble that also runs while standing still looking down.
+	var ground_speed: float = Vector2(velocity.x, velocity.z).length()
+	_paw_bob_phase += ground_speed * delta * PAW_BOB_CYCLES_PER_METER * TAU
+	var moving: float = clampf(ground_speed / WALK_SPEED, 0.0, 1.0)
+	var bob_y: float = sin(_paw_bob_phase * 2.0) * PAW_BOB_HEIGHT * moving
+	var bob_x: float = sin(_paw_bob_phase) * PAW_BOB_SWAY * moving
+	paw_overlay.position = _paw_overlay_rest_position + Vector2(bob_x, bob_y)
 
 const INTERACT_RANGE := 2.2
 const MAX_INTERACT_PIERCE := 6
