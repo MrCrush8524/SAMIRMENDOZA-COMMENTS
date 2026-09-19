@@ -6,12 +6,6 @@ const SAVE_VERSION := 1
 
 var dreamer: String = ""          # "Bobby" | "Luna" | "Mateo"
 
-## The player's own entered name — the "create a profile" step: typing a
-## name in before choosing a dreamer is what turns a save into *their*
-## save. Purely a label (shown on the Chapter Select / Continue screen);
-## it has no gameplay effect and is never validated beyond non-empty.
-var profile_name: String = ""
-
 var chapter: String = "chapter01"
 var spawn_id: String = "start"
 var journals: Array[int] = []
@@ -171,7 +165,6 @@ func to_dict() -> Dictionary:
 		"dream_tokens": dream_tokens,
 		"neighborhood_discoveries": neighborhood_discoveries,
 		"visited_chapters": visited_chapters,
-		"profile_name": profile_name,
 		"chapter3_room_checks": chapter3_room_checks,
 		"chapter3_mutation_stage": chapter3_mutation_stage,
 		"chapter3_back_exit_unlocked": chapter3_back_exit_unlocked,
@@ -205,7 +198,6 @@ func from_dict(data: Dictionary) -> bool:
 	visited_chapters.assign(data.get("visited_chapters", [chapter]))
 	if not visited_chapters.has(chapter):
 		visited_chapters.append(chapter)
-	profile_name = String(data.get("profile_name", ""))
 	chapter3_room_checks.assign(data.get("chapter3_room_checks", []))
 	chapter3_mutation_stage = int(data.get("chapter3_mutation_stage", 0))
 	chapter3_back_exit_unlocked = bool(data.get("chapter3_back_exit_unlocked", false))
