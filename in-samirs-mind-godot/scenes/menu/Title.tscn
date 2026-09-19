@@ -52,7 +52,6 @@ text = ""
 [node name="BtnContinue" type="Button" parent="."]
 unique_name_in_owner = true
 flat = true
-disabled = true
 text = ""
 
 [node name="BtnSettings" type="Button" parent="."]
