@@ -68,6 +68,10 @@ func _ready() -> void:
 
 	refresh_dreamer_visuals()
 	GameState.current_player = self
+	# Belt-and-suspenders against UiRoot's Pause Menu (a persistent autoload
+	# overlay that outlives scene changes) ever starting a fresh dream
+	# already open from some earlier stray state.
+	UiRoot.pause_menu.visible = false
 
 func _exit_tree() -> void:
 	if GameState.current_player == self:

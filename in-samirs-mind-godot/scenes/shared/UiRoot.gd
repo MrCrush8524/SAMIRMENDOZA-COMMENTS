@@ -34,12 +34,22 @@ func _ready() -> void:
 ## deliberately inescapable by player input, so both are excluded here.
 ## Also stays out of the way of any other popup already using the mouse
 ## (journal, dream track card) rather than stacking on top of them.
+##
+## Gated on GameState.current_player being set (i.e. a real Player node
+## is actually in the tree) - UiRoot is a persistent autoload that
+## outlives every scene change, so without this guard a stray Escape
+## press on Title/Character Select/menus would open the pause menu with
+## nothing there to close it, and that visible=true state would then
+## carry straight into the next fresh GameRoot session, looking like a
+## broken screen the moment a new dream starts.
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel"):
 		return
 	if pause_menu.visible:
 		pause_menu.close()
 		get_viewport().set_input_as_handled()
+		return
+	if not GameState.current_player:
 		return
 	if GameState.in_nightmare or GameState.in_backrooms:
 		return
