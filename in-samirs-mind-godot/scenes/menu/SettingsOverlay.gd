@@ -25,13 +25,15 @@ func _ready() -> void:
 	visible = false
 	back_button.pressed.connect(close)
 
-	# -80 dB reads as true silence to both the ear and AudioServer (its
-	# own volume_to_db floor) — -40 was audible-but-quiet, which meant
-	# there was no way to actually mute the game from this slider.
-	volume_slider.min_value = -80.0
-	volume_slider.max_value = 6.0
-	volume_slider.value = SettingsManager.master_volume_db
-	volume_slider.value_changed.connect(SettingsManager.set_master_volume_db)
+	# Linear 0..1 slider (perceptual loudness), not raw dB - see
+	# SettingsManager.set_master_volume_linear for why: dB is
+	# logarithmic, so a slider mapped straight to dB spends most of its
+	# travel in already-silent territory and reads as an on/off switch.
+	volume_slider.min_value = 0.0
+	volume_slider.max_value = 1.0
+	volume_slider.step = 0.01
+	volume_slider.value = SettingsManager.get_master_volume_linear()
+	volume_slider.value_changed.connect(SettingsManager.set_master_volume_linear)
 
 	lang_option.item_count = 3
 	lang_option.set_item_text(0, "English")

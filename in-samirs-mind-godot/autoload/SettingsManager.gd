@@ -21,10 +21,20 @@ func apply_volume() -> void:
 	# certain of that regardless of how quiet "quiet" ends up sounding.
 	AudioServer.set_bus_mute(idx, master_volume_db <= -79.0)
 
-func set_master_volume_db(db: float) -> void:
-	master_volume_db = db
+## The slider itself works in linear volume (0..1, what a human ear
+## actually perceives as "half as loud" at ~0.5), not raw dB - dB is a
+## logarithmic scale, so mapping slider POSITION directly to dB (the old
+## approach) meant most of the slider's travel landed in already-silent
+## territory and any real drag down read as an on/off switch instead of
+## a fade. linear_to_db/db_to_linear do the perceptual conversion.
+func set_master_volume_linear(v: float) -> void:
+	v = clampf(v, 0.0, 1.0)
+	master_volume_db = -80.0 if v <= 0.001 else linear_to_db(v)
 	apply_volume()
 	save_settings()
+
+func get_master_volume_linear() -> float:
+	return 0.0 if master_volume_db <= -79.0 else clampf(db_to_linear(master_volume_db), 0.0, 1.0)
 
 func set_reduced_motion(value: bool) -> void:
 	reduced_motion = value
