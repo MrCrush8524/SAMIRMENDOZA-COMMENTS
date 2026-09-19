@@ -26,6 +26,7 @@ extends Control
 @onready var mateo_button: BaseButton = %PauseCardMateo
 @onready var resume_button: Button = %PauseResumeButton
 @onready var save_button: Button = %PauseSaveButton
+@onready var chapters_button: Button = %PauseChaptersButton
 @onready var main_menu_button: Button = %PauseMainMenuButton
 @onready var exit_button: Button = %PauseExitButton
 @onready var current_label: Label = %PauseCurrentLabel
@@ -59,6 +60,12 @@ func _ready() -> void:
 	mateo_button.pressed.connect(_on_card_pressed.bind("Mateo"))
 	resume_button.pressed.connect(close)
 	save_button.pressed.connect(func(): _open_save_dialog(""))
+	# Shares the exact overlay Title's own Chapters button opens - see
+	# UiRoot.gd, which owns the instance for that reason. Left visible
+	# underneath while it's open (its own opaque background fully covers
+	# the screen either way), so cancelling it lands back on this pause
+	# menu instead of dropping straight back into gameplay.
+	chapters_button.pressed.connect(func(): UiRoot.chapter_select_overlay.open())
 	main_menu_button.pressed.connect(func(): _confirm_leave("menu"))
 	exit_button.pressed.connect(func(): _confirm_leave("quit"))
 

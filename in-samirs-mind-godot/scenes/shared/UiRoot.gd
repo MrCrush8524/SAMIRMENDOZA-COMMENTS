@@ -16,6 +16,11 @@ extends CanvasLayer
 @onready var nightmare_big_label: Label = $NightmareUI/BigLabel
 @onready var nightmare_cashout_row: HBoxContainer = $NightmareUI/CashoutRow
 @onready var pause_menu: Control = $PauseMenu
+## Shared with Title (its own Chapters button opens the same instance) -
+## lives here, not under Title, so the in-game pause menu can reach it
+## too; Title's scene unloads on every transition but this autoload
+## never does.
+@onready var chapter_select_overlay: Control = $ChapterSelectOverlay
 
 var _pending_pickup: Node = null
 
@@ -44,6 +49,14 @@ func _ready() -> void:
 ## broken screen the moment a new dream starts.
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel"):
+		return
+	if chapter_select_overlay.visible:
+		# Its own _unhandled_input already closes it on ui_cancel (needed
+		# for when it's opened from Title, which this guard doesn't run
+		# for at all - no GameState.current_player there). When it's open
+		# on top of the pause menu instead, just stand aside rather than
+		# also closing pause_menu underneath in the same keypress - one
+		# Escape should back out of the chapter list, not both screens.
 		return
 	if pause_menu.visible:
 		pause_menu.close()

@@ -107,4 +107,11 @@ func _on_select() -> void:
 		GameState.spawn_id = "start"
 		GameState.has_last_position = false
 	AudioManager.stop_menu()
+	# This overlay now lives in the persistent UiRoot autoload (so the
+	# in-game pause menu can open it too), not inside Title's own scene
+	# tree - Title unloading used to erase this visible=true state for
+	# free on a scene change, but UiRoot never unloads, so it must be
+	# cleared explicitly or it'd still be covering the screen once the
+	# new chapter finishes loading.
+	visible = false
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/player/GameRoot.tscn")

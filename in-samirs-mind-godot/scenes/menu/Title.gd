@@ -32,7 +32,6 @@ const REGIONS := {
 @onready var settings_overlay: Control = %SettingsOverlay
 @onready var extras_overlay: Control = %ExtrasOverlay
 @onready var soundtrack_overlay: Control = %SoundtrackOverlay
-@onready var chapter_select_overlay: Control = %ChapterSelectOverlay
 @onready var load_game_overlay: Control = %LoadGameOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
@@ -89,8 +88,12 @@ func _on_chapters() -> void:
 	# (if any) so its "Resume" entry reflects it; a missing/invalid save
 	# just leaves GameState at fresh-profile defaults, fine since every
 	# other entry starts a chapter from scratch anyway.
+	#
+	# Lives in the persistent UiRoot autoload (not a local child here)
+	# so the in-game pause menu can open the exact same overlay to jump
+	# chapters mid-run.
 	SaveManager.load_game()
-	chapter_select_overlay.open()
+	UiRoot.chapter_select_overlay.open()
 
 func _on_lang_selected(index: int) -> void:
 	var codes := ["en", "es", "pt-BR"]
