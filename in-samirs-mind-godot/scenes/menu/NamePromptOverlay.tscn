@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://name_prompt_overlay_scene"]
 
 [ext_resource type="Script" path="res://scenes/menu/NamePromptOverlay.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/menu_art/ui_profile_bg.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/character_select_dream_bg.png" id="2"]
 
 [node name="NamePromptOverlay" type="Control"]
 layout_mode = 1
