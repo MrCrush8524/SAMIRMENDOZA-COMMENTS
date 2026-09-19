@@ -17,14 +17,6 @@ var spawn_id: String = "start"
 var journals: Array[int] = []
 var memory_cats: Array[String] = []
 
-## Which of Chapter I's spawn-point pool markers this dream picked for
-## its 3 Memory Cats / 3 Journal Fragments — chosen once on new_run() and
-## kept for the rest of the dream so a reload doesn't relocate an
-## unfound item the player already knows the spot of. Empty means "not
-## rolled yet"; Chapter01.gd rolls and fills these on first _ready().
-var chapter01_cat_spawns: Array[String] = []
-var chapter01_journal_spawns: Array[String] = []
-
 ## Chapter III — House That Knows You. Which of the 3 Room Checks
 ## ("window_height", "exterior_distance", "impossible_room") have fired
 ## this dream, and the escalating mutation stage that count drives
@@ -156,8 +148,6 @@ func new_run(chosen_dreamer: String) -> void:
 	neighborhood_discoveries.clear()
 	visited_chapters.clear()
 	visited_chapters.append("chapter01")
-	chapter01_cat_spawns.clear()
-	chapter01_journal_spawns.clear()
 	chapter3_room_checks.clear()
 	chapter3_mutation_stage = 0
 	chapter3_back_exit_unlocked = false
@@ -182,8 +172,6 @@ func to_dict() -> Dictionary:
 		"neighborhood_discoveries": neighborhood_discoveries,
 		"visited_chapters": visited_chapters,
 		"profile_name": profile_name,
-		"chapter01_cat_spawns": chapter01_cat_spawns,
-		"chapter01_journal_spawns": chapter01_journal_spawns,
 		"chapter3_room_checks": chapter3_room_checks,
 		"chapter3_mutation_stage": chapter3_mutation_stage,
 		"chapter3_back_exit_unlocked": chapter3_back_exit_unlocked,
@@ -218,8 +206,6 @@ func from_dict(data: Dictionary) -> bool:
 	if not visited_chapters.has(chapter):
 		visited_chapters.append(chapter)
 	profile_name = String(data.get("profile_name", ""))
-	chapter01_cat_spawns.assign(data.get("chapter01_cat_spawns", []))
-	chapter01_journal_spawns.assign(data.get("chapter01_journal_spawns", []))
 	chapter3_room_checks.assign(data.get("chapter3_room_checks", []))
 	chapter3_mutation_stage = int(data.get("chapter3_mutation_stage", 0))
 	chapter3_back_exit_unlocked = bool(data.get("chapter3_back_exit_unlocked", false))
