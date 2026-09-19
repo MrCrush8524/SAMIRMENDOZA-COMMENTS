@@ -1,0 +1,6 @@
+.settings__text {
+  color: var(--smr-cream-dim);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 4px 0 16px;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- A simple open-book glyph in lavender/teal, standing in for the cover art on Now Playing. -->
+    <path
+        android:fillColor="#AAA0D8"
+        android:pathData="M30,34 C40,30 48,32 54,38 L54,78 C48,72 40,70 30,74 Z" />
+    <path
+        android:fillColor="#76A9A4"
+        android:pathData="M78,34 C68,30 60,32 54,38 L54,78 C60,72 68,70 78,74 Z" />
+</vector>
