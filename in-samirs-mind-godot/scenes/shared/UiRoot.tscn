@@ -213,7 +213,7 @@ layout_mode = 2
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 32
 theme_override_colors/font_color = Color(0.94, 0.89, 0.85, 1)
-text = "Change Character"
+text = "Paused"
 
 [node name="PauseCurrentLabel" type="Label" parent="PauseMenu/VBox"]
 unique_name_in_owner = true
@@ -251,10 +251,47 @@ texture_normal = ExtResource("7")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="PauseResumeButton" type="Button" parent="PauseMenu/VBox"]
+[node name="SettingsLabel" type="Label" parent="PauseMenu/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.8, 0.76, 0.82, 1)
+text = "Settings"
+
+[node name="SettingsRow" type="HBoxContainer" parent="PauseMenu/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 30
+
+[node name="VolumeLabel" type="Label" parent="PauseMenu/VBox/SettingsRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.89, 0.85, 1)
+text = "Volume"
+
+[node name="PauseVolumeSlider" type="HSlider" parent="PauseMenu/VBox/SettingsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PauseReducedMotionCheck" type="CheckButton" parent="PauseMenu/VBox/SettingsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reduced Motion"
+
+[node name="ButtonRow" type="HBoxContainer" parent="PauseMenu/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 24
+
+[node name="PauseResumeButton" type="Button" parent="PauseMenu/VBox/ButtonRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
+
+[node name="PauseQuitButton" type="Button" parent="PauseMenu/VBox/ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save & Quit to Menu"
 
 [node name="SaveToast" type="Label" parent="."]
 visible = false
