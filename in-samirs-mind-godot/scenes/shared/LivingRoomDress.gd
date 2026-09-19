@@ -26,12 +26,22 @@ const MISC_TINT := Color(0.75, 0.78, 0.85)
 ## anything past this is the broken lamp geometry, not real furniture.
 const MESH_SIZE_LIMIT := 20.0
 
+## The +Z wall (named exactly "Wall", facing the direction a player
+## walking the street from the entrance actually approaches from) is
+## the one wall DowntownCity.tscn gives no collision to, so this is a
+## real doorless opening rather than a solid-looking wall you can
+## nonsensically walk through - the mesh has to go, not just the shape.
+const OPEN_WALL_NODE_NAME := "Wall"
+
 func _ready() -> void:
 	_dress(self)
 
 func _dress(node: Node) -> void:
 	for child in node.get_children():
 		if child is Camera3D or child is Light3D:
+			child.queue_free()
+			continue
+		if child is MeshInstance3D and child.name == OPEN_WALL_NODE_NAME:
 			child.queue_free()
 			continue
 		if child is MeshInstance3D and child.mesh:
