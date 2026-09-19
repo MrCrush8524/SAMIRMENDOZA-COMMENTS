@@ -5,22 +5,25 @@ extends Control
 ## Menu_Chapter_Art/button_regions.json (verified against the delivered
 ## 1920x1080 image before use).
 
-## Pool/motel title art (2026 refresh) - measured directly against this
-## exact 1672x941 source image; re-measure both if the art changes again.
-const IMAGE_SIZE := Vector2(1672, 941)
+## Pool/motel title art (2026 refresh #2) - a horizontal pill-button row
+## replaced the old right-side stack, and added a dedicated Chapters
+## button (Continue no longer doubles as the chapter picker - see
+## _on_continue/_on_chapters). Measured directly against this exact
+## 1671x941 source image; re-measure both if the art changes again.
+const IMAGE_SIZE := Vector2(1671, 941)
 const REGIONS := {
-	"BtnNewDream": [1211, 192, 391, 73],
-	"BtnContinue": [1211, 277, 391, 73],
-	"BtnSettings": [1212, 360, 389, 75],
-	"BtnExtras": [1212, 446, 389, 76],
-	"BtnSoundtrack": [1212, 534, 389, 74],
-	"BtnLore": [1211, 620, 391, 75],
-	"LangOption": [35, 795, 68, 68],
+	"BtnNewDream": [70, 838, 210, 62],
+	"BtnContinue": [320, 838, 205, 62],
+	"BtnChapters": [563, 838, 205, 62],
+	"BtnSettings": [809, 838, 199, 62],
+	"BtnSoundtrack": [1047, 838, 230, 62],
+	"BtnExtras": [1313, 838, 187, 62],
+	"LangOption": [1548, 839, 64, 61],
 }
 
 @onready var btn_new_dream: Button = %BtnNewDream
 @onready var btn_continue: Button = %BtnContinue
-@onready var btn_lore: Button = %BtnLore
+@onready var btn_chapters: Button = %BtnChapters
 @onready var lang_option: OptionButton = %LangOption
 @onready var title_label: Label = %TitleLabel
 @onready var tagline_label: Label = %TaglineLabel
@@ -34,12 +37,13 @@ const REGIONS := {
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
 func _ready() -> void:
-	# Chapter Select (behind Continue) always opens, save or no save - it's
-	# the "try any chapter" menu now, not just a resume point, so a fresh
-	# install shouldn't be locked out of it.
+	# Continue is a real "resume exactly where I was" now that Chapters is
+	# its own button - so it needs an actual save to do anything, unlike
+	# Chapters (always open; a fresh install still gets to try any chapter).
+	btn_continue.disabled = not SaveManager.has_valid_save()
 	btn_new_dream.pressed.connect(_on_new_dream)
 	btn_continue.pressed.connect(_on_continue)
-	btn_lore.pressed.connect(_on_lore)
+	btn_chapters.pressed.connect(_on_chapters)
 	%BtnSettings.pressed.connect(settings_overlay.open)
 	%BtnExtras.pressed.connect(extras_overlay.open)
 	%BtnSoundtrack.pressed.connect(soundtrack_overlay.open)
@@ -62,11 +66,6 @@ func _layout_hotspots() -> void:
 			continue
 		control.size = rect.size
 
-func _on_lore() -> void:
-	# LoreOverlay never touches AudioManager — opening/closing it is not a
-	# scene change, so the menu music already playing is untouched.
-	lore_overlay.open()
-
 func _on_new_dream() -> void:
 	# "Create a profile" is just naming the save before picking a dreamer
 	# — the actual transition to Character Select happens once they
@@ -79,12 +78,21 @@ func _on_name_confirmed() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/CharacterSelect.tscn")
 
 func _on_continue() -> void:
-	# Load whatever save exists so "Resume" reflects it; a missing/invalid
-	# save just leaves GameState at its fresh-profile defaults, which is
-	# fine since every other entry in Chapter Select starts a chapter from
-	# scratch anyway. Chapter Select decides where GameRoot actually
-	# spawns - the scene change to GameRoot.tscn happens from inside that
-	# overlay, not here.
+	# Disabled (see _ready) whenever there's no valid save, so reaching
+	# here means a real save exists - go straight back into it, exactly
+	# where GameState.last_position/chapter left off, no picker in between.
+	if not SaveManager.load_game():
+		btn_continue.disabled = true
+		return
+	AudioManager.stop_menu()
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/player/GameRoot.tscn")
+
+func _on_chapters() -> void:
+	# The "try any chapter" menu - always available, save or no save, so
+	# a fresh install isn't locked out of it. Loads whatever save exists
+	# (if any) so its "Resume" entry reflects it; a missing/invalid save
+	# just leaves GameState at fresh-profile defaults, fine since every
+	# other entry starts a chapter from scratch anyway.
 	SaveManager.load_game()
 	chapter_select_overlay.open()
 

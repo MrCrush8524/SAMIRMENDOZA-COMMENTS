@@ -69,7 +69,7 @@ unique_name_in_owner = true
 flat = true
 text = ""
 
-[node name="BtnLore" type="Button" parent="."]
+[node name="BtnChapters" type="Button" parent="."]
 unique_name_in_owner = true
 flat = true
 text = ""
