@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://downtown_city"]
+[gd_scene load_steps=26 format=3 uid="uid://downtown_city"]
 
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="2"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_Drain.gltf" id="10"]
 [ext_resource type="PackedScene" path="res://assets/models/downtown/Decal_Crosswalk_Wide.gltf" id="11"]
 [ext_resource type="Texture2D" path="res://assets/textures/shared/skyboxes/skybox-downtown-dusk.png" id="12"]
+[ext_resource type="PackedScene" path="res://assets/models/interiors/living_room/InteriorTest.fbx" id="13"]
+[ext_resource type="Script" path="res://scenes/shared/LivingRoomDress.gd" id="14"]
 
 [sub_resource type="PanoramaSkyMaterial" id="DowntownSkyMat"]
 panorama = ExtResource("12")
@@ -197,6 +199,20 @@ transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 
 
 [node name="Decal_Crosswalk" parent="." instance=ExtResource("11")]
 transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.010, 2.000)
+
+
+[node name="Anomaly_LivingRoom" parent="." instance=ExtResource("13")]
+transform = Transform3D(0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, 0.978148, 0.000, -0.0500, -21.000)
+script = ExtResource("14")
+
+[node name="Anomaly_LivingRoom_Sign" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 1.6, -21)
+text = "Someone's furniture.
+Nobody's house."
+font_size = 40
+outline_size = 8
+modulate = Color(1, 1, 1, 1)
+billboard = 1
 
 
 [node name="StreetLight_0" type="OmniLight3D" parent="."]
