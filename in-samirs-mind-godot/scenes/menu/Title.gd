@@ -33,6 +33,7 @@ const REGIONS := {
 @onready var extras_overlay: Control = %ExtrasOverlay
 @onready var soundtrack_overlay: Control = %SoundtrackOverlay
 @onready var chapter_select_overlay: Control = %ChapterSelectOverlay
+@onready var load_game_overlay: Control = %LoadGameOverlay
 
 const MENU_MUSIC := preload("res://assets/audio/menu/menu_loop.ogg")
 
@@ -40,7 +41,7 @@ func _ready() -> void:
 	# Continue is a real "resume exactly where I was" now that Chapters is
 	# its own button - so it needs an actual save to do anything, unlike
 	# Chapters (always open; a fresh install still gets to try any chapter).
-	btn_continue.disabled = not SaveManager.has_valid_save()
+	btn_continue.disabled = not SaveManager.has_any_save()
 	btn_new_dream.pressed.connect(_on_new_dream)
 	btn_continue.pressed.connect(_on_continue)
 	btn_chapters.pressed.connect(_on_chapters)
@@ -77,14 +78,10 @@ func _on_new_dream() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/CharacterSelect.tscn")
 
 func _on_continue() -> void:
-	# Disabled (see _ready) whenever there's no valid save, so reaching
-	# here means a real save exists - go straight back into it, exactly
-	# where GameState.last_position/chapter left off, no picker in between.
-	if not SaveManager.load_game():
-		btn_continue.disabled = true
-		return
-	AudioManager.stop_menu()
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/player/GameRoot.tscn")
+	# Disabled (see _ready) whenever there's no save at all. More than one
+	# named dream can exist, so this opens a picker rather than silently
+	# resuming whichever one happens to be newest.
+	load_game_overlay.open()
 
 func _on_chapters() -> void:
 	# The "try any chapter" menu - always available, save or no save, so
