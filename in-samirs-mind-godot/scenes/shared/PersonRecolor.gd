@@ -6,6 +6,8 @@ extends Node3D
 ## `tint`, same effect as the project's pastel-recolor pass elsewhere,
 ## just done at material level instead of baking new texture files.
 
+const NORMAL_MAP := preload("res://assets/models/people/nathan/tex/rp_nathan_animated_003_norm.jpg")
+
 @export var tint: Color = Color.WHITE
 @export var mesh_node_path: NodePath
 
@@ -20,4 +22,9 @@ func _ready() -> void:
 		mat.albedo_texture = base.albedo_texture
 		mat.roughness = base.roughness
 	mat.albedo_color = Color(tint.r, tint.g, tint.b, 1.0)
+	# The FBX import only auto-wires albedo; the real high-poly detail
+	# (wrinkles, seams, fabric weave) is in the normal map, unused unless
+	# hooked up by hand.
+	mat.normal_enabled = true
+	mat.normal_texture = NORMAL_MAP
 	mesh_node.set_surface_override_material(0, mat)
