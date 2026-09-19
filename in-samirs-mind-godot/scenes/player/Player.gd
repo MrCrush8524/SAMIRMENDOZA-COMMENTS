@@ -13,23 +13,13 @@ const GRAVITY := 9.8
 ## narrower than that is a deliberate blocker, not a bug.
 const COLLIDER_RADIUS := 0.22
 
-## Downward camera pitch (radians) where the paw overlay starts/finishes
-## fading in, per CLAUDE_PAW_ASSET_IMPLEMENTATION_GUIDE.md's suggested
-## 25-35° start / 45-65° full range.
-const PAW_FADE_START := deg_to_rad(25.0)
-const PAW_FADE_FULL := deg_to_rad(55.0)
-const PAW_MAX_OPACITY := 0.94
-
-## A static overlay reads as a pasted picture no matter how well it's
-## framed - this is the cheap, standard first-person-view trick to sell
-## "attached to a moving body" instead: a small sine bob/sway timed to
-## footsteps, silent (no offset) while standing still so it doesn't look
-## like idle jitter.
-const PAW_BOB_HEIGHT := 14.0
-const PAW_BOB_SWAY := 6.0
-const PAW_BOB_CYCLES_PER_METER := 1.8
-var _paw_bob_phase: float = 0.0
-var _paw_overlay_rest_position: Vector2
+## Speed (in ArmatureAction loops per meter walked) the DreamerBody's own
+## run cycle plays at - tied to distance like the old paw bob was, so
+## it's a real stride cadence (faster at sprint, frozen mid-stride when
+## stopped) rather than a constant-speed loop that's out of sync with
+## actual movement.
+const BODY_ANIM_CYCLES_PER_METER := 0.7
+const BODY_ANIM_NAME := "Armature|ArmatureAction"
 
 ## Scroll wheel is a discrete per-tick event, not a held axis, so each
 ## tick refreshes a short "still walking" window instead of stepping the
@@ -48,9 +38,13 @@ const KNEEL_HEAD_Y := 0.35
 const KNEEL_SPEED_MPS := 2.0
 var _stand_head_y: float
 
-@export var paw_texture_bobby: Texture2D
-@export var paw_texture_luna: Texture2D
-@export var paw_texture_mateo: Texture2D
+## DreamerBody's fur (see DreamerCatSkin.gd) - Bobby is a two-tone coat
+## (body + darker points), Luna/Mateo pass the same texture as both
+## since their coats are uniform.
+@export var fur_bobby_body: Texture2D
+@export var fur_bobby_points: Texture2D
+@export var fur_luna: Texture2D
+@export var fur_mateo: Texture2D
 
 ## Dedicated "looking back" body art (from the locked character body
 ## asset pack, distinct from the Character Select door cards) used only
@@ -64,7 +58,8 @@ var _stand_head_y: float
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
-@onready var paw_overlay: TextureRect = %PawOverlay
+@onready var dreamer_body: Node3D = %DreamerBody
+@onready var dreamer_anim: AnimationPlayer = %DreamerBody.find_child("AnimationPlayer", true, false)
 ## On MirrorSurface.MIRROR_ONLY_LAYER — invisible to the main first-person
 ## camera (its cull_mask excludes that layer) but visible to any mirror's
 ## viewport camera, which is how "the character reflects" without ever
@@ -89,8 +84,15 @@ func _ready() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	refresh_dreamer_visuals()
-	_paw_overlay_rest_position = paw_overlay.position
 	_stand_head_y = head.position.y
+	# The rig's action is literally named "Armature|ArmatureAction" (a
+	# Blender export convention baked in as a flat string, not Godot's
+	# own library/name addressing) - confirmed via get_animation_list().
+	if dreamer_anim and dreamer_anim.has_animation(BODY_ANIM_NAME):
+		var anim: Animation = dreamer_anim.get_animation(BODY_ANIM_NAME)
+		anim.loop_mode = Animation.LOOP_LINEAR
+		dreamer_anim.play(BODY_ANIM_NAME)
+		dreamer_anim.pause()
 	GameState.current_player = self
 	# Belt-and-suspenders against UiRoot's Pause Menu (a persistent autoload
 	# overlay that outlives scene changes) ever starting a fresh dream
@@ -149,28 +151,25 @@ func _physics_process(delta: float) -> void:
 	velocity.z = direction.z * speed
 
 	move_and_slide()
-	_update_paw_overlay(delta)
+	_update_body_animation(delta)
 	_update_kneel(delta)
 
 func _update_kneel(delta: float) -> void:
 	var target_y := KNEEL_HEAD_Y if Input.is_action_pressed("kneel") else _stand_head_y
 	head.position.y = move_toward(head.position.y, target_y, KNEEL_SPEED_MPS * delta)
 
-func _update_paw_overlay(delta: float) -> void:
-	# pitch is negative when looking down (see _unhandled_input above).
-	var downward: float = maxf(0.0, -pitch)
-	var t: float = clampf(inverse_lerp(PAW_FADE_START, PAW_FADE_FULL, downward), 0.0, 1.0)
-	paw_overlay.modulate.a = t * PAW_MAX_OPACITY
-
-	# Phase advances by distance traveled, not time, so the bob is a real
-	# footstep cadence (faster steps at sprint) rather than a constant
-	# wobble that also runs while standing still looking down.
+func _update_body_animation(delta: float) -> void:
+	if not dreamer_anim or not dreamer_anim.has_animation(BODY_ANIM_NAME):
+		return
+	# Scrub the run cycle by distance traveled (same footstep-cadence
+	# idea as the old paw bob) instead of playing it at a flat speed, so
+	# it's a real stride tied to movement and freezes mid-pose when the
+	# player stops rather than looping in place.
 	var ground_speed: float = Vector2(velocity.x, velocity.z).length()
-	_paw_bob_phase += ground_speed * delta * PAW_BOB_CYCLES_PER_METER * TAU
-	var moving: float = clampf(ground_speed / WALK_SPEED, 0.0, 1.0)
-	var bob_y: float = sin(_paw_bob_phase * 2.0) * PAW_BOB_HEIGHT * moving
-	var bob_x: float = sin(_paw_bob_phase) * PAW_BOB_SWAY * moving
-	paw_overlay.position = _paw_overlay_rest_position + Vector2(bob_x, bob_y)
+	var anim_length: float = dreamer_anim.get_animation(BODY_ANIM_NAME).length
+	var advance: float = ground_speed * delta * BODY_ANIM_CYCLES_PER_METER * anim_length
+	var new_pos: float = fmod(dreamer_anim.current_animation_position + advance, anim_length)
+	dreamer_anim.seek(new_pos, true)
 
 const INTERACT_RANGE := 2.2
 const MAX_INTERACT_PIERCE := 6
@@ -215,15 +214,16 @@ func set_spawn(position_3d: Vector3, yaw: float) -> void:
 	global_position = position_3d
 	rotation.y = yaw
 
-## Re-applies whichever dreamer's paw art matches GameState.dreamer — run
+## Re-applies whichever dreamer's fur matches GameState.dreamer — run
 ## once at spawn, and again any time the player changes character mid-run
 ## via the pause menu (see PauseMenu.gd), so the swap is instant and
 ## doesn't require a chapter reload.
 func refresh_dreamer_visuals() -> void:
-	match GameState.dreamer:
-		"Bobby": paw_overlay.texture = paw_texture_bobby
-		"Luna": paw_overlay.texture = paw_texture_luna
-		"Mateo": paw_overlay.texture = paw_texture_mateo
+	if dreamer_body:
+		match GameState.dreamer:
+			"Bobby": dreamer_body.set_textures(fur_bobby_body, fur_bobby_points)
+			"Luna": dreamer_body.set_textures(fur_luna, fur_luna)
+			"Mateo": dreamer_body.set_textures(fur_mateo, fur_mateo)
 	if mirror_body:
 		mirror_body.texture = _mirror_texture_for(GameState.dreamer)
 
