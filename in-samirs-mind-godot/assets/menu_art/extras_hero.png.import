@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1j40sab3e21m"
-path="res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.ctex"
+path.s3tc="res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.s3tc.ctex"
+path.etc2="res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/menu_art/extras_hero.png"
-dest_files=["res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.ctex"]
+dest_files=["res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.s3tc.ctex", "res://.godot/imported/extras_hero.png-3bc842734a64a362dfaada8932f71560.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

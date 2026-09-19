@@ -74,6 +74,19 @@ unique_name_in_owner = true
 flat = true
 text = ""
 
+[node name="BtnLore" type="Button" parent="."]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -134.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Lore"
+
 [node name="LangOption" type="OptionButton" parent="."]
 unique_name_in_owner = true
 flat = true

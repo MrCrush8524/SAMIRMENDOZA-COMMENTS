@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hau58o3hk1nn"
-path="res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.ctex"
+path.s3tc="res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.s3tc.ctex"
+path.etc2="res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/Mateo/mateo_front_threequarter_portrait.png"
-dest_files=["res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.ctex"]
+dest_files=["res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.s3tc.ctex", "res://.godot/imported/mateo_front_threequarter_portrait.png-75d5f370776cd700e6f5dfb9fc0a2375.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

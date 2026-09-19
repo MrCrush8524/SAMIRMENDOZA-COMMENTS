@@ -24,6 +24,7 @@ const REGIONS := {
 @onready var btn_new_dream: Button = %BtnNewDream
 @onready var btn_continue: Button = %BtnContinue
 @onready var btn_chapters: Button = %BtnChapters
+@onready var btn_lore: Button = %BtnLore
 @onready var lang_option: OptionButton = %LangOption
 @onready var title_label: Label = %TitleLabel
 @onready var tagline_label: Label = %TaglineLabel
@@ -47,11 +48,18 @@ func _ready() -> void:
 	%BtnSettings.pressed.connect(settings_overlay.open)
 	%BtnExtras.pressed.connect(extras_overlay.open)
 	%BtnSoundtrack.pressed.connect(soundtrack_overlay.open)
+	btn_lore.pressed.connect(lore_overlay.open)
 	lang_option.item_selected.connect(_on_lang_selected)
 	resized.connect(_layout_hotspots)
 	_layout_hotspots()
 	_apply_language()
-	AudioManager.play_menu(MENU_MUSIC)
+	# Title.tscn is a real scene (not an overlay) - stepping into Character
+	# Select and hitting Back reloads it from scratch, which would restart
+	# this track from position 0 with a fresh fade-in every time if we
+	# always called play_menu here, even though the same loop was already
+	# playing seconds ago.
+	if AudioManager.menu_player.stream != MENU_MUSIC or not AudioManager.menu_player.playing:
+		AudioManager.play_menu(MENU_MUSIC)
 
 func _layout_hotspots() -> void:
 	for node_name in REGIONS:
