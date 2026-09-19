@@ -37,6 +37,17 @@ var _paw_overlay_rest_position: Vector2
 ## forward/backward walking, same speed rules (Shift = sprint) as WASD.
 const SCROLL_WALK_HOLD_TIME := 0.25
 
+## Hold "kneel" (C) to smoothly drop the camera toward roughly a real
+## cat's eye height, so the angle can actually be looked at in-game
+## before committing to changing it permanently everywhere - the
+## camera/collision are currently tuned for a ~1.6m eye height (see
+## COLLIDER_RADIUS's doc comment), not this. Purely a look/feel probe:
+## does not touch collision, so kneeling doesn't let the player fit
+## through anything they couldn't already.
+const KNEEL_HEAD_Y := 0.35
+const KNEEL_SPEED_MPS := 2.0
+var _stand_head_y: float
+
 @export var paw_texture_bobby: Texture2D
 @export var paw_texture_luna: Texture2D
 @export var paw_texture_mateo: Texture2D
@@ -79,6 +90,7 @@ func _ready() -> void:
 
 	refresh_dreamer_visuals()
 	_paw_overlay_rest_position = paw_overlay.position
+	_stand_head_y = head.position.y
 	GameState.current_player = self
 	# Belt-and-suspenders against UiRoot's Pause Menu (a persistent autoload
 	# overlay that outlives scene changes) ever starting a fresh dream
@@ -138,6 +150,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_update_paw_overlay(delta)
+	_update_kneel(delta)
+
+func _update_kneel(delta: float) -> void:
+	var target_y := KNEEL_HEAD_Y if Input.is_action_pressed("kneel") else _stand_head_y
+	head.position.y = move_toward(head.position.y, target_y, KNEEL_SPEED_MPS * delta)
 
 func _update_paw_overlay(delta: float) -> void:
 	# pitch is negative when looking down (see _unhandled_input above).
