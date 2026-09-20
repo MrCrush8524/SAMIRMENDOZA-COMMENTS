@@ -1,0 +1,9 @@
+{
+  "appId": "com.example.thebackrooms",
+  "appName": "The Backrooms",
+  "webDir": "www",
+  "backgroundColor": "#2b1f2a",
+  "android": {
+    "backgroundColor": "#2b1f2a"
+  }
+}

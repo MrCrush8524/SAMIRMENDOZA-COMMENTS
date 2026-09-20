@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://sw4um2lpsk2k"
+path="res://.godot/imported/Pipes.obj-0b841b0bc2361bcd2c85d7802f11eec3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Pipes.obj-0b841b0bc2361bcd2c85d7802f11eec3.mesh"]
+
+source_file="res://assets/models/scifi_kit/Pipes.obj"
+dest_files=["res://.godot/imported/Pipes.obj-0b841b0bc2361bcd2c85d7802f11eec3.mesh", "res://.godot/imported/Pipes.obj-0b841b0bc2361bcd2c85d7802f11eec3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

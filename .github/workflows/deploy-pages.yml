@@ -1,0 +1,83 @@
+name: Deploy website
+
+on:
+  push:
+    branches: [claude/backrooms-map-threejs-rbc3q3]
+    paths:
+      - "in-samirs-mind/**"
+      - "in-samirs-mind-godot/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch: {}
+
+env:
+  GODOT_VERSION: "4.3-stable"
+  GODOT_VERSION_FOLDER: "4.3.stable"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build In Samir's Mind (Three.js prototype)
+        working-directory: in-samirs-mind
+        run: |
+          npm install
+          npm run build
+
+      - name: Cache Godot editor + export templates
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot editor + export templates
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot
+          cd ~/godot
+          curl -L -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot4
+          chmod +x godot4
+          curl -L -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION_FOLDER}
+          unzip -q templates.tpz -d /tmp/templates
+          mv /tmp/templates/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION_FOLDER}/
+
+      - name: Build In Samir's Mind (Godot, playable in-browser)
+        working-directory: in-samirs-mind-godot
+        run: |
+          ~/godot/godot4 --headless --path . --import
+          mkdir -p build/web
+          ~/godot/godot4 --headless --path . --export-release "Web" build/web/index.html
+          mkdir -p ../in-samirs-mind/dist/game
+          cp -r build/web/* ../in-samirs-mind/dist/game/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: in-samirs-mind/dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

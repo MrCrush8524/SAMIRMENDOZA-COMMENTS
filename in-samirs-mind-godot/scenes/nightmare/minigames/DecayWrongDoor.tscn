@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://decay_wrong_door"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/DecayWrongDoor.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/SelectablePad.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/decay_debris_bent_pipe.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/decay_debris_ceiling_chunk.png" id="4"]
+
+[sub_resource type="BoxMesh" id="DoorMesh"]
+size = Vector3(1.3, 2.3, 0.12)
+[sub_resource type="BoxShape3D" id="DoorShape"]
+size = Vector3(1.3, 2.3, 0.12)
+[sub_resource type="StandardMaterial3D" id="DoorMat"]
+albedo_color = Color(0.3, 0.25, 0.28, 1)
+roughness = 0.8
+
+[node name="DecayWrongDoor" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Door0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.15, -6)
+script = ExtResource("2")
+pad_value = 0
+[node name="Mesh" type="MeshInstance3D" parent="Door0"]
+mesh = SubResource("DoorMesh")
+surface_material_override/0 = SubResource("DoorMat")
+[node name="Shape" type="CollisionShape3D" parent="Door0"]
+shape = SubResource("DoorShape")
+
+[node name="Door1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, -6)
+script = ExtResource("2")
+pad_value = 1
+[node name="Mesh" type="MeshInstance3D" parent="Door1"]
+mesh = SubResource("DoorMesh")
+surface_material_override/0 = SubResource("DoorMat")
+[node name="Shape" type="CollisionShape3D" parent="Door1"]
+shape = SubResource("DoorShape")
+
+[node name="Door2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.15, -6)
+script = ExtResource("2")
+pad_value = 2
+[node name="Mesh" type="MeshInstance3D" parent="Door2"]
+mesh = SubResource("DoorMesh")
+surface_material_override/0 = SubResource("DoorMat")
+[node name="Shape" type="CollisionShape3D" parent="Door2"]
+shape = SubResource("DoorShape")
+
+[node name="Debris_BentPipe" type="Sprite3D" parent="."]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.4, -2)
+texture = ExtResource("3")
+pixel_size = 0.0016
+
+[node name="Debris_CeilingChunk" type="Sprite3D" parent="."]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.3, -1)
+texture = ExtResource("4")
+pixel_size = 0.0018

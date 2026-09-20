@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dvshcwhgxn8v7"
+path="res://.godot/imported/Bookcase_Books.obj-4a877adf9277923601672d79ef40ba78.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bookcase_Books.obj-4a877adf9277923601672d79ef40ba78.mesh"]
+
+source_file="res://assets/models/furniture/quaternius_march2019/Bookcase_Books.obj"
+dest_files=["res://.godot/imported/Bookcase_Books.obj-4a877adf9277923601672d79ef40ba78.mesh", "res://.godot/imported/Bookcase_Books.obj-4a877adf9277923601672d79ef40ba78.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

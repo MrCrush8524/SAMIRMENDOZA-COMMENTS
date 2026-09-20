@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtex2622f0xu"
+path="res://.godot/imported/Details_Plate_Long.obj-8bb817de084fcad8f0c5ae52359599fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Details_Plate_Long.obj-8bb817de084fcad8f0c5ae52359599fb.mesh"]
+
+source_file="res://assets/models/scifi_kit/Details_Plate_Long.obj"
+dest_files=["res://.godot/imported/Details_Plate_Long.obj-8bb817de084fcad8f0c5ae52359599fb.mesh", "res://.godot/imported/Details_Plate_Long.obj-8bb817de084fcad8f0c5ae52359599fb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://o53kpvvhf1vi"
+path="res://.godot/imported/airport_final_big_scene_0.png-2d6841ed24ccd11170bb88ce41408f4c.ctex"
+metadata={
+"vram_texture": false
+}
+generator_parameters={
+"md5": "cea06ede15f2640a022e53b4058ee307"
+}
+
+[deps]
+
+source_file="res://assets/models/imported/airport/airport_final_big_scene_0.png"
+dest_files=["res://.godot/imported/airport_final_big_scene_0.png-2d6841ed24ccd11170bb88ce41408f4c.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

@@ -1,0 +1,313 @@
+[gd_scene load_steps=26 format=3 uid="uid://downtown_city"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Street_2Lane.gltf" id="3"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Building_Small_1.gltf" id="4"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Building_Medium_2_001.gltf" id="5"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Building_Large_2.gltf" id="6"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_Bollard.gltf" id="7"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_Planter_Single.gltf" id="8"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_ManholeCover.gltf" id="9"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Prop_Drain.gltf" id="10"]
+[ext_resource type="PackedScene" path="res://assets/models/downtown/Decal_Crosswalk_Wide.gltf" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/shared/skyboxes/skybox-downtown-dusk.png" id="12"]
+[ext_resource type="PackedScene" path="res://assets/models/interiors/living_room/InteriorTest.fbx" id="13"]
+[ext_resource type="Script" path="res://scenes/shared/LivingRoomDress.gd" id="14"]
+
+[sub_resource type="PanoramaSkyMaterial" id="DowntownSkyMat"]
+panorama = ExtResource("12")
+
+[sub_resource type="Sky" id="DowntownSky"]
+sky_material = SubResource("DowntownSkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("DowntownSky")
+background_color = Color(0.93, 0.82, 0.9, 1)
+fog_enabled = true
+fog_light_color = Color(0.95, 0.85, 0.88, 1)
+fog_density = 0.01
+ambient_light_source = 2
+ambient_light_color = Color(0.96, 0.9, 0.94, 1)
+ambient_light_energy = 1.1
+
+[sub_resource type="BoxMesh" id="GroundMesh"]
+size = Vector3(100.0, 0.3, 100.0)
+
+[sub_resource type="BoxShape3D" id="GroundShape"]
+size = Vector3(100.0, 0.3, 100.0)
+
+[sub_resource type="StandardMaterial3D" id="GroundMat"]
+albedo_color = Color(0.72, 0.7, 0.76, 1)
+roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="Bldg_E1_SolidMesh"]
+size = Vector3(16.6450, 28.0000, 20.6440)
+
+[sub_resource type="BoxShape3D" id="Bldg_W1_SolidMesh"]
+size = Vector3(13.0560, 25.0090, 15.0560)
+
+[sub_resource type="BoxShape3D" id="Bldg_E2_SolidMesh"]
+size = Vector3(13.0560, 25.0090, 15.0560)
+
+[sub_resource type="BoxShape3D" id="Bldg_W2_SolidMesh"]
+size = Vector3(16.6450, 28.0000, 20.6440)
+
+[sub_resource type="BoxShape3D" id="Bldg_E3_SolidMesh"]
+size = Vector3(14.5360, 17.0260, 12.4600)
+
+[sub_resource type="BoxShape3D" id="Bldg_W3_SolidMesh"]
+size = Vector3(14.5360, 17.0260, 12.4600)
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_city"]
+size = Vector3(6, 4, 14)
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
+
+[sub_resource type="BoxShape3D" id="LivingRoom_FloorShape"]
+size = Vector3(5, 0.2, 8)
+
+[sub_resource type="BoxShape3D" id="LivingRoom_CeilingShape"]
+size = Vector3(5, 0.2, 8)
+
+[sub_resource type="BoxShape3D" id="LivingRoom_SideWallShape"]
+size = Vector3(0.2, 3, 8)
+
+[sub_resource type="BoxShape3D" id="LivingRoom_BackWallShape"]
+size = Vector3(5, 3, 0.2)
+
+
+[node name="DowntownCity" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -30)
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("GroundMesh")
+surface_material_override/0 = SubResource("GroundMat")
+[node name="Shape" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("GroundShape")
+
+
+[node name="Street_0" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, 6.000)
+
+
+[node name="Street_1" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -6.000)
+
+
+[node name="Street_2" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -18.000)
+
+
+[node name="Street_3" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -30.000)
+
+
+[node name="Street_4" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -42.000)
+
+
+[node name="Street_5" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -54.000)
+
+
+[node name="Bldg_E1" parent="." instance=ExtResource("6")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 17.000, 0.000, 0.000)
+
+
+[node name="Bldg_E1_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0000, 14.0000, 1.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_E1_Solid"]
+shape = SubResource("Bldg_E1_SolidMesh")
+
+
+[node name="Bldg_W1" parent="." instance=ExtResource("5")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -18.000, 0.000, -6.000)
+
+
+[node name="Bldg_W1_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9600, 12.4940, -6.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_W1_Solid"]
+shape = SubResource("Bldg_W1_SolidMesh")
+
+
+[node name="Bldg_E2" parent="." instance=ExtResource("5")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 18.000, 0.000, -24.000)
+
+
+[node name="Bldg_E2_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9600, 12.4940, -24.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_E2_Solid"]
+shape = SubResource("Bldg_E2_SolidMesh")
+
+
+[node name="Bldg_W2" parent="." instance=ExtResource("6")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -17.000, 0.000, -30.000)
+
+
+[node name="Bldg_W2_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0000, 14.0000, -31.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_W2_Solid"]
+shape = SubResource("Bldg_W2_SolidMesh")
+
+
+[node name="Bldg_E3" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 17.000, 0.000, -48.000)
+
+
+[node name="Bldg_E3_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9620, 8.5010, -49.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_E3_Solid"]
+shape = SubResource("Bldg_E3_SolidMesh")
+
+
+[node name="Bldg_W3" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -17.000, 0.000, -54.000)
+
+
+[node name="Bldg_W3_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9620, 8.5010, -53.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_W3_Solid"]
+shape = SubResource("Bldg_W3_SolidMesh")
+
+
+[node name="Prop_Bollard_1" parent="." instance=ExtResource("7")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -3.200, 0.000, 5.000)
+
+
+[node name="Prop_Bollard_2" parent="." instance=ExtResource("7")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 3.200, 0.000, 5.000)
+
+
+[node name="Prop_Planter_1" parent="." instance=ExtResource("8")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -3.500, 0.000, -12.000)
+
+
+[node name="Prop_Planter_2" parent="." instance=ExtResource("8")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 3.500, 0.000, -36.000)
+
+
+[node name="Prop_Manhole_1" parent="." instance=ExtResource("9")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.600, 0.001, -18.000)
+
+
+[node name="Prop_Manhole_2" parent="." instance=ExtResource("9")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -0.500, 0.001, -42.000)
+
+
+[node name="Prop_Drain_1" parent="." instance=ExtResource("10")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 2.600, 0.001, -6.000)
+
+
+[node name="Prop_Drain_2" parent="." instance=ExtResource("10")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, -2.600, 0.001, -30.000)
+
+
+[node name="Decal_Crosswalk" parent="." instance=ExtResource("11")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.010, 2.000)
+
+
+[node name="Anomaly_LivingRoom" parent="." instance=ExtResource("13")]
+transform = Transform3D(0.978148, 0, 0.207912, 0, 1, 0, -0.207912, 0, 0.978148, 0.000, -0.0500, -21.000)
+script = ExtResource("14")
+
+[node name="Solid_Floor" type="StaticBody3D" parent="Anomaly_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+[node name="Shape" type="CollisionShape3D" parent="Anomaly_LivingRoom/Solid_Floor"]
+shape = SubResource("LivingRoom_FloorShape")
+
+[node name="Solid_Ceiling" type="StaticBody3D" parent="Anomaly_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+[node name="Shape" type="CollisionShape3D" parent="Anomaly_LivingRoom/Solid_Ceiling"]
+shape = SubResource("LivingRoom_CeilingShape")
+
+[node name="Solid_WallLeft" type="StaticBody3D" parent="Anomaly_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.5, 0)
+[node name="Shape" type="CollisionShape3D" parent="Anomaly_LivingRoom/Solid_WallLeft"]
+shape = SubResource("LivingRoom_SideWallShape")
+
+[node name="Solid_WallRight" type="StaticBody3D" parent="Anomaly_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, 0)
+[node name="Shape" type="CollisionShape3D" parent="Anomaly_LivingRoom/Solid_WallRight"]
+shape = SubResource("LivingRoom_SideWallShape")
+
+[node name="Solid_WallBack" type="StaticBody3D" parent="Anomaly_LivingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
+[node name="Shape" type="CollisionShape3D" parent="Anomaly_LivingRoom/Solid_WallBack"]
+shape = SubResource("LivingRoom_BackWallShape")
+
+[node name="Anomaly_LivingRoom_Sign" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 1.6, -21)
+text = "Someone's furniture.
+Nobody's house."
+font_size = 40
+outline_size = 8
+modulate = Color(1, 1, 1, 1)
+billboard = 1
+
+
+[node name="StreetLight_0" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+light_color = Color(0.95, 0.92, 0.85, 1)
+light_energy = 0.8
+omni_range = 14.0
+
+
+[node name="StreetLight_1" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -24)
+light_color = Color(0.95, 0.92, 0.85, 1)
+light_energy = 0.8
+omni_range = 14.0
+
+
+[node name="StreetLight_2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -48)
+light_color = Color(0.95, 0.92, 0.85, 1)
+light_energy = 0.8
+omni_range = 14.0
+
+
+[node name="Flavor_Entrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+script = ExtResource("1")
+flavor_text = "Downtown. The atrium door doesn’t usually open onto a street, but here it does."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Entrance"]
+shape = SubResource("Shape_flavor_city")
+
+
+[node name="Flavor_MidBlock" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -21)
+script = ExtResource("1")
+flavor_text = "Windows lit on every floor. No one home behind any of them."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MidBlock"]
+shape = SubResource("Shape_flavor_city")
+
+
+[node name="Flavor_FarBlock" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -51)
+script = ExtResource("1")
+flavor_text = "The street keeps a straight line long after the buildings stop making sense."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_FarBlock"]
+shape = SubResource("Shape_flavor_city")
+
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)
+
+
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 7)
+script = ExtResource("2")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.8, 0.85, 0.95, 1)
+light_energy = 0.4
+omni_range = 3.0
+

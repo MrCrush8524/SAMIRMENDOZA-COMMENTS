@@ -1,0 +1,268 @@
+[gd_scene load_steps=33 format=3 uid="uid://nightmare_arcade"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/NightmarePassage.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_floor_albedo_2048.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_floor_normal_2048.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_floor_roughness_2048.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_front.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_front_emission.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_marquee.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_marquee_emission.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_side.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_cyan_side_emission.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_front.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_front_emission.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_marquee.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_marquee_emission.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_side.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_magenta_side_emission.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_front.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_front_emission.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_marquee.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_marquee_emission.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_side.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/arcade/arcade_yellow_side_emission.png" id="22"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(14, 0.2, 14)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(14, 0.2, 14)
+
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")
+roughness_texture = ExtResource("4")
+uv1_scale = Vector3(4, 4, 1)
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+size = Vector3(14, 4, 0.3)
+
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(14, 4, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.1098, 0.0784, 0.1451, 1)
+roughness = 0.9
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.04, 0.02, 0.08, 1)
+fog_enabled = false
+ambient_light_source = 2
+ambient_light_color = Color(0.35, 0.15, 0.5, 1)
+ambient_light_energy = 0.7
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="CyanBodyShape"]
+size = Vector3(1.436, 1.6, 0.7672)
+[sub_resource type="BoxShape3D" id="MagentaBodyShape"]
+size = Vector3(1.4821, 1.6, 0.7734)
+[sub_resource type="BoxShape3D" id="YellowBodyShape"]
+size = Vector3(1.4789, 1.6, 0.7922)
+
+[sub_resource type="QuadMesh" id="CyanFrontMesh"]
+size = Vector2(1.436, 1.6)
+[sub_resource type="QuadMesh" id="CyanMarqueeMesh"]
+size = Vector2(1.436, 0.4404)
+[sub_resource type="QuadMesh" id="CyanSideMesh"]
+size = Vector2(0.7672, 1.6)
+
+[sub_resource type="QuadMesh" id="MagentaFrontMesh"]
+size = Vector2(1.4821, 1.6)
+[sub_resource type="QuadMesh" id="MagentaMarqueeMesh"]
+size = Vector2(1.4821, 0.4335)
+[sub_resource type="QuadMesh" id="MagentaSideMesh"]
+size = Vector2(0.7734, 1.6)
+
+[sub_resource type="QuadMesh" id="YellowFrontMesh"]
+size = Vector2(1.4789, 1.6)
+[sub_resource type="QuadMesh" id="YellowMarqueeMesh"]
+size = Vector2(1.4789, 0.4419)
+[sub_resource type="QuadMesh" id="YellowSideMesh"]
+size = Vector2(0.7922, 1.6)
+
+[sub_resource type="StandardMaterial3D" id="CyanFrontMat"]
+albedo_texture = ExtResource("5")
+emission_enabled = true
+emission = Color(0.0706, 0.8431, 1, 1)
+emission_texture = ExtResource("6")
+emission_energy_multiplier = 1.6
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="CyanMarqueeMat"]
+albedo_texture = ExtResource("7")
+emission_enabled = true
+emission = Color(0.0706, 0.8431, 1, 1)
+emission_texture = ExtResource("8")
+emission_energy_multiplier = 1.8
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="CyanSideMat"]
+albedo_texture = ExtResource("9")
+emission_enabled = true
+emission = Color(0.0706, 0.8431, 1, 1)
+emission_texture = ExtResource("10")
+emission_energy_multiplier = 1.2
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="MagentaFrontMat"]
+albedo_texture = ExtResource("11")
+emission_enabled = true
+emission = Color(1, 0.2784, 0.7843, 1)
+emission_texture = ExtResource("12")
+emission_energy_multiplier = 1.6
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="MagentaMarqueeMat"]
+albedo_texture = ExtResource("13")
+emission_enabled = true
+emission = Color(1, 0.2784, 0.7843, 1)
+emission_texture = ExtResource("14")
+emission_energy_multiplier = 1.8
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="MagentaSideMat"]
+albedo_texture = ExtResource("15")
+emission_enabled = true
+emission = Color(1, 0.2784, 0.7843, 1)
+emission_texture = ExtResource("16")
+emission_energy_multiplier = 1.2
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="YellowFrontMat"]
+albedo_texture = ExtResource("17")
+emission_enabled = true
+emission = Color(1, 0.851, 0.2275, 1)
+emission_texture = ExtResource("18")
+emission_energy_multiplier = 1.6
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="YellowMarqueeMat"]
+albedo_texture = ExtResource("19")
+emission_enabled = true
+emission = Color(1, 0.851, 0.2275, 1)
+emission_texture = ExtResource("20")
+emission_energy_multiplier = 1.8
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="YellowSideMat"]
+albedo_texture = ExtResource("21")
+emission_enabled = true
+emission = Color(1, 0.851, 0.2275, 1)
+emission_texture = ExtResource("22")
+emission_energy_multiplier = 1.2
+roughness = 0.6
+
+[node name="NightmareArcade" type="Node3D"]
+script = ExtResource("1")
+composure_drain_per_sec = 0.02
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -7)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShape")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShape")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 7, 2, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShape")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7, 2, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMesh")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShape")
+
+[node name="CabinetCyan" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+[node name="Front" type="MeshInstance3D" parent="CabinetCyan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CyanFrontMesh")
+surface_material_override/0 = SubResource("CyanFrontMat")
+[node name="Marquee" type="MeshInstance3D" parent="CabinetCyan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8202, 0)
+mesh = SubResource("CyanMarqueeMesh")
+surface_material_override/0 = SubResource("CyanMarqueeMat")
+[node name="SideRight" type="MeshInstance3D" parent="CabinetCyan"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.718, 0.8, -0.3836)
+mesh = SubResource("CyanSideMesh")
+surface_material_override/0 = SubResource("CyanSideMat")
+[node name="SideLeft" type="MeshInstance3D" parent="CabinetCyan"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.718, 0.8, -0.3836)
+mesh = SubResource("CyanSideMesh")
+surface_material_override/0 = SubResource("CyanSideMat")
+[node name="Body" type="StaticBody3D" parent="CabinetCyan"]
+[node name="Shape" type="CollisionShape3D" parent="CabinetCyan/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.2)
+shape = SubResource("CyanBodyShape")
+
+[node name="CabinetMagenta" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+[node name="Front" type="MeshInstance3D" parent="CabinetMagenta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("MagentaFrontMesh")
+surface_material_override/0 = SubResource("MagentaFrontMat")
+[node name="Marquee" type="MeshInstance3D" parent="CabinetMagenta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81675, 0)
+mesh = SubResource("MagentaMarqueeMesh")
+surface_material_override/0 = SubResource("MagentaMarqueeMat")
+[node name="SideRight" type="MeshInstance3D" parent="CabinetMagenta"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.7411, 0.8, -0.3867)
+mesh = SubResource("MagentaSideMesh")
+surface_material_override/0 = SubResource("MagentaSideMat")
+[node name="SideLeft" type="MeshInstance3D" parent="CabinetMagenta"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.7411, 0.8, -0.3867)
+mesh = SubResource("MagentaSideMesh")
+surface_material_override/0 = SubResource("MagentaSideMat")
+[node name="Body" type="StaticBody3D" parent="CabinetMagenta"]
+[node name="Shape" type="CollisionShape3D" parent="CabinetMagenta/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.2)
+shape = SubResource("MagentaBodyShape")
+
+[node name="CabinetYellow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+[node name="Front" type="MeshInstance3D" parent="CabinetYellow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("YellowFrontMesh")
+surface_material_override/0 = SubResource("YellowFrontMat")
+[node name="Marquee" type="MeshInstance3D" parent="CabinetYellow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82095, 0)
+mesh = SubResource("YellowMarqueeMesh")
+surface_material_override/0 = SubResource("YellowMarqueeMat")
+[node name="SideRight" type="MeshInstance3D" parent="CabinetYellow"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.7395, 0.8, -0.3961)
+mesh = SubResource("YellowSideMesh")
+surface_material_override/0 = SubResource("YellowSideMat")
+[node name="SideLeft" type="MeshInstance3D" parent="CabinetYellow"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.7395, 0.8, -0.3961)
+mesh = SubResource("YellowSideMesh")
+surface_material_override/0 = SubResource("YellowSideMat")
+[node name="Body" type="StaticBody3D" parent="CabinetYellow"]
+[node name="Shape" type="CollisionShape3D" parent="CabinetYellow/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.2)
+shape = SubResource("YellowBodyShape")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 5)

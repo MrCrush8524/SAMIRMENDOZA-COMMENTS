@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://wander_follow_light"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/WanderFollowLight.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/SelectablePad.gd" id="2"]
+
+[sub_resource type="SphereShape3D" id="LampShape"]
+radius = 0.6
+[sub_resource type="SphereMesh" id="LampMesh"]
+radius = 0.25
+height = 0.5
+
+[node name="WanderFollowLight" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Lamp0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.6, -4)
+script = ExtResource("2")
+pad_value = 0
+[node name="Mesh" type="MeshInstance3D" parent="Lamp0"]
+mesh = SubResource("LampMesh")
+[node name="Shape" type="CollisionShape3D" parent="Lamp0"]
+shape = SubResource("LampShape")
+[node name="Light" type="OmniLight3D" parent="Lamp0"]
+light_color = Color(1, 0.92, 0.75, 1)
+omni_range = 4.0
+
+[node name="Lamp1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.6, -4)
+script = ExtResource("2")
+pad_value = 1
+[node name="Mesh" type="MeshInstance3D" parent="Lamp1"]
+mesh = SubResource("LampMesh")
+[node name="Shape" type="CollisionShape3D" parent="Lamp1"]
+shape = SubResource("LampShape")
+[node name="Light" type="OmniLight3D" parent="Lamp1"]
+light_color = Color(1, 0.92, 0.75, 1)
+omni_range = 4.0
+
+[node name="Lamp2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.6, -4)
+script = ExtResource("2")
+pad_value = 2
+[node name="Mesh" type="MeshInstance3D" parent="Lamp2"]
+mesh = SubResource("LampMesh")
+[node name="Shape" type="CollisionShape3D" parent="Lamp2"]
+shape = SubResource("LampShape")
+[node name="Light" type="OmniLight3D" parent="Lamp2"]
+light_color = Color(1, 0.92, 0.75, 1)
+omni_range = 4.0
+
+[node name="Lamp3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.6, -4)
+script = ExtResource("2")
+pad_value = 3
+[node name="Mesh" type="MeshInstance3D" parent="Lamp3"]
+mesh = SubResource("LampMesh")
+[node name="Shape" type="CollisionShape3D" parent="Lamp3"]
+shape = SubResource("LampShape")
+[node name="Light" type="OmniLight3D" parent="Lamp3"]
+light_color = Color(1, 0.92, 0.75, 1)
+omni_range = 4.0

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bengf5w3wckw4"
+path="res://.godot/imported/Details_Pipes_Long.obj-2bc6b377048e9b61fdc8118ccaa4b1cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Details_Pipes_Long.obj-2bc6b377048e9b61fdc8118ccaa4b1cc.mesh"]
+
+source_file="res://assets/models/scifi_kit/Details_Pipes_Long.obj"
+dest_files=["res://.godot/imported/Details_Pipes_Long.obj-2bc6b377048e9b61fdc8118ccaa4b1cc.mesh", "res://.godot/imported/Details_Pipes_Long.obj-2bc6b377048e9b61fdc8118ccaa4b1cc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

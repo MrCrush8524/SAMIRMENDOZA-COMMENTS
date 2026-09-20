@@ -1,0 +1,5 @@
+# Raw "In Samir's Mind" asset packet (4 zip parts, extracted locally).
+# This is source material for Cloudflare R2, not application code — the
+# curated subset the vertical slice actually uses lives in
+# in-samirs-mind/public/assets/ and is committed there instead.
+game-assets/

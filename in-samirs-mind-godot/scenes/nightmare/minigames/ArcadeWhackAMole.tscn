@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://arcade_whack_a_mole"]
+
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/ArcadeWhackAMole.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/nightmare/minigames/SelectablePad.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/nightmare/minigames/arcade_dream_diver_shapes_strip.png" id="3"]
+
+[sub_resource type="SphereMesh" id="MoleMesh"]
+radius = 0.4
+height = 0.8
+[sub_resource type="SphereShape3D" id="MoleShape"]
+radius = 0.55
+
+[sub_resource type="StandardMaterial3D" id="MoleMat0"]
+albedo_color = Color(0.6, 0.4, 0.25, 1)
+[sub_resource type="StandardMaterial3D" id="MoleMat1"]
+albedo_color = Color(0.6, 0.4, 0.25, 1)
+[sub_resource type="StandardMaterial3D" id="MoleMat2"]
+albedo_color = Color(0.6, 0.4, 0.25, 1)
+[sub_resource type="StandardMaterial3D" id="MoleMat3"]
+albedo_color = Color(0.6, 0.4, 0.25, 1)
+[sub_resource type="StandardMaterial3D" id="MoleMat4"]
+albedo_color = Color(0.6, 0.4, 0.25, 1)
+
+[node name="ArcadeWhackAMole" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Hole0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.4, 0)
+script = ExtResource("2")
+pad_value = 0
+visible = false
+[node name="Mesh" type="MeshInstance3D" parent="Hole0"]
+mesh = SubResource("MoleMesh")
+surface_material_override/0 = SubResource("MoleMat0")
+[node name="Shape" type="CollisionShape3D" parent="Hole0"]
+shape = SubResource("MoleShape")
+
+[node name="Hole1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.4, 0)
+script = ExtResource("2")
+pad_value = 1
+visible = false
+[node name="Mesh" type="MeshInstance3D" parent="Hole1"]
+mesh = SubResource("MoleMesh")
+surface_material_override/0 = SubResource("MoleMat1")
+[node name="Shape" type="CollisionShape3D" parent="Hole1"]
+shape = SubResource("MoleShape")
+
+[node name="Hole2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+script = ExtResource("2")
+pad_value = 2
+visible = false
+[node name="Mesh" type="MeshInstance3D" parent="Hole2"]
+mesh = SubResource("MoleMesh")
+surface_material_override/0 = SubResource("MoleMat2")
+[node name="Shape" type="CollisionShape3D" parent="Hole2"]
+shape = SubResource("MoleShape")
+
+[node name="Hole3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.4, 0)
+script = ExtResource("2")
+pad_value = 3
+visible = false
+[node name="Mesh" type="MeshInstance3D" parent="Hole3"]
+mesh = SubResource("MoleMesh")
+surface_material_override/0 = SubResource("MoleMat3")
+[node name="Shape" type="CollisionShape3D" parent="Hole3"]
+shape = SubResource("MoleShape")
+
+[node name="Hole4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.4, 0)
+script = ExtResource("2")
+pad_value = 4
+visible = false
+[node name="Mesh" type="MeshInstance3D" parent="Hole4"]
+mesh = SubResource("MoleMesh")
+surface_material_override/0 = SubResource("MoleMat4")
+[node name="Shape" type="CollisionShape3D" parent="Hole4"]
+shape = SubResource("MoleShape")
+
+[node name="Marquee" type="Sprite3D" parent="."]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -2)
+texture = ExtResource("3")
+pixel_size = 0.0022

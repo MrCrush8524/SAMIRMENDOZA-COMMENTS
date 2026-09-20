@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bgqe8iq2xv155"
+path="res://.godot/imported/Details_Basic_4.obj-416f75220b29dd3ba31ab76bc382be0d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Details_Basic_4.obj-416f75220b29dd3ba31ab76bc382be0d.mesh"]
+
+source_file="res://assets/models/scifi_kit/Details_Basic_4.obj"
+dest_files=["res://.godot/imported/Details_Basic_4.obj-416f75220b29dd3ba31ab76bc382be0d.mesh", "res://.godot/imported/Details_Basic_4.obj-416f75220b29dd3ba31ab76bc382be0d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

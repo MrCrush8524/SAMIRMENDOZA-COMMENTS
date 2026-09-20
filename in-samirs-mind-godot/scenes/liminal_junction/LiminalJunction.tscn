@@ -1,0 +1,955 @@
+[gd_scene load_steps=112 format=3 uid="uid://liminal_junction"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/ZoneAmbience.gd" id="3"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/station_ambience.ogg" id="4"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/station_carousel_lounge.ogg" id="5"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/station_infinite_waiting.ogg" id="6"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/station_void_platform.ogg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_departure_marble.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_fountain_plaza.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_glass_trainshed.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_infinite_waiting_floor.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_mirror_passage.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_platform_floor.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/junction_tex_void_starfield.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_carousel_lounge.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_departure_clocktower.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_dining_car_table.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_dinosaur_skeleton.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_entrance_palms.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_garden_topiary.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_grand_hall_fountain.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_luggage_pile.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_parked_train.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/props/junction_prop_sleeper_bunks.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_departure_clock_face.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_lower_level_directory.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_01.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_02.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_03.png" id="29"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_04.png" id="30"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_05.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_06.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_07.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_08.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_09.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_10.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_11.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_12.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_13.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_14.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_15.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_16.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_17.png" id="43"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_18.png" id="44"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_19.png" id="45"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_20.png" id="46"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_21.png" id="47"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_22.png" id="48"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_23.png" id="49"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_platform_24.png" id="50"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_time_room.png" id="51"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_anywhere.png" id="52"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_forgotten_places.png" id="53"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_to_somewhere_else.png" id="54"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/signage/junction_sign_void_platform.png" id="55"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/vintage_aviation_deco_carpet_pattern.png" id="56"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/dreamy_pastel_tactile_platform_pattern.png" id="57"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/seamless_terrazzo_terminal_flooring.png" id="58"]
+[ext_resource type="Texture2D" path="res://assets/textures/junction/textures/pastel_celestial_marble_tile_pattern.png" id="59"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="60"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(70, 0.2, 50)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(70, 0.2, 50)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_texture = ExtResource("13")
+uv1_scale = Vector3(7, 5, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(70, 6, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(70, 6, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(50, 6, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(50, 6, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(5, 1, 1)
+roughness = 0.6
+
+[sub_resource type="PlaneMesh" id="ZonePlaneHall"]
+size = Vector2(16, 14)
+[sub_resource type="PlaneMesh" id="ZonePlaneDeparture"]
+size = Vector2(16, 10)
+[sub_resource type="PlaneMesh" id="ZonePlanePlatforms"]
+size = Vector2(10, 42)
+[sub_resource type="StandardMaterial3D" id="GrandHallMat"]
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(1.5, 1.25, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="DepartureMat"]
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(1.5, 1, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="PlatformMat"]
+albedo_texture = ExtResource("13")
+uv1_scale = Vector3(1, 4, 1)
+roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="VoidMat"]
+albedo_texture = ExtResource("14")
+uv1_scale = Vector3(1.25, 1, 1)
+roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="MirrorPassageMat"]
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.25, 1, 1)
+roughness = 0.15
+[sub_resource type="StandardMaterial3D" id="CarouselLoungeMat"]
+albedo_texture = ExtResource("56")
+uv1_scale = Vector3(1.6, 0.9, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="GardenPlatformMat"]
+albedo_texture = ExtResource("57")
+uv1_scale = Vector3(0.9, 0.7, 1)
+roughness = 0.75
+[sub_resource type="StandardMaterial3D" id="LostLuggageMat"]
+albedo_texture = ExtResource("58")
+uv1_scale = Vector3(1.1, 0.9, 1)
+roughness = 0.8
+[sub_resource type="StandardMaterial3D" id="InfiniteWaitingMat"]
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1.75, 0.75, 1)
+roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="ObservationDeckMat"]
+albedo_color = Color(0.5, 0.6, 0.75, 1)
+roughness = 0.25
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_hall"]
+size = Vector3(16, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_platforms"]
+size = Vector3(10, 3, 42)
+[sub_resource type="PlaneMesh" id="ZonePlaneOddity"]
+size = Vector2(12, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_oddity"]
+size = Vector3(12, 3, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneCarouselLounge"]
+size = Vector2(14, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneGardenPlatform"]
+size = Vector2(8, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_carousellounge"]
+size = Vector3(14, 3, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_gardenplatform"]
+size = Vector3(8, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneLostLuggage"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_lostluggage"]
+size = Vector3(10, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneInfiniteWaiting"]
+size = Vector2(14, 6)
+[sub_resource type="BoxShape3D" id="Shape_flavor_infinitewaiting"]
+size = Vector3(14, 3, 6)
+[sub_resource type="PlaneMesh" id="ZonePlaneObservationDeck"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_observationdeck"]
+size = Vector3(10, 3, 8)
+
+[sub_resource type="StandardMaterial3D" id="FenceMat"]
+albedo_color = Color(0.6, 0.58, 0.68, 1)
+roughness = 0.55
+metallic = 0.25
+
+[sub_resource type="BoxMesh" id="JFence_300x15"]
+size = Vector3(3.0, 1.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="JFence_300x15Shape"]
+size = Vector3(3.0, 1.1, 0.15)
+
+[sub_resource type="BoxMesh" id="JFence_15x250"]
+size = Vector3(0.15, 1.1, 2.5)
+
+[sub_resource type="BoxShape3D" id="JFence_15x250Shape"]
+size = Vector3(0.15, 1.1, 2.5)
+
+[sub_resource type="BoxMesh" id="JFence_200x15"]
+size = Vector3(2.0, 1.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="JFence_200x15Shape"]
+size = Vector3(2.0, 1.1, 0.15)
+
+[sub_resource type="BoxMesh" id="JFence_15x150"]
+size = Vector3(0.15, 1.1, 1.5)
+
+[sub_resource type="BoxShape3D" id="JFence_15x150Shape"]
+size = Vector3(0.15, 1.1, 1.5)
+
+[sub_resource type="BoxMesh" id="JFence_250x15"]
+size = Vector3(2.5, 1.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="JFence_250x15Shape"]
+size = Vector3(2.5, 1.1, 0.15)
+
+[sub_resource type="BoxMesh" id="JFence_15x200"]
+size = Vector3(0.15, 1.1, 2.0)
+
+[sub_resource type="BoxShape3D" id="JFence_15x200Shape"]
+size = Vector3(0.15, 1.1, 2.0)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.9, 0.86, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.95, 0.9, 0.92, 1)
+ambient_light_energy = 1.1
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="BoxShape3D" id="ReturnDoorSolidShape"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.95, 0.82, 0.55, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.95, 0.82, 0.55, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
+
+[node name="LiminalJunction" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -25)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 35, 3, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -35, 3, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneGrandHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 4)
+mesh = SubResource("ZonePlaneHall")
+surface_material_override/0 = SubResource("GrandHallMat")
+[node name="Fountain" type="Sprite3D" parent="ZoneGrandHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+texture = ExtResource("21")
+pixel_size = 0.0032
+billboard = 1
+[node name="Light" type="OmniLight3D" parent="ZoneGrandHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.92, 0.75, 1)
+light_energy = 0.9
+omni_range = 15.0
+
+[node name="ZoneDepartureHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -10)
+mesh = SubResource("ZonePlaneDeparture")
+surface_material_override/0 = SubResource("DepartureMat")
+
+[node name="ZonePlatformsWest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.11, 0)
+mesh = SubResource("ZonePlanePlatforms")
+surface_material_override/0 = SubResource("PlatformMat")
+
+[node name="ZonePlatformsEast" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0.11, 0)
+mesh = SubResource("ZonePlanePlatforms")
+surface_material_override/0 = SubResource("PlatformMat")
+
+[node name="ZoneVoidPlatform" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.11, 18)
+mesh = SubResource("ZonePlaneOddity")
+surface_material_override/0 = SubResource("VoidMat")
+[node name="Light" type="OmniLight3D" parent="ZoneVoidPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.3, 0.15, 0.5, 1)
+light_energy = 0.3
+omni_range = 8.0
+
+[node name="ZoneMirrorPassage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.11, 18)
+mesh = SubResource("ZonePlaneOddity")
+surface_material_override/0 = SubResource("MirrorPassageMat")
+[node name="Light" type="OmniLight3D" parent="ZoneMirrorPassage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.75, 0.9, 1)
+light_energy = 0.5
+omni_range = 8.0
+
+[node name="ZoneCarouselLounge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -20)
+mesh = SubResource("ZonePlaneCarouselLounge")
+surface_material_override/0 = SubResource("CarouselLoungeMat")
+[node name="Light" type="OmniLight3D" parent="ZoneCarouselLounge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.85, 0.92, 1)
+light_energy = 0.6
+omni_range = 10.0
+
+[node name="ZoneGardenPlatform" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 20)
+mesh = SubResource("ZonePlaneGardenPlatform")
+surface_material_override/0 = SubResource("GardenPlatformMat")
+
+[node name="Flavor_CarouselLounge" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
+script = ExtResource("1")
+flavor_text = "The Carousel Lounge."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CarouselLounge"]
+shape = SubResource("Shape_flavor_carousellounge")
+
+[node name="Flavor_GardenPlatform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+script = ExtResource("1")
+flavor_text = "The Garden Platform."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_GardenPlatform"]
+shape = SubResource("Shape_flavor_gardenplatform")
+
+[node name="Flavor_VoidPlatform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 18)
+script = ExtResource("1")
+flavor_text = "The Void Platform."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_VoidPlatform"]
+shape = SubResource("Shape_flavor_oddity")
+
+[node name="Flavor_MirrorPassage" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 18)
+script = ExtResource("1")
+flavor_text = "Mirror Passage. \"Wish you were here?\""
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MirrorPassage"]
+shape = SubResource("Shape_flavor_oddity")
+
+[node name="Flavor_GrandHall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+script = ExtResource("1")
+flavor_text = "Grand Hall. All trains go somewhere else."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_GrandHall"]
+shape = SubResource("Shape_flavor_hall")
+
+[node name="Flavor_Departure" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
+script = ExtResource("1")
+flavor_text = "Departure Hall."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_Departure"]
+shape = SubResource("Shape_flavor_hall")
+
+[node name="Flavor_PlatformsWest" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, 0)
+script = ExtResource("1")
+flavor_text = "Platforms 9-16 (To Somewhere Else)."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PlatformsWest"]
+shape = SubResource("Shape_flavor_platforms")
+
+[node name="Flavor_PlatformsEast" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1, 0)
+script = ExtResource("1")
+flavor_text = "Platforms 17-24 (To Forgotten Places)."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_PlatformsEast"]
+shape = SubResource("Shape_flavor_platforms")
+
+[node name="ZoneLostLuggage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.11, 20)
+mesh = SubResource("ZonePlaneLostLuggage")
+surface_material_override/0 = SubResource("LostLuggageMat")
+[node name="Light" type="OmniLight3D" parent="ZoneLostLuggage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.72, 0.55, 1)
+light_energy = 0.35
+omni_range = 8.0
+
+[node name="ZoneInfiniteWaitingRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -21)
+mesh = SubResource("ZonePlaneInfiniteWaiting")
+surface_material_override/0 = SubResource("InfiniteWaitingMat")
+[node name="Light" type="OmniLight3D" parent="ZoneInfiniteWaitingRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.92, 0.9, 0.85, 1)
+light_energy = 0.5
+omni_range = 12.0
+
+[node name="ZoneObservationDeck" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.11, 20)
+mesh = SubResource("ZonePlaneObservationDeck")
+surface_material_override/0 = SubResource("ObservationDeckMat")
+[node name="Light" type="OmniLight3D" parent="ZoneObservationDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.65, 0.75, 0.95, 1)
+light_energy = 0.4
+omni_range = 8.0
+
+[node name="Flavor_LostLuggage" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 20)
+script = ExtResource("1")
+flavor_text = "Lost Luggage. None of it is yours. All of it feels like it could be."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_LostLuggage"]
+shape = SubResource("Shape_flavor_lostluggage")
+
+[node name="Flavor_InfiniteWaitingRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21)
+script = ExtResource("1")
+flavor_text = "Infinite Waiting Room. The number on your ticket never comes up."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_InfiniteWaitingRoom"]
+shape = SubResource("Shape_flavor_infinitewaiting")
+
+[node name="Flavor_ObservationDeck" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 20)
+script = ExtResource("1")
+flavor_text = "Observation Deck. You can see every platform from here. None of them are moving."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ObservationDeck"]
+shape = SubResource("Shape_flavor_observationdeck")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 4)
+
+[node name="Platform_1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1.0, -12)
+[node name="Platform_2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1.0, -4)
+[node name="Platform_3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1.0, 4)
+[node name="Platform_4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1.0, 12)
+[node name="Platform_5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, -12)
+[node name="Platform_6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, -4)
+[node name="Platform_7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, 4)
+[node name="Platform_8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.0, 12)
+
+[node name="SpawnVoidPlatform" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.0, 18)
+
+[node name="SpawnMirrorPassage" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.0, 18)
+
+[node name="SpawnCarouselLounge" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -20)
+
+[node name="SpawnGardenPlatform" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 20)
+
+[node name="SpawnLostLuggage" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.0, 20)
+
+[node name="SpawnInfiniteWaitingRoom" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -21)
+
+[node name="SpawnObservationDeck" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1.0, 20)
+
+[node name="AmbientStation" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+unit_size = 40.0
+max_distance = 65.0
+script = ExtResource("2")
+streams = [ExtResource("4")]
+
+[node name="Ambience_CarouselLounge" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
+script = ExtResource("3")
+streams = [ExtResource("5")]
+[node name="Shape" type="CollisionShape3D" parent="Ambience_CarouselLounge"]
+shape = SubResource("Shape_flavor_carousellounge")
+[node name="Player" type="AudioStreamPlayer3D" parent="Ambience_CarouselLounge"]
+unit_size = 15.0
+max_distance = 24.0
+
+[node name="Ambience_InfiniteWaitingRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21)
+script = ExtResource("3")
+streams = [ExtResource("6")]
+[node name="Shape" type="CollisionShape3D" parent="Ambience_InfiniteWaitingRoom"]
+shape = SubResource("Shape_flavor_infinitewaiting")
+[node name="Player" type="AudioStreamPlayer3D" parent="Ambience_InfiniteWaitingRoom"]
+unit_size = 15.0
+max_distance = 24.0
+
+[node name="Ambience_VoidPlatform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 18)
+script = ExtResource("3")
+streams = [ExtResource("7")]
+[node name="Shape" type="CollisionShape3D" parent="Ambience_VoidPlatform"]
+shape = SubResource("Shape_flavor_oddity")
+[node name="Player" type="AudioStreamPlayer3D" parent="Ambience_VoidPlatform"]
+unit_size = 15.0
+max_distance = 24.0
+
+[node name="Prop_CarouselLounge" type="Sprite3D" parent="Flavor_CarouselLounge"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+texture = ExtResource("15")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_DepartureClocktower" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -3)
+texture = ExtResource("16")
+pixel_size = 0.0024
+
+[node name="Prop_DiningCarTable" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.6, 3)
+texture = ExtResource("17")
+pixel_size = 0.0014
+
+[node name="Prop_DinosaurSkeleton" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, -3)
+texture = ExtResource("18")
+pixel_size = 0.002
+
+[node name="Prop_EntrancePalms" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 5)
+texture = ExtResource("19")
+pixel_size = 0.0018
+billboard = 1
+
+[node name="Prop_GardenTopiary" type="Sprite3D" parent="Flavor_GardenPlatform"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.9, -1)
+texture = ExtResource("20")
+pixel_size = 0.0016
+billboard = 1
+
+[node name="Prop_LuggagePile" type="Sprite3D" parent="Flavor_LostLuggage"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+texture = ExtResource("22")
+pixel_size = 0.0016
+
+[node name="Prop_ParkedTrain" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("23")
+pixel_size = 0.003
+
+[node name="Prop_SleeperBunks" type="Sprite3D" parent="Flavor_InfiniteWaitingRoom"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0)
+texture = ExtResource("24")
+pixel_size = 0.0014
+
+[node name="Sign_DepartureClockFace" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -3)
+texture = ExtResource("25")
+pixel_size = 0.0012
+
+[node name="Sign_LowerLevelDirectory" type="Sprite3D" parent="Flavor_ObservationDeck"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -3)
+texture = ExtResource("26")
+pixel_size = 0.0014
+
+[node name="Sign_TimeRoom" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.4, 3)
+texture = ExtResource("51")
+pixel_size = 0.0012
+
+[node name="Sign_ToAnywhere" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 6)
+texture = ExtResource("52")
+pixel_size = 0.0012
+
+[node name="Sign_ToForgottenPlaces" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
+texture = ExtResource("53")
+pixel_size = 0.0012
+
+[node name="Sign_ToSomewhereElse" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
+texture = ExtResource("54")
+pixel_size = 0.0012
+
+[node name="Sign_VoidPlatform" type="Sprite3D" parent="Flavor_VoidPlatform"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -3)
+texture = ExtResource("55")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform01" type="Sprite3D" parent="Platform_1"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("27")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform02" type="Sprite3D" parent="Platform_2"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("28")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform03" type="Sprite3D" parent="Platform_3"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("29")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform04" type="Sprite3D" parent="Platform_4"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("30")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform05" type="Sprite3D" parent="Platform_5"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("31")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform06" type="Sprite3D" parent="Platform_6"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("32")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform07" type="Sprite3D" parent="Platform_7"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("33")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform08" type="Sprite3D" parent="Platform_8"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+texture = ExtResource("34")
+pixel_size = 0.0012
+
+
+[node name="Sign_Platform09" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -16)
+texture = ExtResource("35")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform10" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -12)
+texture = ExtResource("36")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform11" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -8)
+texture = ExtResource("37")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform12" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -4)
+texture = ExtResource("38")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform13" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 0)
+texture = ExtResource("39")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform14" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 4)
+texture = ExtResource("40")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform15" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 8)
+texture = ExtResource("41")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform16" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 12)
+texture = ExtResource("42")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform17" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -16)
+texture = ExtResource("43")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform18" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -12)
+texture = ExtResource("44")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform19" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -8)
+texture = ExtResource("45")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform20" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -4)
+texture = ExtResource("46")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform21" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 0)
+texture = ExtResource("47")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform22" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 4)
+texture = ExtResource("48")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform23" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 8)
+texture = ExtResource("49")
+pixel_size = 0.001
+
+
+[node name="Sign_Platform24" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 12)
+texture = ExtResource("50")
+pixel_size = 0.001
+
+[node name="VoidPlatform_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 16.75)
+[node name="Mesh" type="MeshInstance3D" parent="VoidPlatform_FenceN"]
+mesh = SubResource("JFence_300x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="VoidPlatform_FenceN"]
+shape = SubResource("JFence_300x15Shape")
+
+[node name="VoidPlatform_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0, 0.55, 19.25)
+[node name="Mesh" type="MeshInstance3D" parent="VoidPlatform_FenceS"]
+mesh = SubResource("JFence_300x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="VoidPlatform_FenceS"]
+shape = SubResource("JFence_300x15Shape")
+
+[node name="VoidPlatform_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0.55, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="VoidPlatform_FenceE"]
+mesh = SubResource("JFence_15x250")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="VoidPlatform_FenceE"]
+shape = SubResource("JFence_15x250Shape")
+
+[node name="VoidPlatform_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0.55, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="VoidPlatform_FenceW"]
+mesh = SubResource("JFence_15x250")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="VoidPlatform_FenceW"]
+shape = SubResource("JFence_15x250Shape")
+
+[node name="MirrorPassage_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 0.55, 16.75)
+[node name="Mesh" type="MeshInstance3D" parent="MirrorPassage_FenceN"]
+mesh = SubResource("JFence_300x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="MirrorPassage_FenceN"]
+shape = SubResource("JFence_300x15Shape")
+
+[node name="MirrorPassage_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0, 0.55, 19.25)
+[node name="Mesh" type="MeshInstance3D" parent="MirrorPassage_FenceS"]
+mesh = SubResource("JFence_300x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="MirrorPassage_FenceS"]
+shape = SubResource("JFence_300x15Shape")
+
+[node name="MirrorPassage_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0.55, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="MirrorPassage_FenceE"]
+mesh = SubResource("JFence_15x250")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="MirrorPassage_FenceE"]
+shape = SubResource("JFence_15x250Shape")
+
+[node name="MirrorPassage_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.55, 18.0)
+[node name="Mesh" type="MeshInstance3D" parent="MirrorPassage_FenceW"]
+mesh = SubResource("JFence_15x250")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="MirrorPassage_FenceW"]
+shape = SubResource("JFence_15x250Shape")
+
+[node name="GardenPlatform_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.55, 19.25)
+[node name="Mesh" type="MeshInstance3D" parent="GardenPlatform_FenceN"]
+mesh = SubResource("JFence_200x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GardenPlatform_FenceN"]
+shape = SubResource("JFence_200x15Shape")
+
+[node name="GardenPlatform_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.55, 20.75)
+[node name="Mesh" type="MeshInstance3D" parent="GardenPlatform_FenceS"]
+mesh = SubResource("JFence_200x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GardenPlatform_FenceS"]
+shape = SubResource("JFence_200x15Shape")
+
+[node name="GardenPlatform_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="GardenPlatform_FenceE"]
+mesh = SubResource("JFence_15x150")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GardenPlatform_FenceE"]
+shape = SubResource("JFence_15x150Shape")
+
+[node name="GardenPlatform_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="GardenPlatform_FenceW"]
+mesh = SubResource("JFence_15x150")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="GardenPlatform_FenceW"]
+shape = SubResource("JFence_15x150Shape")
+
+[node name="LostLuggage_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0, 0.55, 19.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostLuggage_FenceN"]
+mesh = SubResource("JFence_250x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="LostLuggage_FenceN"]
+shape = SubResource("JFence_250x15Shape")
+
+[node name="LostLuggage_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0, 0.55, 21.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostLuggage_FenceS"]
+mesh = SubResource("JFence_250x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="LostLuggage_FenceS"]
+shape = SubResource("JFence_250x15Shape")
+
+[node name="LostLuggage_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.25, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostLuggage_FenceE"]
+mesh = SubResource("JFence_15x200")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="LostLuggage_FenceE"]
+shape = SubResource("JFence_15x200Shape")
+
+[node name="LostLuggage_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.75, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="LostLuggage_FenceW"]
+mesh = SubResource("JFence_15x200")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="LostLuggage_FenceW"]
+shape = SubResource("JFence_15x200Shape")
+
+[node name="ObservationDeck_FenceN" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 0.55, 19.0)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationDeck_FenceN"]
+mesh = SubResource("JFence_250x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="ObservationDeck_FenceN"]
+shape = SubResource("JFence_250x15Shape")
+
+[node name="ObservationDeck_FenceS" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 0.55, 21.0)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationDeck_FenceS"]
+mesh = SubResource("JFence_250x15")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="ObservationDeck_FenceS"]
+shape = SubResource("JFence_250x15Shape")
+
+[node name="ObservationDeck_FenceE" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationDeck_FenceE"]
+mesh = SubResource("JFence_15x200")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="ObservationDeck_FenceE"]
+shape = SubResource("JFence_15x200Shape")
+
+[node name="ObservationDeck_FenceW" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.25, 0.55, 20.0)
+[node name="Mesh" type="MeshInstance3D" parent="ObservationDeck_FenceW"]
+mesh = SubResource("JFence_15x200")
+surface_material_override/0 = SubResource("FenceMat")
+[node name="Shape" type="CollisionShape3D" parent="ObservationDeck_FenceW"]
+shape = SubResource("JFence_15x200Shape")
+
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 4)
+script = ExtResource("60")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.95, 0.82, 0.55, 1)
+light_energy = 0.5
+omni_range = 3.0

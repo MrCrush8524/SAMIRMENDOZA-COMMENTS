@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>In Samir's Mind — Walk Through Dreams</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #0c0a12; overflow: hidden; font-family: -apple-system, 'Segoe UI', sans-serif; }
+  #app { position: fixed; inset: 0; }
+
+  #title-screen {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at 50% 30%, #4a3a5c 0%, #241c33 55%, #0c0a12 100%);
+    background-size: cover; background-position: center;
+    z-index: 50;
+  }
+  #title-screen.hidden { display: none; }
+  #title-screen h1 {
+    font-size: clamp(28px, 6vw, 56px);
+    color: #ffe9d6;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 30px rgba(255,200,240,0.5), 0 0 4px #000;
+    margin: 0 0 4px;
+    text-align: center;
+  }
+  #title-screen .tagline { color: #d8c9ef; opacity: 0.85; margin-bottom: 40px; font-style: italic; letter-spacing: 0.05em; }
+  .menu-list { display: flex; flex-direction: column; gap: 14px; width: min(320px, 80vw); }
+  .menu-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,222,240,0.35);
+    color: #fdf4ff;
+    font-size: 17px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .menu-btn:hover { background: rgba(255,214,240,0.18); transform: translateY(-1px); }
+  .menu-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .menu-btn:disabled:hover { transform: none; background: rgba(255,255,255,0.06); }
+  #lang-select {
+    position: absolute; top: 18px; right: 18px;
+    background: rgba(0,0,0,0.35); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px; padding: 6px 10px; font-size: 13px;
+  }
+
+  /* Character Selector */
+  #selector-screen {
+    position: fixed; inset: 0; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at 50% 40%, #3a2f4d 0%, #17121f 70%);
+    z-index: 40;
+  }
+  #selector-screen.visible { display: flex; }
+  #selector-screen h2 { color: #ffe9d6; letter-spacing: 0.08em; margin-bottom: 28px; }
+  .card-row { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
+  .dreamer-card {
+    width: 200px; border-radius: 16px; overflow: hidden; cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04);
+    transition: transform 0.15s, border-color 0.15s; text-align: center;
+  }
+  .dreamer-card:hover, .dreamer-card:focus-visible { transform: translateY(-6px) scale(1.03); border-color: #ffd9f2; }
+  .dreamer-card img { width: 100%; height: 220px; object-fit: cover; display: block; background: #000; }
+  .dreamer-card .name { color: #fff; padding: 10px 8px 2px; font-size: 18px; letter-spacing: 0.04em; }
+  .dreamer-card .role { color: #cbb8e0; padding: 0 8px 12px; font-size: 12px; }
+  #selector-back { margin-top: 30px; background: none; border: none; color: #cbb8e0; cursor: pointer; text-decoration: underline; }
+
+  /* HUD */
+  #hud { position: fixed; inset: 0; pointer-events: none; z-index: 20; display: none; font-family: inherit; }
+  #hud.visible { display: block; }
+  #crosshair { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: rgba(255,255,255,0.8); }
+  #prompt { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,0.55); padding: 8px 16px; border-radius: 8px; font-size: 15px; display: none; }
+  #inventory-bar { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; gap: 8px; }
+  .inv-slot { width: 42px; height: 42px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; }
+
+  #journal-popup {
+    position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    max-width: 460px; width: 86vw; background: rgba(20,14,28,0.92); border: 1px solid rgba(255,222,240,0.3);
+    border-radius: 14px; padding: 26px 24px; color: #fdf4ff; z-index: 60; display: none; pointer-events: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  #journal-popup.visible { display: block; }
+  #journal-popup .jtitle { font-size: 13px; letter-spacing: 0.1em; color: #d8b6e8; text-transform: uppercase; margin-bottom: 10px; }
+  #journal-popup p { font-size: 18px; line-height: 1.5; font-style: italic; }
+  #journal-popup button { margin-top: 16px; }
+
+  #track-popup {
+    position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%);
+    background: rgba(20,14,28,0.92); border: 1px solid rgba(255,222,240,0.3); border-radius: 12px;
+    padding: 16px 20px; color: #fff; z-index: 60; display: none; pointer-events: auto; text-align: center;
+  }
+  #track-popup.visible { display: block; }
+  #track-popup .voice { font-style: italic; color: #d8b6e8; margin-bottom: 6px; font-size: 13px; }
+  #track-popup .tname { font-size: 17px; margin-bottom: 12px; }
+  #track-popup .row { display: flex; gap: 10px; justify-content: center; }
+
+  #tv-overlay {
+    position: fixed; inset: 0; background: #000; z-index: 55; display: none;
+    align-items: center; justify-content: center; pointer-events: auto;
+  }
+  #tv-overlay.visible { display: flex; }
+  #tv-overlay video { max-width: 90%; max-height: 90%; }
+  #tv-close { position: absolute; top: 20px; right: 26px; background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 8px 14px; border-radius: 8px; cursor: pointer; }
+
+  #save-toast {
+    position: fixed; left: 50%; top: 24px; transform: translateX(-50%);
+    background: rgba(20,14,28,0.9); color: #fff; padding: 8px 18px; border-radius: 8px;
+    font-size: 13px; z-index: 70; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  #save-toast.visible { opacity: 1; }
+
+  #loading-veil {
+    position: fixed; inset: 0; background: #0c0a12; z-index: 80;
+    display: flex; align-items: center; justify-content: center; color: #d8c9ef; letter-spacing: 0.1em;
+  }
+  #loading-veil.hidden { display: none; }
+</style>
+</head>
+<body>
+  <div id="loading-veil">loading dream…</div>
+
+  <div id="title-screen">
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="pt-BR">Português (BR)</option>
+    </select>
+    <h1 data-i18n="title">IN SAMIR'S MIND</h1>
+    <div class="tagline" data-i18n="tagline">Walk Through Dreams</div>
+    <div class="menu-list">
+      <button class="menu-btn" id="btn-new-dream" data-i18n="newDream">New Dream</button>
+      <button class="menu-btn" id="btn-continue" data-i18n="continue" disabled>Continue</button>
+      <button class="menu-btn" id="btn-settings" data-i18n="settings">Settings</button>
+      <button class="menu-btn" id="btn-extras" data-i18n="extras">Extras</button>
+      <button class="menu-btn" id="btn-soundtrack" data-i18n="soundtrack">Dream Soundtrack</button>
+    </div>
+  </div>
+
+  <div id="selector-screen">
+    <h2 data-i18n="selectDreamer">Select Your Dreamer</h2>
+    <div class="card-row">
+      <div class="dreamer-card" data-id="Bobby" tabindex="0">
+        <img src="assets/characters/Bobby/Bobby_character_card.webp" alt="Bobby" />
+        <div class="name">Bobby</div>
+        <div class="role">polydactyl colorpoint cat</div>
+      </div>
+      <div class="dreamer-card" data-id="Luna" tabindex="0">
+        <img src="assets/characters/Luna/Luna_character_card.webp" alt="Luna" />
+        <div class="name">Luna</div>
+        <div class="role">chihuahua-terrier mix</div>
+      </div>
+      <div class="dreamer-card" data-id="Mateo" tabindex="0">
+        <img src="assets/characters/Mateo/Mateo_character_card.webp" alt="Mateo" />
+        <div class="name">Mateo</div>
+        <div class="role">bengal cat</div>
+      </div>
+    </div>
+    <button id="selector-back">back</button>
+  </div>
+
+  <div id="app"></div>
+
+  <div id="hud">
+    <div id="crosshair"></div>
+    <div id="prompt"></div>
+    <div id="inventory-bar"></div>
+  </div>
+
+  <div id="journal-popup">
+    <div class="jtitle">Journal Fragment</div>
+    <p id="journal-text"></p>
+    <button class="menu-btn" id="journal-close">Close</button>
+  </div>
+
+  <div id="track-popup">
+    <div class="voice">"You found a tune."</div>
+    <div class="tname" id="track-name"></div>
+    <div class="row">
+      <button class="menu-btn" id="track-save">Save for Later</button>
+      <button class="menu-btn" id="track-play">Play Now</button>
+    </div>
+  </div>
+
+  <div id="tv-overlay">
+    <video id="tv-video" playsinline></video>
+    <button id="tv-close">Close ✕</button>
+  </div>
+
+  <div id="save-toast">Dream saved.</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

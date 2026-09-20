@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Backrooms</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #2b1f2a;
+    --wallpaper: #e3b8c4;
+    --wallpaper-dim: #c9a3b0;
+    --ink: #f3dde3;
+    --ink-dim: #c9a3b0;
+    --ink-bright: #ffeef2;
+    --hairline: rgba(235, 200, 213, 0.32);
+    --panel: rgba(58, 40, 52, 0.55);
+    --alarm: #ff9ac4;
+  }
+
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    background: var(--void);
+    font-family: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+    color: var(--ink);
+  }
+  * { box-sizing: border-box; }
+
+  #app { position: fixed; inset: 0; touch-action: none; }
+  canvas { display: block; }
+
+  #lookLayer {
+    position: fixed; inset: 0; z-index: 8; touch-action: none;
+    display: none;
+  }
+  body.touch #lookLayer { display: block; }
+
+  #joystick {
+    position: fixed; left: 26px; bottom: 26px; z-index: 12;
+    width: 108px; height: 108px; border-radius: 50%;
+    border: 1px solid var(--hairline); background: var(--panel);
+    display: none; touch-action: none;
+  }
+  body.touch #joystick { display: block; }
+  #joystickThumb {
+    position: absolute; left: 50%; top: 50%; width: 46px; height: 46px;
+    margin: -23px 0 0 -23px; border-radius: 50%;
+    background: rgba(243, 221, 227, 0.35); border: 1px solid var(--hairline);
+  }
+
+  body.touch #hud .desktop-only { display: none; }
+  body.touch #overlay .desktop-only { display: none; }
+  body:not(.touch) #overlay .touch-only,
+  body:not(.touch) #hud .touch-only { display: none; }
+
+  #vignette {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(60,35,55,0.35) 100%);
+  }
+  #scanlines {
+    position: fixed; inset: 0; z-index: 6; pointer-events: none; opacity: 0.35;
+    background: repeating-linear-gradient(
+      to bottom, rgba(255,240,245,0.05) 0px, rgba(255,240,245,0.05) 1px, transparent 2px, transparent 3px
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  #overlay {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(43,31,42,0.62), rgba(58,36,50,0.78));
+    backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+    text-align: center; z-index: 20;
+    transition: opacity .4s ease; overflow-y: auto; padding-block: 32px;
+  }
+  #overlay.hidden { opacity: 0; pointer-events: none; }
+  #overlay .skylight {
+    position: absolute; top: -220px; left: 50%; width: 620px; height: 440px;
+    transform: translateX(-50%); border-radius: 50%; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 75%, rgba(200,225,240,0.55), rgba(240,205,225,0.28) 45%, transparent 72%);
+    filter: blur(6px);
+  }
+  #overlay .stack { position: relative; padding: 24px 24px; max-width: 420px; }
+  #overlay .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; letter-spacing: .32em; color: var(--ink-dim);
+    text-transform: uppercase; margin: 0 0 .6rem;
+  }
+  #overlay h1 {
+    font-family: 'Baloo 2', 'Cormorant Garamond', Georgia, serif; font-weight: 800;
+    font-size: clamp(2.4rem, 9vw, 3.6rem); letter-spacing: 0; line-height: .95;
+    margin: 0 0 .5rem; color: var(--ink-bright);
+    text-shadow: 0 0 28px rgba(255, 190, 220, 0.45), 0 2px 0 rgba(43,31,42,0.35);
+    text-wrap: balance;
+  }
+  #overlay .tagline {
+    font-family: 'JetBrains Mono', monospace; font-size: .74rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ink-dim); margin: 0 0 1.8rem;
+  }
+  #overlay .menu-stack { display: flex; flex-direction: column; gap: 12px; margin: 0 0 1.4rem; }
+  #overlay .pill {
+    display: block; width: 100%; font-family: 'JetBrains Mono', monospace;
+    font-weight: 600; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+    color: #3a2530; background: var(--pill-color, #f2d17a); border: none;
+    border-radius: 999px; padding: 1em 1.2em; cursor: pointer;
+    box-shadow: 0 4px 0 rgba(43,31,42,0.18), 0 8px 16px rgba(43,31,42,0.22);
+    transition: transform .15s ease, box-shadow .15s ease;
+    text-decoration: none;
+  }
+  #overlay .pill:hover, #overlay .pill:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(43,31,42,0.18), 0 12px 20px rgba(43,31,42,0.26);
+  }
+  #overlay .pill:active { transform: translateY(1px); box-shadow: 0 2px 0 rgba(43,31,42,0.18); }
+  #overlay .pill.enter { --pill-color: #f2d17a; }
+  #overlay .pill.jump { --pill-color: #e896ae; }
+  #overlay .pill.settings { --pill-color: #a8d9b0; }
+  #overlay .pill.extras { --pill-color: #9fc9e6; }
+  #overlay .keys { font-size: .72rem; color: var(--ink-dim); letter-spacing: .02em; }
+  #overlay .keys kbd {
+    font-family: inherit; color: var(--ink-bright); border: 1px solid var(--hairline);
+    border-radius: 3px; padding: .1em .4em; margin: 0 .1em;
+  }
+  #overlayGear {
+    position: absolute; top: 18px; right: 18px; z-index: 21; width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid var(--hairline); background: rgba(58,40,52,0.55);
+    color: var(--ink-bright); font-size: 1.1rem; cursor: pointer; backdrop-filter: blur(3px);
+  }
+
+  #crosshair {
+    position: fixed; top: 50%; left: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px;
+    border-radius: 50%; background: rgba(255,238,245,.75); z-index: 10; pointer-events: none;
+    box-shadow: 0 0 8px rgba(255,200,225,.55);
+  }
+
+  #hud {
+    position: fixed; left: 16px; bottom: 16px; z-index: 10;
+    background: var(--panel); border: 1px solid var(--hairline);
+    padding: 7px 12px; font-size: .68rem; letter-spacing: .05em; color: var(--ink-dim);
+    pointer-events: none; backdrop-filter: blur(2px);
+  }
+  #hud b { color: var(--ink-bright); font-weight: 600; }
+  body.touch #hud { bottom: auto; top: 14px; font-size: .6rem; padding: 6px 10px; }
+
+  #zoneTag {
+    position: fixed; left: 50%; top: 16px; transform: translateX(-50%); z-index: 10;
+    background: var(--panel); border: 1px solid var(--hairline);
+    padding: 6px 16px; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-bright); pointer-events: none; backdrop-filter: blur(2px);
+    opacity: 0; transition: opacity .5s ease;
+  }
+  #zoneTag.show { opacity: 1; }
+  body.touch #zoneTag { top: auto; bottom: 130px; }
+
+  #minimapWrap {
+    position: fixed; right: 16px; top: 16px; z-index: 10;
+    border: 1px solid var(--hairline); background: var(--panel); padding: 7px;
+    backdrop-filter: blur(2px);
+  }
+  #minimapWrap span {
+    display: block; color: var(--ink-dim); font-size: .6rem; text-align: center;
+    margin-bottom: 5px; letter-spacing: .22em; text-transform: uppercase;
+  }
+  #minimap { display: block; image-rendering: pixelated; }
+
+  #teleportBtn, #runBtn, #menuBtn {
+    position: fixed; z-index: 12; font-family: inherit;
+    border: 1px solid var(--hairline); background: var(--panel); color: var(--ink-bright);
+    border-radius: 999px; padding: 9px 16px; font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; cursor: pointer; backdrop-filter: blur(2px);
+  }
+  #teleportBtn { right: 16px; bottom: 16px; }
+  body.touch #teleportBtn { bottom: 26px; }
+  #menuBtn { left: 16px; top: 16px; }
+  body.touch #menuBtn { top: 54px; padding: 7px 12px; font-size: .62rem; }
+  #runBtn {
+    left: 150px; bottom: 42px; border-radius: 50%; width: 60px; height: 60px;
+    padding: 0; display: none; align-items: center; justify-content: center;
+  }
+  body.touch #runBtn { display: flex; }
+  #runBtn.active { background: var(--ink-bright); color: var(--void); border-color: var(--ink-bright); }
+
+  .modal {
+    position: fixed; inset: 0; z-index: 25; display: none;
+    align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(43,31,42,0.88), rgba(58,36,50,0.86));
+  }
+  .modal.show { display: flex; }
+  .modal .box {
+    width: min(420px, 90vw); max-height: 78vh; overflow-y: auto;
+    background: var(--panel); border: 1px solid var(--hairline); border-radius: 8px;
+    padding: 18px; backdrop-filter: blur(3px);
+  }
+  .modal h2 {
+    font-family: 'Cormorant Garamond', 'Georgia', serif; font-style: italic; font-weight: 500;
+    font-size: 1.5rem; margin: 0 0 .3rem; color: var(--ink-bright); text-align: center;
+  }
+  .modal .hint {
+    font-size: .64rem; color: var(--ink-dim); text-align: center; margin: 0 0 1rem; letter-spacing: .04em;
+  }
+  .modal .list { display: flex; flex-direction: column; gap: 6px; }
+  .modal .list button {
+    font-family: inherit; text-align: left; padding: .6em .9em; font-size: .74rem;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--hairline); border-radius: 5px;
+    color: var(--ink); cursor: pointer; letter-spacing: .02em;
+  }
+  .modal .list button:hover, .modal .list button:focus-visible { background: rgba(255,255,255,0.14); color: var(--ink-bright); }
+  .modal .close-btn {
+    display: block; width: 100%; margin-top: 12px; font-family: inherit;
+    background: transparent; border: 1px solid var(--hairline); border-radius: 5px;
+    color: var(--ink-dim); padding: .5em; font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; cursor: pointer;
+  }
+  .modal .help-text { font-size: .8rem; color: var(--ink); line-height: 1.7; margin: 0 0 .6rem; }
+  .modal .help-text b { color: var(--ink-bright); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #overlay { transition: none; }
+  }
+
+  @media (max-width: 480px) {
+    #minimapWrap { transform: scale(.72); transform-origin: top right; }
+    #teleportBtn { right: 12px; }
+    #menuBtn { left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+
+<div id="app"></div>
+<div id="lookLayer"></div>
+<div id="vignette"></div>
+<div id="scanlines"></div>
+<div id="crosshair"></div>
+
+<div id="joystick"><div id="joystickThumb"></div></div>
+<button id="runBtn" title="Toggle run">🏃</button>
+
+<div id="zoneTag"></div>
+
+<button id="teleportBtn" title="Teleport">✦ Teleport</button>
+<button id="menuBtn" title="Menu">☰ Menu</button>
+
+<div id="teleportPanel" class="modal">
+  <div class="box">
+    <h2>Go anywhere</h2>
+    <p class="hint">Pick a room — no walking required.</p>
+    <div id="teleportList" class="list"></div>
+    <button id="teleportClose" class="close-btn">Close</button>
+  </div>
+</div>
+
+<div id="menuPanel" class="modal">
+  <div class="box">
+    <h2>Menu</h2>
+    <p class="hint">Level 0, remembered soft.</p>
+    <div class="list">
+      <button id="menuTeleportBtn">✦ Teleport to a room</button>
+      <button id="menuRestartBtn">↺ Restart at spawn</button>
+      <button id="menuHelpBtn">❓ How to play</button>
+    </div>
+    <button id="menuClose" class="close-btn">Close</button>
+  </div>
+</div>
+
+<div id="minimapWrap">
+  <span>Floor plan</span>
+  <canvas id="minimap" width="192" height="140"></canvas>
+</div>
+
+<div id="hud">
+  <span class="desktop-only"><b>WASD</b> move &nbsp;·&nbsp; <b>mouse</b> look &nbsp;·&nbsp; <b>shift</b> run &nbsp;·&nbsp; <b>T</b> teleport &nbsp;·&nbsp; <b>M</b> menu &nbsp;·&nbsp; <b>esc</b> release</span>
+  <span class="touch-only"><b>joystick</b> move &nbsp;·&nbsp; <b>drag</b> to look</span>
+</div>
+
+<div id="overlay">
+  <div class="skylight"></div>
+  <button id="overlayGear" title="Menu">⚙</button>
+  <div class="stack">
+    <p class="eyebrow">Level 0</p>
+    <h1>The<br>Backrooms</h1>
+    <p class="tagline">Walk through dusty dreams</p>
+    <div class="menu-stack">
+      <button id="pillEnter" class="pill enter">Step inside</button>
+      <button id="pillJump" class="pill jump">Teleport</button>
+      <button id="pillSettings" class="pill settings">Menu</button>
+      <a id="pillExtras" class="pill extras" href="https://claude.ai/code/artifact/b2c2b437-3d23-4a3f-b4f0-03c6e765d9a3" target="_blank" rel="noopener">Extras · Site survey</a>
+    </div>
+    <p class="keys desktop-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move &nbsp; <kbd>mouse</kbd> look &nbsp; <kbd>shift</kbd> run &nbsp; <kbd>T</kbd> teleport</p>
+    <p class="keys touch-only">joystick, bottom-left, to move &nbsp;·&nbsp; drag anywhere to look</p>
+  </div>
+</div>
+
+<script src="lib/three.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------------
+  // Floor plan — a background labyrinth (recursive-backtracker + loop
+  // openings, guaranteed connected) with named zones from the Backrooms
+  // wiki blueprint carved in at their relative positions/sizes. Each zone
+  // gets a theme id used below for floor color, lighting and props.
+  // '#' = wall column, '.' = walkable floor.
+  // ---------------------------------------------------------------------
+  const MAP = ["##.................###############.......#######............#","#.......................#...................................#","#..................##.#.#.###.####.......####.##............#","#.....................#.#...#.#.............#.#.............#","##..................#.#.#.#...##.#.......##.#.##............#","#.....................#.#...#.............#.#...............#","#..................##.#.#.#######.........#.#.#.............#","#.......................#.......................#...#...#.#.#","....###.#......................###..............#.#.#####.#.#","........#.......................................#.#...#.....#","...##.####......................##..............#.#.###.###.#","........#.......................................#.#...#.#...#","....###.#.......................#.................###...###.#","......#.#.......................#...............#.#.#.#...#.#","...##.#..#.....................###..............#.#.###.#.#","......#.....................................................#","...#####........................#...........................#","#...#.....#.......#...#.#.....#.#...........................#","..........#.#.#...#####.##..#.#.#...........................#","..........#.#...#.........#.....#.#.........................#","..........#.###.#####.###.#.#####.#####.....................#","..........#.........#...#...#...#.#.........................#","..........#####.#.#.#.#.#.#####.#.#.###.....................#","..............#.#.#.#...#...#...#.#...#.....................#","..........###.###.#.#.###...................................#","..................#.#.#.....................................#","#.#####.#.#.#######.#.#.#...................................#","#.#...#...#.#.......#.#.....#...............................#","#.#...#####.#.#####.#.#.#####.#................#............#","#.#.#.......#.....#.#.#.#...#...............................#","#.#.########......#.#.###.#.###.#.###.#####.#.#.............#","#...................#...#.....#...#...#...#.#.#.............#","#...........#.#.#.....#.#.###.#.#.#.###.#.#.#.#####.#####.###","#.........................#.....#.......#.....#.............#","#############################################################"];
+
+  const ZONES = [
+    { id:'prison',          label:'Prison',                         c0:2,  r0:0,  c1:19, r1:8,  theme:'prison' },
+    { id:'office',          label:'The Office',                     c0:0,  r0:8,  c1:3,  r1:17, theme:'office' },
+    { id:'hothalls1',       label:'Hot Halls',                      c0:34, r0:0,  c1:41, r1:7,  theme:'hot' },
+    { id:'hothalls2',       label:'Hot Halls',                      c0:48, r0:0,  c1:60, r1:7,  theme:'hot' },
+    { id:'whiterooms',      label:'White Rooms',                    c0:34, r0:7,  c1:48, r1:19, theme:'white' },
+    { id:'yellowrooms',     label:'Yellow Rooms',                   c0:10, r0:8,  c1:31, r1:17, theme:'yellow' },
+    { id:'metro',           label:'Metro Station',                  c0:38, r0:15, c1:60, r1:19, theme:'metro' },
+    { id:'mall',            label:'The Mall',                       c0:48, r0:19, c1:60, r1:24, theme:'mall' },
+    { id:'statue',          label:'Statue Room',                    c0:46, r0:21, c1:49, r1:24, theme:'statue' },
+    { id:'almostflooded',   label:'Almost Completely Flooded Area', c0:38, r0:19, c1:47, r1:20, theme:'flooded' },
+    { id:'swamp',           label:'Swamp',                          c0:40, r0:20, c1:47, r1:24, theme:'swamp' },
+    { id:'house',           label:'House',                          c0:41, r0:21, c1:43, r1:23, theme:'house' },
+    { id:'containerpark',   label:'Container Park',                 c0:34, r0:24, c1:40, r1:25, theme:'container' },
+    { id:'greenrooms',      label:'Green Rooms',                    c0:38, r0:24, c1:47, r1:30, theme:'green' },
+    { id:'coldhalls',       label:'Cold Halls',                     c0:48, r0:24, c1:60, r1:32, theme:'cold' },
+    { id:'church',          label:'The Church',                     c0:31, r0:24, c1:38, r1:30, theme:'church' },
+    { id:'auditorium',      label:'Auditorium',                     c0:25, r0:24, c1:31, r1:27, theme:'auditorium' },
+    { id:'highroom',        label:'High Room',                      c0:26, r0:17, c1:28, r1:19, theme:'highroom' },
+    { id:'doorlessgarden',  label:'Doorless Garden',                c0:15, r0:17, c1:17, r1:19, theme:'garden' },
+    { id:'bridge',          label:'Bridge',                         c0:8,  r0:12, c1:9,  r1:17, theme:'bridge' },
+    { id:'abyss1',          label:'Abyss',                          c0:8,  r0:8,  c1:9,  r1:14, theme:'abyss', blocked:true },
+    { id:'abyss2',          label:'Abyss',                          c0:5,  r0:16, c1:8,  r1:17, theme:'abyss', blocked:true },
+    { id:'inaccessible',    label:'Inaccessible',                   c0:0,  r0:19, c1:6,  r1:21, theme:'inaccessible', blocked:true },
+    { id:'poolcomplex',     label:'Pools',                          c0:0,  r0:18, c1:10, r1:26, theme:'pool' },
+    { id:'bigpool',         label:'Big Pool',                       c0:7,  r0:21, c1:10, r1:24, theme:'bigpool' },
+    { id:'upstairs',        label:'Up Stairs',                      c0:3,  r0:28, c1:5,  r1:29, theme:'stairs' },
+    { id:'flooded',         label:'Flooded',                        c0:5,  r0:29, c1:9,  r1:30, theme:'flooded2' },
+    { id:'downstair',       label:'Down Stair',                     c0:12, r0:30, c1:17, r1:32, theme:'stairs' },
+    { id:'floodedpassable', label:'Flooded But Passable',           c0:2,  r0:31, c1:11, r1:34, theme:'flooded2' },
+    { id:'fountainroom',    label:'Fountain Room',                  c0:18, r0:32, c1:22, r1:34, theme:'fountain' },
+  ];
+
+  const THEME_COLORS = {
+    '':          0xe0b3c2, prison: 0xcbb9c8, office: 0xb9c7dd, hot: 0xf2bfa8,
+    white:       0xf8ecec, yellow: 0xf0d9a6, metro: 0xc4b8cc, mall: 0xe3c4b3,
+    statue:      0xd6c1cd, flooded: 0xb9dbdc, swamp: 0xbcd6b2, house: 0xe3c4b3,
+    container:   0xf2c9a6, green: 0xbbdec7, cold: 0xbcc9ec, church: 0xdcc2e6,
+    auditorium:  0xdac0b1, highroom: 0xc9c1d0, garden: 0xbadcb9, bridge: 0xc4b9c9,
+    pool:        0xb2d8ec, bigpool: 0x9fcbe0, stairs: 0xcfc4cf, flooded2: 0xb9dbdc,
+    fountain:    0xa9d3e6,
+  };
+  const ACCENT_COLORS = {
+    hot: 0xffb694, cold: 0xaecdff, church: 0xe8c2f5, swamp: 0xbdeda3,
+    green: 0xa6f4cb, metro: 0xe6d7f7, white: 0xffffff, pool: 0xa6e6ff,
+    bigpool: 0xa6e6ff, flooded: 0xa6e6ff, flooded2: 0xa6e6ff, fountain: 0xa6e6ff,
+    yellow: 0xffe5a3, mall: 0xffdec2, prison: 0xebdbe6,
+  };
+  const WATER_THEMES = new Set(['pool', 'bigpool', 'flooded', 'flooded2', 'swamp', 'fountain', 'almostflooded']);
+
+  const ROWS = MAP.length, COLS = MAP[0].length;
+  const CELL = 3;          // meters per grid cell
+  const WALL_H = 3.1;      // wall / ceiling height
+  const isWall = (c, r) => r < 0 || c < 0 || r >= ROWS || c >= COLS || MAP[r][c] === '#';
+  const worldX = c => (c - COLS / 2) * CELL;
+  const worldZ = r => (r - ROWS / 2) * CELL;
+
+  const themeGrid = Array.from({ length: ROWS }, () => Array(COLS).fill(''));
+  for (const z of ZONES) {
+    if (z.blocked) continue;
+    for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+      if (r < 0 || c < 0 || r >= ROWS || c >= COLS) continue;
+      if (!isWall(c, r)) themeGrid[r][c] = z.theme;
+    }
+  }
+  function zoneNameAt(c, r) {
+    for (let i = ZONES.length - 1; i >= 0; i--) {
+      const z = ZONES[i];
+      if (c >= z.c0 && c < z.c1 && r >= z.r0 && r < z.r1) return z.label;
+    }
+    return '';
+  }
+
+  function findOpen() {
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (!isWall(c, r)) return { c, r };
+  }
+  const start = findOpen();
+
+  // ---------------------------------------------------------------------
+  // Textures
+  // ---------------------------------------------------------------------
+  function canvasTex(size, draw) {
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    draw(cv.getContext('2d'), size);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    return tex;
+  }
+
+  const wallTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#dda3ba';
+    ctx.fillRect(0, 0, s, s);
+    for (let x = 0; x < s; x += 16) {
+      ctx.fillStyle = `rgba(180,120,150,${0.04 + Math.random() * 0.06})`;
+      ctx.fillRect(x, 0, 8, s);
+    }
+    // soft hazy light blooms instead of grime — a dusty, dreamlike glow.
+    for (let i = 0; i < 30; i++) {
+      const x = Math.random() * s, y = Math.random() * s, r = 6 + Math.random() * 20;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, `rgba(255,235,244,${0.07 + Math.random() * 0.09})`);
+      g.addColorStop(1, 'rgba(255,235,244,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+
+  const grimeTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, s, s);
+    for (let i = 0; i < 700; i++) {
+      const x = Math.random() * s, y = Math.random() * s;
+      ctx.fillStyle = `rgba(255,255,255,${0.05 + Math.random() * 0.12})`;
+      ctx.fillRect(x, y, 2, 2);
+    }
+  });
+
+  const ceilTex = canvasTex(256, (ctx, s) => {
+    ctx.fillStyle = '#f6ebe6';
+    ctx.fillRect(0, 0, s, s);
+    ctx.strokeStyle = 'rgba(210,180,205,0.4)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, s - 2, s - 2);
+  });
+  ceilTex.repeat.set(4, 4);
+
+  function labelSprite(text, color) {
+    const cv = document.createElement('canvas');
+    const W = 512, H = 96;
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+    ctx.font = '600 40px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.9)'; ctx.shadowBlur = 10;
+    ctx.fillStyle = color;
+    ctx.fillText(text, W / 2, H / 2);
+    const tex = new THREE.CanvasTexture(cv);
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+    const sprite = new THREE.Sprite(mat);
+    sprite.scale.set(6, 6 * H / W, 1);
+    return sprite;
+  }
+
+  // ---------------------------------------------------------------------
+  // Scene
+  // ---------------------------------------------------------------------
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xd9a8bc);
+  scene.fog = new THREE.FogExp2(0xd9a8bc, 0.021);
+
+  const camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.05, 220);
+  camera.position.set(worldX(start.c), 1.65, worldZ(start.r));
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(innerWidth, innerHeight);
+  document.getElementById('app').appendChild(renderer.domElement);
+
+  // ---------------------------------------------------------------------
+  // Rendering is fully unlit (MeshBasicMaterial everywhere): mood comes
+  // from the pastel textures and vertex colors below, not from real-time
+  // lights. This is deliberate for performance — a scene this size with
+  // dozens of live PointLights (evaluated per-pixel on every surface)
+  // dropped to single-digit FPS in testing. Zero dynamic lights keeps
+  // this smooth on modest laptops, phones, and Android WebViews.
+  // ---------------------------------------------------------------------
+
+  // Floor — one InstancedMesh per theme, so each zone reads as its own
+  // material without giving up instancing performance.
+  const floorGeo = new THREE.BoxGeometry(CELL, 0.05, CELL);
+  const floorGroups = {};
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    if (isWall(c, r)) continue;
+    const key = themeGrid[r][c] || '';
+    (floorGroups[key] = floorGroups[key] || []).push([c, r]);
+  }
+  const dummy = new THREE.Object3D();
+  for (const key in floorGroups) {
+    const cells = floorGroups[key];
+    const mat = new THREE.MeshBasicMaterial({ color: THEME_COLORS[key] ?? 0xe0b3c2, map: grimeTex });
+    const mesh = new THREE.InstancedMesh(floorGeo, mat, cells.length);
+    cells.forEach(([c, r], i) => {
+      dummy.position.set(worldX(c), -0.02, worldZ(r));
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    });
+    scene.add(mesh);
+  }
+
+  const ceilMat = new THREE.MeshBasicMaterial({ map: ceilTex });
+  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(COLS * CELL, ROWS * CELL), ceilMat);
+  ceiling.rotation.x = Math.PI / 2;
+  ceiling.position.y = WALL_H;
+  scene.add(ceiling);
+
+  const wallGeo = new THREE.BoxGeometry(CELL, WALL_H, CELL);
+  const wallMat = new THREE.MeshBasicMaterial({ map: wallTex });
+  let wallCount = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (isWall(c, r)) wallCount++;
+  const wallMesh = new THREE.InstancedMesh(wallGeo, wallMat, wallCount);
+  let wi = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    if (!isWall(c, r)) continue;
+    dummy.position.set(worldX(c), WALL_H / 2, worldZ(r));
+    dummy.updateMatrix();
+    wallMesh.setMatrixAt(wi++, dummy.matrix);
+  }
+  scene.add(wallMesh);
+
+  // ---------------------------------------------------------------------
+  // Ceiling fixtures — one InstancedMesh for every panel (was ~150
+  // separate draw calls). They all share one material, so "breathing"
+  // is one color pulse per frame instead of per-fixture lights.
+  // ---------------------------------------------------------------------
+  const fixtureMat = new THREE.MeshBasicMaterial({ color: 0xfff2f7 });
+  const fixtureGeo = new THREE.PlaneGeometry(CELL * 0.55, CELL * 0.3);
+  const fixtureSpots = [];
+  for (let r = 1; r < ROWS; r += 3) {
+    for (let c = 1; c < COLS; c += 4) {
+      if (isWall(c, r)) continue;
+      fixtureSpots.push([c, r]);
+    }
+  }
+  const fixtureMesh = new THREE.InstancedMesh(fixtureGeo, fixtureMat, fixtureSpots.length);
+  fixtureSpots.forEach(([c, r], i) => {
+    dummy.position.set(worldX(c), WALL_H - 0.02, worldZ(r));
+    dummy.rotation.set(Math.PI / 2, 0, 0);
+    dummy.updateMatrix();
+    fixtureMesh.setMatrixAt(i, dummy.matrix);
+  });
+  scene.add(fixtureMesh);
+
+  // ---------------------------------------------------------------------
+  // Zone props — pillars, stalls, benches etc. Grouped into one
+  // InstancedMesh per prop type instead of one Mesh per instance
+  // (some zones would otherwise add 100+ individual draw calls).
+  // ---------------------------------------------------------------------
+  const extraBlocked = new Set();
+  const obstacleGroups = new Map();
+  function addObstacle(c, r, sizeFrac, height, color, block) {
+    const key = sizeFrac + '|' + height + '|' + color;
+    if (!obstacleGroups.has(key)) {
+      obstacleGroups.set(key, {
+        geo: new THREE.BoxGeometry(CELL * sizeFrac, height, CELL * sizeFrac),
+        mat: new THREE.MeshBasicMaterial({ color }),
+        items: [],
+      });
+    }
+    obstacleGroups.get(key).items.push([c, r, height]);
+    if (block !== false) extraBlocked.add(r + ',' + c);
+  }
+  function flushObstacles() {
+    for (const { geo, mat, items } of obstacleGroups.values()) {
+      const mesh = new THREE.InstancedMesh(geo, mat, items.length);
+      items.forEach(([c, r, height], i) => {
+        dummy.position.set(worldX(c), height / 2, worldZ(r));
+        dummy.rotation.set(0, 0, 0);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+      });
+      scene.add(mesh);
+    }
+  }
+  function addWaterPlane(z, color, opacity) {
+    const w = (z.c1 - z.c0) * CELL, d = (z.r1 - z.r0) * CELL;
+    const cx = (worldX(z.c0) + worldX(z.c1 - 1)) / 2, cz = (worldZ(z.r0) + worldZ(z.r1 - 1)) / 2;
+    const geo = new THREE.PlaneGeometry(w, d);
+    const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity });
+    const m = new THREE.Mesh(geo, mat);
+    m.rotation.x = -Math.PI / 2;
+    m.position.set(cx, 0.05, cz);
+    scene.add(m);
+  }
+
+  for (const z of ZONES) {
+    if (z.blocked) continue;
+    const cx = (z.c0 + z.c1 - 1) / 2, cr = (z.r0 + z.r1 - 1) / 2;
+    const centerOpen = !isWall(Math.round(cx), Math.round(cr));
+
+    // Label.
+    const label = labelSprite(z.label, '#' + (ACCENT_COLORS[z.theme] ?? 0xffeef2).toString(16).padStart(6, '0'));
+    label.position.set(worldX(cx), 2.4, worldZ(cr));
+    scene.add(label);
+
+    // Theme props.
+    switch (z.theme) {
+      case 'prison':
+        for (let c = z.c0; c < z.c1; c++) {
+          if ((c - z.c0) % 3 !== 2) continue;
+          const doorRow = z.r0 + Math.floor((c - z.c0) / 3) % Math.max(1, z.r1 - z.r0);
+          for (let r = z.r0; r < z.r1; r++) {
+            if (r === doorRow || isWall(c, r)) continue;
+            addObstacle(c, r, 0.22, WALL_H, 0xd9c2d0, true);
+          }
+        }
+        break;
+      case 'yellow':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r) || (r + c) % 2 !== 0) continue;
+          addObstacle(c, r, 0.55, WALL_H, 0xecc98a, true);
+        }
+        break;
+      case 'mall':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r) || (c - z.c0) % 3 !== 1 || (r - z.r0) % 3 !== 1) continue;
+          addObstacle(c, r, 0.6, 1.7, 0xdba98f, true);
+        }
+        break;
+      case 'metro':
+        for (let c = z.c0; c < z.c1; c += 4) {
+          if (isWall(c, z.r0)) continue;
+          addObstacle(c, z.r0, 0.3, WALL_H, 0xbcaec7, true);
+        }
+        break;
+      case 'church':
+        for (let r = z.r0 + 1; r < z.r1 - 1; r += 2) {
+          if (!isWall(z.c0, r)) addObstacle(z.c0, r, 0.4, WALL_H, 0xe0c0ec, true);
+          if (!isWall(z.c1 - 1, r)) addObstacle(z.c1 - 1, r, 0.4, WALL_H, 0xe0c0ec, true);
+        }
+        break;
+      case 'container':
+        for (let c = z.c0; c < z.c1; c += 2) {
+          if (isWall(c, z.r0)) continue;
+          addObstacle(c, z.r0, 0.75, 1.4, 0xf2c091, true);
+        }
+        break;
+      case 'auditorium':
+        for (let r = z.r0 + 1; r < z.r1; r++) for (let c = z.c0 + 1; c < z.c1 - 1; c += 2) {
+          if (isWall(c, r)) continue;
+          addObstacle(c, r, 0.7, 0.55, 0xd8ac9c, true);
+        }
+        break;
+      case 'statue':
+        if (centerOpen) addObstacle(Math.round(cx), Math.round(cr), 0.5, WALL_H * 0.9, 0xe3d0e0, true);
+        break;
+      case 'house':
+        if (!isWall(z.c0, z.r0)) addObstacle(z.c0, z.r0, 1.3, 2.0, 0xecc4a6, true);
+        break;
+      case 'garden':
+        for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+          if (isWall(c, r)) continue;
+          addObstacle(c, r, 0.45, 0.5, 0xa8dfab, true);
+        }
+        break;
+    }
+
+    if (WATER_THEMES.has(z.theme)) {
+      const opacity = z.theme === 'swamp' ? 0.55 : 0.4;
+      const color = z.theme === 'swamp' ? 0xa8d99e : (ACCENT_COLORS[z.theme] ?? 0xa6e6ff);
+      addWaterPlane(z, color, opacity);
+    }
+  }
+  flushObstacles();
+
+  const POSTERS = {
+    lost_and_found: { w:720, h:405, src:"posters/lost_and_found.jpg" },
+    softer_days: { w:720, h:405, src:"posters/softer_days.jpg" },
+    cloudside_shampoo: { w:640, h:480, src:"posters/cloudside_shampoo.jpg" },
+    wash_your_hands: { w:420, h:420, src:"posters/wash_your_hands.jpg" },
+    take_a_break: { w:420, h:420, src:"posters/take_a_break.jpg" },
+    express_yourself: { w:420, h:420, src:"posters/express_yourself.jpg" },
+    keep_it_clean: { w:420, h:420, src:"posters/keep_it_clean.jpg" },
+    fuel_better_dreams: { w:420, h:420, src:"posters/fuel_better_dreams.jpg" },
+    its_okay_to_feel: { w:420, h:420, src:"posters/its_okay_to_feel.jpg" },
+    flush_your_problems: { w:340, h:680, src:"posters/flush_your_problems.jpg" },
+    be_nice_to_strangers: { w:340, h:680, src:"posters/be_nice_to_strangers.jpg" },
+    stay_hydrated: { w:340, h:680, src:"posters/stay_hydrated.jpg" },
+  };
+
+  // ---------------------------------------------------------------------
+  // Posters — wall-mounted ad art spread across a dozen wings, each
+  // mounted flush on a wall face that borders an open room/corridor.
+  // ---------------------------------------------------------------------
+  function addPoster(spot, key) {
+    const meta = POSTERS[key];
+    if (!meta) return;
+    const ar = meta.w / meta.h;
+    const MAX_W = 2.2, MAX_H = 2.0;
+    let width = MAX_H * ar, height = MAX_H;
+    if (width > MAX_W) { width = MAX_W; height = MAX_W / ar; }
+    const tex = new THREE.TextureLoader().load(meta.src);
+    const mat = new THREE.MeshBasicMaterial({ map: tex });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), mat);
+    const eps = 0.03;
+    let rotY = 0, ox = 0, oz = 0;
+    if (spot.dir === 'N') { rotY = Math.PI; oz = -CELL / 2 - eps; }
+    else if (spot.dir === 'S') { rotY = 0; oz = CELL / 2 + eps; }
+    else if (spot.dir === 'E') { rotY = Math.PI / 2; ox = CELL / 2 + eps; }
+    else if (spot.dir === 'W') { rotY = -Math.PI / 2; ox = -CELL / 2 - eps; }
+    mesh.position.set(worldX(spot.c) + ox, 1.5, worldZ(spot.r) + oz);
+    mesh.rotation.y = rotY;
+    scene.add(mesh);
+  }
+
+  const POSTER_SPOTS = [
+    { c: 5,  r: 8,  dir: 'N', key: 'flush_your_problems' },
+    { c: 24, r: 7,  dir: 'S', key: 'take_a_break' },
+    { c: 0,  r: 7,  dir: 'S', key: 'lost_and_found' },
+    { c: 60, r: 0,  dir: 'W', key: 'stay_hydrated' },
+    { c: 42, r: 6,  dir: 'S', key: 'cloudside_shampoo' },
+    { c: 60, r: 16, dir: 'W', key: 'keep_it_clean' },
+    { c: 60, r: 19, dir: 'W', key: 'softer_days' },
+    { c: 38, r: 30, dir: 'N', key: 'fuel_better_dreams' },
+    { c: 60, r: 24, dir: 'W', key: 'be_nice_to_strangers' },
+    { c: 34, r: 30, dir: 'N', key: 'its_okay_to_feel' },
+    { c: 0,  r: 26, dir: 'N', key: 'express_yourself' },
+    { c: 20, r: 0,  dir: 'S', key: 'wash_your_hands' },
+  ];
+  for (const spot of POSTER_SPOTS) addPoster(spot, spot.key);
+
+  // ---------------------------------------------------------------------
+  // TV screens — vintage commercials looping on CRT-style props, spread
+  // across six more wings. PC-desktop only: the video files are bundled
+  // with the Electron build and are too heavy for the web/mobile builds,
+  // so this whole block is skipped unless window.ELECTRON_BUILD is set
+  // (by electron/app/index.html, not by the plain web copy).
+  // ---------------------------------------------------------------------
+  if (window.ELECTRON_BUILD) {
+    const TV_SPOTS = [
+      { c: 4,  r: 8,  dir: 'N', key: 'bellamy_drink_mix' },
+      { c: 60, r: 17, dir: 'W', key: 'childrens_drink_ad' },
+      { c: 60, r: 20, dir: 'W', key: 'vintage_man_commercial' },
+      { c: 39, r: 30, dir: 'N', key: 'photoreal_dream' },
+      { c: 60, r: 25, dir: 'W', key: 'late_night_broadcast' },
+      { c: 2,  r: 26, dir: 'N', key: 'channel_static' },
+      { c: 28, r: 23, dir: 'S', key: 'health_warning_psa' },
+    ];
+    function addTV(spot) {
+      const video = document.createElement('video');
+      video.src = 'videos/' + spot.key + '.mp4';
+      video.loop = true; video.muted = true; video.playsInline = true; video.autoplay = true;
+      // Off-screen but still in the DOM — a detached <video> element is
+      // unreliable as a decode source in some engines.
+      video.style.cssText = 'position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none;';
+      document.body.appendChild(video);
+      video.play().catch(() => {});
+      const tex = new THREE.VideoTexture(video);
+      const w = 1.5, h = 0.95;
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex }));
+      screen.position.z = 0.01;
+      const bezel = new THREE.Mesh(new THREE.BoxGeometry(w + 0.22, h + 0.22, 0.16), new THREE.MeshBasicMaterial({ color: 0x2a2028 }));
+      bezel.position.z = -0.09;
+      const group = new THREE.Group();
+      group.add(bezel, screen);
+      const eps = 0.03;
+      let rotY = 0, ox = 0, oz = 0;
+      if (spot.dir === 'N') { rotY = Math.PI; oz = -CELL / 2 - eps; }
+      else if (spot.dir === 'S') { rotY = 0; oz = CELL / 2 + eps; }
+      else if (spot.dir === 'E') { rotY = Math.PI / 2; ox = CELL / 2 + eps; }
+      else if (spot.dir === 'W') { rotY = -Math.PI / 2; ox = -CELL / 2 - eps; }
+      group.position.set(worldX(spot.c) + ox, 1.55, worldZ(spot.r) + oz);
+      group.rotation.y = rotY;
+      scene.add(group);
+    }
+    for (const spot of TV_SPOTS) addTV(spot);
+  }
+
+  // ---------------------------------------------------------------------
+  // Movement + look — mouse/keyboard on desktop, joystick + touch-drag
+  // on phones (pointer lock isn't a thing on touchscreens).
+  // ---------------------------------------------------------------------
+  const move = { f: false, b: false, l: false, r: false, run: false };
+  let yaw = 0, pitch = 0;
+  let joyForward = 0, joyStrafe = 0;
+  const overlay = document.getElementById('overlay');
+  const dom = renderer.domElement;
+
+  const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+  document.body.classList.toggle('touch', isTouch);
+
+  if (isTouch) {
+    document.getElementById('pillEnter').addEventListener('click', () => overlay.classList.add('hidden'));
+  } else {
+    const requestLock = () => { if (openModals.size === 0) dom.requestPointerLock(); };
+    document.getElementById('pillEnter').addEventListener('click', requestLock);
+    dom.addEventListener('click', requestLock);
+    document.addEventListener('pointerlockchange', () => {
+      if (openModals.size > 0) return;
+      overlay.classList.toggle('hidden', document.pointerLockElement === dom);
+    });
+    document.addEventListener('mousemove', e => {
+      if (document.pointerLockElement !== dom) return;
+      yaw -= e.movementX * 0.0022;
+      pitch -= e.movementY * 0.0022;
+      pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
+    });
+    addEventListener('keydown', e => {
+      if (e.code === 'KeyW') move.f = true;
+      if (e.code === 'KeyS') move.b = true;
+      if (e.code === 'KeyA') move.l = true;
+      if (e.code === 'KeyD') move.r = true;
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = true;
+      if (e.code === 'KeyT') openTeleport();
+      if (e.code === 'KeyM') openMenu();
+    });
+    addEventListener('keyup', e => {
+      if (e.code === 'KeyW') move.f = false;
+      if (e.code === 'KeyS') move.b = false;
+      if (e.code === 'KeyA') move.l = false;
+      if (e.code === 'KeyD') move.r = false;
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') move.run = false;
+    });
+  }
+
+  document.getElementById('pillJump').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openTeleport();
+  });
+  document.getElementById('pillSettings').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openMenu();
+  });
+  document.getElementById('overlayGear').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    openMenu();
+  });
+
+  if (isTouch) {
+    const stick = document.getElementById('joystick');
+    const thumb = document.getElementById('joystickThumb');
+    const STICK_R = 40;
+    let stickTouchId = null, stickCenter = { x: 0, y: 0 };
+
+    stick.addEventListener('touchstart', e => {
+      e.preventDefault();
+      const t = e.changedTouches[0];
+      const rect = stick.getBoundingClientRect();
+      stickCenter = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      stickTouchId = t.identifier;
+    }, { passive: false });
+
+    function updateStick(t) {
+      let dx = t.clientX - stickCenter.x, dy = t.clientY - stickCenter.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const clamped = Math.min(len, STICK_R);
+      dx = dx / len * clamped; dy = dy / len * clamped;
+      thumb.style.transform = `translate(${dx}px, ${dy}px)`;
+      joyStrafe = dx / STICK_R;
+      joyForward = -dy / STICK_R;
+    }
+    function resetStick() {
+      stickTouchId = null; joyForward = 0; joyStrafe = 0;
+      thumb.style.transform = 'translate(0,0)';
+    }
+    addEventListener('touchmove', e => {
+      for (const t of e.changedTouches) if (t.identifier === stickTouchId) { e.preventDefault(); updateStick(t); }
+    }, { passive: false });
+    addEventListener('touchend', e => {
+      for (const t of e.changedTouches) if (t.identifier === stickTouchId) resetStick();
+    });
+    addEventListener('touchcancel', () => resetStick());
+
+    const lookLayer = document.getElementById('lookLayer');
+    let lookTouchId = null, lastLook = { x: 0, y: 0 };
+    lookLayer.addEventListener('touchstart', e => {
+      if (overlay && !overlay.classList.contains('hidden')) return;
+      const t = e.changedTouches[0];
+      if (lookTouchId !== null) return;
+      lookTouchId = t.identifier;
+      lastLook = { x: t.clientX, y: t.clientY };
+    }, { passive: false });
+    lookLayer.addEventListener('touchmove', e => {
+      for (const t of e.changedTouches) {
+        if (t.identifier !== lookTouchId) continue;
+        e.preventDefault();
+        yaw -= (t.clientX - lastLook.x) * 0.0055;
+        pitch -= (t.clientY - lastLook.y) * 0.0055;
+        pitch = Math.max(-Math.PI / 2 + 0.05, Math.min(Math.PI / 2 - 0.05, pitch));
+        lastLook = { x: t.clientX, y: t.clientY };
+      }
+    }, { passive: false });
+    lookLayer.addEventListener('touchend', e => {
+      for (const t of e.changedTouches) if (t.identifier === lookTouchId) lookTouchId = null;
+    });
+    lookLayer.addEventListener('touchcancel', () => { lookTouchId = null; });
+  }
+
+  // ---------------------------------------------------------------------
+  // Run toggle (touch has no shift key) and teleport — jump straight to
+  // any named room instead of walking the whole floor plan.
+  // ---------------------------------------------------------------------
+  let touchRun = false;
+  const runBtn = document.getElementById('runBtn');
+  runBtn.addEventListener('click', () => {
+    touchRun = !touchRun;
+    runBtn.classList.toggle('active', touchRun);
+  });
+
+  function findZoneLanding(z) {
+    const cx = (z.c0 + z.c1 - 1) / 2, cr = (z.r0 + z.r1 - 1) / 2;
+    let best = null, bestD = Infinity;
+    for (let r = z.r0; r < z.r1; r++) for (let c = z.c0; c < z.c1; c++) {
+      if (isWall(c, r) || extraBlocked.has(r + ',' + c)) continue;
+      const d = (c - cx) * (c - cx) + (r - cr) * (r - cr);
+      if (d < bestD) { bestD = d; best = { c, r }; }
+    }
+    return best;
+  }
+
+  // ---------------------------------------------------------------------
+  // Modal panels (teleport, menu) — on desktop these release pointer
+  // lock so the cursor is usable, then re-lock once every panel is
+  // closed again. Several can be opened in sequence (menu -> teleport)
+  // without fighting over the lock.
+  // ---------------------------------------------------------------------
+  const openModals = new Set();
+  let wasLocked = false;
+  function openModal(el) {
+    if (openModals.size === 0) wasLocked = !isTouch && document.pointerLockElement === dom;
+    if (wasLocked) document.exitPointerLock();
+    openModals.add(el);
+    el.classList.add('show');
+  }
+  function closeModal(el) {
+    openModals.delete(el);
+    el.classList.remove('show');
+    if (openModals.size === 0 && wasLocked) dom.requestPointerLock();
+  }
+  addEventListener('keydown', e => {
+    if (e.code === 'Escape' && openModals.size > 0) for (const el of [...openModals]) closeModal(el);
+  });
+
+  const teleportPanel = document.getElementById('teleportPanel');
+  const teleportList = document.getElementById('teleportList');
+  const openTeleport = () => openModal(teleportPanel);
+  const closeTeleport = () => closeModal(teleportPanel);
+  document.getElementById('teleportBtn').addEventListener('click', openTeleport);
+  document.getElementById('teleportClose').addEventListener('click', closeTeleport);
+  teleportPanel.addEventListener('click', e => { if (e.target === teleportPanel) closeTeleport(); });
+
+  const seenLabels = new Set();
+  for (const z of ZONES) {
+    if (z.blocked || seenLabels.has(z.label)) continue;
+    seenLabels.add(z.label);
+    const btn = document.createElement('button');
+    btn.textContent = z.label;
+    btn.addEventListener('click', () => {
+      const landing = findZoneLanding(z);
+      if (landing) {
+        camera.position.x = worldX(landing.c);
+        camera.position.z = worldZ(landing.r);
+      }
+      closeTeleport();
+    });
+    teleportList.appendChild(btn);
+  }
+
+  const menuPanel = document.getElementById('menuPanel');
+  const openMenu = () => openModal(menuPanel);
+  const closeMenu = () => closeModal(menuPanel);
+  document.getElementById('menuBtn').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  menuPanel.addEventListener('click', e => { if (e.target === menuPanel) closeMenu(); });
+  document.getElementById('menuTeleportBtn').addEventListener('click', () => { closeMenu(); openTeleport(); });
+  document.getElementById('menuRestartBtn').addEventListener('click', () => {
+    camera.position.set(worldX(start.c), 1.65, worldZ(start.r));
+    yaw = 0; pitch = 0;
+    closeMenu();
+  });
+  document.getElementById('menuHelpBtn').addEventListener('click', () => {
+    closeMenu();
+    overlay.classList.remove('hidden');
+    if (!isTouch && document.pointerLockElement === dom) document.exitPointerLock();
+  });
+
+  function cellBlocked(x, z) {
+    const c = Math.round(x / CELL + COLS / 2 - 0.5);
+    const r = Math.round(z / CELL + ROWS / 2 - 0.5);
+    return isWall(c, r) || extraBlocked.has(r + ',' + c);
+  }
+
+  const clock = new THREE.Clock();
+  let bobT = 0, elapsed = 0;
+
+  const mm = document.getElementById('minimap');
+  const mctx = mm.getContext('2d');
+  const px = mm.width / COLS, py = mm.height / ROWS;
+  function minimapColor(key) {
+    const hex = (THEME_COLORS[key] ?? 0xe0b3c2).toString(16).padStart(6, '0');
+    return '#' + hex;
+  }
+  function drawMinimap() {
+    mctx.fillStyle = '#241a22';
+    mctx.fillRect(0, 0, mm.width, mm.height);
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      if (isWall(c, r)) continue;
+      mctx.fillStyle = minimapColor(themeGrid[r][c]);
+      mctx.fillRect(c * px, r * py, px + 0.6, py + 0.6);
+    }
+    const pc = camera.position.x / CELL + COLS / 2;
+    const pr = camera.position.z / CELL + ROWS / 2;
+    mctx.save();
+    mctx.translate(pc * px, pr * py);
+    mctx.rotate(-yaw);
+    mctx.fillStyle = '#ff6fae';
+    mctx.beginPath();
+    mctx.moveTo(0, -4); mctx.lineTo(3, 3); mctx.lineTo(-3, 3);
+    mctx.closePath(); mctx.fill();
+    mctx.restore();
+  }
+
+  const zoneTag = document.getElementById('zoneTag');
+  let lastZoneName = null, zoneTagTimer = null;
+  function updateZoneTag() {
+    const c = Math.round(camera.position.x / CELL + COLS / 2 - 0.5);
+    const r = Math.round(camera.position.z / CELL + ROWS / 2 - 0.5);
+    const name = zoneNameAt(c, r);
+    if (name && name !== lastZoneName) {
+      lastZoneName = name;
+      zoneTag.textContent = name;
+      zoneTag.classList.add('show');
+      clearTimeout(zoneTagTimer);
+      zoneTagTimer = setTimeout(() => zoneTag.classList.remove('show'), 2600);
+    } else if (!name) {
+      lastZoneName = null;
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.05);
+    elapsed += dt;
+
+    camera.rotation.order = 'YXZ';
+    camera.rotation.y = yaw;
+    camera.rotation.x = pitch;
+
+    const running = move.run || touchRun;
+    const speed = (running ? 4.8 : 2.7) * dt;
+    const fx = Math.sin(yaw), fz = Math.cos(yaw);
+    let forward = (move.f ? 1 : 0) - (move.b ? 1 : 0) + joyForward;
+    let strafe = (move.r ? 1 : 0) - (move.l ? 1 : 0) + joyStrafe;
+    forward = Math.max(-1, Math.min(1, forward));
+    strafe = Math.max(-1, Math.min(1, strafe));
+    const dx = speed * (-fx * forward + fz * strafe);
+    const dz = speed * (-fz * forward - fx * strafe);
+
+    if (dx || dz) {
+      const x = camera.position.x, z = camera.position.z;
+      const nx = x + dx, nz = z + dz;
+      if (!cellBlocked(nx, z)) camera.position.x = nx;
+      if (!cellBlocked(camera.position.x, nz)) camera.position.z = nz;
+      bobT += dt * (running ? 14 : 9);
+      camera.position.y = 1.65 + Math.sin(bobT) * 0.035;
+    } else {
+      camera.position.y += (1.65 - camera.position.y) * 0.15;
+    }
+
+    const pulse = 0.94 + Math.sin(elapsed * 0.6) * 0.06;
+    fixtureMat.color.setRGB(1 * pulse, 0.95 * pulse, 0.97 * pulse);
+
+    renderer.render(scene, camera);
+    drawMinimap();
+    updateZoneTag();
+  }
+
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
+  animate();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cooxni1bjqhsb"
+path="res://.godot/imported/BedDouble.obj-9a25b9ed135187a1ec2be0b4fcc1e07e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BedDouble.obj-9a25b9ed135187a1ec2be0b4fcc1e07e.mesh"]
+
+source_file="res://assets/models/furniture/quaternius_march2019/BedDouble.obj"
+dest_files=["res://.godot/imported/BedDouble.obj-9a25b9ed135187a1ec2be0b4fcc1e07e.mesh", "res://.godot/imported/BedDouble.obj-9a25b9ed135187a1ec2be0b4fcc1e07e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

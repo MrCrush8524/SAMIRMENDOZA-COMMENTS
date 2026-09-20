@@ -1,0 +1,937 @@
+[gd_scene load_steps=90 format=3 uid="uid://nightmare_museum"]
+
+[ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/AmbientLoop.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/shared/RandomStinger.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/MirrorSpawner.gd" id="30"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_ambience.ogg" id="4"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_01.wav" id="5"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_02.wav" id="6"]
+[ext_resource type="AudioStream" path="res://assets/audio/levels/museum_something_moves_03.wav" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_gallery_floor.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_sleeping_wallpaper.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_velvet_rotunda.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_restoration_lab_tile.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_giftshop_shelving.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_carousel_archive.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_cloud_fossils.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_forgotten_toys_cabinet.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_reflecting_pool.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_01.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_02.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_03.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_04.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_sleeping_portrait_05.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_soft_taxidermy_deer.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_soft_taxidermy_rabbit.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_star_nursery_crib.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/props/museum_prop_star_nursery_mobile.png" id="25"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_audio_guide_kiosk.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_blank_gallery_placard.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_impossible_corridor.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/signage/museum_sign_lost_and_found.png" id="29"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_quiet_mirror_room.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_star_nursery.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/textures/museum/textures/museum_tex_impossible_corridor.png" id="33"]
+[ext_resource type="Script" path="res://scenes/shared/SideLevelReturnDoor.gd" id="34"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(64, 0.2, 42)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(64, 0.2, 42)
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_texture = ExtResource("8")
+uv1_scale = Vector3(6, 4, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="WallMeshEW"]
+size = Vector3(64, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeEW"]
+size = Vector3(64, 5, 0.3)
+[sub_resource type="BoxMesh" id="WallMeshNS"]
+size = Vector3(42, 5, 0.3)
+[sub_resource type="BoxShape3D" id="WallShapeNS"]
+size = Vector3(42, 5, 0.3)
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(5, 1, 1)
+roughness = 0.9
+
+[sub_resource type="PlaneMesh" id="ZonePlaneRotunda"]
+size = Vector2(14, 14)
+[sub_resource type="PlaneMesh" id="ZonePlaneGallery"]
+size = Vector2(16, 12)
+[sub_resource type="StandardMaterial3D" id="RotundaMat"]
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.5, 1.5, 1)
+roughness = 0.35
+[sub_resource type="StandardMaterial3D" id="EntranceMat"]
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(2, 1.5, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="PaintingsMat"]
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(2, 1.5, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="MirrorMat"]
+albedo_texture = ExtResource("31")
+uv1_scale = Vector3(1.8, 1.3, 1)
+roughness = 0.2
+[sub_resource type="StandardMaterial3D" id="CloudFossilsMat"]
+albedo_texture = ExtResource("11")
+uv1_scale = Vector3(1.5, 1.25, 1)
+roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="ForgottenToysMat"]
+albedo_texture = ExtResource("12")
+uv1_scale = Vector3(1.5, 1.25, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="StarNurseryMat"]
+albedo_texture = ExtResource("32")
+uv1_scale = Vector3(1.3, 1.1, 1)
+roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="ImpossibleCorridorMat"]
+albedo_texture = ExtResource("33")
+uv1_scale = Vector3(1.3, 1.1, 1)
+roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="WeatheredMemoriesMat"]
+albedo_texture = ExtResource("9")
+uv1_scale = Vector3(1.5, 1, 1)
+roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="MoonStairMat"]
+albedo_texture = ExtResource("10")
+uv1_scale = Vector3(1.25, 1, 1)
+roughness = 0.4
+
+[sub_resource type="BoxShape3D" id="Shape_flavor_rotunda"]
+size = Vector3(14, 3, 14)
+[sub_resource type="BoxShape3D" id="Shape_flavor_gallery"]
+size = Vector3(16, 3, 12)
+[sub_resource type="PlaneMesh" id="ZonePlaneSmallGallery"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_smallgallery"]
+size = Vector3(10, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneEastGallery"]
+size = Vector2(12, 10)
+[sub_resource type="BoxShape3D" id="Shape_flavor_eastgallery"]
+size = Vector3(12, 3, 10)
+[sub_resource type="PlaneMesh" id="ZonePlaneWeatheredMemories"]
+size = Vector2(12, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_weatheredmemories"]
+size = Vector3(12, 3, 8)
+[sub_resource type="PlaneMesh" id="ZonePlaneMoonStair"]
+size = Vector2(10, 8)
+[sub_resource type="BoxShape3D" id="Shape_flavor_moonstair"]
+size = Vector3(10, 3, 8)
+
+[sub_resource type="BoxMesh" id="MusWall_550x30"]
+size = Vector3(5.5, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MusWall_550x30Shape"]
+size = Vector3(5.5, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MusWall_1600x30"]
+size = Vector3(16, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MusWall_1600x30Shape"]
+size = Vector3(16, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MusWall_30x1200"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x1200Shape"]
+size = Vector3(0.3, 5.0, 12)
+
+[sub_resource type="BoxMesh" id="MusWall_30x350"]
+size = Vector3(0.3, 5.0, 3.5)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x350Shape"]
+size = Vector3(0.3, 5.0, 3.5)
+
+[sub_resource type="BoxMesh" id="MusWall_1000x30"]
+size = Vector3(10, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MusWall_1000x30Shape"]
+size = Vector3(10, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MusWall_300x30"]
+size = Vector3(3.0, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MusWall_300x30Shape"]
+size = Vector3(3.0, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MusWall_30x800"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x800Shape"]
+size = Vector3(0.3, 5.0, 8)
+
+[sub_resource type="BoxMesh" id="MusWall_1200x30"]
+size = Vector3(12, 5.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="MusWall_1200x30Shape"]
+size = Vector3(12, 5.0, 0.3)
+
+[sub_resource type="BoxMesh" id="MusWall_30x1000"]
+size = Vector3(0.3, 5.0, 10)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x1000Shape"]
+size = Vector3(0.3, 5.0, 10)
+
+[sub_resource type="BoxMesh" id="MusWall_30x300"]
+size = Vector3(0.3, 5.0, 3.0)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x300Shape"]
+size = Vector3(0.3, 5.0, 3.0)
+
+[sub_resource type="BoxMesh" id="MusWall_30x200"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="BoxShape3D" id="MusWall_30x200Shape"]
+size = Vector3(0.3, 5.0, 2.0)
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.04, 0.03, 0.03, 1)
+fog_enabled = true
+fog_light_color = Color(0.2, 0.14, 0.14, 1)
+fog_density = 0.025
+ambient_light_source = 2
+ambient_light_color = Color(0.28, 0.2, 0.2, 1)
+ambient_light_energy = 0.5
+
+[sub_resource type="BoxMesh" id="ReturnDoorMesh"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="BoxShape3D" id="ReturnDoorSolidShape"]
+size = Vector3(1.2, 2.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="ReturnDoorMat"]
+albedo_color = Color(0.55, 0.15, 0.2, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.55, 0.15, 0.2, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="SphereShape3D" id="ReturnDoorShape"]
+radius = 1.4
+
+[node name="NightmareMuseum" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+surface_material_override/0 = SubResource("FloorMat")
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -21)
+[node name="Mesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 21)
+[node name="Mesh" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("WallMeshEW")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("WallShapeEW")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("WallShapeNS")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -23, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("WallMeshNS")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("WallShapeNS")
+
+[node name="ZoneEntranceHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 14)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("EntranceMat")
+[node name="Light" type="OmniLight3D" parent="ZoneEntranceHall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.95, 0.82, 0.6, 1)
+light_energy = 0.55
+omni_range = 11.0
+
+[node name="ZoneVelvetRotunda" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("ZonePlaneRotunda")
+surface_material_override/0 = SubResource("RotundaMat")
+[node name="Light" type="OmniLight3D" parent="ZoneVelvetRotunda"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(0.9, 0.4, 0.45, 1)
+light_energy = 0.5
+omni_range = 12.0
+
+[node name="ZoneSleepingPaintings" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.11, -6)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("PaintingsMat")
+
+[node name="MirrorSpawner" type="Node3D" parent="."]
+script = ExtResource("30")
+
+[node name="Spot_QuietMirrorRoomA" type="Marker3D" parent="MirrorSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -20.7)
+
+[node name="Spot_QuietMirrorRoomB" type="Marker3D" parent="MirrorSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2.5, -20.7)
+
+[node name="ZoneQuietMirrorRoom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.11, -8)
+mesh = SubResource("ZonePlaneGallery")
+surface_material_override/0 = SubResource("MirrorMat")
+[node name="Light" type="OmniLight3D" parent="ZoneQuietMirrorRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.55, 0.6, 0.85, 1)
+light_energy = 0.4
+omni_range = 9.0
+
+[node name="ZoneCloudFossils" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.11, -17)
+mesh = SubResource("ZonePlaneSmallGallery")
+surface_material_override/0 = SubResource("CloudFossilsMat")
+
+[node name="ZoneForgottenToys" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.11, -17)
+mesh = SubResource("ZonePlaneSmallGallery")
+surface_material_override/0 = SubResource("ForgottenToysMat")
+[node name="Light" type="OmniLight3D" parent="ZoneForgottenToys"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.55, 0.55, 1)
+light_energy = 0.35
+omni_range = 8.0
+
+[node name="ZoneStarNursery" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.11, -8)
+mesh = SubResource("ZonePlaneEastGallery")
+surface_material_override/0 = SubResource("StarNurseryMat")
+[node name="Light" type="OmniLight3D" parent="ZoneStarNursery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.7, 0.7, 0.95, 1)
+light_energy = 0.4
+omni_range = 10.0
+
+[node name="ZoneImpossibleCorridor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.11, 6)
+mesh = SubResource("ZonePlaneEastGallery")
+surface_material_override/0 = SubResource("ImpossibleCorridorMat")
+
+[node name="Flavor_StarNursery" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -8)
+script = ExtResource("1")
+flavor_text = "Star Nursery. Artifacts of a softer kind of terror."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_StarNursery"]
+shape = SubResource("Shape_flavor_eastgallery")
+
+[node name="Flavor_ImpossibleCorridor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, 6)
+script = ExtResource("1")
+flavor_text = "The Impossible Corridor. Doors lead somewhere. Not always here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ImpossibleCorridor"]
+shape = SubResource("Shape_flavor_eastgallery")
+
+[node name="Flavor_CloudFossils" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, -17)
+script = ExtResource("1")
+flavor_text = "Cloud Fossils."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_CloudFossils"]
+shape = SubResource("Shape_flavor_smallgallery")
+
+[node name="Flavor_ForgottenToys" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -17)
+script = ExtResource("1")
+flavor_text = "Forgotten Toys Cabinet. Some objects still play on their own at night... or do they?"
+[node name="Shape" type="CollisionShape3D" parent="Flavor_ForgottenToys"]
+shape = SubResource("Shape_flavor_smallgallery")
+
+[node name="Flavor_EntranceHall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+script = ExtResource("1")
+flavor_text = "\"Step a little further into your own memory.\""
+[node name="Shape" type="CollisionShape3D" parent="Flavor_EntranceHall"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="Flavor_VelvetRotunda" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1")
+flavor_text = "Velvet Rotunda. All dreams admit you here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_VelvetRotunda"]
+shape = SubResource("Shape_flavor_rotunda")
+
+[node name="Flavor_SleepingPaintings" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, -6)
+script = ExtResource("1")
+flavor_text = "Hall of Sleeping Paintings. Beauty still haunts here."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_SleepingPaintings"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="Flavor_MirrorRoom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -8)
+script = ExtResource("1")
+flavor_text = "Quiet Mirror Room."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MirrorRoom"]
+shape = SubResource("Shape_flavor_gallery")
+
+[node name="ZoneWeatheredMemories" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.11, 14)
+mesh = SubResource("ZonePlaneWeatheredMemories")
+surface_material_override/0 = SubResource("WeatheredMemoriesMat")
+[node name="Light" type="OmniLight3D" parent="ZoneWeatheredMemories"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.85, 0.75, 0.55, 1)
+light_energy = 0.3
+omni_range = 8.0
+
+[node name="ZoneMoonStair" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.11, 14)
+mesh = SubResource("ZonePlaneMoonStair")
+surface_material_override/0 = SubResource("MoonStairMat")
+[node name="Light" type="OmniLight3D" parent="ZoneMoonStair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(0.7, 0.72, 0.95, 1)
+light_energy = 0.4
+omni_range = 8.0
+
+[node name="Flavor_WeatheredMemories" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 14)
+script = ExtResource("1")
+flavor_text = "Weathered Memories Gallery. The frames outlasted what was in them."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_WeatheredMemories"]
+shape = SubResource("Shape_flavor_weatheredmemories")
+
+[node name="Flavor_MoonStair" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, 14)
+script = ExtResource("1")
+flavor_text = "Moon Stair Gallery. Steps that go up further than the building does."
+[node name="Shape" type="CollisionShape3D" parent="Flavor_MoonStair"]
+shape = SubResource("Shape_flavor_moonstair")
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 17)
+
+[node name="SpawnCloudFossils" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.0, -17)
+
+[node name="SpawnForgottenToys" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.0, -17)
+
+[node name="SpawnStarNursery" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, -8)
+
+[node name="SpawnImpossibleCorridor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, 6)
+
+[node name="SpawnWeatheredMemories" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, 14)
+
+[node name="SpawnMoonStair" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.0, 14)
+
+[node name="AmbientMuseum" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, 0)
+unit_size = 40.0
+max_distance = 60.0
+script = ExtResource("2")
+streams = [ExtResource("4")]
+
+[node name="Stinger_Central" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3")
+streams = [ExtResource("5"), ExtResource("6"), ExtResource("7")]
+[node name="Shape" type="CollisionShape3D" parent="Stinger_Central"]
+shape = SubResource("Shape_flavor_rotunda")
+[node name="Player" type="AudioStreamPlayer3D" parent="Stinger_Central"]
+unit_size = 15.0
+max_distance = 24.0
+
+[node name="Prop_CarouselArchive" type="Sprite3D" parent="Flavor_VelvetRotunda"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+texture = ExtResource("13")
+pixel_size = 0.0026
+billboard = 1
+
+[node name="Prop_CloudFossils" type="Sprite3D" parent="Flavor_CloudFossils"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+texture = ExtResource("14")
+pixel_size = 0.0016
+
+[node name="Prop_ForgottenToysCabinet" type="Sprite3D" parent="Flavor_ForgottenToys"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+texture = ExtResource("15")
+pixel_size = 0.0018
+
+[node name="Prop_ReflectingPool" type="Sprite3D" parent="Flavor_MirrorRoom"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+texture = ExtResource("16")
+pixel_size = 0.002
+
+[node name="Prop_SleepingPortrait1" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.8, -3)
+texture = ExtResource("17")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait2" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -3)
+texture = ExtResource("18")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait3" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -3)
+texture = ExtResource("19")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait4" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -3)
+texture = ExtResource("20")
+pixel_size = 0.0012
+
+[node name="Prop_SleepingPortrait5" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.8, -3)
+texture = ExtResource("21")
+pixel_size = 0.0012
+
+[node name="Prop_TaxidermyDeer" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.9, 3)
+texture = ExtResource("22")
+pixel_size = 0.0016
+
+[node name="Prop_TaxidermyRabbit" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.6, 3)
+texture = ExtResource("23")
+pixel_size = 0.0014
+
+[node name="Prop_StarNurseryCrib" type="Sprite3D" parent="Flavor_StarNursery"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
+texture = ExtResource("24")
+pixel_size = 0.0014
+
+[node name="Prop_StarNurseryMobile" type="Sprite3D" parent="Flavor_StarNursery"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.2, 0)
+texture = ExtResource("25")
+pixel_size = 0.0012
+billboard = 1
+
+[node name="Sign_AudioGuideKiosk" type="Sprite3D" parent="Flavor_EntranceHall"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 3)
+texture = ExtResource("26")
+pixel_size = 0.0018
+
+[node name="Sign_BlankGalleryPlacard" type="Sprite3D" parent="Flavor_MoonStair"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
+texture = ExtResource("27")
+pixel_size = 0.001
+
+[node name="Sign_ImpossibleCorridor" type="Sprite3D" parent="Flavor_ImpossibleCorridor"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -4)
+texture = ExtResource("28")
+pixel_size = 0.001
+
+[node name="Sign_LostAndFound" type="Sprite3D" parent="Flavor_WeatheredMemories"]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
+texture = ExtResource("29")
+pixel_size = 0.001
+
+[node name="EntranceHall_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 2.5, 8)
+[node name="Mesh" type="MeshInstance3D" parent="EntranceHall_N_0"]
+mesh = SubResource("MusWall_550x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="EntranceHall_N_0"]
+shape = SubResource("MusWall_550x30Shape")
+
+[node name="EntranceHall_N_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 2.5, 8)
+[node name="Mesh" type="MeshInstance3D" parent="EntranceHall_N_1"]
+mesh = SubResource("MusWall_550x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="EntranceHall_N_1"]
+shape = SubResource("MusWall_550x30Shape")
+
+[node name="EntranceHall_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 2.5, 20)
+[node name="Mesh" type="MeshInstance3D" parent="EntranceHall_S_0"]
+mesh = SubResource("MusWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="EntranceHall_S_0"]
+shape = SubResource("MusWall_1600x30Shape")
+
+[node name="EntranceHall_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="EntranceHall_E_0"]
+mesh = SubResource("MusWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="EntranceHall_E_0"]
+shape = SubResource("MusWall_30x1200Shape")
+
+[node name="EntranceHall_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="EntranceHall_W_0"]
+mesh = SubResource("MusWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="EntranceHall_W_0"]
+shape = SubResource("MusWall_30x1200Shape")
+
+[node name="SleepingPaintings_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 2.5, -12)
+[node name="Mesh" type="MeshInstance3D" parent="SleepingPaintings_N_0"]
+mesh = SubResource("MusWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleepingPaintings_N_0"]
+shape = SubResource("MusWall_1600x30Shape")
+
+[node name="SleepingPaintings_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0, 2.5, 0)
+[node name="Mesh" type="MeshInstance3D" parent="SleepingPaintings_S_0"]
+mesh = SubResource("MusWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleepingPaintings_S_0"]
+shape = SubResource("MusWall_1600x30Shape")
+
+[node name="SleepingPaintings_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, -10.25)
+[node name="Mesh" type="MeshInstance3D" parent="SleepingPaintings_E_0"]
+mesh = SubResource("MusWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleepingPaintings_E_0"]
+shape = SubResource("MusWall_30x350Shape")
+
+[node name="SleepingPaintings_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, -1.75)
+[node name="Mesh" type="MeshInstance3D" parent="SleepingPaintings_E_1"]
+mesh = SubResource("MusWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleepingPaintings_E_1"]
+shape = SubResource("MusWall_30x350Shape")
+
+[node name="SleepingPaintings_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 2.5, -6.0)
+[node name="Mesh" type="MeshInstance3D" parent="SleepingPaintings_W_0"]
+mesh = SubResource("MusWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="SleepingPaintings_W_0"]
+shape = SubResource("MusWall_30x1200Shape")
+
+[node name="QuietMirrorRoom_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0, 2.5, -14)
+[node name="Mesh" type="MeshInstance3D" parent="QuietMirrorRoom_N_0"]
+mesh = SubResource("MusWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="QuietMirrorRoom_N_0"]
+shape = SubResource("MusWall_1600x30Shape")
+
+[node name="QuietMirrorRoom_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0, 2.5, -2)
+[node name="Mesh" type="MeshInstance3D" parent="QuietMirrorRoom_S_0"]
+mesh = SubResource("MusWall_1600x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="QuietMirrorRoom_S_0"]
+shape = SubResource("MusWall_1600x30Shape")
+
+[node name="QuietMirrorRoom_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, -8.0)
+[node name="Mesh" type="MeshInstance3D" parent="QuietMirrorRoom_E_0"]
+mesh = SubResource("MusWall_30x1200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="QuietMirrorRoom_E_0"]
+shape = SubResource("MusWall_30x1200Shape")
+
+[node name="QuietMirrorRoom_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -12.25)
+[node name="Mesh" type="MeshInstance3D" parent="QuietMirrorRoom_W_0"]
+mesh = SubResource("MusWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="QuietMirrorRoom_W_0"]
+shape = SubResource("MusWall_30x350Shape")
+
+[node name="QuietMirrorRoom_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -3.75)
+[node name="Mesh" type="MeshInstance3D" parent="QuietMirrorRoom_W_1"]
+mesh = SubResource("MusWall_30x350")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="QuietMirrorRoom_W_1"]
+shape = SubResource("MusWall_30x350Shape")
+
+[node name="CloudFossils_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0, 2.5, -21)
+[node name="Mesh" type="MeshInstance3D" parent="CloudFossils_N_0"]
+mesh = SubResource("MusWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="CloudFossils_N_0"]
+shape = SubResource("MusWall_1000x30Shape")
+
+[node name="CloudFossils_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="CloudFossils_S_0"]
+mesh = SubResource("MusWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="CloudFossils_S_0"]
+shape = SubResource("MusWall_300x30Shape")
+
+[node name="CloudFossils_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="CloudFossils_S_1"]
+mesh = SubResource("MusWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="CloudFossils_S_1"]
+shape = SubResource("MusWall_300x30Shape")
+
+[node name="CloudFossils_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, -17.0)
+[node name="Mesh" type="MeshInstance3D" parent="CloudFossils_E_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="CloudFossils_E_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="CloudFossils_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -17.0)
+[node name="Mesh" type="MeshInstance3D" parent="CloudFossils_W_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="CloudFossils_W_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="ForgottenToys_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0, 2.5, -21)
+[node name="Mesh" type="MeshInstance3D" parent="ForgottenToys_N_0"]
+mesh = SubResource("MusWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ForgottenToys_N_0"]
+shape = SubResource("MusWall_1000x30Shape")
+
+[node name="ForgottenToys_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="ForgottenToys_S_0"]
+mesh = SubResource("MusWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ForgottenToys_S_0"]
+shape = SubResource("MusWall_300x30Shape")
+
+[node name="ForgottenToys_S_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="ForgottenToys_S_1"]
+mesh = SubResource("MusWall_300x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ForgottenToys_S_1"]
+shape = SubResource("MusWall_300x30Shape")
+
+[node name="ForgottenToys_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.5, -17.0)
+[node name="Mesh" type="MeshInstance3D" parent="ForgottenToys_E_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ForgottenToys_E_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="ForgottenToys_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -17.0)
+[node name="Mesh" type="MeshInstance3D" parent="ForgottenToys_W_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ForgottenToys_W_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="StarNursery_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, -13)
+[node name="Mesh" type="MeshInstance3D" parent="StarNursery_N_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="StarNursery_N_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="StarNursery_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, -3)
+[node name="Mesh" type="MeshInstance3D" parent="StarNursery_S_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="StarNursery_S_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="StarNursery_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 2.5, -8.0)
+[node name="Mesh" type="MeshInstance3D" parent="StarNursery_E_0"]
+mesh = SubResource("MusWall_30x1000")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="StarNursery_E_0"]
+shape = SubResource("MusWall_30x1000Shape")
+
+[node name="StarNursery_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, -11.5)
+[node name="Mesh" type="MeshInstance3D" parent="StarNursery_W_0"]
+mesh = SubResource("MusWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="StarNursery_W_0"]
+shape = SubResource("MusWall_30x300Shape")
+
+[node name="StarNursery_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, -4.5)
+[node name="Mesh" type="MeshInstance3D" parent="StarNursery_W_1"]
+mesh = SubResource("MusWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="StarNursery_W_1"]
+shape = SubResource("MusWall_30x300Shape")
+
+[node name="ImpossibleCorridor_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, 1)
+[node name="Mesh" type="MeshInstance3D" parent="ImpossibleCorridor_N_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ImpossibleCorridor_N_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="ImpossibleCorridor_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, 11)
+[node name="Mesh" type="MeshInstance3D" parent="ImpossibleCorridor_S_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ImpossibleCorridor_S_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="ImpossibleCorridor_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 2.5, 6.0)
+[node name="Mesh" type="MeshInstance3D" parent="ImpossibleCorridor_E_0"]
+mesh = SubResource("MusWall_30x1000")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ImpossibleCorridor_E_0"]
+shape = SubResource("MusWall_30x1000Shape")
+
+[node name="ImpossibleCorridor_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, 2.5)
+[node name="Mesh" type="MeshInstance3D" parent="ImpossibleCorridor_W_0"]
+mesh = SubResource("MusWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ImpossibleCorridor_W_0"]
+shape = SubResource("MusWall_30x300Shape")
+
+[node name="ImpossibleCorridor_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.5, 9.5)
+[node name="Mesh" type="MeshInstance3D" parent="ImpossibleCorridor_W_1"]
+mesh = SubResource("MusWall_30x300")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="ImpossibleCorridor_W_1"]
+shape = SubResource("MusWall_30x300Shape")
+
+[node name="WeatheredMemories_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 2.5, 10)
+[node name="Mesh" type="MeshInstance3D" parent="WeatheredMemories_N_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WeatheredMemories_N_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="WeatheredMemories_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 2.5, 18)
+[node name="Mesh" type="MeshInstance3D" parent="WeatheredMemories_S_0"]
+mesh = SubResource("MusWall_1200x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WeatheredMemories_S_0"]
+shape = SubResource("MusWall_1200x30Shape")
+
+[node name="WeatheredMemories_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.5, 11.0)
+[node name="Mesh" type="MeshInstance3D" parent="WeatheredMemories_E_0"]
+mesh = SubResource("MusWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WeatheredMemories_E_0"]
+shape = SubResource("MusWall_30x200Shape")
+
+[node name="WeatheredMemories_E_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.5, 17.0)
+[node name="Mesh" type="MeshInstance3D" parent="WeatheredMemories_E_1"]
+mesh = SubResource("MusWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WeatheredMemories_E_1"]
+shape = SubResource("MusWall_30x200Shape")
+
+[node name="WeatheredMemories_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="WeatheredMemories_W_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="WeatheredMemories_W_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="MoonStair_N_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, 10)
+[node name="Mesh" type="MeshInstance3D" parent="MoonStair_N_0"]
+mesh = SubResource("MusWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="MoonStair_N_0"]
+shape = SubResource("MusWall_1000x30Shape")
+
+[node name="MoonStair_S_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0, 2.5, 18)
+[node name="Mesh" type="MeshInstance3D" parent="MoonStair_S_0"]
+mesh = SubResource("MusWall_1000x30")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="MoonStair_S_0"]
+shape = SubResource("MusWall_1000x30Shape")
+
+[node name="MoonStair_E_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 2.5, 14.0)
+[node name="Mesh" type="MeshInstance3D" parent="MoonStair_E_0"]
+mesh = SubResource("MusWall_30x800")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="MoonStair_E_0"]
+shape = SubResource("MusWall_30x800Shape")
+
+[node name="MoonStair_W_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2.5, 11.0)
+[node name="Mesh" type="MeshInstance3D" parent="MoonStair_W_0"]
+mesh = SubResource("MusWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="MoonStair_W_0"]
+shape = SubResource("MusWall_30x200Shape")
+
+[node name="MoonStair_W_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2.5, 17.0)
+[node name="Mesh" type="MeshInstance3D" parent="MoonStair_W_1"]
+mesh = SubResource("MusWall_30x200")
+surface_material_override/0 = SubResource("WallMat")
+[node name="Shape" type="CollisionShape3D" parent="MoonStair_W_1"]
+shape = SubResource("MusWall_30x200Shape")
+
+[node name="SideLevelReturnDoor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 17)
+script = ExtResource("34")
+[node name="Shape" type="CollisionShape3D" parent="SideLevelReturnDoor"]
+shape = SubResource("ReturnDoorShape")
+[node name="Glow" type="OmniLight3D" parent="SideLevelReturnDoor"]
+light_color = Color(0.55, 0.15, 0.2, 1)
+light_energy = 0.5
+omni_range = 3.0

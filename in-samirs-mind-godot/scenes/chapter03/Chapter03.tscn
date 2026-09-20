@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://chapter03_scene"]
+
+[ext_resource type="Script" path="res://scenes/chapter03/Chapter03.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/imported/poolrooms/poolrooms.glb" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/imported/level37/level_37_flooded_tiled_complex.glb" id="3"]
+[ext_resource type="PackedScene" path="res://assets/models/imported/japroom/japroom_14_otaku.glb" id="4"]
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.82, 0.94, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.85, 0.97, 0.98, 1)
+ambient_light_energy = 1.3
+
+[node name="Chapter03" type="Node3D"]
+script = ExtResource("1")
+environment_roots = [NodePath("Poolrooms"), NodePath("Level37"), NodePath("Japroom")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8191521, -0.4082483, 0.4045085, 0, 0.7071068, 0.7071068, -0.5735764, -0.5792281, 0.5792281, 0, 20, 0)
+light_color = Color(0.95, 1, 1, 1)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Poolrooms" parent="." instance=ExtResource("2")]
+
+[node name="Level37" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.03, -3.25, 0)
+
+[node name="Japroom" parent="." instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.87, 4.32, 0)
+
+[node name="start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, 0)

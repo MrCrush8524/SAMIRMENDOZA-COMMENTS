@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://657vx1bqbcq8"
+path="res://.godot/imported/Props_Laser.obj-5c1d864a5fe5d4ae6d43ee3fcbbfc721.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_Laser.obj-5c1d864a5fe5d4ae6d43ee3fcbbfc721.mesh"]
+
+source_file="res://assets/models/scifi_kit/Props_Laser.obj"
+dest_files=["res://.godot/imported/Props_Laser.obj-5c1d864a5fe5d4ae6d43ee3fcbbfc721.mesh", "res://.godot/imported/Props_Laser.obj-5c1d864a5fe5d4ae6d43ee3fcbbfc721.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

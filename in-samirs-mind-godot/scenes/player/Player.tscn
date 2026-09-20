@@ -1,0 +1,230 @@
+[gd_scene load_steps=16 format=3 uid="uid://player_scene"]
+
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/people/nathan/rp_nathan_animated_003_walking.fbx" id="15"]
+[ext_resource type="Script" path="res://scenes/shared/PersonRecolor.gd" id="16"]
+[ext_resource type="Script" path="res://scenes/shared/CompanionFollower.gd" id="17"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_bobby.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_luna.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_mateo.png" id="7"]
+[ext_resource type="Script" path="res://scenes/player/TouchControlsLayer.gd" id="8"]
+[ext_resource type="PackedScene" path="res://assets/models/lowpoly_cat/cat_rigged.fbx" id="9"]
+[ext_resource type="Script" path="res://scenes/shared/DreamerCatSkin.gd" id="10"]
+[ext_resource type="Texture2D" path="res://assets/models/lowpoly_cat/textures/mateo_fur.jpg" id="11"]
+[ext_resource type="Texture2D" path="res://assets/models/lowpoly_cat/textures/luna_fur.jpg" id="12"]
+[ext_resource type="Texture2D" path="res://assets/models/lowpoly_cat/textures/bobby_fur_body.jpg" id="13"]
+[ext_resource type="Texture2D" path="res://assets/models/lowpoly_cat/textures/bobby_fur_points.jpg" id="14"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.22
+height = 1.7
+
+[sub_resource type="CircleShape2D" id="TouchBtnShape"]
+radius = 42.0
+
+[sub_resource type="StyleBoxFlat" id="TouchBtnStyle"]
+bg_color = Color(1, 1, 1, 0.16)
+corner_radius_top_left = 42
+corner_radius_top_right = 42
+corner_radius_bottom_right = 42
+corner_radius_bottom_left = 42
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.35)
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1")
+mirror_texture_bobby = ExtResource("5")
+mirror_texture_luna = ExtResource("6")
+mirror_texture_mateo = ExtResource("7")
+fur_bobby_body = ExtResource("13")
+fur_bobby_points = ExtResource("14")
+fur_luna = ExtResource("12")
+fur_mateo = ExtResource("11")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1")
+position = Vector3(0, 0.85, 0)
+
+[node name="Head" type="Node3D" parent="."]
+position = Vector3(0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 70.0
+cull_mask = 1048573
+
+[node name="InteractRay" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -2.2)
+collide_with_areas = true
+
+[node name="MirrorBody" type="Sprite3D" parent="."]
+alpha_cut = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+layers = 2
+pixel_size = 0.001327
+billboard = 1
+double_sided = true
+no_depth_test = false
+
+[node name="CatSlot" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("17")
+follow_target_path = NodePath("..")
+worn_transform = Transform3D(-0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573576, 0.15, 0, -0.4)
+scrub_anim_name = "Armature|ArmatureAction"
+
+[node name="DreamerBody" parent="CatSlot" instance=ExtResource("9")]
+unique_name_in_owner = true
+script = ExtResource("10")
+mesh_node_path = NodePath("Armature/Skeleton3D/mesh_cat")
+skeleton_path = NodePath("Armature/Skeleton3D")
+
+[node name="NathanSlot" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("17")
+follow_target_path = NodePath("..")
+worn_transform = Transform3D(-0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573576, 0.15, 0, -0.4)
+
+[node name="NathanBody" parent="NathanSlot" instance=ExtResource("15")]
+unique_name_in_owner = true
+script = ExtResource("16")
+mesh_node_path = NodePath("rp_nathan_animated_003_walking/rp_nathan_animated_003_walking_CTRL/Skeleton3D/rp_nathan_animated_003_walking_geo")
+tint = Color(1, 0.86, 0.93, 1)
+
+[node name="TouchControlsLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8")
+
+[node name="BtnUp" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "move_forward"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnUp"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnUp"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = "^"
+
+[node name="BtnDown" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "move_back"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnDown"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnDown"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = "v"
+
+[node name="BtnLeft" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "move_left"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnLeft"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnLeft"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = "<"
+
+[node name="BtnRight" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "move_right"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnRight"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnRight"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = ">"
+
+[node name="BtnInteract" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "interact"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnInteract"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnInteract"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = "E"
+
+[node name="BtnSprint" type="TouchScreenButton" parent="TouchControlsLayer"]
+shape = SubResource("TouchBtnShape")
+action = "sprint"
+[node name="Bg" type="Panel" parent="TouchControlsLayer/BtnSprint"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TouchBtnStyle")
+[node name="Label" type="Label" parent="TouchControlsLayer/BtnSprint"]
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+text = "RUN"
+

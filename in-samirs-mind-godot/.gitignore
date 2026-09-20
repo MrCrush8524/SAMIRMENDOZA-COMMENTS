@@ -1,0 +1,12 @@
+# Godot 4 local import cache — regenerated on first open/run.
+# .import files themselves ARE committed (Godot convention): they're
+# small resource metadata, not the cache itself.
+.godot/
+
+# Export builds
+export/
+build/
+*.exe
+*.apk
+*.aab
+*.pck
