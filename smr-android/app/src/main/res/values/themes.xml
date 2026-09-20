@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- SMR renders its entire UI through Compose (SmrTheme). This XML theme only sets the
+         window background and status/nav bar colors so there's no light flash before Compose
+         takes over, matching the locked dark dreamy pastel design at every stage of launch. -->
+    <style name="Theme.SMR" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/smr_base</item>
+        <item name="android:statusBarColor" tools:targetApi="21">@color/smr_base</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/smr_base</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    </style>
+</resources>

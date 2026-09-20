@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="smr_base">#0D1326</color>
+    <color name="smr_base_elevated">#141B36</color>
+    <color name="smr_lavender">#AAA0D8</color>
+    <color name="smr_teal">#76A9A4</color>
+    <color name="smr_cream">#F4F4E8</color>
+</resources>

@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Downloaded on-device models (Kokoro TTS, local voice-clone bundle) are fetched
+# at first run, never bundled into the APK or the repo.
+app/src/main/assets/models/
