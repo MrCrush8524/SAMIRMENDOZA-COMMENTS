@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8lgj6rvsftv"
-path="res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.ctex"
+path.s3tc="res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.s3tc.ctex"
+path.etc2="res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/junction/props/junction_prop_departure_clocktower.png"
-dest_files=["res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.ctex"]
+dest_files=["res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.s3tc.ctex", "res://.godot/imported/junction_prop_departure_clocktower.png-09c6fe30f49340cca1473b0399078a77.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

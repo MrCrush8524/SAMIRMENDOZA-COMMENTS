@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1y4rtr6emiyu"
-path="res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.ctex"
+path.s3tc="res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chapter04/chapter04_tex_brick_normal.png"
-dest_files=["res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.ctex"]
+dest_files=["res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.s3tc.ctex", "res://.godot/imported/chapter04_tex_brick_normal.png-7b74f03d5ac79a755877ce4f3288ef3f.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

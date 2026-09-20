@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sa6lmhxltd1c"
-path="res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.ctex"
+path.s3tc="res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.s3tc.ctex"
+path.etc2="res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/level4/level4_moodC_carpet.png"
-dest_files=["res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.ctex"]
+dest_files=["res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.s3tc.ctex", "res://.godot/imported/level4_moodC_carpet.png-a2ce93e714bf8f5a52b0f7d78e1e0d1d.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

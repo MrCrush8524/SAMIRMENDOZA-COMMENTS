@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bc0t8efpn388x"
-path="res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.ctex"
+path.s3tc="res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.s3tc.ctex"
+path.etc2="res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/pool_garden/textures/baseboard_strip.png"
-dest_files=["res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.ctex"]
+dest_files=["res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.s3tc.ctex", "res://.godot/imported/baseboard_strip.png-c3e2424de18d9409dadda7e3874e895f.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

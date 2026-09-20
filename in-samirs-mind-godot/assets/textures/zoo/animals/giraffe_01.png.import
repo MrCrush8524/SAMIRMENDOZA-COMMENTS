@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsb6dmucpfox7"
-path="res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.ctex"
+path.s3tc="res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.s3tc.ctex"
+path.etc2="res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/zoo/animals/giraffe_01.png"
-dest_files=["res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.ctex"]
+dest_files=["res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.s3tc.ctex", "res://.godot/imported/giraffe_01.png-a1562305d82d23f3340597aa52416275.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

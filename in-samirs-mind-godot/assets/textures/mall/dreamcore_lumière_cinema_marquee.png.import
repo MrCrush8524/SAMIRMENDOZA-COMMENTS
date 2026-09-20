@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0bsbfbnbjuhu"
-path="res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.ctex"
+path.s3tc="res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.s3tc.ctex"
+path.etc2="res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/mall/dreamcore_lumière_cinema_marquee.png"
-dest_files=["res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.ctex"]
+dest_files=["res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.s3tc.ctex", "res://.godot/imported/dreamcore_lumière_cinema_marquee.png-c3b4f89fedf03984086bb2cf52c7064e.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

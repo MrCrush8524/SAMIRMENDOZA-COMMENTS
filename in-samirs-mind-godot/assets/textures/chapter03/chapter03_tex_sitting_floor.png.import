@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy5vj2521t4jr"
-path="res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.ctex"
+path.s3tc="res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chapter03/chapter03_tex_sitting_floor.png"
-dest_files=["res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.ctex"]
+dest_files=["res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.s3tc.ctex", "res://.godot/imported/chapter03_tex_sitting_floor.png-5dbd163faa68c5b0dba2fdcae4ca5703.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

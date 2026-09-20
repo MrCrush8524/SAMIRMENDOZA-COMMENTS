@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy8fgf4aqgle7"
-path="res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.ctex"
+path.s3tc="res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.s3tc.ctex"
+path.etc2="res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/museum/props/museum_prop_soft_taxidermy_rabbit.png"
-dest_files=["res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.ctex"]
+dest_files=["res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.s3tc.ctex", "res://.godot/imported/museum_prop_soft_taxidermy_rabbit.png-2a44f9874998f4d88f460e252b38c712.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

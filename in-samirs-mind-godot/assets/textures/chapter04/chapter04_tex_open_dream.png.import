@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cixrggrxc2y5r"
-path="res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.ctex"
+path.s3tc="res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chapter04/chapter04_tex_open_dream.png"
-dest_files=["res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.ctex"]
+dest_files=["res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.s3tc.ctex", "res://.godot/imported/chapter04_tex_open_dream.png-f8b9461d1db5900c8222d92b729a8710.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

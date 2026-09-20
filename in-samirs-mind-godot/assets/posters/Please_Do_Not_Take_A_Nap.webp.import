@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqfw5hpba3ywa"
-path="res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.ctex"
+path.s3tc="res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.s3tc.ctex"
+path.etc2="res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/posters/Please_Do_Not_Take_A_Nap.webp"
-dest_files=["res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.ctex"]
+dest_files=["res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.s3tc.ctex", "res://.godot/imported/Please_Do_Not_Take_A_Nap.webp-6f528e4e58d32c8ef50506bce280831b.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

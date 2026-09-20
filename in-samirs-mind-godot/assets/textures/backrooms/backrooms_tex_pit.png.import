@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b46yw3dh5gkjd"
-path="res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.ctex"
+path.s3tc="res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.s3tc.ctex"
+path.etc2="res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/backrooms/backrooms_tex_pit.png"
-dest_files=["res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.ctex"]
+dest_files=["res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.s3tc.ctex", "res://.godot/imported/backrooms_tex_pit.png-55f99776d8c13f90ea8e0aa3bf7d5633.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

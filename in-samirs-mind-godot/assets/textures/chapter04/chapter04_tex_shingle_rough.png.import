@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8o6nk7aru3g8"
-path="res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.ctex"
+path.s3tc="res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chapter04/chapter04_tex_shingle_rough.png"
-dest_files=["res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.ctex"]
+dest_files=["res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.s3tc.ctex", "res://.godot/imported/chapter04_tex_shingle_rough.png-4d792f3f508e3d580a9cbdddc60a4dda.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dylyvvupmms1m"
-path="res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.ctex"
+path.s3tc="res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/props/chapter04/chapter04_prop_drip_decal.png"
-dest_files=["res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.ctex"]
+dest_files=["res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.s3tc.ctex", "res://.godot/imported/chapter04_prop_drip_decal.png-59ec25b6eae983b4c8650c16954ebcbd.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

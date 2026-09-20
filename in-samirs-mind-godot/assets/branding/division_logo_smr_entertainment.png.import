@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://41bvqnauf02g"
-path="res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.ctex"
+path.s3tc="res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.s3tc.ctex"
+path.etc2="res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/branding/division_logo_smr_entertainment.png"
-dest_files=["res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.ctex"]
+dest_files=["res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.s3tc.ctex", "res://.godot/imported/division_logo_smr_entertainment.png-86f6d7c98f4dbddaf3f24512662c2db0.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

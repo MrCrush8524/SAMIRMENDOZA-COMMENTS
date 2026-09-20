@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpqvolp5iuvh5"
-path="res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.ctex"
+path.s3tc="res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.s3tc.ctex"
+path.etc2="res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/mall/dreamy_pastel_arcade_marquee.png"
-dest_files=["res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.ctex"]
+dest_files=["res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.s3tc.ctex", "res://.godot/imported/dreamy_pastel_arcade_marquee.png-94ccea37607bab7079743233bb3364e8.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

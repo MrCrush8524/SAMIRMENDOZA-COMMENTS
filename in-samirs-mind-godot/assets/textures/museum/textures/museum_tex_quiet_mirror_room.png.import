@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coa5d36vac0js"
-path="res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.ctex"
+path.s3tc="res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.s3tc.ctex"
+path.etc2="res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/museum/textures/museum_tex_quiet_mirror_room.png"
-dest_files=["res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.ctex"]
+dest_files=["res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.s3tc.ctex", "res://.godot/imported/museum_tex_quiet_mirror_room.png-6277639c879ec567488dcb00bbcda152.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

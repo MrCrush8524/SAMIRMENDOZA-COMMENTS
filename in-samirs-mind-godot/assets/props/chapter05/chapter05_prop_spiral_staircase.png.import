@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r8s31uooqfh4"
-path="res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.ctex"
+path.s3tc="res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/props/chapter05/chapter05_prop_spiral_staircase.png"
-dest_files=["res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.ctex"]
+dest_files=["res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.s3tc.ctex", "res://.godot/imported/chapter05_prop_spiral_staircase.png-56d84d4e67b5bc5a1d737586165fdfb9.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

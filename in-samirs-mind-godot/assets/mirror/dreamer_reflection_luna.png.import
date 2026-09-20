@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cddh1tnn6q6p6"
-path="res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.ctex"
+path.s3tc="res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.s3tc.ctex"
+path.etc2="res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/mirror/dreamer_reflection_luna.png"
-dest_files=["res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.ctex"]
+dest_files=["res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.s3tc.ctex", "res://.godot/imported/dreamer_reflection_luna.png-eeee5a37a6f341ee2e5ef06cc71268ea.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

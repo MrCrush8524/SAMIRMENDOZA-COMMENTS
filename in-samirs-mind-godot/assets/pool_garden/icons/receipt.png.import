@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4dsxe3gtg3si"
-path="res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.ctex"
+path.s3tc="res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.s3tc.ctex"
+path.etc2="res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/pool_garden/icons/receipt.png"
-dest_files=["res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.ctex"]
+dest_files=["res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.s3tc.ctex", "res://.godot/imported/receipt.png-cdeee0ede977dcdb314d56d859357d96.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

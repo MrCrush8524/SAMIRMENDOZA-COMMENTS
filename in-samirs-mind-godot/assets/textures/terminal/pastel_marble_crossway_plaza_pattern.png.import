@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbacpb7xfdpmn"
-path="res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.ctex"
+path.s3tc="res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.s3tc.ctex"
+path.etc2="res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/terminal/pastel_marble_crossway_plaza_pattern.png"
-dest_files=["res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.ctex"]
+dest_files=["res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.s3tc.ctex", "res://.godot/imported/pastel_marble_crossway_plaza_pattern.png-753177bb95fe69bc88998d8bdc698778.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

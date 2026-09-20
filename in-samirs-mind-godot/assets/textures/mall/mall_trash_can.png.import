@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmm60p12y0vq6"
-path="res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.ctex"
+path.s3tc="res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.s3tc.ctex"
+path.etc2="res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/mall/mall_trash_can.png"
-dest_files=["res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.ctex"]
+dest_files=["res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.s3tc.ctex", "res://.godot/imported/mall_trash_can.png-5b0766b6a9020328326405e0f6b0919d.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://optf6q0snmoi"
-path="res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.ctex"
+path.s3tc="res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.s3tc.ctex"
+path.etc2="res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chapter02/chapter02_tex_nostalgia_field.png"
-dest_files=["res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.ctex"]
+dest_files=["res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.s3tc.ctex", "res://.godot/imported/chapter02_tex_nostalgia_field.png-e4a10693d6926c4fc3a2c25e12b1d33e.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

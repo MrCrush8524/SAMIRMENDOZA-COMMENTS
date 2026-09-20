@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf2hl8as51fvb"
-path="res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.ctex"
+path.s3tc="res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.s3tc.ctex"
+path.etc2="res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/mall/neon_cinema_poster_lightbox.png"
-dest_files=["res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.ctex"]
+dest_files=["res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.s3tc.ctex", "res://.godot/imported/neon_cinema_poster_lightbox.png-067c993a74dc6650c7361be649c113eb.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

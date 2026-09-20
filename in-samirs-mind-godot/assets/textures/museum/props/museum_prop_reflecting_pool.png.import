@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6cjfx6wg24fb"
-path="res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.ctex"
+path.s3tc="res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.s3tc.ctex"
+path.etc2="res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/museum/props/museum_prop_reflecting_pool.png"
-dest_files=["res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.ctex"]
+dest_files=["res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.s3tc.ctex", "res://.godot/imported/museum_prop_reflecting_pool.png-b53c8cd587e2745db4721c667c4a0705.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

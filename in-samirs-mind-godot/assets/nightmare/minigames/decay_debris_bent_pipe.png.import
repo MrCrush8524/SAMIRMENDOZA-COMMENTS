@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbjnryqxtp8b3"
-path="res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.ctex"
+path.s3tc="res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.s3tc.ctex"
+path.etc2="res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/nightmare/minigames/decay_debris_bent_pipe.png"
-dest_files=["res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.ctex"]
+dest_files=["res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.s3tc.ctex", "res://.godot/imported/decay_debris_bent_pipe.png-a2056da66b4eb646a3c157e74f51e238.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

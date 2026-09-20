@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rp78r1yuucnr"
-path="res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.ctex"
+path.s3tc="res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.s3tc.ctex"
+path.etc2="res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/nightmare/arcade/arcade_magenta_side_emission.png"
-dest_files=["res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.ctex"]
+dest_files=["res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.s3tc.ctex", "res://.godot/imported/arcade_magenta_side_emission.png-b8513b2f4c82d636f4cbebaa4b0ff2b8.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

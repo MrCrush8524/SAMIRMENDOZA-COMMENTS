@@ -3,25 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://j7pt27ga3hjk"
-path="res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.ctex"
+path.s3tc="res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.s3tc.ctex"
+path.etc2="res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/museum/props/museum_prop_cloud_fossils.png"
-dest_files=["res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.ctex"]
+dest_files=["res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.s3tc.ctex", "res://.godot/imported/museum_prop_cloud_fossils.png-18cb2d38a96fa754f5c28a0fc7a64a3f.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
