@@ -2613,7 +2613,7 @@ shape = SubResource("RoofShape_House1_Arrival")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House1_Arrival"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.913, 0.290, 0.16)
@@ -2806,7 +2806,7 @@ shape = SubResource("RoofShape_House2_Repeated")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House2_Repeated"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
@@ -3178,7 +3178,7 @@ shape = SubResource("RoofShape_House3_WrongPhoto")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.700, 0.16)
 texture = ExtResource("117")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House3_WrongPhoto"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.138, 0.560, 0.16)
@@ -3371,7 +3371,7 @@ shape = SubResource("RoofShape_House4_Porch")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House4_Porch"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
@@ -3743,7 +3743,7 @@ shape = SubResource("RoofShape_House5_Final")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.800, 0.16)
 texture = ExtResource("117")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House5_Final"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363, 0.580, 0.16)
@@ -3936,7 +3936,7 @@ shape = SubResource("RoofShape_House6_PorchOnly")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House6_PorchOnly"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
@@ -4129,7 +4129,7 @@ shape = SubResource("RoofShape_House7_Impossible")
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("117")
-pixel_size = 0.0024
+pixel_size = 0.0008
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House7_Impossible"]
 alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
