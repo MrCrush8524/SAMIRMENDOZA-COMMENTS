@@ -463,88 +463,105 @@ unit_size = 15.0
 max_distance = 24.0
 
 [node name="Prop_CarouselArchive" type="Sprite3D" parent="Flavor_VelvetRotunda"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 texture = ExtResource("13")
 pixel_size = 0.0026
 billboard = 1
 
 [node name="Prop_CloudFossils" type="Sprite3D" parent="Flavor_CloudFossils"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 texture = ExtResource("14")
 pixel_size = 0.0016
 
 [node name="Prop_ForgottenToysCabinet" type="Sprite3D" parent="Flavor_ForgottenToys"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 texture = ExtResource("15")
 pixel_size = 0.0018
 
 [node name="Prop_ReflectingPool" type="Sprite3D" parent="Flavor_MirrorRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 texture = ExtResource("16")
 pixel_size = 0.002
 
 [node name="Prop_SleepingPortrait1" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.8, -3)
 texture = ExtResource("17")
 pixel_size = 0.0012
 
 [node name="Prop_SleepingPortrait2" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -3)
 texture = ExtResource("18")
 pixel_size = 0.0012
 
 [node name="Prop_SleepingPortrait3" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -3)
 texture = ExtResource("19")
 pixel_size = 0.0012
 
 [node name="Prop_SleepingPortrait4" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -3)
 texture = ExtResource("20")
 pixel_size = 0.0012
 
 [node name="Prop_SleepingPortrait5" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.8, -3)
 texture = ExtResource("21")
 pixel_size = 0.0012
 
 [node name="Prop_TaxidermyDeer" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.9, 3)
 texture = ExtResource("22")
 pixel_size = 0.0016
 
 [node name="Prop_TaxidermyRabbit" type="Sprite3D" parent="Flavor_SleepingPaintings"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.6, 3)
 texture = ExtResource("23")
 pixel_size = 0.0014
 
 [node name="Prop_StarNurseryCrib" type="Sprite3D" parent="Flavor_StarNursery"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
 texture = ExtResource("24")
 pixel_size = 0.0014
 
 [node name="Prop_StarNurseryMobile" type="Sprite3D" parent="Flavor_StarNursery"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.2, 0)
 texture = ExtResource("25")
 pixel_size = 0.0012
 billboard = 1
 
 [node name="Sign_AudioGuideKiosk" type="Sprite3D" parent="Flavor_EntranceHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 3)
 texture = ExtResource("26")
 pixel_size = 0.0018
 
 [node name="Sign_BlankGalleryPlacard" type="Sprite3D" parent="Flavor_MoonStair"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
 texture = ExtResource("27")
 pixel_size = 0.001
 
 [node name="Sign_ImpossibleCorridor" type="Sprite3D" parent="Flavor_ImpossibleCorridor"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -4)
 texture = ExtResource("28")
 pixel_size = 0.001
 
 [node name="Sign_LostAndFound" type="Sprite3D" parent="Flavor_WeatheredMemories"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3)
 texture = ExtResource("29")
 pixel_size = 0.001

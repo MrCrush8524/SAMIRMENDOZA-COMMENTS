@@ -57,6 +57,7 @@ target_position = Vector3(0, 0, -2.2)
 collide_with_areas = true
 
 [node name="MirrorBody" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
 layers = 2
 pixel_size = 0.001327

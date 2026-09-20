@@ -162,6 +162,7 @@ script = ExtResource("2")
 [node name="Shape" type="CollisionShape3D" parent="StairsUp"]
 shape = SubResource("Shape_stairs")
 [node name="Visual" type="Sprite3D" parent="StairsUp"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.19, 0)
 texture = ExtResource("7")
 pixel_size = 0.00227

@@ -3035,6 +3035,7 @@ kind = 0
 journal_text = "The windows seem higher than they were a minute ago."
 item_id = "3"
 [node name="Icon" type="Sprite3D" parent="GroundFloor/Journal1"]
+alpha_cut = 1
 texture = ExtResource("52")
 pixel_size = 0.0016
 billboard = 1
@@ -3073,11 +3074,13 @@ shape = SubResource("BackExitDoorShape")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6)
 
 [node name="Prop_FoyerConsole" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.555, 0)
 texture = ExtResource("22")
 pixel_size = 0.001615
 
 [node name="Prop_FoyerConsole_Duplicate" type="Sprite3D" parent="GroundFloor/Flavor_Foyer"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.555, 1.2)
 texture = ExtResource("22")
 pixel_size = 0.001615
@@ -3865,10 +3868,12 @@ flavor_text = "Child's Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_ChildsRoom"]
 shape = SubResource("C3S_FlavorShapeChildsRoom228")
 [node name="Prop_ChildBed" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.507, -3)
 texture = ExtResource("34")
 pixel_size = 0.002049
 [node name="Prop_ToyChest" type="Sprite3D" parent="SecondFloor/Flavor_ChildsRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.634, 2)
 texture = ExtResource("35")
 pixel_size = 0.001404
@@ -3880,10 +3885,12 @@ flavor_text = "Memory Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_MemoryRoom"]
 shape = SubResource("C3S_FlavorShapeMemoryRoom229")
 [node name="Prop_RecordPlayer" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.789, -3)
 texture = ExtResource("36")
 pixel_size = 0.001028
 [node name="Prop_KeepsakeBoxes" type="Sprite3D" parent="SecondFloor/Flavor_MemoryRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4.654, 2)
 texture = ExtResource("37")
 pixel_size = 0.001408
@@ -3895,10 +3902,12 @@ flavor_text = "Sitting Room."
 [node name="Shape" type="CollisionShape3D" parent="SecondFloor/Flavor_SittingRoom"]
 shape = SubResource("C3S_FlavorShapeSittingRoom230")
 [node name="Prop_Armchair" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4.641, -3)
 texture = ExtResource("38")
 pixel_size = 0.001404
 [node name="Prop_GrandfatherClock" type="Sprite3D" parent="SecondFloor/Flavor_SittingRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4.0, 3)
 texture = ExtResource("39")
 pixel_size = 0.002195
@@ -3926,6 +3935,7 @@ kind = 0
 journal_text = "Every time you look outside, the ground is a little farther away."
 item_id = "4"
 [node name="Icon" type="Sprite3D" parent="SecondFloor/Journal2"]
+alpha_cut = 1
 texture = ExtResource("52")
 pixel_size = 0.0016
 billboard = 1
@@ -4441,14 +4451,17 @@ flavor_text = "Attic (unfinished)."
 [node name="Shape" type="CollisionShape3D" parent="Attic/Flavor_Attic"]
 shape = SubResource("C3A_FlavorShapeAttic117")
 [node name="Prop_AtticBoxes" type="Sprite3D" parent="Attic/Flavor_Attic"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -8.655, -3)
 texture = ExtResource("40")
 pixel_size = 0.001498
 [node name="Prop_DustsheetFurniture" type="Sprite3D" parent="Attic/Flavor_Attic"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -8.533, 2)
 texture = ExtResource("41")
 pixel_size = 0.001865
 [node name="Prop_BareBulb" type="Sprite3D" parent="Attic/Flavor_Attic"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 texture = ExtResource("42")
 pixel_size = 0.000508
@@ -4474,6 +4487,7 @@ kind = 0
 journal_text = "When you finally leave this house, don't expect the street to still be there."
 item_id = "5"
 [node name="Icon" type="Sprite3D" parent="Attic/Journal3"]
+alpha_cut = 1
 texture = ExtResource("52")
 pixel_size = 0.0016
 billboard = 1

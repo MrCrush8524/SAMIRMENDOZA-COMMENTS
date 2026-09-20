@@ -100,18 +100,21 @@ light_energy = 0.7
 omni_range = 14.0
 
 [node name="PropChair" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -6.5)
 texture = ExtResource("8")
 pixel_size = 0.0016
 billboard = 0
 
 [node name="PropEmptyFrame" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.7, -8.85)
 texture = ExtResource("9")
 pixel_size = 0.0014
 billboard = 0
 
 [node name="PropDuplicateLamps" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.9, -3)
 texture = ExtResource("10")
 pixel_size = 0.0016

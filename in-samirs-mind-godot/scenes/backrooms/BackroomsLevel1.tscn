@@ -148,6 +148,7 @@ script = ExtResource("4")
 [node name="Shape" type="CollisionShape3D" parent="StairsDown"]
 shape = SubResource("Shape_stairs")
 [node name="Visual" type="Sprite3D" parent="StairsDown"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.19, 0)
 texture = ExtResource("16")
 pixel_size = 0.00227
@@ -160,6 +161,7 @@ flavor_name = "a tarnished brass key"
 [node name="Shape" type="CollisionShape3D" parent="Artifact_Key"]
 shape = SubResource("Shape_artifact")
 [node name="Visual" type="Sprite3D" parent="Artifact_Key"]
+alpha_cut = 1
 texture = ExtResource("9")
 pixel_size = 0.000211
 billboard = 1
@@ -172,6 +174,7 @@ flavor_name = "a stopped pocket watch"
 [node name="Shape" type="CollisionShape3D" parent="Artifact_Watch"]
 shape = SubResource("Shape_artifact")
 [node name="Visual" type="Sprite3D" parent="Artifact_Watch"]
+alpha_cut = 1
 texture = ExtResource("10")
 pixel_size = 0.0001248
 billboard = 1
@@ -184,6 +187,7 @@ flavor_name = "a single child's shoe"
 [node name="Shape" type="CollisionShape3D" parent="Artifact_Shoe"]
 shape = SubResource("Shape_artifact")
 [node name="Visual" type="Sprite3D" parent="Artifact_Shoe"]
+alpha_cut = 1
 texture = ExtResource("11")
 pixel_size = 0.000305
 billboard = 1
@@ -196,6 +200,7 @@ flavor_name = "a glass marble"
 [node name="Shape" type="CollisionShape3D" parent="Artifact_Marble"]
 shape = SubResource("Shape_artifact")
 [node name="Visual" type="Sprite3D" parent="Artifact_Marble"]
+alpha_cut = 1
 texture = ExtResource("12")
 pixel_size = 0.0000555
 billboard = 1
@@ -208,6 +213,7 @@ flavor_name = "the door with red paint flaking off it"
 [node name="Shape" type="CollisionShape3D" parent="Door_Red"]
 shape = SubResource("Shape_door")
 [node name="Visual" type="Sprite3D" parent="Door_Red"]
+alpha_cut = 1
 texture = ExtResource("13")
 pixel_size = 0.002243
 
@@ -219,6 +225,7 @@ flavor_name = "the door scratched with numbers"
 [node name="Shape" type="CollisionShape3D" parent="Door_Numbers"]
 shape = SubResource("Shape_door")
 [node name="Visual" type="Sprite3D" parent="Door_Numbers"]
+alpha_cut = 1
 texture = ExtResource("14")
 pixel_size = 0.002243
 
@@ -230,6 +237,7 @@ flavor_name = "the door standing slightly ajar"
 [node name="Shape" type="CollisionShape3D" parent="Door_Ajar"]
 shape = SubResource("Shape_door")
 [node name="Visual" type="Sprite3D" parent="Door_Ajar"]
+alpha_cut = 1
 texture = ExtResource("15")
 pixel_size = 0.002243
 

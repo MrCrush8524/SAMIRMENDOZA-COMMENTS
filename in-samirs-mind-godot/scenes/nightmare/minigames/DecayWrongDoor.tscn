@@ -47,11 +47,13 @@ surface_material_override/0 = SubResource("DoorMat")
 shape = SubResource("DoorShape")
 
 [node name="Debris_BentPipe" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.4, -2)
 texture = ExtResource("3")
 pixel_size = 0.0016
 
 [node name="Debris_CeilingChunk" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.3, -1)
 texture = ExtResource("4")
 pixel_size = 0.0018

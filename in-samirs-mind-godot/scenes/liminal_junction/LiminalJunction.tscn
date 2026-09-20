@@ -271,6 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 4)
 mesh = SubResource("ZonePlaneHall")
 surface_material_override/0 = SubResource("GrandHallMat")
 [node name="Fountain" type="Sprite3D" parent="ZoneGrandHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 texture = ExtResource("21")
 pixel_size = 0.0032
@@ -517,228 +518,268 @@ unit_size = 15.0
 max_distance = 24.0
 
 [node name="Prop_CarouselLounge" type="Sprite3D" parent="Flavor_CarouselLounge"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 texture = ExtResource("15")
 pixel_size = 0.0026
 billboard = 1
 
 [node name="Prop_DepartureClocktower" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -3)
 texture = ExtResource("16")
 pixel_size = 0.0024
 
 [node name="Prop_DiningCarTable" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.6, 3)
 texture = ExtResource("17")
 pixel_size = 0.0014
 
 [node name="Prop_DinosaurSkeleton" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, -3)
 texture = ExtResource("18")
 pixel_size = 0.002
 
 [node name="Prop_EntrancePalms" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 5)
 texture = ExtResource("19")
 pixel_size = 0.0018
 billboard = 1
 
 [node name="Prop_GardenTopiary" type="Sprite3D" parent="Flavor_GardenPlatform"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.9, -1)
 texture = ExtResource("20")
 pixel_size = 0.0016
 billboard = 1
 
 [node name="Prop_LuggagePile" type="Sprite3D" parent="Flavor_LostLuggage"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 texture = ExtResource("22")
 pixel_size = 0.0016
 
 [node name="Prop_ParkedTrain" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("23")
 pixel_size = 0.003
 
 [node name="Prop_SleeperBunks" type="Sprite3D" parent="Flavor_InfiniteWaitingRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0)
 texture = ExtResource("24")
 pixel_size = 0.0014
 
 [node name="Sign_DepartureClockFace" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -3)
 texture = ExtResource("25")
 pixel_size = 0.0012
 
 [node name="Sign_LowerLevelDirectory" type="Sprite3D" parent="Flavor_ObservationDeck"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -3)
 texture = ExtResource("26")
 pixel_size = 0.0014
 
 [node name="Sign_TimeRoom" type="Sprite3D" parent="Flavor_Departure"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.4, 3)
 texture = ExtResource("51")
 pixel_size = 0.0012
 
 [node name="Sign_ToAnywhere" type="Sprite3D" parent="Flavor_GrandHall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 6)
 texture = ExtResource("52")
 pixel_size = 0.0012
 
 [node name="Sign_ToForgottenPlaces" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
 texture = ExtResource("53")
 pixel_size = 0.0012
 
 [node name="Sign_ToSomewhereElse" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -20)
 texture = ExtResource("54")
 pixel_size = 0.0012
 
 [node name="Sign_VoidPlatform" type="Sprite3D" parent="Flavor_VoidPlatform"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -3)
 texture = ExtResource("55")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform01" type="Sprite3D" parent="Platform_1"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("27")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform02" type="Sprite3D" parent="Platform_2"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("28")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform03" type="Sprite3D" parent="Platform_3"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("29")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform04" type="Sprite3D" parent="Platform_4"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("30")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform05" type="Sprite3D" parent="Platform_5"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("31")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform06" type="Sprite3D" parent="Platform_6"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("32")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform07" type="Sprite3D" parent="Platform_7"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("33")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform08" type="Sprite3D" parent="Platform_8"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 texture = ExtResource("34")
 pixel_size = 0.0012
 
 
 [node name="Sign_Platform09" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -16)
 texture = ExtResource("35")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform10" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -12)
 texture = ExtResource("36")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform11" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -8)
 texture = ExtResource("37")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform12" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, -4)
 texture = ExtResource("38")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform13" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 0)
 texture = ExtResource("39")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform14" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 4)
 texture = ExtResource("40")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform15" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 8)
 texture = ExtResource("41")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform16" type="Sprite3D" parent="Flavor_PlatformsWest"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 12)
 texture = ExtResource("42")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform17" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -16)
 texture = ExtResource("43")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform18" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -12)
 texture = ExtResource("44")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform19" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -8)
 texture = ExtResource("45")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform20" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, -4)
 texture = ExtResource("46")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform21" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 0)
 texture = ExtResource("47")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform22" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 4)
 texture = ExtResource("48")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform23" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 8)
 texture = ExtResource("49")
 pixel_size = 0.001
 
 
 [node name="Sign_Platform24" type="Sprite3D" parent="Flavor_PlatformsEast"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 12)
 texture = ExtResource("50")
 pixel_size = 0.001

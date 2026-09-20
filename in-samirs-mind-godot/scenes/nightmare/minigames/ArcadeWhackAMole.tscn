@@ -80,6 +80,7 @@ surface_material_override/0 = SubResource("MoleMat4")
 shape = SubResource("MoleShape")
 
 [node name="Marquee" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -2)
 texture = ExtResource("3")
 pixel_size = 0.0022

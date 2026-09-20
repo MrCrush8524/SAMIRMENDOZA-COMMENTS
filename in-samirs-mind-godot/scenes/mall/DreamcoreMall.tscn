@@ -465,6 +465,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
 mesh = SubResource("ZonePlane16")
 surface_material_override/0 = SubResource("RotundaMat")
 [node name="Fountain" type="Sprite3D" parent="ZoneRotunda"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 texture = ExtResource("31")
 pixel_size = 0.0032
@@ -779,55 +780,65 @@ unit_size = 15.0
 max_distance = 24.0
 
 [node name="Prop_ArcadeCabinet" type="Sprite3D" parent="ZoneArcade"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.3, -4)
 texture = ExtResource("32")
 pixel_size = 0.0022
 billboard = 1
 
 [node name="Prop_CinemaMarquee" type="Sprite3D" parent="ZoneCinema"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
 texture = ExtResource("33")
 pixel_size = 0.0026
 billboard = 1
 
 [node name="Prop_DirectoryKiosk" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3, 8)
 texture = ExtResource("34")
 pixel_size = 0.002
 
 [node name="Prop_Playground" type="Sprite3D" parent="ZoneDreamPlayground"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 texture = ExtResource("35")
 pixel_size = 0.0026
 billboard = 1
 
 [node name="Prop_VendingMachine" type="Sprite3D" parent="ZoneFoodCourt"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.2, -2)
 texture = ExtResource("36")
 pixel_size = 0.0018
 
 [node name="Prop_ToyBoxMascot" type="Sprite3D" parent="ZoneToyBox"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 texture = ExtResource("37")
 pixel_size = 0.0018
 billboard = 1
 
 [node name="Prop_PoolFloatRack" type="Sprite3D" parent="ZonePoolCourt"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.1, 3)
 texture = ExtResource("38")
 pixel_size = 0.0018
 
 [node name="Prop_WateringCan" type="Sprite3D" parent="ZoneGreenhouse"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, -2)
 texture = ExtResource("39")
 pixel_size = 0.0012
 
 [node name="Prop_LostWingSign" type="Sprite3D" parent="ZoneLostWing"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -3)
 texture = ExtResource("40")
 pixel_size = 0.0022
 
 [node name="Prop_SchoolDesk" type="Sprite3D" parent="ZoneClassroom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 texture = ExtResource("41")
 pixel_size = 0.0016

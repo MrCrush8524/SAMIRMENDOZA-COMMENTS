@@ -244,43 +244,51 @@ unit_size = 15.0
 max_distance = 24.0
 
 [node name="Prop_DreamDoor" type="Sprite3D" parent="Flavor_DoorsToOtherDreams"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 texture = ExtResource("15")
 pixel_size = 0.0018
 
 [node name="Prop_HallwayBench" type="Sprite3D" parent="Flavor_PinkHallway"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 texture = ExtResource("16")
 pixel_size = 0.0014
 
 [node name="Prop_ClassroomDesk" type="Sprite3D" parent="ZoneClassroom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0)
 texture = ExtResource("17")
 pixel_size = 0.0014
 
 [node name="Prop_ClassroomChair" type="Sprite3D" parent="ZoneClassroom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.4, 0)
 texture = ExtResource("18")
 pixel_size = 0.0012
 
 [node name="Prop_PartyBalloons" type="Sprite3D" parent="ZonePartyRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.8, 0)
 texture = ExtResource("19")
 pixel_size = 0.0016
 billboard = 1
 
 [node name="Prop_PartyStreamers" type="Sprite3D" parent="ZonePartyRoom"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.2, 0)
 texture = ExtResource("20")
 pixel_size = 0.0016
 billboard = 1
 
 [node name="Prop_Staircase" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.2, 5)
 texture = ExtResource("21")
 pixel_size = 0.002
 
 [node name="Prop_ArchDoorway" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.6, 9)
 texture = ExtResource("22")
 pixel_size = 0.002

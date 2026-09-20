@@ -3598,6 +3598,7 @@ kind = 0
 journal_text = "Samir's handwriting, cramped in the margin: 'The roofs go higher than the block does. I checked twice.'"
 item_id = "6"
 [node name="Icon" type="Sprite3D" parent="JournalSpawnPool/Journal6"]
+alpha_cut = 1
 texture = ExtResource("gp_journaltex")
 pixel_size = 0.0016
 billboard = 1
@@ -3615,6 +3616,7 @@ kind = 0
 journal_text = "A page stuck to the tarpaper by old rain: 'Found the south roof. Nobody uses it. I don't think anyone else knows it's here.'"
 item_id = "7"
 [node name="Icon" type="Sprite3D" parent="JournalSpawnPool/Journal7"]
+alpha_cut = 1
 texture = ExtResource("gp_journaltex")
 pixel_size = 0.0016
 billboard = 1
@@ -3632,6 +3634,7 @@ kind = 0
 journal_text = "Torn loose-leaf, wedged under a vent cap: 'Between the towers you can see the whole route back down. It doesn't look this far when you're walking it.'"
 item_id = "8"
 [node name="Icon" type="Sprite3D" parent="JournalSpawnPool/Journal8"]
+alpha_cut = 1
 texture = ExtResource("gp_journaltex")
 pixel_size = 0.0016
 billboard = 1

@@ -2041,30 +2041,37 @@ discovery_id = "park_big"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_ParkBig"]
 shape = SubResource("Shape_flavor_parkbig")
 [node name="Prop_ParkBench" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.575, 4)
 texture = ExtResource("21")
 pixel_size = 0.001632
 [node name="Prop_SwingSet" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.2, -4)
 texture = ExtResource("22")
 pixel_size = 0.003367
 [node name="Prop_BallRedRubber" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.875, 0)
 texture = ExtResource("23")
 pixel_size = 0.000462
 [node name="Prop_BallBasketball" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.897, 3)
 texture = ExtResource("24")
 pixel_size = 0.000444
 [node name="Prop_BallSoccer" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.89, -3)
 texture = ExtResource("25")
 pixel_size = 0.000379
 [node name="Prop_BallTennis" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -0.966, 5)
 texture = ExtResource("26")
 pixel_size = 0.000124
 [node name="Prop_BallFootball" type="Sprite3D" parent="Flavor_ParkBig"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.874, -6)
 texture = ExtResource("28")
 pixel_size = 0.000466
@@ -2077,14 +2084,17 @@ discovery_id = "park_small"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_ParkSmall"]
 shape = SubResource("Shape_flavor_parksmall")
 [node name="Prop_BallTennis" type="Sprite3D" parent="Flavor_ParkSmall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.9665, -2)
 texture = ExtResource("26")
 pixel_size = 0.000124
 [node name="Prop_BallBeach" type="Sprite3D" parent="Flavor_ParkSmall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.75, -5)
 texture = ExtResource("27")
 pixel_size = 0.000924
 [node name="Sign_TwilightStation" type="Sprite3D" parent="Flavor_ParkSmall"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.55, 3)
 texture = ExtResource("29")
 pixel_size = 0.001382
@@ -2097,14 +2107,17 @@ discovery_id = "gazebo"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Gazebo"]
 shape = SubResource("Shape_flavor_gazebo")
 [node name="Prop_Gazebo" type="Sprite3D" parent="Flavor_Gazebo"]
+alpha_cut = 1
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 2.0, 1.1, 17.0)
 texture = ExtResource("30")
 pixel_size = 0.004463
 [node name="Prop_StringLights" type="Sprite3D" parent="Flavor_Gazebo"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.441, -1)
 texture = ExtResource("31")
 pixel_size = 0.003483
 [node name="Prop_FoldingChairs" type="Sprite3D" parent="Flavor_Gazebo"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.48, 3)
 texture = ExtResource("32")
 pixel_size = 0.001998
@@ -2117,6 +2130,7 @@ discovery_id = "field"
 [node name="Shape" type="CollisionShape3D" parent="Flavor_Field"]
 shape = SubResource("Shape_flavor_field")
 [node name="Prop_NostalgiaTV" type="Sprite3D" parent="Flavor_Field"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.75, 2)
 texture = ExtResource("33")
 pixel_size = 0.000786
@@ -2127,6 +2141,7 @@ pixel_size = 0.000786
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 1.1, -24.3)
 script = ExtResource("6")
 [node name="Mesh" type="Sprite3D" parent="NeighborhoodHouseDoor"]
+alpha_cut = 1
 texture = ExtResource("14")
 pixel_size = 0.0023
 [node name="Shape" type="CollisionShape3D" parent="NeighborhoodHouseDoor"]
@@ -2140,6 +2155,7 @@ light_energy = 0.05
 omni_range = 3.0
 
 [node name="Doubt" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.3, 4)
 script = ExtResource("2")
 texture = ExtResource("4")
@@ -2347,26 +2363,31 @@ shape = SubResource("HedgeShape_10NS")
 
 
 [node name="Prop_PorchColumnLeft" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0.6, -28.5)
 texture = ExtResource("104")
 pixel_size = 0.002
 
 [node name="Prop_PorchColumnRight" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0.6, -28.5)
 texture = ExtResource("104")
 pixel_size = 0.002
 
 [node name="Prop_PorchRailing" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.9, -28.2)
 texture = ExtResource("105")
 pixel_size = 0.0026
 
 [node name="Prop_PorchSteps" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1.3, -27.3)
 texture = ExtResource("106")
 pixel_size = 0.0026
 
 [node name="Prop_Mailbox" type="Sprite3D" parent="."]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.6, -27)
 texture = ExtResource("107")
 pixel_size = 0.0018
@@ -2377,6 +2398,7 @@ script = ExtResource("100")
 discovery_id = "porch_shoes"
 discovery_text = "A worn pair of shoes by the door. Nobody's worn these in a long time."
 [node name="Icon" type="Sprite3D" parent="PorchDiscovery_Shoes"]
+alpha_cut = 1
 texture = ExtResource("110")
 pixel_size = 0.0014
 [node name="Shape" type="CollisionShape3D" parent="PorchDiscovery_Shoes"]
@@ -2388,6 +2410,7 @@ script = ExtResource("100")
 discovery_id = "porch_chime"
 discovery_text = "A seashell wind chime, still swaying. There's no wind."
 [node name="Icon" type="Sprite3D" parent="PorchDiscovery_Chime"]
+alpha_cut = 1
 texture = ExtResource("111")
 pixel_size = 0.0014
 [node name="Shape" type="CollisionShape3D" parent="PorchDiscovery_Chime"]
@@ -2399,6 +2422,7 @@ script = ExtResource("100")
 discovery_id = "porch_mail"
 discovery_text = "A bundle of letters, tied with twine, addressed to a house number that doesn't exist on this street."
 [node name="Icon" type="Sprite3D" parent="PorchDiscovery_Mail"]
+alpha_cut = 1
 texture = ExtResource("112")
 pixel_size = 0.0014
 [node name="Shape" type="CollisionShape3D" parent="PorchDiscovery_Mail"]
@@ -2411,6 +2435,7 @@ flavor_text = "A framed photograph, leaning against the porch rail. Someone in i
 [node name="Shape" type="CollisionShape3D" parent="Flavor_WrongPhotograph"]
 shape = SubResource("Shape_storyprop")
 [node name="Icon" type="Sprite3D" parent="Flavor_WrongPhotograph"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 texture = ExtResource("113")
 pixel_size = 0.0016
@@ -2585,14 +2610,17 @@ transform = Transform3D(-0.92082, -0.38999, 0, 0.38999, -0.92082, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House1_Arrival")
 
 [node name="Prop_Door" type="Sprite3D" parent="House1_Arrival"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House1_Arrival"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.913, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House1_Arrival"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.913, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
@@ -2775,14 +2803,17 @@ transform = Transform3D(-0.92848, -0.37139, 0, 0.37139, -0.92848, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House2_Repeated")
 
 [node name="Prop_Door" type="Sprite3D" parent="House2_Repeated"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House2_Repeated"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House2_Repeated"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.025, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
@@ -3144,14 +3175,17 @@ transform = Transform3D(-0.90740, -0.42027, 0, 0.42027, -0.90740, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House3_WrongPhoto")
 
 [node name="Prop_Door" type="Sprite3D" parent="House3_WrongPhoto"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.700, 0.16)
 texture = ExtResource("117")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House3_WrongPhoto"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.138, 0.560, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House3_WrongPhoto"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.138, 0.560, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
@@ -3334,14 +3368,17 @@ transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House4_Porch")
 
 [node name="Prop_Door" type="Sprite3D" parent="House4_Porch"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House4_Porch"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House4_Porch"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.800, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
@@ -3703,14 +3740,17 @@ transform = Transform3D(-0.90947, -0.41576, 0, 0.41576, -0.90947, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House5_Final")
 
 [node name="Prop_Door" type="Sprite3D" parent="House5_Final"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.800, 0.16)
 texture = ExtResource("117")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House5_Final"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363, 0.580, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House5_Final"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363, 0.580, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
@@ -3893,14 +3933,17 @@ transform = Transform3D(-0.91192, -0.41036, 0, 0.41036, -0.91192, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House6_PorchOnly")
 
 [node name="Prop_Door" type="Sprite3D" parent="House6_PorchOnly"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("102")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House6_PorchOnly"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.800, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House6_PorchOnly"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.800, 0.290, 0.16)
 texture = ExtResource("103")
 pixel_size = 0.0016
@@ -4083,14 +4126,17 @@ transform = Transform3D(-0.92125, -0.38897, 0, 0.38897, -0.92125, 0, 0, 0, 1, 2.
 shape = SubResource("RoofShape_House7_Impossible")
 
 [node name="Prop_Door" type="Sprite3D" parent="House7_Impossible"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.350, 0.16)
 texture = ExtResource("117")
 pixel_size = 0.0024
 [node name="Prop_WindowLeft" type="Sprite3D" parent="House7_Impossible"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, 0.290, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
 [node name="Prop_WindowRight" type="Sprite3D" parent="House7_Impossible"]
+alpha_cut = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.025, 0.290, 0.16)
 texture = ExtResource("118")
 pixel_size = 0.0016
