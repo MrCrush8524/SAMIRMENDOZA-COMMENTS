@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://title_scene"]
+[gd_scene load_steps=13 format=3 uid="uid://title_scene"]
 
 [ext_resource type="Script" path="res://scenes/menu/Title.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/menu/LoreOverlay.tscn" id="2"]
-[ext_resource type="Texture2D" path="res://assets/menu_art/title_hero.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_new_dream.png" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/menu/SettingsOverlay.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/menu/ExtrasOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/menu/SoundtrackOverlay.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/menu/LoadGameOverlay.tscn" id="9"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_continue.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_chapters.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_companion.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_settings.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_soundtrack.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_extras.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/menu_art/title_exit.png" id="16"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -69,6 +76,16 @@ flat = true
 text = ""
 
 [node name="BtnChapters" type="Button" parent="."]
+unique_name_in_owner = true
+flat = true
+text = ""
+
+[node name="BtnCompanion" type="Button" parent="."]
+unique_name_in_owner = true
+flat = true
+text = ""
+
+[node name="BtnExit" type="Button" parent="."]
 unique_name_in_owner = true
 flat = true
 text = ""
