@@ -33,23 +33,43 @@ func _ready() -> void:
 	track_popup.visible = false
 	save_toast.visible = false
 
-## Escape opens/closes the "change character" pause menu, but only during
-## plain exploration — a Nightmare Passage already claims Escape for its
-## own exit_nightmare (see NightmarePassage.gd), and the Backrooms is
+## Escape/B (ui_cancel) and Start/Options (pause_menu) both reach the
+## same _toggle_pause() - two distinct actions/physical buttons, not
+## one merged into the other, per the correction that split them apart
+## again after an earlier pass wired Start into ui_cancel directly
+## (that made Start behave like a second Cancel everywhere, including
+## inside ordinary submenus it has no business closing). ui_cancel stays
+## exactly as it always was for Escape/B, since every overlay
+## (Settings/Extras/Soundtrack/ChapterSelect/CharacterSelect/...) has
+## its own independent ui_cancel handler for Back - this function only
+## ever owns the pause menu itself, on either input.
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_toggle_pause()
+	elif event.is_action_pressed("pause_menu"):
+		# Start must not accidentally back out of an ordinary menu - if
+		# something layered on top of Pause (the chapter list) is open,
+		# stand aside exactly like ui_cancel does, and let B/Escape (or
+		# picking an option) handle that screen instead.
+		if chapter_select_overlay.visible:
+			return
+		_toggle_pause()
+
+## Opens/closes the "change character" pause menu, but only during plain
+## exploration — a Nightmare Passage already claims Escape for its own
+## exit_nightmare (see NightmarePassage.gd), and the Backrooms is
 ## deliberately inescapable by player input, so both are excluded here.
 ## Also stays out of the way of any other popup already using the mouse
 ## (journal, dream track card) rather than stacking on top of them.
 ##
 ## Gated on GameState.current_player being set (i.e. a real Player node
 ## is actually in the tree) - UiRoot is a persistent autoload that
-## outlives every scene change, so without this guard a stray Escape
-## press on Title/Character Select/menus would open the pause menu with
-## nothing there to close it, and that visible=true state would then
-## carry straight into the next fresh GameRoot session, looking like a
-## broken screen the moment a new dream starts.
-func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_cancel"):
-		return
+## outlives every scene change, so without this guard a stray Escape/
+## Start press on Title/Character Select/menus would open the pause menu
+## with nothing there to close it, and that visible=true state would
+## then carry straight into the next fresh GameRoot session, looking
+## like a broken screen the moment a new dream starts.
+func _toggle_pause() -> void:
 	if chapter_select_overlay.visible:
 		# Its own _unhandled_input already closes it on ui_cancel (needed
 		# for when it's opened from Title, which this guard doesn't run
