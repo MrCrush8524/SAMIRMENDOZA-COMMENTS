@@ -6,6 +6,8 @@ extends Node3D
 ## continuous there via a floor-height raycast scan during authoring -
 ## so the player walks continuously from Airport A into Airport B.
 
+const PosterSpawner := preload("res://scenes/shared/PosterSpawner.gd")
+
 @export var environment_roots: Array[NodePath] = []
 
 func _ready() -> void:
@@ -14,6 +16,7 @@ func _ready() -> void:
 		var node := get_node_or_null(path)
 		if node:
 			_generate_collision(node)
+	PosterSpawner.attach(self, "../start", 30.0)
 
 func _generate_collision(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:

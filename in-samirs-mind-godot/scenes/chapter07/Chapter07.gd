@@ -7,8 +7,10 @@ extends Node3D
 ## Kit pieces scattered throughout and Quaternius furniture placed as
 ## individually-scattered collectibles, 7 of which satisfy the chapter.
 
+const PosterSpawner := preload("res://scenes/shared/PosterSpawner.gd")
 const REQUIRED_FURNITURE := 7
 
 func _ready() -> void:
 	GameState.no_clip_enabled_for_chapter = true
 	GameState.chapter_required_counts["chapter07"] = REQUIRED_FURNITURE
+	PosterSpawner.attach(self, "../start", 25.0)
