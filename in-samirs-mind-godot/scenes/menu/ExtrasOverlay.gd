@@ -32,6 +32,7 @@ func open() -> void:
 	visible = true
 	empty_label.visible = false
 	_layout_hotspots()
+	gallery_button.grab_focus()
 
 func close() -> void:
 	visible = false

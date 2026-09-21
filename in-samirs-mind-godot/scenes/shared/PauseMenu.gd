@@ -67,7 +67,7 @@ func _ready() -> void:
 	# underneath while it's open (its own opaque background fully covers
 	# the screen either way), so cancelling it lands back on this pause
 	# menu instead of dropping straight back into gameplay.
-	chapters_button.pressed.connect(func(): UiRoot.chapter_select_overlay.open())
+	chapters_button.pressed.connect(func(): UiRoot.chapter_select_overlay.open(chapters_button))
 	main_menu_button.pressed.connect(func(): _confirm_leave("menu"))
 	exit_button.pressed.connect(func(): _confirm_leave("quit"))
 	embodiment_cat_button.pressed.connect(_on_embodiment_pressed.bind("cat"))
@@ -97,6 +97,7 @@ func open() -> void:
 	volume_slider.value = SettingsManager.get_master_volume_linear()
 	reduced_motion_check.button_pressed = SettingsManager.reduced_motion
 	_refresh()
+	resume_button.grab_focus()
 
 func close() -> void:
 	visible = false
@@ -131,6 +132,7 @@ func _on_embodiment_pressed(embodiment_id: String) -> void:
 func _confirm_leave(dest: String) -> void:
 	_pending_leave = dest
 	confirm_leave_panel.visible = true
+	cancel_leave_button.grab_focus()
 
 func _open_save_dialog(dest: String) -> void:
 	_pending_leave = dest

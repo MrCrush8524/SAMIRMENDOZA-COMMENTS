@@ -60,6 +60,7 @@ func open() -> void:
 	layer_b.modulate.a = 0.0
 	_front_is_a = true
 	_hold_timer = HOLD_SECONDS
+	back_button.grab_focus()
 
 func close() -> void:
 	if not visible:

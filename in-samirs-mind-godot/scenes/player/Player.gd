@@ -5,6 +5,12 @@ extends CharacterBody3D
 const WALK_SPEED := 3.2
 const SPRINT_SPEED := 5.0
 const MOUSE_SENS := 0.0022
+## Radians/sec at full stick deflection - tuned against MOUSE_SENS to
+## feel like a comparably brisk full turn rather than either a twitchy
+## snap or a sluggish crawl; the 0.2 deadzone on look_left/right/up/down
+## (project.godot, same convention as every other action) is what
+## actually stops stick drift, not this.
+const CONTROLLER_LOOK_SENS := 2.6
 const GRAVITY := 9.8
 
 ## Collision capsule radius (see Player.tscn) — kept slender since the
@@ -150,7 +156,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		pitch = clamp(pitch - event.relative.y * MOUSE_SENS, -1.3, 1.3)
 		head.rotation.x = pitch
 
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_try_interact()
 
 func _physics_process(delta: float) -> void:
@@ -179,28 +185,59 @@ func _physics_process(delta: float) -> void:
 	_scroll_forward_timer = maxf(0.0, _scroll_forward_timer - delta)
 	_scroll_backward_timer = maxf(0.0, _scroll_backward_timer - delta)
 
-	var forward_input := Input.get_action_strength("move_forward")
-	var back_input := Input.get_action_strength("move_back")
-	if _scroll_forward_timer > 0.0:
-		forward_input = 1.0
-	if _scroll_backward_timer > 0.0:
-		back_input = 1.0
+	# Every menu/overlay in this game (PauseMenu, Settings, Chapter
+	# Select, the journal/track popups...) sets mouse_mode to VISIBLE on
+	# open and back to CAPTURED on close - already a consistent, established
+	# signal for "a blocking screen is up" across the whole codebase, so
+	# gating gameplay input on it (rather than adding a second, separate
+	# "is a menu open" flag) needs no new state and can't drift out of
+	# sync with what the UI is actually doing. Movement/sprint/kneel/look
+	# are skipped entirely while any menu owns the mouse - gravity and
+	# move_and_slide() below still run either way, so falling doesn't
+	# freeze mid-air just because a menu happens to be open.
+	var gameplay_input_active := Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 
-	var input_dir := Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		back_input - forward_input
-	)
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	if gameplay_input_active:
+		_update_controller_look(delta)
+
+		var forward_input := Input.get_action_strength("move_forward")
+		var back_input := Input.get_action_strength("move_back")
+		if _scroll_forward_timer > 0.0:
+			forward_input = 1.0
+		if _scroll_backward_timer > 0.0:
+			back_input = 1.0
+
+		var input_dir := Vector2(
+			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+			back_input - forward_input
+		)
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		var speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
 
 	move_and_slide()
 	_update_body_animation(delta)
-	_update_kneel(delta)
+	_update_kneel(delta, gameplay_input_active)
 
-func _update_kneel(delta: float) -> void:
-	var target_y := KNEEL_HEAD_Y if Input.is_action_pressed("kneel") else _stand_head_y
+## Right stick, continuously polled (unlike mouse-look, which is
+## event-driven off InputEventMouseMotion in _unhandled_input) since an
+## analog stick reports a held position every frame rather than discrete
+## deltas - same rotate_y/pitch application as the mouse branch there,
+## just scaled by delta instead of by a single motion event.
+func _update_controller_look(delta: float) -> void:
+	var look := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if look == Vector2.ZERO:
+		return
+	rotate_y(-look.x * CONTROLLER_LOOK_SENS * delta)
+	pitch = clamp(pitch - look.y * CONTROLLER_LOOK_SENS * delta, -1.3, 1.3)
+	head.rotation.x = pitch
+
+func _update_kneel(delta: float, gameplay_input_active: bool) -> void:
+	var target_y := KNEEL_HEAD_Y if (gameplay_input_active and Input.is_action_pressed("kneel")) else _stand_head_y
 	head.position.y = move_toward(head.position.y, target_y, KNEEL_SPEED_MPS * delta)
 
 ## Master Build Brief 4.3: swaps which of Nathan/the cat is worn (rigid,

@@ -40,6 +40,7 @@ func open() -> void:
 	visible = true
 	status_label.visible = false
 	_layout_hotspots()
+	tracks_button.grab_focus()
 
 func close() -> void:
 	visible = false

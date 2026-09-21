@@ -22,6 +22,12 @@ func _ready() -> void:
 	await get_tree().process_frame
 	for i in cards.size():
 		_start_float(cards[i], i)
+	cards[0].grab_focus()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_on_back()
+		get_viewport().set_input_as_handled()
 
 func _start_float(card: Control, index: int) -> void:
 	# Stagger the starting angle per card so they don't bob in lockstep.

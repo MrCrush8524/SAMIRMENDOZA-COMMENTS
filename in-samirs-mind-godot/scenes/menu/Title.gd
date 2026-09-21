@@ -72,6 +72,17 @@ func _ready() -> void:
 	%BtnExtras.pressed.connect(extras_overlay.open)
 	%BtnSoundtrack.pressed.connect(soundtrack_overlay.open)
 	btn_lore.pressed.connect(lore_overlay.open)
+	# Each of these overlays is a private child of this exact Title
+	# instance (unlike chapter_select_overlay, which is shared via the
+	# persistent UiRoot autoload) - Title is fully torn down and
+	# recreated on every return to it, so there's no risk of this
+	# stacking a stale connection onto a freed instance the way
+	# connecting to a persistent cross-scene overlay's signal would.
+	settings_overlay.closed.connect(func(): %BtnSettings.grab_focus())
+	extras_overlay.closed.connect(func(): %BtnExtras.grab_focus())
+	soundtrack_overlay.closed.connect(func(): %BtnSoundtrack.grab_focus())
+	lore_overlay.closed.connect(func(): btn_lore.grab_focus())
+	load_game_overlay.closed.connect(func(): btn_continue.grab_focus())
 	lang_option.item_selected.connect(_on_lang_selected)
 	for node_name in STATE_TEXTURES:
 		var control: Control = get_node(NodePath(node_name))
@@ -128,7 +139,7 @@ func _on_chapters() -> void:
 	# so the in-game pause menu can open the exact same overlay to jump
 	# chapters mid-run.
 	SaveManager.load_game()
-	UiRoot.chapter_select_overlay.open()
+	UiRoot.chapter_select_overlay.open(btn_chapters)
 
 func _on_lang_selected(index: int) -> void:
 	var codes := ["en", "es", "pt-BR"]

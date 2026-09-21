@@ -38,6 +38,7 @@ func open() -> void:
 	_index = 0
 	visible = true
 	_refresh()
+	(select_button if not _saves.is_empty() else back_button).grab_focus()
 
 func close() -> void:
 	visible = false

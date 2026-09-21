@@ -53,6 +53,14 @@ signal closed
 
 var _entries: Array[String] = []  # "" means the special Resume entry
 var _index: int = 0
+## This overlay lives in the persistent UiRoot autoload and is opened
+## from several different screens (Title, the in-run pause menu) across
+## a session, unlike a plain child overlay that gets torn down and
+## recreated fresh with its owner - so "restore focus to whoever opened
+## it" is tracked per-call via this rather than a signal connection made
+## once in some caller's _ready(), which would leak/stack a stale
+## connection every time that caller's own scene reloads.
+var _opener: Control = null
 
 func _ready() -> void:
 	visible = false
@@ -61,16 +69,20 @@ func _ready() -> void:
 	select_button.pressed.connect(_on_select)
 	back_button.pressed.connect(close)
 
-func open() -> void:
+func open(opener: Control = null) -> void:
+	_opener = opener
 	_entries = [""]
 	_entries.append_array(CHAPTER_ORDER)
 	_index = 0
 	visible = true
 	_refresh()
+	select_button.grab_focus()
 
 func close() -> void:
 	visible = false
 	closed.emit()
+	if is_instance_valid(_opener):
+		_opener.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:

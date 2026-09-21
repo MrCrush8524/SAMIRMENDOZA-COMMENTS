@@ -52,6 +52,7 @@ func open() -> void:
 	lang_option.selected = codes.find(LocalizationManager.current_lang)
 	visible = true
 	_layout_hotspots()
+	volume_slider.grab_focus()
 
 func close() -> void:
 	visible = false
