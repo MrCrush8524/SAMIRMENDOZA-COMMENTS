@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bobby_visual_scene"]
+
+[ext_resource type="PackedScene" path="res://assets/characters/source/bobby/bobby_source.glb" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/CompanionVisual.gd" id="2"]
+
+[node name="BobbyVisual" type="Node3D"]
+script = ExtResource("2")
+animation_map = {
+"breathe": "Lioness|Lioness_Breathing",
+"idle": "Lioness|Lioness_Idle",
+"walk": "Lioness|Lioness_WalkFast_F"
+}
+state_fallback = {
+"run": "walk",
+"sit": "idle",
+"turn": "idle"
+}
+
+[node name="Source" parent="." instance=ExtResource("1")]
+
+[node name="ViewAnchor" type="Marker3D" parent="."]
