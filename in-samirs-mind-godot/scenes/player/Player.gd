@@ -91,7 +91,6 @@ var _noclip_check_timer := NOCLIP_CHECK_INTERVAL
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
-@onready var dreamer_body: Node3D = %DreamerBody
 @onready var nathan_anim: AnimationPlayer = %NathanBody.find_child("AnimationPlayer", true, false)
 ## CatSlot always follows as the companion; NathanSlot is always worn
 ## (rigid, fixed local transform under the camera) - see CompanionFollower.gd.
@@ -361,16 +360,13 @@ func set_spawn(position_3d: Vector3, yaw: float) -> void:
 	_last_grounded_position = position_3d
 	_last_grounded_yaw = yaw
 
-## Re-applies whichever dreamer's fur matches GameState.dreamer — run
+## Swaps in whichever species visual matches GameState.dreamer — run
 ## once at spawn, and again any time the player changes character mid-run
 ## via the pause menu (see PauseMenu.gd), so the swap is instant and
-## doesn't require a chapter reload.
+## doesn't require a chapter reload. cat_slot.set_species() is idempotent,
+## so calling this repeatedly with the same dreamer is a no-op.
 func refresh_dreamer_visuals() -> void:
-	if dreamer_body:
-		match GameState.dreamer:
-			"Bobby": dreamer_body.set_textures(fur_bobby_body, fur_bobby_points)
-			"Luna": dreamer_body.set_textures(fur_luna, fur_luna)
-			"Mateo": dreamer_body.set_textures(fur_mateo, fur_mateo)
+	cat_slot.set_species(GameState.dreamer)
 	if mirror_body:
 		mirror_body.texture = _mirror_texture_for(GameState.dreamer)
 
