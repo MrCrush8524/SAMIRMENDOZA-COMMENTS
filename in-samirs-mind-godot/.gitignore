@@ -10,3 +10,12 @@ build/
 *.apk
 *.aab
 *.pck
+
+# Samir's raw human-character source package (Reallusion CC4 export): a
+# 207MB FBX plus ~525MB of uncompressed BMP textures. Kept on disk per the
+# "preserve source untouched" requirement, but never committed - it would
+# repeat the exact GitHub-file-size problem the laundromat/cyberpunk_city
+# GLBs already hit once (see the commit that shrank those). The derived,
+# actually-imported game-ready character goes in
+# assets/characters/game_ready/ instead, which IS tracked normally.
+assets/characters/source/samir_human/
