@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" path="res://assets/models/lowpoly_cat/textures/bobby_fur_points.jpg" id="14"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
-radius = 0.22
+radius = 0.28
 height = 1.7
 
 [sub_resource type="CircleShape2D" id="TouchBtnShape"]
@@ -85,7 +85,7 @@ skeleton_path = NodePath("Armature/Skeleton3D")
 unique_name_in_owner = true
 script = ExtResource("17")
 follow_target_path = NodePath("..")
-worn_transform = Transform3D(-0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573576, 0.15, 0, -0.4)
+worn_transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="NathanBody" parent="NathanSlot" instance=ExtResource("15")]
 unique_name_in_owner = true

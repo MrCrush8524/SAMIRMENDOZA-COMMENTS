@@ -44,6 +44,19 @@ static func merge_and_collide(root: Node3D) -> void:
 		var merged: ArrayMesh = st.commit()
 		var inst := MeshInstance3D.new()
 		root.add_child(inst)
+		# append_from() above baked each source mesh's FULL WORLD-SPACE
+		# transform into the merged vertex data (via mi.global_transform).
+		# inst is parented under root, so leaving inst at its default local
+		# identity transform would apply root's own transform a SECOND
+		# time on top of geometry that's already in world space. Most
+		# chapter roots sit at identity anyway (harmless either way), but
+		# Chapter 6's LevelFun/KittysHouse roots carry the imported glTF's
+		# own -90deg Sketchfab Z-up->Y-up correction - merging without this
+		# line applied that correction twice (net -180deg X), which is the
+		# confirmed mechanical cause of the upside-down circus. Forcing
+		# inst's global transform back to identity cancels root's
+		# contribution regardless of what it is, for every caller.
+		inst.global_transform = Transform3D.IDENTITY
 		inst.mesh = merged
 		if key is Material:
 			inst.set_surface_override_material(0, key)

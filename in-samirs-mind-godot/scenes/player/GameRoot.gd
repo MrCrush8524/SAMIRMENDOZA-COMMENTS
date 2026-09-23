@@ -320,6 +320,14 @@ func start_doubt_catch() -> void:
 	var mg_scene: PackedScene = load(DOUBT_CATCH_POOL[randi() % DOUBT_CATCH_POOL.size()])
 	_doubt_catch_minigame = mg_scene.instantiate()
 	SceneLoader.current_chapter.add_child(_doubt_catch_minigame)
+	# Without this the minigame sits at whatever local origin its own
+	# .tscn happened to be authored at inside the chapter - anywhere from
+	# nowhere near the player to inside unrelated geometry. Placing it at
+	# the exact spot the catch started keeps it reachable and puts its
+	# own interact-zone gating (see e.g. ArcadeClawTiming._player_inside)
+	# in a position that actually corresponds to the player.
+	_doubt_catch_minigame.global_position = return_position
+	_doubt_catch_minigame.rotation.y = return_yaw
 	_doubt_catch_minigame.configure(1)
 	var won: bool = await _doubt_catch_minigame.resolved
 	if is_instance_valid(_doubt_catch_minigame):
@@ -367,6 +375,10 @@ func void_fall(last_grounded_position: Vector3, last_grounded_yaw: float) -> voi
 	var mg_scene: PackedScene = load(VOID_FALL_MINIGAME_POOL[randi() % VOID_FALL_MINIGAME_POOL.size()])
 	var minigame: NightmareMinigame = mg_scene.instantiate()
 	SceneLoader.current_chapter.add_child(minigame)
+	# Same positioning fix as start_doubt_catch above - place it where the
+	# player actually landed, not the chapter's authored local origin.
+	minigame.global_position = last_grounded_position
+	minigame.rotation.y = last_grounded_yaw
 	minigame.configure(1)
 	var won: bool = await minigame.resolved
 	if is_instance_valid(minigame):

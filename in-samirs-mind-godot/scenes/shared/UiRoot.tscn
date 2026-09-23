@@ -252,29 +252,6 @@ texture_normal = ExtResource("7")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="EmbodimentLabel" type="Label" parent="PauseMenu/VBox"]
-layout_mode = 2
-horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.8, 0.76, 0.82, 1)
-text = "Walk as"
-
-[node name="EmbodimentRow" type="HBoxContainer" parent="PauseMenu/VBox"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 24
-
-[node name="PauseEmbodimentCat" type="Button" parent="PauseMenu/VBox/EmbodimentRow"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
-layout_mode = 2
-text = "The Cat"
-
-[node name="PauseEmbodimentNathan" type="Button" parent="PauseMenu/VBox/EmbodimentRow"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
-layout_mode = 2
-text = "Nathan"
-
 [node name="SettingsLabel" type="Label" parent="PauseMenu/VBox"]
 layout_mode = 2
 horizontal_alignment = 1

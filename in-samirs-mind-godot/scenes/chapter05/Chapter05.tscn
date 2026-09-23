@@ -33,7 +33,13 @@ omni_range = 40.0
 [node name="CyberpunkCity" parent="." instance=ExtResource("2")]
 
 [node name="start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+# Moved off the old (0, 0.5, -5): a live headless raycast against this exact
+# scene found NO floor collision at all at that XZ (a genuine hole, confirmed
+# pre-existing in both the current and pre-shrink cyberpunk_city.glb - not
+# caused by the later gltf-transform simplify pass). (0, ?, -1) is a few
+# meters closer to the objective cluster and hits solid main floor at
+# Y=0.009 (collider Object_32_col); Y set to floor+0.15 for capsule clearance.
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1)
 
 [node name="ObjectiveSpawner" type="Node" parent="."]
 script = ExtResource("3")

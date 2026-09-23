@@ -28,7 +28,11 @@ func configure(depth: int) -> void:
 	_speed = base_speed + float(depth - 1) * 0.25
 	claw.position.x = -sweep_range
 	_direction = 1.0
-	UiRoot.set_prompt("Press E when the claw lines up with the marker.")
+	# Deliberately not shown here: the prompt only means anything once the
+	# player is actually standing in interact_zone (see _process below) -
+	# showing it unconditionally on configure() is what previously made
+	# "Press E to align the claw" appear regardless of where this
+	# minigame instance ended up positioned in the world.
 
 func cancel() -> void:
 	set_process(false)
@@ -37,6 +41,7 @@ func cancel() -> void:
 func _process(delta: float) -> void:
 	if _resolved_flag:
 		return
+	UiRoot.set_prompt("Press E when the claw lines up with the marker." if _player_inside else "")
 	_round_time -= delta
 	if _round_time <= 0.0:
 		_finish(false)

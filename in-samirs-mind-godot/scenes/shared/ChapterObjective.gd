@@ -44,6 +44,13 @@ func interact() -> void:
 		var mg_scene: PackedScene = load(NightmareArcadePool.random_game())
 		var minigame: NightmareMinigame = mg_scene.instantiate()
 		get_parent().add_child(minigame)
+		# Without this the minigame sits at its own .tscn authored local
+		# origin under the chapter, unrelated to where this decoy (and the
+		# player standing at it) actually is - place it right here so its
+		# interact-zone gating lines up with the player.
+		minigame.global_position = global_position
+		if is_instance_valid(GameState.current_player):
+			minigame.rotation.y = GameState.current_player.rotation.y
 		minigame.configure(1)
 		var won: bool = await minigame.resolved
 		if is_instance_valid(minigame):

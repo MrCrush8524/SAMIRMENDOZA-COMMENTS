@@ -13,19 +13,21 @@ const MOUSE_SENS := 0.0022
 const CONTROLLER_LOOK_SENS := 2.6
 const GRAVITY := 9.8
 
-## Collision capsule radius (see Player.tscn) — kept slender since the
-## dreamer is a small cat/dog, not human-shouldered. Any passage meant
-## to be walkable must clear at least 2x this in width; a passage
-## narrower than that is a deliberate blocker, not a bug.
-const COLLIDER_RADIUS := 0.22
+## Collision capsule radius (see Player.tscn) — sized for Nathan (the
+## permanent human player, not the cat companion, which never wears
+## this collider). Any passage meant to be walkable must clear at least
+## 2x this in width; a passage narrower than that is a deliberate
+## blocker, not a bug. Widened from 0.22 (the cat-era value) to 0.28 -
+## REQUIRES SAMIR VISUAL PLAYTEST across chapters to confirm no existing
+## doorway/corridor sized for the old capsule is now too tight.
+const COLLIDER_RADIUS := 0.28
 
-## Speed (in ArmatureAction loops per meter walked) the DreamerBody's own
-## run cycle plays at - tied to distance like the old paw bob was, so
-## it's a real stride cadence (faster at sprint, frozen mid-stride when
-## stopped) rather than a constant-speed loop that's out of sync with
-## actual movement.
-const BODY_ANIM_CYCLES_PER_METER := 0.7
-const BODY_ANIM_NAME := "Armature|ArmatureAction"
+## Same distance-scrub idea CompanionFollower.gd uses for the cat (its
+## own scrub_anim_name/scrub_cycles_per_meter export), applied here to
+## Nathan's own walk clip (see PersonRecolor.gd) now that he's always
+## the worn body instead of an optional swap.
+const NATHAN_ANIM_CYCLES_PER_METER := 0.55
+const NATHAN_ANIM_NAME := "Take 001"
 
 ## Scroll wheel is a discrete per-tick event, not a held axis, so each
 ## tick refreshes a short "still walking" window instead of stepping the
@@ -85,10 +87,10 @@ var _noclip_check_timer := NOCLIP_CHECK_INTERVAL
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
 @onready var dreamer_body: Node3D = %DreamerBody
-@onready var dreamer_anim: AnimationPlayer = %DreamerBody.find_child("AnimationPlayer", true, false)
-## Master Build Brief 4.3: CatSlot/NathanSlot each wrap one embodiment
-## (see CompanionFollower.gd) - set_embodiment swaps which one is worn
-## (rigid, under the camera) vs. following as a companion.
+@onready var nathan_anim: AnimationPlayer = %NathanBody.find_child("AnimationPlayer", true, false)
+## CatSlot always follows as the companion; NathanSlot is always worn
+## (rigid, fixed local transform under the camera) - see CompanionFollower.gd.
+## There is no runtime swap between them.
 @onready var cat_slot: Node3D = %CatSlot
 @onready var nathan_slot: Node3D = %NathanSlot
 ## On MirrorSurface.MIRROR_ONLY_LAYER — invisible to the main first-person
@@ -115,18 +117,17 @@ func _ready() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	refresh_dreamer_visuals()
-	set_embodiment(GameState.embodiment)
+	# Nathan (the human) is always the controlled player; the cat is
+	# always the physical companion. There is no player-facing swap
+	# between them (see PauseMenu.gd, which no longer exposes one).
+	nathan_slot.set_following(false)
+	cat_slot.set_following(true)
 	_stand_head_y = head.position.y
 	_last_grounded_position = global_position
 	_last_grounded_yaw = rotation.y
-	# The rig's action is literally named "Armature|ArmatureAction" (a
-	# Blender export convention baked in as a flat string, not Godot's
-	# own library/name addressing) - confirmed via get_animation_list().
-	if dreamer_anim and dreamer_anim.has_animation(BODY_ANIM_NAME):
-		var anim: Animation = dreamer_anim.get_animation(BODY_ANIM_NAME)
-		anim.loop_mode = Animation.LOOP_LINEAR
-		dreamer_anim.play(BODY_ANIM_NAME)
-		dreamer_anim.pause()
+	# The cat's own run-cycle setup (loop mode, initial play/pause) is
+	# owned entirely by CompanionFollower.gd now that it's always the
+	# companion, not something Player.gd needs to reach into.
 	GameState.current_player = self
 	# Belt-and-suspenders against UiRoot's Pause Menu (a persistent autoload
 	# overlay that outlives scene changes) ever starting a fresh dream
@@ -240,33 +241,18 @@ func _update_kneel(delta: float, gameplay_input_active: bool) -> void:
 	var target_y := KNEEL_HEAD_Y if (gameplay_input_active and Input.is_action_pressed("kneel")) else _stand_head_y
 	head.position.y = move_toward(head.position.y, target_y, KNEEL_SPEED_MPS * delta)
 
-## Master Build Brief 4.3: swaps which of Nathan/the cat is worn (rigid,
-## fixed offset under the camera) vs. following as a companion
-## (CompanionFollower.gd on the other slot). Whichever one is worn still
-## drives its own animation exactly as before this feature existed - the
-## cat's run cycle is scrubbed by ground_speed below; Nathan's PersonRecolor
-## already started its own looping walk cycle in _ready() regardless of
-## which slot it ends up in.
-func set_embodiment(id: String) -> void:
-	GameState.embodiment = id
-	var cat_worn: bool = id == "cat"
-	cat_slot.set_following(not cat_worn)
-	nathan_slot.set_following(cat_worn)
-
+## Nathan is always the worn body now (see _ready) - scrub his walk clip
+## by distance traveled, same technique used for the cat's own cycle
+## when it used to be wearable, so a stationary player doesn't keep
+## walking in place and stride speed actually matches movement speed.
 func _update_body_animation(delta: float) -> void:
-	if GameState.embodiment != "cat":
+	if not nathan_anim or not nathan_anim.has_animation(NATHAN_ANIM_NAME):
 		return
-	if not dreamer_anim or not dreamer_anim.has_animation(BODY_ANIM_NAME):
-		return
-	# Scrub the run cycle by distance traveled (same footstep-cadence
-	# idea as the old paw bob) instead of playing it at a flat speed, so
-	# it's a real stride tied to movement and freezes mid-pose when the
-	# player stops rather than looping in place.
 	var ground_speed: float = Vector2(velocity.x, velocity.z).length()
-	var anim_length: float = dreamer_anim.get_animation(BODY_ANIM_NAME).length
-	var advance: float = ground_speed * delta * BODY_ANIM_CYCLES_PER_METER * anim_length
-	var new_pos: float = fmod(dreamer_anim.current_animation_position + advance, anim_length)
-	dreamer_anim.seek(new_pos, true)
+	var anim_length: float = nathan_anim.get_animation(NATHAN_ANIM_NAME).length
+	var advance: float = ground_speed * delta * NATHAN_ANIM_CYCLES_PER_METER * anim_length
+	var new_pos: float = fmod(nathan_anim.current_animation_position + advance, anim_length)
+	nathan_anim.seek(new_pos, true)
 
 const INTERACT_RANGE := 2.2
 const MAX_INTERACT_PIERCE := 6

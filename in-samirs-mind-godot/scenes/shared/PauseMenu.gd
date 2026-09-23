@@ -30,8 +30,6 @@ extends Control
 @onready var main_menu_button: Button = %PauseMainMenuButton
 @onready var exit_button: Button = %PauseExitButton
 @onready var current_label: Label = %PauseCurrentLabel
-@onready var embodiment_cat_button: Button = %PauseEmbodimentCat
-@onready var embodiment_nathan_button: Button = %PauseEmbodimentNathan
 @onready var volume_slider: HSlider = %PauseVolumeSlider
 @onready var reduced_motion_check: CheckButton = %PauseReducedMotionCheck
 
@@ -70,8 +68,6 @@ func _ready() -> void:
 	chapters_button.pressed.connect(func(): UiRoot.chapter_select_overlay.open(chapters_button))
 	main_menu_button.pressed.connect(func(): _confirm_leave("menu"))
 	exit_button.pressed.connect(func(): _confirm_leave("quit"))
-	embodiment_cat_button.pressed.connect(_on_embodiment_pressed.bind("cat"))
-	embodiment_nathan_button.pressed.connect(_on_embodiment_pressed.bind("nathan"))
 
 	save_and_leave_button.pressed.connect(func(): _open_save_dialog(_pending_leave))
 	dont_save_button.pressed.connect(func(): _leave(_pending_leave))
@@ -105,9 +101,7 @@ func close() -> void:
 	closed.emit()
 
 func _refresh() -> void:
-	current_label.text = "Currently: %s" % GameState.dreamer
-	embodiment_cat_button.disabled = GameState.embodiment == "cat"
-	embodiment_nathan_button.disabled = GameState.embodiment == "nathan"
+	current_label.text = "Companion: %s" % GameState.dreamer
 
 func _on_card_pressed(dreamer_id: String) -> void:
 	if dreamer_id == GameState.dreamer:
@@ -115,18 +109,6 @@ func _on_card_pressed(dreamer_id: String) -> void:
 	GameState.dreamer = dreamer_id
 	if GameState.current_player:
 		GameState.current_player.refresh_dreamer_visuals()
-	_refresh()
-
-## Master Build Brief 4.3: swap which of Nathan/the cat is walked - the
-## other one follows as a companion. Live, no chapter reload needed,
-## same as the dreamer-fur cards above.
-func _on_embodiment_pressed(embodiment_id: String) -> void:
-	if embodiment_id == GameState.embodiment:
-		return
-	if GameState.current_player:
-		GameState.current_player.set_embodiment(embodiment_id)
-	else:
-		GameState.embodiment = embodiment_id
 	_refresh()
 
 func _confirm_leave(dest: String) -> void:

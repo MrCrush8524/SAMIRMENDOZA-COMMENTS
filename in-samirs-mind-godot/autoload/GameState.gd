@@ -6,13 +6,13 @@ const SAVE_VERSION := 1
 
 var dreamer: String = ""          # "Bobby" | "Luna" | "Mateo"
 
-## Master Build Brief 4.3/20: which body the player currently walks
-## around as - "cat" (the existing dreamer-fur cat, default, so existing
-## saves/behavior are unaffected) or "nathan". Whichever one isn't
-## walked follows as a companion (Player.gd's CompanionFollower). The
-## Bobby/Luna/Mateo fur pick above only affects the cat's appearance
-## either way, worn or following.
-var embodiment: String = "cat"
+## Which body the player is currently controlling: always "nathan" (the
+## human) going forward. The dreamer-cat is the companion, never a
+## player-chosen body — see Player.gd, which no longer exposes a way to
+## swap this at runtime. Field kept (rather than removed) so existing
+## saves still deserialize; from_dict() below no longer trusts a saved
+## "cat" value.
+var embodiment: String = "nathan"
 
 var chapter: String = "chapter01"
 var spawn_id: String = "start"
@@ -156,7 +156,7 @@ var current_player: Node3D = null
 
 func new_run(chosen_dreamer: String) -> void:
 	dreamer = chosen_dreamer
-	embodiment = "cat"
+	embodiment = "nathan"
 	chapter = "chapter01"
 	spawn_id = "start"
 	journals.clear()
@@ -225,7 +225,9 @@ func from_dict(data: Dictionary) -> bool:
 	if not data.has("dreamer") or String(data["dreamer"]).is_empty():
 		return false
 	dreamer = data["dreamer"]
-	embodiment = data.get("embodiment", "cat")
+	# A save from before embodiment-switching was removed may have this as
+	# "cat" — the human is always the player now, so ignore whatever was saved.
+	embodiment = "nathan"
 	chapter = data.get("chapter", "chapter01")
 	spawn_id = data.get("spawn_id", "start")
 	journals.assign(data.get("journals", []))
