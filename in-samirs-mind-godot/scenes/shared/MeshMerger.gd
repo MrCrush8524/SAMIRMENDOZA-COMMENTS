@@ -48,17 +48,54 @@ static func merge_and_collide(root: Node3D) -> void:
 		# transform into the merged vertex data (via mi.global_transform).
 		# inst is parented under root, so leaving inst at its default local
 		# identity transform would apply root's own transform a SECOND
-		# time on top of geometry that's already in world space. Most
-		# chapter roots sit at identity anyway (harmless either way), but
-		# Chapter 6's LevelFun/KittysHouse roots carry the imported glTF's
-		# own -90deg Sketchfab Z-up->Y-up correction - merging without this
-		# line applied that correction twice (net -180deg X), which is the
-		# confirmed mechanical cause of the upside-down circus. Forcing
-		# inst's global transform back to identity cancels root's
+		# time on top of geometry that's already in world space. Forcing
+		# inst's global transform back to identity cancels root's own
 		# contribution regardless of what it is, for every caller.
+		#
+		# An earlier version of this comment claimed a double application
+		# of Chapter 6's -90deg Sketchfab Z-up->Y-up root correction was
+		# "the confirmed mechanical cause" of Samir's reported upside-down
+		# circus. That was re-measured directly (composing the actual
+		# ancestor transform chain down to a mesh instance) and disproven -
+		# the composition was already correct, not doubled. Don't resurrect
+		# that theory. This line still belongs here on its own merits
+		# (it's still correct to cancel root's contribution), it just isn't
+		# what caused the reported symptom.
 		inst.global_transform = Transform3D.IDENTITY
 		inst.mesh = merged
-		if key is Material:
+		# A DIFFERENT, independently-measured defect (not a transform issue
+		# at all): sampling the actual triangle winding of Level Fun's and
+		# Kitty's House's own largest floor slabs (recomputing each face's
+		# normal from its real world-space vertex positions, the same
+		# vertices this merge just baked) found their winding faces DOWN
+		# at the exact Y heights Chapter06.gd's own collision-based floor
+		# scan already confirmed are the walkable floors - e.g. one 3610m2
+		# slab at y=17.245 (Level Fun's main floor) and a 133.96m2 slab at
+		# the same y=17.24 (Kitty's House's floor), both normal=(0,-1,0).
+		# Every material sampled here (StandardMaterial3D, cull_mode=0/
+		# CULL_BACK, Godot's default) would render that face invisibly
+		# from directly above - exactly where a standing player looks down
+		# from - while rendering fine from underneath. No negative
+		# determinant exists anywhere in either mesh's ancestor transform
+		# chain (checked directly), so this isn't a mirrored transform
+		# either - it's the source Rec Room shape-container export's own
+		# triangle winding on these particular boxes. Disabling backface
+		# culling on the merged result is a safe, nondestructive way to
+		# guarantee these surfaces render from both sides regardless of
+		# whichever way any given source shape happened to be wound, without
+		# needing to detect/fix winding per shape across a ~10000-mesh
+		# export. This does NOT modify the source .glb.
+		if key is BaseMaterial3D:
+			# Duplicate rather than mutate key directly - key is the SHARED
+			# material resource read straight off the source meshes (many of
+			# which may still be referenced elsewhere, e.g. the same
+			# imported material used by another chapter's own instance of
+			# this .glb), so flipping cull_mode on it in place would leak
+			# into everything else that shares it.
+			var override_mat: BaseMaterial3D = (key as BaseMaterial3D).duplicate()
+			override_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+			inst.set_surface_override_material(0, override_mat)
+		elif key is Material:
 			inst.set_surface_override_material(0, key)
 		inst.create_trimesh_collision()
 
