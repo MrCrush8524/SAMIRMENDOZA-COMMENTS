@@ -109,6 +109,13 @@ var pitch: float = 0.0
 var _scroll_forward_timer: float = 0.0
 var _scroll_backward_timer: float = 0.0
 
+## Companion View (integration brief Section 14/20): a camera-only
+## perspective swap to approximately the selected companion's head/eye
+## position. Samir remains the controlled protagonist the whole time -
+## this never touches movement input or GameState.dreamer, only where
+## the Camera3D's transform is drawn from each frame.
+var _companion_view_active: bool = false
+
 signal interact_pressed(target: Node)
 
 func _ready() -> void:
@@ -164,6 +171,46 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("interact") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_try_interact()
+
+	if event.is_action_pressed("companion_view") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		set_companion_view(not _companion_view_active)
+
+## Enters/exits Companion View. Movement input, GameState.dreamer, and
+## save state are all untouched either way - only camera.transform
+## changes. Looks for a "ViewAnchor" node under whatever cat_slot's
+## current child is (present on the new BobbyVisual/MateoVisual/
+## LunaVisual wrappers - see CompanionVisual.gd); falls back to a fixed
+## offset above the companion's own position for the current temporary
+## cat body, which predates that anchor convention.
+func set_companion_view(active: bool) -> void:
+	_companion_view_active = active
+	if not active:
+		camera.transform = Transform3D.IDENTITY
+		return
+	_update_companion_view_camera()
+
+func _get_companion_view_anchor() -> Node3D:
+	if cat_slot.get_child_count() == 0:
+		return null
+	var visual: Node = cat_slot.get_child(0)
+	if visual.has_method("get_view_anchor"):
+		var anchor: Node3D = visual.get_view_anchor()
+		if anchor:
+			return anchor
+	return null
+
+func _update_companion_view_camera() -> void:
+	var anchor := _get_companion_view_anchor()
+	if anchor:
+		camera.global_transform = anchor.global_transform
+	else:
+		# Fallback for the temporary cat body, which has no ViewAnchor of
+		# its own yet - an approximate small-animal eye height above its
+		# current position, facing the same way it's currently facing.
+		var fallback_height := 0.35
+		camera.global_transform = Transform3D(
+			Basis(Vector3.UP, cat_slot.rotation.y),
+			cat_slot.global_position + Vector3(0, fallback_height, 0))
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -228,6 +275,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_body_animation(delta)
 	_update_kneel(delta, gameplay_input_active)
+	if _companion_view_active:
+		_update_companion_view_camera()
 
 ## Right stick, continuously polled (unlike mouse-look, which is
 ## event-driven off InputEventMouseMotion in _unhandled_input) since an
