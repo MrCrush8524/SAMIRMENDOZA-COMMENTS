@@ -23,9 +23,14 @@ const GRAVITY := 9.8
 const COLLIDER_RADIUS := 0.28
 
 ## Same distance-scrub idea CompanionFollower.gd uses for the cat (its
-## own scrub_anim_name/scrub_cycles_per_meter export), applied here to
-## Nathan's own walk clip (see PersonRecolor.gd) now that he's always
-## the worn body instead of an optional swap.
+## own scrub_anim_name/scrub_cycles_per_meter export). The CC4-derived
+## SamirBody (assets/characters/game_ready/samir/SamirBody.tscn) has NO
+## AnimationPlayer at all - its source FBX's only 2 clips were confirmed
+## single-frame static poses, not real locomotion - so nathan_anim below
+## resolves to null and _update_body_animation() is a documented no-op
+## until a real walk/idle clip exists for this rig. Kept looking for
+## NATHAN_ANIM_NAME rather than deleted, so a future compatible animation
+## only needs adding to the scene, not new code here.
 const NATHAN_ANIM_CYCLES_PER_METER := 0.55
 const NATHAN_ANIM_NAME := "Take 001"
 

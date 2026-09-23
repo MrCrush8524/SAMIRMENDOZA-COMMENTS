@@ -1,8 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://player_scene"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1"]
-[ext_resource type="PackedScene" path="res://assets/models/people/nathan/rp_nathan_animated_003_walking.fbx" id="15"]
-[ext_resource type="Script" path="res://scenes/shared/PersonRecolor.gd" id="16"]
+[ext_resource type="PackedScene" path="res://assets/characters/game_ready/samir/SamirBody.tscn" id="15"]
 [ext_resource type="Script" path="res://scenes/shared/CompanionFollower.gd" id="17"]
 [ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_bobby.png" id="5"]
 [ext_resource type="Texture2D" path="res://assets/mirror/dreamer_reflection_luna.png" id="6"]
@@ -85,13 +84,10 @@ skeleton_path = NodePath("Armature/Skeleton3D")
 unique_name_in_owner = true
 script = ExtResource("17")
 follow_target_path = NodePath("..")
-worn_transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+worn_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.212329, 0)
 
 [node name="NathanBody" parent="NathanSlot" instance=ExtResource("15")]
 unique_name_in_owner = true
-script = ExtResource("16")
-mesh_node_path = NodePath("rp_nathan_animated_003_walking/rp_nathan_animated_003_walking_CTRL/Skeleton3D/rp_nathan_animated_003_walking_geo")
-tint = Color(1, 0.86, 0.93, 1)
 
 [node name="TouchControlsLayer" type="CanvasLayer" parent="."]
 script = ExtResource("8")
