@@ -150,10 +150,27 @@ func _exit_tree() -> void:
 		GameState.current_player = null
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Companion View overwrites camera.transform directly every physics
+	# frame from the companion's own anchor (see _update_companion_view_
+	# camera), completely independent of Head's rotation - but mouse-look
+	# still rotated Player/Head underneath it unseen, so exiting used to
+	# snap the view to wherever the mouse had silently pointed Head
+	# meanwhile, unrelated to whatever direction the player last actually
+	# saw through the companion. Freezing just the two rotation-applying
+	# branches below while active removes that discontinuity: Head's
+	# rotation simply doesn't change during Companion View, so resetting
+	# camera.transform to identity on exit reveals the exact same
+	# direction Samir was already facing before it started. Movement
+	# still fully belongs to Samir either way - WASD keeps moving him,
+	# just relative to whatever direction he was already facing, since
+	# that facing is what's frozen. Mouse-button/scroll-wheel handling
+	# below is unrelated to rotation and stays active either way.
+	var look_frozen := _companion_view_active
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * MOUSE_SENS)
-		pitch = clamp(pitch - event.relative.y * MOUSE_SENS, -1.3, 1.3)
-		head.rotation.x = pitch
+		if not look_frozen:
+			rotate_y(-event.relative.x * MOUSE_SENS)
+			pitch = clamp(pitch - event.relative.y * MOUSE_SENS, -1.3, 1.3)
+			head.rotation.x = pitch
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -163,7 +180,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		_scroll_backward_timer = SCROLL_WALK_HOLD_TIME
 		_scroll_forward_timer = 0.0
-	elif event is InputEventScreenDrag:
+	elif event is InputEventScreenDrag and not look_frozen:
 		rotate_y(-event.relative.x * MOUSE_SENS)
 		pitch = clamp(pitch - event.relative.y * MOUSE_SENS, -1.3, 1.3)
 		head.rotation.x = pitch
@@ -250,7 +267,8 @@ func _physics_process(delta: float) -> void:
 	var gameplay_input_active := Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 
 	if gameplay_input_active:
-		_update_controller_look(delta)
+		if not _companion_view_active:
+			_update_controller_look(delta)
 
 		var forward_input := Input.get_action_strength("move_forward")
 		var back_input := Input.get_action_strength("move_back")
