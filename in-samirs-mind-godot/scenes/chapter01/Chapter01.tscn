@@ -32,12 +32,13 @@ light_color = Color(0.7, 0.85, 1, 1)
 light_energy = 0.5
 
 [node name="Laundromat" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.66)
 
 [node name="SoapDispenser" parent="Laundromat" instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.246, 0.049, 4.0)
 
 [node name="start" type="Marker3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0.1, 2)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0.1, -2.66)
 
 [node name="CityBlockA" parent="." instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.55, 0, 3.37)

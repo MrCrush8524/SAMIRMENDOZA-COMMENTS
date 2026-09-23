@@ -12,6 +12,8 @@ extends Node3D
 ## The Japroom door location is fixed rather than randomized: the brief
 ## permits ("may randomize") rather than requires it.
 
+const WorldContainment := preload("res://scenes/shared/WorldContainment.gd")
+
 @export var environment_roots: Array[NodePath] = []
 
 func _ready() -> void:
@@ -20,6 +22,7 @@ func _ready() -> void:
 		var node := get_node_or_null(path)
 		if node:
 			_generate_collision(node)
+	WorldContainment.enclose(self, [self])
 
 func _generate_collision(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:

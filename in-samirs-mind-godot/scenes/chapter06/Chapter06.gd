@@ -20,6 +20,7 @@ extends Node3D
 
 const MeshMerger := preload("res://scenes/shared/MeshMerger.gd")
 const PosterSpawner := preload("res://scenes/shared/PosterSpawner.gd")
+const WorldContainment := preload("res://scenes/shared/WorldContainment.gd")
 
 @export var environment_roots: Array[NodePath] = []
 
@@ -29,4 +30,5 @@ func _ready() -> void:
 		var node := get_node_or_null(path)
 		if node:
 			MeshMerger.merge_and_collide(node)
+	WorldContainment.enclose(self, [self])
 	PosterSpawner.attach(self)

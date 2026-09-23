@@ -34,10 +34,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.03, -3.25, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.87, 4.32, 0)
 
 [node name="start" type="Marker3D" parent="."]
-# Moved off the old (-20, 1.5, 0): headless raycast measurement (poolrooms.glb)
-# put decorative Sphere_8's world-space center at ~(-20.17, 2.82, 0.04), close
-# enough to the old spawn to trap the player inside it. (-15, ?, -6) is ~7.95m
-# clear of the sphere in XZ, with a confirmed solid floor hit at Y=1.190
-# (collider Object_22_col) via a live headless raycast against this exact
-# scene - Y set to floor+0.15 for capsule clearance.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.34, -6)

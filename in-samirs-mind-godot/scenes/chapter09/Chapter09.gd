@@ -23,6 +23,7 @@ extends Node3D
 ## unchanged.
 
 const MeshMerger := preload("res://scenes/shared/MeshMerger.gd")
+const WorldContainment := preload("res://scenes/shared/WorldContainment.gd")
 const FUCHSIA_TINT := Color(1.15, 0.65, 0.95, 1.0)
 
 @export var environment_roots: Array[NodePath] = []
@@ -34,6 +35,7 @@ func _ready() -> void:
 		var node := get_node_or_null(path)
 		if node:
 			MeshMerger.merge_and_collide(node)
+	WorldContainment.enclose(self, [self])
 	# Retiling must happen after merging: MeshMerger puts each merged
 	# group's material on the MeshInstance3D's own surface override, not
 	# on the merged ArrayMesh resource itself.
