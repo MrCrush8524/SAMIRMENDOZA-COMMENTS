@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://chapter07_scene"]
+[gd_scene load_steps=45 format=3 uid="uid://chapter07_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter07/Chapter07.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/shared/FlavorZone.gd" id="2"]
@@ -29,6 +29,8 @@
 [ext_resource type="ArrayMesh" path="res://assets/models/furniture/quaternius_march2019/Sofa.obj" id="27"]
 [ext_resource type="ArrayMesh" path="res://assets/models/furniture/quaternius_march2019/Stool.obj" id="28"]
 [ext_resource type="ArrayMesh" path="res://assets/models/furniture/quaternius_march2019/Table.obj" id="29"]
+[ext_resource type="Script" path="res://scenes/shared/SimpleChapterExit.gd" id="30"]
+[ext_resource type="Script" path="res://scenes/shared/ProposedExitMarker.gd" id="31"]
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -67,6 +69,9 @@ size = Vector3(14.5360, 17.0260, 12.4600)
 
 [sub_resource type="SphereShape3D" id="FurnitureShape"]
 radius = 0.9
+
+[sub_resource type="BoxShape3D" id="ProposedExitShape"]
+size = Vector3(1.8, 2.2, 1.8)
 
 [node name="Chapter07" type="Node3D"]
 script = ExtResource("1")
@@ -323,3 +328,17 @@ script = ExtResource("19")
 chapter_id = "chapter07"
 [node name="Shape" type="CollisionShape3D" parent="Furniture/Table/Trigger1"]
 shape = SubResource("FurnitureShape")
+
+[node name="ChapterExit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 1.05, -79.0)
+script = ExtResource("30")
+destination_chapter = "chapter08"
+destination_spawn_marker = "start"
+prompt_text = "Press E to continue down the street."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapterExit"]
+shape = SubResource("ProposedExitShape")
+
+[node name="ProposedMarker" type="Node3D" parent="ChapterExit"]
+script = ExtResource("31")
+label_text = "Chapter 7 -> Chapter 8"

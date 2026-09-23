@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://chapter05_scene"]
+[gd_scene load_steps=7 format=3 uid="uid://chapter05_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter05/Chapter05.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/cyberpunk_city/cyberpunk_city.glb" id="2"]
 [ext_resource type="Script" path="res://scenes/shared/ChapterObjectiveSpawner.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/SimpleChapterExit.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/shared/ProposedExitMarker.gd" id="5"]
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -10,6 +12,9 @@ background_color = Color(0.75, 0.55, 0.9, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.85, 0.7, 1, 1)
 ambient_light_energy = 1.4
+
+[sub_resource type="BoxShape3D" id="ProposedExitShape"]
+size = Vector3(1.8, 2.2, 1.8)
 
 [node name="Chapter05" type="Node3D"]
 script = ExtResource("1")
@@ -74,3 +79,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
 
 [node name="Decoy4" type="Marker3D" parent="Markers" groups=["chapter5_decoys"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, 2)
+
+[node name="ChapterExit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0, 1.1, 0.0)
+script = ExtResource("4")
+destination_chapter = "chapter06"
+destination_spawn_marker = "start"
+prompt_text = "Press E to continue down the street."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapterExit"]
+shape = SubResource("ProposedExitShape")
+
+[node name="ProposedMarker" type="Node3D" parent="ChapterExit"]
+script = ExtResource("5")
+label_text = "Chapter 5 -> Chapter 6"

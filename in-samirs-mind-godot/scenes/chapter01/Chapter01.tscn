@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://chapter01_scene"]
+[gd_scene load_steps=14 format=3 uid="uid://chapter01_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter01/Chapter01.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/laundromat/laundromat.glb" id="2"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/laundromat/retro_soap_dispenser2k.glb" id="3"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/small_city/beautiful_city.glb" id="4"]
 [ext_resource type="Script" path="res://scenes/shared/ChapterObjectiveSpawner.gd" id="5"]
+[ext_resource type="Script" path="res://scenes/shared/SimpleChapterExit.gd" id="6"]
+[ext_resource type="Script" path="res://scenes/shared/ProposedExitMarker.gd" id="7"]
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -22,6 +24,9 @@ size = Vector3(3.3, 0.4, 18.4)
 [sub_resource type="StandardMaterial3D" id="GapBridgeMat"]
 albedo_color = Color(0.55, 0.54, 0.52, 1)
 roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="ProposedExitShape"]
+size = Vector3(1.8, 2.2, 1.8)
 
 [node name="Chapter01" type="Node3D"]
 script = ExtResource("1")
@@ -111,3 +116,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.65, 1.2, 19.23)
 
 [node name="DecoyD2" type="Marker3D" parent="CityMarkers" groups=["chapter1_city_decoys"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.65, 1.2, 18.23)
+
+[node name="ChapterExit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0, 0.621, 18.5)
+script = ExtResource("6")
+destination_chapter = "chapter02"
+destination_spawn_marker = "start"
+prompt_text = "Press E to leave the block."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapterExit"]
+shape = SubResource("ProposedExitShape")
+
+[node name="ProposedMarker" type="Node3D" parent="ChapterExit"]
+script = ExtResource("7")
+label_text = "Chapter 1 -> Chapter 2"

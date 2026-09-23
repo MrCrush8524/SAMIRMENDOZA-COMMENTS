@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://chapter06_scene"]
+[gd_scene load_steps=7 format=3 uid="uid://chapter06_scene"]
 
 [ext_resource type="Script" path="res://scenes/chapter06/Chapter06.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/recroom/level_fun.glb" id="2"]
 [ext_resource type="PackedScene" path="res://assets/models/imported/recroom/kittys_house.glb" id="3"]
+[ext_resource type="Script" path="res://scenes/shared/SimpleChapterExit.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/shared/ProposedExitMarker.gd" id="5"]
 
 [sub_resource type="Environment" id="Env"]
 background_mode = 1
@@ -10,6 +12,9 @@ background_color = Color(0.95, 0.88, 0.78, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.98, 0.9, 0.95, 1)
 ambient_light_energy = 1.3
+
+[sub_resource type="BoxShape3D" id="ProposedExitShape"]
+size = Vector3(1.8, 2.2, 1.8)
 
 [node name="Chapter06" type="Node3D"]
 script = ExtResource("1")
@@ -31,3 +36,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65, 13.67, -28.945)
 
 [node name="start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 17.6, -22)
+
+[node name="ChapterExit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9, 14.1, 26.8)
+script = ExtResource("4")
+destination_chapter = "chapter07"
+destination_spawn_marker = "start"
+prompt_text = "Press E to continue."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapterExit"]
+shape = SubResource("ProposedExitShape")
+
+[node name="ProposedMarker" type="Node3D" parent="ChapterExit"]
+script = ExtResource("5")
+label_text = "Chapter 6 -> Chapter 7"
