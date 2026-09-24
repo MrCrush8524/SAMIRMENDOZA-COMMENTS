@@ -111,6 +111,12 @@ transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 
 [node name="Street_5" parent="." instance=ExtResource("3")]
 transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -54.000)
 
+[node name="Street_6" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -66.000)
+
+[node name="Street_7" parent="." instance=ExtResource("3")]
+transform = Transform3D(1.000000, 0, 0.000000, 0, 1, 0, -0.000000, 0, 1.000000, 0.000, 0.000, -78.000)
+
 [node name="Bldg_E1" parent="." instance=ExtResource("6")]
 transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 17.000, 0.000, 0.000)
 
@@ -151,12 +157,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9620, 8.5010, -49.0000)
 [node name="Shape" type="CollisionShape3D" parent="Bldg_E3_Solid"]
 shape = SubResource("Bldg_E3_SolidMesh")
 
+[node name="Bldg_E4" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.000000, 0, -1.000000, 0, 1, 0, 1.000000, 0, 0.000000, 17.000, 0.000, -12.000)
+
+[node name="Bldg_E4_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9620, 8.5010, -13.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_E4_Solid"]
+shape = SubResource("Bldg_E3_SolidMesh")
+
 [node name="Bldg_W3" parent="." instance=ExtResource("4")]
 transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -17.000, 0.000, -54.000)
 
 [node name="Bldg_W3_Solid" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9620, 8.5010, -53.0000)
 [node name="Shape" type="CollisionShape3D" parent="Bldg_W3_Solid"]
+shape = SubResource("Bldg_W3_SolidMesh")
+
+[node name="Bldg_W4" parent="." instance=ExtResource("4")]
+transform = Transform3D(0.000000, 0, 1.000000, 0, 1, 0, -1.000000, 0, 0.000000, -17.000, 0.000, -36.000)
+
+[node name="Bldg_W4_Solid" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9620, 8.5010, -35.0000)
+[node name="Shape" type="CollisionShape3D" parent="Bldg_W4_Solid"]
 shape = SubResource("Bldg_W3_SolidMesh")
 
 [node name="Prop_Bollard_1" parent="." instance=ExtResource("7")]
