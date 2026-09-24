@@ -1,14 +1,26 @@
 name: DIAGNOSTIC - In Samir's Mind Windows debug build (console output)
 
-# TEMPORARY diagnostic workflow only - manual dispatch only, never runs on
-# push. Produces a DEBUG export (not release) of the exact same resource
-# selection as the real Windows Desktop preset, so it carries a console
-# window (debug/export_console_wrapper=1 in export_presets.cfg means the
-# release build has no console at all - this is the only way to see
-# Godot's own startup error output on the tester's machine). Not for
-# distribution - delete this file once the startup failure is diagnosed.
+# TEMPORARY diagnostic workflow only. Produces a DEBUG export (not
+# release) of the exact same resource selection as the real Windows
+# Desktop preset, so it carries a console window (debug/
+# export_console_wrapper=1 in export_presets.cfg means the release build
+# has no console at all - this is the only way to see Godot's own
+# startup error output on the tester's machine). Not for distribution -
+# delete this file once the startup failure is diagnosed.
+#
+# Triggers on push to this exact file too (scoped tightly so it can
+# never fire on ordinary game-content pushes) purely so this first run
+# doesn't need to wait on workflow_dispatch registration, which requires
+# GitHub to have indexed a workflow_dispatch-only workflow at least once
+# before it can be dispatched by name - a brand-new file on a non-default
+# branch isn't reliably indexed immediately. workflow_dispatch stays
+# available for any later manual reruns.
 
 on:
+  push:
+    branches: [samir-clean-build]
+    paths:
+      - ".github/workflows/build-godot-windows-debug-diagnostic.yml"
   workflow_dispatch: {}
 
 env:
