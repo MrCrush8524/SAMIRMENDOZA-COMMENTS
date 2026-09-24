@@ -13,7 +13,7 @@ const MOUSE_SENS := 0.0022
 const CONTROLLER_LOOK_SENS := 2.6
 const GRAVITY := 9.8
 
-## Collision capsule radius (see Player.tscn) — sized for Nathan (the
+## Collision capsule radius (see Player.tscn) — sized for Samir (the
 ## permanent human player, not the cat companion, which never wears
 ## this collider). Any passage meant to be walkable must clear at least
 ## 2x this in width; a passage narrower than that is a deliberate
@@ -21,6 +21,18 @@ const GRAVITY := 9.8
 ## REQUIRES SAMIR VISUAL PLAYTEST across chapters to confirm no existing
 ## doorway/corridor sized for the old capsule is now too tight.
 const COLLIDER_RADIUS := 0.28
+
+## Capsule height (1.9m) and Head's eye position (1.935m, see Player.tscn)
+## are measured directly from SamirBody's own skeleton - not guessed. The
+## eye/head bones' live global pose (skel.get_bone_global_pose, which
+## reflects the same sunken/no-AnimationPlayer rest pose SamirBody.tscn's
+## own +0.212329 foot correction targets, not the undeformed bind-pose
+## AABB) sit at Y~1.935 once that same correction is applied. The
+## previous 1.6m eye height / 1.7m capsule were sized for the old Nathan
+## rig and never updated when SamirBody replaced it - with Head still at
+## 1.6, the camera sat inside Samir's own neck/chest geometry (below even
+## the neck bone at ~1.78), which is what produced the reported
+## "giant distorted body swallowing the camera" bug in every chapter.
 
 ## Same distance-scrub idea CompanionFollower.gd uses for the cat (its
 ## own scrub_anim_name/scrub_cycles_per_meter export). The CC4-derived
@@ -43,10 +55,10 @@ const SCROLL_WALK_HOLD_TIME := 0.25
 ## Hold "kneel" (C) to smoothly drop the camera toward roughly a real
 ## cat's eye height, so the angle can actually be looked at in-game
 ## before committing to changing it permanently everywhere - the
-## camera/collision are currently tuned for a ~1.6m eye height (see
-## COLLIDER_RADIUS's doc comment), not this. Purely a look/feel probe:
-## does not touch collision, so kneeling doesn't let the player fit
-## through anything they couldn't already.
+## camera/collision are currently tuned for Samir's measured ~1.935m eye
+## height (see COLLIDER_RADIUS's doc comment), not this. Purely a
+## look/feel probe: does not touch collision, so kneeling doesn't let the
+## player fit through anything they couldn't already.
 const KNEEL_HEAD_Y := 0.35
 const KNEEL_SPEED_MPS := 2.0
 var _stand_head_y: float

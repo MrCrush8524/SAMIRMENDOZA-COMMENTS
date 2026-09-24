@@ -16,7 +16,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.28
-height = 1.7
+height = 1.9
 
 [sub_resource type="CircleShape2D" id="TouchBtnShape"]
 radius = 42.0
@@ -45,10 +45,10 @@ fur_mateo = ExtResource("11")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1")
-position = Vector3(0, 0.85, 0)
+position = Vector3(0, 0.95, 0)
 
 [node name="Head" type="Node3D" parent="."]
-position = Vector3(0, 1.6, 0)
+position = Vector3(0, 1.935, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 fov = 70.0
