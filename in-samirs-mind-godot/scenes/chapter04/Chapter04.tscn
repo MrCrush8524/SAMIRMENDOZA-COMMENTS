@@ -39,7 +39,7 @@ omni_range = 150.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 787.87)
 
 [node name="start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -131, 0.9, 360)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 8.92, -2.87)
 
 [node name="ChapterExit" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.0, 6.9, 785.0)
