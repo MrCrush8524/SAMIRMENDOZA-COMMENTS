@@ -12,7 +12,7 @@ looping on CRT screens throughout the building.
 | `index.html`, `lib/`, `posters/` | The web build. Open `index.html` directly, or serve the folder. This is also what gets deployed to the website and wrapped for Android. |
 | `electron/` | The Windows desktop app. `electron/app/` is its own copy of the web build, plus `electron/app/videos/` (the six commercials — desktop-only, too heavy for web/mobile) and the TV-screen code that only activates when `window.ELECTRON_BUILD` is set. |
 | `android-app/` | The Android app, built with [Capacitor](https://capacitorjs.com/) (a native WebView wrapper around `android-app/www/`, a copy of the web build). |
-| `videx/` | VIDeX, a separate single-page local video player / live TV / YouTube app, deployed on its own to Netlify. See `videx/ANALYSIS.md` for the teardown and revision notes. Not part of the Backrooms build or its CI. |
+| `videx/` | VIDeX, a separate single-page local video player / live TV / YouTube app, deployed on its own to Netlify. Built to the Style B brief; see `videx/README.md` for deploy steps, architecture and QA status. Not part of the Backrooms build or its CI. |
 | `.github/workflows/` | CI that builds the Windows `.exe`, the Android `.apk`, and deploys the website — see below. |
 
 The three copies of the web build (`/`, `electron/app/`, `android-app/www/`)

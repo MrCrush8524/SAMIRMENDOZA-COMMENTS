@@ -1,4 +1,9 @@
-# VIDeX: teardown and revision notes
+# VIDeX: teardown of the original single-file build
+
+> Historical. This describes the uploaded single-file build and the first
+> revision of it. The current app (Style B rebuild) is described in
+> `../README.md`. Its IndexedDB upgrade migrates libraries from both of
+> those earlier versions.
 
 Source: `VIDeX-Netlify-Deploy.zip`. It held one file, `index.html`, 4,399,947 bytes.
 The first commit in `videx/` holds that original code. The only change in that
