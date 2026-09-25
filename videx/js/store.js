@@ -84,7 +84,7 @@ export async function poster(id) {
   if (posterURLs.has(id)) return posterURLs.get(id);
   const p = await db.get("posters", id);
   if (p?.blob) { const u = URL.createObjectURL(p.blob); posterURLs.set(id, u); return u; }
-  if (p?.failed) { posterURLs.set(id, null); return null; }
+  if (p?.failed && p.v >= 2) { posterURLs.set(id, null); return null; }   // older failures get one retry
   return new Promise(res => {
     if (waiters.has(id)) waiters.get(id).push(res);
     else { waiters.set(id, [res]); queue.push(id); pump(); }
@@ -106,29 +106,54 @@ async function pump() {
       url = URL.createObjectURL(r.blob);
     }
   } catch {
-    await db.put("posters", { id, failed: true }).catch(() => {});   // undecodable here; don't retry every render
+    await db.put("posters", { id, failed: true, v: 2 }).catch(() => {});   // undecodable here; don't retry every render
   }
   posterURLs.set(id, url);
   waiters.get(id)?.forEach(r => r(url)); waiters.delete(id);
   busy = false;
   pump();
 }
-function capture(blob) {
-  return new Promise((res, rej) => {
-    const v = document.createElement("video"), url = URL.createObjectURL(blob);
-    const done = fn => { clearTimeout(t); URL.revokeObjectURL(url); v.removeAttribute("src"); v.load(); fn(); };
-    const t = setTimeout(() => done(() => rej(new Error("timeout"))), 10000);
-    v.muted = true; v.playsInline = true; v.preload = "auto";
-    v.onloadedmetadata = () => { const d = isFinite(v.duration) ? v.duration : 0; v.currentTime = Math.min(Math.max(d * 0.12, 0.5), 30, d || 0.5); };
-    v.onseeked = () => {
-      const W = 480, H = Math.round(W * ((v.videoHeight / v.videoWidth) || 0.5625));
-      const c = document.createElement("canvas"); c.width = W; c.height = H;
-      c.getContext("2d").drawImage(v, 0, 0, W, H);
-      c.toBlob(b => done(() => b ? res({ blob: b, w: v.videoWidth, h: v.videoHeight, duration: isFinite(v.duration) ? v.duration : 0 }) : rej(new Error("no frame"))), "image/jpeg", 0.8);
-    };
-    v.onerror = () => done(() => rej(v.error || new Error("decode")));
-    v.src = url;
+// Still frame for the thumbnail. iOS Safari won't decode a hidden video until
+// it's been asked to play, so prime it with a muted play/pause first. Frames
+// that are nearly black (fade-ins, title cards) are skipped for a later one.
+async function capture(blob) {
+  const v = document.createElement("video"), url = URL.createObjectURL(blob);
+  v.muted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.setAttribute("muted", ""); v.preload = "auto";
+  const wait = (ev, ms) => new Promise((res, rej) => {
+    const t = setTimeout(() => { cleanup(); rej(new Error("timeout " + ev)); }, ms);
+    const ok = () => { cleanup(); res(); }, bad = () => { cleanup(); rej(v.error || new Error("decode")); };
+    const cleanup = () => { clearTimeout(t); v.removeEventListener(ev, ok); v.removeEventListener("error", bad); };
+    v.addEventListener(ev, ok); v.addEventListener("error", bad);
   });
+  const frameReady = () => new Promise(r => ("requestVideoFrameCallback" in v ? v.requestVideoFrameCallback(() => r()) : setTimeout(r, 120)));
+  try {
+    v.src = url;
+    await wait("loadedmetadata", 10000);
+    try { await v.play(); } catch { /* autoplay refused: seeking still works on most engines */ }
+    v.pause();
+    const d = isFinite(v.duration) ? v.duration : 0;
+    const spots = d ? [0.12, 0.25, 0.5, 0.05].map(f => Math.min(Math.max(d * f, 0.5), Math.max(d - 0.2, 0))) : [0.5];
+    const probe = document.createElement("canvas"); probe.width = 32; probe.height = 18;
+    const pctx = probe.getContext("2d", { willReadFrequently: true });
+    let at = spots[0];
+    for (const t of spots) {
+      at = t;
+      v.currentTime = t;
+      await wait("seeked", 6000);
+      await Promise.race([frameReady(), new Promise(r => setTimeout(r, 400))]);
+      pctx.drawImage(v, 0, 0, 32, 18);
+      const px = pctx.getImageData(0, 0, 32, 18).data;
+      let sum = 0; for (let i = 0; i < px.length; i += 4) sum += px[i] + px[i + 1] + px[i + 2];
+      if (sum / (px.length / 4) / 3 > 18) break;          // bright enough to be a real picture
+    }
+    const W = 480, H = Math.round(W * ((v.videoHeight / v.videoWidth) || 0.5625));
+    const c = document.createElement("canvas"); c.width = W; c.height = H;
+    c.getContext("2d").drawImage(v, 0, 0, W, H);
+    const out = await new Promise((res, rej) => c.toBlob(x => (x ? res(x) : rej(new Error("no frame"))), "image/jpeg", 0.82));
+    return { blob: out, w: v.videoWidth, h: v.videoHeight, duration: d, at };
+  } finally {
+    URL.revokeObjectURL(url); v.removeAttribute("src"); v.load();
+  }
 }
 
 // ------------------------------------------------------------------ groups
