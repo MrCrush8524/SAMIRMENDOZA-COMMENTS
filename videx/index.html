@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>VIDeX</title>
+<style>
+:root{--blue:#159cff;--glass:rgba(9,22,36,.64);--line:rgba(188,225,255,.20);--muted:#8f9dab}
+*{box-sizing:border-box}html,body{margin:0;background:#000;color:#f8fbff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}button,input{font:inherit}
+body{min-height:100dvh;background:radial-gradient(900px 420px at 50% -80px,#0c3154 0,#06111e 42%,#000 78%);padding-bottom:112px}
+button{cursor:pointer}.screen{display:none;min-height:100dvh;padding:max(18px,env(safe-area-inset-top)) 18px 115px}.screen.active{display:block}
+.hero{position:sticky;top:0;z-index:8;margin:-18px -18px 0;padding:max(18px,env(safe-area-inset-top)) 18px 8px;background:linear-gradient(#020810 55%,rgba(2,8,16,.86) 75%,transparent);backdrop-filter:blur(0);transition:.25s}
+.logo{display:block;width:min(270px,58vw);height:95px;object-fit:contain;object-position:left center;filter:drop-shadow(0 0 15px #168eff66)}
+h1{font-size:44px;letter-spacing:-2px;margin:4px 0 18px}h2{font-size:26px;letter-spacing:-.8px;margin:26px 0 12px}.chev{color:#778693}
+.glass{background:linear-gradient(145deg,rgba(28,54,77,.66),rgba(5,12,21,.72));border:1px solid var(--line);box-shadow:inset 0 1px rgba(255,255,255,.18),0 18px 45px #0008;backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%)}
+.list{border-radius:23px;overflow:hidden}.list button{height:59px;width:100%;display:grid;grid-template-columns:44px 1fr 22px;align-items:center;border:0;border-bottom:1px solid rgba(255,255,255,.10);background:transparent;color:#fff;text-align:left;padding:0 16px;font-size:18px}.list button:last-child{border-bottom:0}.list .ico{font-size:26px;color:var(--blue);text-align:center}.list b{font-size:31px;color:#778693;font-weight:400}
+.rail{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 1px 7px}.rail::-webkit-scrollbar{display:none}.empty{min-width:100%;height:104px;border:1px dashed #8acbff3d;border-radius:18px;display:grid;place-items:center;color:#748291}
+.card{position:relative;min-width:136px;width:136px}.thumb{height:181px;width:136px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#152535,#050a10);border:1px solid #d9efff26;position:relative}.thumb video{width:100%;height:100%;object-fit:cover}.thumb .fallback{height:100%;display:grid;place-items:center;font-size:38px;color:#5caef0}.card strong{display:block;font-size:14px;margin:7px 2px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card small{color:#8794a1;margin-left:2px}.progress{height:4px;background:#24313d;border-radius:9px;position:absolute;left:8px;right:8px;bottom:8px;overflow:hidden}.progress i{display:block;height:100%;background:var(--blue);width:0}.dots{position:absolute;right:7px;top:7px;border:1px solid #fff3;background:#07101dcc;color:#fff;border-radius:999px;padding:3px 8px;z-index:2}
+.addCard{min-width:136px;height:181px;border-radius:18px;color:#b8c7d4;border:1px solid var(--line);background:var(--glass);font-weight:700}.addCard span{display:block;color:var(--blue);font-size:40px}
+.bottom{position:fixed;z-index:80;left:16px;right:16px;bottom:max(10px,env(safe-area-inset-bottom));height:80px;border-radius:40px;display:grid;grid-template-columns:repeat(5,1fr);padding:5px;background:rgba(20,25,32,.70);border:1px solid #dff4ff30;box-shadow:inset 0 1px #fff5,0 16px 45px #000d;backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);transition:transform .28s,opacity .28s}
+.bottom.hidden{transform:translateY(120%);opacity:0}.bottom button{border:0;background:transparent;color:#fff;border-radius:33px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}.bottom button.active{color:var(--blue);background:linear-gradient(145deg,#0d65ad99,#13304e99);box-shadow:inset 0 1px #8bd3ff44}.bottom span{font-size:25px}.bottom small{font-size:10px;font-weight:750}
+.toprow{display:flex;gap:10px;align-items:center}.search{flex:1;border:1px solid var(--line);border-radius:20px;padding:13px 15px;background:#d8edff0e;color:#fff;outline:0}.pill{border:1px solid var(--line);border-radius:999px;background:#d8edff12;color:#fff;padding:11px 15px}.chips{display:flex;gap:8px;overflow:auto;padding:12px 0}.chip{white-space:nowrap}.chip.on{background:#137fd4;color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.channel{min-height:128px;border-radius:21px;padding:14px;text-align:left;color:#fff;display:flex;flex-direction:column;justify-content:space-between}.channel img{height:42px;max-width:100%;object-fit:contain;object-position:left}.channel small{color:#91a0ae}
+.modal{position:fixed;z-index:200;inset:0;background:#0008;display:none;align-items:flex-end}.modal.show{display:flex}.sheet{width:100%;padding:12px 14px max(20px,env(safe-area-inset-bottom));border-radius:28px 28px 0 0}.sheet button{display:block;width:100%;padding:15px;border:0;border-bottom:1px solid #fff1;background:transparent;color:#fff;text-align:left}.sheet .danger{color:#ff6a73}
+.player{position:fixed;z-index:300;inset:0;background:#000;display:none}.player.show{display:block}.player video{width:100%;height:100%;object-fit:contain;filter:brightness(var(--brightness,1))}.pclose{position:absolute;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));z-index:5;width:46px;height:46px;border-radius:50%;color:#fff;font-size:27px}.controls{position:absolute;left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));padding:10px;border-radius:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;transition:opacity .25s}.player.idle .controls,.player.idle .pclose{opacity:0;pointer-events:none}.seek{flex:1 0 100%}.ctl{width:48px;height:48px;border-radius:50%;color:#fff;border:1px solid #fff3;background:#d8edff18;backdrop-filter:blur(25px)}.hud{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:#08111dcc;border:1px solid #fff3;padding:12px 17px;border-radius:18px;opacity:0}.hud.show{opacity:1}
+#ytPlayer{position:fixed;z-index:250;inset:0;background:#000;display:none}#ytPlayer.show{display:block}#ytFrame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}#ytClose{position:absolute;z-index:3;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));font-size:26px}
+.notice{color:#82909e;font-size:13px;line-height:1.4}.countrySelect{width:100%;margin-top:8px}
+@media(min-width:701px){.screen{max-width:1100px;margin:auto}.grid{grid-template-columns:repeat(4,1fr)}.bottom{left:50%;right:auto;width:620px;transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<div id="runtimeError" style="display:none;position:fixed;z-index:9999;left:12px;right:12px;top:max(12px,env(safe-area-inset-top));background:#3a0710;color:#fff;border:1px solid #ff6677;border-radius:16px;padding:12px 14px;font:13px/1.35 -apple-system,BlinkMacSystemFont,sans-serif;box-shadow:0 10px 40px #000c"></div>
+<script>
+window.addEventListener("error",function(e){
+  var b=document.getElementById("runtimeError");
+  if(!b)return;
+  b.style.display="block";
+  b.textContent="VIDeX error: "+(e.message||"Unknown runtime error");
+});
+window.addEventListener("unhandledrejection",function(e){
+  var b=document.getElementById("runtimeError");
+  if(!b)return;
+  b.style.display="block";
+  b.textContent="VIDeX error: "+((e.reason&&e.reason.message)||e.reason||"Unhandled error");
+});
+</script>
+
+<input id="pickFiles" type="file" accept="video/*" multiple hidden>
+<input id="pickM3U" type="file" accept=".m3u,.m3u8,text/plain" hidden>
+
+<section id="library" class="screen active">
+ <div class="hero"><img src="logo.webp" class="logo" alt="VIDeX"></div>
+ <h1>Library</h1>
+ <div class="list glass">
+  <button data-filter="movie"><span class="ico">▣</span><span>Movies</span><b>›</b></button>
+  <button data-filter="show"><span class="ico">▱</span><span>TV Shows</span><b>›</b></button>
+  <button id="playlistsBtn"><span class="ico">☷</span><span>Playlists</span><b>›</b></button>
+  <button data-filter="favorite"><span class="ico">♡</span><span>Favorites</span><b>›</b></button>
+  <button id="localFilesBtn"><span class="ico">⇩</span><span>Local Files</span><b>›</b></button>
+  <button id="collectionsBtn"><span class="ico">▰</span><span>Collections</span><b>›</b></button>
+ </div>
+ <h2>Continue Watching <span class="chev">›</span></h2><div id="continueRail" class="rail"></div>
+ <h2>Recently Added <span class="chev">›</span></h2><div id="recentRail" class="rail"></div>
+ <h2>Movies <span class="chev">›</span></h2><div id="moviesRail" class="rail"></div>
+</section>
+
+<section id="home" class="screen">
+ <div class="hero"><img src="logo.webp" class="logo"></div><h1>Home</h1>
+ <h2>Continue Watching</h2><div id="homeContinue" class="rail"></div>
+ <h2>Recently Added</h2><div id="homeRecent" class="rail"></div>
+</section>
+
+<section id="live" class="screen">
+ <div class="hero"><img src="logo.webp" class="logo"></div><h1>Live TV</h1>
+ <div class="toprow"><input id="tvSearch" class="search" placeholder="Search channels…"><button id="adultBtn" class="pill">18+</button></div>
+ <select id="country" class="search countrySelect"><option value="">All countries</option></select>
+ <div id="cats" class="chips"></div><div id="tvStatus" class="notice">Loading public live channels…</div><div id="tvGrid" class="grid"></div>
+</section>
+
+<section id="youtube" class="screen">
+ <div class="hero"><img src="logo.webp" class="logo"></div><h1>YouTube</h1>
+ <div class="toprow"><input id="ytSearch" class="search" placeholder="Search YouTube…"><button id="ytGo" class="pill">Search</button></div>
+ <div class="toprow" style="margin-top:10px"><button id="ytLogin" class="pill">Sign in with Google</button><button id="ytLogout" class="pill" hidden>Sign out</button></div>
+ <p id="ytStatus" class="notice">Sign in to search with your VIDeX Google client.</p><div id="ytGrid" class="grid"></div>
+</section>
+
+<section id="searchScreen" class="screen">
+ <div class="hero"><img src="logo.webp" class="logo"></div><h1>Search</h1>
+ <input id="globalSearch" class="search" style="width:100%" placeholder="Search your library…">
+ <h2>Results</h2><div id="searchRail" class="rail"></div>
+</section>
+
+<nav class="bottom glass">
+ <button data-screen="home"><span>⌂</span><small>Home</small></button>
+ <button data-screen="live"><span>◉</span><small>Live TV</small></button>
+ <button data-screen="youtube"><span>▶</span><small>YouTube</small></button>
+ <button data-screen="library" class="active"><span>▰</span><small>Library</small></button>
+ <button data-screen="searchScreen"><span>⌕</span><small>Search</small></button>
+</nav>
+
+<div id="modal" class="modal"><div id="sheet" class="sheet glass"></div></div>
+<div id="player" class="player">
+ <video id="video" playsinline></video><button id="pclose" class="pclose ctl">×</button><div id="hud" class="hud"></div>
+ <div id="controls" class="controls glass"><input id="seek" class="seek" type="range" min="0" max="1000" value="0">
+  <button id="back" class="ctl">↶10</button><button id="play" class="ctl">▶</button><button id="fwd" class="ctl">10↷</button>
+  <button id="rev" class="ctl">REV</button><button id="grab" class="ctl">▣</button><button id="speed" class="ctl">1×</button><button id="full" class="ctl">⛶</button>
+ </div>
+</div>
+<div id="ytPlayer"><iframe id="ytFrame" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe><button id="ytClose" class="ctl">×</button></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const CLIENT_ID="377117992546-tguolq0bqjvrog0s46f2kr50nchhfekn.apps.googleusercontent.com";
+let db, current=null, idleTimer, reverseTimer, brightness=1, gesture=null, ytToken=null, ytClient=null;
+const v=$("#video"), player=$("#player"), nav=$(".bottom");
+
+function openDB(){return new Promise((res,rej)=>{let r=indexedDB.open("videx",2);r.onupgradeneeded=()=>{let d=r.result;if(!d.objectStoreNames.contains("media"))d.createObjectStore("media",{keyPath:"id"});if(!d.objectStoreNames.contains("groups"))d.createObjectStore("groups",{keyPath:"id"})};r.onsuccess=()=>{db=r.result;res()};r.onerror=()=>rej(r.error)})}
+function store(name,mode="readonly"){return db.transaction(name,mode).objectStore(name)}
+function all(name){return new Promise((res,rej)=>{let r=store(name).getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function put(name,x){return new Promise((res,rej)=>{let r=store(name,"readwrite").put(x);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+function del(name,id){return new Promise((res,rej)=>{let r=store(name,"readwrite").delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function classify(name){return /s\d{1,2}e\d{1,2}|season|episode/i.test(name)?"show":"movie"}
+async function addFiles(files){for(const f of files){if(!f.type.startsWith("video/"))continue;let id=f.name+"|"+f.size+"|"+f.lastModified;await put("media",{id,name:f.name.replace(/\.[^.]+$/,""),filename:f.name,type:classify(f.name),blob:f,added:Date.now(),favorite:false,position:0,duration:0,playlists:[],collections:[]})}await renderAll()}
+$("#pickFiles").onchange=e=>addFiles([...e.target.files]);
+$("#localFilesBtn").onclick=()=>$("#pickFiles").click();
+
+function mediaCard(m){let el=document.createElement("div");el.className="card";let url=URL.createObjectURL(m.blob);el.innerHTML=`<button class="dots">•••</button><div class="thumb"><video muted playsinline preload="metadata" src="${url}"></video><div class="progress"><i style="width:${m.duration?Math.min(100,m.position/m.duration*100):0}%"></i></div></div><strong>${esc(m.name)}</strong><small>${m.type==="show"?"TV Show":"Movie"}</small>`;
+ el.querySelector(".thumb").onclick=()=>playMedia(m);el.querySelector(".dots").onclick=e=>{e.stopPropagation();showMediaMenu(m)};
+ let pv=el.querySelector("video");pv.onloadedmetadata=()=>{try{pv.currentTime=Math.min(2,pv.duration/4)}catch(e){}};return el}
+function fillRail(sel,items,emptyText,add=false){let r=$(sel);r.innerHTML="";if(add){let b=document.createElement("button");b.className="addCard";b.innerHTML="<span>＋</span>Add videos";b.onclick=()=>$("#pickFiles").click();r.append(b)}if(!items.length&&!add){r.innerHTML=`<div class="empty">${emptyText}</div>`}items.forEach(x=>r.append(mediaCard(x)))}
+async function renderAll(){let a=(await all("media")).sort((x,y)=>y.added-x.added);fillRail("#continueRail",a.filter(x=>x.position>5&&(!x.duration||x.position<x.duration-5)),"Videos you start will appear here.");fillRail("#recentRail",a,"",true);fillRail("#moviesRail",a.filter(x=>x.type==="movie"),"No movies yet.");fillRail("#homeContinue",a.filter(x=>x.position>5),"Nothing in progress.");fillRail("#homeRecent",a,"No videos yet.");return a}
+
+async function showMediaMenu(m){let s=$("#sheet");s.innerHTML=`<button data-a="play">▶ Play</button><button data-a="fav">${m.favorite?"♥ Remove Favorite":"♡ Add to Favorites"}</button><button data-a="playlist">☷ Add to Playlist</button><button data-a="collection">▰ Add to Collection</button><button data-a="rename">✎ Rename</button><button data-a="delete" class="danger">⌫ Remove from VIDeX</button>`;$("#modal").classList.add("show");
+ s.onclick=async e=>{let a=e.target.dataset.a;if(!a)return;if(a==="play")playMedia(m);if(a==="fav"){m.favorite=!m.favorite;await put("media",m);await renderAll()}if(a==="rename"){let n=prompt("Rename",m.name);if(n){m.name=n;await put("media",m);await renderAll()}}if(a==="delete"){await del("media",m.id);await renderAll()}if(a==="playlist")await addToGroup(m,"playlist");if(a==="collection")await addToGroup(m,"collection");$("#modal").classList.remove("show")}}
+$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("show")};
+async function addToGroup(m,type){let groups=(await all("groups")).filter(g=>g.type===type), names=groups.map(g=>g.name).join(", ");let name=prompt(`${type==="playlist"?"Playlist":"Collection"} name${names?" ("+names+")":""}`);if(!name)return;let g=groups.find(x=>x.name.toLowerCase()===name.toLowerCase())||{id:type+"|"+name.toLowerCase(),type,name,media:[]};if(!g.media.includes(m.id))g.media.push(m.id);await put("groups",g)}
+async function groupScreen(type){let gs=(await all("groups")).filter(g=>g.type===type),s=$("#sheet");s.innerHTML=`<button><b>${type==="playlist"?"Playlists":"Collections"}</b></button>`+(gs.length?gs.map(g=>`<button data-id="${esc(g.id)}">${esc(g.name)} · ${g.media.length} videos</button>`).join(""):`<button>No ${type}s yet — add one from ••• on a video.</button>`);$("#modal").classList.add("show")}
+$("#playlistsBtn").onclick=()=>groupScreen("playlist");$("#collectionsBtn").onclick=()=>groupScreen("collection");
+$$("[data-filter]").forEach(b=>b.onclick=async()=>{let a=await all("media"),f=b.dataset.filter;if(f==="favorite")a=a.filter(x=>x.favorite);else a=a.filter(x=>x.type===f);$("#sheet").innerHTML=`<button><b>${b.innerText.replace("›","")}</b></button>`;a.forEach(m=>{let bt=document.createElement("button");bt.textContent=m.name;bt.onclick=()=>playMedia(m);$("#sheet").append(bt)});$("#modal").classList.add("show")});
+
+function showScreen(id){$$(".screen").forEach(x=>x.classList.toggle("active",x.id===id));$$(".bottom button").forEach(x=>x.classList.toggle("active",x.dataset.screen===id));scrollTo(0,0);if(id==="live")loadTV();if(id==="youtube")ytInit()}
+$$(".bottom button").forEach(b=>b.onclick=()=>showScreen(b.dataset.screen));
+let lastY=0;addEventListener("scroll",()=>{let y=scrollY;nav.classList.toggle("hidden",y>lastY&&y>120);lastY=y},{passive:true});
+
+async function playMedia(m){current=m;v.src=URL.createObjectURL(m.blob);player.classList.add("show");nav.classList.add("hidden");document.body.style.overflow="hidden";v.onloadedmetadata=()=>{if(m.position>5&&m.position<v.duration-5)v.currentTime=m.position;m.duration=v.duration;put("media",m)};v.play().catch(()=>{});wake()}
+function closePlayer(){if(current){current.position=v.currentTime||0;current.duration=v.duration||current.duration;put("media",current)}v.pause();if(v.src.startsWith("blob:"))URL.revokeObjectURL(v.src);v.removeAttribute("src");v.load();player.classList.remove("show","idle");nav.classList.remove("hidden");document.body.style.overflow="";renderAll()}
+$("#pclose").onclick=closePlayer;$("#play").onclick=()=>v.paused?v.play():v.pause();v.onplay=()=>{$("#play").textContent="❚❚";wake()};v.onpause=()=>{$("#play").textContent="▶";player.classList.remove("idle");clearInterval(reverseTimer)};
+$("#back").onclick=()=>v.currentTime=Math.max(0,v.currentTime-10);$("#fwd").onclick=()=>v.currentTime=Math.min(v.duration||0,v.currentTime+10);$("#seek").oninput=e=>{if(v.duration)v.currentTime=e.target.value/1000*v.duration};v.ontimeupdate=()=>{$("#seek").value=v.duration?v.currentTime/v.duration*1000:0;if(current&&Math.floor(v.currentTime)%4===0){current.position=v.currentTime;current.duration=v.duration;put("media",current)}};
+let speeds=[.25,.5,.75,1,1.25,1.5,2],si=3;$("#speed").onclick=()=>{si=(si+1)%speeds.length;v.playbackRate=speeds[si];$("#speed").textContent=speeds[si]+"×"};
+$("#rev").onclick=()=>{v.pause();if(reverseTimer){clearInterval(reverseTimer);reverseTimer=null;hud("Reverse off")}else{reverseTimer=setInterval(()=>v.currentTime=Math.max(0,v.currentTime-.1),100);hud("Reverse")}};
+$("#full").onclick=()=>{if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();else player.requestFullscreen?.()};
+$("#grab").onclick=()=>{try{let c=document.createElement("canvas");c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);c.toBlob(b=>{let a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="VIDeX-"+Date.now()+".png";a.click()})}catch(e){hud("Screen grab unavailable")}};
+function wake(){player.classList.remove("idle");clearTimeout(idleTimer);if(!v.paused)idleTimer=setTimeout(()=>player.classList.add("idle"),3000)}player.onpointerdown=wake;
+function hud(t){$("#hud").textContent=t;$("#hud").classList.add("show");setTimeout(()=>$("#hud").classList.remove("show"),700)}
+player.addEventListener("touchstart",e=>{let t=e.touches[0];gesture={x:t.clientX,y:t.clientY,vol:v.volume,bri:brightness}},{passive:true});player.addEventListener("touchmove",e=>{if(!gesture)return;let t=e.touches[0],dy=(gesture.y-t.clientY)/180;if(gesture.x<innerWidth/2){brightness=Math.max(.25,Math.min(1.5,gesture.bri+dy));v.style.setProperty("--brightness",brightness);hud("☀ "+Math.round(brightness*100)+"%")}else{v.volume=Math.max(0,Math.min(1,gesture.vol+dy));hud("🔊 "+Math.round(v.volume*100)+"%")}},{passive:true});player.addEventListener("touchend",()=>gesture=null,{passive:true});
+
+$("#globalSearch").oninput=async e=>{let q=e.target.value.toLowerCase(),a=(await all("media")).filter(x=>x.name.toLowerCase().includes(q));fillRail("#searchRail",a,q?"No matches.":"Type to search.")};
+
+const TVAPI="https://iptv-org.github.io/api/";let tv=[],tvLoaded=false;
+async function loadTV(){if(tvLoaded)return;$("#tvStatus").textContent="Loading worldwide public channels…";try{let [c,st,l]=await Promise.all(["channels.json","streams.json","logos.json"].map(x=>fetch(TVAPI+x).then(r=>r.json())));let sm=new Map, lm=new Map;st.forEach(x=>{if(x.channel&&!sm.has(x.channel))sm.set(x.channel,x.url)});l.forEach(x=>{if(x.channel&&!lm.has(x.channel))lm.set(x.channel,x.url)});tv=c.filter(x=>!x.closed&&!x.is_nsfw&&sm.has(x.id)).map(x=>({...x,url:sm.get(x.id),logo:lm.get(x.id)||""}));tvLoaded=true;let countries=[...new Set(tv.map(x=>x.country).filter(Boolean))].sort();countries.forEach(x=>$("#country").insertAdjacentHTML("beforeend",`<option>${esc(x)}</option>`));let cats=["All","News","Movies","Entertainment","Sports","Music","Documentary","Kids","General"];$("#cats").innerHTML=cats.map((x,i)=>`<button class="pill chip ${i?"":"on"}">${x}</button>`).join("");$$("#cats button").forEach(b=>b.onclick=()=>{$$("#cats button").forEach(x=>x.classList.remove("on"));b.classList.add("on");renderTV()});renderTV();$("#tvStatus").textContent=`${tv.length.toLocaleString()} public channels indexed`}catch(e){$("#tvStatus").textContent="Live directory could not load. Check your connection."}}
+function renderTV(){let q=$("#tvSearch").value.toLowerCase(),co=$("#country").value,cat=$("#cats .on")?.textContent||"All";let a=tv.filter(x=>(!q||[x.name,x.country,...(x.categories||[])].join(" ").toLowerCase().includes(q))&&(!co||x.country===co)&&(cat==="All"||(x.categories||[]).map(c=>String(c).toLowerCase()).includes(cat.toLowerCase()))).slice(0,300);$("#tvGrid").innerHTML="";a.forEach(x=>{let b=document.createElement("button");b.className="channel glass";b.innerHTML=`${x.logo?`<img src="${esc(x.logo)}">`:""}<div><b>${esc(x.name)}</b><br><small>${esc(x.country||"Live")} · ${esc((x.categories||[])[0]||"General")}</small></div>`;b.onclick=()=>playStream(x.url,x.name);$("#tvGrid").append(b)})}
+$("#tvSearch").oninput=renderTV;$("#country").onchange=renderTV;
+function playStream(url,name){current=null;v.src=url;player.classList.add("show");nav.classList.add("hidden");document.body.style.overflow="hidden";v.play().catch(()=>hud("Tap play if this stream allows browser playback"));wake()}
+$("#adultBtn").onclick=()=>{$("#sheet").innerHTML='<button><b>X TV · private playlists</b></button><button id="importAdult">Import M3U / M3U8 playlist</button><button>Adult sources are never mixed into the public TV directory.</button>';$("#modal").classList.add("show");setTimeout(()=>$("#importAdult").onclick=()=>$("#pickM3U").click())};
+$("#pickM3U").onchange=async e=>{let f=e.target.files[0];if(!f)return;let txt=await f.text(),items=parseM3U(txt);$("#sheet").innerHTML='<button><b>X TV</b></button>';items.forEach(x=>{let b=document.createElement("button");b.textContent=x.name;b.onclick=()=>{playStream(x.url,x.name);$("#modal").classList.remove("show")};$("#sheet").append(b)});$("#modal").classList.add("show")};
+function parseM3U(txt){let a=[],n="Channel";for(let l of txt.split(/\r?\n/)){l=l.trim();if(l.startsWith("#EXTINF"))n=l.split(",").pop().trim();else if(l&&!l.startsWith("#"))a.push({name:n,url:l})}return a}
+
+async function ytInit(){if(window.google?.accounts?.oauth2){makeYT();return}let s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=makeYT;document.head.append(s)}
+function makeYT(){if(ytClient)return;ytClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:"https://www.googleapis.com/auth/youtube.readonly",callback:r=>{if(r.error){$("#ytStatus").textContent=r.error;return}ytToken=r.access_token;$("#ytLogin").hidden=true;$("#ytLogout").hidden=false;$("#ytStatus").textContent="Connected to YouTube."}})}
+$("#ytLogin").onclick=async()=>{await ytInit();ytClient?.requestAccessToken({prompt:"consent"})};$("#ytLogout").onclick=()=>{if(ytToken)google.accounts.oauth2.revoke(ytToken);ytToken=null;$("#ytLogin").hidden=false;$("#ytLogout").hidden=true;$("#ytStatus").textContent="Signed out."};
+$("#ytGo").onclick=ytSearch;$("#ytSearch").onkeydown=e=>{if(e.key==="Enter")ytSearch()};
+async function ytSearch(){let q=$("#ytSearch").value.trim();if(!q)return;if(!ytToken){$("#ytStatus").textContent="Sign in with Google first.";return}$("#ytStatus").textContent="Searching…";try{let r=await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=24&q="+encodeURIComponent(q),{headers:{Authorization:"Bearer "+ytToken}}),d=await r.json();if(!r.ok)throw new Error(d.error?.message||"YouTube request failed");$("#ytGrid").innerHTML="";(d.items||[]).forEach(x=>{let b=document.createElement("button");b.className="channel glass";let sn=x.snippet;b.innerHTML=`<img style="height:80px;width:100%;object-fit:cover;border-radius:12px" src="${sn.thumbnails.medium.url}"><div><b>${esc(sn.title)}</b><br><small>${esc(sn.channelTitle)}</small></div>`;b.onclick=()=>{let f=$("#ytFrame");f.src="https://www.youtube.com/embed/"+x.id.videoId+"?autoplay=1&playsinline=1";$("#ytPlayer").classList.add("show");nav.classList.add("hidden")};$("#ytGrid").append(b)});$("#ytStatus").textContent=(d.items||[]).length+" results"}catch(e){$("#ytStatus").textContent=e.message}}
+$("#ytClose").onclick=()=>{$("#ytFrame").src="about:blank";$("#ytPlayer").classList.remove("show");nav.classList.remove("hidden")};
+
+openDB().then(renderAll);
+</script>
+</body></html>
