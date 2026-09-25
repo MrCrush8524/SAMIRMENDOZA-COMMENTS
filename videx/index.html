@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>VIDeX</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>VIDeX</title>
+<meta name="description" content="VIDeX — a local video player with live TV and YouTube.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" as="image" href="logo.webp">
 <style>
 :root{--blue:#159cff;--glass:rgba(9,22,36,.64);--line:rgba(188,225,255,.20);--muted:#8f9dab}
 *{box-sizing:border-box}html,body{margin:0;background:#000;color:#f8fbff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}button,input{font:inherit}
@@ -14,38 +17,34 @@ h1{font-size:44px;letter-spacing:-2px;margin:4px 0 18px}h2{font-size:26px;letter
 .glass{background:linear-gradient(145deg,rgba(28,54,77,.66),rgba(5,12,21,.72));border:1px solid var(--line);box-shadow:inset 0 1px rgba(255,255,255,.18),0 18px 45px #0008;backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%)}
 .list{border-radius:23px;overflow:hidden}.list button{height:59px;width:100%;display:grid;grid-template-columns:44px 1fr 22px;align-items:center;border:0;border-bottom:1px solid rgba(255,255,255,.10);background:transparent;color:#fff;text-align:left;padding:0 16px;font-size:18px}.list button:last-child{border-bottom:0}.list .ico{font-size:26px;color:var(--blue);text-align:center}.list b{font-size:31px;color:#778693;font-weight:400}
 .rail{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 1px 7px}.rail::-webkit-scrollbar{display:none}.empty{min-width:100%;height:104px;border:1px dashed #8acbff3d;border-radius:18px;display:grid;place-items:center;color:#748291}
-.card{position:relative;min-width:136px;width:136px}.thumb{height:181px;width:136px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#152535,#050a10);border:1px solid #d9efff26;position:relative}.thumb video{width:100%;height:100%;object-fit:cover}.thumb .fallback{height:100%;display:grid;place-items:center;font-size:38px;color:#5caef0}.card strong{display:block;font-size:14px;margin:7px 2px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card small{color:#8794a1;margin-left:2px}.progress{height:4px;background:#24313d;border-radius:9px;position:absolute;left:8px;right:8px;bottom:8px;overflow:hidden}.progress i{display:block;height:100%;background:var(--blue);width:0}.dots{position:absolute;right:7px;top:7px;border:1px solid #fff3;background:#07101dcc;color:#fff;border-radius:999px;padding:3px 8px;z-index:2}
+.card{position:relative;min-width:136px;width:136px}.thumb{height:181px;width:136px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#152535,#050a10);border:1px solid #d9efff26;position:relative}.thumb{display:block;padding:0;color:inherit}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.thumb .fallback{height:100%;display:grid;place-items:center;font-size:38px;color:#5caef0}.card strong{display:block;font-size:14px;margin:7px 2px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card small{color:#8794a1;margin-left:2px}.progress{height:4px;background:#24313d;border-radius:9px;position:absolute;left:8px;right:8px;bottom:8px;overflow:hidden}.progress i{display:block;height:100%;background:var(--blue);width:0}.dots{position:absolute;right:7px;top:7px;border:1px solid #fff3;background:#07101dcc;color:#fff;border-radius:999px;padding:3px 8px;z-index:2}
 .addCard{min-width:136px;height:181px;border-radius:18px;color:#b8c7d4;border:1px solid var(--line);background:var(--glass);font-weight:700}.addCard span{display:block;color:var(--blue);font-size:40px}
 .bottom{position:fixed;z-index:80;left:16px;right:16px;bottom:max(10px,env(safe-area-inset-bottom));height:80px;border-radius:40px;display:grid;grid-template-columns:repeat(5,1fr);padding:5px;background:rgba(20,25,32,.70);border:1px solid #dff4ff30;box-shadow:inset 0 1px #fff5,0 16px 45px #000d;backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);transition:transform .28s,opacity .28s}
 .bottom.hidden{transform:translateY(120%);opacity:0}.bottom button{border:0;background:transparent;color:#fff;border-radius:33px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}.bottom button.active{color:var(--blue);background:linear-gradient(145deg,#0d65ad99,#13304e99);box-shadow:inset 0 1px #8bd3ff44}.bottom span{font-size:25px}.bottom small{font-size:10px;font-weight:750}
 .toprow{display:flex;gap:10px;align-items:center}.search{flex:1;border:1px solid var(--line);border-radius:20px;padding:13px 15px;background:#d8edff0e;color:#fff;outline:0}.pill{border:1px solid var(--line);border-radius:999px;background:#d8edff12;color:#fff;padding:11px 15px}.chips{display:flex;gap:8px;overflow:auto;padding:12px 0}.chip{white-space:nowrap}.chip.on{background:#137fd4;color:white}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.channel{min-height:128px;border-radius:21px;padding:14px;text-align:left;color:#fff;display:flex;flex-direction:column;justify-content:space-between}.channel img{height:42px;max-width:100%;object-fit:contain;object-position:left}.channel small{color:#91a0ae}
-.modal{position:fixed;z-index:200;inset:0;background:#0008;display:none;align-items:flex-end}.modal.show{display:flex}.sheet{width:100%;padding:12px 14px max(20px,env(safe-area-inset-bottom));border-radius:28px 28px 0 0}.sheet button{display:block;width:100%;padding:15px;border:0;border-bottom:1px solid #fff1;background:transparent;color:#fff;text-align:left}.sheet .danger{color:#ff6a73}
-.player{position:fixed;z-index:300;inset:0;background:#000;display:none}.player.show{display:block}.player video{width:100%;height:100%;object-fit:contain;filter:brightness(var(--brightness,1))}.pclose{position:absolute;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));z-index:5;width:46px;height:46px;border-radius:50%;color:#fff;font-size:27px}.controls{position:absolute;left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));padding:10px;border-radius:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;transition:opacity .25s}.player.idle .controls,.player.idle .pclose{opacity:0;pointer-events:none}.seek{flex:1 0 100%}.ctl{width:48px;height:48px;border-radius:50%;color:#fff;border:1px solid #fff3;background:#d8edff18;backdrop-filter:blur(25px)}.hud{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:#08111dcc;border:1px solid #fff3;padding:12px 17px;border-radius:18px;opacity:0}.hud.show{opacity:1}
+.modal{position:fixed;z-index:200;inset:0;background:#0008;display:none;align-items:flex-end}.modal.show{display:flex}.sheet{width:100%;max-height:82vh;overflow-y:auto;overscroll-behavior:contain;padding:12px 14px max(20px,env(safe-area-inset-bottom));border-radius:28px 28px 0 0}.sheet button{display:block;width:100%;padding:15px;border:0;border-bottom:1px solid #fff1;background:transparent;color:#fff;text-align:left}.sheet .danger{color:#ff6a73}
+.player{position:fixed;z-index:300;inset:0;background:#000;display:none}.player.show{display:block}.player video{width:100%;height:100%;object-fit:contain;filter:brightness(var(--brightness,1))}.pclose{position:absolute;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));z-index:5;width:46px;height:46px;border-radius:50%;color:#fff;font-size:27px}.controls{position:absolute;left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));padding:10px;border-radius:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;transition:opacity .25s}.player.idle .controls,.player.idle .pclose{opacity:0;pointer-events:none}.seek{flex:1 0 100%}.ctl.on{background:#137fd4}.ctl{width:48px;height:48px;border-radius:50%;color:#fff;border:1px solid #fff3;background:#d8edff18;backdrop-filter:blur(25px)}.hud{position:fixed;z-index:400;pointer-events:none;transition:opacity .2s;left:50%;top:44%;transform:translate(-50%,-50%);background:#08111dcc;border:1px solid #fff3;padding:12px 17px;border-radius:18px;opacity:0}.hud.show{opacity:1}
 #ytPlayer{position:fixed;z-index:250;inset:0;background:#000;display:none}#ytPlayer.show{display:block}#ytFrame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}#ytClose{position:absolute;z-index:3;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));font-size:26px}
 .notice{color:#82909e;font-size:13px;line-height:1.4}.countrySelect{width:100%;margin-top:8px}
-@media(min-width:701px){.screen{max-width:1100px;margin:auto}.grid{grid-template-columns:repeat(4,1fr)}.bottom{left:50%;right:auto;width:620px;transform:translateX(-50%)}}
+@media(min-width:701px){.screen{max-width:1100px;margin:auto}.grid{grid-template-columns:repeat(4,1fr)}.bottom{left:50%;right:auto;width:620px;transform:translateX(-50%)}.bottom.hidden{transform:translate(-50%,120%)}}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.sheet .head{cursor:default}
 </style>
 </head>
 <body>
 
-<div id="runtimeError" style="display:none;position:fixed;z-index:9999;left:12px;right:12px;top:max(12px,env(safe-area-inset-top));background:#3a0710;color:#fff;border:1px solid #ff6677;border-radius:16px;padding:12px 14px;font:13px/1.35 -apple-system,BlinkMacSystemFont,sans-serif;box-shadow:0 10px 40px #000c"></div>
+<div id="runtimeError" role="alert" title="Tap to dismiss" style="display:none;position:fixed;z-index:9999;left:12px;right:12px;top:max(12px,env(safe-area-inset-top));background:#3a0710;color:#fff;border:1px solid #ff6677;border-radius:16px;padding:12px 14px;font:13px/1.35 -apple-system,BlinkMacSystemFont,sans-serif;box-shadow:0 10px 40px #000c;cursor:pointer"></div>
 <script>
-window.addEventListener("error",function(e){
+(function(){
   var b=document.getElementById("runtimeError");
-  if(!b)return;
-  b.style.display="block";
-  b.textContent="VIDeX error: "+(e.message||"Unknown runtime error");
-});
-window.addEventListener("unhandledrejection",function(e){
-  var b=document.getElementById("runtimeError");
-  if(!b)return;
-  b.style.display="block";
-  b.textContent="VIDeX error: "+((e.reason&&e.reason.message)||e.reason||"Unhandled error");
-});
+  function show(msg){if(!b)return;b.style.display="block";b.textContent="VIDeX error: "+msg}
+  b.onclick=function(){b.style.display="none"};
+  window.addEventListener("error",function(e){show(e.message||"Unknown runtime error")});
+  window.addEventListener("unhandledrejection",function(e){show((e.reason&&e.reason.message)||e.reason||"Unhandled error")});
+})();
 </script>
 
-<input id="pickFiles" type="file" accept="video/*" multiple hidden>
+<input id="pickFiles" type="file" accept="video/*,.mkv,.m4v,.mov,.webm,.avi" multiple hidden>
 <input id="pickM3U" type="file" accept=".m3u,.m3u8,text/plain" hidden>
 
 <section id="library" class="screen active">
@@ -65,28 +64,28 @@ window.addEventListener("unhandledrejection",function(e){
 </section>
 
 <section id="home" class="screen">
- <div class="hero"><img src="logo.webp" class="logo"></div><h1>Home</h1>
+ <div class="hero"><img src="logo.webp" class="logo" alt=""></div><h1>Home</h1>
  <h2>Continue Watching</h2><div id="homeContinue" class="rail"></div>
  <h2>Recently Added</h2><div id="homeRecent" class="rail"></div>
 </section>
 
 <section id="live" class="screen">
- <div class="hero"><img src="logo.webp" class="logo"></div><h1>Live TV</h1>
- <div class="toprow"><input id="tvSearch" class="search" placeholder="Search channels…"><button id="adultBtn" class="pill">18+</button></div>
- <select id="country" class="search countrySelect"><option value="">All countries</option></select>
+ <div class="hero"><img src="logo.webp" class="logo" alt=""></div><h1>Live TV</h1>
+ <div class="toprow"><input id="tvSearch" class="search" placeholder="Search channels…" aria-label="Search channels"><button id="adultBtn" class="pill">18+</button></div>
+ <select id="country" class="search countrySelect" aria-label="Country"><option value="">All countries</option></select>
  <div id="cats" class="chips"></div><div id="tvStatus" class="notice">Loading public live channels…</div><div id="tvGrid" class="grid"></div>
 </section>
 
 <section id="youtube" class="screen">
- <div class="hero"><img src="logo.webp" class="logo"></div><h1>YouTube</h1>
- <div class="toprow"><input id="ytSearch" class="search" placeholder="Search YouTube…"><button id="ytGo" class="pill">Search</button></div>
+ <div class="hero"><img src="logo.webp" class="logo" alt=""></div><h1>YouTube</h1>
+ <div class="toprow"><input id="ytSearch" class="search" placeholder="Search YouTube…" aria-label="Search YouTube"><button id="ytGo" class="pill">Search</button></div>
  <div class="toprow" style="margin-top:10px"><button id="ytLogin" class="pill">Sign in with Google</button><button id="ytLogout" class="pill" hidden>Sign out</button></div>
  <p id="ytStatus" class="notice">Sign in to search with your VIDeX Google client.</p><div id="ytGrid" class="grid"></div>
 </section>
 
 <section id="searchScreen" class="screen">
- <div class="hero"><img src="logo.webp" class="logo"></div><h1>Search</h1>
- <input id="globalSearch" class="search" style="width:100%" placeholder="Search your library…">
+ <div class="hero"><img src="logo.webp" class="logo" alt=""></div><h1>Search</h1>
+ <input id="globalSearch" class="search" style="width:100%" placeholder="Search your library…" aria-label="Search your library">
  <h2>Results</h2><div id="searchRail" class="rail"></div>
 </section>
 
@@ -98,78 +97,247 @@ window.addEventListener("unhandledrejection",function(e){
  <button data-screen="searchScreen"><span>⌕</span><small>Search</small></button>
 </nav>
 
-<div id="modal" class="modal"><div id="sheet" class="sheet glass"></div></div>
+<div id="modal" class="modal"><div id="sheet" class="sheet glass" role="dialog"></div></div>
 <div id="player" class="player">
- <video id="video" playsinline></video><button id="pclose" class="pclose ctl">×</button><div id="hud" class="hud"></div>
- <div id="controls" class="controls glass"><input id="seek" class="seek" type="range" min="0" max="1000" value="0">
-  <button id="back" class="ctl">↶10</button><button id="play" class="ctl">▶</button><button id="fwd" class="ctl">10↷</button>
-  <button id="rev" class="ctl">REV</button><button id="grab" class="ctl">▣</button><button id="speed" class="ctl">1×</button><button id="full" class="ctl">⛶</button>
+ <video id="video" playsinline></video><button id="pclose" class="pclose ctl" aria-label="Close player">×</button>
+ <div id="controls" class="controls glass"><input id="seek" class="seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+  <button id="back" class="ctl" aria-label="Back 10 seconds">↶10</button><button id="play" class="ctl" aria-label="Play or pause">▶</button><button id="fwd" class="ctl" aria-label="Forward 10 seconds">10↷</button>
+  <button id="rev" class="ctl" aria-label="Play in reverse">REV</button><button id="grab" class="ctl" aria-label="Save a frame">▣</button><button id="speed" class="ctl" aria-label="Playback speed">1×</button><button id="full" class="ctl" aria-label="Fullscreen">⛶</button>
  </div>
 </div>
-<div id="ytPlayer"><iframe id="ytFrame" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe><button id="ytClose" class="ctl">×</button></div>
+<div id="hud" class="hud" aria-live="polite"></div>
+<div id="ytPlayer"><iframe id="ytFrame" title="YouTube player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe><button id="ytClose" class="ctl" aria-label="Close YouTube player">×</button></div>
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const CLIENT_ID="377117992546-tguolq0bqjvrog0s46f2kr50nchhfekn.apps.googleusercontent.com";
-let db, current=null, idleTimer, reverseTimer, brightness=1, gesture=null, ytToken=null, ytClient=null;
+const HLS_JS="https://cdn.jsdelivr.net/npm/hls.js@1.5.20/dist/hls.min.js";
+let db, current=null, restoring=false, idleTimer, reverseTimer=null, brightness=1, gesture=null, ytToken=null, ytClient=null, hls=null, lastSave=0;
 const v=$("#video"), player=$("#player"), nav=$(".bottom");
 
-function openDB(){return new Promise((res,rej)=>{let r=indexedDB.open("videx",2);r.onupgradeneeded=()=>{let d=r.result;if(!d.objectStoreNames.contains("media"))d.createObjectStore("media",{keyPath:"id"});if(!d.objectStoreNames.contains("groups"))d.createObjectStore("groups",{keyPath:"id"})};r.onsuccess=()=>{db=r.result;res()};r.onerror=()=>rej(r.error)})}
+// ---- Storage -------------------------------------------------------------
+// v2 kept playback position inside the media record, so every progress save
+// re-wrote the whole video Blob. v3 splits progress and poster frames into
+// their own small stores; the media record is only written on add/rename/fav.
+function openDB(){return new Promise((res,rej)=>{let r=indexedDB.open("videx",3);r.onupgradeneeded=e=>{let d=r.result;for(const n of ["media","groups","progress","posters"])if(!d.objectStoreNames.contains(n))d.createObjectStore(n,{keyPath:"id"});
+ // Carry v2 positions over into the new progress store.
+ if(e.oldVersion>0&&e.oldVersion<3){let t=r.transaction,pg=t.objectStore("progress");t.objectStore("media").openCursor().onsuccess=ev=>{let c=ev.target.result;if(!c)return;let m=c.value;if(m.position)pg.put({id:m.id,position:m.position,duration:m.duration||0,at:Date.now()});c.continue()}}};r.onsuccess=()=>{db=r.result;res()};r.onerror=()=>rej(r.error)})}
 function store(name,mode="readonly"){return db.transaction(name,mode).objectStore(name)}
-function all(name){return new Promise((res,rej)=>{let r=store(name).getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-function put(name,x){return new Promise((res,rej)=>{let r=store(name,"readwrite").put(x);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
-function del(name,id){return new Promise((res,rej)=>{let r=store(name,"readwrite").delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
-const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const req=r=>new Promise((res,rej)=>{r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const all=name=>req(store(name).getAll()), get=(name,id)=>req(store(name).get(id));
+const put=(name,x)=>req(store(name,"readwrite").put(x)), del=(name,id)=>req(store(name,"readwrite").delete(id));
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 function classify(name){return /s\d{1,2}e\d{1,2}|season|episode/i.test(name)?"show":"movie"}
-async function addFiles(files){for(const f of files){if(!f.type.startsWith("video/"))continue;let id=f.name+"|"+f.size+"|"+f.lastModified;await put("media",{id,name:f.name.replace(/\.[^.]+$/,""),filename:f.name,type:classify(f.name),blob:f,added:Date.now(),favorite:false,position:0,duration:0,playlists:[],collections:[]})}await renderAll()}
-$("#pickFiles").onchange=e=>addFiles([...e.target.files]);
+const VIDEO_EXT=/\.(mp4|m4v|mov|webm|mkv|avi|ogv|3gp)$/i;
+
+// Media plus its progress, merged. Falls back to the v2 fields on old records.
+let progress=new Map();
+async function loadMedia(){progress=new Map((await all("progress")).map(p=>[p.id,p]));return (await all("media")).map(m=>{let p=progress.get(m.id);return {...m,position:p?p.position:m.position||0,duration:p?p.duration:m.duration||0}}).sort((x,y)=>y.added-x.added)}
+// Duration can be Infinity (e.g. MediaRecorder/screen recordings) — store 0 = unknown.
+// Skipped while the resume seek is in flight: closing early used to save ~0 and wipe progress.
+function saveProgress(force){if(!current||restoring||!(v.currentTime>0))return;let now=Date.now();if(!force&&now-lastSave<5000)return;lastSave=now;let d=isFinite(v.duration)?v.duration:0;current.position=v.currentTime;current.duration=d;put("progress",{id:current.id,position:v.currentTime,duration:d,at:now})}
+
+async function addFiles(files){
+ let added=0,skipped=0;
+ for(const f of files){
+  if(!f.type.startsWith("video/")&&!VIDEO_EXT.test(f.name))continue;
+  let id=f.name+"|"+f.size+"|"+f.lastModified;
+  if(await get("media",id)){skipped++;continue} // re-adding used to wipe progress, name and favorite
+  await put("media",{id,name:f.name.replace(/\.[^.]+$/,""),filename:f.name,type:classify(f.name),blob:f,added:Date.now(),favorite:false,playlists:[],collections:[]});added++
+ }
+ // Videos in IndexedDB are "best effort" storage; ask the browser not to evict them.
+ if(added&&navigator.storage?.persist)navigator.storage.persist().catch(()=>{});
+ if(skipped)hud(skipped+" already in library");
+ await renderAll()
+}
+$("#pickFiles").onchange=e=>{addFiles([...e.target.files]);e.target.value=""};
 $("#localFilesBtn").onclick=()=>$("#pickFiles").click();
 
-function mediaCard(m){let el=document.createElement("div");el.className="card";let url=URL.createObjectURL(m.blob);el.innerHTML=`<button class="dots">•••</button><div class="thumb"><video muted playsinline preload="metadata" src="${url}"></video><div class="progress"><i style="width:${m.duration?Math.min(100,m.position/m.duration*100):0}%"></i></div></div><strong>${esc(m.name)}</strong><small>${m.type==="show"?"TV Show":"Movie"}</small>`;
+// ---- Thumbnails ----------------------------------------------------------
+// The original gave every card its own <video preload=metadata> and a fresh
+// blob URL that was never revoked — five rails, re-rendered after every
+// close, so URLs and decoders piled up. Now: one poster JPEG per video,
+// captured once by a single hidden <video>, cached in IndexedDB.
+const posterURL=new Map(), posterQueue=[], posterWaiters=new Map();let posterBusy=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);let m=e.target._media;posterFor(m).then(u=>{if(u)e.target.querySelector(".fallback")?.replaceWith(Object.assign(new Image(),{alt:"",src:u}))})}),{rootMargin:"200px"});
+async function posterFor(m){
+ if(posterURL.has(m.id))return posterURL.get(m.id);
+ let p=await get("posters",m.id);
+ if(p){let u=URL.createObjectURL(p.blob);posterURL.set(m.id,u);return u}
+ return new Promise(res=>{if(posterWaiters.has(m.id))posterWaiters.get(m.id).push(res);else{posterWaiters.set(m.id,[res]);posterQueue.push(m);pumpPosters()}})
+}
+async function pumpPosters(){
+ if(posterBusy)return;let m=posterQueue.shift();if(!m)return;posterBusy=true;
+ let blob=await capturePoster(m.blob).catch(()=>null),u=null;
+ if(blob){await put("posters",{id:m.id,blob});u=URL.createObjectURL(blob)}
+ posterURL.set(m.id,u); // null = undecodable here (e.g. MKV on Safari); don't retry every render
+ posterWaiters.get(m.id).forEach(r=>r(u));posterWaiters.delete(m.id);posterBusy=false;pumpPosters()
+}
+function capturePoster(file){return new Promise((res,rej)=>{
+ let pv=document.createElement("video"),url=URL.createObjectURL(file),done=x=>{clearTimeout(t);URL.revokeObjectURL(url);pv.removeAttribute("src");pv.load();x()};
+ let t=setTimeout(()=>done(()=>rej(new Error("timeout"))),8000);
+ pv.muted=true;pv.playsInline=true;pv.preload="auto";
+ pv.onloadedmetadata=()=>{let d=isFinite(pv.duration)?pv.duration:0;pv.currentTime=Math.min(2,d/4)};
+ pv.onseeked=()=>{let w=272,h=Math.round(w*(pv.videoHeight/pv.videoWidth||1.33)),c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(pv,0,0,w,h);c.toBlob(b=>done(()=>b?res(b):rej(new Error("no frame"))),"image/jpeg",.78)};
+ pv.onerror=()=>done(()=>rej(pv.error));pv.src=url})}
+
+function mediaCard(m){
+ let el=document.createElement("div");el.className="card";el._media=m;
+ let pct=m.duration?Math.min(100,m.position/m.duration*100):0,u=posterURL.get(m.id);
+ el.innerHTML=`<button class="dots" aria-label="More options for ${esc(m.name)}">•••</button><button class="thumb" aria-label="Play ${esc(m.name)}">${u?`<img alt="" src="${u}">`:`<div class="fallback">▶</div>`}<div class="progress"><i style="width:${pct}%"></i></div></button><strong>${esc(m.name)}</strong><small>${m.type==="show"?"TV Show":"Movie"}</small>`;
  el.querySelector(".thumb").onclick=()=>playMedia(m);el.querySelector(".dots").onclick=e=>{e.stopPropagation();showMediaMenu(m)};
- let pv=el.querySelector("video");pv.onloadedmetadata=()=>{try{pv.currentTime=Math.min(2,pv.duration/4)}catch(e){}};return el}
-function fillRail(sel,items,emptyText,add=false){let r=$(sel);r.innerHTML="";if(add){let b=document.createElement("button");b.className="addCard";b.innerHTML="<span>＋</span>Add videos";b.onclick=()=>$("#pickFiles").click();r.append(b)}if(!items.length&&!add){r.innerHTML=`<div class="empty">${emptyText}</div>`}items.forEach(x=>r.append(mediaCard(x)))}
-async function renderAll(){let a=(await all("media")).sort((x,y)=>y.added-x.added);fillRail("#continueRail",a.filter(x=>x.position>5&&(!x.duration||x.position<x.duration-5)),"Videos you start will appear here.");fillRail("#recentRail",a,"",true);fillRail("#moviesRail",a.filter(x=>x.type==="movie"),"No movies yet.");fillRail("#homeContinue",a.filter(x=>x.position>5),"Nothing in progress.");fillRail("#homeRecent",a,"No videos yet.");return a}
+ if(!u)io.observe(el);return el}
+function fillRail(sel,items,emptyText,add=false){let r=$(sel);r.querySelectorAll(".card").forEach(c=>io.unobserve(c));r.innerHTML="";if(add){let b=document.createElement("button");b.className="addCard";b.innerHTML="<span>＋</span>Add videos";b.onclick=()=>$("#pickFiles").click();r.append(b)}if(!items.length&&!add){r.innerHTML=`<div class="empty">${emptyText}</div>`}items.forEach(x=>r.append(mediaCard(x)))}
+const inProgress=x=>x.position>5&&(!x.duration||x.position<x.duration-5);
+async function renderAll(){let a=await loadMedia(),cont=a.filter(inProgress);fillRail("#continueRail",cont,"Videos you start will appear here.");fillRail("#recentRail",a,"",true);fillRail("#moviesRail",a.filter(x=>x.type==="movie"),"No movies yet.");fillRail("#homeContinue",cont,"Nothing in progress.");fillRail("#homeRecent",a,"No videos yet.");return a}
 
-async function showMediaMenu(m){let s=$("#sheet");s.innerHTML=`<button data-a="play">▶ Play</button><button data-a="fav">${m.favorite?"♥ Remove Favorite":"♡ Add to Favorites"}</button><button data-a="playlist">☷ Add to Playlist</button><button data-a="collection">▰ Add to Collection</button><button data-a="rename">✎ Rename</button><button data-a="delete" class="danger">⌫ Remove from VIDeX</button>`;$("#modal").classList.add("show");
- s.onclick=async e=>{let a=e.target.dataset.a;if(!a)return;if(a==="play")playMedia(m);if(a==="fav"){m.favorite=!m.favorite;await put("media",m);await renderAll()}if(a==="rename"){let n=prompt("Rename",m.name);if(n){m.name=n;await put("media",m);await renderAll()}}if(a==="delete"){await del("media",m.id);await renderAll()}if(a==="playlist")await addToGroup(m,"playlist");if(a==="collection")await addToGroup(m,"collection");$("#modal").classList.remove("show")}}
-$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("show")};
-async function addToGroup(m,type){let groups=(await all("groups")).filter(g=>g.type===type), names=groups.map(g=>g.name).join(", ");let name=prompt(`${type==="playlist"?"Playlist":"Collection"} name${names?" ("+names+")":""}`);if(!name)return;let g=groups.find(x=>x.name.toLowerCase()===name.toLowerCase())||{id:type+"|"+name.toLowerCase(),type,name,media:[]};if(!g.media.includes(m.id))g.media.push(m.id);await put("groups",g)}
-async function groupScreen(type){let gs=(await all("groups")).filter(g=>g.type===type),s=$("#sheet");s.innerHTML=`<button><b>${type==="playlist"?"Playlists":"Collections"}</b></button>`+(gs.length?gs.map(g=>`<button data-id="${esc(g.id)}">${esc(g.name)} · ${g.media.length} videos</button>`).join(""):`<button>No ${type}s yet — add one from ••• on a video.</button>`);$("#modal").classList.add("show")}
+// ---- Sheets: media menu, playlists, collections, filters -----------------
+function openSheet(title,rows){let s=$("#sheet");s.onclick=null;s.innerHTML=`<button class="head"><b>${esc(title)}</b></button>`;rows.forEach(r=>s.append(r));$("#modal").classList.add("show")}
+const closeSheet=()=>$("#modal").classList.remove("show");
+function row(text,fn,cls){let b=document.createElement("button");b.textContent=text;if(cls)b.className=cls;if(fn)b.onclick=async e=>{e.stopPropagation();await fn()};return b}
+function mediaRows(list){return list.map(m=>row(m.name,()=>{closeSheet();playMedia(m)}))}
+
+function showMediaMenu(m){openSheet(m.name,[
+ row("▶ Play",()=>{closeSheet();playMedia(m)}),
+ row(m.favorite?"♥ Remove Favorite":"♡ Add to Favorites",async()=>{m.favorite=!m.favorite;await putMedia(m);closeSheet();await renderAll()}),
+ row("☷ Add to Playlist",async()=>{await addToGroup(m,"playlist");closeSheet()}),
+ row("▰ Add to Collection",async()=>{await addToGroup(m,"collection");closeSheet()}),
+ row(m.type==="show"?"▣ Mark as Movie":"▱ Mark as TV Show",async()=>{m.type=m.type==="show"?"movie":"show";await putMedia(m);closeSheet();await renderAll()}),
+ row("✎ Rename",async()=>{let n=prompt("Rename",m.name);if(n){m.name=n;await putMedia(m);await renderAll()}closeSheet()}),
+ row("⌫ Remove from VIDeX",async()=>{if(!confirm(`Remove “${m.name}” from VIDeX?`))return;await removeMedia(m.id);closeSheet();await renderAll()},"danger")])}
+// Write the media record without the merged-in progress fields.
+async function putMedia(m){let {position,duration,...rec}=m;await put("media",rec)}
+async function removeMedia(id){
+ await del("media",id);await del("progress",id);await del("posters",id);
+ if(posterURL.has(id)){URL.revokeObjectURL(posterURL.get(id));posterURL.delete(id)}
+ for(const g of await all("groups"))if(g.media.includes(id)){g.media=g.media.filter(x=>x!==id);await put("groups",g)} // original left dangling ids behind
+}
+$("#modal").onclick=e=>{if(e.target.id==="modal")closeSheet()};
+
+async function addToGroup(m,type){let groups=(await all("groups")).filter(g=>g.type===type), names=groups.map(g=>g.name).join(", ");let name=prompt(`${type==="playlist"?"Playlist":"Collection"} name${names?" ("+names+")":""}`)?.trim();if(!name)return;let g=groups.find(x=>x.name.toLowerCase()===name.toLowerCase())||{id:type+"|"+name.toLowerCase(),type,name,media:[]};if(!g.media.includes(m.id))g.media.push(m.id);await put("groups",g);hud("Added to "+name)}
+// The original listed groups but tapping one did nothing.
+async function groupScreen(type){let gs=(await all("groups")).filter(g=>g.type===type),label=type==="playlist"?"Playlists":"Collections";
+ openSheet(label,gs.length?gs.map(g=>row(`${g.name} · ${g.media.length} video${g.media.length===1?"":"s"}`,()=>openGroup(g))):[row(`No ${type}s yet — add one from ••• on a video.`)])}
+async function openGroup(g){let byId=new Map((await loadMedia()).map(m=>[m.id,m])),list=g.media.map(id=>byId.get(id)).filter(Boolean);
+ openSheet(g.name,[...(list.length?[row("▶ Play all",()=>{closeSheet();playQueue(list)})]:[]),...mediaRows(list),row("⌫ Delete "+(g.type==="playlist"?"playlist":"collection"),async()=>{if(!confirm(`Delete “${g.name}”? Videos stay in your library.`))return;await del("groups",g.id);groupScreen(g.type)},"danger")])}
 $("#playlistsBtn").onclick=()=>groupScreen("playlist");$("#collectionsBtn").onclick=()=>groupScreen("collection");
-$$("[data-filter]").forEach(b=>b.onclick=async()=>{let a=await all("media"),f=b.dataset.filter;if(f==="favorite")a=a.filter(x=>x.favorite);else a=a.filter(x=>x.type===f);$("#sheet").innerHTML=`<button><b>${b.innerText.replace("›","")}</b></button>`;a.forEach(m=>{let bt=document.createElement("button");bt.textContent=m.name;bt.onclick=()=>playMedia(m);$("#sheet").append(bt)});$("#modal").classList.add("show")});
+$$("[data-filter]").forEach(b=>b.onclick=async()=>{let a=await loadMedia(),f=b.dataset.filter;a=f==="favorite"?a.filter(x=>x.favorite):a.filter(x=>x.type===f);openSheet(b.querySelector("span:nth-child(2)").textContent,a.length?mediaRows(a):[row("Nothing here yet.")])});
 
-function showScreen(id){$$(".screen").forEach(x=>x.classList.toggle("active",x.id===id));$$(".bottom button").forEach(x=>x.classList.toggle("active",x.dataset.screen===id));scrollTo(0,0);if(id==="live")loadTV();if(id==="youtube")ytInit()}
+function showScreen(id){$$(".screen").forEach(x=>x.classList.toggle("active",x.id===id));$$(".bottom button").forEach(x=>x.classList.toggle("active",x.dataset.screen===id));scrollTo(0,0);nav.classList.remove("hidden");if(id==="live")loadTV();if(id==="youtube")ytInit()}
 $$(".bottom button").forEach(b=>b.onclick=()=>showScreen(b.dataset.screen));
-let lastY=0;addEventListener("scroll",()=>{let y=scrollY;nav.classList.toggle("hidden",y>lastY&&y>120);lastY=y},{passive:true});
+let lastY=0;addEventListener("scroll",()=>{if(player.classList.contains("show"))return;let y=scrollY;nav.classList.toggle("hidden",y>lastY&&y>120);lastY=y},{passive:true});
 
-async function playMedia(m){current=m;v.src=URL.createObjectURL(m.blob);player.classList.add("show");nav.classList.add("hidden");document.body.style.overflow="hidden";v.onloadedmetadata=()=>{if(m.position>5&&m.position<v.duration-5)v.currentTime=m.position;m.duration=v.duration;put("media",m)};v.play().catch(()=>{});wake()}
-function closePlayer(){if(current){current.position=v.currentTime||0;current.duration=v.duration||current.duration;put("media",current)}v.pause();if(v.src.startsWith("blob:"))URL.revokeObjectURL(v.src);v.removeAttribute("src");v.load();player.classList.remove("show","idle");nav.classList.remove("hidden");document.body.style.overflow="";renderAll()}
-$("#pclose").onclick=closePlayer;$("#play").onclick=()=>v.paused?v.play():v.pause();v.onplay=()=>{$("#play").textContent="❚❚";wake()};v.onpause=()=>{$("#play").textContent="▶";player.classList.remove("idle");clearInterval(reverseTimer)};
-$("#back").onclick=()=>v.currentTime=Math.max(0,v.currentTime-10);$("#fwd").onclick=()=>v.currentTime=Math.min(v.duration||0,v.currentTime+10);$("#seek").oninput=e=>{if(v.duration)v.currentTime=e.target.value/1000*v.duration};v.ontimeupdate=()=>{$("#seek").value=v.duration?v.currentTime/v.duration*1000:0;if(current&&Math.floor(v.currentTime)%4===0){current.position=v.currentTime;current.duration=v.duration;put("media",current)}};
+// ---- Player --------------------------------------------------------------
+let queue=[];
+function openPlayer(){player.classList.add("show");nav.classList.add("hidden");document.body.style.overflow="hidden";wake()}
+function resetSource(){stopReverse();restoring=false;if(hls){hls.destroy();hls=null}if(v.src.startsWith("blob:"))URL.revokeObjectURL(v.src);v.removeAttribute("src");v.load()}
+function playQueue(list){queue=list.slice(1);playMedia(list[0])}
+function playMedia(m){saveProgress(true);resetSource();current=m;lastSave=0;restoring=m.position>5;v.src=URL.createObjectURL(m.blob);
+ v.onloadedmetadata=()=>{if(restoring&&m.position<v.duration-5){v.currentTime=m.position;v.addEventListener("seeked",()=>restoring=false,{once:true})}else restoring=false};
+ v.play().catch(()=>{});openPlayer()}
+function closePlayer(){saveProgress(true);queue=[];v.pause();resetSource();current=null;
+ if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{});
+ player.classList.remove("show","idle");nav.classList.remove("hidden");document.body.style.overflow="";renderAll()}
+v.onended=()=>{if(current){put("progress",{id:current.id,position:0,duration:isFinite(v.duration)?v.duration:0,at:Date.now()});current=null}if(queue.length)playMedia(queue.shift())};
+$("#pclose").onclick=closePlayer;
+$("#play").onclick=()=>{if(reverseTimer){stopReverse();v.play();return}v.paused?v.play():v.pause()};
+v.onplay=()=>{stopReverse();$("#play").textContent="❚❚";wake()};
+v.onpause=()=>{$("#play").textContent="▶";player.classList.remove("idle");saveProgress(true)};
+v.onerror=()=>{if(v.getAttribute("src"))hud("This video can't be played here"+(current?"":" — the stream may be offline or blocked"),2500)};
+const skip=d=>{v.currentTime=Math.max(0,Math.min(v.duration||0,v.currentTime+d))};
+$("#back").onclick=()=>skip(-10);$("#fwd").onclick=()=>skip(10);
+$("#seek").oninput=e=>{if(v.duration&&isFinite(v.duration))v.currentTime=e.target.value/1000*v.duration};
+// The original saved whenever floor(currentTime)%4===0 — i.e. ~4 writes in a
+// row every fourth second, each re-serialising the whole video Blob.
+v.ontimeupdate=()=>{$("#seek").value=v.duration&&isFinite(v.duration)?v.currentTime/v.duration*1000:0;saveProgress(false)};
+addEventListener("pagehide",()=>saveProgress(true));document.addEventListener("visibilitychange",()=>{if(document.hidden)saveProgress(true)});
 let speeds=[.25,.5,.75,1,1.25,1.5,2],si=3;$("#speed").onclick=()=>{si=(si+1)%speeds.length;v.playbackRate=speeds[si];$("#speed").textContent=speeds[si]+"×"};
-$("#rev").onclick=()=>{v.pause();if(reverseTimer){clearInterval(reverseTimer);reverseTimer=null;hud("Reverse off")}else{reverseTimer=setInterval(()=>v.currentTime=Math.max(0,v.currentTime-.1),100);hud("Reverse")}};
-$("#full").onclick=()=>{if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();else player.requestFullscreen?.()};
-$("#grab").onclick=()=>{try{let c=document.createElement("canvas");c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);c.toBlob(b=>{let a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="VIDeX-"+Date.now()+".png";a.click()})}catch(e){hud("Screen grab unavailable")}};
-function wake(){player.classList.remove("idle");clearTimeout(idleTimer);if(!v.paused)idleTimer=setTimeout(()=>player.classList.add("idle"),3000)}player.onpointerdown=wake;
-function hud(t){$("#hud").textContent=t;$("#hud").classList.add("show");setTimeout(()=>$("#hud").classList.remove("show"),700)}
-player.addEventListener("touchstart",e=>{let t=e.touches[0];gesture={x:t.clientX,y:t.clientY,vol:v.volume,bri:brightness}},{passive:true});player.addEventListener("touchmove",e=>{if(!gesture)return;let t=e.touches[0],dy=(gesture.y-t.clientY)/180;if(gesture.x<innerWidth/2){brightness=Math.max(.25,Math.min(1.5,gesture.bri+dy));v.style.setProperty("--brightness",brightness);hud("☀ "+Math.round(brightness*100)+"%")}else{v.volume=Math.max(0,Math.min(1,gesture.vol+dy));hud("🔊 "+Math.round(v.volume*100)+"%")}},{passive:true});player.addEventListener("touchend",()=>gesture=null,{passive:true});
+// Reverse: v.pause() fires "pause" asynchronously, and the original's pause
+// handler cleared the interval it had just started — so REV died instantly
+// whenever the video was playing, and the next tap said "Reverse off".
+// Stepping is paced to seek completion so it doesn't queue up seeks.
+function stopReverse(){if(!reverseTimer)return;clearInterval(reverseTimer);reverseTimer=null;$("#rev").classList.remove("on")}
+$("#rev").onclick=()=>{if(reverseTimer){stopReverse();hud("Reverse off");return}
+ v.pause();$("#rev").classList.add("on");hud("Reverse");
+ reverseTimer=setInterval(()=>{if(v.seeking)return;if(v.currentTime<=0){stopReverse();return}v.currentTime=Math.max(0,v.currentTime-.1*speeds[si])},100)};
+$("#full").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else if(player.requestFullscreen)player.requestFullscreen().catch(()=>v.webkitEnterFullscreen?.());else v.webkitEnterFullscreen?.()};
+$("#grab").onclick=()=>{if(!v.videoWidth){hud("Nothing to grab yet");return}try{let c=document.createElement("canvas");c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);c.toBlob(b=>{if(!b){hud("Screen grab unavailable");return}let a=document.createElement("a"),u=URL.createObjectURL(b);a.href=u;a.download="VIDeX-"+Date.now()+".png";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);hud("Frame saved")})}catch(e){hud("This stream blocks screen grabs")}};
+function wake(){player.classList.remove("idle");clearTimeout(idleTimer);if(!v.paused)idleTimer=setTimeout(()=>player.classList.add("idle"),3000)}player.onpointerdown=wake;player.onpointermove=e=>{if(e.pointerType==="mouse")wake()};
+let hudTimer;function hud(t,ms=900){$("#hud").textContent=t;$("#hud").classList.add("show");clearTimeout(hudTimer);hudTimer=setTimeout(()=>$("#hud").classList.remove("show"),ms)}
 
-$("#globalSearch").oninput=async e=>{let q=e.target.value.toLowerCase(),a=(await all("media")).filter(x=>x.name.toLowerCase().includes(q));fillRail("#searchRail",a,q?"No matches.":"Type to search.")};
+// Swipe: left half = brightness, right half = volume. Ignore swipes that start
+// on the control bar (the original changed brightness while you scrubbed).
+// iOS ignores video.volume writes, so the volume swipe is skipped there.
+const volumeWritable=(()=>{let t=document.createElement("video");try{t.volume=.5}catch(e){}return t.volume===.5})();
+player.addEventListener("touchstart",e=>{if(e.target.closest("#controls,#pclose")){gesture=null;return}let t=e.touches[0];gesture={x:t.clientX,y:t.clientY,vol:v.volume,bri:brightness}},{passive:true});
+player.addEventListener("touchmove",e=>{if(!gesture)return;let t=e.touches[0],dy=(gesture.y-t.clientY)/180;if(Math.abs(gesture.y-t.clientY)<12)return;if(gesture.x<innerWidth/2||!volumeWritable){brightness=Math.max(.25,Math.min(1.5,gesture.bri+dy));v.style.setProperty("--brightness",brightness);hud("☀ "+Math.round(brightness*100)+"%")}else{v.volume=Math.max(0,Math.min(1,gesture.vol+dy));hud("🔊 "+Math.round(v.volume*100)+"%")}},{passive:true});
+player.addEventListener("touchend",()=>gesture=null,{passive:true});
 
-const TVAPI="https://iptv-org.github.io/api/";let tv=[],tvLoaded=false;
-async function loadTV(){if(tvLoaded)return;$("#tvStatus").textContent="Loading worldwide public channels…";try{let [c,st,l]=await Promise.all(["channels.json","streams.json","logos.json"].map(x=>fetch(TVAPI+x).then(r=>r.json())));let sm=new Map, lm=new Map;st.forEach(x=>{if(x.channel&&!sm.has(x.channel))sm.set(x.channel,x.url)});l.forEach(x=>{if(x.channel&&!lm.has(x.channel))lm.set(x.channel,x.url)});tv=c.filter(x=>!x.closed&&!x.is_nsfw&&sm.has(x.id)).map(x=>({...x,url:sm.get(x.id),logo:lm.get(x.id)||""}));tvLoaded=true;let countries=[...new Set(tv.map(x=>x.country).filter(Boolean))].sort();countries.forEach(x=>$("#country").insertAdjacentHTML("beforeend",`<option>${esc(x)}</option>`));let cats=["All","News","Movies","Entertainment","Sports","Music","Documentary","Kids","General"];$("#cats").innerHTML=cats.map((x,i)=>`<button class="pill chip ${i?"":"on"}">${x}</button>`).join("");$$("#cats button").forEach(b=>b.onclick=()=>{$$("#cats button").forEach(x=>x.classList.remove("on"));b.classList.add("on");renderTV()});renderTV();$("#tvStatus").textContent=`${tv.length.toLocaleString()} public channels indexed`}catch(e){$("#tvStatus").textContent="Live directory could not load. Check your connection."}}
-function renderTV(){let q=$("#tvSearch").value.toLowerCase(),co=$("#country").value,cat=$("#cats .on")?.textContent||"All";let a=tv.filter(x=>(!q||[x.name,x.country,...(x.categories||[])].join(" ").toLowerCase().includes(q))&&(!co||x.country===co)&&(cat==="All"||(x.categories||[]).map(c=>String(c).toLowerCase()).includes(cat.toLowerCase()))).slice(0,300);$("#tvGrid").innerHTML="";a.forEach(x=>{let b=document.createElement("button");b.className="channel glass";b.innerHTML=`${x.logo?`<img src="${esc(x.logo)}">`:""}<div><b>${esc(x.name)}</b><br><small>${esc(x.country||"Live")} · ${esc((x.categories||[])[0]||"General")}</small></div>`;b.onclick=()=>playStream(x.url,x.name);$("#tvGrid").append(b)})}
-$("#tvSearch").oninput=renderTV;$("#country").onchange=renderTV;
-function playStream(url,name){current=null;v.src=url;player.classList.add("show");nav.classList.add("hidden");document.body.style.overflow="hidden";v.play().catch(()=>hud("Tap play if this stream allows browser playback"));wake()}
-$("#adultBtn").onclick=()=>{$("#sheet").innerHTML='<button><b>X TV · private playlists</b></button><button id="importAdult">Import M3U / M3U8 playlist</button><button>Adult sources are never mixed into the public TV directory.</button>';$("#modal").classList.add("show");setTimeout(()=>$("#importAdult").onclick=()=>$("#pickM3U").click())};
-$("#pickM3U").onchange=async e=>{let f=e.target.files[0];if(!f)return;let txt=await f.text(),items=parseM3U(txt);$("#sheet").innerHTML='<button><b>X TV</b></button>';items.forEach(x=>{let b=document.createElement("button");b.textContent=x.name;b.onclick=()=>{playStream(x.url,x.name);$("#modal").classList.remove("show")};$("#sheet").append(b)});$("#modal").classList.add("show")};
-function parseM3U(txt){let a=[],n="Channel";for(let l of txt.split(/\r?\n/)){l=l.trim();if(l.startsWith("#EXTINF"))n=l.split(",").pop().trim();else if(l&&!l.startsWith("#"))a.push({name:n,url:l})}return a}
+// Desktop keyboard: space/k play, ←/→ 10s, ↑/↓ volume, f fullscreen, Esc close.
+addEventListener("keydown",e=>{
+ if(e.target.matches("input,select,textarea"))return;
+ if($("#ytPlayer").classList.contains("show")){if(e.key==="Escape")$("#ytClose").click();return}
+ if(!player.classList.contains("show")){if(e.key==="Escape")closeSheet();return}
+ let k=e.key;wake();
+ if(k===" "||k==="k"){e.preventDefault();$("#play").click()}
+ else if(k==="ArrowLeft")skip(-10);else if(k==="ArrowRight")skip(10);
+ else if(k==="ArrowUp"){e.preventDefault();v.volume=Math.min(1,v.volume+.1);hud("🔊 "+Math.round(v.volume*100)+"%")}
+ else if(k==="ArrowDown"){e.preventDefault();v.volume=Math.max(0,v.volume-.1);hud("🔊 "+Math.round(v.volume*100)+"%")}
+ else if(k==="f")$("#full").click();else if(k==="Escape"&&!document.fullscreenElement)closePlayer()});
 
-async function ytInit(){if(window.google?.accounts?.oauth2){makeYT();return}let s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=makeYT;document.head.append(s)}
-function makeYT(){if(ytClient)return;ytClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:"https://www.googleapis.com/auth/youtube.readonly",callback:r=>{if(r.error){$("#ytStatus").textContent=r.error;return}ytToken=r.access_token;$("#ytLogin").hidden=true;$("#ytLogout").hidden=false;$("#ytStatus").textContent="Connected to YouTube."}})}
-$("#ytLogin").onclick=async()=>{await ytInit();ytClient?.requestAccessToken({prompt:"consent"})};$("#ytLogout").onclick=()=>{if(ytToken)google.accounts.oauth2.revoke(ytToken);ytToken=null;$("#ytLogin").hidden=false;$("#ytLogout").hidden=true;$("#ytStatus").textContent="Signed out."};
+$("#globalSearch").oninput=async e=>{let q=e.target.value.trim().toLowerCase();if(!q){fillRail("#searchRail",[],"Type to search.");return}let a=(await loadMedia()).filter(x=>x.name.toLowerCase().includes(q)||x.filename.toLowerCase().includes(q));fillRail("#searchRail",a,"No matches.")};
+
+// ---- Live TV -------------------------------------------------------------
+// iptv-org streams are almost all HLS (.m3u8). Only Safari plays HLS natively,
+// so the original's Live TV was silent on Chrome, Firefox and Android. hls.js
+// is loaded on first use. Streams the browser can never play are dropped up
+// front: plain http:// (blocked as mixed content on an https site) and ones
+// that need a spoofed Referer/User-Agent header (a page can't set those).
+const TVAPI="https://iptv-org.github.io/api/";let tv=[],tvLoaded=false,tvLoading=false;
+async function loadTV(){if(tvLoaded||tvLoading)return;tvLoading=true;$("#tvStatus").textContent="Loading worldwide public channels…";
+ try{let [c,st,l]=await Promise.all(["channels.json","streams.json","logos.json"].map(x=>fetch(TVAPI+x).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})));
+  let https=location.protocol==="https:",sm=new Map,lm=new Map,dropped=0;
+  st.forEach(x=>{if(!x.channel||sm.has(x.channel))return;if((https&&x.url.startsWith("http:"))||x.referrer||x.user_agent){dropped++;return}sm.set(x.channel,x.url)});
+  l.forEach(x=>{if(x.channel&&!lm.has(x.channel))lm.set(x.channel,x.url)});
+  tv=c.filter(x=>!x.closed&&!x.is_nsfw&&sm.has(x.id)).map(x=>({...x,url:sm.get(x.id),logo:lm.get(x.id)||""}));tvLoaded=true;
+  let countries=[...new Set(tv.map(x=>x.country).filter(Boolean))].sort();$("#country").insertAdjacentHTML("beforeend",countries.map(x=>`<option>${esc(x)}</option>`).join(""));
+  let cats=["All","News","Movies","Entertainment","Sports","Music","Documentary","Kids","General"];$("#cats").innerHTML=cats.map((x,i)=>`<button class="pill chip ${i?"":"on"}">${x}</button>`).join("");
+  $$("#cats button").forEach(b=>b.onclick=()=>{$$("#cats button").forEach(x=>x.classList.remove("on"));b.classList.add("on");renderTV()});
+  renderTV();$("#tvStatus").textContent=`${tv.length.toLocaleString()} public channels indexed`+(dropped?` · ${dropped.toLocaleString()} unplayable in a browser hidden`:"")}
+ catch(e){$("#tvStatus").textContent="Live directory could not load. Check your connection."}finally{tvLoading=false}}
+function renderTV(){let q=$("#tvSearch").value.toLowerCase(),co=$("#country").value,cat=$("#cats .on")?.textContent||"All";
+ let hits=tv.filter(x=>(!q||[x.name,x.country,...(x.categories||[])].join(" ").toLowerCase().includes(q))&&(!co||x.country===co)&&(cat==="All"||(x.categories||[]).map(c=>String(c).toLowerCase()).includes(cat.toLowerCase()))),a=hits.slice(0,300);
+ $("#tvGrid").innerHTML="";a.forEach(x=>{let b=document.createElement("button");b.className="channel glass";b.innerHTML=`${x.logo?`<img alt="" loading="lazy" referrerpolicy="no-referrer" src="${esc(x.logo)}" onerror="this.remove()">`:""}<div><b>${esc(x.name)}</b><br><small>${esc(x.country||"Live")} · ${esc((x.categories||[])[0]||"General")}</small></div>`;b.onclick=()=>playStream(x.url,x.name);$("#tvGrid").append(b)});
+ if(tvLoaded&&hits.length>300)$("#tvGrid").insertAdjacentHTML("beforeend",`<p class="notice" style="grid-column:1/-1">Showing 300 of ${hits.length.toLocaleString()} — search or pick a country to narrow it down.</p>`)}
+let tvDebounce;$("#tvSearch").oninput=()=>{clearTimeout(tvDebounce);tvDebounce=setTimeout(renderTV,150)};$("#country").onchange=renderTV;
+let hlsLoad=null;const loadHls=()=>hlsLoad||=new Promise((res,rej)=>{let s=document.createElement("script");s.src=HLS_JS;s.onload=()=>res(window.Hls);s.onerror=()=>{hlsLoad=null;rej(new Error("Couldn't load the HLS player"))};document.head.append(s)});
+async function playStream(url,name){saveProgress(true);resetSource();current=null;queue=[];openPlayer();hud(name||"Live",1200);
+ let isHls=/\.m3u8(\?|$)/i.test(url)||/\/hls\//i.test(url);
+ if(isHls&&!v.canPlayType("application/vnd.apple.mpegurl")){
+  try{let Hls=await loadHls();if(!Hls.isSupported())throw new Error("HLS isn't supported in this browser");
+   hls=new Hls({enableWorker:true,lowLatencyMode:true});hls.on(Hls.Events.ERROR,(_,d)=>{if(d.fatal){hud("Stream offline or blocked by its host",2500);hls.destroy();hls=null}});hls.loadSource(url);hls.attachMedia(v)}
+  catch(e){hud(e.message,2500);return}
+ }else v.src=url;
+ v.play().catch(()=>{if(hls||!isHls)hud("Tap play if this stream allows browser playback")})}
+$("#adultBtn").onclick=()=>openSheet("X TV · private playlists",[row("Import M3U / M3U8 playlist",()=>$("#pickM3U").click()),row("Adult sources are never mixed into the public TV directory.")]);
+$("#pickM3U").onchange=async e=>{let f=e.target.files[0];e.target.value="";if(!f)return;let items=parseM3U(await f.text());openSheet(`X TV · ${items.length} channels`,items.length?items.map(x=>row(x.name,()=>{closeSheet();playStream(x.url,x.name)})):[row("No playable entries found in that file.")])};
+// Name is reset per entry so a URL without its own #EXTINF doesn't inherit the previous channel's name.
+function parseM3U(txt){let a=[],n=null;for(let l of txt.split(/\r?\n/)){l=l.trim();if(l.startsWith("#EXTINF")){let i=l.indexOf(",");n=i>=0?l.slice(i+1).trim():null}else if(l&&!l.startsWith("#")){a.push({name:n||"Channel "+(a.length+1),url:l});n=null}}return a}
+
+// ---- YouTube -------------------------------------------------------------
+async function ytInit(){if(window.google?.accounts?.oauth2){makeYT();return}await new Promise((res,rej)=>{let s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=res;s.onerror=()=>rej(new Error("Couldn't reach Google sign-in"));document.head.append(s)}).then(makeYT).catch(e=>$("#ytStatus").textContent=e.message)}
+function makeYT(){if(ytClient)return;ytClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:"https://www.googleapis.com/auth/youtube.readonly",callback:r=>{if(r.error){$("#ytStatus").textContent=r.error_description||r.error;return}ytToken=r.access_token;$("#ytLogin").hidden=true;$("#ytLogout").hidden=false;$("#ytStatus").textContent="Connected to YouTube."}})}
+$("#ytLogin").onclick=async()=>{await ytInit();ytClient?.requestAccessToken({prompt:"consent"})};
+function ytSignedOut(msg){ytToken=null;$("#ytLogin").hidden=false;$("#ytLogout").hidden=true;$("#ytStatus").textContent=msg}
+$("#ytLogout").onclick=()=>{if(ytToken)google.accounts.oauth2.revoke(ytToken);ytSignedOut("Signed out.")};
 $("#ytGo").onclick=ytSearch;$("#ytSearch").onkeydown=e=>{if(e.key==="Enter")ytSearch()};
-async function ytSearch(){let q=$("#ytSearch").value.trim();if(!q)return;if(!ytToken){$("#ytStatus").textContent="Sign in with Google first.";return}$("#ytStatus").textContent="Searching…";try{let r=await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=24&q="+encodeURIComponent(q),{headers:{Authorization:"Bearer "+ytToken}}),d=await r.json();if(!r.ok)throw new Error(d.error?.message||"YouTube request failed");$("#ytGrid").innerHTML="";(d.items||[]).forEach(x=>{let b=document.createElement("button");b.className="channel glass";let sn=x.snippet;b.innerHTML=`<img style="height:80px;width:100%;object-fit:cover;border-radius:12px" src="${sn.thumbnails.medium.url}"><div><b>${esc(sn.title)}</b><br><small>${esc(sn.channelTitle)}</small></div>`;b.onclick=()=>{let f=$("#ytFrame");f.src="https://www.youtube.com/embed/"+x.id.videoId+"?autoplay=1&playsinline=1";$("#ytPlayer").classList.add("show");nav.classList.add("hidden")};$("#ytGrid").append(b)});$("#ytStatus").textContent=(d.items||[]).length+" results"}catch(e){$("#ytStatus").textContent=e.message}}
+async function ytSearch(){let q=$("#ytSearch").value.trim();if(!q)return;if(!ytToken){$("#ytStatus").textContent="Sign in with Google first.";return}$("#ytStatus").textContent="Searching…";
+ try{let r=await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=24&q="+encodeURIComponent(q),{headers:{Authorization:"Bearer "+ytToken}}),d=await r.json();
+  if(r.status===401){ytSignedOut("Your Google session expired — sign in again.");return} // GIS tokens last ~1 hour
+  if(!r.ok)throw new Error(d.error?.message||"YouTube request failed");
+  $("#ytGrid").innerHTML="";(d.items||[]).forEach(x=>{let b=document.createElement("button");b.className="channel glass";let sn=x.snippet,th=sn.thumbnails?.medium?.url||sn.thumbnails?.default?.url||"";b.innerHTML=`${th?`<img alt="" loading="lazy" style="height:80px;width:100%;object-fit:cover;border-radius:12px" src="${esc(th)}">`:""}<div><b>${esc(sn.title)}</b><br><small>${esc(sn.channelTitle)}</small></div>`;
+   b.onclick=()=>{$("#ytFrame").src="https://www.youtube.com/embed/"+encodeURIComponent(x.id.videoId)+"?autoplay=1&playsinline=1";$("#ytPlayer").classList.add("show");nav.classList.add("hidden")};$("#ytGrid").append(b)});
+  $("#ytStatus").textContent=(d.items||[]).length+" results"}
+ catch(e){$("#ytStatus").textContent=e.message}}
 $("#ytClose").onclick=()=>{$("#ytFrame").src="about:blank";$("#ytPlayer").classList.remove("show");nav.classList.remove("hidden")};
 
 openDB().then(renderAll);
