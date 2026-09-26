@@ -10,7 +10,7 @@ const SHELL = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/app.js", "js/ui.js", "js/util.js", "js/database.js", "js/version.js", "js/collections.js", "js/media-store.js", "js/media-meta.js",
   "js/library.js", "js/playlists.js", "js/player.js", "js/subtitles.js", "js/m3u.js", "js/channels.js", "js/live.js", "js/metadata.js",
-  "js/youtube.js", "js/discover.js", "js/home.js", "js/search.js", "js/settings.js",
+  "js/youtube.js", "js/cast.js", "js/push.js", "js/push-config.js", "js/discover.js", "js/home.js", "js/search.js", "js/settings.js",
   "js/providers/provider-base.js", "js/providers/registry.js", "js/providers/local.js", "js/providers/youtube.js", "js/providers/json-feed.js", "js/providers/eporner.js", "js/providers/xfree.js",
   "js/workers/xmltv-worker.js", "js/workers/directory-worker.js", "vendor/hls.min.js",
   "assets/branding/lunatv-crescent.webp", "assets/branding/lunatv-mark.webp", "assets/branding/lunatv-wordmark.webp", "assets/branding/lunatv-logo.webp",
@@ -31,4 +31,19 @@ self.addEventListener("fetch", e => {
     if (r.ok && r.type === "basic") { const copy = r.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
     return r;
   }).catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || (req.mode === "navigate" ? caches.match("index.html") : Response.error()))));
+});
+
+// Web Push (active once js/push-config.js points at a push sender).
+self.addEventListener("push", e => {
+  let d = {}; try { d = e.data ? e.data.json() : {}; } catch { d = { title: e.data?.text?.() || "LunaTV" }; }
+  e.waitUntil(self.registration.showNotification(d.title || "LunaTV", { body: d.body || "", icon: "assets/icons/icon-192.png", badge: "assets/icons/favicon-32.png", tag: d.id || "lunatv", data: { url: d.url || "./#/live" } }));
+});
+self.addEventListener("notificationclick", e => {
+  e.notification.close();
+  const target = new URL(e.notification.data?.url || "./", self.location).href;
+  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(cs => {
+    const c = cs.find(x => x.url.startsWith(new URL("./", self.location).href));
+    if (c) { c.navigate?.(target); return c.focus(); }
+    return self.clients.openWindow(target);
+  }));
 });

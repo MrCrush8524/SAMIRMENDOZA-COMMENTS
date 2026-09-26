@@ -86,7 +86,7 @@ const BUILD = {
   live: () => [
     group("Sources", action("Sources & Guides", `${L.live.sources.filter(s => !s.adult).length} added`, () => openSources(), { ic: "live" })),
     group("Channels", toggle("Channel surfing: favorites only", "live.surfFavorites", "Next/previous channel skips non-favorites")),
-    note("Reminders work while LunaTV is open. System notifications are shown only where your browser supports them and you’ve allowed them."),
+    note("Reminders currently fire while LunaTV is open. LunaTV is built for Web Push, so once a push server is connected, reminders also arrive when the app is closed — including the iPhone Home Screen app (iOS 16.4 and later)."),
   ],
   discover: () => {
     const list = h(`<div class="list glass"></div>`);
@@ -141,9 +141,8 @@ const BUILD = {
     }, { ic: "lock" });
     out.push(group("Providers",
       key("Movie artwork (TMDB)", "providers.tmdbKey", "Optional · posters and details for Movies On Now"),
-      key("YouTube Data API key", "providers.youtubeKey", "Optional · search and Shorts in Discover"),
       key("RapidAPI key", "providers.rapidapiKey", "Optional · for future RapidAPI providers (none installed)")),
-      note("Pasted YouTube links never need a key or a sign-in. Keys are never included in backups."));
+      note("YouTube search, Shorts, liked videos and playlists use Google sign-in on the YouTube tab; pasted links never need an account. Keys stay on this device only and are never included in backups or exports."));
     return out;
   },
   library: () => [

@@ -5,6 +5,7 @@ import * as db from "./database.js";
 import { emit, norm, isInsecure } from "./util.js";
 import { parseM3U, categorize, hash, ADULT_RE, CHANNEL_CATEGORIES } from "./m3u.js";
 import { recordHistory } from "./collections.js";
+import { scheduleRemote, cancelRemote, pushConfigured } from "./push.js";
 
 export { CHANNEL_CATEGORIES };
 const W = p => new URL(p, import.meta.url).href;
@@ -241,17 +242,22 @@ export function recordChannel(c) {
 }
 
 // ------------------------------------------------------------------ reminders
-// Work while LunaTV is open. System notifications are used only where the
-// browser supports and the user has allowed them; otherwise an in-app notice.
+// In-app: checked every 30 s while LunaTV is open (plus a system notification
+// when allowed and the tab is in the background).
+// Closed-app delivery: when js/push-config.js points at a push sender, each
+// reminder is also handed to it and arrives as a Web Push notification —
+// including on the iPhone Home Screen app (iOS 16.4+).
 let remT = null;
 export async function reminders() { return (await db.all("reminders")).sort((a, b) => a.start - b.start); }
 export async function toggleReminder(c, p) {
   const id = progKey(c, p);
-  if (await db.get("reminders", id)) { await db.del("reminders", id); emit("reminders-changed"); return false; }
-  await db.put("reminders", { id, channelId: c.id, channel: c.name, title: p.t, start: p.s });
-  if ("Notification" in window && Notification.permission === "default") { try { await Notification.requestPermission(); } catch {} }
+  if (await db.get("reminders", id)) { await db.del("reminders", id); cancelRemote(id); emit("reminders-changed"); return false; }
+  const rec = { id, channelId: c.id, channel: c.name, title: p.t, start: p.s, push: false };
+  if (pushConfigured()) { try { rec.push = await scheduleRemote(rec); } catch { rec.push = false; } }
+  else if ("Notification" in window && Notification.permission === "default") { try { await Notification.requestPermission(); } catch {} }
+  await db.put("reminders", rec);
   emit("reminders-changed");
-  return true;
+  return rec.push ? "push" : true;
 }
 export async function hasReminder(c, p) { return !!(await db.get("reminders", progKey(c, p))); }
 export function startReminderLoop(onDue) {
@@ -262,7 +268,7 @@ export function startReminderLoop(onDue) {
       if (r.start - now <= 60000) {
         await db.del("reminders", r.id);
         if (r.start > now - 30 * 60000) {
-          if ("Notification" in window && Notification.permission === "granted" && document.hidden) try { new Notification(`${r.title} is starting`, { body: `On ${r.channel}`, icon: W("../assets/icons/icon-192.png") }); } catch {}
+          if (!r.push && "Notification" in window && Notification.permission === "granted" && document.hidden) try { new Notification(`${r.title} is starting`, { body: `On ${r.channel}`, icon: W("../assets/icons/icon-192.png") }); } catch {}
           onDue(r);
         }
         emit("reminders-changed");

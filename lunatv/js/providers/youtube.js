@@ -1,5 +1,5 @@
 // YouTube in the feed: official IFrame player only. Items come from what you've
-// played or favourited in LunaTV, or — with your own API key — search.
+// played or favourited in LunaTV, or — after Google sign-in — search and Shorts.
 import { Provider, ProviderError } from "./provider-base.js";
 import { history, favorites } from "../collections.js";
 import { canSearch, searchYouTube, thumb, watchURL } from "../youtube.js";
@@ -16,7 +16,7 @@ export const youtubeProvider = new (class extends Provider {
       }
       return { items: out, hasMore: false };
     }
-    if (!canSearch()) throw new ProviderError("To browse Shorts or search YouTube here, add your own YouTube Data API key in Settings › Content › Providers. Pasted YouTube links always work without one.", { retry: false });
+    if (!canSearch()) throw new ProviderError("Sign in with Google on the YouTube tab to browse Shorts and search here. Videos you’ve played or favorited appear under My YouTube without signing in.", { retry: false });
     const key = `${tab}|${query}`;
     if (page === 1) this.tokens[key] = "";
     else if (!this.tokens[key]) return { items: [], hasMore: false };

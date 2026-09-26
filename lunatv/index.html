@@ -36,7 +36,8 @@
 <nav class="sidebar" aria-label="LunaTV">
   <a class="side-brand" href="#/home" aria-label="LunaTV home"><img src="assets/branding/lunatv-crescent.webp" alt="" width="40" height="36"><img src="assets/branding/lunatv-wordmark.webp" alt="LunaTV" class="sw-word" width="520" height="70"></a>
   <a data-tab="home" href="#/home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a>
-  <a data-tab="live" href="#/live"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg><span>Live</span></a>
+  <a data-tab="live" href="#/live"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg><span>Live TV</span></a>
+  <a data-tab="youtube" href="#/youtube"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.3-2.5z" fill="currentColor" stroke="none"/></svg><span>YouTube</span></a>
   <a data-tab="library" href="#/library"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="7.5" height="16" rx="1.6"/><rect x="13.5" y="4" width="7.5" height="16" rx="1.6"/></svg><span>Library</span></a>
   <a data-tab="discover" href="#/discover"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="currentColor" stroke="none"/></svg><span>Discover</span></a>
   <a data-tab="playlists" href="#/playlists"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6h13M3 11h13M3 16h8"/><path d="M15 15.5l5-2.5v7l-5-2.5z" fill="currentColor" stroke="none"/></svg><span>Playlists</span></a>
@@ -46,6 +47,7 @@
 <main>
   <div class="tab" id="tab-home"></div>
   <div class="tab" id="tab-live"></div>
+  <div class="tab" id="tab-youtube"></div>
   <div class="tab" id="tab-library"></div>
   <div class="tab" id="tab-discover"></div>
   <div class="tab" id="tab-playlists"></div>
@@ -54,8 +56,8 @@
 </main>
 <nav class="dock" aria-label="Main">
   <a data-tab="home" href="#/home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg>Home</a>
-  <a data-tab="live" href="#/live"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg>Live</a>
-  <a data-tab="discover" href="#/discover"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="currentColor" stroke="none"/></svg>Discover</a>
+  <a data-tab="live" href="#/live"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg>Live TV</a>
+  <a data-tab="youtube" href="#/youtube"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3.5" fill="currentColor"/><path d="M10 9v6l5-3z" fill="#050608"/></svg>YouTube</a>
   <a data-tab="library" href="#/library"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="7.5" height="16" rx="1.6"/><rect x="13.5" y="4" width="7.5" height="16" rx="1.6"/></svg>Library</a>
   <a data-tab="search" href="#/search"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>Search</a>
 </nav>

@@ -1,5 +1,5 @@
 // LunaTV storage: IndexedDB with an in-memory fallback, typed settings with
-// defaults, and a one-time migration from the retired VIDeX database.
+// defaults, and a one-time migration from the app's previous release.
 //
 // Heavy video Blobs live alone in `files` (written once at import), so
 // renaming, favoriting or saving progress never re-serialises a video.
@@ -66,7 +66,7 @@ export const DEFAULTS = {
   "content.hideAdultFavorites": true, "content.epornerLowQuality": false, "content.epornerGay": true,
   "library.view": "poster", "library.history": true,
   "appearance.reduceMotion": false, "appearance.ambient": true, "appearance.density": "comfortable",
-  "providers.tmdbKey": "", "providers.youtubeKey": "", "providers.rapidapiKey": "",
+  "providers.tmdbKey": "", "providers.rapidapiKey": "",
 };
 const cache = new Map();
 const listeners = new Set();
@@ -92,15 +92,18 @@ export const session = {
   set privateAdult(v) { try { sessionStorage.setItem("lunatv.privateAdult", v ? "1" : "0"); } catch {} },
 };
 
-// ------------------------------------------------------------------ VIDeX migration
-// Reads whatever shape the old "videx" database has (the original single-file
+// ------------------------------------------------------------------ legacy migration
+// The previous release stored its data in an IndexedDB database with this
+// name. It's only read — never shown — so returning users keep their library.
+const LEGACY_DB = "videx", LEGACY_PREFIX = LEGACY_DB + ".";
+// Reads whatever shape the legacy database has (the original single-file
 // build stored the Blob inside `media`; the Style B build split it into
 // `files`), copies everything into LunaTV, verifies, then deletes the old
 // copy so videos aren't stored twice. Runs once.
 function openOld() {
   return new Promise(res => {
     let r;
-    try { r = indexedDB.open("videx"); } catch { return res(null); }
+    try { r = indexedDB.open(LEGACY_DB); } catch { return res(null); }
     r.onupgradeneeded = () => { r.transaction.abort(); };   // didn't exist: don't create it
     r.onsuccess = () => res(r.result);
     r.onerror = () => res(null);
@@ -111,10 +114,10 @@ function readAll(d, s) {
   return new Promise(res => { const q = d.transaction(s).objectStore(s).getAll(); q.onsuccess = () => res(q.result || []); q.onerror = () => res([]); });
 }
 
-export async function migrateFromVidex(onProgress = () => {}) {
-  if (!idb || await get("meta", "migration.videx")) return null;
+export async function migrateLegacy(onProgress = () => {}) {
+  if (!idb || await get("meta", "migration.legacy")) return null;
   const old = await openOld();
-  if (!old) { await put("meta", { id: "migration.videx", at: Date.now(), found: false }); return null; }
+  if (!old) { await put("meta", { id: "migration.legacy", at: Date.now(), found: false }); return null; }
   const R = s => readAll(old, s);
   const [media, files, progress, posters, subs, groups, tvfav, tvhist, xfav, xhist, xlists, ythist] =
     await Promise.all(["media", "files", "progress", "posters", "subs", "groups", "tvfav", "tvhist", "xfav", "xhist", "xlists", "ythist"].map(R));
@@ -159,9 +162,9 @@ export async function migrateFromVidex(onProgress = () => {}) {
   let ok = media.every(m => lib.has(m.id));
   for (const m of media) if (ok && (m.blob || fileIds.has(m.id)) && !(await get("files", m.id))?.blob) ok = false;
   old.close();
-  if (ok) { try { indexedDB.deleteDatabase("videx"); } catch {} }
-  try { for (const k of Object.keys(localStorage)) if (k.startsWith("videx.")) localStorage.removeItem(k); } catch {}
-  await put("meta", { id: "migration.videx", at: Date.now(), found: true, report, oldDeleted: ok });
+  if (ok) { try { indexedDB.deleteDatabase(LEGACY_DB); } catch {} }
+  try { for (const k of Object.keys(localStorage)) if (k.startsWith(LEGACY_PREFIX)) localStorage.removeItem(k); } catch {}
+  await put("meta", { id: "migration.legacy", at: Date.now(), found: true, report, oldDeleted: ok });
   return report;
 }
 function legacyChannel(c = {}) {

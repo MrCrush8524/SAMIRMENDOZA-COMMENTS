@@ -3,7 +3,7 @@
 import { $, $$, h, esc, icon, on, debounce } from "./util.js";
 
 // ---------------------------------------------------------------- navigation
-export const AREAS = ["home", "live", "library", "discover", "playlists", "search", "settings"];
+export const AREAS = ["home", "live", "youtube", "library", "discover", "playlists", "search", "settings"];
 const stacks = Object.fromEntries(AREAS.map(t => [t, []]));
 let activeTab = null;
 const dock = () => $(".dock");

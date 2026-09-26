@@ -5,7 +5,7 @@
 import { h, esc, icon, on, emit, safeURL } from "./util.js";
 import * as db from "./database.js";
 import { recordHistory, isFavorite, toggleFavorite } from "./collections.js";
-import { ask, toast, onBack } from "./ui.js";
+import { ask, toast, onBack, setRoot } from "./ui.js";
 import { setYouTubeHandler } from "./player.js";
 
 const ID = /^[A-Za-z0-9_-]{11}$/;
@@ -135,17 +135,72 @@ export async function openYouTubeLink() {
   openYouTube({ id: y.video, playlist: y.playlist, start: y.start });
 }
 
-// Optional: search with the user's own YouTube Data API key (Settings › Providers).
-export const canSearch = () => !!(db.setting("providers.youtubeKey") || "").trim();
-export async function searchYouTube(q, { shorts = false, pageToken = "" } = {}) {
-  const key = (db.setting("providers.youtubeKey") || "").trim();
-  if (!key) throw new Error("Add a YouTube Data API key in Settings › Content › Providers to search.");
-  const p = new URLSearchParams({ part: "snippet", type: "video", maxResults: "20", q, key, videoEmbeddable: "true", safeSearch: "moderate", ...(shorts ? { videoDuration: "short" } : {}), ...(pageToken ? { pageToken } : {}) });
-  const r = await fetch(`https://www.googleapis.com/youtube/v3/search?${p}`);
+// ------------------------------------------------------------------ Google sign-in (optional)
+// Playing a pasted link never needs an account. Signing in with Google only
+// unlocks YouTube Data API features (search, Shorts, your liked videos and
+// playlists). Uses Google Identity Services with LunaTV's OAuth web client —
+// no client secret in the browser. The access token lives in memory only and
+// is dropped on sign-out, expiry or reload.
+export const GOOGLE_CLIENT_ID = "377117992546-tguolq0bqjvrog0s46f2kr50nchhfekn.apps.googleusercontent.com";
+const SCOPE = "https://www.googleapis.com/auth/youtube.readonly";
+const auth = { token: null, expires: 0, client: null, pending: null, gis: null };
+export const signedIn = () => !!auth.token && Date.now() < auth.expires;
+export const canSearch = signedIn;
+function loadGIS() {
+  if (window.google?.accounts?.oauth2) return Promise.resolve();
+  return auth.gis ||= new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = "https://accounts.google.com/gsi/client"; s.async = true;
+    s.onload = () => res(); s.onerror = () => { auth.gis = null; rej(new Error("Couldn’t reach Google sign-in. Check your connection or content blocker.")); };
+    document.head.append(s);
+  });
+}
+/** Opens Google's consent popup (or silently refreshes). Resolves true when signed in. */
+export async function signIn({ silent = false } = {}) {
+  await loadGIS();
+  return new Promise((res, rej) => {
+    auth.client ||= google.accounts.oauth2.initTokenClient({ client_id: GOOGLE_CLIENT_ID, scope: SCOPE, callback: () => {} });
+    auth.client.callback = r => {
+      if (r.error) { rej(new Error(r.error_description || r.error)); return; }
+      auth.token = r.access_token; auth.expires = Date.now() + (Number(r.expires_in) || 3600) * 1000 - 60000;
+      emit("youtube-auth"); res(true);
+    };
+    auth.client.error_callback = e => rej(new Error(e?.type === "popup_closed" ? "Sign-in was cancelled." : e?.type === "popup_failed_to_open" ? "The sign-in window was blocked. Allow pop-ups for this site and try again." : "Google sign-in didn’t complete."));
+    auth.client.requestAccessToken({ prompt: silent ? "" : (auth.token ? "" : "consent") });
+  });
+}
+export function signOut() {
+  if (auth.token) try { google.accounts.oauth2.revoke(auth.token, () => {}); } catch {}
+  auth.token = null; auth.expires = 0; emit("youtube-auth");
+}
+/** Authenticated YouTube Data API v3 GET with the OAuth access token. */
+async function api(path, params) {
+  if (!signedIn()) {
+    if (auth.token) { try { await signIn({ silent: true }); } catch { auth.token = null; emit("youtube-auth"); } }
+    if (!signedIn()) throw new Error("Sign in with Google on the YouTube tab to use search, Shorts, liked videos and playlists.");
+  }
+  const r = await fetch(`https://www.googleapis.com/youtube/v3/${path}?${new URLSearchParams(params)}`, { headers: { Authorization: `Bearer ${auth.token}` } });
   const d = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(d.error?.errors?.[0]?.reason === "quotaExceeded" ? "Today’s YouTube search quota for your key is used up." : d.error?.message || `YouTube answered HTTP ${r.status}.`);
-  const dec = s => { const t = document.createElement("textarea"); t.innerHTML = s || ""; return t.value; };
-  return { items: (d.items || []).filter(x => x.id?.videoId).map(x => ({ id: x.id.videoId, title: dec(x.snippet.title), creator: dec(x.snippet.channelTitle), thumb: x.snippet.thumbnails?.high?.url || thumb(x.id.videoId) })), next: d.nextPageToken || "" };
+  if (r.status === 401) { auth.token = null; emit("youtube-auth"); throw new Error("Your Google session ended. Sign in again on the YouTube tab."); }
+  if (!r.ok) {
+    const reason = d.error?.errors?.[0]?.reason;
+    throw new Error(reason === "quotaExceeded" || reason === "dailyLimitExceeded" ? "LunaTV has used today’s YouTube search allowance. Try again tomorrow." : d.error?.message || `YouTube answered HTTP ${r.status}.`);
+  }
+  return d;
+}
+const dec = s => { const t = document.createElement("textarea"); t.innerHTML = s || ""; return t.value; };
+const vItem = (id, sn) => ({ id, title: dec(sn.title), creator: dec(sn.videoOwnerChannelTitle || sn.channelTitle), thumb: sn.thumbnails?.high?.url || sn.thumbnails?.medium?.url || thumb(id) });
+export async function searchYouTube(q, { shorts = false, pageToken = "" } = {}) {
+  const d = await api("search", { part: "snippet", type: "video", maxResults: "20", q, videoEmbeddable: "true", safeSearch: "moderate", ...(shorts ? { videoDuration: "short" } : {}), ...(pageToken ? { pageToken } : {}) });
+  return { items: (d.items || []).filter(x => x.id?.videoId).map(x => vItem(x.id.videoId, x.snippet)), next: d.nextPageToken || "" };
+}
+export async function likedVideos() {
+  const d = await api("videos", { part: "snippet", myRating: "like", maxResults: "24" });
+  return (d.items || []).map(x => vItem(x.id, x.snippet));
+}
+export async function myPlaylists() {
+  const d = await api("playlists", { part: "snippet,contentDetails", mine: "true", maxResults: "24" });
+  return (d.items || []).map(x => ({ playlist: x.id, title: dec(x.snippet.title), creator: `${x.contentDetails?.itemCount ?? ""} videos`, thumb: x.snippet.thumbnails?.high?.url || x.snippet.thumbnails?.medium?.url || "" }));
 }
 
 export function ytCard(s) {
@@ -157,4 +212,54 @@ export function ytCard(s) {
 }
 
 setYouTubeHandler((entry, opts) => openYouTube({ id: entry.id, title: entry.title }, opts));
+
+// ------------------------------------------------------------------ YouTube tab
+export function initYouTubeArea() {
+  setRoot("youtube", {
+    build(content) {
+      const acct = h(`<div class="list glass yt-acct"><div class="row static"><span class="ic">${icon("youtube")}</span><span class="label"></span><button class="btn sm"></button></div></div>`);
+      const actions = h(`<div class="btn-row" style="margin-top:12px"><button class="btn blue">${icon("link")}Paste YouTube Link</button><button class="btn">${icon("compass")}Shorts in Discover</button></div>`);
+      const form = h(`<form class="btn-row yt-search" role="search"><label class="field" style="flex:1">${icon("search")}<input type="search" enterkeyhint="search" placeholder="Search YouTube" aria-label="Search YouTube"></label><button class="btn">Search</button></form>`);
+      const note = h(`<p class="note"></p>`), results = h(`<div class="grid yt-grid"></div>`), rails = h(`<div></div>`);
+      content.append(h(`<h1 class="page-title">YouTube</h1>`), acct, actions, form, note, results, rails);
+      const [pasteB, shortsB] = actions.querySelectorAll("button");
+      pasteB.onclick = openYouTubeLink;
+      shortsB.onclick = () => { db.setSetting("discover.provider", "youtube"); location.hash = "#/discover"; };
+      const drawAcct = () => {
+        const ok2 = signedIn(), b = acct.querySelector("button");
+        acct.querySelector(".label").innerHTML = ok2 ? `Signed in with Google<span class="sub">Search, Shorts, liked videos and your playlists</span>` : `Not signed in<span class="sub">Pasted links play without an account. Sign in to search and see your likes and playlists.</span>`;
+        b.textContent = ok2 ? "Sign Out" : "Sign in with Google";
+        b.classList.toggle("blue", !ok2);
+        b.onclick = async () => { if (signedIn()) signOut(); else { try { await signIn(); toast("Signed in to YouTube"); } catch (e) { toast(e.message, { err: true, ms: 4500 }); } } };
+      };
+      form.onsubmit = async e => {
+        e.preventDefault();
+        const q = form.querySelector("input").value.trim(); if (!q) return;
+        if (!signedIn()) { try { await signIn(); } catch (err) { note.textContent = err.message; return; } }
+        note.textContent = "Searching…"; results.replaceChildren();
+        try { const r = await searchYouTube(q); note.textContent = r.items.length ? `${r.items.length} result${r.items.length === 1 ? "" : "s"}` : "No results."; r.items.forEach(x => results.append(ytCard(x))); }
+        catch (err) { note.textContent = err.message; }
+      };
+      const rail = (title, items, mk) => { if (!items.length) return null; const s = h(`<section class="shelf"><h2 class="shelf-h">${esc(title)}</h2><div class="rail"></div></section>`); items.forEach(i => { const c = mk(i); c.classList.add("rail-yt"); s.lastElementChild.append(c); }); return s; };
+      let token = 0;
+      const drawRails = async () => {
+        const my = ++token, out = [];
+        if (signedIn()) {
+          const [liked, pls] = await Promise.all([likedVideos().catch(() => []), myPlaylists().catch(() => [])]);
+          if (my !== token) return;
+          out.push(rail("Liked Videos", liked, ytCard), rail("Your Playlists", pls, ytCard));
+        }
+        const { history } = await import("./collections.js");
+        const recent = (await history({ type: "youtube" })).slice(0, 20).map(x => x.snapshot || { id: x.ref, title: x.title });
+        if (my !== token) return;
+        out.push(rail("Recently Played in LunaTV", recent, ytCard));
+        rails.replaceChildren(...out.filter(Boolean));
+      };
+      drawAcct(); drawRails();
+      on("youtube-auth", () => { drawAcct(); drawRails(); });
+      on("history-changed", drawRails);
+      return { refresh: drawRails };
+    },
+  });
+}
 on("open-youtube-link", openYouTubeLink);

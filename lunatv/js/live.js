@@ -211,7 +211,7 @@ export function openProgram(c, p) {
         const acts = {
           back: () => back(),
           watch: () => playChannel(c),
-          remind: async () => { const on2 = await L.toggleReminder(c, p); toast(on2 ? ("Notification" in window && Notification.permission === "granted" ? "We’ll remind you when it starts" : "We’ll remind you while LunaTV is open") : "Reminder removed"); render(); },
+          remind: async () => { const on2 = await L.toggleReminder(c, p); toast(on2 === "push" ? "We’ll notify you when it starts, even if LunaTV is closed" : on2 ? "We’ll remind you when it starts while LunaTV is open" : "Reminder removed"); render(); },
           fav: async () => { const on2 = await C.toggleFavorite({ type: "program", ref: L.progKey(c, p), title: p.t, snapshot: { channelId: c.id, channel: c.name, title: p.t, s: p.s, e: p.e, img: p.img } }); toast(on2 ? "Added to Favorites" : "Removed from Favorites"); render(); },
         };
         el.querySelectorAll("[data-a]").forEach(b => { b.onclick = acts[b.dataset.a]; });

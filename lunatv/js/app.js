@@ -1,4 +1,4 @@
-// LunaTV entry: storage + VIDeX migration, then each area mounts in
+// LunaTV entry: storage + legacy-data migration, then each area mounts in
 // isolation so one failure never takes the rest of the app down.
 import { $, $$, on, emit, h, esc, icon } from "./util.js";
 import * as db from "./database.js";
@@ -12,6 +12,7 @@ window.LUNATV_VERSION = LUNATV_VERSION; window.LUNATV_BUILD = BUILD_ID;
 const areas = [
   ["home", () => import("./home.js").then(m => m.initHome())],
   ["live", () => import("./live.js").then(m => m.initLive())],
+  ["youtube", () => import("./youtube.js").then(m => m.initYouTubeArea())],
   ["library", () => import("./library.js").then(m => m.initLibrary())],
   ["discover", () => import("./discover.js").then(m => m.initDiscover())],
   ["playlists", () => import("./playlists.js").then(m => m.initPlaylists())],
@@ -30,18 +31,19 @@ async function boot() {
   await db.loadSettings();
   applyAppearance();
   try {
-    const rep = await db.migrateFromVidex(p => splash(`Moving your library to LunaTV… ${Math.round(p * 100)}%`));
+    const rep = await db.migrateLegacy(p => splash(`Moving your library to LunaTV… ${Math.round(p * 100)}%`));
     if (rep) setTimeout(() => toast(`Welcome to LunaTV. Your ${rep.media} video${rep.media === 1 ? "" : "s"}, ${rep.playlists} playlist${rep.playlists === 1 ? "" : "s"} and history came with you.`, { ms: 6000 }), 800);
   } catch (e) { console.error("migration", e); }
   await C.loadFavorites().catch(() => {});
   L.loadAll().catch(e => console.error("live", e));
 
   // global header buttons on every area's root
+  // Phone header: Discover and Settings live here (the dock holds Home / Live TV / YouTube / Library / Search)
+  addHeaderButton(area => { if (area === "discover") return null; const b = h(`<button class="hbtn only-mobile" aria-label="Discover">${icon("compass")}</button>`); b.onclick = () => switchTab("discover"); return b; });
   addHeaderButton(area => { const b = h(`<button class="hbtn" aria-label="Open media">${icon("plus")}</button>`); b.onclick = () => emit("open-media"); return b; });
   addHeaderButton(area => { if (area === "settings") return null; const b = h(`<button class="hbtn only-mobile" aria-label="Settings">${icon("gear")}</button>`); b.onclick = () => switchTab("settings"); return b; });
 
   for (const [tab, init] of areas) { try { await init(); } catch (e) { areaFailed(tab, e); } }
-  await import("./youtube.js").catch(e => console.error("youtube", e));   // registers link handling
   const { openMediaSheet } = await import("./library.js");
   on("open-media", openMediaSheet);
 

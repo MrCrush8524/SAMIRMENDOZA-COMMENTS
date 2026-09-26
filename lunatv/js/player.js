@@ -2,7 +2,8 @@
 // Modes: "local" (library video, resumable, queue) and "live" (network stream,
 // channel surfing, mini guide). Every control is feature-detected: anything the
 // browser can't do is hidden rather than faked.
-import { h, icon, esc, fmtTime, fmtBytes, clamp, emit, isIOS, shareOrCopy } from "./util.js";
+import { h, icon, esc, fmtTime, fmtBytes, clamp, emit, on, isIOS, shareOrCopy } from "./util.js";
+import * as Cast from "./cast.js";
 import * as db from "./database.js";
 import * as media from "./media-store.js";
 import { SubtitleRenderer, parseVTT, toVTT } from "./subtitles.js";
@@ -35,6 +36,7 @@ function build() {
     <span class="spinner p-spin" hidden></span>
     <div class="p-hud glass" aria-live="polite"></div>
     <div class="p-osd glass" hidden></div>
+    <div class="p-cast glass" hidden><span class="pc-ic">${icon("cast")}</span><div><b>Casting</b><small></small></div><button class="btn sm" data-a="stopCast">Stop</button></div>
     <div class="p-layer">
       <div class="p-top">
         <button class="pbtn" data-a="close" aria-label="Close player">${icon("close")}</button>
@@ -100,7 +102,11 @@ function build() {
   if (!(document.pictureInPictureEnabled || v.webkitSupportsPresentationMode?.("picture-in-picture"))) P.pip.hidden = true;
   if (!(el.requestFullscreen || el.webkitRequestFullscreen || v.webkitEnterFullscreen)) P.full.hidden = true;
   if (window.WebKitPlaybackTargetAvailabilityEvent) v.addEventListener("webkitplaybacktargetavailabilitychanged", e => { P.airplay.hidden = e.availability !== "available"; });
-  if (v.remote?.watchAvailability) v.remote.watchAvailability(a => { P.cast.hidden = !a || isIOS; }).catch(() => {});
+  // Casting: Chromecast via Google's Cast SDK, or the browser's Remote Playback API.
+  if (v.remote?.watchAvailability && !isIOS) v.remote.watchAvailability(a => { S.remoteAvail = a; castButton(); }).catch(() => {});
+  Cast.initCast().then(castButton);
+  on("cast-state", castButton);
+  on("cast-remote", onRemote);
   if (!volumeWritable) P.vol.hidden = true;
 
   const act = {
@@ -110,14 +116,14 @@ function build() {
     full: toggleFullscreen, pip: togglePip, more: moreMenu, lock: () => setLock(true), unlock: () => setLock(false),
     minimize: () => setMini(true), expand: () => setMini(false), guide: openGuide, guideClose: () => { P.guidePanel.hidden = true; },
     mute: () => { v.muted = !v.muted; hud(v.muted ? "Muted" : "Sound on"); },
-    airplay: () => v.webkitShowPlaybackTargetPicker?.(), cast: () => v.remote?.prompt().catch(() => {}),
+    airplay: () => v.webkitShowPlaybackTargetPicker?.(), cast: castAction, stopCast: () => { Cast.stopCasting(); },
     startover: () => { v.currentTime = 0; P.resume.hidden = true; },
   };
   el.addEventListener("click", e => { const b = e.target.closest("[data-a]"); if (b && act[b.dataset.a]) { e.stopPropagation(); act[b.dataset.a](); wake(); } });
 
   const sc = P.scrub;
   sc.addEventListener("pointerdown", () => { S.scrubbing = true; wake(); });
-  sc.addEventListener("input", () => { const d = dur(); if (d) { v.currentTime = sc.value / 1000 * d; paint(); } });
+  sc.addEventListener("input", () => { const d = dur(); if (!d) return; if (S.casting) { Cast.remoteSeek(sc.value / 1000 * d); return; } v.currentTime = sc.value / 1000 * d; paint(); });
   const endScrub = () => { S.scrubbing = false; wake(); };
   sc.addEventListener("pointerup", endScrub); sc.addEventListener("pointercancel", endScrub); sc.addEventListener("change", endScrub);
   P.vol.addEventListener("input", () => { v.volume = +P.vol.value; v.muted = v.volume === 0; });
@@ -278,6 +284,7 @@ async function loadStreamUrl() {
 }
 function streamFailed(reason) {
   clearTimeout(S.startT); P.spin.hidden = true;
+  if (S.casting) return;
   if (S.mode !== "live") return;
   if (S.urlIdx < S.urls.length - 1) { S.urlIdx++; hud("Trying another source…"); loadStreamUrl(); return; }
   teardown();
@@ -287,7 +294,7 @@ function streamFailed(reason) {
   showMsg("Stream unavailable", reason, btns);
 }
 function onVideoError() {
-  if (!v.getAttribute("src") && !S.hls) return;
+  if (S.casting || (!v.getAttribute("src") && !S.hls)) return;
   if (S.mode === "live") { if (!S.hls) streamFailed("LunaTV couldn’t open this stream. It may be offline, blocked, or in a format this device can’t play."); return; }
   showMsg("Video format not supported", v.error?.code === 4 ? "This device can’t play this video format directly (common with MKV, HEVC or AC-3 audio). It may play in another browser." : "The video couldn’t be decoded.",
     S.order.length > 1 ? [["Next Video", () => step(1)], ["Close", requestClose]] : [["Close", requestClose]]);
@@ -308,6 +315,7 @@ export function requestClose() { if (S.pushed && history.state?.lunatvPlayer) hi
 function doClose() {
   if (!S.open) return;
   save(true);
+  if (S.casting) { S.casting = false; Cast.stopCasting(); P.root.querySelector(".p-cast").hidden = true; }
   if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
   if (document.pictureInPictureElement) document.exitPictureInPicture?.().catch(() => {});
   teardown(); clearSleep();
@@ -354,7 +362,7 @@ function frameButtons() {
 function paint() {
   if (!P) return;
   if (S.mode === "live") { P.cur.innerHTML = `<span class="live">LIVE</span>`; P.dur.textContent = ""; return; }
-  const d = dur(), t = v.currentTime || 0;
+  const d = dur(), t = S.casting ? Cast.snapshot().time : v.currentTime || 0;
   if (!S.scrubbing) P.scrub.value = d ? Math.round(t / d * 1000) : 0;
   let b = 0;
   try { for (let i = 0; i < v.buffered.length; i++) if (v.buffered.start(i) <= t) b = v.buffered.end(i); } catch {}
@@ -363,16 +371,18 @@ function paint() {
   P.cur.textContent = fmtTime(t);
   P.dur.textContent = d ? "−" + fmtTime(d - t) : "--:--";
 }
-const dur = () => (isFinite(v.duration) ? v.duration : 0);
+const dur = () => (S.casting ? Cast.snapshot().duration || 0 : isFinite(v.duration) ? v.duration : 0);
 const fmtRate = r => String(r).replace(/^0\./, ".");
 
 // ------------------------------------------------------------------ transport
 function togglePlay() {
+  if (S.casting) { Cast.remoteToggle(); return; }
   if (S.rev) { stopReverse(); v.play().catch(() => {}); return; }
   if (v.paused) v.play().catch(() => hud("Tap play again")); else v.pause();
 }
 function skip(d) {
   if (S.mode === "live") return;
+  if (S.casting) { const r = Cast.snapshot(); Cast.remoteSeek(clamp(r.time + d, 0, r.duration || r.time + d)); hud(d < 0 ? `−${Math.abs(d)}s` : `+${d}s`); return; }
   v.currentTime = clamp(v.currentTime + d, 0, dur() || v.currentTime + Math.max(d, 0));
   paint(); hud(d < 0 ? `−${Math.abs(d)}s` : `+${d}s`);
 }
@@ -655,7 +665,9 @@ function surf(dir) {
   S.stream = ch; S.urls = (ch.urls?.length ? ch.urls : [ch.url]).filter(Boolean); S.urlIdx = 0;
   P.ttl.textContent = ch.name; P.sub.textContent = nowLine(ch);
   S.onChannel?.(ch); S.onStarted = () => S.onChannel?.(ch, true);
-  osd(ch); loadStreamUrl();
+  osd(ch);
+  if (S.casting) { castCurrent(); return; }
+  loadStreamUrl();
 }
 let osdT;
 function osd(ch) {
@@ -831,3 +843,43 @@ export function loadHls() {
 }
 // audio tracks can appear after metadata loads
 document.addEventListener("loadedmetadata", e => { if (P && e.target === v) refreshAudioButton(); }, true);
+
+// ------------------------------------------------------------------ casting
+/** Web address the TV can fetch for what's playing, or "" for browser-stored videos. */
+function castableURL() { return S.mode === "live" ? (S.urls[S.urlIdx] || "") : ""; }
+function castButton() {
+  if (!P) return;
+  const any = Cast.devicesAvailable() || S.remoteAvail || S.casting;
+  P.cast.hidden = !any;
+  P.cast.classList.toggle("on", !!S.casting);
+}
+async function castCurrent() {
+  const url = castableURL(), ch = S.stream;
+  try {
+    const okd = await Cast.castURL({ url, title: ch?.name || S.item?.title || "LunaTV", subtitle: nowLine(ch || {}) || "LunaTV", image: ch?.logo || "", live: S.mode === "live" });
+    if (!okd) return;
+    S.casting = true;
+    teardown(); hideMsg(); P.spin.hidden = true;           // the TV plays it now; stop fetching it here
+    P.root.querySelector(".p-cast").hidden = false;
+    P.root.querySelector(".p-cast small").textContent = `${ch?.name || ""} · on ${Cast.deviceName()}`;
+    castButton(); setModeUI();
+  } catch (e) { toast(e.message, { err: true, ms: 5000 }); }
+}
+async function castAction() {
+  if (S.casting) { sheet({ title: `Casting to ${Cast.deviceName()}`, groups: [[{ icon: "close", label: "Stop Casting", run: () => Cast.stopCasting() }]] }); return; }
+  const url = castableURL();
+  if (Cast.devicesAvailable() && url) return castCurrent();
+  if (S.remoteAvail && v.remote) { try { await v.remote.prompt(); } catch (e) { if (e?.name !== "AbortError" && e?.name !== "NotAllowedError") toast("Couldn’t start casting this video.", { err: true }); } return; }
+  if (Cast.devicesAvailable()) toast("This video is stored inside this browser, so a Chromecast can’t reach it. On iPhone, iPad or Mac use AirPlay; live channels and stream links cast normally.", { err: true, ms: 6000 });
+}
+function onRemote(r) {
+  if (!P || !S.casting) return;
+  if (!r.connected) {
+    S.casting = false; P.root.querySelector(".p-cast").hidden = true; castButton(); setModeUI();
+    hud("Casting ended", 1400); setPlayIcons(false); paint();
+    if (S.open && S.mode === "live") loadStreamUrl();        // pick the channel back up on this device
+    return;
+  }
+  setPlayIcons(!r.paused); paint();
+  P.root.querySelector(".p-cast small").textContent = `${S.stream?.name || S.item?.title || ""} · on ${r.device}`;
+}
