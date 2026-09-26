@@ -231,9 +231,9 @@ export function colorOf(src) {
           r += R * wt; gg += G * wt; b += B * wt; w += wt;
         }
         resolve([r / w, gg / w, b / w].map(Math.round));
-      } catch { resolve([20, 60, 110]); }
+      } catch { resolve([40, 40, 40]); }
     };
-    im.onerror = () => resolve([20, 60, 110]);
+    im.onerror = () => resolve([40, 40, 40]);
     im.src = src;
   });
 }

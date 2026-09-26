@@ -1,4 +1,4 @@
-ANTHONY'S MUSIC BOX (AMB) — v2.2 "Black Crystal"
+ANTHONY'S MUSIC BOX (AMB) — v2.3 "Black Crystal"
 =================================================
 
 DEPLOY TO NETLIFY
@@ -10,6 +10,12 @@ DEPLOY TO NETLIFY
 3. On iPhone: open the site in Safari → Share → Add to Home Screen, then import
    music from inside the installed app. Safari and the Home Screen app each keep
    their own library.
+
+THEME (v2.3)
+All black and silver: no blue anywhere. Black backgrounds, neutral glass,
+white text and highlights, gray secondary text. The Now Playing backdrop is
+a dark, colorless blur of the artwork. Red is kept only for delete and LIVE,
+amber only for warnings.
 
 BRANDING (v2.2)
 The chrome AMB wolf with musical engraving: the transparent wolf mark in the
