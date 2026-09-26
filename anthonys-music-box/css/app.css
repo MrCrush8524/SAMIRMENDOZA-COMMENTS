@@ -411,7 +411,23 @@ body.drop #dropHint { display: grid; }
 .np-stage { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; padding: 10px 0 14px; }
 .np-artwrap { position: relative; width: min(calc(100vw - 44px), 380px, 44vh); aspect-ratio: 1; border-radius: 18px; transition: transform .55s var(--spring), opacity .3s; will-change: transform; }
 #npArt { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; box-shadow: 0 28px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .07); background: #0b1119; }
-#np.paused .np-artwrap { transform: scale(.86); }
+#np.paused:not(.video) .np-artwrap { transform: scale(.86); }
+#video { display: none; width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: inherit; box-shadow: 0 28px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .07); cursor: pointer; }
+#np.video #npArt { display: none; }
+#np.video #video { display: block; }
+#np.video .np-artwrap { aspect-ratio: var(--arn, 1.7778); width: min(100%, calc(52vh * var(--arn, 1.7778)), 1100px); border-radius: 14px; }
+.pip-note { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border-radius: inherit; background: rgba(0, 0, 0, .72); color: rgba(255, 255, 255, .75); font-size: 14px; font-weight: 600; pointer-events: none; }
+.pip-note .i { width: 38px; height: 38px; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px 14px; margin-top: 8px; }
+.video-art { aspect-ratio: 16 / 9; border-radius: 12px; }
+.vdur { position: absolute; right: 6px; bottom: 6px; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 6px; background: rgba(0, 0, 0, .65); font-variant-numeric: tabular-nums; }
+.video-art.playing .vdur { display: none; }
+.switch { width: 46px; height: 28px; border-radius: 14px; background: rgba(255, 255, 255, .16); position: relative; flex: none; transition: background .2s; }
+.switch i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .4); transition: transform .2s var(--ease); }
+.switch.on { background: var(--accent-strong); }
+.switch.on i { transform: translateX(18px); }
+.np-dock button span { text-align: center; line-height: 1.15; }
+#miniPip.on, #npPip.on { color: var(--accent); }
 #np.paused #npArt { box-shadow: 0 14px 30px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .07); }
 .live-badge { display: none; position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 800; letter-spacing: .1em; padding: 4px 8px; border-radius: 6px; background: var(--danger); color: #fff; }
 #np.radio .live-badge { display: block; }
@@ -616,6 +632,10 @@ dl.info dd { margin: 0; text-align: right; word-break: break-word; }
   .np-body { flex-direction: row; align-items: center; gap: 56px; }
   .np-stage { flex: 1.1; height: 100%; }
   .np-artwrap { width: min(46vw, 70vh, 560px); }
+  #np.video .np-body { flex-direction: column; gap: 18px; }
+  #np.video .np-stage { flex: 1; width: 100%; }
+  #np.video .np-artwrap { width: min(100%, calc(58vh * var(--arn, 1.7778))); }
+  #np.video .np-panel { width: 100%; max-width: 640px; }
   .np-panel { flex: 1; max-width: 460px; }
 }
 @media (max-height: 700px) and (max-width: 699px) {

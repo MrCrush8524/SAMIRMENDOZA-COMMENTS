@@ -1,9 +1,24 @@
-// The single AudioEngine. One <audio> element for the life of the app;
+// The single playback engine. One <audio> and one <video> element for the life of the app;
 // screens subscribe to state and never create players of their own.
 import * as Lib from './library.js';
 import { readLS, writeLS } from './db.js';
 
 const audio = document.getElementById('audio');
+const video = document.getElementById('video');
+// Music plays through <audio> (keeps iOS background playback); videos through <video>.
+// Only one is ever loaded at a time, and events from the idle one are ignored.
+let media = audio;
+function on(type, fn) { for (const el of [audio, video]) el.addEventListener(type, ev => { if (ev.target === media) fn(ev); }); }
+function useElement(el) {
+  if (el === media) return;
+  const old = media;
+  if (old === video && inPip()) exitPip();
+  media = el;
+  old.pause(); old.removeAttribute('src'); try { old.load(); } catch {}
+  media.playbackRate = S.rate;
+  notify('element');
+}
+export const isVideo = () => media === video && !!S.id;
 const subs = new Set();
 export const subscribe = fn => (subs.add(fn), fn(S, 'init'), () => subs.delete(fn));
 function notify(kind) { subs.forEach(fn => { try { fn(S, kind); } catch (e) { console.error(e); } }); }
@@ -39,7 +54,7 @@ const current = () => (S.id ? Lib.get(S.id) : null);
 
 function setSrc(url) {
   if (srcURL && srcURL !== url) { URL.revokeObjectURL(srcURL); srcURL = null; }
-  audio.src = url;
+  media.src = url;
 }
 
 export async function load(id, { autoplay = true, at = 0, fromAuto = false } = {}) {
@@ -50,12 +65,13 @@ export async function load(id, { autoplay = true, at = 0, fromAuto = false } = {
   started = false; counted = false; listened = 0;
   if (!fromAuto) autoSkips = 0;
   if (!t.blob || t.unavailable) { fail('This song’s audio isn’t available on this device. Re-link the file to play it.'); notify('track'); return; }
+  useElement(t.video ? video : audio);
   const url = URL.createObjectURL(t.blob);
   setSrc(url); srcURL = url;
-  audio.playbackRate = S.rate;
+  media.playbackRate = S.rate;
   if (at > 0) {
-    const seekOnce = () => { try { audio.currentTime = at; } catch {} audio.removeEventListener('loadedmetadata', seekOnce); };
-    audio.addEventListener('loadedmetadata', seekOnce);
+    const seekOnce = () => { try { media.currentTime = at; } catch {} media.removeEventListener('loadedmetadata', seekOnce); };
+    on('loadedmetadata', seekOnce);
   }
   updateMediaSession();
   notify('track');
@@ -67,17 +83,18 @@ export async function load(id, { autoplay = true, at = 0, fromAuto = false } = {
 
 export async function play() {
   wantPlay = true;
-  if (!audio.src) { if (S.queue.length) return load(S.queue[Math.max(0, S.index)]); return; }
-  try { await audio.play(); }
+  if (!media.src) { if (S.queue.length) return load(S.queue[Math.max(0, S.index)]); return; }
+  try { await media.play(); }
   catch (e) {
     if (e?.name === 'NotAllowedError') { S.playing = false; S.loading = false; notify('state'); }
     else if (e?.name !== 'AbortError') console.warn(e);
   }
 }
-export const pause = () => { wantPlay = false; audio.pause(); };
-export const toggle = () => (audio.paused ? play() : pause());
+export const pause = () => { wantPlay = false; media.pause(); };
+export const toggle = () => (media.paused ? play() : pause());
 export function stop() {
-  audio.pause(); audio.removeAttribute('src'); try { audio.load(); } catch {}
+  if (inPip()) exitPip();
+  media.pause(); media.removeAttribute('src'); try { media.load(); } catch {}
   if (srcURL) { URL.revokeObjectURL(srcURL); srcURL = null; }
   Object.assign(S, { id: null, station: null, queue: [], index: -1, original: null, playing: false, time: 0, duration: 0, error: '' });
   persist(); updateMediaSession(); notify('track');
@@ -85,13 +102,13 @@ export function stop() {
 
 export function seek(sec) {
   if (S.station || !Number.isFinite(sec)) return;
-  const d = audio.duration || S.duration || 0;
+  const d = media.duration || S.duration || 0;
   sec = Math.max(0, d ? Math.min(sec, d - 0.25) : sec);
-  try { audio.currentTime = sec; } catch {}
+  try { media.currentTime = sec; } catch {}
   S.time = sec; notify('time');
 }
-export const seekBy = d => seek((audio.currentTime || 0) + d);
-export function setVolume(v) { S.volume = Math.max(0, Math.min(1, v)); audio.volume = S.volume; writeLS('amb-volume', S.volume); notify('volume'); }
+export const seekBy = d => seek((media.currentTime || 0) + d);
+export function setVolume(v) { S.volume = Math.max(0, Math.min(1, v)); audio.volume = video.volume = S.volume; writeLS('amb-volume', S.volume); notify('volume'); }
 
 // ---------- queue ----------
 function fisher(a) { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -148,11 +165,11 @@ export function next(auto = false) {
     S.index = 0; return load(S.queue[0], { fromAuto: auto });
   }
   // Queue ended normally.
-  audio.pause(); seek(0); S.playing = false; notify('state');
+  media.pause(); seek(0); S.playing = false; notify('state');
 }
 export function prev() {
   if (S.station) return;
-  if ((audio.currentTime || 0) > 3 || !S.queue.length) { seek(0); return; }
+  if ((media.currentTime || 0) > 3 || !S.queue.length) { seek(0); return; }
   if (S.index > 0) { S.index--; return load(S.queue[S.index]); }
   if (S.repeat === 1) { S.index = S.queue.length - 1; return load(S.queue[S.index]); }
   seek(0);
@@ -209,6 +226,7 @@ export function prune() {
 
 // ---------- radio ----------
 export async function playStation(st) {
+  useElement(audio);
   S.station = st; S.id = null; S.error = ''; S.time = 0; S.duration = 0; S.loading = true;
   started = true;
   setSrc(st.url);
@@ -233,19 +251,19 @@ function fail(msg) {
 }
 
 // ---------- audio events ----------
-audio.addEventListener('playing', () => {
+on('playing', () => {
   S.playing = true; S.loading = false; S.error = '';
   if (!started && S.id) { started = true; Lib.markStarted(S.id); }
   setPlaybackState(); notify('state');
 });
-audio.addEventListener('play', () => { S.playing = true; setPlaybackState(); notify('state'); });
-audio.addEventListener('pause', () => { S.playing = false; setPlaybackState(); persist(); notify('state'); });
-audio.addEventListener('waiting', () => { S.loading = true; notify('state'); });
-audio.addEventListener('stalled', () => { if (S.station) { S.loading = true; notify('state'); } });
-audio.addEventListener('canplay', () => { S.loading = false; notify('state'); });
-audio.addEventListener('loadedmetadata', () => {
+on('play', () => { S.playing = true; setPlaybackState(); notify('state'); });
+on('pause', () => { S.playing = false; setPlaybackState(); persist(); notify('state'); });
+on('waiting', () => { S.loading = true; notify('state'); });
+on('stalled', () => { if (S.station) { S.loading = true; notify('state'); } });
+on('canplay', () => { S.loading = false; notify('state'); });
+on('loadedmetadata', () => {
   if (S.station) return;
-  const d = audio.duration;
+  const d = media.duration;
   if (Number.isFinite(d) && d > 0) {
     S.duration = d;
     const t = current();
@@ -253,25 +271,25 @@ audio.addEventListener('loadedmetadata', () => {
   }
   notify('time'); updatePosition();
 });
-audio.addEventListener('timeupdate', () => {
-  const now = audio.currentTime || 0;
+on('timeupdate', () => {
+  const now = media.currentTime || 0;
   if (!S.station && S.playing) {
     const delta = now - lastTick;
     if (delta > 0 && delta < 2) listened += delta;
-    const d = S.duration || audio.duration || 0;
+    const d = S.duration || media.duration || 0;
     if (!counted && S.id && (listened >= 30 || (d && listened >= d * 0.5))) { counted = true; Lib.markPlayed(S.id); }
   }
   lastTick = now; S.time = now;
   notify('time');
   if (Math.floor(now) % 5 === 0) { updatePosition(); persistTime(); }
 });
-audio.addEventListener('ended', () => {
+on('ended', () => {
   if (S.sleepAt === -1) { S.sleepAt = 0; notify('sleep'); if (S.id) S.history.push(S.id); S.playing = false; notify('state'); return; }
   next(true);
 });
-audio.addEventListener('error', () => {
-  if (!audio.getAttribute('src')) return;
-  const code = audio.error?.code;
+on('error', () => {
+  if (!media.getAttribute('src')) return;
+  const code = media.error?.code;
   if (S.station) { fail('This station isn’t responding or uses a format this browser can’t play.'); return; }
   const t = current();
   const msg = code === 4 ? 'This file’s format can’t be played in this browser.' : 'This song couldn’t be played. It may be damaged or missing.';
@@ -279,7 +297,7 @@ audio.addEventListener('error', () => {
   fail(msg);
   if (autoSkips < 3 && S.index + 1 < S.queue.length && wantPlay) { autoSkips++; setTimeout(() => { S.index++; load(S.queue[S.index], { fromAuto: true }); }, 900); }
 });
-audio.addEventListener('ratechange', () => { S.rate = audio.playbackRate; });
+on('ratechange', () => { S.rate = media.playbackRate; });
 
 
 // ---------- Media Session ----------
@@ -306,9 +324,9 @@ export function updateMediaSession() {
 function setPlaybackState() { if (ms) try { ms.playbackState = S.playing ? 'playing' : 'paused'; } catch {} }
 function updatePosition() {
   if (!ms?.setPositionState || S.station) return;
-  const d = audio.duration;
+  const d = media.duration;
   if (!Number.isFinite(d) || d <= 0) return;
-  try { ms.setPositionState({ duration: d, position: Math.min(audio.currentTime || 0, d), playbackRate: audio.playbackRate || 1 }); } catch {}
+  try { ms.setPositionState({ duration: d, position: Math.min(media.currentTime || 0, d), playbackRate: media.playbackRate || 1 }); } catch {}
 }
 if (ms) {
   const h = (a, f) => { try { ms.setActionHandler(a, f); } catch { /* unsupported action */ } };
@@ -317,15 +335,15 @@ if (ms) {
   h('stop', () => pause());
   h('nexttrack', () => next());
   h('previoustrack', () => prev());
-  h('seekto', d => { if (d.fastSeek && 'fastSeek' in audio) audio.fastSeek(d.seekTime); else seek(d.seekTime); updatePosition(); });
+  h('seekto', d => { if (d.fastSeek && 'fastSeek' in media) media.fastSeek(d.seekTime); else seek(d.seekTime); updatePosition(); });
   h('seekbackward', d => seekBy(-(d.seekOffset || 10)));
   h('seekforward', d => seekBy(d.seekOffset || 10));
 }
 
 // ---------- persistence ----------
 function persist() {
-  writeLS('amb-queue', { q: S.queue.slice(0, 5000), i: S.index, o: S.original?.slice(0, 5000) || null, sh: S.shuffle, rp: S.repeat, t: audio.currentTime || S.time || 0, h: S.history.slice(-30) });
-  if (S.id) writeLS('smr-last', { id: S.id, time: audio.currentTime || 0 });
+  writeLS('amb-queue', { q: S.queue.slice(0, 5000), i: S.index, o: S.original?.slice(0, 5000) || null, sh: S.shuffle, rp: S.repeat, t: media.currentTime || S.time || 0, h: S.history.slice(-30) });
+  if (S.id) writeLS('smr-last', { id: S.id, time: media.currentTime || 0 });
 }
 let lastPersist = 0;
 function persistTime() { const n = Date.now(); if (n - lastPersist > 4000) { lastPersist = n; persist(); } }
@@ -334,7 +352,7 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
 
 export function restore() {
   S.volume = readLS('amb-volume', 1);
-  if (S.volumeSupported) audio.volume = S.volume;
+  if (S.volumeSupported) audio.volume = video.volume = S.volume;
   const q = readLS('amb-queue', null);
   const alive = id => !!Lib.get(id);
   if (q && Array.isArray(q.q) && q.q.length) {
@@ -353,8 +371,41 @@ export function restore() {
 
 export function showOutputPicker() {
   try {
-    if (S.outputPicker === 'webkit') audio.webkitShowPlaybackTargetPicker();
-    else if (S.outputPicker === 'remote') audio.remote.prompt().catch(() => {});
+    if (S.outputPicker === 'webkit') media.webkitShowPlaybackTargetPicker();
+    else if (S.outputPicker === 'remote') media.remote.prompt().catch(() => {});
   } catch (e) { console.warn(e); }
 }
 export const audioEl = audio;
+export const videoEl = video;
+export const mediaEl = () => media;
+
+// ---------- Picture in Picture (video) ----------
+export const pipSupported = !!((document.pictureInPictureEnabled && video.requestPictureInPicture && !video.disablePictureInPicture)
+  || (typeof video.webkitSupportsPresentationMode === 'function' && video.webkitSupportsPresentationMode('picture-in-picture')));
+export const inPip = () => document.pictureInPictureElement === video || video.webkitPresentationMode === 'picture-in-picture';
+function exitPip() {
+  try {
+    if (document.pictureInPictureElement) document.exitPictureInPicture().catch(() => {});
+    else if (video.webkitPresentationMode === 'picture-in-picture') video.webkitSetPresentationMode('inline');
+  } catch { /* already closed */ }
+}
+export async function togglePip(force) {
+  if (!pipSupported || !isVideo()) return false;
+  const want = force ?? !inPip();
+  try {
+    if (want && !inPip()) {
+      if (video.requestPictureInPicture && document.pictureInPictureEnabled) await video.requestPictureInPicture();
+      else video.webkitSetPresentationMode('picture-in-picture');
+    } else if (!want && inPip()) exitPip();
+    return true;
+  } catch (e) { console.warn('PiP', e); return false; }
+}
+export function fullscreen() {
+  try {
+    if (video.requestFullscreen) video.requestFullscreen().catch(() => video.webkitEnterFullscreen?.());
+    else video.webkitEnterFullscreen?.();
+  } catch (e) { console.warn(e); }
+}
+for (const ev of ['enterpictureinpicture', 'leavepictureinpicture', 'webkitpresentationmodechanged']) video.addEventListener(ev, () => notify('pip'));
+// Chrome: enter PiP automatically when the tab/app is hidden during video playback.
+if (ms) { try { ms.setActionHandler('enterpictureinpicture', () => { if (isVideo() && S.playing) togglePip(true); }); } catch { /* unsupported */ } }

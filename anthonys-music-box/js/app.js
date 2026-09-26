@@ -222,7 +222,8 @@ const LIB_ROWS = [
   ['playlists', 'playlist', 'Playlists', () => Object.keys(L.playlists).length],
   ['artists', 'artist', 'Artists', () => L.artists.size],
   ['albums', 'album', 'Albums', () => realAlbums().length],
-  ['songs', 'song', 'Songs', () => L.tracks.length],
+  ['songs', 'song', 'Songs', () => L.tracks.filter(t => !t.video).length],
+  ['videos', 'video', 'Videos', () => Lib.videos().length],
   ['genres', 'genre', 'Genres', () => L.genres.size],
   ['recent', 'clock', 'Recently Added', () => ''],
   ['favorites', 'heart', 'Favorites', () => L.favorites.size || ''],
@@ -266,7 +267,7 @@ const PAGES = {
         h += `<div class="group glass">${LIB_ROWS.map(([k, ic, label]) => `<button class="nav-row toggle" data-act="libToggle" data-k="${k}" aria-pressed="${!hidden.has(k)}"><span class="tick ${hidden.has(k) ? '' : 'on'}">${icon('check')}</span><span class="nr-icon">${icon(ic)}</span><span class="nr-label">${label}</span></button>`).join('')}</div><p class="hint">Choose what appears in your Library.</p>`;
         return h + '</div>';
       }
-      h += `<div class="group glass">${LIB_ROWS.filter(r => !hidden.has(r[0])).map(([k, ic, label, n]) => navRow({ go: k, iconName: ic, label, count: n() })).join('')}</div>`;
+      h += `<div class="group glass">${LIB_ROWS.filter(r => !hidden.has(r[0]) && (r[0] !== 'videos' || Lib.videos().length)).map(([k, ic, label, n]) => navRow({ go: k, iconName: ic, label, count: n() })).join('')}</div>`;
       const ra = Lib.recentlyAdded(6);
       h += sectionHead('Recently Added', 'recent') + `<div class="grid3">${ra.map(t => trackTile(t, ra.map(x => x.id))).join('')}</div>`;
       const fav = Lib.favoriteTracks();
@@ -298,7 +299,7 @@ const PAGES = {
     actions: (p, e) => L.tracks.length ? `<button class="icon-btn" data-act="sortMenu" data-kind="songs" aria-label="Sort songs">${icon('sort')}</button><button class="link nav-link" data-act="selectMode">${e.sel ? 'Done' : 'Select'}</button>` : '',
     html: (p, e) => {
       const by = readLS('amb-sort-songs', 'title');
-      const ts = sortTracks(L.tracks, by);
+      const ts = sortTracks(L.tracks.filter(t => !t.video), by);
       if (!ts.length) return `<div class="page-pad">${largeTitle('Songs')}${emptyState()}</div>`;
       const ids = ts.map(t => t.id);
       return `<div class="page-pad">${largeTitle('Songs')}<p class="meta-line">${plural(ids.length, 'song')} · sorted by ${SORTS.songs.find(s => s[0] === by)?.[1] || 'Title'}</p>${e.sel ? '' : playButtons(ids)}${trackList(e, ids, { key: 'songs', album: true })}</div>`;
@@ -345,6 +346,18 @@ const PAGES = {
         <button class="nav-row new-row" data-act="newPlaylist"><span class="nr-icon accent-bg">${icon('plus')}</span><span class="nr-label accent">New Playlist…</span></button>
         ${names.map(n => navRow({ go: 'playlist|' + n, label: n, count: plural(L.playlists[n].length, 'song'), art: collage(L.playlists[n], 'mini-collage') })).join('')}
       </div>${names.length ? '' : '<p class="hint">Playlists you make appear here. Add songs from any song’s menu.</p>'}</div>`;
+    },
+  },
+  videos: {
+    title: () => 'Videos',
+    html: (p, e) => {
+      const vs = Lib.videos(); const ids = vs.map(t => t.id);
+      e.vl = null;
+      if (!vs.length) return `<div class="page-pad">${largeTitle('Videos')}<div class="empty small">${icon('video', 'big-i')}<p>Add MP4, M4V, MOV or WebM videos with Add Music. They play here, full screen, or in Picture in Picture.</p><button class="btn glass-btn" data-act="addMusic">${icon('plus')}<span>Add Videos</span></button></div></div>`;
+      const k = ctx('videos', ids);
+      return `<div class="page-pad">${largeTitle('Videos')}<p class="meta-line">${plural(vs.length, 'video')} · ${fmtDur(Lib.totalDuration(ids))}</p>${playButtons(ids)}
+        <div class="vgrid">${vs.map((t, i) => `<div class="vtile"><button class="tile-art play-tile video-art" data-play-ctx="${k}" data-i="${i}" data-id="${t.id}" aria-label="Play ${esc(Lib.trackTitle(t))}">${img(Lib.artOf(t, true))}<span class="vdur">${fmtTime(t.duration)}</span><span class="tile-eq eq"><i></i><i></i><i></i></span></button>
+          <button class="tile-meta" data-act="songMenu" data-id="${t.id}"><b>${esc(Lib.trackTitle(t))}</b><small>${esc(Lib.trackArtist(t))}</small></button></div>`).join('')}</div></div>`;
     },
   },
   recent: {
@@ -544,6 +557,7 @@ function rowTap(row) {
 function playFrom(ids, i, id) {
   if (E.S.id === id && ids[i] === id && E.S.queue[E.S.index] === id) { if (!E.S.playing) E.play(); openNP(); return; }
   E.playList(ids, i >= 0 ? i : 0);
+  if (Lib.get(ids[i >= 0 ? i : 0])?.video) openNP();
 }
 
 const ACTIONS = {
@@ -789,7 +803,7 @@ async function runImport(files) {
   try {
     const r = await Lib.importFiles(files, set);
     const parts = [];
-    if (r.added) parts.push(`${plural(r.added, 'song')} added`);
+    if (r.added) { const v = r.videos || 0, n = r.added - v; parts.push([n ? plural(n, 'song') : '', v ? plural(v, 'video') : ''].filter(Boolean).join(' and ') + ' added'); }
     if (r.dup) parts.push(`${r.dup} already in AMB`);
     if (r.unsupported) parts.push(`${r.unsupported} can’t play here`);
     if (r.failed) parts.push(`${r.failed} failed`);
@@ -813,7 +827,7 @@ async function settingsSheet() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
   openSheet({ title: 'Settings', cls: 'tall', html: `
-    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.0</small></div></div>
+    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.1</small></div></div>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
       <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>
@@ -836,6 +850,8 @@ async function settingsSheet() {
       : `<p>Keyboard: <b>Space</b> play/pause · <b>←/→</b> seek 10s · <b>Shift+←/→</b> previous/next · <b>/</b> search.</p><p>Media keys and system media controls are supported where your browser provides them.</p>`}
       <p>Music, file names and listening history stay on this device. Only Live Radio uses the internet, and only when you open it.</p>
     </div>
+    ${E.pipSupported ? `<h3 class="set-h">Video</h3>
+    <div class="group glass"><button class="set-row btnrow" data-s="autopip" role="switch" aria-checked="${readLS('amb-auto-pip', true)}"><span>Picture in Picture when leaving a video</span><span class="switch ${readLS('amb-auto-pip', true) ? 'on' : ''}"><i></i></span></button></div>` : ''}
     <h3 class="set-h">Danger zone</h3>
     <div class="group glass">
       <button class="set-row btnrow" data-s="history"><span>Clear listening history</span></button>
@@ -848,6 +864,7 @@ async function settingsSheet() {
         if (k === 'export') exportBackup();
         if (k === 'import') importBackup();
         if (k === 'history') { closeSheet(); ACTIONS.clearHistory(); }
+        if (k === 'autopip') { const v = !readLS('amb-auto-pip', true); writeLS('amb-auto-pip', v); const b2 = ev.target.closest('[data-s]'); b2.setAttribute('aria-checked', v); b2.querySelector('.switch').classList.toggle('on', v); }
         if (k === 'wipe') {
           closeSheet();
           if (await confirmSheet({ title: 'Remove every song from AMB?', msg: 'Your AMB library, queue and playlist contents are cleared on this device. Your original files are not deleted.', ok: 'Remove All', danger: true })) {
@@ -910,6 +927,8 @@ function closeNP(fromPop) {
   np.style.transform = '';
   setTimeout(() => { if (!npOpen) np.hidden = true; }, reduceMotion() ? 0 : 400);
   if (lyricsOn) toggleLyrics(false);
+  // Leaving a playing video keeps it on screen in Picture in Picture.
+  if (E.isVideo() && E.S.playing && E.pipSupported && !E.inPip() && readLS('amb-auto-pip', true)) E.togglePip(true);
   if (!fromPop && history.state?.np) history.back();
   mini.querySelector('.mini-open')?.focus({ preventScroll: true });
 }
@@ -939,6 +958,9 @@ $('#npArtist').onclick = () => { const t = Lib.get(E.S.id); if (!t) return; clos
 $('#npQueue').onclick = () => queueSheet();
 $('#npLyrics').onclick = () => toggleLyrics();
 $('#npOutput').onclick = () => E.showOutputPicker();
+$('#npPip').onclick = () => E.togglePip();
+$('#miniPip').onclick = () => E.togglePip();
+E.videoEl.addEventListener('dblclick', () => E.fullscreen());
 $('#npModes').onclick = () => queueSheet();
 $('#npMore').onclick = () => {
   if (E.S.station) return radioStationMenu();
@@ -951,6 +973,8 @@ $('#npMore').onclick = () => {
     { label: 'Play Next', icon: 'playNext', run: () => { E.enqueueNext([id]); toast('Playing next'); } },
     { label: 'Play Last', icon: 'playLast', run: () => { E.enqueueLast([id]); toast('Added to the end of the queue'); } },
     { sep: true },
+    t.video && E.pipSupported ? { label: E.inPip() ? 'Exit Picture in Picture' : 'Picture in Picture', icon: 'pip', run: () => E.togglePip() } : null,
+    t.video ? { label: 'Full Screen', icon: 'expand', run: () => E.fullscreen() } : null,
     a && !a.single ? { label: 'Go to Album', icon: 'album', run: () => { closeNP(); go('album', { key: a.key }); } } : null,
     { label: 'Go to Artist', icon: 'artist', run: () => { closeNP(); go('artist', { name: Lib.trackArtist(t) }); } },
     { label: 'Song Info', icon: 'info', run: () => songInfo(id) },
@@ -1078,7 +1102,7 @@ function paintTrack() {
   $('#miniArt').src = small; $('#miniTitle').textContent = title; $('#miniArtist').textContent = artist;
   $('#npTitle').textContent = title; $('#npArtist').textContent = artist;
   $('#npArtist').disabled = !!st;
-  $('#npContext').textContent = st ? 'LIVE RADIO' : (t.album ? t.album.toUpperCase() : "ANTHONY'S MUSIC BOX");
+  $('#npContext').textContent = st ? 'LIVE RADIO' : t.video ? 'VIDEO' : (t.album || '').toUpperCase();
   np.classList.toggle('radio', !!st);
   if (art !== lastArt) {
     lastArt = art;
@@ -1098,11 +1122,24 @@ function paintTrack() {
   }
   paintFav(); paintState(); paintModes();
   if (lyricsOn) paintLyrics();
-  const dockOK = !st;
-  $('#npQueue').hidden = !dockOK; $('#npLyrics').hidden = !dockOK;
+  const dockOK = !st, vid = !!t?.video;
+  np.classList.toggle('video', vid);
+  if (vid) np.style.setProperty('--arn', t.width && t.height ? (t.width / t.height).toFixed(4) : '1.7778');
+  if (vid && lyricsOn) toggleLyrics(false);
+  $('#npQueue').hidden = !dockOK; $('#npLyrics').hidden = !dockOK || vid;
+  $('#npPip').hidden = !(vid && E.pipSupported);
+  $('#miniPip').hidden = !(vid && E.pipSupported);
+  paintPip();
   $('#npOutput').hidden = !E.S.outputPicker;
   $('#npVolRow').hidden = !E.S.volumeSupported;
   volCtl.set(E.S.volume);
+}
+function paintPip() {
+  const on = E.inPip();
+  np.classList.toggle('pip', on);
+  // Chromium draws its own placeholder in the video box; Safari leaves it blank.
+  $('.pip-note').hidden = !on || !!document.pictureInPictureElement;
+  for (const b of [$('#npPip'), $('#miniPip')]) { b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.setAttribute('aria-label', on ? 'Exit Picture in Picture' : 'Picture in Picture'); }
 }
 function paintFav() {
   const on = E.S.id && Lib.isFav(E.S.id);
@@ -1157,6 +1194,8 @@ E.subscribe((S, kind) => {
   else if (kind === 'time') paintTime();
   else if (kind === 'queue' || kind === 'sleep') paintModes();
   else if (kind === 'volume') volCtl.set(S.volume);
+  else if (kind === 'pip') paintPip();
+  else if (kind === 'element') paintTrack();
 });
 $('#npErrSkip').onclick = () => E.next();
 
@@ -1190,7 +1229,7 @@ document.addEventListener('keydown', e => {
 function renderSidebar() {
   const sb = $('#sidebarLinks'); if (!sb) return;
   const pl = Object.keys(L.playlists);
-  sb.innerHTML = `<p class="sb-h">Library</p>${[['recent', 'clock', 'Recently Added'], ['artists', 'artist', 'Artists'], ['albums', 'album', 'Albums'], ['songs', 'song', 'Songs'], ['genres', 'genre', 'Genres'], ['favorites', 'heart', 'Favorites'], ['radio', 'radio', 'Live Radio'], ['files', 'folder', 'Local Files']]
+  sb.innerHTML = `<p class="sb-h">Library</p>${[['recent', 'clock', 'Recently Added'], ['artists', 'artist', 'Artists'], ['albums', 'album', 'Albums'], ['songs', 'song', 'Songs'], ['videos', 'video', 'Videos'], ['genres', 'genre', 'Genres'], ['favorites', 'heart', 'Favorites'], ['radio', 'radio', 'Live Radio'], ['files', 'folder', 'Local Files']]
     .map(([r, ic, l]) => `<button class="sb-link" data-side="${r}">${icon(ic)}<span>${l}</span></button>`).join('')}
     <p class="sb-h">Playlists <button class="icon-btn sm" data-act="newPlaylist" aria-label="New playlist">${icon('plus')}</button></p>
     ${pl.map(n => `<button class="sb-link" data-side="playlist|${esc(n)}">${icon('playlist')}<span>${esc(n)}</span></button>`).join('') || '<p class="sb-empty">No playlists yet</p>'}`;

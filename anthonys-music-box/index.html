@@ -73,6 +73,7 @@
       <span class="mini-text"><b id="miniTitle"></b><small id="miniArtist"></small></span>
     </button>
     <button id="miniPlay" class="icon-btn mini-btn" aria-label="Play"></button>
+    <button id="miniPip" class="icon-btn mini-btn" aria-label="Picture in Picture" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg></button>
     <button id="miniNext" class="icon-btn mini-btn" aria-label="Next song"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2v13.6a.9.9 0 0 0 1.38.76l10.1-6.8a.9.9 0 0 0 0-1.52L6.38 4.44A.9.9 0 0 0 5 5.2z" fill="currentColor"/><rect x="17.6" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
     <span class="mini-prog" aria-hidden="true"><i id="miniProg"></i></span>
   </div>
@@ -93,7 +94,7 @@
     </div>
     <div class="np-body">
       <div class="np-stage">
-        <div class="np-artwrap"><img id="npArt" src="assets/default-cover.webp" alt="" draggable="false"><span class="live-badge">LIVE</span></div>
+        <div class="np-artwrap"><img id="npArt" src="assets/default-cover.webp" alt="" draggable="false"><video id="video" playsinline webkit-playsinline preload="auto" autopictureinpicture x-webkit-airplay="allow" aria-label="Video"></video><div class="pip-note" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span>Playing in Picture in Picture</span></div><span class="live-badge">LIVE</span></div>
         <div id="lyricsView" class="np-lyrics" hidden aria-live="off"></div>
       </div>
       <div class="np-panel">
@@ -119,6 +120,7 @@
         <button id="npModes" class="np-modes" hidden aria-label="Playback modes, open queue"></button>
         <div class="np-dock glass">
           <button id="npLyrics" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3.5" width="15" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8.5h8M8 12h8M8 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Lyrics</span></button>
+          <button id="npPip" hidden aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span>Picture in Picture</span></button>
           <button id="npOutput" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8l-4-5z" fill="currentColor"/></svg><span>Output</span></button>
           <button id="npQueue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Queue</span></button>
         </div>
@@ -139,7 +141,7 @@
 <div id="toasts" role="status" aria-live="polite"></div>
 <div id="dropHint" aria-hidden="true"><div class="glass"><b>Drop music to add it to AMB</b><small>Nothing is uploaded</small></div></div>
 
-<input id="fileInput" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.flac,.ogg,.oga,.opus" multiple hidden>
+<input id="fileInput" type="file" accept="audio/*,video/*,.mp3,.m4a,.aac,.wav,.flac,.ogg,.oga,.opus,.mp4,.m4v,.mov,.webm" multiple hidden>
 <input id="folderInput" type="file" webkitdirectory multiple hidden>
 <audio id="audio" playsinline preload="auto" x-webkit-airplay="allow"></audio>
 </body>

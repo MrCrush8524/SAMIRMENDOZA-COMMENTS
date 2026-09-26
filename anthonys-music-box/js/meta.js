@@ -342,9 +342,9 @@ export function fromFilename(name) {
 
 export function formatOf(file) {
   const ext = (file.name.match(/\.([a-z0-9]+)$/i) || [])[1]?.toLowerCase();
-  if (ext) return ext === 'm4a' || ext === 'mp4' || ext === 'aac' ? (ext === 'aac' ? 'aac' : 'm4a') : ext;
+  if (ext) return ext;
   const t = file.type || '';
-  return t.includes('mpeg') ? 'mp3' : t.includes('mp4') ? 'm4a' : t.includes('flac') ? 'flac' : t.includes('ogg') ? 'ogg' : t.includes('wav') ? 'wav' : 'audio';
+  return t.includes('mpeg') ? 'mp3' : t === 'video/mp4' ? 'mp4' : t.includes('quicktime') ? 'mov' : t.includes('mp4') ? 'm4a' : t.includes('flac') ? 'flac' : t.includes('ogg') ? 'ogg' : t.includes('wav') ? 'wav' : 'audio';
 }
 
 export async function readMetadata(file) {

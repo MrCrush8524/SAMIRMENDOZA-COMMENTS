@@ -1,4 +1,4 @@
-ANTHONY'S MUSIC BOX (AMB) — v2.0 "Black Crystal"
+ANTHONY'S MUSIC BOX (AMB) — v2.1 "Black Crystal"
 =================================================
 
 DEPLOY TO NETLIFY
@@ -53,6 +53,15 @@ FEATURES
 - Live Radio (only this part uses the internet, and only once you open it):
   Radio Browser directory, search by name, country and genre, saved stations,
   add your own https:// stream.
+- Videos (new in v2.1): add MP4, M4V, MOV or WebM with Add Music. AMB spots
+  video automatically, grabs a poster frame as artwork, and lists videos under
+  Library → Videos (they stay out of Songs). They play in Now Playing and join
+  the queue and playlists like songs.
+  Picture in Picture: the button in Now Playing and on the mini-player. Close
+  Now Playing while a video plays and it moves into Picture in Picture on its
+  own (Settings → Video turns this off). On iPhone, going to the Home Screen
+  during a video also switches to Picture in Picture. Double-tap the video, or
+  More → Full Screen, for full screen.
 - Lock screen / system media controls through the Media Session API.
 - Keyboard: Space, ←/→ seek, Shift+←/→ skip, / search, Esc back.
 - Desktop: sidebar layout, two-column Now Playing. Tablet: wider grids.
@@ -73,5 +82,8 @@ HONEST NOTES FOR iPHONE
 - Safari can clear website data. Keep your original music files. Settings →
   "Ask the browser to keep my library" and adding AMB to the Home Screen both
   help.
+- Video: iPhone plays H.264/HEVC MP4, M4V and MOV. WebM depends on the iOS
+  version. Unlike music, a video keeps playing in the background only while
+  it's in Picture in Picture; iOS pauses a hidden video.
 - FLAC/OGG playback depends on the browser (recent iOS plays FLAC; Ogg Vorbis
   support is limited on older iOS).

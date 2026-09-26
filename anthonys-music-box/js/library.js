@@ -64,6 +64,13 @@ function rebuild() {
   L.byId = new Map(L.tracks.map(t => [t.id, t]));
   const albums = new Map(), artists = new Map(), genres = new Map();
   for (const t of L.tracks) {
+    if (t.video && !t.album) {
+      // Music videos without an album tag live under Videos and their artist only.
+      const ar = trackArtist(t);
+      let r = artists.get(ar); if (!r) artists.set(ar, r = { name: ar, ids: [], albums: new Set() });
+      r.ids.push(t.id);
+      continue;
+    }
     const k = albumKeyOf(t);
     let a = albums.get(k);
     if (!a) albums.set(k, a = { key: k, single: !t.album, title: t.album || 'Unknown Album', ids: [], artists: new Set(), albumArtist: t.albumArtist || '', year: 0, genre: '', added: 0, artId: null });
@@ -160,31 +167,58 @@ export const lastPlayed = id => L.stats[id]?.l || 0;
 export function clearHistory() { L.stats = {}; DB.writeLS('amb-stats', {}); emit(); }
 
 // ---------- import ----------
-export const SUPPORTED = /\.(mp3|m4a|mp4|aac|wav|wave|ogg|oga|opus|flac|aif|aiff|caf|webm)$/i;
-const audioProbe = typeof Audio !== 'undefined' ? new Audio() : null; // metadata probe only, never plays
-if (audioProbe) { audioProbe.preload = 'metadata'; audioProbe.muted = true; }
+export const SUPPORTED = /\.(mp3|m4a|mp4|m4v|mov|aac|wav|wave|ogg|oga|opus|flac|aif|aiff|caf|webm)$/i;
+export const VIDEO_EXT = /\.(mp4|m4v|mov|webm)$/i;
+// Metadata probe only; it never plays. A <video> probe reports both duration and picture size.
+const probeEl = typeof document !== 'undefined' ? document.createElement('video') : null;
+if (probeEl) { probeEl.preload = 'metadata'; probeEl.muted = true; probeEl.playsInline = true; probeEl.setAttribute('playsinline', ''); }
 
-function probeDuration(blob) {
+// Resolves {duration, width, height}; duration -1 means the browser can't decode it.
+function probe(blob) {
   return new Promise(resolve => {
-    if (!audioProbe) return resolve(0);
+    if (!probeEl) return resolve({ duration: 0, width: 0, height: 0 });
     const url = URL.createObjectURL(blob);
-    const done = v => { clearTimeout(tm); audioProbe.onloadedmetadata = audioProbe.onerror = null; audioProbe.removeAttribute('src'); try { audioProbe.load(); } catch {} URL.revokeObjectURL(url); resolve(v); };
-    const tm = setTimeout(() => done(0), 5000);
-    audioProbe.onloadedmetadata = () => done(Number.isFinite(audioProbe.duration) ? audioProbe.duration : 0);
-    audioProbe.onerror = () => done(-1);
-    audioProbe.src = url;
+    const done = v => { clearTimeout(tm); probeEl.onloadedmetadata = probeEl.onerror = null; probeEl.removeAttribute('src'); try { probeEl.load(); } catch {} URL.revokeObjectURL(url); resolve(v); };
+    const tm = setTimeout(() => done({ duration: 0, width: 0, height: 0 }), 6000);
+    probeEl.onloadedmetadata = () => done({ duration: Number.isFinite(probeEl.duration) ? probeEl.duration : 0, width: probeEl.videoWidth || 0, height: probeEl.videoHeight || 0 });
+    probeEl.onerror = () => done({ duration: -1, width: 0, height: 0 });
+    probeEl.src = url;
   });
 }
+
+// Grab a still from ~10% into a video to use as its artwork.
+function poster(blob, duration) {
+  return new Promise(resolve => {
+    const v = document.createElement('video');
+    v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
+    const url = URL.createObjectURL(blob);
+    const done = b => { clearTimeout(tm); v.removeAttribute('src'); try { v.load(); } catch {} URL.revokeObjectURL(url); resolve(b); };
+    const tm = setTimeout(() => done(null), 8000);
+    v.onloadeddata = () => { try { v.currentTime = Math.min(Math.max(1, (duration || v.duration || 0) * 0.1), 8); } catch { done(null); } };
+    v.onseeked = () => {
+      try {
+        const w = Math.min(960, v.videoWidth), h = Math.round(w * v.videoHeight / v.videoWidth);
+        if (!w || !h) return done(null);
+        const c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(v, 0, 0, w, h);
+        c.toBlob(b => done(b), 'image/jpeg', 0.86);
+      } catch { done(null); }
+    };
+    v.onerror = () => done(null);
+    v.src = url;
+  });
+}
+
 export function canDecode(file) {
-  if (!audioProbe) return true;
+  if (!probeEl) return true;
   const f = formatOf(file);
-  const mime = { mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', oga: 'audio/ogg', opus: 'audio/ogg; codecs=opus', flac: 'audio/flac', webm: 'audio/webm' }[f];
-  return !mime || audioProbe.canPlayType(mime) !== '';
+  const mime = { mp3: 'audio/mpeg', m4a: 'audio/mp4', mp4: 'video/mp4', m4v: 'video/mp4', mov: 'video/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', oga: 'audio/ogg', opus: 'audio/ogg; codecs=opus', flac: 'audio/flac', webm: 'video/webm' }[f];
+  return !mime || probeEl.canPlayType(mime) !== '';
 }
 
 let persistAsked = false;
 export async function importFiles(fileList, onProgress) {
-  const files = [...fileList].filter(f => SUPPORTED.test(f.name) || (f.type || '').startsWith('audio/'));
+  const files = [...fileList].filter(f => SUPPORTED.test(f.name) || /^(audio|video)\//.test(f.type || ''));
   const res = { added: 0, dup: 0, failed: 0, unsupported: 0, sessionOnly: 0, ids: [] };
   if (!persistAsked && navigator.storage?.persist) { persistAsked = true; navigator.storage.persist().catch(() => {}); }
   const known = new Set(L.tracks.map(t => t.sig).filter(Boolean));
@@ -220,12 +254,17 @@ export async function importFiles(fileList, onProgress) {
         art: meta.art || null,
         thumb: null,
       };
-      if (t.art) t.thumb = await makeThumb(t.art);
-      if (!t.duration) {
-        const d = await probeDuration(f);
-        if (d < 0) { res.unsupported++; continue; }
-        t.duration = d;
+      const mayBeVideo = VIDEO_EXT.test(f.name) || (f.type || '').startsWith('video/');
+      if (!t.duration || mayBeVideo) {
+        const p = await probe(f);
+        if (p.duration < 0) { res.unsupported++; continue; }
+        if (!t.duration) t.duration = p.duration;
+        if (p.width && p.height) {
+          t.video = true; t.width = p.width; t.height = p.height;
+          if (!t.art) t.art = await poster(f, t.duration);
+        }
       }
+      if (t.art) t.thumb = await makeThumb(t.art);
       if (L.persistent) {
         try { await DB.putTrack(t); }
         catch (e) {
@@ -234,7 +273,7 @@ export async function importFiles(fileList, onProgress) {
         }
       } else t.sessionOnly = true;
       L.tracks.push(t); known.add(sig); knownNames.add(f.name + '|' + f.size);
-      res.added++; res.ids.push(t.id);
+      res.added++; if (t.video) res.videos = (res.videos || 0) + 1; res.ids.push(t.id);
       if (res.added % 12 === 0) { rebuild(); emit(); }
     } catch (e) { console.warn('import failed', f.name, e); res.failed++; }
   }
@@ -288,6 +327,7 @@ const byAddedDesc = (a, b) => (b.added || 0) - (a.added || 0);
 export const recentlyAdded = (n = 60) => [...L.tracks].sort(byAddedDesc).slice(0, n);
 export const recentlyPlayed = (n = 40) => L.tracks.filter(t => lastPlayed(t.id)).sort((a, b) => lastPlayed(b.id) - lastPlayed(a.id)).slice(0, n);
 export const mostPlayed = (n = 25) => L.tracks.filter(t => plays(t.id) > 0).sort((a, b) => plays(b.id) - plays(a.id) || lastPlayed(b.id) - lastPlayed(a.id)).slice(0, n);
+export const videos = () => L.tracks.filter(t => t.video).sort(byAddedDesc);
 export const favoriteTracks = () => L.tracks.filter(t => L.favorites.has(t.id)).sort((a, b) => trackTitle(a).localeCompare(trackTitle(b)));
 export const totalDuration = ids => ids.reduce((s, id) => s + (get(id)?.duration || 0), 0);
 
