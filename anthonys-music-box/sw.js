@@ -1,15 +1,17 @@
 // App-shell cache only. Local playback never depends on this worker; music
 // lives in IndexedDB and plays from blob URLs even if the worker fails.
-const VERSION = 'amb-v2.3.0';
+// Network first for everything, so a new Netlify deploy shows up on the next
+// launch; the cache is only the offline fallback.
+const VERSION = 'amb-v2.3.1';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/app.css',
   './js/app.js', './js/ui.js', './js/icons.js', './js/library.js', './js/engine.js', './js/meta.js', './js/db.js', './js/radio.js',
-  './assets/wolf.webp', './assets/logo-full.webp', './assets/wolf.png', './assets/default-cover.webp', './assets/default-cover.jpg',
+  './assets/wolf.webp', './assets/logo-full.webp', './assets/default-cover.webp', './assets/default-cover.jpg',
   './assets/icon-192.png', './assets/icon-512.png', './assets/apple-touch-icon.png', './assets/favicon-32.png',
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -27,16 +29,15 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // radio streams & directory go straight to the network
   if (req.headers.has('range')) return;
-  // Network first for navigations so updates land; cache fallback keeps it working offline.
-  if (req.mode === 'navigate') {
-    e.respondWith(fetch(req).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); return r; })
-      .catch(() => caches.match('./index.html').then(r => r || caches.match('./'))));
-    return;
-  }
-  // Stale-while-revalidate for the shell's static files.
-  e.respondWith(caches.open(VERSION).then(async c => {
-    const hit = await c.match(req, { ignoreSearch: true });
-    const net = fetch(req).then(r => { if (r.ok) c.put(req, r.clone()); return r; }).catch(() => hit || Response.error());
-    return hit || net;
-  }));
+  e.respondWith((async () => {
+    const cache = await caches.open(VERSION);
+    try {
+      const res = await fetch(req, { cache: 'no-cache' });
+      if (res.ok) cache.put(req.mode === 'navigate' ? './index.html' : req, res.clone());
+      return res;
+    } catch {
+      const hit = await cache.match(req.mode === 'navigate' ? './index.html' : req, { ignoreSearch: true });
+      return hit || (req.mode === 'navigate' ? cache.match('./') : undefined) || Response.error();
+    }
+  })());
 });

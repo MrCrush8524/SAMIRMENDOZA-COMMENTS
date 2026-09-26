@@ -827,7 +827,7 @@ async function settingsSheet() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
   openSheet({ title: 'Settings', cls: 'tall', html: `
-    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.3</small></div></div>
+    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.3.1</small></div></div>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
       <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>
@@ -1256,7 +1256,21 @@ show(top(), 0);
 })();
 
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
-  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(e => console.warn('SW registration failed', e)); });
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });
+      reg.update().catch(() => {});
+      // Home Screen apps resume instead of relaunching, so look for a new deploy each time AMB comes back.
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+      let had = !!navigator.serviceWorker.controller;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!had) { had = true; return; }
+        // Never reload under the listener; offer it instead.
+        if (E.S.playing) toast('A new version of AMB is ready', { action: 'Reload', onAction: () => location.reload() });
+        else location.reload();
+      });
+    } catch (e) { console.warn('SW registration failed', e); }
+  });
 }
 
 export { toast };
