@@ -3,6 +3,7 @@
 import { icon } from './icons.js';
 import { readLS, writeLS } from './db.js';
 import { esc, plural } from './ui.js';
+import { t as tr, locale } from './i18n.js';
 
 const BOOT = ['https://de1.api.radio-browser.info', 'https://nl1.api.radio-browser.info', 'https://at1.api.radio-browser.info'];
 const TOP_GENRES = ['pop', 'rock', 'hip hop', 'jazz', 'classical', 'electronic', 'country', 'latin', 'rnb', 'reggaeton', 'salsa', 'news', 'talk', 'oldies', 'dance', 'chillout', 'ambient', 'lofi', 'blues', 'soul', 'metal', 'christian', 'sports', 'kpop'];
@@ -18,9 +19,13 @@ const httpsURL = v => { try { const u = new URL(v); return u.protocol === 'https
 const validMirror = s => /^https:\/\/[a-z0-9-]+\.api\.radio-browser\.info$/.test(s);
 const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const cap = s => String(s || '').replace(/\b\w/g, c => c.toUpperCase());
-let regionNames = null;
-try { regionNames = new Intl.DisplayNames([navigator.language || 'en'], { type: 'region' }); } catch { /* old engine */ }
-export const countryName = (code, fallback = '') => { try { return (code && regionNames?.of(code.toUpperCase())) || fallback || code; } catch { return fallback || code; } };
+const regionNamesFor = new Map();
+function regionNames() {
+  const l = locale();
+  if (!regionNamesFor.has(l)) { try { regionNamesFor.set(l, new Intl.DisplayNames([l], { type: 'region' })); } catch { regionNamesFor.set(l, null); } }
+  return regionNamesFor.get(l);
+}
+export const countryName = (code, fallback = '') => { try { return (code && regionNames()?.of(code.toUpperCase())) || fallback || code; } catch { return fallback || code; } };
 
 // The listener's country from their device language/region settings (no location access needed).
 export function homeCountry() {
@@ -47,7 +52,7 @@ async function mirrors() {
 async function api(path) {
   const list = [...new Set([server, ...(await mirrors())].filter(validMirror))].slice(0, 3);
   for (const h of list) { try { const d = await fetchJSON(h + path); server = h; return d; } catch {} }
-  throw new Error('Couldn’t reach the station directory. Check your internet connection and try again. Your favorite stations still work.');
+  throw new Error(tr('Couldn’t reach the station directory. Check your internet connection and try again. Your favorite stations still work.'));
 }
 // Countries and genres change slowly: keep them for a day.
 async function cachedApi(key, path) {
@@ -87,17 +92,17 @@ export function stationRow(s) {
   const on = isSaved(s.id);
   return `<div class="row station" data-station-id="${esc(s.id)}">
     <span class="lead"><span class="st-icon">${s.favicon ? `<img src="${esc(s.favicon)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}${icon('radio')}</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span>
-    <button class="rt st-play" data-st-play="${esc(s.id)}"><b>${esc(s.name)}</b><small>${esc(meta || 'Live stream')}</small></button>
-    <button class="icon-btn ${on ? 'on' : ''}" data-st-fav="${esc(s.id)}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Save'} ${esc(s.name)} ${on ? 'from' : 'to'} favorites">${icon(on ? 'heartFill' : 'heart')}</button>
-    <button class="icon-btn more" data-st-more="${esc(s.id)}" aria-label="More about ${esc(s.name)}">${icon('more')}</button>
+    <button class="rt st-play" data-st-play="${esc(s.id)}"><b>${esc(s.name)}</b><small>${esc(meta || tr('Live stream'))}</small></button>
+    <button class="icon-btn ${on ? 'on' : ''}" data-st-fav="${esc(s.id)}" aria-pressed="${on}" aria-label="${esc(tr(on ? 'Remove {name} from favorites' : 'Save {name} to favorites', { name: s.name }))}">${icon(on ? 'heartFill' : 'heart')}</button>
+    <button class="icon-btn more" data-st-more="${esc(s.id)}" aria-label="${esc(tr('More about {name}', { name: s.name }))}">${icon('more')}</button>
   </div>`;
 }
 
 export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, brandRow, navRow, sectionHead, markPlaying, rerender }) {
   const list = arr => `<div class="list">${arr.map(stationRow).join('')}</div>`;
-  const loading = label => `<div class="radio-loading"><span class="spinner"></span><p>${esc(label || 'Finding stations…')}</p></div>`;
-  const failed = msg => `<div class="notice glass">${icon('warn')}<p>${esc(msg)}</p></div><div class="center-link"><button class="btn glass-btn" data-radio-retry>Try Again</button></div>`;
-  const emptyMsg = msg => `<div class="empty small">${icon('radio', 'big-i')}<p>${esc(msg)}</p></div>`;
+  const loading = label => `<div class="radio-loading"><span class="spinner"></span><p>${esc(tr(label || 'Finding stations…'))}</p></div>`;
+  const failed = msg => `<div class="notice glass">${icon('warn')}<p>${esc(msg)}</p></div><div class="center-link"><button class="btn glass-btn" data-radio-retry>${tr('Try Again')}</button></div>`;
+  const emptyMsg = msg => `<div class="empty small">${icon('radio', 'big-i')}<p>${esc(tr(msg))}</p></div>`;
 
   // Generic async loader for a page entry: e.data holds results so re-renders don't refetch.
   async function fill(el, e, loader) {
@@ -120,7 +125,7 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
   function play(s) {
     markRecent(s);
     E.playStation(s);
-    toast(`Tuning in to ${s.name}…`);
+    toast(tr('Tuning in to {name}…', { name: s.name }));
   }
 
   // One delegated handler for every radio control on any screen.
@@ -149,7 +154,7 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
 
   async function loadMore(el, e) {
     const d = e.data; if (!d?.items || !e.loader) return;
-    const btn = el.querySelector('[data-radio-more]'); if (btn) { btn.disabled = true; btn.textContent = 'Loading…'; }
+    const btn = el.querySelector('[data-radio-more]'); if (btn) { btn.disabled = true; btn.textContent = tr('Loading…'); }
     try {
       const next = await e.loader(d.offset + PAGE_SIZE);
       d.offset += PAGE_SIZE; d.items = dedupe([...d.items, ...next]); d.more = next.length >= PAGE_SIZE * 0.8;
@@ -159,14 +164,14 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
 
   function nearMe(el, e) {
     if (!navigator.geolocation) { toast('Location isn’t available here. Showing stations in your country.'); return; }
-    const btn = el.querySelector('[data-radio-near]'); if (btn) { btn.disabled = true; btn.textContent = 'Finding your location…'; }
+    const btn = el.querySelector('[data-radio-near]'); if (btn) { btn.disabled = true; btn.textContent = tr('Finding your location…'); }
     navigator.geolocation.getCurrentPosition(pos => {
       const { latitude, longitude } = pos.coords;
       e.p.near = true;
       e.loader = off => stations({ geo_lat: latitude.toFixed(3), geo_long: longitude.toFixed(3), geo_distance: '80000', order: 'clickcount' }, off);
       fill(el, e, e.loader);
     }, () => {
-      if (btn) { btn.disabled = false; btn.textContent = 'Use My Location'; }
+      if (btn) { btn.disabled = false; btn.textContent = tr('Use My Location'); }
       toast('Couldn’t get your location, so these are stations in your country.');
     }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 6e5 });
   }
@@ -174,10 +179,10 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
   function stationMenu(s) {
     if (!s) return;
     const on = isSaved(s.id);
-    actionSheet({ title: s.name, sub: [countryName(s.country, ''), s.state, s.codec, s.bitrate ? s.bitrate + ' kbps' : ''].filter(Boolean).join(' · ') || 'Live stream', items: [
+    actionSheet({ title: s.name, sub: [countryName(s.country, ''), s.state, s.codec, s.bitrate ? s.bitrate + ' kbps' : ''].filter(Boolean).join(' · ') || tr('Live stream'), items: [
       { label: 'Play', icon: 'play', run: () => play(s) },
       { label: on ? 'Remove from Favorites' : 'Add to Favorites', icon: on ? 'heartFill' : 'heart', run: () => { toggleSaved(s); rerender('radio'); } },
-      s.country ? { label: `More from ${countryName(s.country)}`, icon: 'globe', run: () => go('radioList', { kind: 'country', value: s.country }) } : null,
+      s.country ? { label: tr('More from {country}', { country: countryName(s.country) }), icon: 'globe', run: () => go('radioList', { kind: 'country', value: s.country }) } : null,
       s.homepage ? { label: 'Open Station Website', icon: 'link', run: () => window.open(s.homepage, '_blank', 'noopener') } : null,
       recent.some(x => x.id === s.id) ? { label: 'Remove from Recently Played', icon: 'x', run: () => { recent = recent.filter(x => x.id !== s.id); writeLS('amb-radio-recent', recent); rerender('radio'); } } : null,
     ] });
@@ -194,30 +199,31 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
   }
 
   const LIST_TITLES = { world: 'Around the World', favorites: 'Favorites', recent: 'Recently Played', local: 'Local Stations', search: 'Search' };
-  const listTitle = p => p.kind === 'country' ? countryName(p.value, p.label) : p.kind === 'tag' ? cap(p.value) : p.kind === 'search' ? `“${p.value}”` : LIST_TITLES[p.kind] || 'Radio';
+  const genreName = g => tr(cap(g));
+  const listTitle = p => p.kind === 'country' ? countryName(p.value, p.label) : p.kind === 'tag' ? genreName(p.value) : p.kind === 'search' ? `“${p.value}”` : tr(LIST_TITLES[p.kind] || 'Radio');
 
   const PAGES = {
     radio: {
-      title: () => 'Radio',
-      actions: () => `<button class="icon-btn" data-act="radioCustom" aria-label="Add a stream">${icon('plus')}</button>`,
+      title: () => tr('Radio'),
+      actions: () => `<button class="icon-btn" data-act="radioCustom" aria-label="${tr('Add a stream')}">${icon('plus')}</button>`,
       html: () => {
         const hc = homeCountry();
-        return `<div class="page-pad">${brandRow()}${largeTitle('Radio')}
-        <p class="meta-line">Live stations from around the world. Radio uses your internet connection.</p>
-        <form class="radio-search" data-radio-search><label class="search-field glass">${icon('search')}<input name="q" type="search" placeholder="Station name or call letters" enterkeyhint="search" autocomplete="off" aria-label="Search radio stations"></label></form>
+        return `<div class="page-pad">${brandRow()}${largeTitle(tr('Radio'))}
+        <p class="meta-line">${tr('Live stations from around the world. Radio uses your internet connection.')}</p>
+        <form class="radio-search" data-radio-search><label class="search-field glass">${icon('search')}<input name="q" type="search" placeholder="${tr('Station name or call letters')}" enterkeyhint="search" autocomplete="off" aria-label="${tr('Search radio stations')}"></label></form>
         <div class="group glass radio-hub">
-          ${navRow({ go: 'radioList|world', iconName: 'globe', label: 'Around the World', count: '' })}
-          ${navRow({ go: 'radioCountries', iconName: 'map', label: 'Countries', count: '' })}
-          ${navRow({ go: 'radioGenres', iconName: 'genre', label: 'Genres', count: '' })}
-          ${navRow({ go: 'radioList|favorites', iconName: 'heart', label: 'Favorites', count: saved.length || '' })}
-          ${navRow({ go: 'radioList|recent', iconName: 'clock', label: 'Recently Played', count: recent.length || '' })}
-          ${navRow({ go: 'radioList|local', iconName: 'pin', label: 'Local Stations', count: countryName(hc) })}
+          ${navRow({ go: 'radioList|world', iconName: 'globe', label: tr('Around the World'), count: '' })}
+          ${navRow({ go: 'radioCountries', iconName: 'map', label: tr('Countries'), count: '' })}
+          ${navRow({ go: 'radioGenres', iconName: 'genre', label: tr('Genres'), count: '' })}
+          ${navRow({ go: 'radioList|favorites', iconName: 'heart', label: tr('Favorites'), count: saved.length || '' })}
+          ${navRow({ go: 'radioList|recent', iconName: 'clock', label: tr('Recently Played'), count: recent.length || '' })}
+          ${navRow({ go: 'radioList|local', iconName: 'pin', label: tr('Local Stations'), count: countryName(hc) })}
         </div>
         ${saved.length ? sectionHead('Your Favorites', saved.length > 5 ? 'radioList|favorites' : '') + list(saved.slice(0, 5)) : ''}
         ${recent.length ? sectionHead('Recently Played', recent.length > 5 ? 'radioList|recent' : '') + list(recent.slice(0, 5)) : ''}
         ${sectionHead('Popular Genres')}
-        <div class="chips wrap">${TOP_GENRES.slice(0, 12).map(g => `<button class="chip" data-go="radioList|tag|${esc(g)}">${esc(cap(g))}</button>`).join('')}</div>
-        <div class="center-link"><button class="btn glass-btn" data-act="radioCustom">${icon('plus')}<span>Add a Stream</span></button></div>
+        <div class="chips wrap">${TOP_GENRES.slice(0, 12).map(g => `<button class="chip" data-go="radioList|tag|${esc(g)}">${esc(genreName(g))}</button>`).join('')}</div>
+        <div class="center-link"><button class="btn glass-btn" data-act="radioCustom">${icon('plus')}<span>${tr('Add a Stream')}</span></button></div>
       </div>`;
       },
       mount: el => {
@@ -237,18 +243,18 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
             const counts = new Map();
             for (const s of items) if (s.state) counts.set(s.state, (counts.get(s.state) || 0) + 1);
             const states = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 24).map(x => x[0]);
-            if (states.length > 1) chips = `<p class="chip-label">Cities & regions</p><div class="chips">${states.map(s => `<button class="chip ${p.state === s ? 'on' : ''}" data-radio-state="${esc(s)}" aria-pressed="${p.state === s}">${esc(s)}</button>`).join('')}</div>`;
+            if (states.length > 1) chips = `<p class="chip-label">${tr('Cities & regions')}</p><div class="chips">${states.map(s => `<button class="chip ${p.state === s ? 'on' : ''}" data-radio-state="${esc(s)}" aria-pressed="${p.state === s}">${esc(s)}</button>`).join('')}</div>`;
             if (p.state) items = items.filter(s => s.state === p.state);
           }
           if (!items.length) return chips + emptyMsg(p.kind === 'favorites' ? 'Tap the heart on any station to keep it here.' : p.kind === 'recent' ? 'Stations you play show up here.' : 'No stations found. Try another search, country or genre.');
-          return chips + list(items) + (d.more && !p.state && e.loader ? `<div class="center-link"><button class="btn glass-btn" data-radio-more>Show More Stations</button></div>` : '');
+          return chips + list(items) + (d.more && !p.state && e.loader ? `<div class="center-link"><button class="btn glass-btn" data-radio-more>${tr('Show More Stations')}</button></div>` : '');
         };
-        const sub = p.kind === 'world' ? 'The most-played stations on Earth right now.'
-          : p.kind === 'local' ? (p.near ? 'Stations near you.' : `Stations in ${countryName(homeCountry())}, from your device’s region setting.`)
-          : p.kind === 'tag' ? 'Stations playing this genre worldwide.'
-          : p.kind === 'country' ? 'The most-played stations in this country.' : '';
+        const sub = p.kind === 'world' ? tr('The most-played stations on Earth right now.')
+          : p.kind === 'local' ? (p.near ? tr('Stations near you.') : tr('Stations in {country}, from your device’s region setting.', { country: countryName(homeCountry()) }))
+          : p.kind === 'tag' ? tr('Stations playing this genre worldwide.')
+          : p.kind === 'country' ? tr('The most-played stations in this country.') : '';
         const nearBtn = p.kind === 'local' && !p.near && navigator.geolocation && !window.ambDesktop
-          ? `<button class="btn glass-btn near-btn" data-radio-near>${icon('pin')}<span>Use My Location</span></button>` : '';
+          ? `<button class="btn glass-btn near-btn" data-radio-near>${icon('pin')}<span>${tr('Use My Location')}</span></button>` : '';
         return `<div class="page-pad">${largeTitle(listTitle(p))}${sub ? `<p class="meta-line">${esc(sub)}</p>` : ''}${nearBtn}<div class="radio-body">${bodyFor(e)}</div></div>`;
       },
       mount: (el, p, e) => {
@@ -267,14 +273,14 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
     },
 
     radioCountries: {
-      title: () => 'Countries',
+      title: () => tr('Countries'),
       html: (p, e) => {
         e.bodyHTML = d => {
           const q = (p.q || '').toLowerCase();
-          const rows = d.items.filter(c => !q || c.label.toLowerCase().includes(q) || c.code.toLowerCase() === q);
-          return rows.length ? `<div class="list">${rows.map(c => navRow({ go: `radioList|country|${c.code}`, label: c.label, count: plural(c.count, 'station'), art: `<span class="cc">${esc(c.code)}</span>` })).join('')}</div>` : emptyMsg('No countries match.');
+          const rows = d.items.filter(c => !q || countryName(c.code, c.label).toLowerCase().includes(q) || c.code.toLowerCase() === q);
+          return rows.length ? `<div class="list">${rows.map(c => navRow({ go: `radioList|country|${c.code}`, label: countryName(c.code, c.label), count: plural(c.count, 'station'), art: `<span class="cc">${esc(c.code)}</span>` })).join('')}</div>` : emptyMsg('No countries match.');
         };
-        return `<div class="page-pad">${largeTitle('Countries')}<label class="search-field glass small">${icon('search')}<input type="search" data-cq placeholder="Find a country" autocomplete="off" value="${esc(p.q || '')}" aria-label="Find a country"></label><div class="radio-body">${bodyFor(e)}</div></div>`;
+        return `<div class="page-pad">${largeTitle(tr('Countries'))}<label class="search-field glass small">${icon('search')}<input type="search" data-cq placeholder="${tr('Find a country')}" autocomplete="off" value="${esc(p.q || '')}" aria-label="${tr('Find a country')}"></label><div class="radio-body">${bodyFor(e)}</div></div>`;
       },
       mount: (el, p, e) => {
         el._entry = e;
@@ -295,11 +301,11 @@ export function createRadio({ go, toast, actionSheet, formSheet, E, largeTitle, 
     },
 
     radioGenres: {
-      title: () => 'Genres',
+      title: () => tr('Genres'),
       html: (p, e) => {
-        e.bodyHTML = d => `${sectionHead('Popular')}<div class="chips wrap">${TOP_GENRES.map(g => `<button class="chip" data-go="radioList|tag|${esc(g)}">${esc(cap(g))}</button>`).join('')}</div>
-          ${sectionHead('All Genres')}<div class="list">${d.items.map(t => navRow({ go: `radioList|tag|${t.name}`, label: cap(t.name), count: plural(t.count, 'station') })).join('')}</div>`;
-        return `<div class="page-pad">${largeTitle('Genres')}<div class="radio-body">${bodyFor(e)}</div></div>`;
+        e.bodyHTML = d => `${sectionHead('Popular')}<div class="chips wrap">${TOP_GENRES.map(g => `<button class="chip" data-go="radioList|tag|${esc(g)}">${esc(genreName(g))}</button>`).join('')}</div>
+          ${sectionHead('All Genres')}<div class="list">${d.items.map(t => navRow({ go: `radioList|tag|${t.name}`, label: genreName(t.name), count: plural(t.count, 'station') })).join('')}</div>`;
+        return `<div class="page-pad">${largeTitle(tr('Genres'))}<div class="radio-body">${bodyFor(e)}</div></div>`;
       },
       mount: (el, p, e) => {
         el._entry = e;

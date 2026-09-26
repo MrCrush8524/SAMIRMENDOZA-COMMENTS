@@ -2,6 +2,7 @@
 // favorites and local listening stats. All local.
 import * as DB from './db.js';
 import { readMetadata, fromFilename, formatOf, signature, makeThumb } from './meta.js';
+import { t as tr, onLang } from './i18n.js';
 
 const listeners = new Set();
 export const on = fn => (listeners.add(fn), () => listeners.delete(fn));
@@ -27,8 +28,8 @@ export const L = {
 if (!L.playlists || typeof L.playlists !== 'object' || Array.isArray(L.playlists)) L.playlists = {};
 
 export const get = id => L.byId.get(id);
-export const trackTitle = t => t?.title || 'Untitled';
-export const trackArtist = t => t?.artist || 'Unknown Artist';
+export const trackTitle = t => (t?.title && t.title !== 'Untitled' ? t.title : tr('Untitled'));
+export const trackArtist = t => t?.artist || tr('Unknown Artist');
 export const albumKeyOf = t => {
   const al = (t.album || '').trim();
   if (!al) return '~single~' + trackArtist(t).toLowerCase();
@@ -73,7 +74,7 @@ function rebuild() {
     }
     const k = albumKeyOf(t);
     let a = albums.get(k);
-    if (!a) albums.set(k, a = { key: k, single: !t.album, title: t.album || 'Unknown Album', ids: [], artists: new Set(), albumArtist: t.albumArtist || '', year: 0, genre: '', added: 0, artId: null });
+    if (!a) albums.set(k, a = { key: k, single: !t.album, title: t.album || tr('Unknown Album'), ids: [], artists: new Set(), albumArtist: t.albumArtist || '', year: 0, genre: '', added: 0, artId: null });
     a.ids.push(t.id); a.artists.add(trackArtist(t));
     if (t.year && !a.year) a.year = t.year;
     if (t.genre && !a.genre) a.genre = t.genre;
@@ -92,12 +93,14 @@ function rebuild() {
     if (g) { let x = genres.get(g); if (!x) genres.set(g, x = { name: g, ids: [] }); x.ids.push(t.id); }
   }
   for (const a of albums.values()) {
-    a.artist = a.albumArtist || (a.artists.size === 1 ? [...a.artists][0] : 'Various Artists');
+    a.artist = a.albumArtist || (a.artists.size === 1 ? [...a.artists][0] : tr('Various Artists'));
     a.ids.sort((x, y) => { const p = get(x), q = get(y); return (p.disc || 1) - (q.disc || 1) || (p.track || 999) - (q.track || 999) || trackTitle(p).localeCompare(trackTitle(q)); });
   }
   for (const r of artists.values()) if (!r.ids.length) r.ids = [...r.albums].flatMap(k => albums.get(k)?.ids || []);
   L.albums = albums; L.artists = artists; L.genres = genres;
 }
+
+onLang(() => { rebuild(); emit(); });
 
 export async function load() {
   try {

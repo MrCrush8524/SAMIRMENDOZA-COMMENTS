@@ -18,9 +18,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/logo-full.webp" as="image" type="image/webp">
 <link rel="preload" href="assets/wolf.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="css/app.css?v=2.6.0">
-<script type="module" src="js/app.js?v=2.6.0"></script>
-<meta name="amb-build" content="2.6.0">
+<link rel="stylesheet" href="css/app.css?v=2.7.0">
+<script type="module" src="js/app.js?v=2.7.0"></script>
+<meta name="amb-build" content="2.7.0">
 </head>
 <body>
 <div id="boot" aria-hidden="true">
@@ -30,19 +30,19 @@
 
 <div id="bg" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="grain"></i></div>
 
-<aside id="sidebar" aria-label="Sidebar">
+<aside id="sidebar" aria-label="Sidebar" data-i18n-aria="Sidebar">
   <button class="sb-brand" data-side="about" aria-label="About Anthony's Music Box"><img src="assets/wolf.webp" alt=""><div><b>Anthony's Music Box</b><small>AMB</small></div></button>
-  <nav class="sb-tabs" aria-label="Main">
-    <button data-tab="home" class="on"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span>Home</span></button>
-    <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Library</span></button>
-    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Radio</span></button>
-    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Playlists</span></button>
-    <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Search</span></button>
-    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Settings</span></button>
+  <nav class="sb-tabs" aria-label="Main" data-i18n-aria="Main">
+    <button data-tab="home" class="on"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span data-i18n="Home">Home</span></button>
+    <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="Library">Library</span></button>
+    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="Radio">Radio</span></button>
+    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="Playlists">Playlists</span></button>
+    <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span data-i18n="Search">Search</span></button>
+    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span data-i18n="Settings">Settings</span></button>
   </nav>
   <div id="sidebarLinks" class="sb-links"></div>
   <div class="sb-foot">
-    <button data-act="addMusic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5v15M4.5 12h15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Add Music</span></button>
+    <button data-act="addMusic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5v15M4.5 12h15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span data-i18n="Add Music">Add Music</span></button>
   </div>
 </aside>
 
@@ -58,82 +58,82 @@
 
 <div id="dock">
   <div id="importBar" class="glass" hidden role="status" aria-live="polite">
-    <span class="spinner"></span><div><b id="importText">Importing</b><small id="importName"></small></div>
+    <span class="spinner"></span><div><b id="importText" data-i18n="Importing">Importing</b><small id="importName"></small></div>
     <div class="import-track"><i id="importFill"></i></div>
   </div>
   <div id="selbar" class="glass" hidden>
-    <button class="link" data-act="selAll">All</button>
-    <span id="selCount">Select songs</span>
+    <button class="link" data-act="selAll" data-i18n="All">All</button>
+    <span id="selCount" data-i18n="Select songs">Select songs</span>
     <div class="sel-actions">
-      <button class="icon-btn" data-act="selFav" aria-label="Favorite selected">
+      <button class="icon-btn" data-act="selFav" aria-label="Favorite selected" data-i18n-aria="Favorite selected">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></button>
-      <button class="icon-btn" data-act="selNext" aria-label="Play selected next">
+      <button class="icon-btn" data-act="selNext" aria-label="Play selected next" data-i18n-aria="Play selected next">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M4 11h10M4 16h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M15 13.5v6l5-3z" fill="currentColor"/></svg></button>
-      <button class="icon-btn" data-act="selAdd" aria-label="Add selected to a playlist">
+      <button class="icon-btn" data-act="selAdd" aria-label="Add selected to a playlist" data-i18n-aria="Add selected to a playlist">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h12M4 11h12M4 16h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M17 13.5v7M13.5 17h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button>
-      <button class="icon-btn danger" data-act="selRemove" aria-label="Remove selected from AMB">
+      <button class="icon-btn danger" data-act="selRemove" aria-label="Remove selected from AMB" data-i18n-aria="Remove selected from AMB">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5h15M9.5 6.5V4.8h5v1.7M6.5 6.5l.9 12.2a1.5 1.5 0 0 0 1.5 1.3h6.2a1.5 1.5 0 0 0 1.5-1.3l.9-12.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </div>
   <div id="mini" class="glass" hidden>
-    <button class="mini-open" aria-label="Open Now Playing">
+    <button class="mini-open" aria-label="Open Now Playing" data-i18n-aria="Open Now Playing">
       <img id="miniArt" src="assets/default-cover.webp" alt="" draggable="false">
       <span class="mini-text"><b id="miniTitle"></b><small id="miniArtist"></small></span>
     </button>
-    <button id="miniPlay" class="icon-btn mini-btn" aria-label="Play"></button>
-    <button id="miniPip" class="icon-btn mini-btn" aria-label="Picture in Picture" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg></button>
-    <button id="miniNext" class="icon-btn mini-btn" aria-label="Next song"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2v13.6a.9.9 0 0 0 1.38.76l10.1-6.8a.9.9 0 0 0 0-1.52L6.38 4.44A.9.9 0 0 0 5 5.2z" fill="currentColor"/><rect x="17.6" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
+    <button id="miniPlay" class="icon-btn mini-btn" aria-label="Play" data-i18n-aria="Play"></button>
+    <button id="miniPip" class="icon-btn mini-btn" aria-label="Picture in Picture" data-i18n-aria="Picture in Picture" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg></button>
+    <button id="miniNext" class="icon-btn mini-btn" aria-label="Next song" data-i18n-aria="Next song"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2v13.6a.9.9 0 0 0 1.38.76l10.1-6.8a.9.9 0 0 0 0-1.52L6.38 4.44A.9.9 0 0 0 5 5.2z" fill="currentColor"/><rect x="17.6" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
     <span class="mini-prog" aria-hidden="true"><i id="miniProg"></i></span>
   </div>
-  <nav id="tabbar" class="glass" aria-label="Main">
-    <button data-tab="home" class="on" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span>Home</span></button>
-    <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Library</span></button>
-    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Radio</span></button>
-    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Playlists</span></button>
-    <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Search</span></button>
-    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Settings</span></button>
+  <nav id="tabbar" class="glass" aria-label="Main" data-i18n-aria="Main">
+    <button data-tab="home" class="on" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span data-i18n="Home">Home</span></button>
+    <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="Library">Library</span></button>
+    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="Radio">Radio</span></button>
+    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="Playlists">Playlists</span></button>
+    <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span data-i18n="Search">Search</span></button>
+    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span data-i18n="Settings">Settings</span></button>
   </nav>
 </div>
 
-<section id="np" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Now Playing">
+<section id="np" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Now Playing" data-i18n-aria="Now Playing">
   <div class="np-bg" aria-hidden="true"><img class="np-bgimg" alt=""><img class="np-bgimg" alt=""><i class="np-shade"></i></div>
   <div class="np-inner">
     <div class="np-top">
-      <button id="npClose" class="icon-btn" aria-label="Close Now Playing"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button id="npClose" class="icon-btn" aria-label="Close Now Playing" data-i18n-aria="Close Now Playing"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="np-label"><span>ANTHONY'S MUSIC BOX</span><small id="npContext"></small></div>
-      <button id="npMore" class="icon-btn" aria-label="More options"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button>
+      <button id="npMore" class="icon-btn" aria-label="More options" data-i18n-aria="More options"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button>
     </div>
     <div class="np-body">
       <div class="np-stage">
-        <div class="np-artwrap"><img id="npArt" src="assets/default-cover.webp" alt="" draggable="false"><video id="video" playsinline webkit-playsinline preload="auto" autopictureinpicture x-webkit-airplay="allow" aria-label="Video"></video><div class="pip-note" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span>Playing in Picture in Picture</span></div><span class="live-badge">LIVE</span></div>
+        <div class="np-artwrap"><img id="npArt" src="assets/default-cover.webp" alt="" draggable="false"><video id="video" playsinline webkit-playsinline preload="auto" autopictureinpicture x-webkit-airplay="allow" aria-label="Video" data-i18n-aria="Video"></video><div class="pip-note" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span>Playing in Picture in Picture</span></div><span class="live-badge" data-i18n="LIVE">LIVE</span></div>
         <div id="lyricsView" class="np-lyrics" hidden aria-live="off"></div>
       </div>
       <div class="np-panel">
         <div class="np-meta">
           <div class="np-titles"><h2 id="npTitle"></h2><button id="npArtist" class="np-artist"></button></div>
-          <button id="npFav" class="icon-btn np-fav" aria-label="Add to Favorites"></button>
+          <button id="npFav" class="icon-btn np-fav" aria-label="Add to Favorites" data-i18n-aria="Add to Favorites"></button>
         </div>
-        <div id="npError" class="np-error" hidden><span id="npErrorText"></span><button id="npErrSkip" class="link">Skip</button></div>
+        <div id="npError" class="np-error" hidden><span id="npErrorText"></span><button id="npErrSkip" class="link" data-i18n="Skip">Skip</button></div>
         <div class="np-progress">
           <div id="seekRail" class="rail"><span class="fill"></span></div>
-          <div class="times"><span id="npElapsed">0:00</span><span class="live-pill">● LIVE</span><span id="npRemain">-0:00</span></div>
+          <div class="times"><span id="npElapsed">0:00</span><span class="live-pill">● <span data-i18n="LIVE">LIVE</span></span><span id="npRemain">-0:00</span></div>
         </div>
         <div class="np-transport">
-          <button id="npPrev" class="icon-btn tr" aria-label="Previous"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5.2v13.6a.9.9 0 0 1-1.38.76L7.52 12.76a.9.9 0 0 1 0-1.52l10.1-6.8A.9.9 0 0 1 19 5.2z" fill="currentColor"/><rect x="3.8" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
-          <button id="npPlay" class="icon-btn tr big" aria-label="Play"></button>
-          <button id="npNext" class="icon-btn tr" aria-label="Next"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2v13.6a.9.9 0 0 0 1.38.76l10.1-6.8a.9.9 0 0 0 0-1.52L6.38 4.44A.9.9 0 0 0 5 5.2z" fill="currentColor"/><rect x="17.6" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
+          <button id="npPrev" class="icon-btn tr" aria-label="Previous" data-i18n-aria="Previous"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5.2v13.6a.9.9 0 0 1-1.38.76L7.52 12.76a.9.9 0 0 1 0-1.52l10.1-6.8A.9.9 0 0 1 19 5.2z" fill="currentColor"/><rect x="3.8" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
+          <button id="npPlay" class="icon-btn tr big" aria-label="Play" data-i18n-aria="Play"></button>
+          <button id="npNext" class="icon-btn tr" aria-label="Next" data-i18n-aria="Next"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.2v13.6a.9.9 0 0 0 1.38.76l10.1-6.8a.9.9 0 0 0 0-1.52L6.38 4.44A.9.9 0 0 0 5 5.2z" fill="currentColor"/><rect x="17.6" y="4.5" width="2.6" height="15" rx="1.1" fill="currentColor"/></svg></button>
         </div>
         <div id="npVolRow" class="np-volume">
           <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3l4-3.5v12l-4-3.5H4z" fill="currentColor"/></svg>
           <div id="volRail" class="rail"><span class="fill"></span></div>
           <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5h3l4-3.5v12l-4-3.5H3z" fill="currentColor"/><path d="M14 9a4 4 0 0 1 0 6M16.8 6.3a8 8 0 0 1 0 11.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <button id="npModes" class="np-modes" hidden aria-label="Playback modes, open queue"></button>
+        <button id="npModes" class="np-modes" hidden aria-label="Playback modes, open queue" data-i18n-aria="Playback modes, open queue"></button>
         <div class="np-dock glass">
-          <button id="npLyrics" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3.5" width="15" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8.5h8M8 12h8M8 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Lyrics</span></button>
-          <button id="npPip" hidden aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span>Picture in Picture</span></button>
-          <button id="npOutput" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8l-4-5z" fill="currentColor"/></svg><span>Output</span></button>
-          <button id="npQueue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Queue</span></button>
+          <button id="npLyrics" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3.5" width="15" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8.5h8M8 12h8M8 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="Lyrics">Lyrics</span></button>
+          <button id="npPip" hidden aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="11" width="7.5" height="6" rx="1.3" fill="currentColor"/></svg><span data-i18n="Picture in Picture">Picture in Picture</span></button>
+          <button id="npOutput" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8l-4-5z" fill="currentColor"/></svg><span data-i18n="Output">Output</span></button>
+          <button id="npQueue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="Queue">Queue</span></button>
         </div>
       </div>
     </div>
@@ -144,13 +144,13 @@
   <div class="scrim"></div>
   <div class="sheet glass" role="dialog" aria-modal="true">
     <div class="sheet-grab" aria-hidden="true"><i></i></div>
-    <div class="sheet-head"><h2 class="sheet-title"></h2><div class="sheet-right"></div><button class="icon-btn sheet-close" aria-label="Close"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
+    <div class="sheet-head"><h2 class="sheet-title"></h2><div class="sheet-right"></div><button class="icon-btn sheet-close" aria-label="Close" data-i18n-aria="Close"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
     <div class="sheet-body"></div>
   </div>
 </div>
 
 <div id="toasts" role="status" aria-live="polite"></div>
-<div id="dropHint" aria-hidden="true"><div class="glass"><b>Drop music to add it to AMB</b><small>Nothing is uploaded</small></div></div>
+<div id="dropHint" aria-hidden="true"><div class="glass"><b data-i18n="Drop music to add it to AMB">Drop music to add it to AMB</b><small data-i18n="Nothing is uploaded">Nothing is uploaded</small></div></div>
 
 <input id="fileInput" type="file" accept="audio/*,video/*,.mp3,.m4a,.aac,.wav,.flac,.ogg,.oga,.opus,.mp4,.m4v,.mov,.webm" multiple hidden>
 <input id="folderInput" type="file" webkitdirectory multiple hidden>

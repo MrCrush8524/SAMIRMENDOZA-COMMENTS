@@ -1,4 +1,5 @@
 // Android app bridge (Capacitor). Does nothing in a normal browser.
+import { t as tr } from './i18n.js';
 // Mirrors the player into the native media notification / lock screen and
 // routes the hardware back button through AMB's own navigation.
 const Cap = window.Capacitor;
@@ -38,7 +39,7 @@ export function initNative({ E, Lib, onBack }) {
     sentAt = Date.now(); sentPos = S.time || 0; sentPlaying = playing;
     await Media?.update({
       title: st ? st.name : Lib.trackTitle(t),
-      artist: st ? 'Live Radio' : Lib.trackArtist(t),
+      artist: st ? tr('Live Radio') : Lib.trackArtist(t),
       album: st ? '' : (t.album || "Anthony's Music Box"),
       playing, live: !!st,
       duration: st ? 0 : (S.duration || t.duration || 0),

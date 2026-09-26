@@ -1,11 +1,13 @@
 // Shared UI helpers: escaping, formatting, toasts, sheets, sliders, row renderers.
 import { icon } from './icons.js';
 import * as Lib from './library.js';
+import { t as tr, locale } from './i18n.js';
 
 export const $ = (s, r = document) => r.querySelector(s);
 export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-export const plural = (n, w, p = w + 's') => `${n.toLocaleString()} ${n === 1 ? w : p}`;
+// "3 songs" in the interface language (dictionary keys look like '{n} song' / '{n} songs').
+export const plural = (n, w, p = w + 's') => tr(n === 1 ? `{n} ${w}` : `{n} ${p}`, { n: n.toLocaleString(locale()) });
 export function fmtTime(s) {
   s = Math.max(0, Math.floor(s || 0));
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = String(s % 60).padStart(2, '0');
@@ -14,7 +16,7 @@ export function fmtTime(s) {
 export function fmtDur(s) {
   s = Math.round(s || 0); if (!s) return '';
   const h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
-  return h ? `${h} hr ${m} min` : `${Math.max(1, m)} min`;
+  return h ? tr('{h} hr {m} min', { h, m }) : tr('{m} min', { m: Math.max(1, m) });
 }
 export function fmtBytes(b) {
   if (!b) return '0 KB';
@@ -32,7 +34,7 @@ export function toast(msg, { action, onAction, ms = 3200, kind = '' } = {}) {
   const host = $('#toasts');
   const el = document.createElement('div');
   el.className = 'toast glass ' + kind;
-  el.innerHTML = `<span>${esc(msg)}</span>${action ? `<button class="toast-act">${esc(action)}</button>` : ''}`;
+  el.innerHTML = `<span>${esc(tr(msg))}</span>${action ? `<button class="toast-act">${esc(tr(action))}</button>` : ''}`;
   host.appendChild(el);
   requestAnimationFrame(() => el.classList.add('in'));
   const kill = () => { el.classList.remove('in'); setTimeout(() => el.remove(), 260); };
@@ -74,7 +76,7 @@ export const sheetOpen = () => !!sheetState;
 export function actionSheet({ title = '', sub = '', art = '', items = [] }) {
   const head = title ? `<div class="as-head">${art ? `<img src="${esc(art)}" alt="">` : ''}<div><b>${esc(title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</div></div>` : '';
   const html = head + `<div class="as-list">${items.filter(Boolean).map((it, i) => it.sep ? '<div class="as-sep"></div>' :
-    `<button class="as-item ${it.danger ? 'danger' : ''}" data-i="${i}" ${it.disabled ? 'disabled' : ''}><span>${esc(it.label)}</span>${it.icon ? icon(it.icon) : ''}</button>`).join('')}</div>`;
+    `<button class="as-item ${it.danger ? 'danger' : ''}" data-i="${i}" ${it.disabled ? 'disabled' : ''}><span>${esc(tr(it.label))}</span>${it.icon ? icon(it.icon) : ''}</button>`).join('')}</div>`;
   const list = items.filter(Boolean);
   openSheet({ header: false, cls: 'action', html, onMount: body => {
     body.querySelectorAll('.as-item').forEach(b => b.onclick = () => { const it = list[+b.dataset.i]; closeSheet(); setTimeout(() => it.run?.(), 10); });
@@ -83,8 +85,8 @@ export function actionSheet({ title = '', sub = '', art = '', items = [] }) {
 
 export function confirmSheet({ title, msg = '', ok = 'OK', danger = false }) {
   return new Promise(resolve => {
-    openSheet({ header: false, cls: 'action', html: `<div class="confirm"><b>${esc(title)}</b>${msg ? `<p>${esc(msg)}</p>` : ''}</div>
-      <div class="as-list"><button class="as-item ${danger ? 'danger' : 'accent'}" data-ok><span>${esc(ok)}</span></button><button class="as-item" data-no><span>Cancel</span></button></div>`,
+    openSheet({ header: false, cls: 'action', html: `<div class="confirm"><b>${esc(tr(title))}</b>${msg ? `<p>${esc(tr(msg))}</p>` : ''}</div>
+      <div class="as-list"><button class="as-item ${danger ? 'danger' : 'accent'}" data-ok><span>${esc(tr(ok))}</span></button><button class="as-item" data-no><span>${esc(tr('Cancel'))}</span></button></div>`,
       onMount: b => { b.querySelector('[data-ok]').onclick = () => closeSheet(true); b.querySelector('[data-no]').onclick = () => closeSheet(false); },
       onClose: r => resolve(r === true) });
   });
@@ -94,11 +96,11 @@ export function formSheet({ title, fields, ok = 'Save', note = '' }) {
   return new Promise(resolve => {
     const html = `<form class="form" novalidate>${fields.map((f, i) => {
       const id = 'ff' + i;
-      if (f.type === 'textarea') return `<label for="${id}">${esc(f.label)}</label><textarea id="${id}" name="${f.name}" rows="${f.rows || 6}" placeholder="${esc(f.placeholder || '')}">${esc(f.value || '')}</textarea>`;
-      if (f.type === 'file') return `<label for="${id}">${esc(f.label)}</label><input id="${id}" name="${f.name}" type="file" accept="${f.accept || ''}">`;
-      return `<label for="${id}">${esc(f.label)}</label><input id="${id}" name="${f.name}" type="${f.type || 'text'}" value="${esc(f.value ?? '')}" placeholder="${esc(f.placeholder || '')}" ${i === 0 ? 'autofocus' : ''} autocomplete="off" ${f.inputmode ? `inputmode="${f.inputmode}"` : ''}>`;
-    }).join('')}${note ? `<p class="note">${esc(note)}</p>` : ''}<button class="btn primary wide" type="submit">${esc(ok)}</button></form>`;
-    openSheet({ title: esc(title), html, cls: 'form-sheet', headerRight: '',
+      if (f.type === 'textarea') return `<label for="${id}">${esc(tr(f.label))}</label><textarea id="${id}" name="${f.name}" rows="${f.rows || 6}" placeholder="${esc(tr(f.placeholder || ''))}">${esc(f.value || '')}</textarea>`;
+      if (f.type === 'file') return `<label for="${id}">${esc(tr(f.label))}</label><input id="${id}" name="${f.name}" type="file" accept="${f.accept || ''}">`;
+      return `<label for="${id}">${esc(tr(f.label))}</label><input id="${id}" name="${f.name}" type="${f.type || 'text'}" value="${esc(f.value ?? '')}" placeholder="${esc(tr(f.placeholder || ''))}" ${i === 0 ? 'autofocus' : ''} autocomplete="off" ${f.inputmode ? `inputmode="${f.inputmode}"` : ''}>`;
+    }).join('')}${note ? `<p class="note">${esc(tr(note))}</p>` : ''}<button class="btn primary wide" type="submit">${esc(tr(ok))}</button></form>`;
+    openSheet({ title: esc(tr(title)), html, cls: 'form-sheet', headerRight: '',
       onMount: b => {
         const form = b.querySelector('form');
         form.onsubmit = e => {
@@ -185,10 +187,10 @@ export function songRow(t, { ctx: c, i, num, album = false, sel, grip, remove, s
   return `<div class="row song ${bad ? 'bad' : ''} ${sel ? 'selectable' : ''} ${sel?.has?.(t.id) ? 'selected' : ''}" data-id="${t.id}" ${c ? `data-ctx="${esc(c)}"` : ''} ${i !== undefined ? `data-i="${i}"` : ''} tabindex="0">
     ${sel ? `<span class="check" aria-hidden="true">${icon('check')}</span>` : ''}
     <span class="lead">${lead}<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span>
-    <span class="rt"><b>${esc(Lib.trackTitle(t))}</b><small>${fav ? `<span class="fav-dot" aria-label="Favorite">${icon('heartFill')}</span>` : ''}${bad ? `<span class="warn-dot" aria-label="Unavailable">${icon('warn')}</span>` : ''}${esc(second)}</small></span>
-    ${remove ? `<button class="icon-btn row-remove" data-act="rowRemove" data-i="${i}" aria-label="Remove ${esc(Lib.trackTitle(t))}">${icon('x')}</button>` : ''}
-    ${grip ? `<span class="grip" data-grip="${i}" aria-label="Reorder" role="button" tabindex="-1">${icon('grip')}</span>` : ''}
-    ${!sel && !grip ? `<button class="icon-btn more" data-act="songMenu" data-id="${t.id}" aria-label="More options for ${esc(Lib.trackTitle(t))}">${icon('more')}</button>` : ''}
+    <span class="rt"><b>${esc(Lib.trackTitle(t))}</b><small>${fav ? `<span class="fav-dot" aria-label="${tr('Favorite')}">${icon('heartFill')}</span>` : ''}${bad ? `<span class="warn-dot" aria-label="${tr('Unavailable')}">${icon('warn')}</span>` : ''}${esc(second)}</small></span>
+    ${remove ? `<button class="icon-btn row-remove" data-act="rowRemove" data-i="${i}" aria-label="${esc(tr('Remove {name}', { name: Lib.trackTitle(t) }))}">${icon('x')}</button>` : ''}
+    ${grip ? `<span class="grip" data-grip="${i}" aria-label="${tr('Reorder')}" role="button" tabindex="-1">${icon('grip')}</span>` : ''}
+    ${!sel && !grip ? `<button class="icon-btn more" data-act="songMenu" data-id="${t.id}" aria-label="${esc(tr('More options for {name}', { name: Lib.trackTitle(t) }))}">${icon('more')}</button>` : ''}
   </div>`;
 }
 
@@ -210,7 +212,7 @@ export function navRow({ go, act, iconName, label, count = '', art = '' }) {
 }
 
 export function sectionHead(title, go, label = 'See All') {
-  return `<div class="sec-head"><h2>${esc(title)}</h2>${go ? `<button class="link" data-go="${esc(go)}">${esc(label)}</button>` : ''}</div>`;
+  return `<div class="sec-head"><h2>${esc(tr(title))}</h2>${go ? `<button class="link" data-go="${esc(go)}">${esc(tr(label))}</button>` : ''}</div>`;
 }
 
 export function colorOf(src) {

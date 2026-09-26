@@ -2,6 +2,7 @@
 // screens subscribe to state and never create players of their own.
 import * as Lib from './library.js';
 import { readLS, writeLS } from './db.js';
+import { t as tr } from './i18n.js';
 
 const audio = document.getElementById('audio');
 const video = document.getElementById('video');
@@ -64,7 +65,7 @@ export async function load(id, { autoplay = true, at = 0, fromAuto = false } = {
   S.id = id; S.error = ''; S.time = at; S.duration = t.duration || 0; S.loading = true;
   started = false; counted = false; listened = 0;
   if (!fromAuto) autoSkips = 0;
-  if (!t.blob || t.unavailable) { fail('This song’s audio isn’t available on this device. Re-link the file to play it.'); notify('track'); return; }
+  if (!t.blob || t.unavailable) { fail(tr('This song’s audio isn’t available on this device. Re-link the file to play it.')); notify('track'); return; }
   useElement(t.video ? video : audio);
   const url = URL.createObjectURL(t.blob);
   setSrc(url); srcURL = url;
@@ -290,9 +291,9 @@ on('ended', () => {
 on('error', () => {
   if (!media.getAttribute('src')) return;
   const code = media.error?.code;
-  if (S.station) { fail('This station isn’t responding or uses a format this browser can’t play.'); return; }
+  if (S.station) { fail(tr('This station isn’t responding or uses a format this browser can’t play.')); return; }
   const t = current();
-  const msg = code === 4 ? 'This file’s format can’t be played in this browser.' : 'This song couldn’t be played. It may be damaged or missing.';
+  const msg = tr(code === 4 ? 'This file’s format can’t be played in this browser.' : 'This song couldn’t be played. It may be damaged or missing.');
   if (t) t.unavailable = true;
   fail(msg);
   if (autoSkips < 3 && S.index + 1 < S.queue.length && wantPlay) { autoSkips++; setTimeout(() => { S.index++; load(S.queue[S.index], { fromAuto: true }); }, 900); }
@@ -308,7 +309,7 @@ export function updateMediaSession() {
   try {
     if (S.station) {
       const art = S.station.favicon ? [{ src: S.station.favicon, sizes: '256x256' }] : [];
-      ms.metadata = new MediaMetadata({ title: S.station.name, artist: 'Live Radio', album: "Anthony's Music Box", artwork: [...art, { src: absolute('assets/icon-512.png'), sizes: '512x512', type: 'image/png' }] });
+      ms.metadata = new MediaMetadata({ title: S.station.name, artist: tr('Live Radio'), album: "Anthony's Music Box", artwork: [...art, { src: absolute('assets/icon-512.png'), sizes: '512x512', type: 'image/png' }] });
       return;
     }
     const t = current();
