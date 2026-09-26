@@ -74,6 +74,10 @@ public class WebViewActivity extends Activity {
                 return openOutside(request.getUrl());
             }
             @Override
+            public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+                updateBackHandling();
+            }
+            @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 if (request.isForMainFrame()) showError(true);
             }
@@ -117,12 +121,47 @@ public class WebViewActivity extends Activity {
         super.onDestroy();
     }
 
+    /** Back leaves full-screen video, then steps back through LunaTV, then closes. */
+    private boolean handleBack() {
+        if (fullscreenView != null) { exitFullscreen(); return true; }
+        if (web.canGoBack()) { web.goBack(); return true; }
+        return false;
+    }
+
+    // Android 13+: back gestures go through OnBackInvokedDispatcher (Android 16 no longer
+    // calls onBackPressed for them). The callback is registered only while there is
+    // something inside LunaTV to go back to, so otherwise the system's predictive
+    // "back to home" animation plays.
+    private BackCallback backCallback;
+
+    private void updateBackHandling() {
+        if (Build.VERSION.SDK_INT < 33) return;
+        boolean wanted = fullscreenView != null || web.canGoBack();
+        if (wanted && backCallback == null) {
+            backCallback = new BackCallback(this);
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, backCallback);
+        } else if (!wanted && backCallback != null) {
+            getOnBackInvokedDispatcher().unregisterOnBackInvokedCallback(backCallback);
+            backCallback = null;
+        }
+    }
+
+    @android.annotation.TargetApi(33)
+    private static final class BackCallback implements android.window.OnBackInvokedCallback {
+        private final WebViewActivity activity;
+        BackCallback(WebViewActivity activity) { this.activity = activity; }
+        @Override public void onBackInvoked() {
+            activity.handleBack();
+            activity.updateBackHandling();
+        }
+    }
+
+    /** Android 6–12 only; newer versions use BackCallback above. */
+    @SuppressLint("GestureBackNavigation")
     @SuppressWarnings("deprecation")
     @Override
     public void onBackPressed() {
-        if (fullscreenView != null) { exitFullscreen(); return; }
-        if (web.canGoBack()) { web.goBack(); return; }
-        super.onBackPressed();
+        if (!handleBack()) super.onBackPressed();
     }
 
     /** Links outside LunaTV (YouTube, Eporner, Xfree, sources…) open in the phone's apps. */
@@ -187,6 +226,7 @@ public class WebViewActivity extends Activity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         if (fullscreenCallback != null) fullscreenCallback.onCustomViewHidden();
         fullscreenCallback = null;
+        updateBackHandling();
     }
 
     @Override
@@ -235,6 +275,7 @@ public class WebViewActivity extends Activity {
             root.addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            updateBackHandling();
         }
 
         @Override public void onHideCustomView() { exitFullscreen(); }
