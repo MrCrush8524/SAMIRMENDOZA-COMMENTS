@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.smrentertainment.lunatv",
+      "sha256_cert_fingerprints": [
+        "E8:E6:19:F1:BF:A8:7E:91:0B:D2:70:EA:3E:DF:76:DE:35:AF:B1:ED:F9:47:5D:33:66:4B:E7:77:73:7D:27:60"
+      ]
+    }
+  }
+]

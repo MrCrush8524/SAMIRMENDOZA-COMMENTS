@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LunaTV's near-black, as in the web app's manifest -->
+    <color name="luna_black">#050608</color>
+</resources>

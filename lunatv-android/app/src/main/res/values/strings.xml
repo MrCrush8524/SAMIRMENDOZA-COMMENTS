@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">LunaTV</string>
+    <string name="offline_message">LunaTV couldn’t load. Check your connection.</string>
+    <string name="try_again">Try Again</string>
+</resources>

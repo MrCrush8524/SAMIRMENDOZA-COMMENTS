@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LunaTV" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/luna_black</item>
+        <item name="android:statusBarColor">@color/luna_black</item>
+        <item name="android:navigationBarColor">@color/luna_black</item>
+        <item name="android:colorPrimary">@color/luna_black</item>
+        <item name="android:colorPrimaryDark">@color/luna_black</item>
+        <item name="android:colorAccent">#D7DCE4</item>
+        <item name="android:windowSplashScreenBackground">@color/luna_black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+    </style>
+    <style name="Theme.LunaTV.Splash">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+</resources>

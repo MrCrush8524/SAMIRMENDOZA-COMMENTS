@@ -1,0 +1,65 @@
+plugins {
+    id "com.android.application"
+}
+
+// Everything you normally change lives in ../lunatv.properties.
+def luna = new Properties()
+file("../lunatv.properties").withInputStream { luna.load(it) }
+def lunaUrl = new URI(luna.getProperty("lunatv.url").trim())
+if (lunaUrl.scheme != "https" || !lunaUrl.path?.endsWith("/")) {
+    throw new GradleException("lunatv.url must be an https:// address ending in /")
+}
+
+android {
+    namespace "com.smrentertainment.lunatv"
+    compileSdk 36
+
+    defaultConfig {
+        applicationId luna.getProperty("lunatv.applicationId").trim()
+        minSdk 23
+        targetSdk 36
+        versionCode luna.getProperty("lunatv.versionCode").trim().toInteger()
+        versionName luna.getProperty("lunatv.versionName").trim()
+        manifestPlaceholders = [
+            lunatvUrl       : lunaUrl.toString(),
+            lunatvHost      : lunaUrl.host,
+            lunatvPathPrefix: lunaUrl.path
+        ]
+    }
+
+    buildFeatures {
+        aidl true
+        buildConfig false
+    }
+
+    // Release signing comes from environment variables (CI secrets or your shell),
+    // never from files in the repository. See README.
+    def ks = System.getenv("LUNATV_KEYSTORE")
+    signingConfigs {
+        if (ks) {
+            release {
+                storeFile file(ks)
+                storePassword System.getenv("LUNATV_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("LUNATV_KEY_ALIAS") ?: "lunatv"
+                keyPassword System.getenv("LUNATV_KEY_PASSWORD") ?: System.getenv("LUNATV_KEYSTORE_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (ks) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+    }
+}
