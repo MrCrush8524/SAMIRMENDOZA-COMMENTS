@@ -658,8 +658,15 @@ dl.info dd { margin: 0; text-align: right; word-break: break-word; }
 
 /* ---------- about ---------- */
 .about-hero { display: flex; justify-content: center; margin: 4px 0 6px; }
-.about-hero img { width: min(78vw, 340px); height: auto; }
-.about-lede { text-align: center; font-size: 17px; color: var(--text); margin-top: 18px; }
+.about-hero img { width: min(44vw, 190px); height: auto; filter: drop-shadow(0 14px 30px rgba(0, 0, 0, .6)) drop-shadow(0 0 20px rgba(255, 255, 255, .12)); }
+.about-title { text-align: center; font-size: clamp(28px, 7.6vw, 36px); font-weight: 800; letter-spacing: -.02em; margin-top: 16px; }
+.about-sub { text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--sec); margin-top: 6px; }
+.about-lede { text-align: center; font-size: 16px; line-height: 1.55; color: var(--text); margin: 18px auto 0; max-width: 560px; }
+.about-maker { display: flex; flex-direction: column; align-items: center; gap: 3px; margin: 26px auto 0; padding: 16px 12px; max-width: 420px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); text-align: center; }
+.about-maker small { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ter); }
+.about-maker b { font-size: 17px; font-weight: 700; margin-top: 4px; }
+.about-maker span { font-size: 13.5px; color: var(--sec); }
+.about-summary { font-size: 15px; line-height: 1.55; color: var(--text); margin: -2px 2px 14px; }
 .about-pill { display: table; margin: 12px auto 0; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--sec); border: 1px solid var(--rim); background: rgba(255, 255, 255, .04); }
 .about-list { display: grid; gap: 10px; }
 .about-item { border-radius: var(--r-card); padding: 14px 16px; }
@@ -668,3 +675,17 @@ dl.info dd { margin: 0; text-align: right; word-break: break-word; }
 .about-item p + p { margin-top: 10px; }
 .about-foot { text-align: center; color: var(--ter); font-size: 12.5px; line-height: 1.6; margin: 30px 0 10px; }
 @media (min-width: 700px) { .about-list { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- six-tab bar & radio ---------- */
+#tabbar { grid-template-columns: repeat(6, 1fr); padding: 0 4px; }
+#tabbar button { font-size: 10px; gap: 4px; min-width: 0; }
+#tabbar button .i { width: 24px; height: 24px; }
+#tabbar button span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.chips.wrap { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+.chip-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ter); margin: 4px 2px 0; }
+.radio-search { margin: 4px 0 14px; }
+.radio-hub { margin-bottom: 6px; }
+.cc { width: 48px; height: 48px; border-radius: 10px; display: grid; place-items: center; flex: none; font-size: 14px; font-weight: 800; letter-spacing: .06em; color: var(--text); background: rgba(255, 255, 255, .06); border: 1px solid var(--rim); }
+.near-btn { margin: 0 0 14px; }
+.settings .set-brand { border-radius: var(--r-card); padding: 12px 14px; margin: 4px 0 6px; }
+@media (max-width: 374px) { #tabbar button { font-size: 9px; } #tabbar button .i { width: 22px; height: 22px; } }

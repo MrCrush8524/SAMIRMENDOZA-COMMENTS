@@ -10,7 +10,7 @@ import {
   openSheet, closeSheet, actionSheet, confirmSheet, formSheet, initSheetGestures, sheetOpen,
   slider, img, collage, songRow, tile, navRow, sectionHead, colorOf,
 } from './ui.js';
-import { radioPage } from './radio.js';
+import { createRadio } from './radio.js';
 import { initNative, isNative } from './native.js';
 import { VERSION, platformName } from './version.js';
 
@@ -24,8 +24,8 @@ let lastSoft = 0;
 function softError() { const n = Date.now(); if (n - lastSoft > 8000) { lastSoft = n; try { toast('Something went wrong, but your music is still playing.', { kind: 'warn' }); } catch {} } }
 
 // ================= navigation =================
-const TABS = ['home', 'library', 'search'];
-const stacks = { home: [{ route: 'home', p: {} }], library: [{ route: 'library', p: {} }], search: [{ route: 'search', p: {} }] };
+const TABS = ['home', 'library', 'radio', 'playlists', 'search', 'settings'];
+const stacks = Object.fromEntries(TABS.map(t => [t, [{ route: t, p: {} }]]));
 let tab = 'home';
 const stage = $('#stage');
 const top = () => stacks[tab][stacks[tab].length - 1];
@@ -96,8 +96,8 @@ function switchTab(t) {
   if (t === 'search' && top().route === 'search' && !L.tracks.length) {}
 }
 function openFromSidebar(route, p) {
-  // Desktop sidebar shortcuts live in the Library stack.
-  const t = route === 'home' || route === 'search' ? route : 'library';
+  // Desktop sidebar: tabs open themselves, About lives under Settings, everything else under Library.
+  const t = TABS.includes(route) ? route : route === 'about' ? 'settings' : 'library';
   if (tab !== t) switchTab(t);
   const s = stacks[tab];
   while (s.length > 1) { const g = s.pop(); g.cleanup?.(); g.el?.remove(); }
@@ -170,7 +170,6 @@ function brandRow(extra = '') {
     <span class="brand-text"><b>Anthony's Music Box</b><small>AMB</small></span></button>
     <div class="brand-actions">${extra}
       <button class="icon-btn glass-btn" data-act="addMusic" aria-label="Add music">${icon('plus')}</button>
-      <button class="icon-btn glass-btn" data-act="settings" aria-label="Settings">${icon('gear')}</button>
     </div>
   </div>`;
 }
@@ -229,7 +228,6 @@ const LIB_ROWS = [
   ['genres', 'genre', 'Genres', () => L.genres.size],
   ['recent', 'clock', 'Recently Added', () => ''],
   ['favorites', 'heart', 'Favorites', () => L.favorites.size || ''],
-  ['radio', 'radio', 'Live Radio', () => ''],
   ['files', 'folder', 'Local Files', () => L.tracks.length],
 ];
 
@@ -240,7 +238,7 @@ const PAGES = {
     html: (p, e) => {
       let h = `<div class="page-pad">${brandRow()}${largeTitle('Home')}${storageNotice()}`;
       if (!L.ready) return h + `<div class="skeleton"></div></div>`;
-      if (!L.tracks.length) return h + emptyState() + `<div class="center-link"><button class="link" data-go="radio">Or tune in to live radio</button></div></div>`;
+      if (!L.tracks.length) return h + emptyState() + `<div class="center-link"><button class="link" data-tab="radio">Or tune in to radio from around the world</button></div></div>`;
       const rp = Lib.recentlyPlayed(12);
       if (rp.length) h += sectionHead('Recently Played', 'played') + shelf(rp.map(t => trackTile(t, rp.map(x => x.id))));
       const mx = Lib.mixes();
@@ -263,7 +261,7 @@ const PAGES = {
     html: (p, e) => {
       let h = `<div class="page-pad">${brandRow()}${largeTitle('Library', L.tracks.length ? `<button class="link" data-act="libEdit">${e.edit ? 'Done' : 'Edit'}</button>` : '')}${storageNotice()}`;
       if (!L.ready) return h + '<div class="skeleton"></div></div>';
-      if (!L.tracks.length && !e.edit) return h + emptyState() + `<div class="center-link"><button class="link" data-go="radio">Or tune in to live radio</button></div></div>`;
+      if (!L.tracks.length && !e.edit) return h + emptyState() + `<div class="center-link"><button class="link" data-tab="radio">Or tune in to radio from around the world</button></div></div>`;
       const hidden = new Set(readLS('amb-lib-hidden', []));
       if (e.edit) {
         h += `<div class="group glass">${LIB_ROWS.map(([k, ic, label]) => `<button class="nav-row toggle" data-act="libToggle" data-k="${k}" aria-pressed="${!hidden.has(k)}"><span class="tick ${hidden.has(k) ? '' : 'on'}">${icon('check')}</span><span class="nr-icon">${icon(ic)}</span><span class="nr-label">${label}</span></button>`).join('')}</div><p class="hint">Choose what appears in your Library.</p>`;
@@ -342,9 +340,9 @@ const PAGES = {
   },
   playlists: {
     title: () => 'Playlists',
-    html: () => {
+    html: (p, e) => {
       const names = Object.keys(L.playlists);
-      return `<div class="page-pad">${largeTitle('Playlists')}<div class="list">
+      return `<div class="page-pad">${(e.sub ? '' : brandRow()) + largeTitle('Playlists')}<div class="list">
         <button class="nav-row new-row" data-act="newPlaylist"><span class="nr-icon accent-bg">${icon('plus')}</span><span class="nr-label accent">New Playlist…</span></button>
         ${names.map(n => navRow({ go: 'playlist|' + n, label: n, count: plural(L.playlists[n].length, 'song'), art: collage(L.playlists[n], 'mini-collage') })).join('')}
       </div>${names.length ? '' : '<p class="hint">Playlists you make appear here. Add songs from any song’s menu.</p>'}</div>`;
@@ -481,30 +479,33 @@ const PAGES = {
         ['Library storage', L.persistent ? 'Saved on this device' : 'This session only'],
       ];
       const parts = [
-        ['Your library', 'Import MP3, M4A, AAC, WAV, FLAC and OGG files. AMB reads titles, artists, albums, artwork and lyrics from the files and sorts them into Songs, Albums, Artists and Genres.'],
-        ['Made for Anthony', 'Mixes like Late Night, Favorites Mix and Forgotten Tracks, built on this device from what you actually play. No recommendations from anywhere else.'],
-        ['Now Playing', 'Artwork, lyrics (synced when your files include timing), a queue you can reorder, shuffle, repeat and a sleep timer.'],
-        ['Playlists & Favorites', 'Make, rename and reorder playlists, heart the songs you love, and back it all up from Settings.'],
-        ['Live Radio', 'Stations from around the world, plus any secure stream you add yourself.'],
-        [plat === 'Android app' ? 'Plays in the background' : plat === 'Windows app' ? 'Media keys' : 'System controls',
-          plat === 'Android app' ? 'Keeps playing with the screen off, with controls in the notification, on the lock screen and on Bluetooth headphones.'
-          : plat === 'Windows app' ? 'Play, pause and skip from your keyboard’s media keys and the Windows media controls.'
-          : 'Play, pause and skip from the lock screen and your device’s media controls where the browser supports it.'],
+        ['Personal music playback', 'Plays the MP3, M4A, AAC, WAV, FLAC and OGG files you add, and sorts them into Songs, Albums, Artists and Genres from each file’s own details.'],
+        ['Playlists & favorites', 'Make, rename and reorder playlists, heart the songs you love, and let Made for Anthony mixes bring back music you haven’t heard in a while.'],
+        ['Album artwork', 'Cover art from your files fills the library, and Now Playing takes on the mood of each cover.'],
+        ['Background listening', plat === 'Android app' ? 'Keeps playing with the screen off, with controls in the notification, on the lock screen and on Bluetooth headphones.'
+          : plat === 'Windows app' ? 'Keeps playing while AMB is minimized, with your keyboard’s media keys and the Windows media controls.'
+          : 'Keeps playing while you use other apps, with lock-screen and media controls wherever the device supports them.'],
+        ['Worldwide radio', 'Live international radio across countries, cities, genres and stations. Browse Around the World, Countries, Genres, Favorites, Recently Played and Local Stations.'],
+        ['Lyrics, queue & sleep timer', 'Lyrics from your files (synced when they include timing), a queue you can reorder, shuffle, repeat and a sleep timer.'],
       ];
       return `<div class="page-pad about">
-        <div class="about-hero"><img src="assets/logo-full.webp" alt="Anthony's Music Box — AMB wolf logo"></div>
-        <p class="about-lede">A private music player for the songs you own.</p>
+        <div class="about-hero"><img src="assets/wolf.webp" alt="Anthony's Music Box wolf emblem"></div>
+        <h1 class="about-title">Anthony’s Music Box</h1>
+        <p class="about-sub">Premium Personal Music + Worldwide Radio Player</p>
+        <p class="about-lede">Anthony’s Music Box is a premium music experience for enjoying, organizing, and rediscovering your personal music library while also exploring live radio stations from around the world.</p>
+        <div class="about-maker"><small>PRODUCT OF</small><b>Bobby, Luna &amp; Mateo Interactive</b><span>A Technology Division of SMR Entertainment</span></div>
         <div class="about-pill">Version ${VERSION} · ${esc(plat)}</div>
-        ${sectionHead('What AMB does')}
+        ${sectionHead('What’s Included')}
+        <p class="about-summary">Personal music playback, playlists, album artwork, background listening, favorites, and live international radio across countries, cities, genres, and stations.</p>
         <div class="about-list">${parts.map(([h, p]) => `<div class="about-item glass"><b>${esc(h)}</b><p>${esc(p)}</p></div>`).join('')}</div>
         ${sectionHead('Privacy')}
-        <div class="about-item glass"><p>No account, no ads, no tracking. Your music, file names, playlists and listening history stay on this device and are never uploaded. AMB only goes online when you open Live Radio, to find stations and play the one you pick.</p></div>
+        <div class="about-item glass"><p>No account, no ads, no tracking. Your music, file names, playlists and listening history stay on this device and are never uploaded. AMB only goes online when you open Radio, to find stations and play the one you pick.</p></div>
         ${sectionHead('Details')}
         <div class="group glass">${facts.map(([k, v]) => `<div class="set-row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</div>
         ${sectionHead('Acknowledgements')}
-        <div class="about-item glass"><p>Live Radio's station directory comes from the community-run Radio Browser project (radio-browser.info). Each station streams directly from its broadcaster.</p>
+        <div class="about-item glass"><p>The Radio station directory comes from the community-run Radio Browser project (radio-browser.info). Each station streams directly from its broadcaster.</p>
           <p>The Android app is built with Capacitor and the Windows app with Electron, both open-source under the MIT license. Both run on the Chromium engine.</p></div>
-        <p class="about-foot">Anthony's Music Box · AMB<br>© ${new Date().getFullYear()} · Made for Anthony</p>
+        <p class="about-foot">Anthony’s Music Box · AMB<br>© ${new Date().getFullYear()} Bobby, Luna &amp; Mateo Interactive<br>A Technology Division of SMR Entertainment</p>
       </div>`;
     },
   },
@@ -519,8 +520,18 @@ const PAGES = {
         ${playButtons(m.ids, `<button class="btn glass-btn icon-only" data-act="saveMix" data-id="${m.id}" aria-label="Save as playlist">${icon('addList')}</button>`)}${trackList(e, m.ids, { key: 'mix:' + m.id, album: true })}</div>`;
     },
   },
-  radio: radioPage({ go, toast, openSheet, closeSheet, actionSheet, formSheet, E, largeTitle, markPlaying: () => markPlaying() }),
 };
+
+// ---------- radio ----------
+const radioMod = createRadio({
+  go, toast, actionSheet, formSheet, E, largeTitle, brandRow, navRow, sectionHead,
+  markPlaying: () => markPlaying(),
+  rerender: () => {
+    for (const st of Object.values(stacks)) for (const e of st) if (e.route.startsWith('radio')) e.stale = true;
+    const e = top(); if (e.stale) render(e, true);
+  },
+});
+Object.assign(PAGES, radioMod.pages);
 
 // ---------- search body ----------
 function searchBody(q, e) {
@@ -561,6 +572,7 @@ function addRecent(q) {
 // ================= actions =================
 function parseGo(s) {
   const i = s.indexOf('|'); const route = i < 0 ? s : s.slice(0, i); const v = i < 0 ? '' : s.slice(i + 1);
+  if (route === 'radioList') { const j = v.indexOf('|'); return [route, j < 0 ? { kind: v } : { kind: v.slice(0, j), value: v.slice(j + 1) }]; }
   const key = { album: 'key', artist: 'name', genre: 'name', playlist: 'name', mix: 'id', artistSongs: 'name' }[route];
   return [route, key ? { [key]: v } : {}];
 }
@@ -574,7 +586,9 @@ document.addEventListener('click', ev => {
   const g = t.closest('[data-go]');
   if (g && !t.closest('#np')) {
     if (g.closest('[data-rq]') || g.hasAttribute('data-rq')) addRecent($('#q')?.value);
-    const [r, p] = parseGo(g.dataset.go); go(r, p); return;
+    const [r, p] = parseGo(g.dataset.go);
+    if (TABS.includes(r) && !Object.keys(p).length && r !== tab) { closeNP(); switchTab(r); return; }
+    go(r, p); return;
   }
   const a = t.closest('[data-act]');
   if (a && ACTIONS[a.dataset.act]) { ev.preventDefault(); ACTIONS[a.dataset.act](a, ev); return; }
@@ -605,7 +619,7 @@ function playFrom(ids, i, id) {
 const ACTIONS = {
   goHome: () => switchTab('home'),
   addMusic: () => addMusic(),
-  settings: () => settingsSheet(),
+  settings: () => { closeNP(); switchTab('settings'); },
   playAll: a => { const ids = ctxs.get(a.dataset.ctx) || []; E.S.shuffle && E.toggleShuffle(); E.playList(ids, 0); },
   shuffleAll: a => E.playList(ctxs.get(a.dataset.ctx) || [], 0, { shuffle: true }),
   songMenu: a => songMenu(a.dataset.id),
@@ -631,7 +645,7 @@ const ACTIONS = {
   clearHistory: async () => { if (await confirmSheet({ title: 'Clear listening history?', msg: 'Play counts, Recently Played and history-based mixes reset. Your music and playlists stay.', ok: 'Clear History', danger: true })) { Lib.clearHistory(); toast('Listening history cleared'); } },
   selFav: () => bulk('fav'), selAdd: () => bulk('add'), selNext: () => bulk('next'), selRemove: () => bulk('remove'), selAll: () => bulk('all'),
   relink: a => relinkTrack(a.dataset.id),
-  radioCustom: () => PAGES.radio.customStream(),
+  radioCustom: () => radioMod.customStream(),
 };
 
 // ---------- selection mode ----------
@@ -863,37 +877,39 @@ window.addEventListener('dragleave', e => { if (!e.relatedTarget) document.body.
 window.addEventListener('drop', e => { e.preventDefault(); document.body.classList.remove('drop'); runImport([...(e.dataTransfer?.files || [])]); });
 
 // ================= settings =================
-async function settingsSheet() {
-  const s = await Lib.storageInfo();
-  const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-  const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
-  openSheet({ title: 'Settings', cls: 'tall', html: `
-    <button class="set-brand" data-s="about"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Version ${VERSION} · ${platformName()}</small></div>${icon('chev', 'chev')}</button>
-    <div class="group glass"><button class="set-row btnrow" data-s="about"><span>About AMB</span>${icon('info')}</button></div>
+// Settings is its own tab.
+const settingsPage = {
+  title: () => 'Settings',
+  html: () => {
+    const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    const desktop = !!window.ambDesktop;
+    return `<div class="page-pad settings">${brandRow()}${largeTitle('Settings')}
+    <button class="set-brand glass" data-s="about"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Version ${VERSION} · ${platformName()}</small></div>${icon('chev', 'chev')}</button>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
-      <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>
+      <button class="set-row btnrow" data-s="add"><span>Add Music</span>${icon('plus')}</button>
+      <div class="set-row"><span>Songs</span><b>${L.tracks.filter(t => !t.video).length.toLocaleString()}</b></div>
       <div class="set-row"><span>Albums · Artists</span><b>${realAlbums().length} · ${L.artists.size}</b></div>
       <div class="set-row"><span>Playlists</span><b>${Object.keys(L.playlists).length}</b></div>
-      <div class="set-row col"><span>Storage used</span><b>${fmtBytes(s.usage)}${s.quota ? ` of ${fmtBytes(s.quota)}` : ''}</b><div class="meter"><i style="width:${pct.toFixed(1)}%"></i></div></div>
-      <div class="set-row"><span>Protected from cleanup</span><b>${!L.persistent ? 'Unavailable' : s.persisted ? 'Yes' : 'Not yet'}</b></div>
-      ${L.persistent && !s.persisted && navigator.storage?.persist ? `<button class="set-row btnrow" data-s="persist"><span class="accent">Ask the browser to keep my library</span></button>` : ''}
+      <div class="set-row col"><span>Storage used</span><b data-storage>…</b><div class="meter"><i data-meter style="width:0%"></i></div></div>
+      <div class="set-row"><span>Protected from cleanup</span><b data-persisted>…</b></div>
+      <button class="set-row btnrow" data-s="persist" hidden><span class="accent">Ask the browser to keep my library</span></button>
     </div>
     <h3 class="set-h">Backup</h3>
     <div class="group glass">
       <button class="set-row btnrow" data-s="export"><span>Export playlists & favorites</span>${icon('download')}</button>
       <button class="set-row btnrow" data-s="import"><span>Restore from a backup file</span>${icon('upload')}</button>
     </div>
-    <p class="set-note">A backup holds playlists, favorites and play history, not the songs themselves. Keep your original music files: clearing website data, or the browser freeing up space, can remove AMB’s copies.</p>
-    <h3 class="set-h">Playback on ${isNative ? 'Android' : iOS ? 'iPhone' : 'this device'}</h3>
+    <p class="set-note">A backup holds playlists, favorites and play history, not the songs themselves. Keep your original music files: clearing app data or uninstalling can remove AMB’s copies.</p>
+    <h3 class="set-h">Playback on ${isNative ? 'Android' : desktop ? 'Windows' : iOS ? 'iPhone' : 'this device'}</h3>
     <div class="set-note glass-note">
-      ${isNative ? `<p>Music keeps playing with the screen off. Use the AMB notification, the lock screen, or Bluetooth and headset buttons to play, pause and skip. The back button closes screens; at Home it sends AMB to the background without stopping the music.</p>
-      <p>AMB keeps its own copy of the songs you add. Uninstalling the app or clearing its storage removes that copy, so keep your original files.</p>`
+      ${isNative ? `<p>Music keeps playing with the screen off. Use the AMB notification, the lock screen, or Bluetooth and headset buttons to play, pause and skip. The back button closes screens; at Home it sends AMB to the background without stopping the music.</p>`
+      : desktop ? `<p>Keyboard: <b>Space</b> play/pause · <b>←/→</b> seek 10s · <b>Shift+←/→</b> previous/next · <b>/</b> search · <b>F11</b> full screen. Your keyboard’s media keys and the Windows media controls work too.</p><p>Drag music files or folders onto the window to add them.</p>`
       : iOS ? `<p>${standalone ? 'Running as a Home Screen app.' : 'For the best experience, open this page in Safari, tap <b>Share → Add to Home Screen</b>, then import music inside the installed app. Each has its own library.'}</p>
       <p>Lock-screen controls and background playback work while iOS keeps the app alive. iOS may pause web audio if the app is closed from the app switcher, during calls, or when memory is low. Use the device buttons for volume, and Control Center to choose speakers or headphones.</p>`
       : `<p>Keyboard: <b>Space</b> play/pause · <b>←/→</b> seek 10s · <b>Shift+←/→</b> previous/next · <b>/</b> search.</p><p>Media keys and system media controls are supported where your browser provides them.</p>`}
-      <p>Music, file names and listening history stay on this device. Only Live Radio uses the internet, and only when you open it.</p>
+      <p>Music, file names and listening history stay on this device. Only Radio uses the internet, and only when you open it.</p>
     </div>
     ${E.pipSupported ? `<h3 class="set-h">Video</h3>
     <div class="group glass"><button class="set-row btnrow" data-s="autopip" role="switch" aria-checked="${readLS('amb-auto-pip', true)}"><span>Picture in Picture when leaving a video</span><span class="switch ${readLS('amb-auto-pip', true) ? 'on' : ''}"><i></i></span></button></div>` : ''}
@@ -901,25 +917,37 @@ async function settingsSheet() {
     <div class="group glass">
       <button class="set-row btnrow" data-s="history"><span>Clear listening history</span></button>
       <button class="set-row btnrow danger" data-s="wipe"><span>Remove all songs from AMB</span></button>
-    </div>`,
-    onMount: b => {
-      b.onclick = async ev => {
-        const k = ev.target.closest('[data-s]')?.dataset.s; if (!k) return;
-        if (k === 'about') { closeSheet(); if (tab !== 'home' && tab !== 'library') switchTab('home'); go('about'); return; }
-        if (k === 'persist') { const ok = await navigator.storage.persist().catch(() => false); toast(ok ? 'Your library is protected from automatic cleanup' : 'The browser declined. Adding AMB to your Home Screen usually helps.'); closeSheet(); }
-        if (k === 'export') exportBackup();
-        if (k === 'import') importBackup();
-        if (k === 'history') { closeSheet(); ACTIONS.clearHistory(); }
-        if (k === 'autopip') { const v = !readLS('amb-auto-pip', true); writeLS('amb-auto-pip', v); const b2 = ev.target.closest('[data-s]'); b2.setAttribute('aria-checked', v); b2.querySelector('.switch').classList.toggle('on', v); }
-        if (k === 'wipe') {
-          closeSheet();
-          if (await confirmSheet({ title: 'Remove every song from AMB?', msg: 'Your AMB library, queue and playlist contents are cleared on this device. Your original files are not deleted.', ok: 'Remove All', danger: true })) {
-            E.stop(); await Lib.removeTracks(L.tracks.map(t => t.id)); toast('Library cleared');
-          }
+    </div>
+    <div class="center-link"><button class="link" data-s="about">About Anthony’s Music Box</button></div></div>`;
+  },
+  mount: async el => {
+    el.onclick = async ev => {
+      const k = ev.target.closest('[data-s]')?.dataset.s; if (!k) return;
+      if (k === 'about') { go('about'); return; }
+      if (k === 'add') { addMusic(); return; }
+      if (k === 'persist') { const ok = await navigator.storage.persist().catch(() => false); toast(ok ? 'Your library is protected from automatic cleanup' : 'The browser declined. Adding AMB to your Home Screen usually helps.'); render(top(), true); }
+      if (k === 'export') exportBackup();
+      if (k === 'import') importBackup();
+      if (k === 'history') ACTIONS.clearHistory();
+      if (k === 'autopip') { const v = !readLS('amb-auto-pip', true); writeLS('amb-auto-pip', v); const b2 = ev.target.closest('[data-s]'); b2.setAttribute('aria-checked', v); b2.querySelector('.switch').classList.toggle('on', v); }
+      if (k === 'wipe') {
+        if (await confirmSheet({ title: 'Remove every song from AMB?', msg: 'Your AMB library, queue and playlist contents are cleared on this device. Your original files are not deleted.', ok: 'Remove All', danger: true })) {
+          E.stop(); await Lib.removeTracks(L.tracks.map(t => t.id)); toast('Library cleared');
         }
-      };
-    } });
-}
+      }
+    };
+    const s = await Lib.storageInfo();
+    const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
+    const q = sel => el.querySelector(sel);
+    if (!q('[data-storage]')) return;
+    q('[data-storage]').textContent = fmtBytes(s.usage) + (s.quota ? ` of ${fmtBytes(s.quota)}` : '');
+    q('[data-meter]').style.width = pct.toFixed(1) + '%';
+    q('[data-persisted]').textContent = !L.persistent ? 'Unavailable' : s.persisted ? 'Yes' : 'Not yet';
+    q('[data-s=persist]').hidden = !(L.persistent && !s.persisted && navigator.storage?.persist);
+  },
+};
+PAGES.settings = settingsPage;
+
 function exportBackup() {
   const sig = id => { const t = Lib.get(id); return t ? { sig: t.sig || '', name: t.name, title: t.title, artist: t.artist } : null; };
   const data = { app: 'AMB', version: 2, exported: new Date().toISOString(),
@@ -1275,7 +1303,7 @@ document.addEventListener('keydown', e => {
 function renderSidebar() {
   const sb = $('#sidebarLinks'); if (!sb) return;
   const pl = Object.keys(L.playlists);
-  sb.innerHTML = `<p class="sb-h">Library</p>${[['recent', 'clock', 'Recently Added'], ['artists', 'artist', 'Artists'], ['albums', 'album', 'Albums'], ['songs', 'song', 'Songs'], ['videos', 'video', 'Videos'], ['genres', 'genre', 'Genres'], ['favorites', 'heart', 'Favorites'], ['radio', 'radio', 'Live Radio'], ['files', 'folder', 'Local Files']]
+  sb.innerHTML = `<p class="sb-h">Library</p>${[['recent', 'clock', 'Recently Added'], ['artists', 'artist', 'Artists'], ['albums', 'album', 'Albums'], ['songs', 'song', 'Songs'], ['videos', 'video', 'Videos'], ['genres', 'genre', 'Genres'], ['favorites', 'heart', 'Favorites'], ['files', 'folder', 'Local Files']]
     .map(([r, ic, l]) => `<button class="sb-link" data-side="${r}">${icon(ic)}<span>${l}</span></button>`).join('')}
     <p class="sb-h">Playlists <button class="icon-btn sm" data-act="newPlaylist" aria-label="New playlist">${icon('plus')}</button></p>
     ${pl.map(n => `<button class="sb-link" data-side="playlist|${esc(n)}">${icon('playlist')}<span>${esc(n)}</span></button>`).join('') || '<p class="sb-empty">No playlists yet</p>'}`;

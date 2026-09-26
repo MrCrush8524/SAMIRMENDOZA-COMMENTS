@@ -1,10 +1,10 @@
 {
   "name": "amb-desktop",
   "productName": "Anthony's Music Box",
-  "version": "2.5.0",
-  "description": "Anthony's Music Box — a private player for the music you own.",
+  "version": "2.6.0",
+  "description": "Anthony’s Music Box — Premium Personal Music + Worldwide Radio Player",
   "main": "main.js",
-  "author": "Anthony's Music Box",
+  "author": "Bobby, Luna & Mateo Interactive",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -20,13 +20,30 @@
     "appId": "com.anthonysmusicbox.amb",
     "productName": "Anthony's Music Box",
     "executableName": "AMB",
-    "copyright": "Anthony's Music Box",
-    "directories": { "output": "dist", "buildResources": "build" },
-    "files": ["main.js", "preload.js", "www/**/*"],
+    "copyright": "© 2026 Bobby, Luna & Mateo Interactive, a technology division of SMR Entertainment",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "www/**/*"
+    ],
     "win": {
       "target": [
-        { "target": "nsis", "arch": ["x64"] },
-        { "target": "portable", "arch": ["x64"] }
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "icon": "build/icon.ico"
     },

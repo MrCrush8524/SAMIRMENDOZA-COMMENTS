@@ -1,6 +1,6 @@
 {
   "name": "amb-android",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
   "description": "Anthony's Music Box — Android app (Capacitor wrapper around ../anthonys-music-box)",
   "scripts": {

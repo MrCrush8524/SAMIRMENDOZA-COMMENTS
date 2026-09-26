@@ -1,4 +1,4 @@
-ANTHONY'S MUSIC BOX (AMB) — v2.3 "Black Crystal"
+ANTHONY'S MUSIC BOX (AMB) — v2.6 "Black Crystal"
 =================================================
 
 DEPLOY TO NETLIFY
@@ -10,6 +10,13 @@ DEPLOY TO NETLIFY
 3. On iPhone: open the site in Safari → Share → Add to Home Screen, then import
    music from inside the installed app. Safari and the Home Screen app each keep
    their own library.
+
+ABOUT (v2.6)
+Anthony's Music Box — Premium Personal Music + Worldwide Radio Player.
+Product of Bobby, Luna & Mateo Interactive, a technology division of SMR
+Entertainment. Navigation: Home · Library · Radio · Playlists · Search ·
+Settings. Radio opens into Around the World, Countries, Genres, Favorites,
+Recently Played and Local Stations. About is in Settings (or tap the wolf).
 
 THEME (v2.3)
 All black and silver: no blue anywhere. Black backgrounds, neutral glass,

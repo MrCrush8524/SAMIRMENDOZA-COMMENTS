@@ -1,5 +1,5 @@
 // Single source for the version shown in Settings and About.
-export const VERSION = '2.5.0';
+export const VERSION = '2.6.0';
 
 // Which build of AMB is running: the Android app, the Windows app, or the website.
 export function platformName() {

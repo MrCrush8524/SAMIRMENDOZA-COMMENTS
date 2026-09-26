@@ -18,9 +18,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/logo-full.webp" as="image" type="image/webp">
 <link rel="preload" href="assets/wolf.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="css/app.css?v=2.5.0">
-<script type="module" src="js/app.js?v=2.5.0"></script>
-<meta name="amb-build" content="2.5.0">
+<link rel="stylesheet" href="css/app.css?v=2.6.0">
+<script type="module" src="js/app.js?v=2.6.0"></script>
+<meta name="amb-build" content="2.6.0">
 </head>
 <body>
 <div id="boot" aria-hidden="true">
@@ -35,12 +35,14 @@
   <nav class="sb-tabs" aria-label="Main">
     <button data-tab="home" class="on"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span>Home</span></button>
     <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Library</span></button>
+    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Radio</span></button>
+    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Playlists</span></button>
     <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Search</span></button>
+    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Settings</span></button>
   </nav>
   <div id="sidebarLinks" class="sb-links"></div>
   <div class="sb-foot">
     <button data-act="addMusic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5v15M4.5 12h15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Add Music</span></button>
-    <button data-act="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </aside>
 
@@ -86,7 +88,10 @@
   <nav id="tabbar" class="glass" aria-label="Main">
     <button data-tab="home" class="on" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><span>Home</span></button>
     <button data-tab="library"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="10.4" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="16.8" y="4" width="3.2" height="16" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Library</span></button>
+    <button data-tab="radio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Radio</span></button>
+    <button data-tab="playlists"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11M4 10.5h11M4 15h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18 8v8.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16.3" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Playlists</span></button>
     <button data-tab="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.2 15.2 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Search</span></button>
+    <button data-tab="settings"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M5.8 18.2l1.6-1.6M16.6 7.4l1.6-1.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Settings</span></button>
   </nav>
 </div>
 
