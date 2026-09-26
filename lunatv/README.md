@@ -37,6 +37,10 @@ LunaTV uses relative paths and `#/` addresses (`#/home`, `#/live`, …), so it w
 
 It opens full-screen, like an app. This is a web app added to the Home Screen, not an App Store install, and no paid Apple Developer membership is needed.
 
+### Android app
+
+There's also an Android app. It's in `lunatv-android/`, next to this folder in the source repository, and ships as `LunaTV-1.2.0.apk` in the Android package. It opens this hosted web app full screen, with its own icon, and everything works as it does in Chrome. See its README to install it or publish it on Google Play. On Android you can also just open your LunaTV address in Chrome and choose **Install app**.
+
 ## 3. Open your own videos
 
 - Tap **＋** (top right) or **Library › Open Video**, then pick one or more videos.

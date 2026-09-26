@@ -22,11 +22,12 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
+      # GitHub's Ubuntu runners come with the Android SDK; add the API 36 platform.
       - name: Install Android 16 (API 36) platform
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+        run: |
+          SDKM=$(ls -d "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | sort -V | tail -1)
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-36" "build-tools;36.0.0"
 
       # Optional: add repository secrets LUNATV_KEYSTORE_BASE64 (base64 of the .jks)
       # and LUNATV_KEYSTORE_PASSWORD to get a release build signed with your key.
