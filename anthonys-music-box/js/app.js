@@ -827,7 +827,7 @@ async function settingsSheet() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
   openSheet({ title: 'Settings', cls: 'tall', html: `
-    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.1</small></div></div>
+    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.2</small></div></div>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
       <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>

@@ -1,4 +1,4 @@
-ANTHONY'S MUSIC BOX (AMB) — v2.1 "Black Crystal"
+ANTHONY'S MUSIC BOX (AMB) — v2.2 "Black Crystal"
 =================================================
 
 DEPLOY TO NETLIFY
@@ -10,6 +10,11 @@ DEPLOY TO NETLIFY
 3. On iPhone: open the site in Safari → Share → Add to Home Screen, then import
    music from inside the installed app. Safari and the Home Screen app each keep
    their own library.
+
+BRANDING (v2.2)
+The chrome AMB wolf logo: the wolf mark (cut out cleanly) in the app header,
+empty states and Settings, the full AMB lockup on the launch screen and the
+default cover, and new Home Screen / app icons.
 
 WHAT'S INSIDE
 index.html, css/app.css, js/*.js (plain ES modules), sw.js (offline app shell),

@@ -1,10 +1,10 @@
 // App-shell cache only. Local playback never depends on this worker; music
 // lives in IndexedDB and plays from blob URLs even if the worker fails.
-const VERSION = 'amb-v2.1.0';
+const VERSION = 'amb-v2.2.0';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/app.css',
   './js/app.js', './js/ui.js', './js/icons.js', './js/library.js', './js/engine.js', './js/meta.js', './js/db.js', './js/radio.js',
-  './assets/wolf.webp', './assets/wolf.png', './assets/default-cover.webp', './assets/default-cover.jpg',
+  './assets/wolf.webp', './assets/logo-full.webp', './assets/wolf.png', './assets/default-cover.webp', './assets/default-cover.jpg',
   './assets/icon-192.png', './assets/icon-512.png', './assets/apple-touch-icon.png', './assets/favicon-32.png',
 ];
 
