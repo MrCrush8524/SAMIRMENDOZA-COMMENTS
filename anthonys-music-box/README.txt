@@ -12,9 +12,9 @@ DEPLOY TO NETLIFY
    their own library.
 
 BRANDING (v2.2)
-The chrome AMB wolf logo: the wolf mark (cut out cleanly) in the app header,
-empty states and Settings, the full AMB lockup on the launch screen and the
-default cover, and new Home Screen / app icons.
+The chrome AMB wolf with musical engraving: the transparent wolf mark in the
+app header, empty states and Settings; wolf + AMB wordmark on the launch
+screen and default cover; new Home Screen / app icons.
 
 WHAT'S INSIDE
 index.html, css/app.css, js/*.js (plain ES modules), sw.js (offline app shell),
