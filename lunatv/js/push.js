@@ -1,5 +1,6 @@
 // Web Push client. Switched on by filling js/push-config.js; until then every
 // function here reports "not configured" and reminders stay in-app.
+import { tr, trn } from "./i18n.js";
 import { PUSH } from "./push-config.js";
 
 export const pushSupported = () => "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
@@ -8,7 +9,7 @@ export const pushConfigured = () => !!(PUSH.vapidPublicKey && PUSH.subscribeUrl 
 export const needsHomeScreen = () => /iP(hone|ad|od)/.test(navigator.userAgent) && !matchMedia("(display-mode: standalone)").matches && !navigator.standalone;
 
 const b64 = s => { const p = "=".repeat((4 - (s.length % 4)) % 4), raw = atob((s + p).replace(/-/g, "+").replace(/_/g, "/")); return Uint8Array.from(raw, c => c.charCodeAt(0)); };
-const post = (url, body) => fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(r => { if (!r.ok) throw new Error(`Push server answered HTTP ${r.status}.`); });
+const post = (url, body) => fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(r => { if (!r.ok) throw new Error(tr("Push server answered HTTP {p0}.", { p0: r.status })); });
 
 /** Ask permission (must follow a tap) and return this device's push subscription. */
 export async function subscription() {

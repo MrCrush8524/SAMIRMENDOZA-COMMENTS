@@ -1,13 +1,14 @@
 // Local media: import, metadata, categories, relinking, progress, posters,
 // subtitles, series grouping. UI-free; emits "library-changed" after writes.
 // Videos are stored in this browser only — never uploaded anywhere.
+import { tr, trn } from "./i18n.js";
 import * as db from "./database.js";
 import { emit } from "./util.js";
 import { isVideoFile, parseEpisode, cleanTitle } from "./media-meta.js";
 import { recordHistory } from "./collections.js";
 
-export const CATEGORIES = [["movie", "Movies"], ["tv", "TV"], ["video", "Videos"], ["music", "Music Videos"], ["download", "Downloads"], ["other", "Other"]];
-export const categoryName = id => (CATEGORIES.find(c => c[0] === id) || [, "Other"])[1];
+export const CATEGORIES = [["movie", tr("Movies")], ["tv", "TV"], ["video", tr("Videos")], ["music", tr("Music Videos")], ["download", tr("Downloads")], ["other", tr("Other")]];
+export const categoryName = id => tr((CATEGORIES.find(c => c[0] === id) || [, "Other"])[1]);
 
 /** All media merged with progress, newest first. */
 export async function allMedia() {
@@ -43,7 +44,7 @@ export async function importFiles(fileList, { folder = "" } = {}) {
     try {
       await db.put("files", { id, blob: f });
     } catch {
-      emit("error", { label: "import", error: new Error(`Not enough browser storage for “${f.name}”.`) });
+      emit("error", { label: "import", error: new Error(tr("Not enough browser storage for “{p0}”.", { p0: f.name })) });
       continue;
     }
     await db.put("library", {
@@ -88,8 +89,8 @@ export async function hasFile(id) { return !!(await db.get("files", id))?.blob; 
  */
 export async function relink(id, file) {
   const m = await db.get("library", id); if (!m) return { ok: false, reason: "missing" };
-  if (!isVideoFile(file)) return { ok: false, reason: "That isn’t a video file." };
-  const warn = file.name !== m.filename ? `Linked “${file.name}” (the original was “${m.filename}”).` : "";
+  if (!isVideoFile(file)) return { ok: false, reason: tr("That isn’t a video file.") };
+  const warn = file.name !== m.filename ? tr("Linked “{p0}” (the original was “{p1}”).", { p0: file.name, p1: m.filename }) : "";
   await db.put("files", { id, blob: file });
   await db.put("library", { ...m, size: file.size, mime: file.type || m.mime, relinkedAt: Date.now() });
   emit("library-changed");
@@ -208,7 +209,7 @@ export function toVTT(text) {
 export function seriesOf(media) {
   const by = new Map();
   for (const m of media.filter(x => x.category === "tv")) {
-    const k = m.series || "Unsorted Episodes";
+    const k = m.series || tr("Unsorted Episodes");
     if (!by.has(k)) by.set(k, []);
     by.get(k).push(m);
   }

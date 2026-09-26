@@ -1,11 +1,12 @@
 // YouTube in the feed: official IFrame player only. Items come from what you've
 // played or favourited in LunaTV, or — after Google sign-in — search and Shorts.
+import { tr, trn } from "../i18n.js";
 import { Provider, ProviderError } from "./provider-base.js";
 import { history, favorites } from "../collections.js";
 import { canSearch, searchYouTube, thumb, watchURL } from "../youtube.js";
 
 export const youtubeProvider = new (class extends Provider {
-  constructor() { super({ id: "youtube", name: "YouTube", tabs: [{ id: "mine", label: "My YouTube" }, { id: "shorts", label: "Shorts" }], search: true }); this.tokens = {}; }
+  constructor() { super({ id: "youtube", name: tr("YouTube"), tabs: [{ id: "mine", label: tr("My YouTube") }, { id: "shorts", label: tr("Shorts") }], search: true }); this.tokens = {}; }
   async page({ tab, query, page }) {
     const toItem = s => ({ id: s.id, title: s.title, creator: s.creator || "YouTube", thumbnail: s.thumb || thumb(s.id), sourceUrl: watchURL(s.id), kind: "youtube", ytId: s.id });
     if (!query && tab === "mine") {
@@ -16,7 +17,7 @@ export const youtubeProvider = new (class extends Provider {
       }
       return { items: out, hasMore: false };
     }
-    if (!canSearch()) throw new ProviderError("Sign in with Google on the YouTube tab to browse Shorts and search here. Videos you’ve played or favorited appear under My YouTube without signing in.", { retry: false });
+    if (!canSearch()) throw new ProviderError(tr("Sign in with Google on the YouTube tab to browse Shorts and search here. Videos you’ve played or favorited appear under My YouTube without signing in."), { retry: false });
     const key = `${tab}|${query}`;
     if (page === 1) this.tokens[key] = "";
     else if (!this.tokens[key]) return { items: [], hasMore: false };

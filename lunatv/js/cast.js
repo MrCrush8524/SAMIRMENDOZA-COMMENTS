@@ -8,6 +8,7 @@
 //  • Other Chrome devices: the standard Remote Playback API, when the browser
 //    reports a device for the current video.
 // Nothing is shown unless a real device is available.
+import { tr, trn } from "./i18n.js";
 import { emit, isIOS } from "./util.js";
 
 const SDK = "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1";
@@ -55,11 +56,11 @@ const typeOf = url => /\.m3u8($|\?)|\/hls\/|m3u8/i.test(url) ? "application/x-mp
 
 /** Send a stream/video URL to the Chromecast. Opens the device picker if needed. */
 export async function castURL({ url, title, subtitle = "", image = "", live = false, startTime = 0 }) {
-  if (!ctx) throw new Error("Casting isn’t available in this browser.");
-  if (!/^https?:/i.test(url)) throw new Error("This video is stored inside the browser, so a Chromecast can’t reach it. Use AirPlay on iPhone/Mac, or cast a stream instead.");
+  if (!ctx) throw new Error(tr("Casting isn’t available in this browser."));
+  if (!/^https?:/i.test(url)) throw new Error(tr("This video is stored inside the browser, so a Chromecast can’t reach it. Use AirPlay on iPhone/Mac, or cast a stream instead."));
   if (!ctx.getCurrentSession()) {
     try { await ctx.requestSession(); }
-    catch (e) { if (e === "cancel" || e?.code === "cancel") return false; throw new Error("Couldn’t connect to the TV."); }
+    catch (e) { if (e === "cancel" || e?.code === "cancel") return false; throw new Error(tr("Couldn’t connect to the TV.")); }
   }
   const s = ctx.getCurrentSession();
   const info = new chrome.cast.media.MediaInfo(url, typeOf(url));
@@ -71,7 +72,7 @@ export async function castURL({ url, title, subtitle = "", image = "", live = fa
   const req = new chrome.cast.media.LoadRequest(info);
   req.autoplay = true; req.currentTime = live ? 0 : startTime;
   try { await s.loadMedia(req); }
-  catch { throw new Error("The TV couldn’t play this stream. Its host may not allow other devices to fetch it."); }
+  catch { throw new Error(tr("The TV couldn’t play this stream. Its host may not allow other devices to fetch it.")); }
   return true;
 }
 export const remoteToggle = () => ctl?.playOrPause();

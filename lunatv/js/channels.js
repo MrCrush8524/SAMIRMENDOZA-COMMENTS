@@ -1,6 +1,7 @@
 // Live TV data: sources (M3U file/URL, direct streams, the IPTV-org
 // directory), channels, per-channel edits, XMLTV guides, the Now Playing
 // engine and reminders. UI-free.
+import { tr, trn, locale } from "./i18n.js";
 import * as db from "./database.js";
 import { emit, norm, isInsecure } from "./util.js";
 import { parseM3U, categorize, hash, ADULT_RE, CHANNEL_CATEGORIES } from "./m3u.js";
@@ -52,8 +53,8 @@ async function saveChannels(source, list) {
 export async function addM3U(text, { name, url = "", adult = false } = {}) {
   const r = parseM3U(text);
   if (r.isStream) return { isStream: true };
-  if (!r.channels.length) throw new Error("No channels found in that playlist.");
-  const source = { id: sid(), type: url ? "m3u-url" : "m3u", name: name || "Playlist", url, adult, added: Date.now(), epgUrl: r.epgUrl };
+  if (!r.channels.length) throw new Error(tr("No channels found in that playlist."));
+  const source = { id: sid(), type: url ? "m3u-url" : "m3u", name: name || tr("Playlist"), url, adult, added: Date.now(), epgUrl: r.epgUrl };
   const n = await saveChannels(source, r.channels);
   await db.put("sources", { ...source, count: n, updated: Date.now() });
   await loadAll();
@@ -64,11 +65,11 @@ export async function fetchText(url, timeout = 20000) {
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), timeout);
   try {
     const r = await fetch(url, { signal: ctl.signal });
-    if (!r.ok) throw new Error(`The server answered HTTP ${r.status}.`);
+    if (!r.ok) throw new Error(tr("The server answered HTTP {p0}.", { p0: r.status }));
     return await r.text();
   } catch (e) {
-    if (e.name === "AbortError") throw new Error("The server took too long to answer.");
-    if (e instanceof TypeError) throw new Error("LunaTV couldn’t download that. The server may not allow browsers to read it (CORS), or it’s unreachable. Download the file and import it instead.");
+    if (e.name === "AbortError") throw new Error(tr("The server took too long to answer."));
+    if (e instanceof TypeError) throw new Error(tr("LunaTV couldn’t download that. The server may not allow browsers to read it (CORS), or it’s unreachable. Download the file and import it instead."));
     throw e;
   } finally { clearTimeout(t); }
 }
@@ -80,7 +81,7 @@ export async function addM3UUrl(url, opts = {}) {
 }
 export async function addDirect(name, url, { adult = false } = {}) {
   let src = state.sources.find(s => s.type === "direct" && !!s.adult === !!adult);
-  if (!src) { src = { id: sid(), type: "direct", name: adult ? "Adult Direct Streams" : "Direct Streams", adult, added: Date.now() }; }
+  if (!src) { src = { id: sid(), type: "direct", name: adult ? tr("Adult Direct Streams") : tr("Direct Streams"), adult, added: Date.now() }; }
   const existing = state.channels.filter(c => c.sourceId === src.id);
   const rec = { id: `${src.id}:${hash(url + "|" + name)}`, sourceId: src.id, name, url, urls: [url], logo: "", tvgId: "", group: "Direct", category: categorize(name), adult, order: existing.length, insecure: isInsecure(url) };
   await db.put("channels", rec);
@@ -92,7 +93,7 @@ export async function refreshSource(id) {
   const s = state.sources.find(x => x.id === id); if (!s) return;
   if (s.type === "m3u-url") {
     const r = parseM3U(await fetchText(s.url));
-    if (!r.channels.length) throw new Error("The playlist is empty now.");
+    if (!r.channels.length) throw new Error(tr("The playlist is empty now."));
     const n = await saveChannels(s, r.channels);
     await db.put("sources", { ...s, count: n, updated: Date.now(), epgUrl: r.epgUrl || s.epgUrl });
   } else if (s.type === "directory") await addDirectory({ refresh: s });
@@ -108,16 +109,16 @@ export async function removeSource(id) {
 export async function renameSource(id, name) { const s = await db.get("sources", id); if (s) { await db.put("sources", { ...s, name }); await loadAll(); } }
 
 // IPTV-org worldwide directory as an optional one-tap source.
-export const DIRECTORY = { name: "Worldwide Free Channels (IPTV-org)", base: "https://iptv-org.github.io/api/" };
+export const DIRECTORY = { name: tr("Worldwide Free Channels (IPTV-org)"), base: "https://iptv-org.github.io/api/" };
 export function addDirectory({ refresh } = {}) {
   return new Promise((res, rej) => {
     const w = new Worker(W("./workers/directory-worker.js"));
-    const t = setTimeout(() => { w.terminate(); rej(new Error("The directory took too long to load.")); }, 120000);
+    const t = setTimeout(() => { w.terminate(); rej(new Error(tr("The directory took too long to load."))); }, 120000);
     w.onmessage = async e => {
       const m = e.data;
       if ("progress" in m) { state.progress = m.progress; emit("live-progress", m.progress); return; }
       clearTimeout(t); w.terminate();
-      if (!m.ok) return rej(new Error(m.error));
+      if (!m.ok) return rej(new Error(tr(m.error)));
       const d = m.data, source = refresh || { id: sid(), type: "directory", name: DIRECTORY.name, url: DIRECTORY.base, added: Date.now() };
       const list = d.channels.map(c => ({
         name: c.n, url: c.u[0], urls: c.u, tvgId: c.id, logo: c.g, group: d.categories[c.k[0]] || c.k[0],
@@ -131,7 +132,7 @@ export function addDirectory({ refresh } = {}) {
         res({ count: n, dropped: d.dropped });
       } catch (err) { rej(err); }
     };
-    w.onerror = e => { clearTimeout(t); w.terminate(); rej(new Error(e.message || "Directory worker failed")); };
+    w.onerror = e => { clearTimeout(t); w.terminate(); rej(new Error(e.message || tr("Directory worker failed"))); };
     w.postMessage({ provider: "iptv-org", base: DIRECTORY.base, https: location.protocol === "https:" });
   });
 }
@@ -156,16 +157,16 @@ export async function moveChannel(id, dir, list) {
 export function parseXMLTV(input) {
   return new Promise((res, rej) => {
     const w = new Worker(W("./workers/xmltv-worker.js"));
-    const t = setTimeout(() => { w.terminate(); rej(new Error("The guide took too long to process.")); }, 120000);
-    w.onmessage = e => { clearTimeout(t); w.terminate(); e.data.ok ? res(e.data.data) : rej(new Error(e.data.error)); };
-    w.onerror = e => { clearTimeout(t); w.terminate(); rej(new Error(e.message || "Guide worker failed")); };
+    const t = setTimeout(() => { w.terminate(); rej(new Error(tr("The guide took too long to process."))); }, 120000);
+    w.onmessage = e => { clearTimeout(t); w.terminate(); e.data.ok ? res(e.data.data) : rej(new Error(tr(e.data.error))); };
+    w.onerror = e => { clearTimeout(t); w.terminate(); rej(new Error(e.message || tr("Guide worker failed"))); };
     w.postMessage({ input }, input instanceof ArrayBuffer ? [input] : []);
   });
 }
 export async function addXMLTV({ buffer, url, name, refresh } = {}) {
   const data = await parseXMLTV(buffer || url);
-  if (!data.count) throw new Error("No current or upcoming programmes were found in that guide.");
-  const src = refresh || { id: sid(), type: url ? "xmltv-url" : "xmltv", name: name || (url ? new URL(url).hostname : "Guide"), url: url || "", added: Date.now() };
+  if (!data.count) throw new Error(tr("No current or upcoming programmes were found in that guide."));
+  const src = refresh || { id: sid(), type: url ? "xmltv-url" : "xmltv", name: name || (url ? new URL(url).hostname : tr("Guide")), url: url || "", added: Date.now() };
   await db.put("epg", { id: src.id, at: Date.now(), channels: data.channels, programmes: data.programmes });
   await db.put("sources", { ...src, guide: true, count: data.count, updated: Date.now() });
   await loadAll();
@@ -226,13 +227,13 @@ export function comingUp({ hours = 24, limit = 40 } = {}) {
 }
 export function whenLabel(p, now = Date.now()) {
   const mins = Math.round((p.s - now) / 60000);
-  if (mins <= 0) return "On now";
-  if (mins < 60) return `Starts in ${mins} min`;
+  if (mins <= 0) return tr("On now");
+  if (mins < 60) return tr("Starts in {p0} min", { p0: mins });
   const d = new Date(p.s), today = new Date(now), tmr = new Date(now + 86400e3);
-  const t = d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-  if (d.toDateString() === today.toDateString()) return d.getHours() >= 17 ? `Tonight · ${t}` : `Today · ${t}`;
-  if (d.toDateString() === tmr.toDateString()) return `Tomorrow · ${t}`;
-  return `${d.toLocaleDateString([], { weekday: "short" })} · ${t}`;
+  const t = d.toLocaleTimeString(locale(), { hour: "numeric", minute: "2-digit" });
+  if (d.toDateString() === today.toDateString()) return d.getHours() >= 17 ? tr("Tonight · {p0}", { p0: t }) : tr("Today · {p0}", { p0: t });
+  if (d.toDateString() === tmr.toDateString()) return tr("Tomorrow · {p0}", { p0: t });
+  return `${d.toLocaleDateString(locale(), { weekday: "short" })} · ${t}`;
 }
 export const progKey = (c, p) => `${c.id}@${p.s}`;
 
@@ -268,7 +269,7 @@ export function startReminderLoop(onDue) {
       if (r.start - now <= 60000) {
         await db.del("reminders", r.id);
         if (r.start > now - 30 * 60000) {
-          if (!r.push && "Notification" in window && Notification.permission === "granted" && document.hidden) try { new Notification(`${r.title} is starting`, { body: `On ${r.channel}`, icon: W("../assets/icons/icon-192.png") }); } catch {}
+          if (!r.push && "Notification" in window && Notification.permission === "granted" && document.hidden) try { new Notification(tr("{title} is starting", { title: r.title }), { body: tr("On {channel}", { channel: r.channel }), icon: W("../assets/icons/icon-192.png") }); } catch {}
           onDue(r);
         }
         emit("reminders-changed");

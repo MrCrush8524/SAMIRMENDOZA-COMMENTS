@@ -1,5 +1,6 @@
 // Navigation (areas with per-area view stacks, hash routes), bottom sheets,
 // in-app dialogs, toasts. No browser prompt()/confirm()/alert() in LunaTV.
+import { tr, trn } from "./i18n.js";
 import { $, $$, h, esc, icon, on, debounce } from "./util.js";
 
 // ---------------------------------------------------------------- navigation
@@ -16,12 +17,12 @@ function makeView({ root = false, bare = false, title = "", actions = "", build,
   const v = h(`<section class="view${root ? " root" : " pushed"}"><div class="inner"></div></section>`);
   const inner = v.firstElementChild;
   if (root) {
-    const hdr = h(`<header class="brand"><div class="brand-inner"><a class="brand-logo" href="#/home" aria-label="LunaTV home"><img class="mark" src="assets/branding/lunatv-mark.webp" alt="" width="480" height="348"><img class="word" src="assets/branding/lunatv-wordmark.webp" alt="LunaTV" width="520" height="70"></a><div class="brand-actions"></div></div></header>`);
+    const hdr = h(`<header class="brand"><div class="brand-inner"><a class="brand-logo" href="#/home" aria-label="${tr("LunaTV home")}"><img class="mark" src="assets/branding/lunatv-mark.webp" alt="" width="480" height="348"><img class="word" src="assets/branding/lunatv-wordmark.webp" alt="${tr("LunaTV")}" width="520" height="70"></a><div class="brand-actions"></div></div></header>`);
     const acts = hdr.querySelector(".brand-actions");
     for (const make of headerExtras) { const el = make(area); if (el) acts.append(el); }
     inner.append(hdr);
   } else if (!bare) {
-    inner.insertAdjacentHTML("afterbegin", `<header class="navbar"><button class="back" aria-label="Back">${icon("chevL")}<span>Back</span></button><h1>${esc(title)}</h1><div class="actions"></div></header>`);
+    inner.insertAdjacentHTML("afterbegin", `<header class="navbar"><button class="back" aria-label="${tr("Back")}">${icon("chevL")}<span>${tr("Back")}</span></button><h1>${esc(title)}</h1><div class="actions"></div></header>`);
     inner.querySelector(".back").onclick = () => back();
     if (actions) inner.querySelector(".actions").append(...(typeof actions === "string" ? [h(actions)] : [actions].flat()));
   }
@@ -149,7 +150,7 @@ export function sheet({ title = "", subtitle = "", groups = [] }) {
     }
     body.append(grp);
   }
-  body.append(h(`<div class="grp"><button class="row" style="justify-content:center;font-weight:650">Cancel</button></div>`));
+  body.append(h(`<div class="grp"><button class="row" style="justify-content:center;font-weight:650">${tr("Cancel")}</button></div>`));
   body.lastElementChild.firstElementChild.onclick = closeSheet;
   s.onclick = e => { if (e.target === s) closeSheet(); };
   document.body.append(s);
@@ -161,7 +162,7 @@ export function sheet({ title = "", subtitle = "", groups = [] }) {
 /** Sheet with arbitrary content (sliders, pickers). Closes with Done / scrim tap / Esc. */
 export function panel({ title = "", subtitle = "", body, onClose }) {
   closeSheet();
-  const s = h(`<div class="scrim" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="sheet glass panel"><div class="grab"></div>${title ? `<div class="sheet-title"><b>${esc(title)}</b>${esc(subtitle)}</div>` : ""}<div class="panel-body"></div><div class="grp"><button class="row" style="justify-content:center;font-weight:650">Done</button></div></div></div>`);
+  const s = h(`<div class="scrim" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="sheet glass panel"><div class="grab"></div>${title ? `<div class="sheet-title"><b>${esc(title)}</b>${esc(subtitle)}</div>` : ""}<div class="panel-body"></div><div class="grp"><button class="row" style="justify-content:center;font-weight:650">${tr("Done")}</button></div></div></div>`);
   s.querySelector(".panel-body").append(body);
   s._resolve = () => onClose?.();
   s.querySelector(".grp:last-child .row").onclick = closeSheet;
@@ -199,26 +200,26 @@ function dialog(html, setup) {
   });
 }
 
-export function ask({ title, message = "", value = "", placeholder = "", ok = "Save", type = "text" }) {
-  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<input class="input" name="v" type="${type}" autocomplete="off" placeholder="${esc(placeholder)}" value="${esc(value)}"><div class="btn-row"><button type="button" class="btn" data-cancel>Cancel</button><button class="btn blue">${esc(ok)}</button></div>`,
+export function ask({ title, message = "", value = "", placeholder = "", ok = tr("Save"), type = "text" }) {
+  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<input class="input" name="v" type="${type}" autocomplete="off" placeholder="${esc(placeholder)}" value="${esc(value)}"><div class="btn-row"><button type="button" class="btn" data-cancel>${tr("Cancel")}</button><button class="btn blue">${esc(ok)}</button></div>`,
     (form, done) => { form.onsubmit = e => { e.preventDefault(); const v = form.v.value.trim(); if (v) done(v); else form.v.focus(); }; });
 }
 
 export function confirmBox({ title, message = "", ok = "OK", danger = false }) {
-  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<div class="btn-row"><button type="button" class="btn" data-cancel>Cancel</button><button class="btn ${danger ? "danger" : "blue"}">${esc(ok)}</button></div>`,
+  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<div class="btn-row"><button type="button" class="btn" data-cancel>${tr("Cancel")}</button><button class="btn ${danger ? "danger" : "blue"}">${esc(ok)}</button></div>`,
     (form, done) => { form.onsubmit = e => { e.preventDefault(); done(true); }; }).then(Boolean);
 }
 
 /** Multi-field form. fields: [{name, label, value, type, min, placeholder}] */
-export function form({ title, message = "", fields, ok = "Save" }) {
+export function form({ title, message = "", fields, ok = tr("Save") }) {
   const f = fields.map(x => `<label class="lbl" for="f-${x.name}">${esc(x.label)}</label><input class="input" id="f-${x.name}" name="${x.name}" type="${x.type || "text"}" ${x.min != null ? `min="${x.min}"` : ""} inputmode="${x.type === "number" ? "numeric" : "text"}" placeholder="${esc(x.placeholder || "")}" value="${esc(x.value ?? "")}">`).join("");
-  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}${f}<div class="btn-row"><button type="button" class="btn" data-cancel>Cancel</button><button class="btn blue">${esc(ok)}</button></div>`,
+  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}${f}<div class="btn-row"><button type="button" class="btn" data-cancel>${tr("Cancel")}</button><button class="btn blue">${esc(ok)}</button></div>`,
     (el, done) => { el.onsubmit = e => { e.preventDefault(); done(Object.fromEntries(fields.map(x => [x.name, el[x.name].value.trim()]))); }; });
 }
 
 /** 4-digit PIN entry. */
 export function pinPad({ title, message = "" }) {
-  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<div class="pin">${[0, 1, 2, 3].map(i => `<input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit ${i + 1}" autocomplete="off" type="password">`).join("")}</div><div class="btn-row"><button type="button" class="btn" data-cancel>Cancel</button><button class="btn blue">OK</button></div>`,
+  return dialog(`<h3>${esc(title)}</h3>${message ? `<p>${esc(message)}</p>` : ""}<div class="pin">${[0, 1, 2, 3].map(i => `<input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="${tr("Digit {n}", { n: i + 1 })}" autocomplete="off" type="password">`).join("")}</div><div class="btn-row"><button type="button" class="btn" data-cancel>${tr("Cancel")}</button><button class="btn blue">${tr("OK")}</button></div>`,
     (form, done) => {
       const ins = $$(".pin input", form);
       ins.forEach((inp, i) => {
@@ -242,7 +243,7 @@ export function toast(msg, { err = false, ms = 2200 } = {}) {
 
 // ---------------------------------------------------------------- misc components
 export function searchField(placeholder, oninput) {
-  const f = h(`<label class="field">${icon("search")}<input type="search" enterkeyhint="search" placeholder="${esc(placeholder)}" aria-label="${esc(placeholder)}" autocomplete="off"><button type="button" class="clear" aria-label="Clear" hidden>${icon("close")}</button></label>`);
+  const f = h(`<label class="field">${icon("search")}<input type="search" enterkeyhint="search" placeholder="${esc(placeholder)}" aria-label="${esc(placeholder)}" autocomplete="off"><button type="button" class="clear" aria-label="${tr("Clear")}" hidden>${icon("close")}</button></label>`);
   const inp = f.querySelector("input"), clr = f.querySelector(".clear");
   const fire = debounce(() => oninput(inp.value.trim()), 140);
   inp.oninput = () => { clr.hidden = !inp.value; fire(); };

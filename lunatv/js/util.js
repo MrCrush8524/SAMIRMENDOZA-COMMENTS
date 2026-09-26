@@ -1,4 +1,5 @@
 // Small shared helpers: DOM building, formatting, events, icons.
+import { tr, locale } from "./i18n.js";
 
 export const $ = (s, r = document) => r.querySelector(s);
 export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -25,9 +26,9 @@ export function fmtTime(s) {
 export function fmtLeft(s) {
   if (!isFinite(s) || s <= 0) return "";
   const m = Math.round(s / 60);
-  if (m < 1) return "<1m left";
+  if (m < 1) return tr("<1m left");
   const hh = Math.floor(m / 60), mm = m % 60;
-  return (hh ? `${hh}h ${mm}m` : `${mm}m`) + " left";
+  return tr("{d} left", { d: hh ? `${hh}h ${mm}m` : `${mm}m` });
 }
 export function fmtDur(s) {
   if (!isFinite(s) || s <= 0) return "";

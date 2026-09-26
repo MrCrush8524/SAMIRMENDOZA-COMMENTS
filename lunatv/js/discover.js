@@ -1,6 +1,7 @@
 // Discover — the Luna Feed. One item per screen, swipe up/down. Only the
 // active card (plus its neighbours for direct video) holds a real player;
 // everything else is a lazy thumbnail. Players are destroyed as you move on.
+import { tr, trn } from "./i18n.js";
 import { h, esc, icon, on, emit, fmtDur, shareOrCopy, debounce, safeURL } from "./util.js";
 import * as db from "./database.js";
 import * as C from "./collections.js";
@@ -29,7 +30,7 @@ export function initDiscover() {
       function sections() {
         const adultOn = db.setting("content.adult");
         const secs = top.querySelector(".feed-sections");
-        const btns = [...GENERAL.map(p => [p.id, p.name, "general"]), ["adult", "Adult", "adult"]];
+        const btns = [...GENERAL.map(p => [p.id, p.name, "general"]), ["adult", tr("Adult"), "adult"]];
         secs.replaceChildren(...btns.map(([id, label, sec]) => {
           const on2 = sec === "adult" ? section === "adult" : section === "general" && pid === id;
           const b = h(`<button class="chip${on2 ? " on" : ""}${sec === "adult" ? " adult-chip" : ""}">${esc(label)}</button>`);
@@ -43,7 +44,7 @@ export function initDiscover() {
         if (section === "adult" && !adultOn) return;
         if (section === "adult") {
           const sub = h(`<div class="chips feed-sub"></div>`);
-          for (const [id, label] of [["eporner", "Eporner"], ["streams", "My Streams"], ["xfree", "Xfree"]]) {
+          for (const [id, label] of [["eporner", "Eporner"], ["streams", tr("My Streams")], ["xfree", "Xfree"]]) {
             const b = h(`<button class="chip${pid === id ? " on" : ""}">${label}</button>`);
             b.onclick = () => { pid = id; sections(); open(); };
             sub.append(b);
@@ -55,20 +56,20 @@ export function initDiscover() {
         feed?.destroy(); feed = null;
         const tabs = top.querySelector(".feed-tabs"); tabs.replaceChildren();
         if (section === "adult" && !db.setting("content.adult")) {
-          stage.replaceChildren(msgCard("Adult content off", "Adult Discover is currently disabled.", [["Settings", () => { location.hash = "#/settings"; emit("settings-section", "content"); }]]));
+          stage.replaceChildren(msgCard(tr("Adult content off"), tr("Adult Discover is currently disabled."), [[tr("Settings"), () => { location.hash = "#/settings"; emit("settings-section", "content"); }]]));
           return;
         }
         if (section === "adult" && pid === "streams") return adultStreams(stage, tabs);
         if (section === "adult" && pid === "xfree") {
-          stage.replaceChildren(msgCard("Xfree", "LunaTV doesn’t scrape websites. Xfree will appear here as a native feed only if it offers a supported public API or embed. Until then you can open it directly.", [["Open Xfree", () => window.open(XFREE.url, "_blank", "noopener")]]));
+          stage.replaceChildren(msgCard(tr("Xfree"), tr("LunaTV doesn’t scrape websites. Xfree will appear here as a native feed only if it offers a supported public API or embed. Until then you can open it directly."), [[tr("Open Xfree"), () => window.open(XFREE.url, "_blank", "noopener")]]));
           return;
         }
         const prov = [...GENERAL, ...ADULT].find(p => p.id === pid) || GENERAL[0];
         let tab = prov.tabs[0].id, query = "";
         const drawTabs = () => {
           tabs.replaceChildren(...prov.tabs.map(t => { const b = h(`<button class="chip${t.id === tab ? " on" : ""}">${esc(t.label)}</button>`); b.onclick = () => { tab = t.id; query = ""; drawTabs(); start(); }; return b; }));
-          if (prov.search) { const s = h(`<button class="chip${query ? " on" : ""}" aria-label="Search ${esc(prov.name)}">${icon("search")} ${query ? esc(query) : "Search"}</button>`); s.onclick = async () => { const q = await ask({ title: `Search ${prov.name}`, value: query, ok: "Search" }); if (q != null) { query = q.trim(); drawTabs(); start(); } }; tabs.append(s); }
-          if (prov.id === "direct") { const a = h(`<button class="chip">${icon("plus")} Add Video URL</button>`); a.onclick = async () => { const u = await ask({ title: "Video URL", placeholder: "https://…/clip.mp4", type: "url", ok: "Add" }); if (u && safeURL(u)) { await addDirectVideo(u, new URL(u).pathname.split("/").pop() || "Video"); start(); } else if (u) toast("Enter a full https:// address.", { err: true }); }; tabs.append(a); }
+          if (prov.search) { const s = h(`<button class="chip${query ? " on" : ""}" aria-label="${tr("Search")} ${esc(prov.name)}">${icon("search")} ${query ? esc(query) : tr("Search")}</button>`); s.onclick = async () => { const q = await ask({ title: tr("Search {p0}", { p0: prov.name }), value: query, ok: tr("Search") }); if (q != null) { query = q.trim(); drawTabs(); start(); } }; tabs.append(s); }
+          if (prov.id === "direct") { const a = h(`<button class="chip">${icon("plus")} ${tr("Add Video URL")}</button>`); a.onclick = async () => { const u = await ask({ title: tr("Video URL"), placeholder: "https://…/clip.mp4", type: "url", ok: tr("Add") }); if (u && safeURL(u)) { await addDirectVideo(u, new URL(u).pathname.split("/").pop() || tr("Video")); start(); } else if (u) toast(tr("Enter a full https:// address."), { err: true }); }; tabs.append(a); }
         };
         const start = () => { feed?.destroy(); feed = new Feed(stage, prov, { tab, query, adult: section === "adult" }); };
         drawTabs(); start();
@@ -92,13 +93,13 @@ function msgCard(title, text, buttons = []) {
 
 // Adult live streams imported by the user (M3U/direct) — kept out of Live TV.
 function adultStreams(stage, tabs) {
-  const add = h(`<button class="chip">${icon("plus")} Add Adult Source</button>`);
+  const add = h(`<button class="chip">${icon("plus")} ${tr("Add Adult Source")}</button>`);
   add.onclick = () => addSourceSheet({ adult: true });
   tabs.replaceChildren(add);
   const box = h(`<div class="feed-list"></div>`);
   const render = () => {
     const list = L.channels({ adult: true });
-    if (!list.length) { box.replaceChildren(msgCard("No adult streams", "Add an M3U playlist or direct stream. It stays inside Discover › Adult.", [["Add Source", () => addSourceSheet({ adult: true })]])); return; }
+    if (!list.length) { box.replaceChildren(msgCard(tr("No adult streams"), tr("Add an M3U playlist or direct stream. It stays inside Discover › Adult."), [[tr("Add Source"), () => addSourceSheet({ adult: true })]])); return; }
     const l = h(`<div class="list glass"></div>`);
     list.slice(0, 500).forEach(c => l.append(channelRow(c, list, { adult: true })));
     box.replaceChildren(l);
@@ -138,14 +139,14 @@ class Feed {
       this.items.push(...fresh);
       spin.remove();
       fresh.forEach((it, j) => this.el.append(this.card(it, start + j)));
-      if (!this.items.length) this.el.append(msgCard("Nothing here yet", this.prov.id === "local" ? "Open a video to begin building your LunaTV library." : "This feed returned no results.", this.prov.id === "local" ? [["Open Video", () => emit("open-media")]] : []));
+      if (!this.items.length) this.el.append(msgCard(tr("Nothing here yet"), this.prov.id === "local" ? tr("Open a video to begin building your LunaTV library.") : tr("This feed returned no results."), this.prov.id === "local" ? [[tr("Open Video"), () => emit("open-media")]] : []));
       if (!fresh.length && this.hasMore) { this.loading = false; return this.more(); }
       this.save();
     } catch (e) {
       spin.remove();
       if (e.name === "AbortError") return;
-      const msg = e instanceof ProviderError ? e.message : `LunaTV couldn’t reach ${this.prov.name} right now.`;
-      const card = msgCard("Provider unavailable", msg, (e.retry ?? true) ? [["Retry", () => { card.remove(); this.more(); }]] : []);
+      const msg = e instanceof ProviderError ? e.message : tr("LunaTV couldn’t reach {p0} right now.", { p0: this.prov.name });
+      const card = msgCard(tr("Provider unavailable"), msg, (e.retry ?? true) ? [[tr("Retry"), () => { card.remove(); this.more(); }]] : []);
       card.classList.add("fcard"); this.el.append(card);
     } finally { this.loading = false; }
   }
@@ -154,15 +155,15 @@ class Feed {
     const el = h(`<article class="fcard" data-i="${i}" aria-label="${esc(it.title)}">
       <div class="fc-media">${it.thumbnail ? `<img class="fc-thumb" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${esc(it.thumbnail)}">` : `<div class="lunafall fc-thumb"><img class="lf-mark" src="assets/branding/lunatv-crescent.webp" alt=""></div>`}</div>
       <div class="fc-shade"></div>
-      <div class="fc-badge">${it.adult ? `<span class="adult-tag">ADULT</span>` : ""}<span>${esc(this.prov.name.toUpperCase())}</span></div>
-      <div class="fc-info"><b>${esc(it.title)}</b><span>${[it.creator, it.duration ? fmtDur(it.duration) : "", it.views ? `${compact(it.views)} views` : ""].filter(Boolean).map(esc).join(" · ")}</span></div>
+      <div class="fc-badge">${it.adult ? `<span class="adult-tag">${tr("ADULT")}</span>` : ""}<span>${esc(this.prov.name.toUpperCase())}</span></div>
+      <div class="fc-info"><b>${esc(it.title)}</b><span>${[it.creator, it.duration ? fmtDur(it.duration) : "", it.views ? tr("{v} views", { v: compact(it.views) }) : ""].filter(Boolean).map(esc).join(" · ")}</span></div>
       <div class="fc-side">
-        <button class="fc-btn${fav ? " on" : ""}" data-a="fav" aria-label="Favorite">${icon(fav ? "heartFill" : "heart")}</button>
-        <button class="fc-btn" data-a="mute" aria-label="Sound" hidden>${icon(soundOn ? "volume" : "mute")}</button>
-        <button class="fc-btn" data-a="share" aria-label="Share">${icon("share")}</button>
-        ${it.sourceUrl ? `<a class="fc-btn" data-a="src" href="${esc(it.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open source">${icon("external")}</a>` : ""}
-        <button class="fc-btn" data-a="more" aria-label="More">${icon("more")}</button>
-        <button class="fc-btn" data-a="full" aria-label="Fullscreen">${icon("expand")}</button>
+        <button class="fc-btn${fav ? " on" : ""}" data-a="fav" aria-label="${tr("Favorite")}">${icon(fav ? "heartFill" : "heart")}</button>
+        <button class="fc-btn" data-a="mute" aria-label="${tr("Sound")}" hidden>${icon(soundOn ? "volume" : "mute")}</button>
+        <button class="fc-btn" data-a="share" aria-label="${tr("Share")}">${icon("share")}</button>
+        ${it.sourceUrl ? `<a class="fc-btn" data-a="src" href="${esc(it.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${tr("Open source")}">${icon("external")}</a>` : ""}
+        <button class="fc-btn" data-a="more" aria-label="${tr("More")}">${icon("more")}</button>
+        <button class="fc-btn" data-a="full" aria-label="${tr("Fullscreen")}">${icon("expand")}</button>
       </div>
       <div class="fc-play" hidden>${icon("play")}</div>
       <div class="fc-heart" aria-hidden="true">${icon("heartFill")}</div>
@@ -172,7 +173,7 @@ class Feed {
       const a = e.target.closest("[data-a]")?.dataset.a;
       if (a === "fav") this.fav(it, el);
       else if (a === "mute") this.toggleSound(el);
-      else if (a === "share") shareOrCopy({ title: it.title, url: it.sourceUrl || (it.ytId ? `https://www.youtube.com/watch?v=${it.ytId}` : "") }).then(r => { if (r === "copied") toast("Link copied"); if (r === "failed") toast("Nothing to share for this item.", { err: true }); });
+      else if (a === "share") shareOrCopy({ title: it.title, url: it.sourceUrl || (it.ytId ? `https://www.youtube.com/watch?v=${it.ytId}` : "") }).then(r => { if (r === "copied") toast(tr("Link copied")); if (r === "failed") toast(tr("Nothing to share for this item."), { err: true }); });
       else if (a === "more") this.moreMenu(it, el);
       else if (a === "full") { const m = el.querySelector(".fc-media"); (m.requestFullscreen?.() || m.webkitRequestFullscreen?.() || m.querySelector("video")?.webkitEnterFullscreen?.())?.catch?.(() => {}); }
     });
@@ -198,13 +199,13 @@ class Feed {
     const on2 = await C.toggleFavorite({ type: "feed", ref: it.id, title: it.title, adult: it.adult, snapshot: { ...it, videoUrl: it.kind === "local" ? "" : it.videoUrl } });
     const b = el.querySelector("[data-a=fav]"); b.classList.toggle("on", on2); b.innerHTML = icon(on2 ? "heartFill" : "heart");
     if (on2) pulse(el);
-    toast(on2 ? "Added to Favorites" : "Removed from Favorites");
+    toast(on2 ? tr("Added to Favorites") : tr("Removed from Favorites"));
   }
   moreMenu(it, el) {
     sheet({ title: it.title, subtitle: this.prov.name, groups: [[
-      it.sourceUrl && { icon: "external", label: `Open in ${this.prov.id === "eporner" ? "Eporner" : this.prov.id === "youtube" ? "YouTube" : "Source"}`, run: () => window.open(it.sourceUrl, "_blank", "noopener,noreferrer") },
-      it.sourceUrl && { icon: "copy", label: "Copy Link", run: async () => { try { await navigator.clipboard.writeText(it.sourceUrl); toast("Link copied"); } catch { toast("Couldn’t copy", { err: true }); } } },
-      { icon: "next", label: "Skip — Video Unavailable", run: () => { el.classList.add("dead"); this.go(1); } },
+      it.sourceUrl && { icon: "external", label: tr("Open in {p0}", { p0: this.prov.id === "eporner" ? "Eporner" : this.prov.id === "youtube" ? "YouTube" : "Source" }), run: () => window.open(it.sourceUrl, "_blank", "noopener,noreferrer") },
+      it.sourceUrl && { icon: "copy", label: tr("Copy Link"), run: async () => { try { await navigator.clipboard.writeText(it.sourceUrl); toast(tr("Link copied")); } catch { toast(tr("Couldn’t copy"), { err: true }); } } },
+      { icon: "next", label: tr("Skip — Video Unavailable"), run: () => { el.classList.add("dead"); this.go(1); } },
     ]] });
   }
   toggleSound(el) {
@@ -248,7 +249,7 @@ class Feed {
           if (dead) return;
           player = new YT.Player(host.firstElementChild, { videoId: it.ytId, host: "https://www.youtube.com", playerVars: { autoplay: 1, mute: soundOn ? 0 : 1, playsinline: 1, rel: 0, loop: 1, playlist: it.ytId, origin: location.origin },
             events: { onError: () => this.unavailable(el, it), onReady: () => box.querySelector(".fc-thumb")?.classList.add("gone") } });
-        }).catch(() => this.unavailable(el, it, "YouTube couldn’t be reached."));
+        }).catch(() => this.unavailable(el, it, tr("YouTube couldn’t be reached.")));
         p = { pause: () => player?.pauseVideo?.(), play: () => player?.playVideo?.(), destroy: () => { dead = true; try { player?.destroy(); } catch {} host.remove(); } };
       } else if (it.kind === "embed" && it.embedUrl) {
         // Official provider embed. LunaTV can't control what's inside it, so no fake controls.
@@ -264,7 +265,7 @@ class Feed {
   unmount(i) { const p = this.players.get(i); if (!p) return; p.destroy(); this.players.delete(i); const el = this.el.children[i]; el?.querySelector(".fc-thumb")?.classList.remove("gone"); }
   unavailable(el, it, why = "") {
     if (el.querySelector(".fc-dead")) return;
-    const d = h(`<div class="fc-dead glass"><b>Video unavailable</b>${why ? `<p>${esc(why)}</p>` : ""}<div class="btn-row"><button class="btn blue">Next</button>${it.sourceUrl ? `<a class="btn" href="${esc(it.sourceUrl)}" target="_blank" rel="noopener noreferrer">Open Source</a>` : ""}</div></div>`);
+    const d = h(`<div class="fc-dead glass"><b>${tr("Video unavailable")}</b>${why ? `<p>${esc(why)}</p>` : ""}<div class="btn-row"><button class="btn blue">${tr("Next")}</button>${it.sourceUrl ? `<a class="btn" href="${esc(it.sourceUrl)}" target="_blank" rel="noopener noreferrer">${tr("Open Source")}</a>` : ""}</div></div>`);
     d.querySelector("button").onclick = () => this.go(1);
     el.append(d); el.classList.add("dead");
   }

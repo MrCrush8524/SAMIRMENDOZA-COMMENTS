@@ -1,5 +1,6 @@
 // LunaTV entry: storage + legacy-data migration, then each area mounts in
 // isolation so one failure never takes the rest of the app down.
+import { tr, trn, translateStatic } from "./i18n.js";
 import { $, $$, on, emit, h, esc, icon } from "./util.js";
 import * as db from "./database.js";
 import * as C from "./collections.js";
@@ -22,26 +23,27 @@ const areas = [
 
 function areaFailed(tab, err) {
   console.error(tab, err);
-  $(`#tab-${tab}`).replaceChildren(h(`<section class="view root"><div class="inner"><h1 class="page-title" style="margin-top:calc(var(--safe-t) + 24px)">Unavailable</h1><div class="empty">This part of LunaTV couldn’t start: ${esc(err?.message || err)}<br><button class="btn blue sm" onclick="location.reload()">Reload</button></div></div></section>`));
+  $(`#tab-${tab}`).replaceChildren(h(`<section class="view root"><div class="inner"><h1 class="page-title" style="margin-top:calc(var(--safe-t) + 24px)">${tr("Unavailable")}</h1><div class="empty">${tr("This part of LunaTV couldn’t start:")} ${esc(err?.message || err)}<br><button class="btn blue sm" onclick="location.reload()">${tr("Reload")}</button></div></div></section>`));
 }
 const splash = t => { const s = $(".boot small"); if (s) s.textContent = t; };
 
 async function boot() {
+  translateStatic();
   const ok = await db.open();
   await db.loadSettings();
   applyAppearance();
   try {
-    const rep = await db.migrateLegacy(p => splash(`Moving your library to LunaTV… ${Math.round(p * 100)}%`));
-    if (rep) setTimeout(() => toast(`Welcome to LunaTV. Your ${rep.media} video${rep.media === 1 ? "" : "s"}, ${rep.playlists} playlist${rep.playlists === 1 ? "" : "s"} and history came with you.`, { ms: 6000 }), 800);
+    const rep = await db.migrateLegacy(p => splash(tr("Moving your library to LunaTV… {p0}%", { p0: Math.round(p * 100) })));
+    if (rep) setTimeout(() => toast(tr("Welcome to LunaTV. Your {p0}, {p1} and history came with you.", { p0: trn("{n} video", "{n} videos", rep.media), p1: trn("{n} playlist", "{n} playlists", rep.playlists) }), { ms: 6000 }), 800);
   } catch (e) { console.error("migration", e); }
   await C.loadFavorites().catch(() => {});
   L.loadAll().catch(e => console.error("live", e));
 
   // global header buttons on every area's root
   // Phone header: Discover and Settings live here (the dock holds Home / Live TV / YouTube / Library / Search)
-  addHeaderButton(area => { if (area === "discover") return null; const b = h(`<button class="hbtn only-mobile" aria-label="Discover">${icon("compass")}</button>`); b.onclick = () => switchTab("discover"); return b; });
-  addHeaderButton(area => { const b = h(`<button class="hbtn" aria-label="Open media">${icon("plus")}</button>`); b.onclick = () => emit("open-media"); return b; });
-  addHeaderButton(area => { if (area === "settings") return null; const b = h(`<button class="hbtn only-mobile" aria-label="Settings">${icon("gear")}</button>`); b.onclick = () => switchTab("settings"); return b; });
+  addHeaderButton(area => { if (area === "discover") return null; const b = h(`<button class="hbtn only-mobile" aria-label="${tr("Discover")}">${icon("compass")}</button>`); b.onclick = () => switchTab("discover"); return b; });
+  addHeaderButton(area => { const b = h(`<button class="hbtn" aria-label="${tr("Open media")}">${icon("plus")}</button>`); b.onclick = () => emit("open-media"); return b; });
+  addHeaderButton(area => { if (area === "settings") return null; const b = h(`<button class="hbtn only-mobile" aria-label="${tr("Settings")}">${icon("gear")}</button>`); b.onclick = () => switchTab("settings"); return b; });
 
   for (const [tab, init] of areas) { try { await init(); } catch (e) { areaFailed(tab, e); } }
   const { openMediaSheet } = await import("./library.js");
@@ -51,18 +53,18 @@ async function boot() {
   switchTab(routeFromHash() || "home");
 
   db.onSetting((k, v) => { emit("settings-changed", k); if (k.startsWith("appearance.")) applyAppearance(); });
-  on("error", ({ label, error }) => toast(error?.message || `Something went wrong (${label})`, { err: true, ms: 3500 }));
-  addEventListener("error", e => { if (e.message && !/ResizeObserver|Script error/.test(e.message)) { console.error(e.error || e.message); toast("Something went wrong. LunaTV kept running.", { err: true }); } });
-  addEventListener("unhandledrejection", e => { if (e.reason?.name === "AbortError") return; console.error(e.reason); toast(e.reason?.message || "Something went wrong. LunaTV kept running.", { err: true }); });
+  on("error", ({ label, error }) => toast(error?.message || tr("Something went wrong ({p0})", { p0: label }), { err: true, ms: 3500 }));
+  addEventListener("error", e => { if (e.message && !/ResizeObserver|Script error/.test(e.message)) { console.error(e.error || e.message); toast(tr("Something went wrong. LunaTV kept running."), { err: true }); } });
+  addEventListener("unhandledrejection", e => { if (e.reason?.name === "AbortError") return; console.error(e.reason); toast(e.reason?.message || tr("Something went wrong. LunaTV kept running."), { err: true }); });
 
   const { startReminderLoop } = L;
-  startReminderLoop(r => toast(`Starting now: ${r.title} on ${r.channel}`, { ms: 8000 }));
+  startReminderLoop(r => toast(tr("Starting now: {p0} on {p1}", { p0: r.title, p1: r.channel }), { ms: 8000 }));
 
   document.body.classList.toggle("private", db.session.private);
   document.body.classList.add("ready");
   $(".boot")?.classList.add("gone");
   setTimeout(() => $(".boot")?.remove(), 600);
-  if (!ok) toast("Browser storage is unavailable (private browsing?). Everything lasts only for this session.", { err: true, ms: 6000 });
+  if (!ok) toast(tr("Browser storage is unavailable (private browsing?). Everything lasts only for this session."), { err: true, ms: 6000 });
 
   // App-shell cache only; LunaTV works the same if this fails.
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {

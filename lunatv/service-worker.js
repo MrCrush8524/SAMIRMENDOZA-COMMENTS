@@ -10,7 +10,7 @@ const SHELL = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/app.js", "js/ui.js", "js/util.js", "js/database.js", "js/version.js", "js/collections.js", "js/media-store.js", "js/media-meta.js",
   "js/library.js", "js/playlists.js", "js/player.js", "js/subtitles.js", "js/m3u.js", "js/channels.js", "js/live.js", "js/metadata.js",
-  "js/youtube.js", "js/cast.js", "js/push.js", "js/push-config.js", "js/discover.js", "js/home.js", "js/search.js", "js/settings.js",
+  "js/youtube.js", "js/cast.js", "js/push.js", "js/push-config.js", "js/discover.js", "js/home.js", "js/search.js", "js/settings.js", "js/i18n.js", "js/locales/es.js", "js/locales/pt.js",
   "js/providers/provider-base.js", "js/providers/registry.js", "js/providers/local.js", "js/providers/youtube.js", "js/providers/json-feed.js", "js/providers/eporner.js", "js/providers/xfree.js",
   "js/workers/xmltv-worker.js", "js/workers/directory-worker.js", "vendor/hls.min.js",
   "assets/branding/lunatv-crescent.webp", "assets/branding/lunatv-mark.webp", "assets/branding/lunatv-wordmark.webp", "assets/branding/lunatv-logo.webp",

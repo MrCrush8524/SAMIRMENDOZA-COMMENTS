@@ -121,13 +121,20 @@ Only the item on screen (plus its neighbours, for plain videos) has a real playe
 - The offline cache holds only LunaTV's own files. It never stores channels, YouTube, adult content or your videos.
 - The optional TMDB artwork key is stored only in this browser. It's never put in the repository, and it's left out of every export and backup. Anyone who uses this browser can read it, so treat it like any key you'd keep on a shared device.
 
-## 10. Coming from an earlier version
+## 10. Language
+
+LunaTV speaks **English**, **Español** and **Português (Brasil)**. Change it in **Settings › Language**; the app reloads in the new language. The first time you open LunaTV, it follows your device's language, and uses English for any other language.
+
+Menus, buttons, messages, dates, times and numbers change language. Your own content stays as it is: video titles, channel names and programme guides.
+
+## 11. Coming from an earlier version
 
 Browsers keep each website's data separately. If LunaTV opens at the same web address where an earlier version of this app was used, it moves everything across once: videos, positions, favorites, playlists, history and imported streams. It deletes the old copy only after checking everything arrived, so videos aren't stored twice. A new address, such as your GitHub Pages site, starts fresh.
 
 ## For developers
 
 - Plain HTML/CSS/JavaScript modules; no build step.
+- Interface text is written in English inside `tr("…")` / `trn("{n} item", "{n} items", n)` calls (`js/i18n.js`). Translations live in `js/locales/es.js` and `js/locales/pt.js`, keyed by the English text. Anything missing falls back to English. When you add a string, add it to both files.
 - Code map:
   - `js/app.js`: start-up
   - `js/ui.js`: navigation, sheets, routes

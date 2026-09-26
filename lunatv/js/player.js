@@ -2,6 +2,7 @@
 // Modes: "local" (library video, resumable, queue) and "live" (network stream,
 // channel surfing, mini guide). Every control is feature-detected: anything the
 // browser can't do is hidden rather than faked.
+import { tr, trn } from "./i18n.js";
 import { h, icon, esc, fmtTime, fmtBytes, clamp, emit, on, isIOS, shareOrCopy } from "./util.js";
 import * as Cast from "./cast.js";
 import * as db from "./database.js";
@@ -11,8 +12,8 @@ import { sheet, panel, slider, toast, onBack, sheetOpen } from "./ui.js";
 
 const HLS_SRC = new URL("../vendor/hls.min.js", import.meta.url).href;   // bundled, no CDN
 const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 3, 4];
-const FITS = [["original", "Original"], ["fit", "Fit"], ["fill", "Fill (stretch)"], ["crop", "Crop to fill"], ["16:9", "16:9"], ["4:3", "4:3"], ["zoom", "Zoom"]];
-const SLEEP = [[15, "15 min"], [30, "30 min"], [45, "45 min"], [60, "1 hour"], [90, "90 min"], [120, "2 hours"], ["video", "End of video"], ["episode", "End of episode"]];
+const FITS = [["original", tr("Original")], ["fit", tr("Fit")], ["fill", tr("Fill (stretch)")], ["crop", tr("Crop to fill")], ["16:9", "16:9"], ["4:3", "4:3"], ["zoom", tr("Zoom")]];
+const SLEEP = [[15, tr("15 min")], [30, tr("30 min")], [45, tr("45 min")], [60, tr("1 hour")], [90, tr("90 min")], [120, tr("2 hours")], ["video", tr("End of video")], ["episode", tr("End of episode")]];
 
 let P = null, v = null, subs = null;
 const S = {
@@ -28,7 +29,7 @@ const skipSec = () => db.setting("playback.skip") || 10;
 // ------------------------------------------------------------------ build
 function build() {
   P = {};
-  const el = h(`<div class="player" role="dialog" aria-label="Video player">
+  const el = h(`<div class="player" role="dialog" aria-label="${tr("Video player")}">
     <canvas class="p-ambient" width="16" height="9" aria-hidden="true"></canvas>
     <div class="p-stage"><video playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow"></video><div class="p-temp"></div></div>
     <div class="p-subs" aria-live="off"></div>
@@ -36,49 +37,49 @@ function build() {
     <span class="spinner p-spin" hidden></span>
     <div class="p-hud glass" aria-live="polite"></div>
     <div class="p-osd glass" hidden></div>
-    <div class="p-cast glass" hidden><span class="pc-ic">${icon("cast")}</span><div><b>Casting</b><small></small></div><button class="btn sm" data-a="stopCast">Stop</button></div>
+    <div class="p-cast glass" hidden><span class="pc-ic">${icon("cast")}</span><div><b>${tr("Casting")}</b><small></small></div><button class="btn sm" data-a="stopCast">${tr("Stop")}</button></div>
     <div class="p-layer">
       <div class="p-top">
-        <button class="pbtn" data-a="close" aria-label="Close player">${icon("close")}</button>
-        <button class="pbtn" data-a="minimize" aria-label="Mini player">${icon("chevD")}</button>
+        <button class="pbtn" data-a="close" aria-label="${tr("Close player")}">${icon("close")}</button>
+        <button class="pbtn" data-a="minimize" aria-label="${tr("Mini player")}">${icon("chevD")}</button>
         <div class="ttl"><b></b><small></small></div>
         <div class="grp">
           <span class="p-sleep" hidden></span>
-          <button class="pbtn" data-a="guide" aria-label="Channel guide" hidden>${icon("guide")}</button>
-          <button class="pbtn" data-a="airplay" aria-label="AirPlay" hidden>${icon("airplay")}</button>
-          <button class="pbtn" data-a="cast" aria-label="Cast" hidden>${icon("cast")}</button>
-          <button class="pbtn" data-a="pip" aria-label="Picture in Picture">${icon("pip")}</button>
-          <button class="pbtn" data-a="lock" aria-label="Lock controls">${icon("lock")}</button>
-          <button class="pbtn" data-a="more" aria-label="More options">${icon("more")}</button>
+          <button class="pbtn" data-a="guide" aria-label="${tr("Channel guide")}" hidden>${icon("guide")}</button>
+          <button class="pbtn" data-a="airplay" aria-label="${tr("AirPlay")}" hidden>${icon("airplay")}</button>
+          <button class="pbtn" data-a="cast" aria-label="${tr("Cast")}" hidden>${icon("cast")}</button>
+          <button class="pbtn" data-a="pip" aria-label="${tr("Picture in Picture")}">${icon("pip")}</button>
+          <button class="pbtn" data-a="lock" aria-label="${tr("Lock controls")}">${icon("lock")}</button>
+          <button class="pbtn" data-a="more" aria-label="${tr("More options")}">${icon("more")}</button>
         </div>
       </div>
       <div class="p-bottom glass">
-        <div class="scrub-wrap"><input class="scrub" type="range" min="0" max="1000" step="1" value="0" aria-label="Timeline"><i class="ab a" hidden></i><i class="ab b" hidden></i></div>
+        <div class="scrub-wrap"><input class="scrub" type="range" min="0" max="1000" step="1" value="0" aria-label="${tr("Timeline")}"><i class="ab a" hidden></i><i class="ab b" hidden></i></div>
         <div class="p-time"><span data-r="cur">0:00</span><span data-r="dur">0:00</span></div>
         <div class="p-main">
-          <button class="pbtn" data-a="prev" aria-label="Previous">${icon("prev")}</button>
-          <button class="pbtn" data-a="back" aria-label="Back"></button>
-          <button class="pbtn pp" data-a="play" aria-label="Play">${icon("play")}</button>
-          <button class="pbtn" data-a="fwd" aria-label="Forward"></button>
-          <button class="pbtn" data-a="next" aria-label="Next">${icon("next")}</button>
+          <button class="pbtn" data-a="prev" aria-label="${tr("Previous")}">${icon("prev")}</button>
+          <button class="pbtn" data-a="back" aria-label="${tr("Back")}"></button>
+          <button class="pbtn pp" data-a="play" aria-label="${tr("Play")}">${icon("play")}</button>
+          <button class="pbtn" data-a="fwd" aria-label="${tr("Forward")}"></button>
+          <button class="pbtn" data-a="next" aria-label="${tr("Next")}">${icon("next")}</button>
         </div>
         <div class="p-tools">
-          <button class="pbtn" data-a="mute" aria-label="Mute">${icon("volume")}</button>
-          <input class="vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-          <button class="pbtn" data-a="stepB" aria-label="Previous frame" hidden>${icon("stepB")}</button>
-          <button class="pbtn" data-a="stepF" aria-label="Next frame" hidden>${icon("stepF")}</button>
-          <button class="pbtn" data-a="cc" aria-label="Subtitles">${icon("cc")}</button>
-          <button class="pbtn" data-a="audio" aria-label="Audio track" hidden>${icon("audio")}</button>
-          <button class="pbtn spd" data-a="speed" aria-label="Playback speed">1×</button>
-          <button class="pbtn" data-a="fit" aria-label="Video fit">${icon("aspect")}</button>
-          <button class="pbtn" data-a="full" aria-label="Fullscreen">${icon("expand")}</button>
+          <button class="pbtn" data-a="mute" aria-label="${tr("Mute")}">${icon("volume")}</button>
+          <input class="vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="${tr("Volume")}">
+          <button class="pbtn" data-a="stepB" aria-label="${tr("Previous frame")}" hidden>${icon("stepB")}</button>
+          <button class="pbtn" data-a="stepF" aria-label="${tr("Next frame")}" hidden>${icon("stepF")}</button>
+          <button class="pbtn" data-a="cc" aria-label="${tr("Subtitles")}">${icon("cc")}</button>
+          <button class="pbtn" data-a="audio" aria-label="${tr("Audio track")}" hidden>${icon("audio")}</button>
+          <button class="pbtn spd" data-a="speed" aria-label="${tr("Playback speed")}">1×</button>
+          <button class="pbtn" data-a="fit" aria-label="${tr("Video fit")}">${icon("aspect")}</button>
+          <button class="pbtn" data-a="full" aria-label="${tr("Fullscreen")}">${icon("expand")}</button>
         </div>
       </div>
-      <div class="p-resume glass" hidden><span></span><button class="btn sm" data-a="startover">Start Over</button></div>
+      <div class="p-resume glass" hidden><span></span><button class="btn sm" data-a="startover">${tr("Start Over")}</button></div>
     </div>
-    <div class="p-mini-ctl"><button class="pbtn" data-a="expand" aria-label="Expand player">${icon("expand")}</button><button class="pbtn" data-a="play2" aria-label="Play or pause">${icon("pause")}</button><button class="pbtn" data-a="close2" aria-label="Close player">${icon("close")}</button></div>
-    <button class="p-unlock pbtn" data-a="unlock" aria-label="Unlock controls" hidden>${icon("unlock")}</button>
-    <div class="p-guide glass" hidden><div class="pg-head"><b>Channels</b><button class="pbtn" data-a="guideClose" aria-label="Close guide">${icon("close")}</button></div><div class="pg-list"></div></div>
+    <div class="p-mini-ctl"><button class="pbtn" data-a="expand" aria-label="${tr("Expand player")}">${icon("expand")}</button><button class="pbtn" data-a="play2" aria-label="${tr("Play or pause")}">${icon("pause")}</button><button class="pbtn" data-a="close2" aria-label="${tr("Close player")}">${icon("close")}</button></div>
+    <button class="p-unlock pbtn" data-a="unlock" aria-label="${tr("Unlock controls")}" hidden>${icon("unlock")}</button>
+    <div class="p-guide glass" hidden><div class="pg-head"><b>${tr("Channels")}</b><button class="pbtn" data-a="guideClose" aria-label="${tr("Close guide")}">${icon("close")}</button></div><div class="pg-list"></div></div>
     <div class="p-msg glass" hidden><b></b><p></p><div class="btn-row"></div></div>
     <input type="file" accept=".srt,.vtt,text/vtt,application/x-subrip" hidden data-r="subfile">
     <input type="file" accept="video/*,.mkv,.m4v,.mov,.webm" hidden data-r="relinkfile">
@@ -115,7 +116,7 @@ function build() {
     stepB: () => frame(-1), stepF: () => frame(1), cc: subtitleMenu, audio: audioMenu, speed: speedMenu, fit: fitMenu,
     full: toggleFullscreen, pip: togglePip, more: moreMenu, lock: () => setLock(true), unlock: () => setLock(false),
     minimize: () => setMini(true), expand: () => setMini(false), guide: openGuide, guideClose: () => { P.guidePanel.hidden = true; },
-    mute: () => { v.muted = !v.muted; hud(v.muted ? "Muted" : "Sound on"); },
+    mute: () => { v.muted = !v.muted; hud(v.muted ? tr("Muted") : tr("Sound on")); },
     airplay: () => v.webkitShowPlaybackTargetPicker?.(), cast: castAction, stopCast: () => { Cast.stopCasting(); },
     startover: () => { v.currentTime = 0; P.resume.hidden = true; },
   };
@@ -161,12 +162,12 @@ function skipIcons() {
   const n = skipSec();
   P.back.innerHTML = n === 10 ? icon("back10") : `<span class="skipn">−${n}</span>`;
   P.fwd.innerHTML = n === 10 ? icon("fwd10") : `<span class="skipn">+${n}</span>`;
-  P.back.setAttribute("aria-label", `Back ${n} seconds`); P.fwd.setAttribute("aria-label", `Forward ${n} seconds`);
+  P.back.setAttribute("aria-label", tr("Back {n} seconds", { n })); P.fwd.setAttribute("aria-label", tr("Forward {n} seconds", { n }));
 }
 function setPlayIcons(playing) {
   const i = icon(playing ? "pause" : "play");
   P.play.innerHTML = i; P.play2.innerHTML = i;
-  P.play.setAttribute("aria-label", playing ? "Pause" : "Play");
+  P.play.setAttribute("aria-label", playing ? tr("Pause") : tr("Play"));
 }
 
 // ------------------------------------------------------------------ open / close
@@ -208,8 +209,8 @@ async function loadLocal(m, restart = false) {
   setModeUI();
   const url = await media.fileURL(m.id);
   if (!url) {
-    showMsg("File needs to be reconnected", `LunaTV still has “${m.title}”, its poster and your place in it, but this browser no longer holds the video itself. Choose the same file to reconnect it.`,
-      [["Locate File", () => P.relinkfile.click()], ["Close", requestClose]]);
+    showMsg(tr("File needs to be reconnected"), tr("LunaTV still has “{p0}”, its poster and your place in it, but this browser no longer holds the video itself. Choose the same file to reconnect it.", { p0: m.title }),
+      [[tr("Locate File"), () => P.relinkfile.click()], [tr("Close"), requestClose]]);
     return;
   }
   S.src = url;
@@ -220,7 +221,7 @@ async function loadLocal(m, restart = false) {
     if (S.restoring && resumeAt < v.duration - 5) {
       v.currentTime = resumeAt;
       v.addEventListener("seeked", () => { S.restoring = false; }, { once: true });
-      P.resume.querySelector("span").textContent = `Resumed from ${fmtTime(resumeAt)}`;
+      P.resume.querySelector("span").textContent = tr("Resumed from {p0}", { p0: fmtTime(resumeAt) });
       P.resume.hidden = false; setTimeout(() => { P.resume.hidden = true; }, 6000);
     } else S.restoring = false;
     paint();
@@ -252,29 +253,29 @@ export async function playStream(ch, opts = {}) {
   S.item = null; S.urls = (ch.urls?.length ? ch.urls : [ch.url]).filter(Boolean); S.urlIdx = 0; S.onStarted = opts.onStarted || null;
   setModeUI(); applyFit(); applyAdjust();
   mediaSession(ch.name);
-  if (S.urls.some(u => location.protocol === "https:" && /^http:/i.test(u)) && S.urls.every(u => /^http:/i.test(u))) toast("This source uses insecure http and may be blocked by your browser.", { err: true, ms: 4500 });
+  if (S.urls.some(u => location.protocol === "https:" && /^http:/i.test(u)) && S.urls.every(u => /^http:/i.test(u))) toast(tr("This source uses insecure http and may be blocked by your browser."), { err: true, ms: 4500 });
   loadStreamUrl();
 }
-const nowLine = ch => { const nn = S.nowNext?.(ch); return nn?.now ? `Now: ${nn.now.title}` : ""; };
+const nowLine = ch => { const nn = S.nowNext?.(ch); return nn?.now ? tr("Now: {p0}", { p0: nn.now.title }) : ""; };
 
 async function loadStreamUrl() {
   teardown();
   const url = S.urls[S.urlIdx];
-  if (!url) return streamFailed("This channel has no stream address.");
+  if (!url) return streamFailed(tr("This channel has no stream address."));
   P.spin.hidden = false; hideMsg();
   clearTimeout(S.startT);
-  S.startT = setTimeout(() => streamFailed("LunaTV couldn’t open this stream. It isn’t responding."), 20000);
+  S.startT = setTimeout(() => streamFailed(tr("LunaTV couldn’t open this stream. It isn’t responding.")), 20000);
   const isHls = /\.m3u8($|\?)/i.test(url) || /\/hls\//i.test(url) || /m3u8/i.test(url);
   if (isHls && !v.canPlayType("application/vnd.apple.mpegurl")) {
     let Hls;
-    try { Hls = await loadHls(); } catch { return streamFailed("The streaming engine couldn’t load."); }
-    if (!Hls.isSupported()) return streamFailed("This browser can’t play live HLS streams.");
+    try { Hls = await loadHls(); } catch { return streamFailed(tr("The streaming engine couldn’t load.")); }
+    if (!Hls.isSupported()) return streamFailed(tr("This browser can’t play live HLS streams."));
     const hls = S.hls = new Hls({ enableWorker: true, lowLatencyMode: true, backBufferLength: 30 });
     let recovered = false;
     hls.on(Hls.Events.ERROR, (_, d) => {
       if (!d.fatal || S.hls !== hls) return;
       if (d.type === Hls.ErrorTypes.MEDIA_ERROR && !recovered) { recovered = true; hls.recoverMediaError(); return; }
-      streamFailed(d.type === Hls.ErrorTypes.NETWORK_ERROR ? "LunaTV couldn’t open this stream. It may be offline, region-locked, or blocked by its host." : "This device can’t decode this stream’s format.");
+      streamFailed(d.type === Hls.ErrorTypes.NETWORK_ERROR ? tr("LunaTV couldn’t open this stream. It may be offline, region-locked, or blocked by its host.") : tr("This device can’t decode this stream’s format."));
     });
     hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, () => { P.audio.hidden = hls.audioTracks.length < 2; });
     hls.loadSource(url); hls.attachMedia(v);
@@ -286,18 +287,18 @@ function streamFailed(reason) {
   clearTimeout(S.startT); P.spin.hidden = true;
   if (S.casting) return;
   if (S.mode !== "live") return;
-  if (S.urlIdx < S.urls.length - 1) { S.urlIdx++; hud("Trying another source…"); loadStreamUrl(); return; }
+  if (S.urlIdx < S.urls.length - 1) { S.urlIdx++; hud(tr("Trying another source…")); loadStreamUrl(); return; }
   teardown();
-  const btns = [["Try Again", () => { S.urlIdx = 0; loadStreamUrl(); }]];
-  if (S.channels.length > 1) btns.push(["Next Channel", () => surf(1)]);
-  btns.push(["Close", requestClose]);
-  showMsg("Stream unavailable", reason, btns);
+  const btns = [[tr("Try Again"), () => { S.urlIdx = 0; loadStreamUrl(); }]];
+  if (S.channels.length > 1) btns.push([tr("Next Channel"), () => surf(1)]);
+  btns.push([tr("Close"), requestClose]);
+  showMsg(tr("Stream unavailable"), reason, btns);
 }
 function onVideoError() {
   if (S.casting || (!v.getAttribute("src") && !S.hls)) return;
-  if (S.mode === "live") { if (!S.hls) streamFailed("LunaTV couldn’t open this stream. It may be offline, blocked, or in a format this device can’t play."); return; }
-  showMsg("Video format not supported", v.error?.code === 4 ? "This device can’t play this video format directly (common with MKV, HEVC or AC-3 audio). It may play in another browser." : "The video couldn’t be decoded.",
-    S.order.length > 1 ? [["Next Video", () => step(1)], ["Close", requestClose]] : [["Close", requestClose]]);
+  if (S.mode === "live") { if (!S.hls) streamFailed(tr("LunaTV couldn’t open this stream. It may be offline, blocked, or in a format this device can’t play.")); return; }
+  showMsg(tr("Video format not supported"), v.error?.code === 4 ? tr("This device can’t play this video format directly (common with MKV, HEVC or AC-3 audio). It may play in another browser.") : tr("The video couldn’t be decoded."),
+    S.order.length > 1 ? [[tr("Next Video"), () => step(1)], [tr("Close"), requestClose]] : [[tr("Close"), requestClose]]);
 }
 
 function teardown() {
@@ -348,8 +349,8 @@ function setModeUI() {
   P.guide.hidden = !live || S.channels.length < 2;
   const surfable = live && S.channels.length > 1;
   P.prev.hidden = P.next.hidden = live ? !surfable : !queue;
-  P.prev.setAttribute("aria-label", live ? "Previous channel" : "Previous");
-  P.next.setAttribute("aria-label", live ? "Next channel" : "Next");
+  P.prev.setAttribute("aria-label", live ? tr("Previous channel") : tr("Previous"));
+  P.next.setAttribute("aria-label", live ? tr("Next channel") : tr("Next"));
   if (!live) { P.prev.disabled = S.idx === 0 && S.repeat !== "all"; P.next.disabled = S.idx >= S.order.length - 1 && S.repeat !== "all"; }
   else P.prev.disabled = P.next.disabled = false;
   P.speed.textContent = fmtRate(live ? 1 : S.speed) + "×";
@@ -361,7 +362,7 @@ function frameButtons() {
 }
 function paint() {
   if (!P) return;
-  if (S.mode === "live") { P.cur.innerHTML = `<span class="live">LIVE</span>`; P.dur.textContent = ""; return; }
+  if (S.mode === "live") { P.cur.innerHTML = `<span class="live">${tr("LIVE")}</span>`; P.dur.textContent = ""; return; }
   const d = dur(), t = S.casting ? Cast.snapshot().time : v.currentTime || 0;
   if (!S.scrubbing) P.scrub.value = d ? Math.round(t / d * 1000) : 0;
   let b = 0;
@@ -378,7 +379,7 @@ const fmtRate = r => String(r).replace(/^0\./, ".");
 function togglePlay() {
   if (S.casting) { Cast.remoteToggle(); return; }
   if (S.rev) { stopReverse(); v.play().catch(() => {}); return; }
-  if (v.paused) v.play().catch(() => hud("Tap play again")); else v.pause();
+  if (v.paused) v.play().catch(() => hud(tr("Tap play again"))); else v.pause();
 }
 function skip(d) {
   if (S.mode === "live") return;
@@ -400,7 +401,7 @@ function onEnded() {
   if (S.mode !== "local" || !S.item) return;
   media.markFinished(S.item, v.duration);
   S.item = { ...S.item, position: 0 };
-  if (S.sleep && (S.sleep.kind === "video" || S.sleep.kind === "episode")) { clearSleep(); hud("Sleep timer: stopped"); wake(); return; }
+  if (S.sleep && (S.sleep.kind === "video" || S.sleep.kind === "episode")) { clearSleep(); hud(tr("Sleep timer: stopped")); wake(); return; }
   if (S.repeat === "one") { v.currentTime = 0; v.play(); return; }
   if (db.setting("playback.autoplay") && (S.idx < S.order.length - 1 || S.repeat === "all")) { step(1); return; }
   wake();
@@ -415,8 +416,8 @@ function save(force) {
 
 // Simulated reverse (repeated backward seeks), paced to seek completion.
 function toggleReverse() {
-  if (S.rev) { stopReverse(); hud("Reverse off"); return; }
-  v.pause(); hud("Reverse (simulated)");
+  if (S.rev) { stopReverse(); hud(tr("Reverse off")); return; }
+  v.pause(); hud(tr("Reverse (simulated)"));
   S.rev = setInterval(() => { if (v.seeking) return; if (v.currentTime <= 0.05) { stopReverse(); return; } v.currentTime = Math.max(0, v.currentTime - 0.1 * S.speed); }, 100);
 }
 function stopReverse() { if (!S.rev) return; clearInterval(S.rev); S.rev = null; }
@@ -436,7 +437,7 @@ function frame(dir) {
   if (S.mode !== "local" || !S.fps) return;
   if (!v.paused) v.pause();
   v.currentTime = clamp(v.currentTime + dir / S.fps, 0, dur() || v.currentTime);
-  hud(dir > 0 ? "Next frame" : "Previous frame");
+  hud(dir > 0 ? tr("Next frame") : tr("Previous frame"));
 }
 
 // A–B repeat
@@ -446,10 +447,10 @@ function paintAB() {
   for (const [k, el] of [["a", P.abA], ["b", P.abB]]) { el.hidden = S[k] == null || !d; if (!el.hidden) el.style.left = `${S[k] / d * 100}%`; }
 }
 function abMenu() {
-  sheet({ title: "A–B Repeat", subtitle: S.a != null && S.b != null ? `Looping ${fmtTime(S.a)} – ${fmtTime(S.b)}` : "", groups: [[
-    { icon: "ab", label: `Set A${S.a != null ? ` (${fmtTime(S.a)})` : ""}`, run: () => { S.a = v.currentTime; if (S.b != null && S.b <= S.a) S.b = null; paintAB(); hud(`A · ${fmtTime(S.a)}`); } },
-    { icon: "ab", label: `Set B${S.b != null ? ` (${fmtTime(S.b)})` : ""}`, disabled: S.a == null, run: () => { if (v.currentTime <= S.a + 0.3) { toast("B must come after A", { err: true }); return; } S.b = v.currentTime; paintAB(); hud(`Looping ${fmtTime(S.a)} – ${fmtTime(S.b)}`); } },
-    { icon: "close", label: "Clear Loop", disabled: S.a == null, run: () => { S.a = S.b = null; paintAB(); hud("Loop cleared"); } },
+  sheet({ title: tr("A–B Repeat"), subtitle: S.a != null && S.b != null ? tr("Looping {p0} – {p1}", { p0: fmtTime(S.a), p1: fmtTime(S.b) }) : "", groups: [[
+    { icon: "ab", label: tr("Set A{p0}", { p0: S.a != null ? ` (${fmtTime(S.a)})` : "" }), run: () => { S.a = v.currentTime; if (S.b != null && S.b <= S.a) S.b = null; paintAB(); hud(`A · ${fmtTime(S.a)}`); } },
+    { icon: "ab", label: tr("Set B{p0}", { p0: S.b != null ? ` (${fmtTime(S.b)})` : "" }), disabled: S.a == null, run: () => { if (v.currentTime <= S.a + 0.3) { toast(tr("B must come after A"), { err: true }); return; } S.b = v.currentTime; paintAB(); hud(tr("Looping {p0} – {p1}", { p0: fmtTime(S.a), p1: fmtTime(S.b) })); } },
+    { icon: "close", label: tr("Clear Loop"), disabled: S.a == null, run: () => { S.a = S.b = null; paintAB(); hud(tr("Loop cleared")); } },
   ]] });
 }
 
@@ -457,20 +458,20 @@ function abMenu() {
 function clearSleep() { if (S.sleep?.t) clearInterval(S.sleep.t); S.sleep = null; if (P) P.sleepBadge.hidden = true; }
 function sleepMenu() {
   const isEp = S.item?.category === "tv";
-  sheet({ title: "Sleep Timer", subtitle: S.sleep ? `Active · ${sleepLabel()}` : "", groups: [
+  sheet({ title: tr("Sleep Timer"), subtitle: S.sleep ? tr("Active · {p0}", { p0: sleepLabel() }) : "", groups: [
     SLEEP.filter(([k]) => k !== "episode" || isEp).filter(([k]) => S.mode === "local" || typeof k === "number").map(([k, l]) => ({ icon: "moon", label: l, run: () => setSleep(k) })),
-    S.sleep ? [{ icon: "close", label: "Turn Off Sleep Timer", run: () => { clearSleep(); hud("Sleep timer off"); } }] : [],
+    S.sleep ? [{ icon: "close", label: tr("Turn Off Sleep Timer"), run: () => { clearSleep(); hud(tr("Sleep timer off")); } }] : [],
   ] });
 }
 function setSleep(k) {
   clearSleep();
   if (typeof k === "number") {
     const end = Date.now() + k * 60000;
-    S.sleep = { kind: "time", end, t: setInterval(() => { if (Date.now() >= end) { v.pause(); clearSleep(); hud("Sleep timer: paused", 2000); } else badge(); }, 1000) };
+    S.sleep = { kind: "time", end, t: setInterval(() => { if (Date.now() >= end) { v.pause(); clearSleep(); hud(tr("Sleep timer: paused"), 2000); } else badge(); }, 1000) };
   } else S.sleep = { kind: k };
-  badge(); hud(`Sleep timer · ${sleepLabel()}`);
+  badge(); hud(tr("Sleep timer · {p0}", { p0: sleepLabel() }));
 }
-const sleepLabel = () => !S.sleep ? "" : S.sleep.kind === "time" ? `${Math.max(0, Math.ceil((S.sleep.end - Date.now()) / 60000))} min left` : S.sleep.kind === "video" ? "end of video" : "end of episode";
+const sleepLabel = () => !S.sleep ? "" : S.sleep.kind === "time" ? tr("{p0} min left", { p0: Math.max(0, Math.ceil((S.sleep.end - Date.now()) / 60000)) }) : S.sleep.kind === "video" ? tr("end of video") : tr("end of episode");
 function badge() { P.sleepBadge.hidden = !S.sleep; P.sleepBadge.innerHTML = S.sleep ? `${icon("moon")}<span>${sleepLabel()}</span>` : ""; }
 
 // Lock
@@ -478,19 +479,19 @@ function setLock(on) {
   S.locked = on;
   P.root.classList.toggle("locked", on);
   P.unlock.hidden = !on;
-  if (on) { hud("Controls locked"); flashUnlock(); } else { hud("Controls unlocked"); wake(); }
+  if (on) { hud(tr("Controls locked")); flashUnlock(); } else { hud(tr("Controls unlocked")); wake(); }
 }
 let unlockT;
 function flashUnlock() { P.unlock.classList.add("vis"); clearTimeout(unlockT); unlockT = setTimeout(() => P.unlock.classList.remove("vis"), 2500); }
 
 // Speed / fit / adjustments
 function speedMenu() {
-  sheet({ title: "Playback Speed", groups: [SPEEDS.map(s => ({ label: fmtRate(s) + "×" + (s === 1 ? "  Normal" : ""), check: s === S.speed, run: () => {
+  sheet({ title: tr("Playback Speed"), groups: [SPEEDS.map(s => ({ label: fmtRate(s) + "×" + (s === 1 ? "  " + tr("Normal") : ""), check: s === S.speed, run: () => {
     S.speed = s; v.playbackRate = s; hud(fmtRate(s) + "×");
     if (db.setting("playback.rememberSpeed")) db.setSetting("playback.speed", s);
   } }))] });
 }
-function fitMenu() { sheet({ title: "Video Fit", groups: [FITS.map(([k, l]) => ({ label: l, check: S.fit === k, run: () => { S.fit = k; applyFit(); hud(l); } }))] }); }
+function fitMenu() { sheet({ title: tr("Video Fit"), groups: [FITS.map(([k, l]) => ({ label: l, check: S.fit === k, run: () => { S.fit = k; applyFit(); hud(l); } }))] }); }
 function applyFit() {
   const st = v.style;
   st.objectFit = { original: "none", fit: "contain", fill: "fill", crop: "cover", "16:9": "fill", "4:3": "fill", zoom: "contain" }[S.fit];
@@ -512,52 +513,52 @@ function adjustPanel() {
   const pct = v => `${Math.round(v * 100)}%`;
   const body = h(`<div></div>`);
   const rows = [
-    slider({ label: "Brightness", min: 0.4, max: 1.6, step: 0.05, value: S.adj.bri, fmt: pct, oninput: x => { S.adj.bri = x; applyAdjust(); } }),
-    slider({ label: "Contrast", min: 0.5, max: 1.8, step: 0.05, value: S.adj.con, fmt: pct, oninput: x => { S.adj.con = x; applyAdjust(); } }),
-    slider({ label: "Saturation", min: 0, max: 2, step: 0.05, value: S.adj.sat, fmt: pct, oninput: x => { S.adj.sat = x; applyAdjust(); } }),
-    slider({ label: "Temperature", min: -1, max: 1, step: 0.05, value: S.adj.temp, fmt: x => x === 0 ? "Neutral" : x > 0 ? `Warm ${Math.round(x * 100)}` : `Cool ${Math.round(-x * 100)}`, oninput: x => { S.adj.temp = x; applyAdjust(); } }),
+    slider({ label: tr("Brightness"), min: 0.4, max: 1.6, step: 0.05, value: S.adj.bri, fmt: pct, oninput: x => { S.adj.bri = x; applyAdjust(); } }),
+    slider({ label: tr("Contrast"), min: 0.5, max: 1.8, step: 0.05, value: S.adj.con, fmt: pct, oninput: x => { S.adj.con = x; applyAdjust(); } }),
+    slider({ label: tr("Saturation"), min: 0, max: 2, step: 0.05, value: S.adj.sat, fmt: pct, oninput: x => { S.adj.sat = x; applyAdjust(); } }),
+    slider({ label: tr("Temperature"), min: -1, max: 1, step: 0.05, value: S.adj.temp, fmt: x => x === 0 ? tr("Neutral") : x > 0 ? tr("Warm {v}", { v: Math.round(x * 100) }) : tr("Cool {v}", { v: Math.round(-x * 100) }), oninput: x => { S.adj.temp = x; applyAdjust(); } }),
   ];
-  const reset = h(`<button class="btn sm" style="margin:6px 16px 12px">Reset</button>`);
+  const reset = h(`<button class="btn sm" style="margin:6px 16px 12px">${tr("Reset")}</button>`);
   reset.onclick = () => { S.adj = { bri: 1, con: 1, sat: 1, temp: 0 }; applyAdjust(); rows[0].set(1); rows[1].set(1); rows[2].set(1); rows[3].set(0); };
   body.append(...rows, reset);
-  panel({ title: "Video Settings", subtitle: "Doesn’t change the file", body });
+  panel({ title: tr("Video Settings"), subtitle: tr("Doesn’t change the file"), body });
 }
 
 // ------------------------------------------------------------------ more menu
 function moreMenu() {
   const local = S.mode === "local";
-  sheet({ title: S.item?.title || S.stream?.name || "Options", groups: [
+  sheet({ title: S.item?.title || S.stream?.name || tr("Options"), groups: [
     [
-      { icon: "sliders", label: "Video Settings", sub: "Brightness, contrast, saturation, temperature", run: adjustPanel },
-      { icon: "cc", label: "Subtitle Style & Sync", run: subtitleStylePanel },
-      local && { icon: "ab", label: "A–B Repeat", run: abMenu },
-      local && { icon: "rev", label: S.rev ? "Stop Reverse" : "Reverse (simulated)", run: toggleReverse },
-      { icon: "moon", label: "Sleep Timer", sub: S.sleep ? sleepLabel() : "", run: sleepMenu },
+      { icon: "sliders", label: tr("Video Settings"), sub: tr("Brightness, contrast, saturation, temperature"), run: adjustPanel },
+      { icon: "cc", label: tr("Subtitle Style & Sync"), run: subtitleStylePanel },
+      local && { icon: "ab", label: tr("A–B Repeat"), run: abMenu },
+      local && { icon: "rev", label: S.rev ? tr("Stop Reverse") : tr("Reverse (simulated)"), run: toggleReverse },
+      { icon: "moon", label: tr("Sleep Timer"), sub: S.sleep ? sleepLabel() : "", run: sleepMenu },
     ],
     [
-      { icon: "camera", label: "Capture Frame", run: screenshot },
-      { icon: "info", label: "Video Info", run: infoSheet },
-      S.stream && { icon: "share", label: "Share Stream Link", run: async () => { const r = await shareOrCopy({ title: S.stream.name, url: S.urls[S.urlIdx] }); if (r === "copied") toast("Link copied"); } },
+      { icon: "camera", label: tr("Capture Frame"), run: screenshot },
+      { icon: "info", label: tr("Video Info"), run: infoSheet },
+      S.stream && { icon: "share", label: tr("Share Stream Link"), run: async () => { const r = await shareOrCopy({ title: S.stream.name, url: S.urls[S.urlIdx] }); if (r === "copied") toast(tr("Link copied")); } },
     ],
     [
-      { icon: "film2", label: S.cinema ? "Leave Cinema Mode" : "Cinema Mode", run: () => { S.cinema = !S.cinema; P.root.classList.toggle("cinema", S.cinema); hud(S.cinema ? "Cinema mode" : "Cinema mode off"); } },
-      { icon: "sparkle", label: db.setting("appearance.ambient") ? "Turn Off Ambient Glow" : "Turn On Ambient Glow", run: () => db.setSetting("appearance.ambient", !db.setting("appearance.ambient")) },
-      { icon: "grid", label: db.setting("playback.gestures") ? "Disable Gestures" : "Enable Gestures", run: () => { db.setSetting("playback.gestures", !db.setting("playback.gestures")); hud(db.setting("playback.gestures") ? "Gestures on" : "Gestures off"); } },
-      { icon: "lock", label: "Lock Controls", run: () => setLock(true) },
+      { icon: "film2", label: S.cinema ? tr("Leave Cinema Mode") : tr("Cinema Mode"), run: () => { S.cinema = !S.cinema; P.root.classList.toggle("cinema", S.cinema); hud(S.cinema ? tr("Cinema mode") : tr("Cinema mode off")); } },
+      { icon: "sparkle", label: db.setting("appearance.ambient") ? tr("Turn Off Ambient Glow") : tr("Turn On Ambient Glow"), run: () => db.setSetting("appearance.ambient", !db.setting("appearance.ambient")) },
+      { icon: "grid", label: db.setting("playback.gestures") ? tr("Disable Gestures") : tr("Enable Gestures"), run: () => { db.setSetting("playback.gestures", !db.setting("playback.gestures")); hud(db.setting("playback.gestures") ? tr("Gestures on") : tr("Gestures off")); } },
+      { icon: "lock", label: tr("Lock Controls"), run: () => setLock(true) },
     ],
   ] });
 }
 
 // ------------------------------------------------------------------ capture / info
 async function screenshot() {
-  if (!v.videoWidth) { hud("Nothing to capture yet"); return; }
+  if (!v.videoWidth) { hud(tr("Nothing to capture yet")); return; }
   let blob;
   try {
     const c = document.createElement("canvas"); c.width = v.videoWidth; c.height = v.videoHeight;
     c.getContext("2d").drawImage(v, 0, 0);
     blob = await new Promise((res, rej) => { try { c.toBlob(b => b ? res(b) : rej(new Error("empty")), "image/png"); } catch (e) { rej(e); } });
   } catch {
-    toast(S.mode === "live" ? "This stream’s host doesn’t allow frame capture (browser security)." : "Frame capture isn’t available for this video.", { err: true, ms: 3500 });
+    toast(S.mode === "live" ? tr("This stream’s host doesn’t allow frame capture (browser security).") : tr("Frame capture isn’t available for this video."), { err: true, ms: 3500 });
     return;
   }
   const name = `LunaTV-${(S.item?.title || S.stream?.name || "frame").replace(/[^\w-]+/g, "_").slice(0, 40)}-${fmtTime(v.currentTime).replace(/:/g, ".")}.png`;
@@ -568,21 +569,21 @@ async function screenshot() {
   const a = document.createElement("a"), u = URL.createObjectURL(blob);
   a.href = u; a.download = name; document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(u), 2000);
-  hud("Frame saved");
+  hud(tr("Frame saved"));
 }
 function infoSheet() {
   const rows = [];
-  const add = (k, val) => { if (val) rows.push({ label: String(val), sub: k, disabled: true }); };
+  const add = (k, val) => { if (val) rows.push({ label: String(val), sub: tr(k), disabled: true }); };
   if (S.item) { add("File", S.item.filename); add("Size", S.item.size ? fmtBytes(S.item.size) : ""); add("Type", S.item.mime); }
   if (S.stream) add("Stream", (() => { try { return new URL(S.urls[S.urlIdx]).host; } catch { return ""; } })());
   add("Resolution", v.videoWidth ? `${v.videoWidth} × ${v.videoHeight}` : "");
-  add("Duration", dur() ? fmtTime(dur()) : S.mode === "live" ? "Live" : "");
-  add("Frame rate", S.fps ? `≈ ${S.fps} fps (measured)` : "");
-  if (S.item?.size && dur()) add("Average bitrate", `≈ ${(S.item.size * 8 / dur() / 1e6).toFixed(1)} Mbps (estimated)`);
+  add("Duration", dur() ? fmtTime(dur()) : S.mode === "live" ? tr("Live") : "");
+  add("Frame rate", S.fps ? tr("≈ {v} fps (measured)", { v: S.fps }) : "");
+  if (S.item?.size && dur()) add("Average bitrate", tr("≈ {v} Mbps (estimated)", { v: (S.item.size * 8 / dur() / 1e6).toFixed(1) }));
   if (S.hls) { const lv = S.hls.levels?.[S.hls.currentLevel]; add("Video codec", lv?.videoCodec); add("Audio codec", lv?.audioCodec); if (lv?.bitrate) add("Stream bitrate", `${(lv.bitrate / 1e6).toFixed(1)} Mbps`); }
   const at = audioTracks(); if (at.length) add("Audio tracks", at.map(t => t.label).join(", "));
-  add("Subtitles", subs.active ? S.subName || "Loaded" : "None");
-  sheet({ title: "Video Info", groups: [rows] });
+  add("Subtitles", subs.active ? S.subName || tr("Loaded") : tr("None"));
+  sheet({ title: tr("Video Info"), groups: [rows] });
 }
 
 // ------------------------------------------------------------------ subtitles & audio
@@ -598,11 +599,11 @@ function selectSub(rec) {
 }
 function subtitleMenu() {
   const tracks = S.subTracks || [];
-  sheet({ title: "Subtitles", groups: [
-    [{ label: "Off", check: !subs.active, run: () => { selectSub(null); hud("Subtitles off"); } },
+  sheet({ title: tr("Subtitles"), groups: [
+    [{ label: tr("Off"), check: !subs.active, run: () => { selectSub(null); hud(tr("Subtitles off")); } },
       ...tracks.map(t => ({ label: t.name, check: subs.active && S.subName === t.name, run: () => { selectSub(t); hud(t.name); } }))],
-    [{ icon: "file", label: "Load Subtitle File…", sub: ".srt or .vtt", run: () => P.subfile.click() },
-      { icon: "sliders", label: "Style & Sync", run: subtitleStylePanel }],
+    [{ icon: "file", label: tr("Load Subtitle File…"), sub: ".srt or .vtt", run: () => P.subfile.click() },
+      { icon: "sliders", label: tr("Style & Sync"), run: subtitleStylePanel }],
   ] });
 }
 async function loadSubtitleFile(e) {
@@ -614,13 +615,13 @@ async function loadSubtitleFile(e) {
     const rec = { id: `${S.item?.id || "stream"}|${f.name}`, mediaId: S.item?.id || "", name: f.name.replace(/\.[^.]+$/, ""), vtt, added: Date.now(), offset: 0 };
     if (S.item) await db.put("subs", rec);
     S.subTracks = [rec, ...(S.subTracks || []).filter(t => t.id !== rec.id)];
-    selectSub(rec); hud("Subtitles loaded");
-  } catch { toast("That file doesn’t look like SRT or VTT subtitles.", { err: true }); }
+    selectSub(rec); hud(tr("Subtitles loaded"));
+  } catch { toast(tr("That file doesn’t look like SRT or VTT subtitles."), { err: true }); }
 }
 function subtitleStylePanel() {
   const body = h(`<div></div>`), set = (k, x) => db.setSetting(`subs.${k}`, x);
-  const sync = slider({ label: "Sync", min: -10, max: 10, step: 0.1, value: subs.offset, fmt: x => `${x > 0 ? "+" : ""}${x.toFixed(1)} s`, oninput: x => { subs.offset = x; subs.last = null; saveOffset(); } });
-  const fine = h(`<div class="btn-row" style="padding:0 16px 8px"><button class="btn sm">−0.1 s</button><button class="btn sm">+0.1 s</button><button class="btn sm">Reset</button></div>`);
+  const sync = slider({ label: tr("Sync"), min: -10, max: 10, step: 0.1, value: subs.offset, fmt: x => `${x > 0 ? "+" : ""}${x.toFixed(1)} s`, oninput: x => { subs.offset = x; subs.last = null; saveOffset(); } });
+  const fine = h(`<div class="btn-row" style="padding:0 16px 8px"><button class="btn sm">−0.1 s</button><button class="btn sm">+0.1 s</button><button class="btn sm">${tr("Reset")}</button></div>`);
   const [minus, plus, zero] = fine.querySelectorAll("button");
   const nudge = d => { subs.offset = Math.round(clamp(subs.offset + d, -10, 10) * 10) / 10; sync.set(subs.offset); subs.last = null; saveOffset(); };
   minus.onclick = () => nudge(-0.1); plus.onclick = () => nudge(0.1); zero.onclick = () => nudge(-subs.offset);
@@ -630,18 +631,18 @@ function subtitleStylePanel() {
     return r;
   };
   body.append(
-    h(`<div class="section-label" style="margin:4px 16px 4px">Sync</div>`), sync, fine,
-    h(`<div class="section-label" style="margin:8px 16px 4px">Style</div>`),
-    slider({ label: "Size", min: 60, max: 200, step: 5, value: db.setting("subs.size"), fmt: x => `${x}%`, oninput: x => set("size", x) }),
-    slider({ label: "Weight", min: 300, max: 900, step: 100, value: db.setting("subs.weight"), oninput: x => set("weight", x) }),
-    colors("Text", "subs.color", ["#ffffff", "#f5e663", "#9fe0ff", "#c8ffb0"]),
-    colors("Background", "subs.bg", ["#000000", "#1b2433", "#ffffff"]),
-    slider({ label: "Background opacity", min: 0, max: 1, step: 0.05, value: db.setting("subs.bgOpacity"), fmt: x => `${Math.round(x * 100)}%`, oninput: x => set("bgOpacity", x) }),
-    slider({ label: "Position", min: 2, max: 40, step: 1, value: db.setting("subs.position"), fmt: x => `${x}% from bottom`, oninput: x => set("position", x) }),
-    slider({ label: "Line height", min: 1, max: 2, step: 0.05, value: db.setting("subs.lineHeight"), fmt: x => x.toFixed(2), oninput: x => set("lineHeight", x) }),
+    h(`<div class="section-label" style="margin:4px 16px 4px">${tr("Sync")}</div>`), sync, fine,
+    h(`<div class="section-label" style="margin:8px 16px 4px">${tr("Style")}</div>`),
+    slider({ label: tr("Size"), min: 60, max: 200, step: 5, value: db.setting("subs.size"), fmt: x => `${x}%`, oninput: x => set("size", x) }),
+    slider({ label: tr("Weight"), min: 300, max: 900, step: 100, value: db.setting("subs.weight"), oninput: x => set("weight", x) }),
+    colors(tr("Text"), "subs.color", ["#ffffff", "#f5e663", "#9fe0ff", "#c8ffb0"]),
+    colors(tr("Background"), "subs.bg", ["#000000", "#1b2433", "#ffffff"]),
+    slider({ label: tr("Background opacity"), min: 0, max: 1, step: 0.05, value: db.setting("subs.bgOpacity"), fmt: x => `${Math.round(x * 100)}%`, oninput: x => set("bgOpacity", x) }),
+    slider({ label: tr("Position"), min: 2, max: 40, step: 1, value: db.setting("subs.position"), fmt: x => tr("{v}% from bottom", { v: x }), oninput: x => set("position", x) }),
+    slider({ label: tr("Line height"), min: 1, max: 2, step: 0.05, value: db.setting("subs.lineHeight"), fmt: x => x.toFixed(2), oninput: x => set("lineHeight", x) }),
   );
-  if (!subs.active) body.prepend(h(`<p class="note" style="margin:0 16px 8px">Load a subtitle file to see these changes.</p>`));
-  panel({ title: "Subtitles", subtitle: S.subName || "", body });
+  if (!subs.active) body.prepend(h(`<p class="note" style="margin:0 16px 8px">${tr("Load a subtitle file to see these changes.")}</p>`));
+  panel({ title: tr("Subtitles"), subtitle: S.subName || "", body });
 }
 let offT;
 function saveOffset() {
@@ -649,12 +650,12 @@ function saveOffset() {
   offT = setTimeout(() => { const t = (S.subTracks || []).find(x => x.name === S.subName); if (t && t.mediaId) { t.offset = subs.offset; db.put("subs", t); } }, 400);
 }
 function audioTracks() {
-  if (S.hls?.audioTracks?.length) return S.hls.audioTracks.map((t, i) => ({ label: t.name || t.lang || `Track ${i + 1}`, on: i === S.hls.audioTrack, pick: () => { S.hls.audioTrack = i; } }));
+  if (S.hls?.audioTracks?.length) return S.hls.audioTracks.map((t, i) => ({ label: t.name || t.lang || tr("Track {p0}", { p0: i + 1 }), on: i === S.hls.audioTrack, pick: () => { S.hls.audioTrack = i; } }));
   const at = v.audioTracks;
-  if (at && at.length) return [...at].map((t, i) => ({ label: t.label || t.language || `Track ${i + 1}`, on: t.enabled, pick: () => { for (let j = 0; j < at.length; j++) at[j].enabled = j === i; } }));
+  if (at && at.length) return [...at].map((t, i) => ({ label: t.label || t.language || tr("Track {p0}", { p0: i + 1 }), on: t.enabled, pick: () => { for (let j = 0; j < at.length; j++) at[j].enabled = j === i; } }));
   return [];
 }
-function audioMenu() { sheet({ title: "Audio", groups: [audioTracks().map(t => ({ label: t.label, check: t.on, run: () => { t.pick(); hud(t.label); } }))] }); }
+function audioMenu() { sheet({ title: tr("Audio"), groups: [audioTracks().map(t => ({ label: t.label, check: t.on, run: () => { t.pick(); hud(t.label); } }))] }); }
 function refreshAudioButton() { P.audio.hidden = audioTracks().length < 2; }
 
 // ------------------------------------------------------------------ live: surfing & mini guide
@@ -672,14 +673,14 @@ function surf(dir) {
 let osdT;
 function osd(ch) {
   const nn = S.nowNext?.(ch);
-  P.osd.innerHTML = `${ch.logo ? `<img alt="" src="${esc(ch.logo)}" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<div><b>${esc(ch.name)}</b><small>${nn?.now ? esc(nn.now.title) : "No guide information"}</small></div>`;
+  P.osd.innerHTML = `${ch.logo ? `<img alt="" src="${esc(ch.logo)}" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<div><b>${esc(ch.name)}</b><small>${nn?.now ? esc(nn.now.title) : tr("No guide information")}</small></div>`;
   P.osd.hidden = false; clearTimeout(osdT); osdT = setTimeout(() => { P.osd.hidden = true; }, 3000);
 }
 function openGuide() {
   const list = P.guidePanel.querySelector(".pg-list");
   list.replaceChildren(...S.channels.slice(0, 400).map((c, i) => {
     const nn = S.nowNext?.(c);
-    const b = h(`<button class="pg-row${i === S.chIdx ? " on" : ""}"><span class="pg-ch">${esc(c.name)}</span><span class="pg-now">${nn?.now ? `Now · ${esc(nn.now.title)}` : "—"}</span><span class="pg-next">${nn?.next ? `Next · ${esc(nn.next.t || nn.next.title || "")}` : ""}</span></button>`);
+    const b = h(`<button class="pg-row${i === S.chIdx ? " on" : ""}"><span class="pg-ch">${esc(c.name)}</span><span class="pg-now">${nn?.now ? tr("Now · {p0}", { p0: esc(nn.now.title) }) : "—"}</span><span class="pg-next">${nn?.next ? tr("Next · {p0}", { p0: esc(nn.next.t || nn.next.title || "") }) : ""}</span></button>`);
     b.onclick = () => { S.chIdx = i - 1; surf(1); P.guidePanel.hidden = true; };
     return b;
   }));
@@ -695,14 +696,14 @@ async function toggleFullscreen() {
     if (el.requestFullscreen) { await el.requestFullscreen({ navigationUI: "hide" }); screen.orientation?.lock?.("landscape").catch(() => {}); return; }
     if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); return; }
   } catch {}
-  if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else hud("Fullscreen isn’t available here");
+  if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else hud(tr("Fullscreen isn’t available here"));
 }
 async function togglePip() {
   try {
     if (document.pictureInPictureElement) await document.exitPictureInPicture();
     else if (document.pictureInPictureEnabled) await v.requestPictureInPicture();
     else if (v.webkitSetPresentationMode) v.webkitSetPresentationMode(v.webkitPresentationMode === "picture-in-picture" ? "inline" : "picture-in-picture");
-  } catch { hud("Picture in Picture isn’t available for this video"); }
+  } catch { hud(tr("Picture in Picture isn’t available for this video")); }
 }
 
 // ------------------------------------------------------------------ ambient glow
@@ -767,9 +768,9 @@ function gestures() {
       return;
     }
     const delta = dy / (innerHeight * 0.45);
-    if (g.mode === "bri") { S.adj.bri = clamp(g.bri + delta, 0.3, 1.6); applyAdjust(); hud(`Brightness ${Math.round(S.adj.bri * 100)}%`); }
-    else if (volumeWritable) { v.volume = clamp(g.vol + delta, 0, 1); v.muted = false; hud(`Volume ${Math.round(v.volume * 100)}%`); }
-    else if (!warnedVol) { warnedVol = true; hud("Use your device’s volume buttons", 1600); }
+    if (g.mode === "bri") { S.adj.bri = clamp(g.bri + delta, 0.3, 1.6); applyAdjust(); hud(tr("Brightness {p0}%", { p0: Math.round(S.adj.bri * 100) })); }
+    else if (volumeWritable) { v.volume = clamp(g.vol + delta, 0, 1); v.muted = false; hud(tr("Volume {p0}%", { p0: Math.round(v.volume * 100) })); }
+    else if (!warnedVol) { warnedVol = true; hud(tr("Use your device’s volume buttons"), 1600); }
   });
   const end = e => {
     if (!g) return;
@@ -807,9 +808,9 @@ function keys(e) {
   else if (k === "ArrowLeft" || k === "j") S.mode === "live" ? surf(-1) : skip(-skipSec());
   else if (k === "ArrowRight" || k === "l") S.mode === "live" ? surf(1) : skip(skipSec());
   else if (k === ",") frame(-1); else if (k === ".") frame(1);
-  else if (k === "ArrowUp") { v.volume = clamp(v.volume + 0.1, 0, 1); v.muted = false; hud(`Volume ${Math.round(v.volume * 100)}%`); }
-  else if (k === "ArrowDown") { v.volume = clamp(v.volume - 0.1, 0, 1); hud(`Volume ${Math.round(v.volume * 100)}%`); }
-  else if (k === "m") { v.muted = !v.muted; hud(v.muted ? "Muted" : "Sound on"); }
+  else if (k === "ArrowUp") { v.volume = clamp(v.volume + 0.1, 0, 1); v.muted = false; hud(tr("Volume {p0}%", { p0: Math.round(v.volume * 100) })); }
+  else if (k === "ArrowDown") { v.volume = clamp(v.volume - 0.1, 0, 1); hud(tr("Volume {p0}%", { p0: Math.round(v.volume * 100) })); }
+  else if (k === "m") { v.muted = !v.muted; hud(v.muted ? tr("Muted") : tr("Sound on")); }
   else if (k === "f") toggleFullscreen();
   else if (k === "c") subtitleMenu();
   else if (k === "Escape" && !document.fullscreenElement) { if (!P.guidePanel.hidden) P.guidePanel.hidden = true; else requestClose(); }
@@ -856,7 +857,7 @@ function castButton() {
 async function castCurrent() {
   const url = castableURL(), ch = S.stream;
   try {
-    const okd = await Cast.castURL({ url, title: ch?.name || S.item?.title || "LunaTV", subtitle: nowLine(ch || {}) || "LunaTV", image: ch?.logo || "", live: S.mode === "live" });
+    const okd = await Cast.castURL({ url, title: ch?.name || S.item?.title || tr("LunaTV"), subtitle: nowLine(ch || {}) || tr("LunaTV"), image: ch?.logo || "", live: S.mode === "live" });
     if (!okd) return;
     S.casting = true;
     teardown(); hideMsg(); P.spin.hidden = true;           // the TV plays it now; stop fetching it here
@@ -866,17 +867,17 @@ async function castCurrent() {
   } catch (e) { toast(e.message, { err: true, ms: 5000 }); }
 }
 async function castAction() {
-  if (S.casting) { sheet({ title: `Casting to ${Cast.deviceName()}`, groups: [[{ icon: "close", label: "Stop Casting", run: () => Cast.stopCasting() }]] }); return; }
+  if (S.casting) { sheet({ title: tr("Casting to {p0}", { p0: Cast.deviceName() }), groups: [[{ icon: "close", label: tr("Stop Casting"), run: () => Cast.stopCasting() }]] }); return; }
   const url = castableURL();
   if (Cast.devicesAvailable() && url) return castCurrent();
-  if (S.remoteAvail && v.remote) { try { await v.remote.prompt(); } catch (e) { if (e?.name !== "AbortError" && e?.name !== "NotAllowedError") toast("Couldn’t start casting this video.", { err: true }); } return; }
-  if (Cast.devicesAvailable()) toast("This video is stored inside this browser, so a Chromecast can’t reach it. On iPhone, iPad or Mac use AirPlay; live channels and stream links cast normally.", { err: true, ms: 6000 });
+  if (S.remoteAvail && v.remote) { try { await v.remote.prompt(); } catch (e) { if (e?.name !== "AbortError" && e?.name !== "NotAllowedError") toast(tr("Couldn’t start casting this video."), { err: true }); } return; }
+  if (Cast.devicesAvailable()) toast(tr("This video is stored inside this browser, so a Chromecast can’t reach it. On iPhone, iPad or Mac use AirPlay; live channels and stream links cast normally."), { err: true, ms: 6000 });
 }
 function onRemote(r) {
   if (!P || !S.casting) return;
   if (!r.connected) {
     S.casting = false; P.root.querySelector(".p-cast").hidden = true; castButton(); setModeUI();
-    hud("Casting ended", 1400); setPlayIcons(false); paint();
+    hud(tr("Casting ended"), 1400); setPlayIcons(false); paint();
     if (S.open && S.mode === "live") loadStreamUrl();        // pick the channel back up on this device
     return;
   }
