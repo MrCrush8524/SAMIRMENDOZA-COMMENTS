@@ -11,6 +11,7 @@ import {
   slider, img, collage, songRow, tile, navRow, sectionHead, colorOf,
 } from './ui.js';
 import { radioPage } from './radio.js';
+import { initNative, isNative } from './native.js';
 
 const ROW = 64;
 const WOLF = 'assets/wolf.webp';
@@ -827,7 +828,7 @@ async function settingsSheet() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
   openSheet({ title: 'Settings', cls: 'tall', html: `
-    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.3.1</small></div></div>
+    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.4</small></div></div>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
       <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>
@@ -843,9 +844,11 @@ async function settingsSheet() {
       <button class="set-row btnrow" data-s="import"><span>Restore from a backup file</span>${icon('upload')}</button>
     </div>
     <p class="set-note">A backup holds playlists, favorites and play history, not the songs themselves. Keep your original music files: clearing website data, or the browser freeing up space, can remove AMB’s copies.</p>
-    <h3 class="set-h">Playback on ${iOS ? 'iPhone' : 'this device'}</h3>
+    <h3 class="set-h">Playback on ${isNative ? 'Android' : iOS ? 'iPhone' : 'this device'}</h3>
     <div class="set-note glass-note">
-      ${iOS ? `<p>${standalone ? 'Running as a Home Screen app.' : 'For the best experience, open this page in Safari, tap <b>Share → Add to Home Screen</b>, then import music inside the installed app. Each has its own library.'}</p>
+      ${isNative ? `<p>Music keeps playing with the screen off. Use the AMB notification, the lock screen, or Bluetooth and headset buttons to play, pause and skip. The back button closes screens; at Home it sends AMB to the background without stopping the music.</p>
+      <p>AMB keeps its own copy of the songs you add. Uninstalling the app or clearing its storage removes that copy, so keep your original files.</p>`
+      : iOS ? `<p>${standalone ? 'Running as a Home Screen app.' : 'For the best experience, open this page in Safari, tap <b>Share → Add to Home Screen</b>, then import music inside the installed app. Each has its own library.'}</p>
       <p>Lock-screen controls and background playback work while iOS keeps the app alive. iOS may pause web audio if the app is closed from the app switcher, during calls, or when memory is low. Use the device buttons for volume, and Control Center to choose speakers or headphones.</p>`
       : `<p>Keyboard: <b>Space</b> play/pause · <b>←/→</b> seek 10s · <b>Shift+←/→</b> previous/next · <b>/</b> search.</p><p>Media keys and system media controls are supported where your browser provides them.</p>`}
       <p>Music, file names and listening history stay on this device. Only Live Radio uses the internet, and only when you open it.</p>
@@ -1251,11 +1254,22 @@ show(top(), 0);
 (async () => {
   await Lib.load();
   E.restore();
+  initNative({ E, Lib, onBack: nativeBack });
   paintTrack(); renderSidebar();
   document.body.classList.add('ready');
 })();
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
+// Android back button: close the top-most layer; false means nothing was left to close.
+function nativeBack() {
+  if (sheetOpen()) { closeSheet(); return true; }
+  if (npOpen) { closeNP(); return true; }
+  if (stacks[tab].length > 1) { back(); return true; }
+  if (tab !== 'home') { switchTab('home'); return true; }
+  return false;
+}
+
+// The Android app ships its files inside the APK, so it needs no service worker.
+if ('serviceWorker' in navigator && location.protocol === 'https:' && !isNative) {
   window.addEventListener('load', async () => {
     try {
       const reg = await navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });

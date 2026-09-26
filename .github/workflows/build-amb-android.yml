@@ -1,0 +1,91 @@
+name: Build AMB Android APK
+
+on:
+  push:
+    branches: [claude/prototype-build-netlify-hekxd7]
+    paths:
+      - "amb-android/**"
+      - "anthonys-music-box/**"
+      - ".github/workflows/build-amb-android.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: amb-android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Copy the AMB web app and sync Capacitor
+        run: npm run sync
+
+      - name: Signing key
+        env:
+          AMB_KEYSTORE_B64: ${{ secrets.AMB_KEYSTORE_B64 }}
+        run: |
+          if [ -n "$AMB_KEYSTORE_B64" ]; then
+            echo "$AMB_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/amb.jks"
+            echo "AMB_KEYSTORE_FILE=$RUNNER_TEMP/amb.jks" >> "$GITHUB_ENV"
+            echo "SIGNED_WITH=AMB release key" >> "$GITHUB_ENV"
+          else
+            echo "::warning::AMB_KEYSTORE_B64 secret not set; signing with a throwaway debug key. Installing a later build over this one will require uninstalling first."
+            echo "SIGNED_WITH=temporary debug key (add the AMB_KEYSTORE_B64 secret for update-safe builds)" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build release APK
+        working-directory: amb-android/android
+        env:
+          AMB_KEYSTORE_PASSWORD: ${{ secrets.AMB_KEYSTORE_PASSWORD }}
+          AMB_KEY_PASSWORD: ${{ secrets.AMB_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: Name the APK
+        id: apk
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          mkdir -p out
+          cp android/app/build/outputs/apk/release/app-release.apk "out/AMB-$VERSION.apk"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AMB-android-${{ steps.apk.outputs.version }}
+          path: amb-android/out/*.apk
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: amb-android-v${{ steps.apk.outputs.version }}-build${{ github.run_number }}
+          name: AMB for Android ${{ steps.apk.outputs.version }} (build ${{ github.run_number }})
+          target_commitish: ${{ github.sha }}
+          files: amb-android/out/*.apk
+          body: |
+            Anthony's Music Box for Android, version ${{ steps.apk.outputs.version }}.
+
+            **Install:** download `AMB-${{ steps.apk.outputs.version }}.apk` on your Android phone, open it, and allow installing from this source when asked.
+
+            Signed with: ${{ env.SIGNED_WITH }}

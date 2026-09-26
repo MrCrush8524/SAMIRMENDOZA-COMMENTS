@@ -1,0 +1,12 @@
+{
+  "appId": "com.anthonysmusicbox.amb",
+  "appName": "AMB",
+  "webDir": "www",
+  "backgroundColor": "#000000",
+  "android": {
+    "backgroundColor": "#000000",
+    "allowMixedContent": false,
+    "captureInput": false,
+    "webContentsDebuggingEnabled": false
+  }
+}
