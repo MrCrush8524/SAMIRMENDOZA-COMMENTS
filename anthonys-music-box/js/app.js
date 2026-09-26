@@ -12,6 +12,7 @@ import {
 } from './ui.js';
 import { radioPage } from './radio.js';
 import { initNative, isNative } from './native.js';
+import { VERSION, platformName } from './version.js';
 
 const ROW = 64;
 const WOLF = 'assets/wolf.webp';
@@ -165,8 +166,8 @@ function vRender(e, force) {
 // ================= shared page pieces =================
 function brandRow(extra = '') {
   return `<div class="brand-row">
-    <img class="brand-wolf" src="${WOLF}" alt="" width="44" height="44">
-    <div class="brand-text"><b>Anthony's Music Box</b><small>AMB</small></div>
+    <button class="brand-link" data-go="about" aria-label="About Anthony's Music Box"><img class="brand-wolf" src="${WOLF}" alt="" width="44" height="44">
+    <span class="brand-text"><b>Anthony's Music Box</b><small>AMB</small></span></button>
     <div class="brand-actions">${extra}
       <button class="icon-btn glass-btn" data-act="addMusic" aria-label="Add music">${icon('plus')}</button>
       <button class="icon-btn glass-btn" data-act="settings" aria-label="Settings">${icon('gear')}</button>
@@ -466,6 +467,46 @@ const PAGES = {
           : `<div class="empty small"><p>This playlist is empty.</p><button class="btn glass-btn" data-act="plAdd">${icon('plus')}<span>Add Songs</span></button></div>`}</div>`;
     },
     mount: (el, p, e) => { if (e.edit) enableReorder($('#plList', el), (from, to) => { const arr = L.playlists[p.name].filter(id => Lib.get(id)); const [x] = arr.splice(from, 1); arr.splice(to, 0, x); L.playlists[p.name] = arr; Lib.savePlaylists(); }); },
+  },
+  about: {
+    title: () => 'About',
+    html: () => {
+      const albums = realAlbums().length;
+      const plat = platformName();
+      const facts = [
+        ['Version', VERSION], ['Running as', plat],
+        ['Songs in your library', L.tracks.filter(t => !t.video).length.toLocaleString()],
+        ['Albums · Artists', `${albums.toLocaleString()} · ${L.artists.size.toLocaleString()}`],
+        ['Playlists', Object.keys(L.playlists).length.toLocaleString()],
+        ['Library storage', L.persistent ? 'Saved on this device' : 'This session only'],
+      ];
+      const parts = [
+        ['Your library', 'Import MP3, M4A, AAC, WAV, FLAC and OGG files. AMB reads titles, artists, albums, artwork and lyrics from the files and sorts them into Songs, Albums, Artists and Genres.'],
+        ['Made for Anthony', 'Mixes like Late Night, Favorites Mix and Forgotten Tracks, built on this device from what you actually play. No recommendations from anywhere else.'],
+        ['Now Playing', 'Artwork, lyrics (synced when your files include timing), a queue you can reorder, shuffle, repeat and a sleep timer.'],
+        ['Playlists & Favorites', 'Make, rename and reorder playlists, heart the songs you love, and back it all up from Settings.'],
+        ['Live Radio', 'Stations from around the world, plus any secure stream you add yourself.'],
+        [plat === 'Android app' ? 'Plays in the background' : plat === 'Windows app' ? 'Media keys' : 'System controls',
+          plat === 'Android app' ? 'Keeps playing with the screen off, with controls in the notification, on the lock screen and on Bluetooth headphones.'
+          : plat === 'Windows app' ? 'Play, pause and skip from your keyboard’s media keys and the Windows media controls.'
+          : 'Play, pause and skip from the lock screen and your device’s media controls where the browser supports it.'],
+      ];
+      return `<div class="page-pad about">
+        <div class="about-hero"><img src="assets/logo-full.webp" alt="Anthony's Music Box — AMB wolf logo"></div>
+        <p class="about-lede">A private music player for the songs you own.</p>
+        <div class="about-pill">Version ${VERSION} · ${esc(plat)}</div>
+        ${sectionHead('What AMB does')}
+        <div class="about-list">${parts.map(([h, p]) => `<div class="about-item glass"><b>${esc(h)}</b><p>${esc(p)}</p></div>`).join('')}</div>
+        ${sectionHead('Privacy')}
+        <div class="about-item glass"><p>No account, no ads, no tracking. Your music, file names, playlists and listening history stay on this device and are never uploaded. AMB only goes online when you open Live Radio, to find stations and play the one you pick.</p></div>
+        ${sectionHead('Details')}
+        <div class="group glass">${facts.map(([k, v]) => `<div class="set-row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</div>
+        ${sectionHead('Acknowledgements')}
+        <div class="about-item glass"><p>Live Radio's station directory comes from the community-run Radio Browser project (radio-browser.info). Each station streams directly from its broadcaster.</p>
+          <p>The Android app is built with Capacitor and the Windows app with Electron, both open-source under the MIT license. Both run on the Chromium engine.</p></div>
+        <p class="about-foot">Anthony's Music Box · AMB<br>© ${new Date().getFullYear()} · Made for Anthony</p>
+      </div>`;
+    },
   },
   mix: {
     title: p => Lib.mixById(p.id)?.title || 'Mix',
@@ -828,7 +869,8 @@ async function settingsSheet() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const pct = s.quota ? Math.min(100, (s.usage / s.quota) * 100) : 0;
   openSheet({ title: 'Settings', cls: 'tall', html: `
-    <div class="set-brand"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Private local library · v2.4</small></div></div>
+    <button class="set-brand" data-s="about"><img src="${WOLF}" alt=""><div><b>Anthony's Music Box</b><small>Version ${VERSION} · ${platformName()}</small></div>${icon('chev', 'chev')}</button>
+    <div class="group glass"><button class="set-row btnrow" data-s="about"><span>About AMB</span>${icon('info')}</button></div>
     <h3 class="set-h">Library</h3>
     <div class="group glass">
       <div class="set-row"><span>Songs</span><b>${L.tracks.length.toLocaleString()}</b></div>
@@ -863,6 +905,7 @@ async function settingsSheet() {
     onMount: b => {
       b.onclick = async ev => {
         const k = ev.target.closest('[data-s]')?.dataset.s; if (!k) return;
+        if (k === 'about') { closeSheet(); if (tab !== 'home' && tab !== 'library') switchTab('home'); go('about'); return; }
         if (k === 'persist') { const ok = await navigator.storage.persist().catch(() => false); toast(ok ? 'Your library is protected from automatic cleanup' : 'The browser declined. Adding AMB to your Home Screen usually helps.'); closeSheet(); }
         if (k === 'export') exportBackup();
         if (k === 'import') importBackup();

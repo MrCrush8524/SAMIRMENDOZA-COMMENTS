@@ -1,0 +1,46 @@
+{
+  "name": "amb-desktop",
+  "productName": "Anthony's Music Box",
+  "version": "2.5.0",
+  "description": "Anthony's Music Box — a private player for the music you own.",
+  "main": "main.js",
+  "author": "Anthony's Music Box",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "copy-web": "node scripts/copy-web.mjs",
+    "start": "npm run copy-web && electron .",
+    "dist": "npm run copy-web && electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.anthonysmusicbox.amb",
+    "productName": "Anthony's Music Box",
+    "executableName": "AMB",
+    "copyright": "Anthony's Music Box",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "preload.js", "www/**/*"],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AMB",
+      "artifactName": "AMB-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "AMB-Portable-${version}.${ext}"
+    }
+  }
+}
