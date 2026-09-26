@@ -1,5 +1,9 @@
 name: Build AMB Android APK
 
+concurrency:
+  group: amb-android
+  cancel-in-progress: true
+
 on:
   push:
     branches: [claude/prototype-build-netlify-hekxd7]
@@ -19,7 +23,15 @@ jobs:
       run:
         working-directory: amb-android
     steps:
+      # The repo also holds large game projects; fetch only what the app needs.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            amb-android
+            anthonys-music-box
+          sparse-checkout-cone-mode: true
 
       - uses: actions/setup-node@v4
         with:
